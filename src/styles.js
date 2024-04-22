@@ -41,6 +41,14 @@ export const myStyles = StyleSheet.create({
     borderWidth:0,
     borderWidth:0
   },
+  textoComumSemPadding: {
+    fontSize:20 , 
+    fontWeight:"300",
+    paddingTop: 0,
+    color:"#2d2d2dff",
+    borderWidth:0,
+    borderWidth:0
+  },
   textoPalavraDestacada: {
     fontSize:36 , 
     fontWeight:"700",
@@ -67,7 +75,14 @@ export const myStyles = StyleSheet.create({
   },
   button: {
     alignItems: 'center',
-    backgroundColor: '#DDDDDD',
-    padding: 12,
+    backgroundColor: 'white',
+    borderColor: "#8f8f8fff",
+    borderWidth: 2,
+    borderRadius: 8,
+    padding: 14,
+    borderBottomWidth: 6,
+    maxWidth: 240,
+    minWidth: 200,
+    alignSelf: "center"
   },
 });

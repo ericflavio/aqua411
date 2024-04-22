@@ -52,6 +52,15 @@ export default function TabRoutsLayout (){
               <MaterialIcons name="card-giftcard" size={36} color={color}/>
         }}
       />
+
+      <Tabs.Screen 
+        name="saibaMais"
+        options={{
+          title:"Saiba",
+          tabBarIcon: ({size , color}) => 
+              <MaterialIcons name="water-drop" size={36} color={color}/>
+        }}
+      />
     </Tabs>
   )
 }

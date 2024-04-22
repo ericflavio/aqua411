@@ -115,9 +115,21 @@ export default function ViewHome() {
           <Text style={myStyles.textoTituloPrincipal}>
             Sua lavanderia fora de casa
           </Text>
-          <Text style={myStyles.textoComum}>
-            6 modernos equipamentos para cuidar bem das suas roupas
+          <Text style={myStyles.textoSubtitulo}>
+            Unidade: ASA NORTE, Brasília
           </Text>
+          <View style={{flexDirection:"row", alignItems:"center", paddingTop:10}}>
+              <Image
+                style={{width: 30, height: 30, resizeMode: 'contain'}}
+                source={require('../../../assets/icones/icon_local.png')}
+              />
+              <Text style={myStyles.textoComumSemPadding}>CLN 411 Bloco "E"</Text>
+          </View>
+          {/*
+          <Text style={myStyles.textoComum}>
+            Cuide bem das suas roupas com nossos modernos equipamentos
+          </Text>
+         */}
 
           <View style={myStyles.containerMaquinas}>  
               {maquina("seca" , 2 , seca[0])}
@@ -129,14 +141,11 @@ export default function ViewHome() {
               {maquina("lava" , 3 , lava[1])}
               {maquina("lava" , 5 , lava[2])}
           </View>
-          
+          <Text></Text>
           <TouchableOpacity style={myStyles.button} onPress={atualizarStatus}>
               <Text>Atualizar</Text>
           </TouchableOpacity>
         
-          <Text style={myStyles.textoSubtitulo}>
-            Endereço e geolocalização
-          </Text>
         </ScrollView>
     </SafeAreaView>
   )
