@@ -1,77 +1,72 @@
-import {StyleSheet, TouchableOpacity} from "react-native";
-
-export const myColors = {
-  corAzulEscuro: "#041e52ff",
-  corAzulClaro: "#2ba6daff",
-  corCinzEscuro: "#8f8f8fff",
-  corCinzaClaro: "#dfdfdfff",
-  corPretoAbsoluto: "#000000ff",
-  corPretoRelativo: "#2d2d2dff",
-}
+import { StyleSheet } from "react-native";
+import { myStylesComuns } from "./stylesComuns";
 
 export const myStyles = StyleSheet.create({
-  //Telas principais invocadas via opção do menu
-  containerPrincipal: {
-    flex:1, 
-    backgroundColor:"white" , 
-    justifyContent:"center", 
-    alignItems:"center",
-    padding: 30
-  },
-  textoTituloPrincipal: {
-    fontSize:40 , 
-    fontWeight:"700",
-    paddingTop: 40, 
+
+  textoTituloPagina: {
+    fontSize: myStylesComuns.textoFonteTam0,
+    fontWeight: myStylesComuns.textoNegritoForte,
+    paddingTop: 40,
     paddingBottom: 20,
-    color:"#041e52ff",
-    borderWidth:0
+    color: myStylesComuns.corTemaAppPrincipal,
+    borderWidth: myStylesComuns.textoBordaOnOff
   },
   textoSubtitulo: {
-    fontSize:22 , 
-    fontWeight:"700",
+    fontSize: myStylesComuns.textoFonteTam2,
+    fontWeight: myStylesComuns.textoNegritoForte,
     paddingTop: 20,
-    color:"#2d2d2dff",
-    borderWidth:0
+    color: myStylesComuns.corPretoRelativo,
+    borderWidth: myStylesComuns.textoBordaOnOff
   },
   textoComum: {
-    fontSize:20 , 
-    fontWeight:"300",
+    fontSize: myStylesComuns.textoFonteTam3,
+    fontWeight: myStylesComuns.textoNegritoMedio,
     paddingTop: 16,
-    color:"#2d2d2dff",
-    borderWidth:0,
-    borderWidth:0
+    color: myStylesComuns.corPretoRelativo,
+    borderWidth: myStylesComuns.textoBordaOnOff
   },
   textoComumSemPadding: {
-    fontSize:20 , 
-    fontWeight:"300",
+    fontSize: myStylesComuns.textoFonteTam3,
+    fontWeight: myStylesComuns.textoNegritoMedio,
     paddingTop: 0,
-    color:"#2d2d2dff",
-    borderWidth:0,
-    borderWidth:0
+    color: myStylesComuns.corPretoRelativo,
+    borderWidth: myStylesComuns.textoBordaOnOff
   },
   textoPalavraDestacada: {
-    fontSize:36 , 
-    fontWeight:"700",
-    color:"#041e52ff",
-    borderWidth:0
+    fontSize: myStylesComuns.textoFonteTam2,
+    fontWeight: myStylesComuns.textoNegritoForte,
+    color: myStylesComuns.corTemaAppPrincipal,
+    borderWidth: myStylesComuns.textoBordaOnOff
+  },
+
+  //Telas principais invocadas via opção do menu
+  containerPrincipal: {
+    flex: 1,
+    backgroundColor: "white",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 30,
+    alignContent: "flex-start",
+    alignItems: "center",
+    borderWidth: 0
   },
 
   //Tela INICIO
   containerMaquinas: {
-    flexDirection:"row",
-    flex:1, 
-    borderWidth:0,
-    backgroundColor:"white",
-    alignContent:"center",
-    justifyContent:"space-evenly",
+    flexDirection: "row",
+    flex: 1,
+    borderWidth: 0,
+    backgroundColor: "white",
+    alignContent: "center",
+    justifyContent: "space-evenly",
     paddingTop: 18
   },
   textoMaquinas: {
-    fontSize:16 , 
-    fontWeight:"100",
-    paddingTop:0,
-    paddingBottom:0, 
-    color:"black"
+    fontSize: 16,
+    fontWeight: "100",
+    paddingTop: 0,
+    paddingBottom: 0,
+    color: "black"
   },
   button: {
     alignItems: 'center',
