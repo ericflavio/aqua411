@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Image, SafeAreaView, ScrollView, TouchableOpacity } from "react-native";
-import { myStyles } from "../../styles";
+import { myStyles } from "../styles/stylesPageIndex";
+import { myStylesComuns } from '../styles/stylesComuns';
 
 var cenarioTeste = 1;
 var seca = [1, 1, 1];
@@ -112,29 +113,25 @@ export default function ViewHome() {
   }
 
   return (
-    <SafeAreaView style={myStyles.containerPrincipal}>
-      <ScrollView style={{ flex: 0, backgroundColor: "white", alignContent: "flex-start" }}>
-
-        <Text style={myStyles.textoTituloPagina}>
+    <SafeAreaView style={myStyles.containerPrincipalSafeArea}>
+      <ScrollView style={myStyles.containerPrincipalScroll} showsVerticalScrollIndicator={false}>
+        <Text style={myStylesComuns.textoTituloPagina}>
           Sua lavanderia fora de casa
         </Text>
-
-        <View style={{ flexDirection: "row", alignItems: "center", paddingTop: 10 }}>
+        <View style={myStyles.containerUnidade}>
           <Image
             style={{ width: 30, height: 30, resizeMode: 'contain' }}
             source={require('../../../assets/icones/icon_local.png')}
           />
-          <Text style={myStyles.textoSubtitulo}>
+          <Text style={myStylesComuns.textoSubtitulo}>
             Unidade: ASA NORTE, Brasília
           </Text>
         </View>
-
-        <Text style={myStyles.textoComumSemPadding}>        CLN 411 Bloco "E"</Text>
-
         {/*
-          <Text style={myStyles.textoComum}>
+        <Text style={myStylesComuns.textoComumSemPadding}>CLN 411 Bloco "E"</Text>
+        <Text style={myStyles.textoComum}>
             Cuide bem das suas roupas com nossos modernos equipamentos
-          </Text>
+        </Text>
          */}
 
         <View style={myStyles.containerMaquinas}>

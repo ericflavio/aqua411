@@ -1,8 +1,8 @@
 import { StyleSheet } from "react-native";
 
 export const myStylesComuns = StyleSheet.create({
-
-  //Padding
+  //Container
+  containerBordaOnOff: 0,
 
   //Cores
   corTemaAppPrincipal: "#041e52ff",
@@ -29,5 +29,34 @@ export const myStylesComuns = StyleSheet.create({
   textoFonteTam4: 16,
   textoFonteTam5: 12,
   textoFonteTam6: 10,
+
+  textoTituloPagina: {
+    fontSize: 40,
+    fontWeight: "700",
+    marginVertical: 40,
+    color: "#041e52ff",
+    borderWidth: 0
+  },
+  textoSubtitulo: {
+    fontSize: 20,
+    fontWeight: "700",
+    marginVertical: 0,
+    color: "#1f1f1fff",
+    borderWidth: 0
+  },
+  textoComum: {
+    fontSize: 18,
+    fontWeight: "500",
+    paddingTop: 16,
+    color: "#1f1f1fff",
+    borderWidth: 0
+  },
+  textoComumSemPadding: {
+    fontSize: 18,
+    fontWeight: "500",
+    paddingTop: 0,
+    color: "#1f1f1fff",
+    borderWidth: 0
+  },
 
 });
