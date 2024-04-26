@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Dimensions } from "react-native";
+import { View, Text, SafeAreaView, ScrollView, TouchableOpacity } from "react-native";
 import { myStyles } from "../styles/stylesPagePromocao";
 import { myStylesComuns } from '../styles/stylesComuns';
 import { MaterialIcons } from "@expo/vector-icons";
@@ -18,16 +18,23 @@ function pesquisaPromocaoVigente() {
 };
 
 function detalhaPromo() {
-  return 
+  return
 };
 
-function montaPromocao(promo) {
+function montaPromocao(vigente) {
   promo = pesquisaPromocaoVigente();
-  console.log("promo: ", promo)
+  console.log("promo: ", vigente, promo)
   return (
-    <TouchableOpacity style={myStyles.buttonPromoVigente} onPress={detalhaPromo}>
-      <Text style={myStyles.textoTituloPromo}>{promo.nome}</Text>
-      <Text>Período: </Text><Text style={myStyles.textoPromo}>{[promo.dataInicio, promo.dataFim]}</Text>
+    <TouchableOpacity disabled={!vigente} style={(vigente ? myStyles.buttonPromoVigente :myStyles.buttonPromoEncerrada )} onPress={detalhaPromo}>
+      <View style={myStyles.containerPromoCabecalho}>
+        <Text style={myStyles.textoTituloPromo}>{promo.nome}</Text>
+        <MaterialIcons name="card-giftcard" size={36} color={"pink"} />
+      </View>
+      <View style={myStyles.containerPromoPeriodo}>
+        <MaterialIcons name="calendar-month" size={26} color={"grey"} />
+        <Text style={myStylesComuns.textoComum}>{promo.dataInicio} <Text> até </Text></Text>
+        <Text style={myStylesComuns.textoComum}>{promo.dataFim}</Text>
+      </View>
       <Text style={myStyles.textoPromo}>{promo.descricao}</Text>
     </TouchableOpacity>
   )
@@ -36,49 +43,23 @@ function montaPromocao(promo) {
 //Tela principal HOME
 export default function ViewPromocao() {
 
-  //Seta tamanho ideal das VIEWS baseado no tamanho da tela do aparelho
-  let screenHeight = 0;
-  try {
-    screenHeight = Dimensions.get('window').height;
-  } catch {
-    screenHeight = myStylesComuns.containerTamanhoMedioTelas;
-  };
-  let headerHeight = 0; //Eventual header na página
-  let bodyHeight = screenHeight - headerHeight + 0;
-  //console.log("screenHeight: ", screenHeight);
-  //console.log("headerHeight: ", headerHeight);
-  //console.log("bodyHeight  : ", bodyHeight);
-
   return (
     <SafeAreaView style={myStylesComuns.containerPrincipalSafeArea}>
       <ScrollView style={myStylesComuns.containerPrincipalScroll} showsVerticalScrollIndicator={false}>
-        <View style={{ height: bodyHeight, paddingBottom: 96 }}>
-          <View style={myStyles.containerHeader}>
-            <Text style={myStylesComuns.textoTituloPagina}>
-              Nossas promoções para você economizar
-            </Text>
-          </View>
-
-          <View style={myStyles.containerBody1}>
-            <View style={myStyles.containerPromoVigente}>
-              <MaterialIcons name="card-giftcard" size={36} color={"pink"} />
-              <Text style={myStylesComuns.textoSubtitulo}>
-                Essas aqui você ainda pode participar
-              </Text>
-            </View>
-          </View>
-
-          {montaPromocao()}
-
-          <View style={myStyles.containerBody2}>
-            <View style={myStyles.containerPromoEncerrada}>
-              <MaterialIcons name="card-giftcard" size={36} color={"grey"} />
-              <Text style={myStylesComuns.textoSubtitulo}>
-                Essas você perdeu
-              </Text>
-            </View>
-          </View>
+        <View style={myStyles.containerHeader}>
+          <Text style={myStylesComuns.textoTituloPagina}>
+            Promoções para você economizar
+          </Text>
+          <Text style={myStylesComuns.textoComum}>
+            Mais detalhes você pode encontrar na loja e no atendimento via Whatsapp
+          </Text>
         </View>
+
+        {montaPromocao(true)}
+        {montaPromocao(true)}
+        {montaPromocao(false)}
+        {montaPromocao(false)}
+
       </ScrollView>
     </SafeAreaView >
   )

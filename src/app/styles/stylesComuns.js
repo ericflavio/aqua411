@@ -54,7 +54,7 @@ export const myStylesComuns = StyleSheet.create({
     fontSize: 36,
     fontWeight: "700",
     marginTop: 40,
-    marginBottom: 40,
+    marginBottom: 25,
     color: "#041e52ff",
     borderWidth: 0
   },
@@ -66,7 +66,7 @@ export const myStylesComuns = StyleSheet.create({
     borderWidth: 0
   },
   textoComum: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: "500",
     color: "#1f1f1fff",
     borderWidth: 0

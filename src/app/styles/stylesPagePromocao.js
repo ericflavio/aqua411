@@ -4,34 +4,21 @@ import { myStylesComuns } from "./stylesComuns";
 export const myStyles = StyleSheet.create({
   containerHeader: {
     flex: 0,
-    borderWidth: myStylesComuns.containerBordaOnOff
+    borderWidth: myStylesComuns.containerBordaOnOff,
+    marginBottom: 30
   },
-  containerBody1: {
-    flex: 0,
-    flexDirection: "column",
-    alignItems: "stretch",
-    justifyContent: "center",
-    borderWidth: myStylesComuns.containerBordaOnOff
-  },
-  containerBody2: {
-    flex: 1,
-    flexDirection: "column",
-    alignItems: "stretch",
-    justifyContent: "center",
-    borderWidth: myStylesComuns.containerBordaOnOff
-  },
-  containerPromoVigente: {
+  containerPromoCabecalho: {
+    width: "100%",
     flexDirection: "row",
-    alignItems: "flex-start",
-    alignContent: "flex-start",
-    justifyContent: "flex-start",
+    alignItems: "center",
+    justifyContent: "space-between",
     borderWidth: myStylesComuns.containerBordaOnOff,
     alignSelf: "flex-start"
   },
-  containerPromoEncerrada: {
+  containerPromoPeriodo: {
+    width: "100%",
     flexDirection: "row",
-    alignItems: "flex-start",
-    alignContent: "flex-start",
+    alignItems: "center",
     justifyContent: "flex-start",
     borderWidth: myStylesComuns.containerBordaOnOff,
     alignSelf: "flex-start"
@@ -55,16 +42,34 @@ export const myStyles = StyleSheet.create({
 
   //Cards
   buttonPromoVigente: {
-    alignItems: 'center',
+    marginTop: 8,
+    alignItems: 'flex-start',
     backgroundColor: 'white',
     borderWidth: 2,
     borderRadius: 8,
-    borderLeftWidth: 6,
-    marginTop: 10,
+    borderBottomRightRadius: 20,
+    borderBottomWidth: 6,
     padding: 14,
     borderColor: myStylesComuns.corCinzEscuro,
     width: "100%",
-    height: 150,
+    minHeight: 150,
+    maxHeight: 200,
+    alignSelf: "center",
+    elevation: 2
+  },
+  buttonPromoEncerrada: {
+    marginTop: 8,
+    alignItems: 'flex-start',
+    backgroundColor: 'white',
+    borderWidth: 2,
+    borderRadius: 8,
+    borderBottomRightRadius: 20,
+    borderBottomWidth: 6,
+    padding: 14,
+    borderColor: myStylesComuns.corCinzaClaro,
+    width: "100%",
+    minHeight: 150,
+    maxHeight: 200,
     alignSelf: "center",
     elevation: 2
   },
