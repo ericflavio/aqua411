@@ -26,13 +26,13 @@ export const myStylesComuns = StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
     alignItems: "center",
-    borderWidth: 0,
+    borderWidth: 1,
     borderBlockColor: "#fa7251ff"
   },
   containerPrincipalScroll: {
     flex: 1,
     width: "86%",
-    borderWidth: 0,
+    borderWidth: 1,
     borderColor: "#98e07eff"
   },
 

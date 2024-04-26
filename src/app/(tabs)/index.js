@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Image, SafeAreaView, ScrollView, TouchableOpacity } from "react-native";
+import { View, Text, Image, SafeAreaView, ScrollView, TouchableOpacity, Dimensions } from "react-native";
 import { myStyles } from "../styles/stylesPageIndex";
 import { myStylesComuns } from '../styles/stylesComuns';
 
@@ -140,79 +140,87 @@ export default function ViewHome() {
     };
   }
 
+  let screenHeight = Dimensions.get('window').height;
+  let headerHeight = 0;
+  let bodyHeight = screenHeight - headerHeight + 0;
+  console.log("screenHeight: ", screenHeight);
+  console.log("headerHeight: ", headerHeight);
+  console.log("bodyHeight  : ", bodyHeight);
+
   return (
     <SafeAreaView style={myStylesComuns.containerPrincipalSafeArea}>
       <ScrollView style={myStylesComuns.containerPrincipalScroll} showsVerticalScrollIndicator={false}>
-        <View style={myStyles.containerHeader}>
-          <Text style={myStylesComuns.textoTituloPagina}>
-            Sua lavanderia fora de casa
-          </Text>
-        </View>
-        <View style={myStyles.containerBody1}>
-          <View style={myStyles.containerUnidadeEndereco}>
-            <Image
-              style={myStyles.imgLocalizacao}
-              source={require('../../../assets/icones/icon_local.png')}
-            />
-            <Text style={myStylesComuns.textoDestacado}>
-              Unidade: ASA NORTE
+        <View style={{ height: bodyHeight }}>
+          <View style={myStyles.containerHeader}>
+            <Text style={myStylesComuns.textoTituloPagina}>
+              Sua lavanderia fora de casa
             </Text>
           </View>
-
-          <View style={myStyles.containerHorarioFuncionamento}>
-            {relogioOnOff == true ?
+          <View style={myStyles.containerBody1}>
+            <View style={myStyles.containerUnidadeEndereco}>
               <Image
-                style={myStyles.imgRelogio}
-                source={require('../../../assets/icones/aqua_relogio_abertos.png')}
-              /> :
-              <Image
-                style={myStyles.imgRelogio}
-                source={require('../../../assets/icones/aqua_relogio_fechados.png')}
+                style={myStyles.imgLocalizacao}
+                source={require('../../../assets/icones/icon_local.png')}
               />
-            }
-            <Text style={myStylesComuns.textoComum}>
-              Abertos diariamente de 6h às 23h
-            </Text>
-          </View>
-          {/*
+              <Text style={myStylesComuns.textoDestacado}>
+                Unidade: ASA NORTE
+              </Text>
+            </View>
+
+            <View style={myStyles.containerHorarioFuncionamento}>
+              {relogioOnOff == true ?
+                <Image
+                  style={myStyles.imgRelogio}
+                  source={require('../../../assets/icones/aqua_relogio_abertos.png')}
+                /> :
+                <Image
+                  style={myStyles.imgRelogio}
+                  source={require('../../../assets/icones/aqua_relogio_fechados.png')}
+                />
+              }
+              <Text style={myStylesComuns.textoComum}>
+                Abertos diariamente de 6h às 23h
+              </Text>
+            </View>
+            {/*
             <View style={myStyles.containerBroadcast}>
               <Text style={myStylesComuns.textoComum}>
                 Excepcionalmente hoje, 25/04/2024, quinta-feira, funcionaremos de 6h às 15h
               </Text>
             </View>
         */}
+          </View>
+          <View style={myStyles.containerBody2}>
+            <View style={myStyles.containerMaquinas}>
+              {maquina("seca", 2, seca[0], false)}
+              {maquina("seca", 4, seca[1], false)}
+              {maquina("seca", 6, seca[2], false)}
+            </View>
+            <View style={myStyles.containerMaquinas}>
+              {maquina("lava", 1, lava[0], false)}
+              {maquina("lava", 3, lava[1], false)}
+              {maquina("lava", 5, lava[2], false)}
+            </View>
+            <Text></Text>
+
+            <View style={myStyles.containerUltimaAtualizacao}>
+              <Image
+                style={myStyles.imgRelogio}
+                source={require('../../../assets/icones/aqua_relogio_comum.png')}
+              />
+              <Text style={myStylesComuns.textoComum}>
+                26/06/2024 08:36
+              </Text>
+            </View>
+
+            {inViewStatusMaquina == true ?
+              <TouchableOpacity style={myStylesComuns.button} onPress={atualizarStatus}>
+                <Text>Atualizar</Text>
+              </TouchableOpacity> : ""
+            }
+          </View>
         </View>
-        <View style={myStyles.containerBody2}>
-          <View style={myStyles.containerMaquinas}>
-            {maquina("seca", 2, seca[0], false)}
-            {maquina("seca", 4, seca[1], false)}
-            {maquina("seca", 6, seca[2], false)}
-          </View>
-          <View style={myStyles.containerMaquinas}>
-            {maquina("lava", 1, lava[0], false)}
-            {maquina("lava", 3, lava[1], false)}
-            {maquina("lava", 5, lava[2], false)}
-          </View>
-          <Text></Text>
-
-          <View style={myStyles.containerUltimaAtualizacao}>
-            <Image
-              style={myStyles.imgRelogio}
-              source={require('../../../assets/icones/aqua_relogio_comum.png')}
-            />
-            <Text style={myStylesComuns.textoComum}>
-              26/06/2024 08:36
-            </Text>
-          </View>
-
-          {inViewStatusMaquina == true ?
-            <TouchableOpacity style={myStylesComuns.button} onPress={atualizarStatus}>
-              <Text>Atualizar</Text>
-            </TouchableOpacity> : ""
-          }
-        </View>
-
       </ScrollView>
-    </SafeAreaView>
+    </SafeAreaView >
   )
 }

@@ -1,22 +1,21 @@
 import { StyleSheet } from "react-native";
 import { myStylesComuns } from "./stylesComuns";
 
-myStyles
 export const myStyles = StyleSheet.create({
 
   containerHeader: {
-    flex:1,
+    flex:0,
     borderWidth: myStylesComuns.containerBordaOnOff
   },
   containerBody1: {
-    flex:1,
+    flex:0,
     flexDirection: "column",
     alignItems: "stretch",
     justifyContent: "center",
     borderWidth: myStylesComuns.containerBordaOnOff
   },
   containerBody2: {
-    flex:2,
+    flex:1,
     flexDirection: "column",
     alignItems: "stretch",
     justifyContent: "center",
