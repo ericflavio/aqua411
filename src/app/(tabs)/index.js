@@ -168,7 +168,7 @@ export default function ViewHome() {
                 style={myStyles.imgLocalizacao}
                 source={require('../../../assets/icones/icon_local.png')}
               />
-              <Text style={myStylesComuns.textoDestacado}>
+              <Text style={myStylesComuns.textoSubtitulo}>
                 Unidade: ASA NORTE
               </Text>
             </View>

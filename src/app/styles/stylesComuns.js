@@ -51,7 +51,7 @@ export const myStylesComuns = StyleSheet.create({
   textoFonteTam6: 10,
 
   textoTituloPagina: {
-    fontSize: 40,
+    fontSize: 36,
     fontWeight: "700",
     marginTop: 40,
     marginBottom: 40,
@@ -61,18 +61,12 @@ export const myStylesComuns = StyleSheet.create({
   textoSubtitulo: {
     fontSize: 20,
     fontWeight: "700",
-    marginTop: 20,
-    color: "#1f1f1fff",
-    borderWidth: 0
-  },
-  textoDestacado: {
-    fontSize: 20,
-    fontWeight: "700",
+    marginTop: 0,
     color: "#1f1f1fff",
     borderWidth: 0
   },
   textoComum: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "500",
     color: "#1f1f1fff",
     borderWidth: 0
