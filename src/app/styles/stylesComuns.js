@@ -3,6 +3,7 @@ import { StyleSheet } from "react-native";
 export const myStylesComuns = StyleSheet.create({
   //Container
   containerBordaOnOff: 0,
+  containerBordaRaio: 8,
 
   //Cores
   corTemaAppPrincipal: "#041e52ff",
@@ -16,6 +17,9 @@ export const myStylesComuns = StyleSheet.create({
   corCinzaClaro: "#dfdfdfff",
   corPretoAbsoluto: "#000000ff",
   corPretoRelativo: "#1f1f1fff",
+  corErro: "#fa7251ff",
+  corAlerta: "#ffe275ff",
+  corSucesso: "#98e07eff",
 
   //Textos
   textoBordaOnOff: 0,
@@ -33,30 +37,44 @@ export const myStylesComuns = StyleSheet.create({
   textoTituloPagina: {
     fontSize: 40,
     fontWeight: "700",
-    marginVertical: 40,
+    marginTop: 40,
+    marginBottom:40,
     color: "#041e52ff",
     borderWidth: 0
   },
   textoSubtitulo: {
     fontSize: 20,
     fontWeight: "700",
-    marginVertical: 0,
+    marginTop: 20,
+    color: "#1f1f1fff",
+    borderWidth: 0
+  },
+  textoDestacado: {
+    fontSize: 20,
+    fontWeight: "700",
     color: "#1f1f1fff",
     borderWidth: 0
   },
   textoComum: {
     fontSize: 18,
     fontWeight: "500",
-    paddingTop: 16,
     color: "#1f1f1fff",
     borderWidth: 0
   },
-  textoComumSemPadding: {
-    fontSize: 18,
-    fontWeight: "500",
-    paddingTop: 0,
-    color: "#1f1f1fff",
-    borderWidth: 0
+
+  //Botões
+  button: {
+    alignItems: 'center',
+    backgroundColor: 'white',
+    borderColor: "#8f8f8fff",
+    borderWidth: 2,
+    borderRadius: 8,
+    marginTop: 10,
+    padding: 14,
+    borderBottomWidth: 6,
+    maxWidth: "80%",
+    minWidth: 240,
+    alignSelf: "center"
   },
 
 });

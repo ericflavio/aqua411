@@ -21,9 +21,36 @@ export const myStyles = StyleSheet.create({
   },
 
   //Tela INICIO
-  containerUnidade: {
+  containerUnidadeEndereco: {
     flexDirection: "row", 
-    alignItems: "center"
+    alignItems: "flex-start",
+    alignContent: "flex-start",
+    justifyContent: "flex-start",
+  },
+  containerHorarioFuncionamento: {
+    flexDirection: "row", 
+    alignItems: "flex-start",
+    alignContent: "flex-start",
+    justifyContent: "flex-start",
+  },
+  containerBroadcast: {
+    marginVertical: 20,
+    backgroundColor: myStylesComuns.corAlerta,
+    alignItems: "flex-start",
+    alignContent: "flex-start",
+    justifyContent: "flex-start",
+    padding: 12,
+    borderRadius: myStylesComuns.containerBordaRaio
+  },
+  imgLocalizacao: {
+    width: 30, 
+    height: 30, 
+    resizeMode: 'contain'
+  },
+  imgMaquina: {
+    width: 80, 
+    height: 80, 
+    resizeMode: 'contain'
   },
   containerMaquinas: {
     flexDirection: "row",
@@ -31,26 +58,17 @@ export const myStyles = StyleSheet.create({
     borderWidth: myStylesComuns.containerBordaOnOff,
     backgroundColor: "white",
     alignContent: "center",
-    justifyContent: "space-evenly",
-    paddingTop: 18
+    justifyContent: "center",
+    marginTop: 18
   },
-  textoMaquinas: {
-    fontSize: 16,
-    fontWeight: "100",
-    paddingTop: 0,
-    paddingBottom: 0,
-    color: "black"
+  containerLavaSeca: {
+    flexDirection: 'column',
+    alignItems: "center",
+    borderWidth: myStylesComuns.containerBordaOnOff
   },
-  button: {
-    alignItems: 'center',
-    backgroundColor: 'white',
-    borderColor: "#8f8f8fff",
-    borderWidth: 2,
-    borderRadius: 8,
-    padding: 14,
-    borderBottomWidth: 6,
-    maxWidth: 240,
-    minWidth: 200,
-    alignSelf: "center"
+  textoLavaSeca: {
+    fontSize: myStylesComuns.textoFonteTam5,
+    fontWeight: myStylesComuns.textoNegritoMedio,
+    color: myStylesComuns.corPretoRelativo
   },
 });

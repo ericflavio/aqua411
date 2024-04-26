@@ -8,17 +8,19 @@ var seca = [1, 1, 1];
 var lava = [1, 1, 1];
 
 //Monta cada máquina com seu respectivo status
-function maquina(tipMaq, idMaq, status) {
+function maquina(tipMaq, idMaq, status, inViewStatusMaquina) {
   if (!tipMaq) tipMaq = "lava"; // Espera "lava" ou "seca"
   if (!idMaq) idMaq = 0;
   if (!status) status = 1;
+  if (!inViewStatusMaquina) inViewStatusMaquina = 2; //1-ver 2-não ver
 
-  txStatus = "Indefinido";
+  var tipMaquina = tipMaq.toUpperCase();
+  var txStatus = "Indefinido";
 
   switch (status) {
     case 1:
       txStatus = "Disponível"
-      if (tipMaq == "lava") {
+      if (tipMaquina == "LAVA") {
         imgMaq = require('../../../assets/maquinas/lava_disp.png')
       } else {
         imgMaq = require('../../../assets/maquinas/seca_disp.png')
@@ -26,7 +28,7 @@ function maquina(tipMaq, idMaq, status) {
       break;
     case 2:
       txStatus = "Ocupada"
-      if (tipMaq == "lava") {
+      if (tipMaquina == "LAVA") {
         imgMaq = require('../../../assets/maquinas/lava_emuso.png')
       } else {
         imgMaq = require('../../../assets/maquinas/seca_emuso.png')
@@ -34,7 +36,7 @@ function maquina(tipMaq, idMaq, status) {
       break;
     case 3:
       txStatus = "Manutenção"
-      if (tipMaq == "lava") {
+      if (tipMaquina == "LAVA") {
         imgMaq = require('../../../assets/maquinas/lava_manut.png')
       } else {
         imgMaq = require('../../../assets/maquinas/seca_manut.png')
@@ -42,7 +44,7 @@ function maquina(tipMaq, idMaq, status) {
       break;
     default:
       txStatus = "Disponível"
-      if (tipMaq == "lava") {
+      if (tipMaquina == "LAVA") {
         imgMaq = require('../../../assets/maquinas/lava_disp.png')
       } else {
         imgMaq = require('../../../assets/maquinas/seca_disp.png')
@@ -52,28 +54,45 @@ function maquina(tipMaq, idMaq, status) {
   return (
     <View>
       <Image
-        style={{
-          width: 84,
-          height: 84,
-          resizeMode: 'contain',
-        }}
+        style={myStyles.imgMaquina}
         source={imgMaq}
       />
-      <View style={{
-        flexDirection: 'column',
-        alignItems: "center",
-        borderWidth: 0
-      }}>
-        <Text style={myStyles.textoMaquinas}>
-          {tipMaq + " " + idMaq}
+      <View style={myStyles.containerLavaSeca}>
+        <Text style={myStyles.textoLavaSeca}>
+          {tipMaquina + " " + idMaq}
         </Text>
-        <Text style={myStyles.textoMaquinas}>
-          {txStatus}
-        </Text>
+
+        {inViewStatusMaquina == 1 ?
+          <Text style={myStyles.textoLavaSeca}>
+            {txStatus}
+          </Text> : ""}
       </View>
     </View>
   )
 }
+
+//Seta cor do icone de horário de funcionamento
+function horarioFuncionamento (horaIni , horaFim) {
+  if (!horaIni) horaIni = "00:00"
+  if (!horaFim) horaFim = "23:59"
+
+  hora1 = horaIni.split(":");
+  hora2 = horaFim.split(":");
+
+  var d = new Date();
+  var data1 = new Date(d.getFullYear(), d.getMonth(), d.getDate(), hora1[0], hora1[1]);
+  var data2 = new Date(d.getFullYear(), d.getMonth(), d.getDate(), hora2[0], hora2[1]);
+
+  var datax = new Date(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes());
+
+  console.log("<<hora-agora: ", datax)
+  console.log("<<hora1: ", data1)
+  console.log("<<hora2: ", data2)
+
+  if (datax > data2) console.log ("<<fora da janela");
+  if (datax < data2) console.log ("<<na janela");
+  //return data1 > data2;
+};
 
 //Tela principal HOME
 export default function ViewHome() {
@@ -82,8 +101,9 @@ export default function ViewHome() {
 
   //Consulta API com novos status dos equipamentos
   function atualizarStatus() {
-    console.log("cenarioTeste :", cenarioTeste);
-    console.log("seca: ", seca[0], seca[1], seca[2]);
+    //console.log("cenarioTeste :", cenarioTeste);
+    horarioFuncionamento("06:00" , "23:00");
+    //
     switch (cenarioTeste) {
       case 1:
         seca = [1, 1, 1];
@@ -118,15 +138,30 @@ export default function ViewHome() {
         <Text style={myStylesComuns.textoTituloPagina}>
           Sua lavanderia fora de casa
         </Text>
-        <View style={myStyles.containerUnidade}>
+        <View style={myStyles.containerUnidadeEndereco}>
           <Image
-            style={{ width: 30, height: 30, resizeMode: 'contain' }}
+            style={myStyles.imgLocalizacao}
             source={require('../../../assets/icones/icon_local.png')}
           />
-          <Text style={myStylesComuns.textoSubtitulo}>
-            Unidade: ASA NORTE, Brasília
+          <Text style={myStylesComuns.textoDestacado}>
+            Unidade: ASA NORTE, Brasília-DF
           </Text>
         </View>
+        <View style={myStyles.containerHorarioFuncionamento}>
+          <Image
+            style={myStyles.imgLocalizacao}
+            source={require('../../../assets/icones/aqua_relogio_abertos.png')}
+          />
+          <Text style={myStylesComuns.textoComum}>
+            Abertos diariamente de 6h às 23h
+          </Text>
+        </View>
+        <View style={myStyles.containerBroadcast}>
+          <Text style={myStylesComuns.textoComum}>
+            Excepcionalmente hoje, 25/04/2024, quinta-feira, funcionaremos de 6h às 15h
+          </Text>
+        </View>
+
         {/*
         <Text style={myStylesComuns.textoComumSemPadding}>CLN 411 Bloco "E"</Text>
         <Text style={myStyles.textoComum}>
@@ -135,17 +170,18 @@ export default function ViewHome() {
          */}
 
         <View style={myStyles.containerMaquinas}>
-          {maquina("seca", 2, seca[0])}
-          {maquina("seca", 4, seca[1])}
-          {maquina("seca", 6, seca[2])}
+          {maquina("seca", 2, seca[0], 2)}
+          {maquina("seca", 4, seca[1], 2)}
+          {maquina("seca", 6, seca[2], 2)}
         </View>
         <View style={myStyles.containerMaquinas}>
-          {maquina("lava", 1, lava[0])}
-          {maquina("lava", 3, lava[1])}
-          {maquina("lava", 5, lava[2])}
+          {maquina("lava", 1, lava[0], 2)}
+          {maquina("lava", 3, lava[1], 2)}
+          {maquina("lava", 5, lava[2], 2)}
         </View>
         <Text></Text>
-        <TouchableOpacity style={myStyles.button} onPress={atualizarStatus}>
+
+        <TouchableOpacity style={myStylesComuns.button} onPress={atualizarStatus}>
           <Text>Atualizar</Text>
         </TouchableOpacity>
 
