@@ -19,20 +19,21 @@ export const myStylesComuns = StyleSheet.create({
   corSucesso: "#98e07eff",
 
   //Container
-  containerBordaOnOff: 1,
+  containerBordaOnOff: 0,
   containerBordaRaio: 8,
+  containerTamanhoMedioTelas: 800,
 
   containerPrincipalSafeArea: {
     flex: 1,
     backgroundColor: "white",
     alignItems: "center",
-    borderWidth: 1,
+    borderWidth: 0,
     borderBlockColor: "#fa7251ff"
   },
   containerPrincipalScroll: {
     flex: 1,
     width: "86%",
-    borderWidth: 1,
+    borderWidth: 0,
     borderColor: "#98e07eff"
   },
 

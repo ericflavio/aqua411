@@ -7,7 +7,7 @@ var cenarioTeste = 1;
 var seca = [1, 1, 1];
 var lava = [1, 1, 1];
 var relogioOnOff = true;
-var inViewStatusMaquina = true;
+var inViewStatusMaquina = true; //TODO: não está sendo usado
 
 //Monta cada máquina com seu respectivo status
 function maquina(tipMaq, idMaq, status, view) {
@@ -140,17 +140,23 @@ export default function ViewHome() {
     };
   }
 
-  let screenHeight = Dimensions.get('window').height;
-  let headerHeight = 0;
+  //Seta tamanho ideal das VIEWS baseado no tamanho da tela do aparelho
+  let screenHeight = 0;
+  try {
+    screenHeight = Dimensions.get('window').height;
+  } catch {
+    screenHeight = myStylesComuns.containerTamanhoMedioTelas;
+  };
+  let headerHeight = 0; //Eventual header na página
   let bodyHeight = screenHeight - headerHeight + 0;
-  console.log("screenHeight: ", screenHeight);
-  console.log("headerHeight: ", headerHeight);
-  console.log("bodyHeight  : ", bodyHeight);
+  //console.log("screenHeight: ", screenHeight);
+  //console.log("headerHeight: ", headerHeight);
+  //console.log("bodyHeight  : ", bodyHeight);
 
   return (
     <SafeAreaView style={myStylesComuns.containerPrincipalSafeArea}>
       <ScrollView style={myStylesComuns.containerPrincipalScroll} showsVerticalScrollIndicator={false}>
-        <View style={{ height: bodyHeight }}>
+        <View style={{ height: bodyHeight, paddingBottom:96}}>
           <View style={myStyles.containerHeader}>
             <Text style={myStylesComuns.textoTituloPagina}>
               Sua lavanderia fora de casa
@@ -182,24 +188,25 @@ export default function ViewHome() {
                 Abertos diariamente de 6h às 23h
               </Text>
             </View>
+          </View>
+
+          <View style={myStyles.containerBody2}>
             {/*
             <View style={myStyles.containerBroadcast}>
               <Text style={myStylesComuns.textoComum}>
                 Excepcionalmente hoje, 25/04/2024, quinta-feira, funcionaremos de 6h às 15h
               </Text>
             </View>
-        */}
-          </View>
-          <View style={myStyles.containerBody2}>
+            */}
             <View style={myStyles.containerMaquinas}>
-              {maquina("seca", 2, seca[0], false)}
-              {maquina("seca", 4, seca[1], false)}
-              {maquina("seca", 6, seca[2], false)}
+              {maquina("seca", 2, seca[0], true)}
+              {maquina("seca", 4, seca[1], true)}
+              {maquina("seca", 6, seca[2], true)}
             </View>
             <View style={myStyles.containerMaquinas}>
-              {maquina("lava", 1, lava[0], false)}
-              {maquina("lava", 3, lava[1], false)}
-              {maquina("lava", 5, lava[2], false)}
+              {maquina("lava", 1, lava[0], true)}
+              {maquina("lava", 3, lava[1], true)}
+              {maquina("lava", 5, lava[2], true)}
             </View>
             <Text></Text>
 
