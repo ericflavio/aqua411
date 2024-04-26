@@ -4,35 +4,48 @@ import { myStylesComuns } from "./stylesComuns";
 myStyles
 export const myStyles = StyleSheet.create({
 
-  //Telas principais invocadas via opção do menu
-  containerPrincipalSafeArea: {
-    flex: 1,
-    backgroundColor: "white",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 0,
-    alignContent: "flex-start",
-    borderWidth: myStylesComuns.containerBordaOnOff,
-  },
-  containerPrincipalScroll: {
-    flex: 1,
-    width: "86%",
+  containerHeader: {
+    flex:1,
     borderWidth: myStylesComuns.containerBordaOnOff
   },
-
-  //Tela INICIO
+  containerBody1: {
+    flex:1,
+    flexDirection: "column",
+    alignItems: "stretch",
+    justifyContent: "center",
+    borderWidth: myStylesComuns.containerBordaOnOff
+  },
+  containerBody2: {
+    flex:2,
+    flexDirection: "column",
+    alignItems: "stretch",
+    justifyContent: "center",
+    borderWidth: myStylesComuns.containerBordaOnOff
+  },
   containerUnidadeEndereco: {
     flexDirection: "row", 
     alignItems: "flex-start",
     alignContent: "flex-start",
     justifyContent: "flex-start",
+    borderWidth: myStylesComuns.containerBordaOnOff,
+    alignSelf: "flex-start"
   },
   containerHorarioFuncionamento: {
     flexDirection: "row", 
     alignItems: "flex-start",
     alignContent: "flex-start",
     justifyContent: "flex-start",
+    borderWidth: myStylesComuns.containerBordaOnOff,
+    alignSelf: "flex-start"
   },
+  containerUltimaAtualizacao: {
+    flexDirection: "row", 
+    alignItems: "center",
+    alignContent: "center",
+    justifyContent: "center",
+    width: "100%",
+    borderWidth: myStylesComuns.containerBordaOnOff,
+    },
   containerBroadcast: {
     marginVertical: 20,
     backgroundColor: myStylesComuns.corAlerta,
@@ -40,21 +53,11 @@ export const myStyles = StyleSheet.create({
     alignContent: "flex-start",
     justifyContent: "flex-start",
     padding: 12,
-    borderRadius: myStylesComuns.containerBordaRaio
-  },
-  imgLocalizacao: {
-    width: 30, 
-    height: 30, 
-    resizeMode: 'contain'
-  },
-  imgMaquina: {
-    width: 80, 
-    height: 80, 
-    resizeMode: 'contain'
+    borderRadius: myStylesComuns.containerBordaRaio,
+    borderWidth: myStylesComuns.containerBordaOnOff,
   },
   containerMaquinas: {
     flexDirection: "row",
-    flex: 1,
     borderWidth: myStylesComuns.containerBordaOnOff,
     backgroundColor: "white",
     alignContent: "center",
@@ -65,6 +68,21 @@ export const myStyles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: "center",
     borderWidth: myStylesComuns.containerBordaOnOff
+  },
+  imgLocalizacao: {
+    width: 30, 
+    height: 30, 
+    resizeMode: 'contain'
+  },
+  imgRelogio: {
+    width: 30, 
+    height: 25, 
+    resizeMode: 'contain'
+  },
+  imgMaquina: {
+    width: 80, 
+    height: 80, 
+    resizeMode: 'contain'
   },
   textoLavaSeca: {
     fontSize: myStylesComuns.textoFonteTam5,

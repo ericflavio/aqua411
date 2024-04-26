@@ -6,13 +6,15 @@ import { myStylesComuns } from '../styles/stylesComuns';
 var cenarioTeste = 1;
 var seca = [1, 1, 1];
 var lava = [1, 1, 1];
+var relogioOnOff = true;
+var inViewStatusMaquina = true;
 
 //Monta cada máquina com seu respectivo status
-function maquina(tipMaq, idMaq, status, inViewStatusMaquina) {
+function maquina(tipMaq, idMaq, status, view) {
   if (!tipMaq) tipMaq = "lava"; // Espera "lava" ou "seca"
   if (!idMaq) idMaq = 0;
   if (!status) status = 1;
-  if (!inViewStatusMaquina) inViewStatusMaquina = 2; //1-ver 2-não ver
+  if (!view) inViewStatusMaquina = false;
 
   var tipMaquina = tipMaq.toUpperCase();
   var txStatus = "Indefinido";
@@ -62,7 +64,7 @@ function maquina(tipMaq, idMaq, status, inViewStatusMaquina) {
           {tipMaquina + " " + idMaq}
         </Text>
 
-        {inViewStatusMaquina == 1 ?
+        {inViewStatusMaquina == true ?
           <Text style={myStyles.textoLavaSeca}>
             {txStatus}
           </Text> : ""}
@@ -72,25 +74,31 @@ function maquina(tipMaq, idMaq, status, inViewStatusMaquina) {
 }
 
 //Seta cor do icone de horário de funcionamento
-function horarioFuncionamento (horaIni , horaFim) {
+function horarioFuncionamento(in24h, horaIni, horaFim) {
   if (!horaIni) horaIni = "00:00"
   if (!horaFim) horaFim = "23:59"
+  if (!in24h) in24h = false;
+
+  //TODO: tratar horário faltando zeros na frente
+
+  if (in24h) return true;
 
   hora1 = horaIni.split(":");
   hora2 = horaFim.split(":");
 
   var d = new Date();
-  var data1 = new Date(d.getFullYear(), d.getMonth(), d.getDate(), hora1[0], hora1[1]);
-  var data2 = new Date(d.getFullYear(), d.getMonth(), d.getDate(), hora2[0], hora2[1]);
+  var dataAbre = new Date(d.getFullYear(), d.getMonth(), d.getDate(), hora1[0], hora1[1]); //Horário abertura
+  var dataFecha = new Date(d.getFullYear(), d.getMonth(), d.getDate(), hora2[0], hora2[1]); //Horario fechamento
 
-  var datax = new Date(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes());
+  var dataAgora = new Date(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes());
 
-  console.log("<<hora-agora: ", datax)
-  console.log("<<hora1: ", data1)
-  console.log("<<hora2: ", data2)
-
-  if (datax > data2) console.log ("<<fora da janela");
-  if (datax < data2) console.log ("<<na janela");
+  if (dataAgora >= dataAbre & dataAgora < dataFecha) {
+    console.log("<<Aberta");
+    return true;
+  } else {
+    console.log("<<Fechada");
+    return false;
+  }
   //return data1 > data2;
 };
 
@@ -102,7 +110,7 @@ export default function ViewHome() {
   //Consulta API com novos status dos equipamentos
   function atualizarStatus() {
     //console.log("cenarioTeste :", cenarioTeste);
-    horarioFuncionamento("06:00" , "23:00");
+    relogioOnOff = horarioFuncionamento(false, "06:00", "23:00");
     //
     switch (cenarioTeste) {
       case 1:
@@ -133,57 +141,76 @@ export default function ViewHome() {
   }
 
   return (
-    <SafeAreaView style={myStyles.containerPrincipalSafeArea}>
-      <ScrollView style={myStyles.containerPrincipalScroll} showsVerticalScrollIndicator={false}>
-        <Text style={myStylesComuns.textoTituloPagina}>
-          Sua lavanderia fora de casa
-        </Text>
-        <View style={myStyles.containerUnidadeEndereco}>
-          <Image
-            style={myStyles.imgLocalizacao}
-            source={require('../../../assets/icones/icon_local.png')}
-          />
-          <Text style={myStylesComuns.textoDestacado}>
-            Unidade: ASA NORTE, Brasília-DF
+    <SafeAreaView style={myStylesComuns.containerPrincipalSafeArea}>
+      <ScrollView style={myStylesComuns.containerPrincipalScroll} showsVerticalScrollIndicator={false}>
+        <View style={myStyles.containerHeader}>
+          <Text style={myStylesComuns.textoTituloPagina}>
+            Sua lavanderia fora de casa
           </Text>
         </View>
-        <View style={myStyles.containerHorarioFuncionamento}>
-          <Image
-            style={myStyles.imgLocalizacao}
-            source={require('../../../assets/icones/aqua_relogio_abertos.png')}
-          />
-          <Text style={myStylesComuns.textoComum}>
-            Abertos diariamente de 6h às 23h
-          </Text>
-        </View>
-        <View style={myStyles.containerBroadcast}>
-          <Text style={myStylesComuns.textoComum}>
-            Excepcionalmente hoje, 25/04/2024, quinta-feira, funcionaremos de 6h às 15h
-          </Text>
-        </View>
+        <View style={myStyles.containerBody1}>
+          <View style={myStyles.containerUnidadeEndereco}>
+            <Image
+              style={myStyles.imgLocalizacao}
+              source={require('../../../assets/icones/icon_local.png')}
+            />
+            <Text style={myStylesComuns.textoDestacado}>
+              Unidade: ASA NORTE
+            </Text>
+          </View>
 
-        {/*
-        <Text style={myStylesComuns.textoComumSemPadding}>CLN 411 Bloco "E"</Text>
-        <Text style={myStyles.textoComum}>
-            Cuide bem das suas roupas com nossos modernos equipamentos
-        </Text>
-         */}
-
-        <View style={myStyles.containerMaquinas}>
-          {maquina("seca", 2, seca[0], 2)}
-          {maquina("seca", 4, seca[1], 2)}
-          {maquina("seca", 6, seca[2], 2)}
+          <View style={myStyles.containerHorarioFuncionamento}>
+            {relogioOnOff == true ?
+              <Image
+                style={myStyles.imgRelogio}
+                source={require('../../../assets/icones/aqua_relogio_abertos.png')}
+              /> :
+              <Image
+                style={myStyles.imgRelogio}
+                source={require('../../../assets/icones/aqua_relogio_fechados.png')}
+              />
+            }
+            <Text style={myStylesComuns.textoComum}>
+              Abertos diariamente de 6h às 23h
+            </Text>
+          </View>
+          {/*
+            <View style={myStyles.containerBroadcast}>
+              <Text style={myStylesComuns.textoComum}>
+                Excepcionalmente hoje, 25/04/2024, quinta-feira, funcionaremos de 6h às 15h
+              </Text>
+            </View>
+        */}
         </View>
-        <View style={myStyles.containerMaquinas}>
-          {maquina("lava", 1, lava[0], 2)}
-          {maquina("lava", 3, lava[1], 2)}
-          {maquina("lava", 5, lava[2], 2)}
-        </View>
-        <Text></Text>
+        <View style={myStyles.containerBody2}>
+          <View style={myStyles.containerMaquinas}>
+            {maquina("seca", 2, seca[0], false)}
+            {maquina("seca", 4, seca[1], false)}
+            {maquina("seca", 6, seca[2], false)}
+          </View>
+          <View style={myStyles.containerMaquinas}>
+            {maquina("lava", 1, lava[0], false)}
+            {maquina("lava", 3, lava[1], false)}
+            {maquina("lava", 5, lava[2], false)}
+          </View>
+          <Text></Text>
 
-        <TouchableOpacity style={myStylesComuns.button} onPress={atualizarStatus}>
-          <Text>Atualizar</Text>
-        </TouchableOpacity>
+          <View style={myStyles.containerUltimaAtualizacao}>
+            <Image
+              style={myStyles.imgRelogio}
+              source={require('../../../assets/icones/aqua_relogio_comum.png')}
+            />
+            <Text style={myStylesComuns.textoComum}>
+              26/06/2024 08:36
+            </Text>
+          </View>
+
+          {inViewStatusMaquina == true ?
+            <TouchableOpacity style={myStylesComuns.button} onPress={atualizarStatus}>
+              <Text>Atualizar</Text>
+            </TouchableOpacity> : ""
+          }
+        </View>
 
       </ScrollView>
     </SafeAreaView>

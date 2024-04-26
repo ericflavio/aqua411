@@ -1,9 +1,6 @@
 import { StyleSheet } from "react-native";
 
 export const myStylesComuns = StyleSheet.create({
-  //Container
-  containerBordaOnOff: 0,
-  containerBordaRaio: 8,
 
   //Cores
   corTemaAppPrincipal: "#041e52ff",
@@ -20,6 +17,24 @@ export const myStylesComuns = StyleSheet.create({
   corErro: "#fa7251ff",
   corAlerta: "#ffe275ff",
   corSucesso: "#98e07eff",
+
+  //Container
+  containerBordaOnOff: 1,
+  containerBordaRaio: 8,
+
+  containerPrincipalSafeArea: {
+    flex: 1,
+    backgroundColor: "white",
+    alignItems: "center",
+    borderWidth: 0,
+    borderBlockColor: "#fa7251ff"
+  },
+  containerPrincipalScroll: {
+    flex: 1,
+    width: "86%",
+    borderWidth: 0,
+    borderColor: "#98e07eff"
+  },
 
   //Textos
   textoBordaOnOff: 0,
@@ -38,7 +53,7 @@ export const myStylesComuns = StyleSheet.create({
     fontSize: 40,
     fontWeight: "700",
     marginTop: 40,
-    marginBottom:40,
+    marginBottom: 40,
     color: "#041e52ff",
     borderWidth: 0
   },
