@@ -30,7 +30,7 @@ export const myStyles = StyleSheet.create({
     fontWeight: "700",
     marginBottom: 10,
     color: myStylesComuns.corAzulEscuro,
-    borderWidth: 0
+    borderWidth: 0,
   },
   textoPromo: {
     fontSize: 18,
@@ -44,7 +44,7 @@ export const myStyles = StyleSheet.create({
   buttonPromoVigente: {
     marginTop: 8,
     alignItems: 'flex-start',
-    backgroundColor: 'white',
+    backgroundColor: "white",
     borderWidth: 6,
     borderRadius: 8,
     borderBottomRightRadius: 0,

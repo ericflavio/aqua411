@@ -9,10 +9,11 @@ import { GradienteFill } from '../componentes/gradienteFill';
 function pesquisaPromocaoVigente() {
   var promo = {
     id: 0,
-    nome: "Ganhe uma bag",
-    descricao: "Acumule 10 ciclos entre 01 de Abril e 30 de Junho, e ganhe uma bag. Simples assim!",
+    nome: "Ganhe uma bag muito louca",
+    descricao: "Acumule 10 ciclos no período da promoção, e ganhe uma bag. Simples assim!",
     dataInicio: "01-04-2024",
-    dataFim: "30-06-2024"
+    dataFim: "30-06-2024",
+    inTempoIndeterminado: false
   };
   return promo;
 };
@@ -28,7 +29,7 @@ function montaPromocao(vigente) {
     <TouchableOpacity disabled={!vigente} style={(vigente ? myStyles.buttonPromoVigente :myStyles.buttonPromoEncerrada )} onPress={detalhaPromo}>
       <View style={myStyles.containerPromoCabecalho}>
         <Text style={myStyles.textoTituloPromo}>{promo.nome}</Text>
-        <MaterialIcons name="card-giftcard" size={36} color={"pink"} />
+        <MaterialIcons name="card-giftcard" size={36} color={(vigente? myStylesComuns.corTemaAppSecundario : "grey")} />
       </View>
       <View style={myStyles.containerPromoPeriodo}>
         <MaterialIcons name="calendar-month" size={26} color={"grey"} />
@@ -58,7 +59,7 @@ export default function ViewPromocao() {
 
         {montaPromocao(true)}
         {montaPromocao(true)}
-        {montaPromocao(false)}
+        {montaPromocao(true)}
         {montaPromocao(false)}
 
       </ScrollView>
