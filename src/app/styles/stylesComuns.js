@@ -7,6 +7,7 @@ export const myStylesComuns = StyleSheet.create({
   corTemaAppSecundario: "#2ba6daff",
   corTemaAppAuxiliar: "#606060ff",
 
+  corBackground: "#dcedffff",
   corAzulEscuro: "#041e52ff",
   corAzulClaro: "#2ba6daff",
   corCinzEscuro: "#606060ff",
@@ -25,7 +26,7 @@ export const myStylesComuns = StyleSheet.create({
 
   containerPrincipalSafeArea: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "#dcedffff",
     alignItems: "center",
     borderWidth: 0,
     borderBlockColor: "#fa7251ff"

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, Image, SafeAreaView, ScrollView, TouchableOpacity, Dimensions } from "react-native";
 import { myStyles } from "../styles/stylesPageIndex";
 import { myStylesComuns } from '../styles/stylesComuns';
+import { LinearGradient } from 'expo-linear-gradient';
+import { GradienteFill } from '../componentes/gradienteFill';
 
 var cenarioTeste = 1;
 var seca = [1, 1, 1];
@@ -155,8 +157,23 @@ export default function ViewHome() {
 
   return (
     <SafeAreaView style={myStylesComuns.containerPrincipalSafeArea}>
+      {GradienteFill()}
+      {/*
+      <LinearGradient
+        // Background Linear Gradient
+        colors={['white', 'rgba(201,237,255,100)']}
+        style={{
+          position: 'absolute',
+          left: 0,
+          right: 0,
+          top: 0,
+          height: bodyHeight,
+        }}
+      />
+      */}
       <ScrollView style={myStylesComuns.containerPrincipalScroll} showsVerticalScrollIndicator={false}>
-        <View style={{ height: bodyHeight, paddingBottom:96}}>
+
+        <View style={{ height: bodyHeight, paddingBottom: 96 }}>
           <View style={myStyles.containerHeader}>
             <Text style={myStylesComuns.textoTituloPagina}>
               Sua lavanderia fora de casa

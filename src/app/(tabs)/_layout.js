@@ -5,7 +5,7 @@ export default function TabRoutsLayout (){
 
   return (
     <Tabs screenOptions={{headerShown:false, 
-      tabBarInactiveTintColor: 'white',
+      tabBarInactiveTintColor: 'grey',
       tabBarActiveTintColor: '#041e52ff',
       tabBarShowLabel: true,
       tabBarLabelStyle: {
@@ -14,7 +14,7 @@ export default function TabRoutsLayout (){
       },
       tabBarStyle: {
         position: "absolute",
-        backgroundColor: "#2ba6daff",
+        backgroundColor: "white",
         borderTopWidth: 0,
         borderRadius: 10,
         bottom: 6,

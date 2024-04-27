@@ -45,33 +45,33 @@ export const myStyles = StyleSheet.create({
     marginTop: 8,
     alignItems: 'flex-start',
     backgroundColor: 'white',
-    borderWidth: 2,
+    borderWidth: 6,
     borderRadius: 8,
-    borderBottomRightRadius: 20,
+    borderBottomRightRadius: 0,
     borderBottomWidth: 6,
     padding: 14,
-    borderColor: myStylesComuns.corCinzEscuro,
+    borderColor: "white",
     width: "100%",
     minHeight: 150,
     maxHeight: 200,
     alignSelf: "center",
-    elevation: 2
+    elevation: 0
   },
   buttonPromoEncerrada: {
     marginTop: 8,
     alignItems: 'flex-start',
     backgroundColor: 'white',
-    borderWidth: 2,
+    borderWidth: 6,
     borderRadius: 8,
-    borderBottomRightRadius: 20,
+    borderBottomRightRadius: 0,
     borderBottomWidth: 6,
     padding: 14,
-    borderColor: myStylesComuns.corCinzaClaro,
+    borderColor: "white",
     width: "100%",
     minHeight: 150,
     maxHeight: 200,
     alignSelf: "center",
-    elevation: 2
+    elevation: 0
   },
 
 

@@ -58,7 +58,7 @@ export const myStyles = StyleSheet.create({
   containerMaquinas: {
     flexDirection: "row",
     borderWidth: myStylesComuns.containerBordaOnOff,
-    backgroundColor: "white",
+    backgroundColor: "transparent",
     alignContent: "center",
     justifyContent: "center",
     marginTop: 18

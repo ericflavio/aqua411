@@ -3,7 +3,7 @@ import { View, Text, SafeAreaView, ScrollView, TouchableOpacity } from "react-na
 import { myStyles } from "../styles/stylesPagePromocao";
 import { myStylesComuns } from '../styles/stylesComuns';
 import { MaterialIcons } from "@expo/vector-icons";
-
+import { GradienteFill } from '../componentes/gradienteFill';
 
 //Funcçoes de apoio
 function pesquisaPromocaoVigente() {
@@ -45,6 +45,7 @@ export default function ViewPromocao() {
 
   return (
     <SafeAreaView style={myStylesComuns.containerPrincipalSafeArea}>
+      {GradienteFill()}
       <ScrollView style={myStylesComuns.containerPrincipalScroll} showsVerticalScrollIndicator={false}>
         <View style={myStyles.containerHeader}>
           <Text style={myStylesComuns.textoTituloPagina}>
