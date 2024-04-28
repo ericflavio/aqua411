@@ -23,6 +23,9 @@ export const myStyles = StyleSheet.create({
     borderWidth: myStylesComuns.containerBordaOnOff,
     alignSelf: "flex-start"
   },
+  containerPromoLista: {
+    marginBottom: 86
+  },
 
   //Textos
   textoTituloPromo: {
@@ -72,6 +75,14 @@ export const myStyles = StyleSheet.create({
     maxHeight: 200,
     alignSelf: "center",
     elevation: 0
+  },
+  imageBkg: {
+    flex: 1,
+    width:"100%",
+    position: 'absolute',
+    bottom: 0,
+    paddingVertical: 40,
+    overflow: 'hidden' // prevent image overflow the container
   },
 
 
