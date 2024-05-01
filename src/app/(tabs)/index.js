@@ -107,7 +107,7 @@ function horarioFuncionamento(in24h, horaIni, horaFim) {
 //Tela principal HOME
 export default function ViewHome() {
   const [cenario, setCenario] = useState(cenarioTeste);
-  const imgBkg = require('../../../assets/outros/img_background_aqua411.png');
+  const imgBkg = require('../../../assets/outros/img_background_lavanderias.png');
 
   //Consulta API com novos status dos equipamentos
   function atualizarStatus() {
