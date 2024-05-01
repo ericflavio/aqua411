@@ -1,3 +1,4 @@
+//efa
 import React, { useState } from 'react';
 import { View, Text, Image, SafeAreaView, ScrollView, TouchableOpacity, Dimensions } from "react-native";
 import { myStyles } from "../styles/stylesPageIndex";
