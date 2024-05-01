@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "aqua411",
-    "slug": "aqua411",
-    "scheme": "aqua411",
+    "name": "lavanderias",
+    "slug": "lavanderias",
+    "scheme": "lavanderias",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
