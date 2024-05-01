@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { View, Text, Image, SafeAreaView, ScrollView, TouchableOpacity, Dimensions } from "react-native";
 import { myStyles } from "../styles/stylesPageIndex";
 import { myStylesComuns } from '../styles/stylesComuns';
-import { LinearGradient } from 'expo-linear-gradient';
 import { GradienteFill } from '../componentes/gradienteFill';
 
 var cenarioTeste = 1;
