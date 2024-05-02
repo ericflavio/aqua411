@@ -74,18 +74,41 @@ export const myStylesComuns = StyleSheet.create({
   },
 
   //Botões
+  textoButton: {
+    fontSize: 20,
+    fontWeight: "700",
+    marginTop: 0,
+    color: "#1f1f1fff",
+    borderWidth: 0
+  },
   button: {
     alignItems: 'center',
     backgroundColor: 'white',
     borderColor: "#8f8f8fff",
-    borderWidth: 2,
+    borderWidth: 1,
     borderRadius: 8,
-    marginTop: 10,
+    margin: 6,
     padding: 14,
-    borderBottomWidth: 6,
-    maxWidth: "80%",
-    minWidth: 240,
-    alignSelf: "center"
+    borderBottomWidth: 4,
+    maxWidth: "100%",
+    minWidth: 120,
+    alignSelf: "center",
+    fontWeight: "700"
+  },
+
+  //InputText
+  inputText: {
+    marginTop: 6,
+    height: 54,
+    margin: 0,
+    borderWidth: 0,
+    fontSize: 16,
+    fontWeight: "bold",
+    borderLeftWidth: 1,
+    borderLeftColor: "#2ba6daff",
+    borderRadius: 8,
+    backgroundColor: "white",
+    padding: 10,
   },
 
 });
