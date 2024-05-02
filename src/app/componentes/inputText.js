@@ -1,22 +1,18 @@
 import { myStylesComuns } from '../styles/stylesComuns';
 import { TextInput } from "react-native";
 
-export function InputText(valorInicial, ValorDefault, textPlaceHolder, inEditavel, inSecure, tipoTeclado, funcao) {
-  if (!valorInicial) valorInicial = null;
-  if (!ValorDefault) ValorDefault = null;
-  if (!textPlaceHolder) textPlaceHolder = "";
-  if (!inEditavel) inEditavel = true;
-  if (!inSecure) inSecure = false;
-  if (!tipoTeclado) tipoTeclado = "default";
+export function InputText(funcao, textPlaceHolder, qtdLinhas, tamanhoMáximo, tipoTeclado, inEditavel, valorInicial, valorDefault, inSecure) {
+  if (textPlaceHolder == undefined) textPlaceHolder = "";
+  if (qtdLinhas == undefined) qtdLinhas = 1;
+  if (tamanhoMáximo == undefined) tamanhoMáximo = 80;
+  if (tipoTeclado == undefined) tipoTeclado = "default";
+  if (inEditavel == undefined) inEditavel = true;
+  if (valorInicial == undefined) valorInicial = null;
+  if (valorDefault == undefined) valorDefault = null;
+  if (inSecure == undefined) inSecure = false;
 
-  //console.log("valorInicial: ", valorInicial);
-  //console.log("ValorDefault: ", ValorDefault);
-  //console.log("textPlaceHolder: ", textPlaceHolder);
-  //console.log("inEditavel: ", inEditavel);
-  //console.log("inSecure: ", inSecure);
-  //console.log("tipoTeclado: ", tipoTeclado);
-  //console.log("funcao: ", funcao);
-
+  qtdLinhas > 1 ? flagMultiline = true : flagMultiline = false;
+  
   return (
       <TextInput
         style={myStylesComuns.inputText}
@@ -26,7 +22,10 @@ export function InputText(valorInicial, ValorDefault, textPlaceHolder, inEditave
         placeholderTextColor="#9F9F9F"
         keyboardType={tipoTeclado}
         secureTextEntry={inSecure}
-        defaultValue={ValorDefault}
+        defaultValue={valorDefault}
         editable={inEditavel}
+        multiline={flagMultiline}
+        numberOfLines={qtdLinhas}
+        maxLength={tamanhoMáximo}
       />)
 }
