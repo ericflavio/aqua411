@@ -14,41 +14,57 @@ export default function ViewLogin() {
   const [senhaUm, setSenhaUm] = useState("");
   const [senhaDois, setSenhaDois] = useState("");
 
+  const cenarioMostarOpcoes = 0;
+  const cenarioEntrarEditar = 1;
+  const cenarioEntrarValidar = 11;
+  const cenarioCadastrarEditar = 2;
+  const cenarioCadastrarValidar = 21;
+
   var textoRecepcionista = "";
   var flagEditavel = true;
 
+  //Monta texto da recepcionista
   switch (cenario) {
     //Inicio
-    case 0: textoRecepcionista = "Se você está chegando agora, clique em Cadastrar. Se já possui cadastro, clique em Entrar";
+    case cenarioMostarOpcoes:
+      textoRecepcionista = "Se você está chegando agora, clique em Cadastrar. Se já possui cadastro, clique em Entrar";
       break;
     //Entrar: edição dos dados
-    case 1:
+    case cenarioEntrarEditar:
       flagEditavel = true;
-      if (!flagErro) { textoRecepcionista = "Para entrar, informe abaixo o seu e-mail e senha e clique em Prosseguir"; }
-      else { textoRecepcionista = "oops! Tem algo errado. Verifique as informações e tente novamente"; }
+      if (!flagErro) {
+        textoRecepcionista = "Para entrar, informe abaixo o seu e-mail e senha e clique em Prosseguir";
+      }
+      else {
+        textoRecepcionista = "oops! Tem algo errado. Verifique as informações e tente novamente";
+      }
       break;
     //Entrar: edição travada enquanto aguarda retorno da login
-    case 11:
+    case cenarioEntrarValidar:
       flagEditavel = false;
       textoRecepcionista = "Estamos validando seus dados. Aguarde um instante....";
       break;
     //Cadastrar: edição dos dados
-    case 2:
-      if (!flagErro) { textoRecepcionista = "Para se cadastrar, informe abaixo o seu e-mail de contato e uma senha pessoal, e clique em prosseguir. Enviaremos para o seu e-mail um código de confirmação, para garantir a sua segurança"; }
-      else { textoRecepcionista = "oops! Erro ao tentar cadastrar o e-mail informado"; }
+    case cenarioCadastrarEditar:
+      if (!flagErro) {
+        textoRecepcionista = "Para se cadastrar, informe os dados abaixo e clique em prosseguir. Por segurança, enviaremos para o seu e-mail um código de confirmação";
+      }
+      else {
+        textoRecepcionista = "oops! Erro ao tentar cadastrar o e-mail informado";
+      }
       break;
     //Cadastrar
   };
 
   function entrar() {
-    setCenario(1);
+    setCenario(cenarioEntrarEditar);
   }
   function cadastrar() {
-    setCenario(2);
+    setCenario(cenarioCadastrarEditar);
   }
   function recomecar() {
     setFlagErro(false);
-    setCenario(0);
+    setCenario(cenarioMostarOpcoes);
   }
   function validarSintaxeEmail(email) {
     //const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@a-zA-Z0-9?(?:\.a-zA-Z0-9?)*$/;
@@ -63,12 +79,12 @@ export default function ViewLogin() {
   function prosseguir() {
     switch (cenario) {
       //Entrar
-      case 1:
+      case cenarioEntrarEditar:
         if (!validarSintaxeEmail(email) || !validarSintaxeSenha(senhaUm)) {
           setFlagErro(true);
           return;
         };
-        setCenario(11); //Renderiza tela no modo aguardando realização do login
+        setCenario(cenarioEntrarValidar); //Renderiza tela no modo aguardando realização do login
 
         //TODO: Realizar login
 
@@ -102,7 +118,7 @@ export default function ViewLogin() {
             <Text style={myStylesComuns.textoComum}>
               {textoRecepcionista}
             </Text>
-            {cenario == 0 ?
+            {cenario == cenarioMostarOpcoes ?
               <View style={myStyles.containerEntrarCadastrar}>
                 <TouchableOpacity style={myStylesComuns.button} onPress={entrar}>
                   <Text sytle={myStylesComuns.textoButton}>Entrar</Text>
@@ -113,7 +129,7 @@ export default function ViewLogin() {
               </View>
               : ""}
 
-            {cenario == 1 || cenario == 11 ?
+            {cenario == cenarioEntrarEditar || cenario == cenarioEntrarValidar ?
               <View style={{ marginTop: 18 }}>
                 {InputText(SetEmail, "seu_email@", 1, 60, "email-address", flagEditavel, email, null, false)}
                 {InputText(setSenhaUm, "sua senha", 1, 10, "default", flagEditavel, senhaUm, null, true)}
@@ -128,7 +144,7 @@ export default function ViewLogin() {
               </View>
               : ""}
 
-            {cenario == 2 ?
+            {cenario == cenarioCadastrarEditar ?
               <View style={{ marginTop: 18 }}>
                 {InputText(SetEmail, "seu_email@", 1, 60, "email-address", flagEditavel, email, null, false)}
                 {InputText(setSenhaUm, "nova senha de 8 a 10 dígitos", 1, 10, "default", flagEditavel, senhaUm, null, true)}
@@ -144,7 +160,7 @@ export default function ViewLogin() {
               </View>
               : ""}
           </View>
-          {cenario == 1 ?
+          {cenario == cenarioEntrarEditar ?
             <View>
               <Text sytle={myStylesComuns.textoButton}>Clique se precisar de ajuda com a senha</Text>
             </View>
