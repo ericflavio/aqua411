@@ -1,15 +1,15 @@
 import { myStylesComuns } from '../styles/stylesComuns';
 import { TextInput } from "react-native";
 
-export function InputText(funcao, textPlaceHolder, qtdLinhas, tamanhoMáximo, tipoTeclado, inEditavel, valorInicial, valorDefault, inSecure) {
+export function InputText(funcao, textPlaceHolder, qtdLinhas, tamanhoMáximo, tipoTeclado, flagEditavel, valorInicial, valorDefault, flagSecure) {
   if (textPlaceHolder == undefined) textPlaceHolder = "";
   if (qtdLinhas == undefined) qtdLinhas = 1;
   if (tamanhoMáximo == undefined) tamanhoMáximo = 80;
   if (tipoTeclado == undefined) tipoTeclado = "default";
-  if (inEditavel == undefined) inEditavel = true;
+  if (flagEditavel == undefined) flagEditavel = true;
   if (valorInicial == undefined) valorInicial = null;
   if (valorDefault == undefined) valorDefault = null;
-  if (inSecure == undefined) inSecure = false;
+  if (flagSecure == undefined) flagSecure = false;
 
   qtdLinhas > 1 ? flagMultiline = true : flagMultiline = false;
   
@@ -21,9 +21,9 @@ export function InputText(funcao, textPlaceHolder, qtdLinhas, tamanhoMáximo, ti
         placeholder={textPlaceHolder}
         placeholderTextColor="#9F9F9F"
         keyboardType={tipoTeclado}
-        secureTextEntry={inSecure}
+        secureTextEntry={flagSecure}
         defaultValue={valorDefault}
-        editable={inEditavel}
+        editable={flagEditavel}
         multiline={flagMultiline}
         numberOfLines={qtdLinhas}
         maxLength={tamanhoMáximo}

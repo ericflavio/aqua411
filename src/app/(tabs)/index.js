@@ -9,14 +9,14 @@ var cenarioTeste = 1;
 var seca = [1, 1, 1];
 var lava = [1, 1, 1];
 var relogioOnOff = true;
-var inViewStatusMaquina = true; //TODO: não está sendo usado
+var flagViewStatusMaquina = true; //TODO: não está sendo usado
 
 //Monta cada máquina com seu respectivo status
 function maquina(tipMaq, idMaq, status, view) {
   if (!tipMaq) tipMaq = "lava"; // Espera "lava" ou "seca"
   if (!idMaq) idMaq = 0;
   if (!status) status = 1;
-  if (!view) inViewStatusMaquina = false;
+  if (!view) flagViewStatusMaquina = false;
 
   var tipMaquina = tipMaq.toUpperCase();
   var txStatus = "Indefinido";
@@ -66,7 +66,7 @@ function maquina(tipMaq, idMaq, status, view) {
           {tipMaquina + " " + idMaq}
         </Text>
 
-        {inViewStatusMaquina == true ?
+        {flagViewStatusMaquina == true ?
           <Text style={myStyles.textoLavaSeca}>
             {txStatus}
           </Text> : ""}
@@ -236,9 +236,9 @@ export default function ViewHome() {
               </Text>
             </View>
 
-            {inViewStatusMaquina == true ?
+            {flagViewStatusMaquina == true ?
               <TouchableOpacity style={myStylesComuns.button} onPress={atualizarStatus}>
-                <Text>Atualizar</Text>
+                <Text style={myStylesComuns.buttonTextoStyle}>Atualizar</Text>
               </TouchableOpacity> : ""
             }
           </View>

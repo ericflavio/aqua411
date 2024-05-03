@@ -69,11 +69,15 @@ export const myStylesComuns = StyleSheet.create({
     color: "#1f1f1fff",
     borderWidth: 0
   },
-
   //Botões
-  textoButton: {
-    fontSize: 20,
+  buttonTextoStyle: {
+    fontSize: 18,
     fontWeight: "700",
+    color: "#1f1f1fff",
+  },
+  buttonTextoStyleFlat: {
+    fontSize: 18,
+    fontWeight: "500",
     color: "#1f1f1fff",
   },
   button: {
@@ -92,7 +96,7 @@ export const myStylesComuns = StyleSheet.create({
   },
   buttonFlat: {
     backgroundColor: 'transparent',
-    padding: 2,
+    padding: 4,
     maxWidth: "100%",
     borderWidth:0
   },
@@ -103,7 +107,7 @@ export const myStylesComuns = StyleSheet.create({
     height: 54,
     margin: 0,
     borderWidth: 0,
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: "bold",
     borderLeftWidth: 1,
     borderLeftColor: "#2ba6daff",

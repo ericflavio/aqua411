@@ -10,7 +10,7 @@ import { GradienteFill } from '../componentes/gradienteFill';
 export default function ViewLogin() {
   const [cenario, setCenario] = useState(1);
   const [flagErro, setFlagErro] = useState(false);
-  const [email, SetEmail] = useState("ericflavio@gmail.com");
+  const [email, setEmail] = useState("ericflavio@gmail.com");
   const [senhaUm, setSenhaUm] = useState("1234567890");
   const [senhaDois, setSenhaDois] = useState("1234567890");
   const [token, setToken] = useState("abcd");
@@ -74,6 +74,13 @@ export default function ViewLogin() {
     setFlagErro(false);
     setCenario(cenarioCadastrarEditar);
   }
+  function onChangeEmail(emailEdt) {
+    //console.log("email: ", emailEdt)
+    //if (emailEdt === undefined) emailEdt = "";
+    //var emailEdtLC = emailEdt.toLowerCase();
+    //console.log("emailEdtLC: ", emailEdtLC)
+    setEmail(emailEdt);
+  }
   function validarSintaxeEmail(email) {
     //const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@a-zA-Z0-9?(?:\.a-zA-Z0-9?)*$/;
     if (!email || email.length <= 5) return false;
@@ -84,6 +91,9 @@ export default function ViewLogin() {
     if (!senha || senha.length < 8) return false;
     return true;
   }
+  function onChangeToken(tokenEdt) {
+    setToken(tokenEdt);
+  }
   function validarSintaxeToken(token) {
     if (!token || token.length < 4) return false;
     return true;
@@ -91,11 +101,11 @@ export default function ViewLogin() {
   async function reenviarToken() {
     Alert.alert('Tudo certo', 'Enviamos um novo código de confirmação para o seu e-mail', [
       {
-        text: 'Cancel',
+        text: '',
         onPress: () => console.log('Cancel Pressed'),
         style: 'cancel',
       },
-      { text: 'OK', onPress: () => console.log('OK Pressed') },
+      { text: 'FECHAR', onPress: () => console.log('OK Pressed') },
     ]);
   }
   function prosseguir() {
@@ -167,80 +177,77 @@ export default function ViewLogin() {
     <SafeAreaView style={myStylesComuns.containerPrincipalSafeArea}>
       {GradienteFill()}
       <ScrollView style={myStylesComuns.containerPrincipalScroll} showsVerticalScrollIndicator={false}>
-        <View style={{ paddingBottom: 96 }}>
-          <View style={myStyles.containerHeader}>
-            <Text style={myStylesComuns.textoTituloPagina}>
-              Que bom você por aqui
-            </Text>
+        <View style={myStyles.containerHeader}>
+          <Text style={myStylesComuns.textoTituloPagina}>
+            Que bom você por aqui
+          </Text>
+        </View>
+
+        <View style={myStyles.containerRecepcionista}>
+          <View style={myStyles.containerAvatar}>
+            <Image
+              style={myStyles.imgAvatar}
+              source={require('../../../assets/outros/sheep_padrao.png')}
+            />
+            <MaterialIcons name="textsms" size={36} color={(flagErro ? myStylesComuns.corErro : myStylesComuns.corAzulClaro)} />
           </View>
 
-          <View style={myStyles.containerRecepcionista}>
-            <View style={{ flexDirection: "row" }}>
-              <Image
-                style={myStyles.imgRecepcionista}
-                source={require('../../../assets/outros/sheep_padrao.png')}
-              />
-              <MaterialIcons name="textsms" size={36} color={(flagErro ? myStylesComuns.corErro : myStylesComuns.corAzulClaro)} />
-            </View>
-
-            <Text style={myStylesComuns.textoComum}>
-              {textoRecepcionista}
-            </Text>
-
-            {cenario == cenarioCadastrarEditarToken || cenario == cenarioCadastrarValidarToken ?
-              <View style={{ marginTop: 0 }}>
-                {InputText(setToken, "Código de confirmação", 1, 4, "default", flagEditavel, token, null, true)}
-              </View>
-              :
-              <View style={{ marginTop: 18 }}>
-                {InputText(SetEmail, "seu_email@", 1, 60, "email-address", flagEditavel, email, null, false)}
-                {InputText(setSenhaUm, "sua senha", 1, 10, "default", flagEditavel, senhaUm, null, true)}
-              </View>}
-
-            {cenario == cenarioCadastrarEditar || cenario == cenarioCadastrarValidar ?
-              <View style={{ marginTop: 0 }}>
-                {InputText(setSenhaDois, "repita a mesma senha", 1, 10, "default", flagEditavel, senhaDois, null, true)}
-              </View>
-              : ""}
-
-            <View style={myStyles.containerEntrarCadastrar}>
-              <TouchableOpacity style={myStylesComuns.button} disabled={!flagEditavel} onPress={prosseguir} >
-                <View style={{ flexDirection: "row" }}>
-                  <Text sytle={myStylesComuns.textoButton}>Prosseguir</Text>
-                  {!flagEditavel ? <ActivityIndicator /> : ""}
-                </View>
-              </TouchableOpacity>
-            </View>
-          </View>
-
-          {cenario == cenarioEntrarEditar || cenario == cenarioEntrarValidar ?
-            <View style={myStyles.containerFacilidades}>
-              <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={fluxoCadastrar}>
-                <Text sytle={myStylesComuns.textoComum}>Precisa de ajuda com a senha?</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={fluxoCadastrar}>
-                <Text sytle={myStylesComuns.textoComum}>Clique aqui para se cadastrar</Text>
-              </TouchableOpacity>
-            </View>
-            : ""}
-
-          {cenario == cenarioCadastrarEditar || cenario == cenarioCadastrarValidar ?
-            <View style={myStyles.containerFacilidades}>
-              <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={fluxoEntrar}>
-                <Text sytle={myStylesComuns.textoTituloPagina}>Clique aqui se já tiver cadastro</Text>
-              </TouchableOpacity>
-            </View>
-            : ""}
+          <Text style={myStylesComuns.textoComum}>
+            {textoRecepcionista}
+          </Text>
 
           {cenario == cenarioCadastrarEditarToken || cenario == cenarioCadastrarValidarToken ?
-            <View style={myStyles.containerFacilidades}>
-              <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={reenviarToken}>
-                <Text sytle={myStylesComuns.textoComum}>Clique aqui para eceber outro código</Text>
-              </TouchableOpacity>
+            <View style={{ marginTop: 0 }}>
+              {InputText(onChangeToken, "Código de confirmação", 1, 4, "default", flagEditavel, token, null, true)}
             </View>
-            : ""}
+            :
+            <View style={{ marginTop: 18 }}>
+              {InputText(onChangeEmail, "seu_email@", 1, 60, "email-address", flagEditavel, email, null, false)}
+              {InputText(setSenhaUm, "sua senha", 1, 10, "default", flagEditavel, senhaUm, null, true)}
+            </View>
+          }
 
+          {cenario == cenarioCadastrarEditar || cenario == cenarioCadastrarValidar ?
+            <View style={{ marginTop: 0 }}>
+              {InputText(setSenhaDois, "repita a mesma senha", 1, 10, "default", flagEditavel, senhaDois, null, true)}
+            </View>
+            : ""
+          }
+
+          <TouchableOpacity style={myStylesComuns.button} disabled={!flagEditavel} onPress={prosseguir} >
+            <View style={{ flexDirection: "row" }}>
+              <Text style={myStylesComuns.buttonTextoStyle}>Prosseguir</Text>
+              {!flagEditavel ? <ActivityIndicator /> : ""}
+            </View>
+          </TouchableOpacity>
         </View>
+
+        {cenario == cenarioEntrarEditar || cenario == cenarioEntrarValidar ?
+          <View style={myStyles.containerFacilidades}>
+            <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={fluxoCadastrar}>
+              <Text style={myStylesComuns.buttonTextoStyleFlat}>Precisa de ajuda com a senha?</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={fluxoCadastrar}>
+              <Text style={myStylesComuns.buttonTextoStyleFlat}>Clique aqui para se cadastrar</Text>
+            </TouchableOpacity>
+          </View>
+          : ""}
+
+        {cenario == cenarioCadastrarEditar || cenario == cenarioCadastrarValidar ?
+          <View style={myStyles.containerFacilidades}>
+            <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={fluxoEntrar}>
+              <Text style={myStylesComuns.buttonTextoStyleFlat}>Clique aqui se já tiver cadastro</Text>
+            </TouchableOpacity>
+          </View>
+          : ""}
+
+        {cenario == cenarioCadastrarEditarToken || cenario == cenarioCadastrarValidarToken ?
+          <View style={myStyles.containerFacilidades}>
+            <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={reenviarToken}>
+              <Text style={myStylesComuns.buttonTextoStyleFlat}>Clique aqui para receber outro código</Text>
+            </TouchableOpacity>
+          </View>
+          : ""}
       </ScrollView>
     </SafeAreaView >
   )
