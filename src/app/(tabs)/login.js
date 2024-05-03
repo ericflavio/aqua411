@@ -118,6 +118,21 @@ export default function ViewLogin() {
             <Text style={myStylesComuns.textoComum}>
               {textoRecepcionista}
             </Text>
+
+            {cenario !== cenarioMostarOpcoes ?
+              <View style={{ marginTop: 18 }}>
+                {InputText(SetEmail, "seu_email@", 1, 60, "email-address", flagEditavel, email, null, false)}
+                {InputText(setSenhaUm, "sua senha", 1, 10, "default", flagEditavel, senhaUm, null, true)}
+              </View>
+              : ""}
+
+            {cenario == cenarioCadastrarEditar || cenario == cenarioCadastrarValidar ?
+              <View style={{ marginTop: 0 }}>
+                {InputText(setSenhaDois, "repita a mesma senha", 1, 10, "default", flagEditavel, senhaDois, null, true)}
+              </View>
+              : ""}
+
+
             {cenario == cenarioMostarOpcoes ?
               <View style={myStyles.containerEntrarCadastrar}>
                 <TouchableOpacity style={myStylesComuns.button} onPress={entrar}>
@@ -127,38 +142,16 @@ export default function ViewLogin() {
                   <Text sytle={myStylesComuns.textoButton}>Cadastrar</Text>
                 </TouchableOpacity>
               </View>
-              : ""}
-
-            {cenario == cenarioEntrarEditar || cenario == cenarioEntrarValidar ?
-              <View style={{ marginTop: 18 }}>
-                {InputText(SetEmail, "seu_email@", 1, 60, "email-address", flagEditavel, email, null, false)}
-                {InputText(setSenhaUm, "sua senha", 1, 10, "default", flagEditavel, senhaUm, null, true)}
-                <View style={myStyles.containerEntrarCadastrar}>
-                  <TouchableOpacity style={myStylesComuns.button} onPress={recomecar}>
-                    <Text sytle={myStylesComuns.textoButton}>Voltar</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={myStylesComuns.button} onPress={prosseguir}>
-                    <Text sytle={myStylesComuns.textoButton}>Prosseguir</Text>
-                  </TouchableOpacity>
-                </View>
+              :
+              <View style={myStyles.containerEntrarCadastrar}>
+                <TouchableOpacity style={myStylesComuns.button} onPress={recomecar}>
+                  <Text sytle={myStylesComuns.textoButton}>Voltar</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={myStylesComuns.button} onPress={prosseguir}>
+                  <Text sytle={myStylesComuns.textoButton}>Prosseguir</Text>
+                </TouchableOpacity>
               </View>
-              : ""}
-
-            {cenario == cenarioCadastrarEditar ?
-              <View style={{ marginTop: 18 }}>
-                {InputText(SetEmail, "seu_email@", 1, 60, "email-address", flagEditavel, email, null, false)}
-                {InputText(setSenhaUm, "nova senha de 8 a 10 dígitos", 1, 10, "default", flagEditavel, senhaUm, null, true)}
-                {InputText(setSenhaDois, "repita a mesma senha", 1, 10, "default", flagEditavel, senhaDois, null, true)}
-                <View style={myStyles.containerEntrarCadastrar}>
-                  <TouchableOpacity style={myStylesComuns.button} onPress={recomecar}>
-                    <Text sytle={myStylesComuns.textoButton}>Voltar</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={myStylesComuns.button} onPress={prosseguir}>
-                    <Text sytle={myStylesComuns.textoButton}>Prosseguir</Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-              : ""}
+            }
           </View>
           {cenario == cenarioEntrarEditar ?
             <View>
