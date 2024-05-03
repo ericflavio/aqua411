@@ -43,16 +43,13 @@ export const myStylesComuns = StyleSheet.create({
   textoNegritoForte: "700",
   textoNegritoMedio: "500",
   TextoNegritoOff: "100",
-  textoFonteTam0: 40,
-  textoFonteTam1: 30,
+  textoFonteTam0: 34,
+  textoFonteTam1: 28,
   textoFonteTam2: 20,
   textoFonteTam3: 18,
-  textoFonteTam4: 16,
-  textoFonteTam5: 12,
-  textoFonteTam6: 10,
 
   textoTituloPagina: {
-    fontSize: 36,
+    fontSize: 34,
     fontWeight: "700",
     marginTop: 40,
     marginBottom: 25,
@@ -60,14 +57,14 @@ export const myStylesComuns = StyleSheet.create({
     borderWidth: 0
   },
   textoSubtitulo: {
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: "700",
     marginTop: 0,
     color: "#1f1f1fff",
     borderWidth: 0
   },
   textoComum: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: "500",
     color: "#1f1f1fff",
     borderWidth: 0
@@ -77,9 +74,7 @@ export const myStylesComuns = StyleSheet.create({
   textoButton: {
     fontSize: 20,
     fontWeight: "700",
-    marginTop: 0,
     color: "#1f1f1fff",
-    borderWidth: 0
   },
   button: {
     alignItems: 'center',
@@ -91,9 +86,15 @@ export const myStylesComuns = StyleSheet.create({
     padding: 14,
     borderBottomWidth: 4,
     maxWidth: "100%",
-    minWidth: 120,
+    minWidth: "50%",
     alignSelf: "center",
     fontWeight: "700"
+  },
+  buttonFlat: {
+    backgroundColor: 'transparent',
+    padding: 2,
+    maxWidth: "100%",
+    borderWidth:0
   },
 
   //InputText

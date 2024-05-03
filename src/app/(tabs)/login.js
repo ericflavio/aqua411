@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image } from "react-native";
+import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, ActivityIndicator, Alert } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { myStyles } from "../styles/stylesPageLogin";
 import { myStylesComuns } from '../styles/stylesComuns';
@@ -8,63 +8,71 @@ import { GradienteFill } from '../componentes/gradienteFill';
 
 //Tela principal
 export default function ViewLogin() {
-  const [cenario, setCenario] = useState(0);
+  const [cenario, setCenario] = useState(1);
   const [flagErro, setFlagErro] = useState(false);
-  const [email, SetEmail] = useState("");
-  const [senhaUm, setSenhaUm] = useState("");
-  const [senhaDois, setSenhaDois] = useState("");
+  const [email, SetEmail] = useState("ericflavio@gmail.com");
+  const [senhaUm, setSenhaUm] = useState("1234567890");
+  const [senhaDois, setSenhaDois] = useState("1234567890");
+  const [token, setToken] = useState("abcd");
 
-  const cenarioMostarOpcoes = 0;
-  const cenarioEntrarEditar = 1;
-  const cenarioEntrarValidar = 11;
-  const cenarioCadastrarEditar = 2;
-  const cenarioCadastrarValidar = 21;
+  const cenarioEntrarEditar = 1; // Edita dados de login
+  const cenarioEntrarValidar = 11; // Valida dados fornecidos para login
+  const cenarioCadastrarEditar = 2; // Edita dados de cadastramento
+  const cenarioCadastrarValidar = 21; // Valida dados de cadastramento
+  const cenarioCadastrarEditarToken = 3; // Edita token enviado por email
+  const cenarioCadastrarValidarToken = 31; // Valida token
 
   var textoRecepcionista = "";
   var flagEditavel = true;
+  cenario > 10 ? flagEditavel = false : flagEditavel = true;
+
+  //console.log("flagErro: ", flagErro);
+  //console.log("flagEditavel: ", flagEditavel);
 
   //Monta texto da recepcionista
   switch (cenario) {
-    //Inicio
-    case cenarioMostarOpcoes:
-      textoRecepcionista = "Se você está chegando agora, clique em Cadastrar. Se já possui cadastro, clique em Entrar";
-      break;
-    //Entrar: edição dos dados
     case cenarioEntrarEditar:
-      flagEditavel = true;
       if (!flagErro) {
-        textoRecepcionista = "Para entrar, informe abaixo o seu e-mail e senha e clique em Prosseguir";
+        textoRecepcionista = "Já tem cadastro? Então informe os dados para prosseguir";
       }
       else {
-        textoRecepcionista = "oops! Tem algo errado. Verifique as informações e tente novamente";
+        textoRecepcionista = "oops! Algo deu errado. Verifique as informações e tente novamente";
       }
       break;
-    //Entrar: edição travada enquanto aguarda retorno da login
     case cenarioEntrarValidar:
-      flagEditavel = false;
       textoRecepcionista = "Estamos validando seus dados. Aguarde um instante....";
       break;
-    //Cadastrar: edição dos dados
     case cenarioCadastrarEditar:
       if (!flagErro) {
-        textoRecepcionista = "Para se cadastrar, informe os dados abaixo e clique em prosseguir. Por segurança, enviaremos para o seu e-mail um código de confirmação";
+        textoRecepcionista = "Para se cadastrar, informe os dados abaixo e clique em prosseguir";
       }
       else {
-        textoRecepcionista = "oops! Erro ao tentar cadastrar o e-mail informado";
+        textoRecepcionista = "oops! Algo deu errado. Verifique as informações e tente novamente";
       }
       break;
-    //Cadastrar
+    case cenarioCadastrarValidar:
+      textoRecepcionista = "Estamos cadastrando seus dados. Aguarde um instante....";
+      break;
+    case cenarioCadastrarEditarToken:
+      if (!flagErro) {
+        textoRecepcionista = "Ok! Para finalizar, digite o código que enviamos para o seu e-mail";
+      }
+      else {
+        textoRecepcionista = "oops! Algo deu errado. Verifique o código e tente novamente";
+      }
+      break;
+    case cenarioCadastrarValidarToken:
+      textoRecepcionista = "Estamos validando o código. Aguarde um instante....";
+      break;
   };
 
-  function entrar() {
+  function fluxoEntrar() {
+    setFlagErro(false);
     setCenario(cenarioEntrarEditar);
   }
-  function cadastrar() {
-    setCenario(cenarioCadastrarEditar);
-  }
-  function recomecar() {
+  function fluxoCadastrar() {
     setFlagErro(false);
-    setCenario(cenarioMostarOpcoes);
+    setCenario(cenarioCadastrarEditar);
   }
   function validarSintaxeEmail(email) {
     //const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@a-zA-Z0-9?(?:\.a-zA-Z0-9?)*$/;
@@ -76,9 +84,23 @@ export default function ViewLogin() {
     if (!senha || senha.length < 8) return false;
     return true;
   }
+  function validarSintaxeToken(token) {
+    if (!token || token.length < 4) return false;
+    return true;
+  }
+  async function reenviarToken() {
+    Alert.alert('Tudo certo', 'Enviamos um novo código de confirmação para o seu e-mail', [
+      {
+        text: 'Cancel',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
+      },
+      { text: 'OK', onPress: () => console.log('OK Pressed') },
+    ]);
+  }
   function prosseguir() {
+    //console.log("cenario: ", cenario)
     switch (cenario) {
-      //Entrar
       case cenarioEntrarEditar:
         if (!validarSintaxeEmail(email) || !validarSintaxeSenha(senhaUm)) {
           setFlagErro(true);
@@ -87,11 +109,56 @@ export default function ViewLogin() {
         setCenario(cenarioEntrarValidar); //Renderiza tela no modo aguardando realização do login
 
         //TODO: Realizar login
+        timer = setInterval(() => {
+          if (email === "ericflavio@gmail.com" && senhaUm === "1234567890") {
+            //TODO: Navegar para página main
+            setCenario(cenarioCadastrarEditar);
+          } else {
+            setFlagErro(true);
+            setCenario(cenarioEntrarEditar);
+          }
+          clearInterval(timer);
+        }, 3000);
+        break;
+      case cenarioCadastrarEditar:
+        if (!validarSintaxeEmail(email) || !validarSintaxeSenha(senhaUm) ||
+          !validarSintaxeSenha(senhaDois) || senhaUm !== senhaDois) {
+          setFlagErro(true);
+          return;
+        };
+        setCenario(cenarioCadastrarValidar); //Renderiza tela no modo aguardando realização do cadastramento
 
+        //TODO: Realizar cadastramento
+        timer = setInterval(() => {
+          if (email === "ericflavio@gmail.com" && senhaUm === "1234567890") {
+            //TODO: Navegar para página de login
+            setCenario(cenarioCadastrarEditarToken);
+          } else {
+            setFlagErro(true);
+            setCenario(cenarioCadastrarEditar);
+          }
+          clearInterval(timer);
+        }, 3000);
         break;
-      case 2: textoRecepcionista = "...escreva uma senha e clieque em Prosseguir";
+      case cenarioCadastrarEditarToken:
+        if (!validarSintaxeToken(token)) {
+          setFlagErro(true);
+          return;
+        };
+        setCenario(cenarioCadastrarValidarToken); //Renderiza tela no modo aguardando
+
+        //TODO: Realizar cadastramento
+        timer = setInterval(() => {
+          if (token === "abcd") {
+            //TODO: Navegar para página de login
+            setCenario(cenarioEntrarEditar);
+          } else {
+            setFlagErro(true);
+            setCenario(cenarioCadastrarEditarToken);
+          }
+          clearInterval(timer);
+        }, 3000);
         break;
-      //Cadastrar
     };
     setFlagErro(false);
   }
@@ -115,16 +182,20 @@ export default function ViewLogin() {
               />
               <MaterialIcons name="textsms" size={36} color={(flagErro ? myStylesComuns.corErro : myStylesComuns.corAzulClaro)} />
             </View>
+
             <Text style={myStylesComuns.textoComum}>
               {textoRecepcionista}
             </Text>
 
-            {cenario !== cenarioMostarOpcoes ?
+            {cenario == cenarioCadastrarEditarToken || cenario == cenarioCadastrarValidarToken ?
+              <View style={{ marginTop: 0 }}>
+                {InputText(setToken, "Código de confirmação", 1, 4, "default", flagEditavel, token, null, true)}
+              </View>
+              :
               <View style={{ marginTop: 18 }}>
                 {InputText(SetEmail, "seu_email@", 1, 60, "email-address", flagEditavel, email, null, false)}
                 {InputText(setSenhaUm, "sua senha", 1, 10, "default", flagEditavel, senhaUm, null, true)}
-              </View>
-              : ""}
+              </View>}
 
             {cenario == cenarioCadastrarEditar || cenario == cenarioCadastrarValidar ?
               <View style={{ marginTop: 0 }}>
@@ -132,32 +203,43 @@ export default function ViewLogin() {
               </View>
               : ""}
 
-
-            {cenario == cenarioMostarOpcoes ?
-              <View style={myStyles.containerEntrarCadastrar}>
-                <TouchableOpacity style={myStylesComuns.button} onPress={entrar}>
-                  <Text sytle={myStylesComuns.textoButton}>Entrar</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={myStylesComuns.button} onPress={cadastrar}>
-                  <Text sytle={myStylesComuns.textoButton}>Cadastrar</Text>
-                </TouchableOpacity>
-              </View>
-              :
-              <View style={myStyles.containerEntrarCadastrar}>
-                <TouchableOpacity style={myStylesComuns.button} onPress={recomecar}>
-                  <Text sytle={myStylesComuns.textoButton}>Voltar</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={myStylesComuns.button} onPress={prosseguir}>
+            <View style={myStyles.containerEntrarCadastrar}>
+              <TouchableOpacity style={myStylesComuns.button} disabled={!flagEditavel} onPress={prosseguir} >
+                <View style={{ flexDirection: "row" }}>
                   <Text sytle={myStylesComuns.textoButton}>Prosseguir</Text>
-                </TouchableOpacity>
-              </View>
-            }
+                  {!flagEditavel ? <ActivityIndicator /> : ""}
+                </View>
+              </TouchableOpacity>
+            </View>
           </View>
-          {cenario == cenarioEntrarEditar ?
-            <View>
-              <Text sytle={myStylesComuns.textoButton}>Clique se precisar de ajuda com a senha</Text>
+
+          {cenario == cenarioEntrarEditar || cenario == cenarioEntrarValidar ?
+            <View style={myStyles.containerFacilidades}>
+              <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={fluxoCadastrar}>
+                <Text sytle={myStylesComuns.textoComum}>Precisa de ajuda com a senha?</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={fluxoCadastrar}>
+                <Text sytle={myStylesComuns.textoComum}>Clique aqui para se cadastrar</Text>
+              </TouchableOpacity>
             </View>
             : ""}
+
+          {cenario == cenarioCadastrarEditar || cenario == cenarioCadastrarValidar ?
+            <View style={myStyles.containerFacilidades}>
+              <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={fluxoEntrar}>
+                <Text sytle={myStylesComuns.textoTituloPagina}>Clique aqui se já tiver cadastro</Text>
+              </TouchableOpacity>
+            </View>
+            : ""}
+
+          {cenario == cenarioCadastrarEditarToken || cenario == cenarioCadastrarValidarToken ?
+            <View style={myStyles.containerFacilidades}>
+              <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={reenviarToken}>
+                <Text sytle={myStylesComuns.textoComum}>Clique aqui para eceber outro código</Text>
+              </TouchableOpacity>
+            </View>
+            : ""}
+
         </View>
       </ScrollView>
     </SafeAreaView >

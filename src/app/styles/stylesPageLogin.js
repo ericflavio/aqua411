@@ -32,13 +32,13 @@ export const myStyles = StyleSheet.create({
     marginTop: 18,
     borderWidth: myStylesComuns.containerBordaOnOff
   },
-  containerEntrarDados: {
+  containerFacilidades: {
     flex:0,
     flexDirection: "column",
-    alignItems: "stretch",
+    alignItems: "center",
     justifyContent: "center",
     marginTop: 12,
-    borderWidth: myStylesComuns.containerBordaOnOff
+    borderWidth:0,
   },
   imgRecepcionista: {
     width: 80, 
