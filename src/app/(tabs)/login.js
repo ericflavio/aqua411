@@ -198,7 +198,7 @@ export default function ViewLogin() {
 
           {cenario == cenarioCadastrarEditarToken || cenario == cenarioCadastrarValidarToken ?
             <View style={{ marginTop: 0 }}>
-              {InputText(onChangeToken, "Código de confirmação", 1, 4, "default", flagEditavel, token, null, true)}
+              {InputText(onChangeToken, "Código de confirmação", 1, 4, "default", flagEditavel, token, null, false)}
             </View>
             :
             <View style={{ marginTop: 18 }}>
