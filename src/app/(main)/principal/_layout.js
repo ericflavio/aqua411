@@ -2,7 +2,6 @@ import { Tabs } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
 
 export default function LayoutPrincipal() {
-
   return (
     <Tabs screenOptions={{
       headerShown: false,
