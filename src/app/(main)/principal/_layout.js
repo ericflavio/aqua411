@@ -1,7 +1,7 @@
 import { Tabs } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
 
-export default function TabRoutsLayout() {
+export default function LayoutPrincipal() {
 
   return (
     <Tabs screenOptions={{
@@ -31,15 +31,6 @@ export default function TabRoutsLayout() {
         name="index"
         options={{
           title: "Inicio",
-          tabBarIcon: ({ size, color }) =>
-            <MaterialIcons name="local-laundry-service" size={36} color={color} />
-        }}
-      />
-
-      <Tabs.Screen
-        name="main/index"
-        options={{
-          title: "Main",
           tabBarIcon: ({ size, color }) =>
             <MaterialIcons name="local-laundry-service" size={36} color={color} />
         }}

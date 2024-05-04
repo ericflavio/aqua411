@@ -105,7 +105,7 @@ function horarioFuncionamento(in24h, horaIni, horaFim) {
 };
 
 //Tela principal HOME
-export default function ViewMain() {
+export default function ViewLojaMaquinas() {
   const [cenario, setCenario] = useState(cenarioTeste);
 
   //Consulta API com novos status dos equipamentos

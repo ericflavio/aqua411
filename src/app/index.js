@@ -10,7 +10,7 @@ export default function principal() {
       backgroundColor: "#0101",
       borderWidth: 1 }}>
       <Text>PRINCPAL HOME</Text>
-      <Link href={"/tabMain/main/index"}>Ir para main</Link>
+      <Link href={"/principal"}>Ir para main</Link>
       <Link href={"/login"}>Ir para login</Link>
     </View>
   )
