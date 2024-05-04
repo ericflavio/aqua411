@@ -15,7 +15,7 @@ function tamanhoTela() {
 };
 
 export function GradienteFill(corForte, corFraca, tamanho) {
-  if (!tamanho) tamanho = tamanhoTela();
+  if (tamanho == undefined) tamanho = tamanhoTela();
   return (
     <LinearGradient
       // Background Linear Gradient

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, ActivityIndicator, Alert } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
-import { myStyles } from "../styles/stylesPageLogin";
+import { myStyles } from "./styles";
 import { myStylesComuns } from '../styles/stylesComuns';
 import { InputText } from '../componentes/inputText';
 import { GradienteFill } from '../componentes/gradienteFill';
+import { Navigator } from 'expo-router';
 
 //Tela principal
 export default function ViewLogin() {

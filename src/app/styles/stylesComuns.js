@@ -29,13 +29,14 @@ export const myStylesComuns = StyleSheet.create({
     backgroundColor: "#dcedffff",
     alignItems: "center",
     borderWidth: 0,
-    borderBlockColor: "#fa7251ff"
+    borderBlockColor: "#fa7251ff",
   },
   containerPrincipalScroll: {
     flex: 1,
     width: "86%",
     borderWidth: 0,
-    borderColor: "#98e07eff"
+    borderColor: "#98e07eff",
+    marginTop: "10%"
   },
 
   //Textos
