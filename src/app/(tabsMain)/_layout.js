@@ -28,7 +28,7 @@ export default function TabRoutsLayout() {
     }}>
 
       <Tabs.Screen
-        name="main"
+        name="main/index"
         options={{
           title: "Inicio",
           tabBarIcon: ({ size, color }) =>
@@ -37,20 +37,11 @@ export default function TabRoutsLayout() {
       />
 
       <Tabs.Screen
-        name="promocao"
+        name="promocao/index"
         options={{
           title: "Promo",
           tabBarIcon: ({ size, color }) =>
             <MaterialIcons name="card-giftcard" size={36} color={color} />
-        }}
-      />
-
-      <Tabs.Screen
-        name="saiba"
-        options={{
-          title: "Saiba",
-          tabBarIcon: ({ size, color }) =>
-            <MaterialIcons name="water-drop" size={36} color={color} />
         }}
       />
     </Tabs>

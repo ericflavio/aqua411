@@ -9,7 +9,7 @@ export default function MainLayout() {
         tabBarActiveTintColor: '#041e52ff',
         tabBarShowLabel: true,
       }} >
-      <Stack.Screen name="login" />
+      <Stack.Screen name="login/index" />
       <Stack.Screen name="(tabsMain)" />
     </Stack>
   )
