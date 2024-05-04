@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { myStylesComuns } from "../../styles/stylesComuns";
+import { myStylesComuns } from "../../../styles/stylesComuns";
 
 export const myStyles = StyleSheet.create({
   containerHeader: {

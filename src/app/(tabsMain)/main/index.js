@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { View, Text, Image, SafeAreaView, ScrollView, TouchableOpacity, Dimensions } from "react-native";
 import { myStyles } from "./styles";
 import { myStylesComuns } from '../../styles/stylesComuns';
-import { GradienteFill } from '../../componentes/gradienteFill';
+import { GradienteFill } from '../../../componentes/gradienteFill';
 
 var cenarioTeste = 1;
 var seca = [1, 1, 1];
@@ -105,7 +105,7 @@ function horarioFuncionamento(in24h, horaIni, horaFim) {
 };
 
 //Tela principal HOME
-export default function ViewHome() {
+export default function ViewMain() {
   const [cenario, setCenario] = useState(cenarioTeste);
 
   //Consulta API com novos status dos equipamentos

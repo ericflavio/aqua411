@@ -16,10 +16,11 @@ function tamanhoTela() {
 
 export function GradienteFill(corForte, corFraca, tamanho) {
   if (tamanho == undefined) tamanho = tamanhoTela();
+
   return (
     <LinearGradient
       // Background Linear Gradient
-      colors={['white', 'rgba(201,237,255,100)']}
+      colors={['red', 'rgba(201,237,255,100)']}
       style={{
         position: 'absolute',
         left: 0,

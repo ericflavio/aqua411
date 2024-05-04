@@ -1,6 +1,6 @@
 import { View, Text, ImageBackground, SafeAreaView } from "react-native";
-import { myStylesComuns } from "../../styles/stylesComuns";
-import { GradienteFill } from '../../componentes/gradienteFill';
+import { myStylesComuns } from "../../../styles/stylesComuns";
+import { GradienteFill } from '../../../componentes/gradienteFill';
 
 export default function ViewSaibaMais() {
   return (

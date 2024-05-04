@@ -3,7 +3,7 @@ import { View, Text, SafeAreaView, ScrollView, TouchableOpacity } from "react-na
 import { myStyles } from "./styles";
 import { myStylesComuns } from '../../styles/stylesComuns';
 import { MaterialIcons } from "@expo/vector-icons";
-import { GradienteFill } from '../../componentes/gradienteFill';
+import { GradienteFill } from '../../../componentes/gradienteFill';
 
 //Funcçoes de apoio
 function pesquisaPromocaoVigente() {
