@@ -20,7 +20,7 @@ export function GradienteFill(corForte, corFraca, tamanho) {
   return (
     <LinearGradient
       // Background Linear Gradient
-      colors={['red', 'rgba(201,237,255,100)']}
+      colors={['white', 'rgba(201,237,255,100)']}
       style={{
         position: 'absolute',
         left: 0,

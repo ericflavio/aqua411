@@ -28,9 +28,18 @@ export default function TabRoutsLayout() {
     }}>
 
       <Tabs.Screen
-        name="main/index"
+        name="index"
         options={{
           title: "Inicio",
+          tabBarIcon: ({ size, color }) =>
+            <MaterialIcons name="local-laundry-service" size={36} color={color} />
+        }}
+      />
+
+      <Tabs.Screen
+        name="main/index"
+        options={{
+          title: "Main",
           tabBarIcon: ({ size, color }) =>
             <MaterialIcons name="local-laundry-service" size={36} color={color} />
         }}
