@@ -26,40 +26,28 @@ export default function ViewLogin() {
   var flagEditavel = true;
   cenario > 10 ? flagEditavel = false : flagEditavel = true;
 
-  //console.log("flagErro: ", flagErro);
-  //console.log("flagEditavel: ", flagEditavel);
-
   //Monta texto da recepcionista
   switch (cenario) {
     case cenarioEntrarEditar:
-      if (!flagErro) {
-        textoRecepcionista = "Já tem cadastro? Então informe os dados para prosseguir";
-      }
-      else {
-        textoRecepcionista = "oops! Algo deu errado. Verifique as informações e tente novamente";
-      }
+      !flagErro
+        ? textoRecepcionista = "Já tem cadastro? Então informe os dados para prosseguir"
+        : textoRecepcionista = "oops! Algo deu errado. Verifique as informações e tente novamente";
       break;
     case cenarioEntrarValidar:
       textoRecepcionista = "Estamos validando seus dados. Aguarde um instante....";
       break;
     case cenarioCadastrarEditar:
-      if (!flagErro) {
-        textoRecepcionista = "Para se cadastrar, informe os dados abaixo e clique em prosseguir";
-      }
-      else {
-        textoRecepcionista = "oops! Algo deu errado. Verifique as informações e tente novamente";
-      }
+      !flagErro
+        ? textoRecepcionista = "Para se cadastrar, informe os dados abaixo e clique em prosseguir"
+        : textoRecepcionista = "oops! Algo deu errado. Verifique as informações e tente novamente";
       break;
     case cenarioCadastrarValidar:
       textoRecepcionista = "Estamos cadastrando seus dados. Aguarde um instante....";
       break;
     case cenarioCadastrarEditarToken:
-      if (!flagErro) {
-        textoRecepcionista = "Ok! Para finalizar, digite o código que enviamos para o seu e-mail";
-      }
-      else {
-        textoRecepcionista = "oops! Algo deu errado. Verifique o código e tente novamente";
-      }
+      !flagErro
+        ? textoRecepcionista = "Ok! Para finalizar, digite o código que enviamos para o seu e-mail"
+        : textoRecepcionista = "oops! Algo deu errado. Verifique o código e tente novamente";
       break;
     case cenarioCadastrarValidarToken:
       textoRecepcionista = "Estamos validando o código. Aguarde um instante....";
@@ -75,6 +63,7 @@ export default function ViewLogin() {
     setCenario(cenarioCadastrarEditar);
   }
   function onChangeEmail(emailEdt) {
+    //TODO:
     //console.log("email: ", emailEdt)
     //if (emailEdt === undefined) emailEdt = "";
     //var emailEdtLC = emailEdt.toLowerCase();
@@ -150,6 +139,7 @@ export default function ViewLogin() {
           clearInterval(timer);
         }, 3000);
         break;
+
       case cenarioCadastrarEditarToken:
         if (!validarSintaxeToken(token)) {
           setFlagErro(true);

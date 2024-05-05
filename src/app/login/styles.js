@@ -38,8 +38,8 @@ export const myStyles = StyleSheet.create({
     borderWidth:0,
   },
   imgAvatar: {
-    width: 80, 
-    height: 80, 
+    width: 50, 
+    height: 50, 
     resizeMode: 'contain',
   },
 });
