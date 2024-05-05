@@ -1,11 +1,6 @@
 import { Redirect, Stack } from "expo-router";
 
 export default function MainLayout() {
-  auth = false;
-  if (!auth) {
-    return <Redirect href="/login" />;
-  }
-
   return (
     <Stack
       screenOptions={{

@@ -10,49 +10,43 @@ var seca = [1, 1, 1];
 var lava = [1, 1, 1];
 var relogioOnOff = true;
 var flagViewStatusMaquina = true; //TODO: não está sendo usado
+var imgMaq = {};
+
+function imagemMaquina(tipMaq) {
+  if (tipMaq == undefined || tipMaq == "LAVA") {
+    imgMaq = require('../../../assets/maquinas/lava_disp.png')
+  } else {
+    imgMaq = require('../../../assets/maquinas/seca_disp.png')
+  }
+}
 
 //Monta cada máquina com seu respectivo status
 function maquina(tipMaq, idMaq, status, view) {
-  if (!tipMaq) tipMaq = "lava"; // Espera "lava" ou "seca"
-  if (!idMaq) idMaq = 0;
-  if (!status) status = 1;
-  if (!view) flagViewStatusMaquina = false;
+  if (tipMaq == undefined) tipMaq = "lava"; // Espera "lava" ou "seca"
+  if (idMaq == undefined) idMaq = 0;
+  if (status == undefined) status = 1;
+  if (view == undefined || view == false) flagViewStatusMaquina = false;
 
-  var tipMaquina = tipMaq.toUpperCase();
   var txStatus = "Indefinido";
+  var tipMaq = tipMaq.toUpperCase();
+  imagemMaquina(tipMaq);
 
   switch (status) {
     case 1:
       txStatus = "Disponível"
-      if (tipMaquina == "LAVA") {
-        imgMaq = require('../../../assets/maquinas/lava_disp.png')
-      } else {
-        imgMaq = require('../../../assets/maquinas/seca_disp.png')
-      }
+      imagemMaquina(tipMaq);
       break;
     case 2:
       txStatus = "Ocupada"
-      if (tipMaquina == "LAVA") {
-        imgMaq = require('../../../assets/maquinas/lava_disp.png')
-      } else {
-        imgMaq = require('../../../assets/maquinas/seca_disp.png')
-      }
+      imagemMaquina(tipMaq);
       break;
     case 3:
       txStatus = "Manutenção"
-      if (tipMaquina == "LAVA") {
-        imgMaq = require('../../../assets/maquinas/lava_disp.png')
-      } else {
-        imgMaq = require('../../../assets/maquinas/seca_disp.png')
-      }
+      imagemMaquina(tipMaq);
       break;
     default:
       txStatus = "Disponível"
-      if (tipMaquina == "LAVA") {
-        imgMaq = require('../../../assets/maquinas/lava_disp.png')
-      } else {
-        imgMaq = require('../../../assets/maquinas/seca_disp.png')
-      }
+      imagemMaquina(tipMaq);
   };
 
   return (
@@ -63,7 +57,7 @@ function maquina(tipMaq, idMaq, status, view) {
       />
       <View style={myStyles.containerLavaSeca}>
         <Text style={myStyles.textoLavaSeca}>
-          {tipMaquina + " " + idMaq}
+          {tipMaq + " " + idMaq}
         </Text>
 
         {flagViewStatusMaquina == true ?
@@ -77,9 +71,9 @@ function maquina(tipMaq, idMaq, status, view) {
 
 //Seta cor do icone de horário de funcionamento
 function horarioFuncionamento(in24h, horaIni, horaFim) {
-  if (!horaIni) horaIni = "00:00"
-  if (!horaFim) horaFim = "23:59"
-  if (!in24h) in24h = false;
+  if (horaIni == undefined) horaIni = "00:00"
+  if (horaFim == undefined) horaFim = "23:59"
+  if (in24h == undefined) in24h = false;
 
   //TODO: tratar horário faltando zeros na frente
 
@@ -95,10 +89,10 @@ function horarioFuncionamento(in24h, horaIni, horaFim) {
   var dataAgora = new Date(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes());
 
   if (dataAgora >= dataAbre & dataAgora < dataFecha) {
-    console.log("<<Aberta");
+    //console.log("<<Aberta");
     return true;
   } else {
-    console.log("<<Fechada");
+    //console.log("<<Fechada");
     return false;
   }
   //return data1 > data2;
@@ -150,26 +144,10 @@ export default function ViewLojaMaquinas() {
   };
   let headerHeight = 0; //Eventual header na página
   let bodyHeight = screenHeight - headerHeight + 0;
-  //console.log("screenHeight: ", screenHeight);
-  //console.log("headerHeight: ", headerHeight);
-  //console.log("bodyHeight  : ", bodyHeight);
 
   return (
     <SafeAreaView style={myStylesComuns.containerPrincipalSafeArea}>
       {GradienteFill()}
-      {/*
-      <LinearGradient
-        // Background Linear Gradient
-        colors={['white', 'rgba(201,237,255,100)']}
-        style={{
-          position: 'absolute',
-          left: 0,
-          right: 0,
-          top: 0,
-          height: bodyHeight,
-        }}
-      />
-      */}
       <ScrollView style={myStylesComuns.containerPrincipalScroll} showsVerticalScrollIndicator={false}>
 
         <View style={{ height: bodyHeight, paddingBottom: 96 }}>
