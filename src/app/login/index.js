@@ -187,7 +187,7 @@ export default function ViewLogin() {
           <View style={myStyles.containerAvatar}>
             <Image
               style={myStyles.imgAvatar}
-              source={require('../../../assets/outros/sheep_padrao.png')}
+              source={require('../../assets/outros/sheep_padrao.png')}
             />
             <MaterialIcons name="textsms" size={36} color={(flagErro ? myStylesComuns.corErro : myStylesComuns.corAzulClaro)} />
           </View>

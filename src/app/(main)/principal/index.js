@@ -25,33 +25,33 @@ function maquina(tipMaq, idMaq, status, view) {
     case 1:
       txStatus = "Disponível"
       if (tipMaquina == "LAVA") {
-        imgMaq = require('../../../../assets/maquinas/lava_disp.png')
+        imgMaq = require('../../../assets/maquinas/lava_disp.png')
       } else {
-        imgMaq = require('../../../../assets/maquinas/seca_disp.png')
+        imgMaq = require('../../../assets/maquinas/seca_disp.png')
       }
       break;
     case 2:
       txStatus = "Ocupada"
       if (tipMaquina == "LAVA") {
-        imgMaq = require('../../../../assets/maquinas/lava_disp.png')
+        imgMaq = require('../../../assets/maquinas/lava_disp.png')
       } else {
-        imgMaq = require('../../../../assets/maquinas/seca_disp.png')
+        imgMaq = require('../../../assets/maquinas/seca_disp.png')
       }
       break;
     case 3:
       txStatus = "Manutenção"
       if (tipMaquina == "LAVA") {
-        imgMaq = require('../../../../assets/maquinas/lava_disp.png')
+        imgMaq = require('../../../assets/maquinas/lava_disp.png')
       } else {
-        imgMaq = require('../../../../assets/maquinas/seca_disp.png')
+        imgMaq = require('../../../assets/maquinas/seca_disp.png')
       }
       break;
     default:
       txStatus = "Disponível"
       if (tipMaquina == "LAVA") {
-        imgMaq = require('../../../../assets/maquinas/lava_disp.png')
+        imgMaq = require('../../../assets/maquinas/lava_disp.png')
       } else {
-        imgMaq = require('../../../../assets/maquinas/seca_disp.png')
+        imgMaq = require('../../../assets/maquinas/seca_disp.png')
       }
   };
 
@@ -182,7 +182,7 @@ export default function ViewLojaMaquinas() {
             <View style={myStyles.containerUnidadeEndereco}>
               <Image
                 style={myStyles.imgLocalizacao}
-                source={require('../../../../assets/icones/icon_local.png')}
+                source={require('../../../assets/icones/icon_local.png')}
               />
               <Text style={myStylesComuns.textoSubtitulo}>
                 Unidade: ASA NORTE
@@ -193,11 +193,11 @@ export default function ViewLojaMaquinas() {
               {relogioOnOff == true ?
                 <Image
                   style={myStyles.imgRelogio}
-                  source={require('../../../../assets/icones/aqua_relogio_abertos.png')}
+                  source={require('../../../assets/icones/aqua_relogio_abertos.png')}
                 /> :
                 <Image
                   style={myStyles.imgRelogio}
-                  source={require('../../../../assets/icones/aqua_relogio_fechados.png')}
+                  source={require('../../../assets/icones/aqua_relogio_fechados.png')}
                 />
               }
               <Text style={myStylesComuns.textoComum}>
@@ -229,7 +229,7 @@ export default function ViewLojaMaquinas() {
             <View style={myStyles.containerUltimaAtualizacao}>
               <Image
                 style={myStyles.imgRelogio}
-                source={require('../../../../assets/icones/aqua_relogio_comum.png')}
+                source={require('../../../assets/icones/aqua_relogio_comum.png')}
               />
               <Text style={myStylesComuns.textoComum}>
                 26/06/2024 08:36
