@@ -25,7 +25,7 @@ export default function AuthProvider({children}) {
   const [user, setUser] = useState({});
 
   //Funções assíncronas para invocação das APIs
-  async function signIn() {
+  function signIn() {
     //const auth = await authService.signIn(email, senha);
     //const auth = {nome:"id-1-2"};
     //console.log("auth-signIn: ", auth);
@@ -36,7 +36,7 @@ export default function AuthProvider({children}) {
     setUser({userData})
     return user;
   };
-  async function signOut() {
+  function signOut() {
     setAuth({}); //limpar o objeto Auth
     return true;
   };

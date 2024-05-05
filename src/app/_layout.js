@@ -1,9 +1,8 @@
 //Nota: Esta é a primeira task de execução do APP, antes mesmo da index principal
 import { Stack } from "expo-router";
-import { AuthProvider } from '../contexts/auth';
-import { Layout } from "react-native-reanimated";
+import AuthProvider from '../contexts/auth';
 
-export default function MainLayout() {
+export default function AppLayout() {
   return (
     <AuthProvider>
       <Stack
@@ -18,5 +17,6 @@ export default function MainLayout() {
         <Stack.Screen name="login/index" />
       </Stack>
     </AuthProvider>
+
   )
 }
