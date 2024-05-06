@@ -27,15 +27,12 @@ export async function SetLocalDataLogin(userDataLogin) {
 export async function GetLocalDataLogin() {
   try {
     const response = await AsyncStorage.getItem(idDB);
-    var userDataLogin = JSON.parse(response);
+    //Se response existe (<> undefines e null)
+    const userDataLogin = response ? JSON.parse(response) : {};
     return userDataLogin;
   } catch (e) {
     //console.log("AsyncStorage(erro): ", e)
-    var userDataLogin = {
-      nome: null,
-      user: null,
-      timestamp: null
-    }
+    const userDataLogin = {}
     return userDataLogin;
   }
 }

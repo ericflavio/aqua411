@@ -21,9 +21,10 @@ export default function ViewStart() {
 
     if (userDataLogin == undefined || userDataLogin == null ||
       userDataLogin.timestamp == undefined) {
-        console.log("timestamp invalido") } else {
-          console.log("timestamp ok")
-      }
+      console.log("timestamp invalido")
+    } else {
+      console.log("timestamp ok")
+    }
 
   }
 
