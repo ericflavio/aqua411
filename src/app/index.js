@@ -3,16 +3,23 @@ import { Link } from "expo-router";
 import React, { useContext, useEffect } from 'react';
 import { AuthContext } from "../contexts/auth";
 import { myStyles } from './styles';
-import { GetLocalDataLogin, SetLocalDataLogin } from '../services/localStorageService';
+import { GetLocalDataLogin, SetLocalDataLogin, RemoveLocalDataLogin} from '../services/localStorageService';
 
 export default function ViewStart() {
 
   useEffect(() => {
     console.log("home renderizada")
-    handleLogin();
+    const userData = {
+      login: "eric@gmail.com",
+      id: "1001",
+      token: "token09934-912934-12222"
+    };
+    SetLocalDataLogin(userData)
+    //RemoveLocalDataLogin();
+    handleStorageDataleLogin();
   }, []);
 
-  async function handleLogin() {
+  async function handleStorageDataleLogin() {
     var userDataLogin = await GetLocalDataLogin();
 
     //Verifica se o token ainda é válido
@@ -23,7 +30,7 @@ export default function ViewStart() {
       userDataLogin.timestamp == undefined) {
       console.log("timestamp invalido")
     } else {
-      console.log("timestamp ok")
+      console.log("User: ",userDataLogin )
     }
 
   }

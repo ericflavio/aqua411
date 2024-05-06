@@ -1,43 +1,33 @@
-//Contextos são enxergados de forma global pela aplicação, e precisam de um 
-//componente para guardar seus dados e suas funções (assíncornas) pois só aqui
-//elas têm permissão de alteração dos dados do seu respectivo contexto.
+//Contextos são enxergados de forma global pela aplicação
 import { React, createContext, useState } from "react";
 import { authService } from '../services/authService';
+import {GetLocalDataLogin , SetLocalDataLogin , RemoveLocalDataLogin} from '../services/localStorageService';
 
-//TODO:
-{/*var AuthData = {
-  auth: {
-    nome,
-  }
-}
-var AuthContextData = {
-  nome,
-  signIn: (email, senha) => Promise,
-  signOut: () => Promise,
-}
-export const AuthContext = createContext({ AuthContextData });
-*/}
+export const AuthContext = createContext({}); // Inicializa contexto vazio
 
-export const AuthContext = createContext({});
-
-//Agora é necessário criar o provedor do contexto
+//É necessário criar o provedor do contexto
 export default function AuthProvider({children}) {
   const [user, setUser] = useState({});
 
   //Funções assíncronas para invocação das APIs
-  function signIn() {
-    //const auth = await authService.signIn(email, senha);
-    //const auth = {nome:"id-1-2"};
-    //console.log("auth-signIn: ", auth);
-    userData = {
-      nome: "Eric Flavio",
-      id: "eric123"
-    }
-    setUser({userData})
+  async function signIn(email, senha) {
+    const userData = {}
+    if (!email || !senha) return userData;
+    const auth = await authService.signIn(email, senha);
+    console.log("authContext-signIn: ", auth);
+/*     userData = {
+      login: auth.email,
+      id: auth.id,
+      token: auth.token
+    } */
+    setUser(auth) //Rerender e atualização dos dados do Contexto
+    SetLocalDataLogin(user) //Persiste o usuário localmente
     return user;
   };
+
   function signOut() {
-    setAuth({}); //limpar o objeto Auth
+    setAuth({}); //limpar o state do objeto user
+    RemoveLocalDataLogin() //Remove o usuário localmente
     return true;
   };
 

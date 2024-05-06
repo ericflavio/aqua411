@@ -6,8 +6,8 @@ export const idDB = "@lavanderias:DadosLogin"
 
 export async function SetLocalDataLogin(userDataLogin) {
   if (userDataLogin == undefined) return false;
-  if (userDataLogin.nome == undefined) return false;
-  if (userDataLogin.user == undefined) return false;
+  if (userDataLogin.login == undefined) return false;
+  if (userDataLogin.id == undefined) return false;
   if (userDataLogin.token == undefined) return false;
 
   var d = new Date();
@@ -34,5 +34,15 @@ export async function GetLocalDataLogin() {
     //console.log("AsyncStorage(erro): ", e)
     const userDataLogin = {}
     return userDataLogin;
+  }
+}
+
+export async function RemoveLocalDataLogin() {
+  try {
+    const response = await AsyncStorage.removeItem(idDB);
+    return true;
+  } catch (e) {
+    //console.log("AsyncStorage(erro): ", e)
+    return false;
   }
 }
