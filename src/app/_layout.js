@@ -1,22 +1,14 @@
-//Nota: Esta é a primeira task de execução do APP, antes mesmo da index principal
-import { Stack } from "expo-router";
+//Nota: Esta é a primeira task de execução do APP, antes de tudo. E a próxima
+//task, por ele invocada, é a de Contexto, e por fim as rotas/páginas.
 import AuthProvider from '../contexts/auth';
+import AppRoutes from '../routes/appRoutes';
 
 export default function AppLayout() {
+  //console.log("_layout:Rota principal do app")
+
   return (
     <AuthProvider>
-      <Stack
-        screenOptions={{
-          headerShown: false,
-          tabBarInactiveTintColor: 'grey',
-          tabBarActiveTintColor: '#041e52ff',
-          tabBarShowLabel: true,
-        }} >
-        <Stack.Screen name="index" />
-        <Stack.Screen name="(main)" />
-        <Stack.Screen name="login/index" />
-      </Stack>
+      <AppRoutes />
     </AuthProvider>
-
   )
 }
