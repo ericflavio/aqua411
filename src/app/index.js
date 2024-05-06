@@ -3,18 +3,29 @@ import { Link } from "expo-router";
 import React, { useContext, useEffect } from 'react';
 import { AuthContext } from "../contexts/auth";
 import { myStyles } from './styles';
-import { GetDataLogin , SetDataLogin } from '../services/localStorageService';
+import { GetLocalDataLogin, SetLocalDataLogin } from '../services/localStorageService';
 
 export default function ViewStart() {
 
   useEffect(() => {
     console.log("home renderizada")
-    user = {
-      nome: "Eric",
-      user: "ericflavio@gmail.com"
-    }
-    GetDataLogin();
+    handleLogin();
   }, []);
+
+  async function handleLogin() {
+    var userDataLogin = await GetLocalDataLogin();
+
+    //Verifica se o token ainda é válido
+    var d = new Date();
+    var dataHora = new Date(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes());
+
+    if (userDataLogin == undefined || userDataLogin == null ||
+      userDataLogin.timestamp == undefined) {
+        console.log("timestamp invalido") } else {
+          console.log("timestamp ok")
+      }
+
+  }
 
   //const { signIn } = useContext(AuthContext);
   //function logar() {

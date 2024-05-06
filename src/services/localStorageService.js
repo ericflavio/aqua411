@@ -4,33 +4,38 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const idDB = "@lavanderias:DadosLogin"
 
-export async function SetDataLogin(userDataLogin) {
+export async function SetLocalDataLogin(userDataLogin) {
   if (userDataLogin == undefined) return false;
   if (userDataLogin.nome == undefined) return false;
   if (userDataLogin.user == undefined) return false;
+  if (userDataLogin.token == undefined) return false;
 
   var d = new Date();
   var dataHora = new Date(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes());
   userDataLogin.timestamp = dataHora;
-  console.log("SetLogin", userDataLogin);
 
   try {
     const jsonValue = JSON.stringify(userDataLogin);
     await AsyncStorage.setItem(idDB, jsonValue);
     return true;
   } catch (e) {
-    console.log("AsyncStorage(erro): ", e)
+    //console.log("AsyncStorage(erro): ", e)
     return false;
   }
 }
 
-export async function GetDataLogin() {
-  console.log("idDBStorage: ", idDB);
+export async function GetLocalDataLogin() {
   try {
     const response = await AsyncStorage.getItem(idDB);
     var userDataLogin = JSON.parse(response);
-    console.log("GetLogin: ", userDataLogin);
+    return userDataLogin;
   } catch (e) {
-    console.log("AsyncStorage(erro): ", e)
+    //console.log("AsyncStorage(erro): ", e)
+    var userDataLogin = {
+      nome: null,
+      user: null,
+      timestamp: null
+    }
+    return userDataLogin;
   }
 }
