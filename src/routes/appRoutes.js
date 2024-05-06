@@ -9,12 +9,6 @@ export default function AppRoutes() {
   const { isLoading, user } = useContext(AuthContext);
   console.log("appRoutes:isloading,user: ", isLoading, user);
 
-  //Mostra Splash se ainda estiver autenticando o usuário
-  if (isLoading) {
-    return (
-      <ViewSplash />
-    )
-  }
   //Retorna todas as rotas disponíveis
   return (
     <Stack
@@ -24,13 +18,13 @@ export default function AppRoutes() {
         tabBarActiveTintColor: myStylesComuns.corTemaAppSecundario,
         tabBarShowLabel: true,
       }} >
-      {/*<Stack.Screen name="index" />*/}
-      {!user || user == null
-      ? 
-      <Stack.Screen name="login/index" />
-      : 
-      <Stack.Screen name="(main)" />
+
+      {isLoading ?
+        <Stack.Screen name="splash/index" />
+        :
+        <Stack.Screen name="login/index" />
       }
+
     </Stack>
   )
 }
