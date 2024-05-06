@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-import { myStylesComuns } from "../styles/stylesComuns";
 
 export const myStyles = StyleSheet.create({
   containerBody: {

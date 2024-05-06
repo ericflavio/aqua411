@@ -1,10 +1,20 @@
 import { View, Image, ActivityIndicator } from "react-native";
 import { Link } from "expo-router";
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { AuthContext } from "../contexts/auth";
 import { myStyles } from './styles';
+import { GetDataLogin , SetDataLogin } from '../services/localStorageService';
 
 export default function ViewStart() {
+
+  useEffect(() => {
+    console.log("home renderizada")
+    user = {
+      nome: "Eric",
+      user: "ericflavio@gmail.com"
+    }
+    GetDataLogin();
+  }, []);
 
   //const { signIn } = useContext(AuthContext);
   //function logar() {
@@ -18,7 +28,7 @@ export default function ViewStart() {
       <Link href={"/principal"}>Ir para main</Link>
      <Link href={"/login"}>Ir para login</Link>*/}
       <View style={myStyles.containerSpiner}>
-        <ActivityIndicator size="large"/>
+        <ActivityIndicator size="large" />
       </View>
       <Image
         style={myStyles.imgLogo}
