@@ -19,11 +19,9 @@ export default function AppRoutes() {
         tabBarShowLabel: true,
       }} >
 
-      {isLoading ?
-        <Stack.Screen name="splash/index" />
-        :
-        <Stack.Screen name="login/index" />
-      }
+      <Stack.Screen name="splash/index" />
+      <Stack.Screen name="login/index" />
+      <Stack.Screen name="(main)" />
 
     </Stack>
   )
