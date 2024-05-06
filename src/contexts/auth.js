@@ -14,7 +14,7 @@ export default function AuthProvider({children}) {
   useEffect (() => {
     //Toda vez que o app se iniciar/contexto for criado
     //TODO: remover timeout
-    console.log("<a> authContext: useEffect");
+    //console.log("<a> authContext: useEffect");
     setTimeout(() => {
       loadUserFromLocalStorage(); //Resgata, se houver, user na storage
     }, 1500);
@@ -24,26 +24,22 @@ export default function AuthProvider({children}) {
   async function signIn(email, senha) {
     if (!email || !senha) return null;
     const auth = await authService.signIn(email, senha);
-    console.log("authContext-signIn: ", auth);
-/*     userData = {
-      login: auth.email,
-      id: auth.id,
-      token: auth.token
-    } */
-    setUser(auth) //Rerender e atualização dos dados do Contexto
+    //console.log("authContext-signIn: ", auth);
+
+    setUser(auth) //Rerender atualização dos dados do Contexto
     SetLocalDataLogin(user) //Persiste o usuário localmente
     return user;
   };
 
   function signOut() {
-    setAuth({}); //limpar o state do objeto user
+    setAuth(null); //limpar o state do objeto user
     RemoveLocalDataLogin() //Remove o usuário localmente
     return true;
   };
 
   async function loadUserFromLocalStorage() {
     const auth = await GetLocalDataLogin();
-    console.log("<b> authContext: loadUserStorage")
+    //console.log("<b> authContext: loadUserStorage")
     if (auth && auth !== null) {
       setUser(auth) //Rerender e atualização dos dados do Contexto
     }
@@ -51,6 +47,9 @@ export default function AuthProvider({children}) {
     //console.log("authContext-loadStorage: ", auth);
   };
 
+ //Como este Provider é invocado no componente _layout.js raiz dentro da
+ //pasta scr/app, que é onde start a aplicação como um todo, as informações
+ //do contexto serão compartilhadas em todos os lucares/componentes 
   return (
     <AuthContext.Provider value={{isLoading, user, signIn, signOut}}>
       {children}

@@ -1,5 +1,6 @@
 //Nota: Esta é a primeira task de execução do APP, antes de tudo. E a próxima
 //task, por ele invocada, é a de Contexto, e por fim as rotas/páginas.
+
 import AuthProvider from '../contexts/auth';
 import AppRoutes from '../routes/appRoutes';
 

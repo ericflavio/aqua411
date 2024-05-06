@@ -1,29 +1,36 @@
 //Define todas as rotas do app
-import { View, Text } from "react-native";
 import { Stack } from "expo-router";
 import { useContext } from 'react';
 import { AuthContext } from "../contexts/auth";
-import ViewSplash from '../assets/viewSplash/index';
+import ViewSplash from '../app/splash/index';
+import { myStylesComuns } from '../styles/stylesComuns';
 
 export default function AppRoutes() {
   const { isLoading, user } = useContext(AuthContext);
-  console.log("appRoutes ---- isloading: ", isLoading);
+  console.log("appRoutes:isloading,user: ", isLoading, user);
 
+  //Mostra Splash se ainda estiver autenticando o usuário
   if (isLoading) {
     return (
       <ViewSplash />
     )
   }
+  //Retorna todas as rotas disponíveis
   return (
     <Stack
       screenOptions={{
         headerShown: false,
-        tabBarInactiveTintColor: 'grey',
-        tabBarActiveTintColor: '#041e52ff',
+        tabBarInactiveTintColor: myStylesComuns.corCinzMedio,
+        tabBarActiveTintColor: myStylesComuns.corTemaAppSecundario,
         tabBarShowLabel: true,
       }} >
       {/*<Stack.Screen name="index" />*/}
-      {user ? <Stack.Screen name="(main)" /> : <Stack.Screen name="login/index" />}
+      {!user || user == null
+      ? 
+      <Stack.Screen name="login/index" />
+      : 
+      <Stack.Screen name="(main)" />
+      }
     </Stack>
   )
 }

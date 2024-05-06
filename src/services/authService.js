@@ -3,7 +3,7 @@
 export async function signIn(email, senha) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      if (senha == "1234567890") {
+      if (email === "ericflavio@gmail.com") {
         resolve({
           login:"ericflavio@gmail.com",
           id: "1001",

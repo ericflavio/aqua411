@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, ActivityIndicator, Alert } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { myStyles } from "./styles";
 import { myStylesComuns } from '../../styles/stylesComuns';
 import { InputText } from '../../componentes/inputText';
 import { GradienteFill } from '../../componentes/gradienteFill';
+import { AuthContext } from "../../contexts/auth";
 
 //Tela principal
 export default function ViewLogin() {
+  const { signIn } = useContext(AuthContext);
+
   const [cenario, setCenario] = useState(1);
   const [flagErro, setFlagErro] = useState(false);
   const [email, setEmail] = useState("ericflavio@gmail.com");

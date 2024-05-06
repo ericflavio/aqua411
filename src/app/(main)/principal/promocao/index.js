@@ -24,7 +24,7 @@ function detalhaPromo() {
 
 function montaPromocao(vigente) {
   promo = pesquisaPromocaoVigente();
-  console.log("promo: ", vigente, promo)
+  //console.log("promo: ", vigente, promo)
   return (
     <TouchableOpacity disabled={!vigente} style={(vigente ? myStyles.buttonPromoVigente : myStyles.buttonPromoEncerrada)} onPress={detalhaPromo}>
       <View style={myStyles.containerPromoCabecalho}>
