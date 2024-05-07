@@ -9,8 +9,9 @@ export default function AppRoutes() {
   const { isLoading, user } = useContext(AuthContext);
   console.log("appRoutes:isloading,user: ", isLoading, user);
 
+  //Procedimentos de recuperação de usário no storage local em curso
   if (isLoading) {
-    return <ViewSplash/>
+    return <ViewSplash />
   }
 
   //Configura o tipo de navegação das rotas
@@ -22,10 +23,11 @@ export default function AppRoutes() {
         tabBarActiveTintColor: myStylesComuns.corTemaAppSecundario,
         tabBarShowLabel: true,
       }} >
-    
+
       {user && user !== null ?
-      <Stack.Screen name="(main)" /> :
-      <Stack.Screen name="login/index" />}
+        <Stack.Screen name="(main)" /> :
+        <Stack.Screen name="login/index" />
+      }
 
     </Stack>
   )
