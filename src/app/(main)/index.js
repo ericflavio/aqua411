@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 import { View, Text, Image, SafeAreaView, ScrollView, TouchableOpacity, Dimensions } from "react-native";
 import { myStyles } from "./styles";
-import { myStylesComuns } from '../../../styles/stylesComuns';
-import { GradienteFill } from '../../../componentes/gradienteFill';
+import { myStylesComuns } from '../../styles/stylesComuns';
+import { GradienteFill } from '../../componentes/gradienteFill';
 
 var cenarioTeste = 1;
 var seca = [1, 1, 1];
@@ -14,9 +14,9 @@ var imgMaq = {};
 
 function imagemMaquina(tipMaq) {
   if (tipMaq == undefined || tipMaq == "LAVA") {
-    imgMaq = require('../../../assets/maquinas/lava_disp.png')
+    imgMaq = require('../../assets/maquinas/lava_disp.png')
   } else {
-    imgMaq = require('../../../assets/maquinas/seca_disp.png')
+    imgMaq = require('../../assets/maquinas/seca_disp.png')
   }
 }
 
@@ -160,7 +160,7 @@ export default function ViewLojaMaquinas() {
             <View style={myStyles.containerUnidadeEndereco}>
               <Image
                 style={myStyles.imgLocalizacao}
-                source={require('../../../assets/icones/icon_local.png')}
+                source={require('../../assets/icones/icon_local.png')}
               />
               <Text style={myStylesComuns.textoSubtitulo}>
                 Unidade: ASA NORTE
@@ -171,11 +171,11 @@ export default function ViewLojaMaquinas() {
               {relogioOnOff == true ?
                 <Image
                   style={myStyles.imgRelogio}
-                  source={require('../../../assets/icones/aqua_relogio_abertos.png')}
+                  source={require('../../assets/icones/aqua_relogio_abertos.png')}
                 /> :
                 <Image
                   style={myStyles.imgRelogio}
-                  source={require('../../../assets/icones/aqua_relogio_fechados.png')}
+                  source={require('../../assets/icones/aqua_relogio_fechados.png')}
                 />
               }
               <Text style={myStylesComuns.textoComum}>
@@ -207,7 +207,7 @@ export default function ViewLojaMaquinas() {
             <View style={myStyles.containerUltimaAtualizacao}>
               <Image
                 style={myStyles.imgRelogio}
-                source={require('../../../assets/icones/aqua_relogio_comum.png')}
+                source={require('../../assets/icones/aqua_relogio_comum.png')}
               />
               <Text style={myStylesComuns.textoComum}>
                 26/06/2024 08:36
