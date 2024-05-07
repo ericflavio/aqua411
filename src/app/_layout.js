@@ -11,19 +11,7 @@ export default function RootLayout() {
 
   return (
     <AuthProvider>
-      <Stack
-        screenOptions={{
-          headerShown: false,
-          tabBarInactiveTintColor: myStylesComuns.corCinzMedio,
-          tabBarActiveTintColor: myStylesComuns.corTemaAppSecundario,
-          tabBarShowLabel: true,
-        }} >
-
-        <Stack.Screen name="splash/index" />
-        <Stack.Screen name="login/index" />
-        <Stack.Screen name="(main)" />
-
-      </Stack>
+      <AppRoutes />
     </AuthProvider>
   )
 }

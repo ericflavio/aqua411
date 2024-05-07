@@ -9,7 +9,11 @@ export default function AppRoutes() {
   const { isLoading, user } = useContext(AuthContext);
   console.log("appRoutes:isloading,user: ", isLoading, user);
 
-  //Retorna todas as rotas disponíveis
+  if (isLoading) {
+    return <ViewSplash/>
+  }
+
+  //Configura o tipo de navegação das rotas
   return (
     <Stack
       screenOptions={{
@@ -18,10 +22,10 @@ export default function AppRoutes() {
         tabBarActiveTintColor: myStylesComuns.corTemaAppSecundario,
         tabBarShowLabel: true,
       }} >
-
-      <Stack.Screen name="splash/index" />
-      <Stack.Screen name="login/index" />
-      <Stack.Screen name="(main)" />
+    
+      {user && user !== null ?
+      <Stack.Screen name="(main)" /> :
+      <Stack.Screen name="login/index" />}
 
     </Stack>
   )
