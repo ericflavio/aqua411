@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { Redirect, router } from 'expo-router';
 import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, ActivityIndicator, Alert } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { myStyles } from "./styles";
@@ -9,7 +10,13 @@ import { AuthContext } from "../../contexts/auth";
 
 //Tela principal
 export default function ViewLogin() {
-  const { signIn } = useContext(AuthContext);
+  const { user, signIn } = useContext(AuthContext);
+  console.log("ViewLogin: user: ", user);
+
+  //Se navegou até aqui mas já possui LOGIN realizado com sucesso
+  if (user) {
+    return <Redirect href="/(main)" />;
+  }
 
   const [cenario, setCenario] = useState(1);
   const [flagErro, setFlagErro] = useState(false);
@@ -29,6 +36,7 @@ export default function ViewLogin() {
   var flagEditavel = true;
   cenario > 10 ? flagEditavel = false : flagEditavel = true;
 
+  console.log("XXXXXXXXXXXXXXXXX ", flagErro, cenario);
   //Monta texto da recepcionista
   switch (cenario) {
     case cenarioEntrarEditar:
@@ -66,7 +74,7 @@ export default function ViewLogin() {
     setCenario(cenarioCadastrarEditar);
   }
   function onChangeEmail(emailEdt) {
-    //TODO:
+    //TODO: configurar Upercase
     //console.log("email: ", emailEdt)
     //if (emailEdt === undefined) emailEdt = "";
     //var emailEdtLC = emailEdt.toLowerCase();
@@ -100,7 +108,8 @@ export default function ViewLogin() {
       { text: 'FECHAR', onPress: () => console.log('OK Pressed') },
     ]);
   }
-  function prosseguir() {
+  async function prosseguir() {
+    if (flagErro) setFlagErro(false);
     //console.log("cenario: ", cenario)
     switch (cenario) {
       case cenarioEntrarEditar:
@@ -111,16 +120,22 @@ export default function ViewLogin() {
         setCenario(cenarioEntrarValidar); //Renderiza tela no modo aguardando realização do login
 
         //TODO: Realizar login
-        timer = setInterval(() => {
-          if (email === "ericflavio@gmail.com" && senhaUm === "1234567890") {
-            //TODO: Navegar para página main
-            setCenario(cenarioCadastrarEditar);
-          } else {
-            setFlagErro(true);
-            setCenario(cenarioEntrarEditar);
-          }
-          clearInterval(timer);
-        }, 3000);
+        try {
+          console.log("ViewLogin -- signIn");
+          const user = await signIn(email, senhaUm);
+          console.log(">>>>>>>>>>>>>>>> user: ", user);
+
+          //Se navegou até aqui mas já possui LOGIN realizado com sucesso
+          //return <Redirect href="/(main)" />;
+          router.replace('/(main)');
+
+        } catch (e) {
+          console.log(">>>>>>>>>>>>>>>> erro: ", e.message);
+
+          setFlagErro(true);
+          setCenario(cenarioEntrarEditar);
+          return;
+        }
         break;
       case cenarioCadastrarEditar:
         if (!validarSintaxeEmail(email) || !validarSintaxeSenha(senhaUm) ||
@@ -138,6 +153,7 @@ export default function ViewLogin() {
           } else {
             setFlagErro(true);
             setCenario(cenarioCadastrarEditar);
+            return;
           }
           clearInterval(timer);
         }, 3000);
@@ -158,12 +174,12 @@ export default function ViewLogin() {
           } else {
             setFlagErro(true);
             setCenario(cenarioCadastrarEditarToken);
+            return;
           }
           clearInterval(timer);
         }, 3000);
         break;
     };
-    setFlagErro(false);
   }
 
   return (

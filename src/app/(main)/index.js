@@ -1,9 +1,11 @@
 //efa
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, Image, SafeAreaView, ScrollView, TouchableOpacity, Dimensions } from "react-native";
 import { myStyles } from "./styles";
 import { myStylesComuns } from '../../styles/stylesComuns';
 import { GradienteFill } from '../../componentes/gradienteFill';
+import { AuthContext } from "../../contexts/auth";
+import { Redirect } from 'expo-router';
 
 var cenarioTeste = 1;
 var seca = [1, 1, 1];
@@ -100,6 +102,13 @@ function horarioFuncionamento(in24h, horaIni, horaFim) {
 
 //Tela principal HOME
 export default function ViewLojaMaquinas() {
+  const { user } = useContext(AuthContext);
+  console.log("ViewLogin: user: ", user);
+
+  if (!user || user === null) {
+    return <Redirect href="/login" />;
+  }
+
   const [cenario, setCenario] = useState(cenarioTeste);
 
   //Consulta API com novos status dos equipamentos

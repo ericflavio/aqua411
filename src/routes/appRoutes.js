@@ -1,5 +1,5 @@
 //Define todas as rotas do app
-import { Stack } from "expo-router";
+import { Stack, Redirect } from "expo-router";
 import { useContext } from 'react';
 import { AuthContext } from "../contexts/auth";
 import ViewSplash from '../app/splash/index';
@@ -24,10 +24,8 @@ export default function AppRoutes() {
         tabBarShowLabel: true,
       }} >
 
-      {user && user !== null ?
-        <Stack.Screen name="(main)" /> :
-        <Stack.Screen name="login/index" />
-      }
+      <Stack.Screen name="login/index" />
+      <Stack.Screen name="(main)" />
 
     </Stack>
   )

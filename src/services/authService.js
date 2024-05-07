@@ -1,6 +1,7 @@
 //Tratamento de autenticação de usuário; Baseado no FireBase
 
-export async function signIn(email, senha) {
+export async function signInService(email, senha) {
+  console.log("authService-signIn");
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (email === "ericflavio@gmail.com") {
