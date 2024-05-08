@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, SafeAreaView, ScrollView, TouchableOpacity } from "react-native";
 import { myStyles } from "./styles";
 import { myStylesComuns } from '../../../styles/stylesComuns';
+import { myStylesColors } from "../../../styles/stylesColors";
 import { MaterialIcons } from "@expo/vector-icons";
 import { GradienteFill } from '../../../componentes/gradienteFill';
 
@@ -29,7 +30,7 @@ function montaPromocao(vigente) {
     <TouchableOpacity disabled={!vigente} style={(vigente ? myStyles.buttonPromoVigente : myStyles.buttonPromoEncerrada)} onPress={detalhaPromo}>
       <View style={myStyles.containerPromoCabecalho}>
         <Text style={myStyles.textoTituloPromo}>{promo.nome}</Text>
-        <MaterialIcons name="card-giftcard" size={36} color={(vigente ? myStylesComuns.corTemaAppSecundario : "grey")} />
+        <MaterialIcons name="card-giftcard" size={36} color={(vigente ? myStylesColors.corTemaAppSecundario : "grey")} />
       </View>
       <View style={myStyles.containerPromoPeriodo}>
         <MaterialIcons name="calendar-month" size={26} color={"grey"} />

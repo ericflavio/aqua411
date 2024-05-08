@@ -6,11 +6,11 @@ export const myStyles = StyleSheet.create({
     flex:0,
     borderWidth: myStylesComuns.containerBordaOnOff
   },
-  containerBody1: {
-    flex:0,
+  conteinerTextoAvatar: {
     flexDirection: "column",
     alignItems: "stretch",
-    justifyContent: "center",
+    justifyContent: "flex-start",
+    minHeight: 50,
     borderWidth: myStylesComuns.containerBordaOnOff
   },
   containerRecepcionista: {

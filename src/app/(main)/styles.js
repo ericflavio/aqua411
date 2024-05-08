@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { myStylesComuns } from "../../styles/stylesComuns";
+import { myStylesColors } from "../../styles/stylesColors";
 
 export const myStyles = StyleSheet.create({
 
@@ -47,7 +48,7 @@ export const myStyles = StyleSheet.create({
     },
   containerBroadcast: {
     marginVertical: 20,
-    backgroundColor: myStylesComuns.corAlerta,
+    backgroundColor: myStylesColors.corAlerta,
     alignItems: "flex-start",
     alignContent: "flex-start",
     justifyContent: "flex-start",
@@ -84,8 +85,8 @@ export const myStyles = StyleSheet.create({
     resizeMode: 'contain'
   },
   textoLavaSeca: {
-    fontSize: myStylesComuns.textoFonteTam5,
+    fontSize: myStylesComuns.textoFonteTam4,
     fontWeight: myStylesComuns.textoNegritoMedio,
-    color: myStylesComuns.corPretoRelativo
+    color: myStylesColors.corTextoPadrao
   },
 });

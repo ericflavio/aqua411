@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { myStylesComuns } from "../../../styles/stylesComuns";
+import { myStylesColors } from "../../../styles/stylesColors";
 
 export const myStyles = StyleSheet.create({
   containerHeader: {
@@ -32,7 +33,7 @@ export const myStyles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "700",
     marginBottom: 10,
-    color: myStylesComuns.corAzulEscuro,
+    color: myStylesColors.corAzulEscuro,
     borderWidth: 0,
   },
   textoPromo: {

@@ -3,7 +3,7 @@ import { Stack, Redirect } from "expo-router";
 import { useContext } from 'react';
 import { AuthContext } from "../contexts/auth";
 import ViewSplash from '../app/splash/index';
-import { myStylesComuns } from '../styles/stylesComuns';
+import { myStylesColors } from '../styles/stylesColors';
 
 export default function AppRoutes() {
   const { isLoading, user } = useContext(AuthContext);
@@ -19,8 +19,8 @@ export default function AppRoutes() {
     <Stack
       screenOptions={{
         headerShown: false,
-        tabBarInactiveTintColor: myStylesComuns.corCinzMedio,
-        tabBarActiveTintColor: myStylesComuns.corTemaAppSecundario,
+        tabBarInactiveTintColor: myStylesColors.corCinzMedio,
+        tabBarActiveTintColor: myStylesColors.corTemaAppSecundario,
         tabBarShowLabel: true,
       }} >
 

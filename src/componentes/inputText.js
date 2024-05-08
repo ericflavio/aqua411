@@ -1,7 +1,8 @@
+import { myStylesColors } from '../styles/stylesColors';
 import { myStylesComuns } from '../styles/stylesComuns';
 import { TextInput } from "react-native";
 
-export function InputText(funcao, textPlaceHolder, qtdLinhas, tamanhoMáximo, tipoTeclado, flagEditavel, valorInicial, valorDefault, flagSecure) {
+export function InputText(funcao, textPlaceHolder, qtdLinhas, tamanhoMáximo, tipoTeclado, flagEditavel, valorInicial, valorDefault, flagSecure, flagErro) {
   if (textPlaceHolder == undefined) textPlaceHolder = "";
   if (qtdLinhas == undefined) qtdLinhas = 1;
   if (tamanhoMáximo == undefined) tamanhoMáximo = 80;
@@ -19,7 +20,7 @@ export function InputText(funcao, textPlaceHolder, qtdLinhas, tamanhoMáximo, ti
         onChangeText={funcao}
         value={valorInicial}
         placeholder={textPlaceHolder}
-        placeholderTextColor="#9F9F9F"
+        placeholderTextColor={myStylesColors.corCinzMedio}
         keyboardType={tipoTeclado}
         secureTextEntry={flagSecure}
         defaultValue={valorDefault}

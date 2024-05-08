@@ -1,23 +1,10 @@
 import { StyleSheet } from "react-native";
+import { myStylesColors, stylesColors } from './stylesColors';
 
+export const myColors = {
+  cor1 : "#929c9d"
+}
 export const myStylesComuns = StyleSheet.create({
-
-  //Cores
-  corTemaAppPrincipal: "#041e52ff",
-  corTemaAppSecundario: "#2ba6daff",
-  corTemaAppAuxiliar: "#606060ff",
-  corBackground: "#dcedffff",
-  corAzulEscuro: "#041e52ff",
-  corAzulClaro: "#2ba6daff",
-  corCinzEscuro: "#606060ff",
-  corCinzMedio: "#bebebeff",
-  corCinzaClaro: "#f1f1f1ff",
-  corPretoAbsoluto: "#000000ff",
-  corPretoRelativo: "#1f1f1fff",
-  corErro: "#fa7251ff",
-  corAlerta: "#ffe275ff",
-  corSucesso: "#98e07eff",
-
   //Container
   containerBordaOnOff: 0,
   containerBordaRaio: 8,
@@ -25,7 +12,7 @@ export const myStylesComuns = StyleSheet.create({
 
   containerPrincipalSafeArea: {
     flex: 1,
-    backgroundColor: "#dcedffff",
+    backgroundColor: myStylesColors.corBackgroundClaro,
     alignItems: "center",
     borderWidth: 0,
     borderBlockColor: "#fa7251ff",
@@ -43,47 +30,48 @@ export const myStylesComuns = StyleSheet.create({
   textoNegritoForte: "700",
   textoNegritoMedio: "500",
   TextoNegritoOff: "100",
-  textoFonteTam0: 34,
-  textoFonteTam1: 28,
-  textoFonteTam2: 20,
-  textoFonteTam3: 18,
+  textoFonteTam0: 32,
+  textoFonteTam1: 26,
+  textoFonteTam2: 21,
+  textoFonteTam3: 19,
+  textoFonteTam4: 12,
 
   textoTituloPagina: {
-    fontSize: 34,
+    fontSize: 32,
     fontWeight: "700",
     marginTop: 40,
     marginBottom: 25,
-    color: "#041e52ff",
+    color: myStylesColors.corTextoTitulo,
     borderWidth: 0
   },
   textoSubtitulo: {
     fontSize: 22,
     fontWeight: "700",
     marginTop: 0,
-    color: "#1f1f1fff",
+    color: myStylesColors.corTextoSubtitulo,
     borderWidth: 0
   },
   textoComum: {
     fontSize: 20,
     fontWeight: "500",
-    color: "#1f1f1fff",
+    color: myStylesColors.corTextoPadrao,
     borderWidth: 0
   },
   //Botões
   buttonTextoStyle: {
     fontSize: 18,
     fontWeight: "700",
-    color: "#1f1f1fff",
+    color: myStylesColors.corTextoPadrao,
   },
   buttonTextoStyleFlat: {
     fontSize: 18,
     fontWeight: "500",
-    color: "#1f1f1fff",
+    color: myStylesColors.corTextoPadrao,
   },
   button: {
     alignItems: 'center',
     backgroundColor: 'white',
-    borderColor: "#8f8f8fff",
+    borderColor: myStylesColors.corCinzMedio,
     borderWidth: 1,
     borderRadius: 8,
     margin: 6,
@@ -109,8 +97,8 @@ export const myStylesComuns = StyleSheet.create({
     borderWidth: 0,
     fontSize: 20,
     fontWeight: "bold",
-    borderLeftWidth: 1,
-    borderLeftColor: "#2ba6daff",
+    borderLeftWidth: 3,
+    borderLeftColor: myStylesColors.corAzulClaro,
     borderRadius: 8,
     backgroundColor: "white",
     padding: 10,
