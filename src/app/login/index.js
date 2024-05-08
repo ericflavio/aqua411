@@ -50,7 +50,7 @@ export default function ViewLogin() {
       break;
     case cenarioCadastrarEditar:
       !flagErro
-        ? textoRecepcionista = "Para se cadastrar, informe os dados abaixo"
+        ? textoRecepcionista = "Informe os dados abaixo para se cadastrar"
         : textoRecepcionista = "oops! Verifique as informações e tente novamente";
       break;
     case cenarioCadastrarValidar:
@@ -117,7 +117,6 @@ export default function ViewLogin() {
           if (!flagErro) setFlagErro(true);
           return;
         };
-        if (flagErro) setFlagErro(false);
         setCenario(cenarioEntrarValidar); //Renderiza tela no modo aguardando realização do login
 
         //TODO: Realizar login

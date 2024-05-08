@@ -10,7 +10,7 @@ export const myStyles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "stretch",
     justifyContent: "flex-start",
-    minHeight: 50,
+    minHeight: 54,
     borderWidth: myStylesComuns.containerBordaOnOff
   },
   containerRecepcionista: {
