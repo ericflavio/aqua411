@@ -11,8 +11,8 @@ import { AuthContext } from "../../contexts/auth";
 
 //Tela principal
 export default function ViewLogin() {
-  const { user, signIn } = useContext(AuthContext);
-  console.log("ViewLogin: user: ", user);
+  const { user, logIn, signIn } = useContext(AuthContext);
+  console.log("ViewLogin <inicio> user: ", user);
 
   //Se eventualmente navegou até aqui mas já possui LOGIN realizado com sucesso
   if (user) {
@@ -119,20 +119,13 @@ export default function ViewLogin() {
         };
         setCenario(cenarioEntrarValidar); //Renderiza tela no modo aguardando realização do login
 
-        //TODO: Realizar login
         try {
-          console.log("ViewLogin -- signIn");
-          const user = await signIn(email, senhaUm);
-          console.log(">>>>>>>>>>>>>>>> user: ", user);
-          //TODO: navegar
-          //Se navegou até aqui mas já possui LOGIN realizado com sucesso
-          //return <Redirect href="/(main)" />;
+          //console.log("ViewLogin -- logIn");
+          const user = await logIn(email, senhaUm);
           router.replace('/(main)');
         } catch (e) {
-          console.log(">>>>>>>>>>>>>>>> erro: ", e.message);
           if (!flagErro) setFlagErro(true);
           setCenario(cenarioEntrarEditar);
-          return;
         }
         break;
       case cenarioCadastrarEditar:
@@ -143,18 +136,18 @@ export default function ViewLogin() {
         };
         setCenario(cenarioCadastrarValidar); //Renderiza tela no modo aguardando realização do cadastramento
 
-        //TODO: Realizar cadastramento
-        timer = setInterval(() => {
-          if (email === "ericflavio@gmail.com" && senhaUm === "1234567890") {
-            if (flagErro) setFlagErro(false);
-            setCenario(cenarioCadastrarEditarToken);
-          } else {
-            if (!flagErro) setFlagErro(true);
-            setCenario(cenarioCadastrarEditar);
-          }
-          clearInterval(timer);
+        try {
+          console.log("ViewLogin/ Prosseguir -- sigIn");
+          const auth = await signIn(email, senhaUm);
+        } catch (e) {
+          console.log("Erro novo user: ", e.message);
+          if (!flagErro) setFlagErro(true);
+          setCenario(cenarioCadastrarEditar);
           return;
-        }, 3000);
+        }
+        console.log("Novo user sucesso!: ", auth);
+        if (flagErro) setFlagErro(false);
+        setCenario(cenarioCadastrarEditarToken);
         break;
 
       case cenarioCadastrarEditarToken:
@@ -175,7 +168,6 @@ export default function ViewLogin() {
             setCenario(cenarioCadastrarEditarToken);
           }
           clearInterval(timer);
-          return;
         }, 3000);
         break;
     };
@@ -201,9 +193,9 @@ export default function ViewLogin() {
           </View>
 
           <View style={myStyles.conteinerTextoAvatar}>
-          <Text style={myStylesComuns.textoComum}>
-            {textoRecepcionista}
-          </Text>
+            <Text style={myStylesComuns.textoComum}>
+              {textoRecepcionista}
+            </Text>
           </View>
 
           {cenario == cenarioCadastrarEditarToken || cenario == cenarioCadastrarValidarToken ?

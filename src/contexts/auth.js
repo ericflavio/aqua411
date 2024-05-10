@@ -1,7 +1,7 @@
 //Contextos são enxergados de forma global pela aplicação. Como este aqui vai
 //encapsular o app inteiro, ele sempre será invocado quando o app foi ativado
 import { React, createContext, useState, useEffect } from "react";
-import { signInService} from '../services/authService';
+import { signInService, logInService } from '../services/authService';
 import { GetLocalDataLogin, SetLocalDataLogin, RemoveLocalDataLogin } from '../services/localStorageService';
 
 export const AuthContext = createContext({}); // Inicializa contexto vazio
@@ -13,21 +13,45 @@ export default function AuthProvider({ children }) {
 
   useEffect(() => {
     //Toda vez que o app se iniciar/contexto for criado
-    //TODO: remover timeout
-    //console.log("<a> authContext: useEffect");
-    loadUserFromLocalStorage(); //Resgata, se houver, user na storage
+    //Resgata, se houver, user na storage
+    //TODO: remover a remoção
+    //RemoveLocalDataLogin();
+    loadUserFromLocalStorage();
   }, [])
 
   //Funções assíncronas para invocação das APIs
   async function signIn(email, senha) {
-    console.log("authContext-signIn");
+    var auth = null;
+    if (!email || !senha) return null;
+    console.log("authContext-signIn: ", email, senha);
+    try {
+      auth = await signInService(email, senha);
+    } catch (e) {
+      console.log("erro<2>: ", e.message);
+      const erro = {
+        message: e.message,
+        codigo: 100
+      }
+      throw erro;
+    }
+    console.log("<!>auth: ", auth);
+    SetLocalDataLogin(auth) //Persiste o usuário localmente
+    //setUser(auth) //Rerender atualização dos dados do Contexto
+    return auth;
+  };
+
+  function signOut() {
+    RemoveLocalDataLogin() //Remove o usuário localmente
+    setAuth(null); //limpar o state do objeto user
+    return true;
+  };
+
+  async function logIn(email, senha) {
+    console.log("authContext-logIn");
+    var auth = null;
     if (!email || !senha) return null;
     try {
-      const auth = await signInService(email, senha);
-      console.log("auth: ", auth);
-      setUser(auth) //Rerender atualização dos dados do Contexto
-      SetLocalDataLogin(user) //Persiste o usuário localmente
-      return user;
+      auth = await logInService(email, senha);
     } catch (e) {
       //console.log("erro<2>: ", e.message);
       const erro = {
@@ -36,11 +60,15 @@ export default function AuthProvider({ children }) {
       }
       throw erro;
     }
+    console.log("auth: ", auth);
+    SetLocalDataLogin(auth) //Persiste o usuário localmente
+    setUser(auth) //Rerender atualização dos dados do Contexto
+    return auth;
   };
 
-  function signOut() {
-    setAuth(null); //limpar o state do objeto user
+  function logOut() {
     RemoveLocalDataLogin() //Remove o usuário localmente
+    setAuth(null); //limpar o state do objeto user
     return true;
   };
 
@@ -58,7 +86,7 @@ export default function AuthProvider({ children }) {
   //pasta scr/app, que é onde start a aplicação como um todo, as informações
   //do contexto serão compartilhadas em todos os lucares/componentes 
   return (
-    <AuthContext.Provider value={{ isLoading, user, signIn, signOut }}>
+    <AuthContext.Provider value={{ isLoading, user, signIn, signOut, logIn, logOut }}>
       {children}
     </AuthContext.Provider>
   )
