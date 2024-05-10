@@ -17,10 +17,8 @@ export async function SetLocalDataLogin(userDataLogin) {
   try {
     const jsonValue = JSON.stringify(userDataLogin);
     await AsyncStorage.setItem(idDB, jsonValue);
-    return true;
   } catch (e) {
     //console.log("AsyncStorage(erro): ", e)
-    return false;
   }
 }
 

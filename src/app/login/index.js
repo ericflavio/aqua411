@@ -135,10 +135,10 @@ export default function ViewLogin() {
           return;
         };
         setCenario(cenarioCadastrarValidar); //Renderiza tela no modo aguardando realização do cadastramento
-
+        var auth = null;
         try {
           console.log("ViewLogin/ Prosseguir -- sigIn");
-          const auth = await signIn(email, senhaUm);
+          auth = await signIn(email, senhaUm);
         } catch (e) {
           console.log("Erro novo user: ", e.message);
           if (!flagErro) setFlagErro(true);

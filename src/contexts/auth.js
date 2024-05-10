@@ -21,11 +21,14 @@ export default function AuthProvider({ children }) {
 
   //Funções assíncronas para invocação das APIs
   async function signIn(email, senha) {
-    var auth = null;
     if (!email || !senha) return null;
     console.log("authContext-signIn: ", email, senha);
     try {
-      auth = await signInService(email, senha);
+      const auth = await signInService(email, senha);
+      console.log("<!>auth: ", auth);
+      await SetLocalDataLogin(auth) //Persiste o usuário localmente
+      //setUser(auth) //Rerender atualização dos dados do Contexto ::  Não. Fazer depois do token
+      return auth;
     } catch (e) {
       console.log("erro<2>: ", e.message);
       const erro = {
@@ -34,24 +37,23 @@ export default function AuthProvider({ children }) {
       }
       throw erro;
     }
-    console.log("<!>auth: ", auth);
-    SetLocalDataLogin(auth) //Persiste o usuário localmente
-    //setUser(auth) //Rerender atualização dos dados do Contexto
-    return auth;
   };
 
-  function signOut() {
-    RemoveLocalDataLogin() //Remove o usuário localmente
+  async function signOut() {
+    await RemoveLocalDataLogin() //Remove o usuário localmente
     setAuth(null); //limpar o state do objeto user
     return true;
   };
 
   async function logIn(email, senha) {
     console.log("authContext-logIn");
-    var auth = null;
     if (!email || !senha) return null;
     try {
-      auth = await logInService(email, senha);
+      const auth = await logInService(email, senha);
+      console.log("auth: ", auth);
+      await SetLocalDataLogin(auth) //Persiste o usuário localmente
+      setUser(auth) //Rerender atualização dos dados do Contexto
+      return auth;
     } catch (e) {
       //console.log("erro<2>: ", e.message);
       const erro = {
@@ -60,14 +62,10 @@ export default function AuthProvider({ children }) {
       }
       throw erro;
     }
-    console.log("auth: ", auth);
-    SetLocalDataLogin(auth) //Persiste o usuário localmente
-    setUser(auth) //Rerender atualização dos dados do Contexto
-    return auth;
   };
 
-  function logOut() {
-    RemoveLocalDataLogin() //Remove o usuário localmente
+  async function logOut() {
+    await RemoveLocalDataLogin() //Remove o usuário localmente
     setAuth(null); //limpar o state do objeto user
     return true;
   };
