@@ -3,8 +3,8 @@ import { myStyles } from './styles';
 import { myStylesComuns } from '../../styles/stylesComuns';
 import { Link } from 'expo-router';
 
-export default function ViewSplash() {
-  console.log("ViewSplash");
+export default function ViewReception() {
+  console.log("ViewReception");
 
   return (
     <View style={myStylesComuns.containerPrincipalSafeArea}>

@@ -9,7 +9,7 @@ export default function ViewInitial() {
 
   //Procedimentos de recuperação de usário no storage local finalizado
   if (!isLoading && (!user || user == null)) {
-    return <Redirect href="/splash" />;
+    return <Redirect href="reception" />;
   }
 
   if (!isLoading && user) {

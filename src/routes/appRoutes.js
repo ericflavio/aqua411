@@ -23,7 +23,7 @@ export default function AppRoutes() {
         <Stack.Screen name="index" />
         <Stack.Screen name="(main)" />
         <Stack.Screen name="login/index" />
-        <Stack.Screen name="splash/index" />
+        <Stack.Screen name="reception/index" />
       </Stack>
     </SafeAreaProvider>
   )

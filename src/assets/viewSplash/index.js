@@ -2,7 +2,7 @@ import { View, Image, ActivityIndicator } from "react-native";
 import React, { useContext } from 'react';
 import { myStyles } from './styles';
 
-export default function ViewSplash() {
+export default function ViewLoading() {
 
   return (
     <View style={myStyles.containerBody}>
