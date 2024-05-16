@@ -1,26 +1,21 @@
 import { StyleSheet } from "react-native";
 
 export const myStyles = StyleSheet.create({
-  containerHeader: {
-    flex:2,
-    marginTop:"15%",
-    justifyContent:"center"
-  },
   containerBody: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: "transparent",
+    backgroundColor: "#f1f1f1",
     borderWidth: 0,
     justifyContent: "flex-end",
   },
   containerSpiner: {
+    flex:1, 
     justifyContent:"center", 
   },
   imgLogo: {
-    //width: "100%",
-    height: 300, 
-    overflow:"scroll",
-    resizeMode: "contain",
+    width: "100%",
+    height: "35%", 
+    resizeMode: 'stretch',
     alignSelf: "flex-end",
   },
 });

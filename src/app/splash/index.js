@@ -1,20 +1,27 @@
-import { View, Image, ActivityIndicator } from "react-native";
+import { View, Image, ActivityIndicator , Text} from "react-native";
 import { myStyles } from './styles';
+import { myStylesComuns } from '../../styles/stylesComuns';
+import { Link } from 'expo-router';
 
 export default function ViewSplash() {
 
   return (
-    <View style={myStyles.containerBody}>
-      {/*<Text>HOME</Text>
-      <Link href={"/principal"}>Ir para main</Link>
-     <Link href={"/login"}>Ir para login</Link>*/}
-      <View style={myStyles.containerSpiner}>
-        <ActivityIndicator size="large" />
+    <View style={myStylesComuns.containerPrincipalSafeArea}>
+      <View style={myStyles.containerHeader}>
+        <Text style={myStylesComuns.textoTituloPagina}>
+          Lavar roupas em casa é coisa do passado
+        </Text>
       </View>
-      <Image
-        style={myStyles.imgLogo}
-        source={require('../../assets/outros/ovelha_cena_01.png')}
-      />
+      <View style={myStyles.containerBody}>
+        <Link replace href={"/login"}>Ir para login</Link>
+        {/*<View style={myStyles.containerSpiner}>
+        <ActivityIndicator size="large" />
+        </View>*/}
+        <Image
+          style={myStyles.imgLogo}
+          source={require('../../assets/outros/ovelha_cena_01.png')}
+        />
+      </View>
     </View>
   )
 }

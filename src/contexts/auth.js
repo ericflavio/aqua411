@@ -82,7 +82,7 @@ export default function AuthProvider({ children }) {
 
   //Como este Provider é invocado no componente _layout.js raiz dentro da
   //pasta scr/app, que é onde start a aplicação como um todo, as informações
-  //do contexto serão compartilhadas em todos os lucares/componentes 
+  //do contexto serão compartilhadas em todos os lugares/componentes 
   return (
     <AuthContext.Provider value={{ isLoading, user, signIn, signOut, logIn, logOut }}>
       {children}

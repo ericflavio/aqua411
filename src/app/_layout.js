@@ -4,12 +4,8 @@
 import AuthProvider from '../contexts/auth';
 import AppRoutes from '../routes/appRoutes';
 
-export const unstable_settings = {
-  initialRouteName: "login",
-};
-
 export default function RootLayout() {
-  //console.log("_layout:Rota principal do app")
+  console.log("_layout:Rota principal do app")
 
   return (
     <AuthProvider>

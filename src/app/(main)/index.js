@@ -103,10 +103,10 @@ function horarioFuncionamento(in24h, horaIni, horaFim) {
 //Tela principal HOME
 export default function ViewLojaMaquinas() {
   const { user } = useContext(AuthContext);
-  console.log("ViewLogin: user: ", user);
+  console.log("Main: ViewLojaMaquinas - user: ", user);
 
   if (!user || user === null) {
-    return <Redirect href="/login" />;
+    return <Redirect href="/splash" />;
   }
 
   const [cenario, setCenario] = useState(cenarioTeste);
