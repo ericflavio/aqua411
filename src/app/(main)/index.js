@@ -105,8 +105,8 @@ export default function ViewLojaMaquinas() {
   const { user } = useContext(AuthContext);
   console.log("Main: ViewLojaMaquinas - user: ", user);
 
-  if (!user || user === null) {
-    return <Redirect href="/splash" />;
+  if (!user || user == null) {
+    return <Redirect href="/index" />;
   }
 
   const [cenario, setCenario] = useState(cenarioTeste);
