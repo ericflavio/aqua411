@@ -4,6 +4,7 @@ import { myStylesComuns } from '../../styles/stylesComuns';
 import { Link } from 'expo-router';
 
 export default function ViewSplash() {
+  console.log("ViewSplash");
 
   return (
     <View style={myStylesComuns.containerPrincipalSafeArea}>

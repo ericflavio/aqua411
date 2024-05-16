@@ -5,11 +5,6 @@ import { AuthContext } from "../contexts/auth";
 import { myStylesColors } from '../styles/stylesColors';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-//Seta a rota inicial
-export const unstable_settings = {
-  initialRouteName: "splash/index",
-};
-
 export default function AppRoutes() {
   const { isLoading, user } = useContext(AuthContext);
   console.log("appRoutes:isloading,user: ", isLoading, user);
