@@ -1,7 +1,13 @@
-import { View, Image, ActivityIndicator , Text} from "react-native";
+import { View, Image, Text, TouchableOpacity } from "react-native";
 import { myStyles } from './styles';
 import { myStylesComuns } from '../../styles/stylesComuns';
-import { Link } from 'expo-router';
+import { Link, router } from 'expo-router';
+import { MaterialIcons } from "@expo/vector-icons";
+import { myStylesColors } from "../../styles/stylesColors";
+
+export function goToLogin() {
+  router.replace('/login');
+}
 
 export default function ViewReception() {
   console.log("ViewReception");
@@ -10,14 +16,16 @@ export default function ViewReception() {
     <View style={myStylesComuns.containerPrincipalSafeArea}>
       <View style={myStyles.containerHeader}>
         <Text style={myStylesComuns.textoTituloPagina}>
-          Lavar roupas em casa é coisa do passado
+          Lavar roupa em casa é coisa do passado
         </Text>
+        <TouchableOpacity style={myStylesComuns.button} onPress={goToLogin}>
+          <View style={{ flexDirection:"row", justifyContent:"space-between", alignItems:"center" }}>
+            <Text style={myStylesComuns.buttonTextoStyle}>Experimente mudar</Text>
+            <MaterialIcons name="arrow-outward" size={30} color={myStylesColors.corAzulClaro} />
+          </View>
+        </TouchableOpacity>
       </View>
       <View style={myStyles.containerBody}>
-        <Link replace href={"/login"}>Ir para login</Link>
-        {/*<View style={myStyles.containerSpiner}>
-        <ActivityIndicator size="large" />
-        </View>*/}
         <Image
           style={myStyles.imgLogo}
           source={require('../../assets/outros/ovelha_cena_01.png')}

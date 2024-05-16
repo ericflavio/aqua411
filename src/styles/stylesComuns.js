@@ -74,12 +74,11 @@ export const myStylesComuns = StyleSheet.create({
     borderColor: myStylesColors.corCinzMedio,
     borderWidth: 1,
     borderRadius: 8,
-    margin: 6,
+    marginTop: 6,
+    marginBottom: 6,
     padding: 14,
     borderBottomWidth: 4,
-    maxWidth: "100%",
-    minWidth: "50%",
-    alignSelf: "center",
+    maxWidth: "80%",
     fontWeight: "700"
   },
   buttonFlat: {

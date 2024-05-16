@@ -4,7 +4,8 @@ export const myStyles = StyleSheet.create({
   containerHeader: {
     flex:2,
     marginTop:"15%",
-    justifyContent:"center"
+    justifyContent:"center",
+    width: "86%",
   },
   containerBody: {
     flex: 1,

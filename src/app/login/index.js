@@ -37,7 +37,7 @@ export default function ViewLogin() {
   var flagEditavel = true;
   cenario > 10 ? flagEditavel = false : flagEditavel = true;
 
-  console.log("XXXXXXXXXXXXXXXXX ", flagErro, cenario);
+  console.log("XXXXXXXXXXXXXXXXX ", cenario, flagErro, flagEditavel);
   //Monta texto da recepcionista
   switch (cenario) {
     case cenarioEntrarEditar:
@@ -122,7 +122,7 @@ export default function ViewLogin() {
         try {
           //console.log("ViewLogin -- logIn");
           const user = await logIn(email, senhaUm);
-          router.replace('/(main)');
+          router.replace('(main)');
         } catch (e) {
           if (!flagErro) setFlagErro(true);
           setCenario(cenarioEntrarEditar);
@@ -162,13 +162,13 @@ export default function ViewLogin() {
           if (token === "abcd") {
             //TODO: Navegar para página main
             //setCenario(cenarioEntrarEditar);
-            router.replace('/(main)');
+            router.replace('(main)');
           } else {
             if (!flagErro) setFlagErro(true);
             setCenario(cenarioCadastrarEditarToken);
           }
           clearInterval(timer);
-        }, 3000);
+        }, 1500);
         break;
     };
   }
