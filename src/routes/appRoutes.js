@@ -10,7 +10,7 @@ export default function AppRoutes() {
   console.log("appRoutes:isloading,user: ", isLoading, user);
 
   //Procedimentos de recuperação de usário no storage local em curso
-  if (isLoading || !user || user === null) {
+  /* if (isLoading || !user || user === null) {
     console.log(">splash");
     return (
       <SafeAreaProvider>
@@ -28,10 +28,10 @@ export default function AppRoutes() {
         </Stack>
       </SafeAreaProvider>
     )
-  }
+  } */
 
   //Configura o tipo de navegação das rotas
-  console.log(">main");
+  //console.log(">main");
   return (
     <Stack
       screenOptions={{
@@ -41,8 +41,9 @@ export default function AppRoutes() {
         tabBarShowLabel: true,
       }} >
 
-      <Stack.Screen name="login/index" />
       <Stack.Screen name="(main)" />
+      <Stack.Screen name="login/index" />
+      <Stack.Screen name="splash/index" />
 
     </Stack>
   )
