@@ -1,25 +1,26 @@
 import { Tabs } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
+import { myStylesColors } from '../../styles/stylesColors';
 
 export default function LayoutPrincipal() {
   return (
     <Tabs screenOptions={{
       headerShown: false,
-      tabBarInactiveTintColor: 'grey',
-      tabBarActiveTintColor: '#041e52ff',
+      tabBarInactiveTintColor: myStylesColors.corCinzMedio,
+      tabBarActiveTintColor: myStylesColors.corAzulEscuro,
       tabBarShowLabel: true,
       tabBarLabelStyle: {
         fontSize: 16,
-        paddingBottom: 3
+        //paddingBottom: 3
       },
       tabBarStyle: {
         position: "absolute",
         backgroundColor: "white",
         borderTopWidth: 0,
         borderRadius: 10,
-        bottom: 6,
-        left: 14,
-        right: 14,
+        bottom: 0,
+        left: 0,
+        right: 0,
         elevation: 0,
         height: 72,
       }

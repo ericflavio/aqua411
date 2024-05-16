@@ -71,7 +71,7 @@ export const myStylesComuns = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
     marginTop: 12,
-    marginBottom: 12,
+    marginBottom: 6,
     padding: 14,
     borderBottomWidth: 4,
     maxWidth: "100%",
