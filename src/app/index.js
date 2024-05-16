@@ -5,14 +5,18 @@ import { Redirect } from 'expo-router';
 
 export default function ViewLoading() {
   const { user, isLoading } = useContext(AuthContext);
-  console.log("ViewLoading.user: ", user, " isLoading: ", isLoading );
+  console.log("ViewLoading.user: ", user, " isLoading: ", isLoading);
 
   //Procedimentos de recuperação de usário no storage local finalizado
-  if (!isLoading && (!user || user == null)) {
+  if (!isLoading &&
+    (!user || user == null ||
+      user.isEmailVerificado == undefined
+      || user.isEmailVerificado == false)) {
     return <Redirect href="reception" />;
   }
 
-  if (!isLoading && user) {
+  if (!isLoading && user && user.isEmailVerificado
+    && user.isEmailVerificado == true) {
     return <Redirect href="(main)" />;
   }
 
