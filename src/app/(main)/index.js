@@ -169,7 +169,7 @@ export default function ViewLojaMaquinas() {
             <View style={myStyles.containerUnidadeEndereco}>
               <Image
                 style={myStyles.imgLocalizacao}
-                source={require('../../assets/icones/icon_local.png')}
+                source={require('../../assets/icones/icon_local2.png')}
               />
               <Text style={myStylesComuns.textoSubtitulo}>
                 Unidade: ASA NORTE

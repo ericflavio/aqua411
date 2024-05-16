@@ -4,10 +4,10 @@ import AuthProvider from '../contexts/auth';
 import AppRoutes from '../routes/appRoutes';
 
 //Seta a rota inicial
-export const unstable_settings = {
-  initialRouteName: "(main)",
+/* export const unstable_settings = {
+  initialRouteName: "index",
 };
-
+ */
 export default function RootLayout() {
   console.log("_layout:Rota principal do app")
 
