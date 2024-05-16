@@ -15,8 +15,8 @@ export default function ViewLogin() {
   console.log("ViewLogin <inicio> user: ", user);
 
   //Se eventualmente navegou até aqui mas já possui LOGIN realizado com sucesso
-  if (user) {
-    return <Redirect href="/(main)" />;
+  if (user && user.isEmailVerificado && user.isEmailVerificado == true) {
+    return <Redirect href="(main)" />;
   }
 
   const [cenario, setCenario] = useState(2);
