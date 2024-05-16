@@ -135,6 +135,7 @@ export default function ViewLogin() {
           return;
         };
         setCenario(cenarioCadastrarValidar); //Renderiza tela no modo aguardando realização do cadastramento
+        
         var auth = null;
         try {
           console.log("ViewLogin/ Prosseguir -- sigIn");
@@ -158,17 +159,14 @@ export default function ViewLogin() {
         setCenario(cenarioCadastrarValidarToken); //Renderiza tela no modo aguardando
 
         //TODO: Realizar cadastramento
-        timer = setInterval(() => {
-          if (token === "abcd") {
-            //TODO: Navegar para página main
-            //setCenario(cenarioEntrarEditar);
-            router.replace('(main)');
-          } else {
-            if (!flagErro) setFlagErro(true);
-            setCenario(cenarioCadastrarEditarToken);
-          }
-          clearInterval(timer);
-        }, 1500);
+        try {
+          //console.log("ViewLogin -- SigIn");
+          const user = await signIn(email, senhaUm);
+          router.replace('(main)');
+        } catch (e) {
+          if (!flagErro) setFlagErro(true);
+          setCenario(cenarioCadastrarEditarToken);
+        }
         break;
     };
   }

@@ -27,7 +27,7 @@ export default function AuthProvider({ children }) {
       const auth = await signInService(email, senha);
       console.log("<!>auth: ", auth);
       await SetLocalDataLogin(auth) //Persiste o usuário localmente
-      //setUser(auth) //Rerender atualização dos dados do Contexto ::  Não. Fazer depois do token
+      setUser(auth) //Rerender atualização dos dados do Contexto
       return auth;
     } catch (e) {
       console.log("erro<2>: ", e.message);
