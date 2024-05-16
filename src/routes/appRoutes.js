@@ -3,6 +3,7 @@ import { Stack, Redirect } from "expo-router";
 import { useContext } from 'react';
 import { AuthContext } from "../contexts/auth";
 import { myStylesColors } from '../styles/stylesColors';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 //Seta a rota inicial
 export const unstable_settings = {
@@ -17,18 +18,20 @@ export default function AppRoutes() {
   if (isLoading || !user || user === null) {
     console.log(">splash");
     return (
-      <Stack
-        screenOptions={{
-          headerShown: false,
-          tabBarInactiveTintColor: myStylesColors.corCinzMedio,
-          tabBarActiveTintColor: myStylesColors.corTemaAppSecundario,
-          tabBarShowLabel: true,
-        }} >
+      <SafeAreaProvider>
+        <Stack
+          screenOptions={{
+            headerShown: false,
+            tabBarInactiveTintColor: myStylesColors.corCinzMedio,
+            tabBarActiveTintColor: myStylesColors.corTemaAppSecundario,
+            tabBarShowLabel: true,
+          }} >
 
-        <Stack.Screen name="splash/index" />
-        <Stack.Screen name="login/index" />
+          <Stack.Screen name="splash/index" />
+          <Stack.Screen name="login/index" />
 
-      </Stack>
+        </Stack>
+      </SafeAreaProvider>
     )
   }
 
