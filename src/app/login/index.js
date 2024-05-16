@@ -19,7 +19,7 @@ export default function ViewLogin() {
     return <Redirect href="/(main)" />;
   }
 
-  const [cenario, setCenario] = useState(1);
+  const [cenario, setCenario] = useState(2);
   const [flagErro, setFlagErro] = useState(false);
   const [email, setEmail] = useState("ericflavio@gmail.com");
   const [senhaUm, setSenhaUm] = useState("1234567890");

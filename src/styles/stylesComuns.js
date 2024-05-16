@@ -1,9 +1,6 @@
 import { StyleSheet } from "react-native";
-import { myStylesColors, stylesColors } from './stylesColors';
+import { myStylesColors } from './stylesColors';
 
-export const myColors = {
-  cor1 : "#929c9d"
-}
 export const myStylesComuns = StyleSheet.create({
   //Container
   containerBordaOnOff: 0,
@@ -26,7 +23,6 @@ export const myStylesComuns = StyleSheet.create({
   },
 
   //Textos
-  textoBordaOnOff: 0,
   textoNegritoForte: "700",
   textoNegritoMedio: "500",
   TextoNegritoOff: "100",
@@ -74,17 +70,17 @@ export const myStylesComuns = StyleSheet.create({
     borderColor: myStylesColors.corCinzMedio,
     borderWidth: 1,
     borderRadius: 8,
-    marginTop: 6,
-    marginBottom: 6,
+    marginTop: 12,
+    marginBottom: 12,
     padding: 14,
     borderBottomWidth: 4,
-    maxWidth: "80%",
+    maxWidth: "100%",
     fontWeight: "700"
   },
   buttonFlat: {
     backgroundColor: 'transparent',
     padding: 4,
-    maxWidth: "100%",
+    maxWidth: "80%",
     borderWidth:0
   },
 

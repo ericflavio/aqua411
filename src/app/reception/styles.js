@@ -6,6 +6,7 @@ export const myStyles = StyleSheet.create({
     marginTop:"15%",
     justifyContent:"center",
     width: "86%",
+    borderWidth:0
   },
   containerBody: {
     flex: 1,
@@ -13,11 +14,17 @@ export const myStyles = StyleSheet.create({
     backgroundColor: "transparent",
     borderWidth: 0,
     justifyContent: "flex-end",
+    borderWidth:0
   },
-  containerSpiner: {
-    justifyContent:"center", 
+  containerViewButton: {
+    width:"60%"
   },
-  imgLogo: {
+  containerButton: {
+    flexDirection: "row", 
+    justifyContent: "space-between", 
+    alignItems: "center" 
+  },
+  imgCenaBttom: {
     //width: "100%",
     height: 300, 
     overflow:"scroll",
