@@ -105,7 +105,7 @@ export default function ViewLojaMaquinas() {
   const { user } = useContext(AuthContext);
   console.log("Main: ViewLojaMaquinas - user: ", user);
 
-  if (!user || user.isEmailVerificado == undefined || user.isEmailVerificado == false) {
+  if (!user || user.isContaAtiva == undefined || user.isContaAtiva == false) {
     return <Redirect href="/index" />;
   }
 

@@ -15,7 +15,7 @@ export default function ViewLogin() {
   console.log("ViewLogin <inicio> user: ", user);
 
   //Se eventualmente navegou até aqui mas já possui LOGIN realizado com sucesso
-  if (user && user.isEmailVerificado && user.isEmailVerificado == true) {
+  if (user && user.isContaAtiva && user.isContaAtiva == true) {
     return <Redirect href="(main)" />;
   }
 
@@ -75,7 +75,7 @@ export default function ViewLogin() {
     setCenario(cenarioCadastrarEditar);
   }
   function onChangeEmail(emailEdt) {
-    //TODO: configurar Upercase
+    //TODO: configurar Upercase -- automaticupscale = false
     //console.log("email: ", emailEdt)
     //if (emailEdt === undefined) emailEdt = "";
     //var emailEdtLC = emailEdt.toLowerCase();

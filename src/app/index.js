@@ -10,13 +10,13 @@ export default function ViewLoading() {
   //Procedimentos de recuperação de usário no storage local finalizado
   if (!isLoading &&
     (!user || user == null ||
-      user.isEmailVerificado == undefined
-      || user.isEmailVerificado == false)) {
+      user.isContaAtiva == undefined
+      || user.isContaAtiva == false)) {
     return <Redirect href="reception" />;
   }
 
-  if (!isLoading && user && user.isEmailVerificado
-    && user.isEmailVerificado == true) {
+  if (!isLoading && user && user.isContaAtiva
+    && user.isContaAtiva == true) {
     return <Redirect href="(main)" />;
   }
 
