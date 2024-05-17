@@ -14,14 +14,6 @@ var relogioOnOff = true;
 var flagViewStatusMaquina = true; //TODO: não está sendo usado
 var imgMaq = {};
 
-function imagemMaquina(tipMaq) {
-  if (tipMaq == undefined || tipMaq == "LAVA") {
-    imgMaq = require('../../assets/maquinas/lava_disp.png')
-  } else {
-    imgMaq = require('../../assets/maquinas/seca_disp.png')
-  }
-}
-
 //Monta cada máquina com seu respectivo status
 function maquina(tipMaq, idMaq, status, view) {
   if (tipMaq == undefined) tipMaq = "lava"; // Espera "lava" ou "seca"
@@ -30,45 +22,79 @@ function maquina(tipMaq, idMaq, status, view) {
   if (view == undefined || view == false) flagViewStatusMaquina = false;
 
   var txStatus = "Indefinido";
-  var tipMaq = tipMaq.toUpperCase();
-  imagemMaquina(tipMaq);
+  tipMaq = tipMaq.toUpperCase();
 
   switch (status) {
     case 1:
-      txStatus = "Disponível"
-      imagemMaquina(tipMaq);
+      txStatus = "Disponível";
+      if (tipMaq == undefined || tipMaq == "LAVA") {
+        imgMaq = require('../../assets/maquinas/lava_disp.png')
+      } else {
+        imgMaq = require('../../assets/maquinas/seca_disp.png')
+      }
       break;
     case 2:
-      txStatus = "Ocupada"
-      imagemMaquina(tipMaq);
+      txStatus = "Ocupada";
+      if (tipMaq == undefined || tipMaq == "LAVA") {
+        imgMaq = require('../../assets/maquinas/lava_emuso.png')
+      } else {
+        imgMaq = require('../../assets/maquinas/seca_emuso.png')
+      }
       break;
     case 3:
-      txStatus = "Manutenção"
-      imagemMaquina(tipMaq);
+      txStatus = "Manutenção";
+      if (tipMaq == undefined || tipMaq == "LAVA") {
+        imgMaq = require('../../assets/maquinas/lava_manut.png')
+      } else {
+        imgMaq = require('../../assets/maquinas/seca_manut.png')
+      }
       break;
     default:
-      txStatus = "Disponível"
-      imagemMaquina(tipMaq);
+      txStatus = "Disponível";
+      if (tipMaq == undefined || tipMaq == "LAVA") {
+        imgMaq = require('../../assets/maquinas/lava_disp.png')
+      } else {
+        imgMaq = require('../../assets/maquinas/seca_disp.png')
+      }
   };
 
-  return (
-    <View>
-      <Image
-        style={myStyles.imgMaquina}
-        source={imgMaq}
-      />
-      <View style={myStyles.containerLavaSeca}>
-        <Text style={myStyles.textoLavaSeca}>
-          {tipMaq + " " + idMaq}
-        </Text>
-
-        {flagViewStatusMaquina == true ?
+  if (tipMaq == "SECA") {
+    return (
+      <View>
+        <View style={myStyles.containerLavaSeca}>
           <Text style={myStyles.textoLavaSeca}>
-            {txStatus}
-          </Text> : ""}
+            {tipMaq + " " + idMaq}
+          </Text>
+          {flagViewStatusMaquina == true ?
+            <Text style={myStyles.textoLavaSeca}>
+              {txStatus}
+            </Text> : ""}
+        </View>
+        <Image
+          style={myStyles.imgMaquina}
+          source={imgMaq}
+        />
       </View>
-    </View>
-  )
+    )
+  } else {
+    return (
+      <View>
+        <Image
+          style={myStyles.imgMaquina}
+          source={imgMaq}
+        />
+        <View style={myStyles.containerLavaSeca}>
+          <Text style={myStyles.textoLavaSeca}>
+            {tipMaq + " " + idMaq}
+          </Text>
+          {flagViewStatusMaquina == true ?
+            <Text style={myStyles.textoLavaSeca}>
+              {txStatus}
+            </Text> : ""}
+        </View>
+      </View>
+    )
+  }
 }
 
 //Seta cor do icone de horário de funcionamento
@@ -105,6 +131,7 @@ export default function ViewLojaMaquinas() {
   const { user } = useContext(AuthContext);
   console.log("Main: ViewLojaMaquinas - user: ", user);
 
+  //Se por acaso chegou aqui sem a conta estar validada
   if (!user || user.isContaAtiva == undefined || user.isContaAtiva == false) {
     return <Redirect href="/index" />;
   }

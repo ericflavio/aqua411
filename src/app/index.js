@@ -9,10 +9,14 @@ export default function ViewLoading() {
 
   //Procedimentos de recuperação de usário no storage local finalizado
   if (!isLoading &&
-    (!user || user == null ||
-      user.isContaAtiva == undefined
-      || user.isContaAtiva == false)) {
+    (!user || user == null)) {
     return <Redirect href="reception" />;
+  }
+
+  if (!isLoading &&
+      (user.isContaAtiva == undefined
+      || user.isContaAtiva == false)) {
+    return <Redirect href="login" />;
   }
 
   if (!isLoading && user && user.isContaAtiva

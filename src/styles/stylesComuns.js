@@ -80,7 +80,7 @@ export const myStylesComuns = StyleSheet.create({
   buttonFlat: {
     backgroundColor: 'transparent',
     padding: 4,
-    maxWidth: "80%",
+    maxWidth: "100%",
     borderWidth:0
   },
 

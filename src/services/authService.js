@@ -9,7 +9,7 @@ export async function logInService(email, senha) {
         login: "ericflavio@gmail.com",
         id: "1001",
         token: "e14-gadff-134314-13-1-599-361",
-        isContaAtiva: true
+        isContaAtiva: false
       })
     } else {
       reject(new Error('Credenciais inválidas'));
@@ -33,5 +33,18 @@ export async function signInService(email, senha) {
       reject(new Error('Credenciais inválidas'));
     }
     //s}, 1500);
+  })
+}
+
+export async function checkTokenService(user, token) {
+  console.log("authService-checkTokenService, user: ", user , " token: ", token);
+  return new Promise((resolve, reject) => {
+    //setTimeout(() => {
+    if (token == "abcd") {
+      resolve(true)
+    } else {
+      reject(false);
+    }
+    //}, 2000);
   })
 }

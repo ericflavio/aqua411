@@ -1,3 +1,7 @@
+//Centralizador das mensagens de erro
+
+export const errorTextOops = "Oops!";
+
 export default function NewErrorMessage(cod, e) {
   //Se entrar apenas COD, devolve-se a mensagem correspondente.
   //Na ausência do COD, espera-se o "e" para montar o retorno.
@@ -28,12 +32,12 @@ export default function NewErrorMessage(cod, e) {
   switch (cod.substr(0, 2)) {
     case "ob": // Onboarding (tratamento de signIn e logIn)
       switch (cod) {
-        case "ob101": newError.message = "Informe um e-mail válido.";
-          break;
-        case "ob102": newError.message = "Informe uma senha válida.";
-          break;
-        case "ob103": newError.message = "Informe duas senhas iguais.";
-          break;
+        case "ob101": newError.message = "Informe um e-mail válido."; break;
+        case "ob102": newError.message = "Informe uma senha válida."; break;
+        case "ob103": newError.message = "Informe duas senhas iguais."; break;
+        case "ob104": newError.message = "Estamos com dificuldade de validar as credenciais informadas."; break;
+        case "ob105": newError.message = "Informe um código com 4 dígitos."; break;
+        case "ob106": newError.message = "O código informado não é o esperado."; break;
         default:
           newError.cod = "de2702" + cod.substr(0, 2);
           newError.message = msgDefault + " [" + cod + "]";
@@ -41,12 +45,9 @@ export default function NewErrorMessage(cod, e) {
       break;
     case "xx": // Onboarding (tratamento de signIn e logIn)
       switch (cod) {
-        case "xx101": newError.message = "Informe um e-mail válido.";
-          break;
-        case "xx102": newError.message = "Informe uma senha válida.";
-          break;
-        case "xx103": newError.message = "Informe duas senhas iguais.";
-          break;
+        case "xx101": newError.message = "Informe um e-mail válido."; break;
+        case "xx102": newError.message = "Informe uma senha válida."; break;
+        case "xx103": newError.message = "Informe duas senhas iguais."; break;
         default:
           newError.cod = "de2702" + cod.substr(0, 2);
           newError.message = msgDefault + " [" + cod + "]";

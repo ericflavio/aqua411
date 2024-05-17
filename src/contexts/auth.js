@@ -1,7 +1,7 @@
 //Contextos são enxergados de forma global pela aplicação. Como este aqui vai
 //encapsular o app inteiro, ele sempre será invocado quando o app foi ativado
 import { React, createContext, useState, useEffect } from "react";
-import { signInService, logInService } from '../services/authService';
+import { signInService, logInService, checkTokenService } from '../services/authService';
 import { GetLocalDataLogin, SetLocalDataLogin, RemoveLocalDataLogin } from '../services/localStorageService';
 
 export const AuthContext = createContext({}); // Inicializa contexto vazio
@@ -33,7 +33,7 @@ export default function AuthProvider({ children }) {
       console.log("erro<2>: ", e.message);
       const erro = {
         message: e.message,
-        codigo: 100
+        cod: 100
       }
       throw erro;
     }
@@ -58,7 +58,28 @@ export default function AuthProvider({ children }) {
       //console.log("erro<2>: ", e.message);
       const erro = {
         message: e.message,
-        codigo: 100
+        cod: 100
+      }
+      throw erro;
+    }
+  };
+
+  async function checkToken(user, token) {
+    if (!user || !token) return false;
+    console.log("authContext-checkToken, user: ", user, " token: ", token);
+    try {
+      const isTokenValido = await checkTokenService(user, token);
+      console.log("isTokenValido: ", isTokenValido);
+      if (isTokenValido) {
+        user.isContaAtiva = true;
+        await SetLocalDataLogin(user) //Persiste o usuário localmente
+        setUser(user) //Rerender atualização dos dados do Contexto
+      }
+      return true;
+    } catch (e) {
+      const erro = {
+        message: e.message,
+        cod: 100
       }
       throw erro;
     }
@@ -84,7 +105,7 @@ export default function AuthProvider({ children }) {
   //pasta scr/app, que é onde start a aplicação como um todo, as informações
   //do contexto serão compartilhadas em todos os lugares/componentes 
   return (
-    <AuthContext.Provider value={{ isLoading, user, signIn, signOut, logIn, logOut }}>
+    <AuthContext.Provider value={{ isLoading, user, signIn, signOut, logIn, logOut, checkToken }}>
       {children}
     </AuthContext.Provider>
   )

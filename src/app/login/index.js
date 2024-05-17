@@ -8,10 +8,11 @@ import { myStylesColors } from "../../styles/stylesColors";
 import { InputText } from '../../componentes/inputText';
 import { GradienteFill } from '../../componentes/gradienteFill';
 import { AuthContext } from "../../contexts/auth";
+import NewErrorMessage, { errorTextOops } from '../../errors/errorMessage';
 
 //Tela principal
 export default function ViewLogin() {
-  const { user, logIn, signIn } = useContext(AuthContext);
+  const { user, logIn, signIn, checkToken } = useContext(AuthContext);
   console.log("ViewLogin <inicio> user: ", user);
 
   //Se eventualmente navegou até aqui mas já possui LOGIN realizado com sucesso
@@ -19,7 +20,7 @@ export default function ViewLogin() {
     return <Redirect href="(main)" />;
   }
 
-  const [cenario, setCenario] = useState(2);
+  const [cenario, setCenario] = useState(1);
   const [flagErro, setFlagErro] = useState(false);
   const [email, setEmail] = useState("ericflavio@gmail.com");
   const [senhaUm, setSenhaUm] = useState("1234567890");
@@ -37,13 +38,12 @@ export default function ViewLogin() {
   var flagEditavel = true;
   cenario > 10 ? flagEditavel = false : flagEditavel = true;
 
-  console.log("XXXXXXXXXXXXXXXXX ", cenario, flagErro, flagEditavel);
   //Monta texto da recepcionista
   switch (cenario) {
     case cenarioEntrarEditar:
       !flagErro
         ? textoRecepcionista = "Já tem cadastro? Informe os dados para entrar"
-        : textoRecepcionista = "oops! Verifique as informações e tente novamente";
+        : textoRecepcionista = "Verifique as informações e tente novamente";
       break;
     case cenarioEntrarValidar:
       textoRecepcionista = "validando...";
@@ -51,15 +51,15 @@ export default function ViewLogin() {
     case cenarioCadastrarEditar:
       !flagErro
         ? textoRecepcionista = "Informe os dados abaixo para se cadastrar"
-        : textoRecepcionista = "oops! Verifique as informações e tente novamente";
+        : textoRecepcionista = "Verifique as informações e tente novamente";
       break;
     case cenarioCadastrarValidar:
       textoRecepcionista = "cadastrando você...";
       break;
     case cenarioCadastrarEditarToken:
       !flagErro
-        ? textoRecepcionista = "Agora é só informar o código que enviamos para o seu e-mail"
-        : textoRecepcionista = "oops! Verifique o código e tente novamente";
+        ? textoRecepcionista = "Ative sua conta com o código enviado para o seu e-mail"
+        : textoRecepcionista = "Verifique o código e tente novamente";
       break;
     case cenarioCadastrarValidarToken:
       textoRecepcionista = "validando o código...";
@@ -96,10 +96,11 @@ export default function ViewLogin() {
     setToken(tokenEdt);
   }
   function validarSintaxeToken(token) {
-    if (!token || token.length < 4) return false;
+    if (!token || token.length !== 4) return false;
     return true;
   }
   async function reenviarToken() {
+    //TODO: Reenviar token
     Alert.alert('Tudo certo', 'Enviamos um novo código de confirmação para o seu e-mail', [
       {
         text: '',
@@ -113,59 +114,102 @@ export default function ViewLogin() {
     //console.log("cenario: ", cenario)
     switch (cenario) {
       case cenarioEntrarEditar:
-        if (!validarSintaxeEmail(email) || !validarSintaxeSenha(senhaUm)) {
+        if (!validarSintaxeEmail(email)) {
+          const error = NewErrorMessage("ob101");
+          Alert.alert(errorTextOops, error.message);
           if (!flagErro) setFlagErro(true);
           return;
         };
+        if (!validarSintaxeSenha(senhaUm)) {
+          const error = NewErrorMessage("ob102");
+          Alert.alert(errorTextOops, error.message);
+          if (!flagErro) setFlagErro(true);
+          return;
+        };
+
         setCenario(cenarioEntrarValidar); //Renderiza tela no modo aguardando realização do login
 
         try {
           //console.log("ViewLogin -- logIn");
           const user = await logIn(email, senhaUm);
-          router.replace('(main)');
+          console.log("aqui----user: ", user);
+          if (user.isContaAtiva && user.isContaAtiva == true) {
+            router.replace('(main)'); //Conta ativa
+          } else {
+            if (flagErro) setFlagErro(false);
+            setCenario(cenarioCadastrarEditarToken); //Conta não ativa
+          }
         } catch (e) {
-          if (!flagErro) setFlagErro(true);
+          const error = NewErrorMessage("ob104", e);
+          Alert.alert(errorTextOops, error.message);
           setCenario(cenarioEntrarEditar);
+          if (!flagErro) setFlagErro(true);
+          return;
         }
         break;
+
       case cenarioCadastrarEditar:
-        if (!validarSintaxeEmail(email) || !validarSintaxeSenha(senhaUm) ||
-          !validarSintaxeSenha(senhaDois) || senhaUm !== senhaDois) {
+        if (!validarSintaxeEmail(email)) {
+          const error = NewErrorMessage("ob101");
+          Alert.alert(errorTextOops, error.message);
           if (!flagErro) setFlagErro(true);
           return;
         };
+        if (!validarSintaxeSenha(senhaUm)) {
+          const error = NewErrorMessage("ob102");
+          Alert.alert(errorTextOops, error.message);
+          if (!flagErro) setFlagErro(true);
+          return;
+        };
+        if (!validarSintaxeSenha(senhaDois)) {
+          const error = NewErrorMessage("ob102");
+          Alert.alert(errorTextOops, error.message);
+          if (!flagErro) setFlagErro(true);
+          return;
+        };
+        if (senhaUm !== senhaDois) {
+          const error = NewErrorMessage("ob103");
+          Alert.alert(errorTextOops, error.message);
+          if (!flagErro) setFlagErro(true);
+          return;
+        };
+
         setCenario(cenarioCadastrarValidar); //Renderiza tela no modo aguardando realização do cadastramento
-        
-        var auth = null;
+
         try {
           console.log("ViewLogin/ Prosseguir -- sigIn");
-          auth = await signIn(email, senhaUm);
+          const auth = await signIn(email, senhaUm);
+          console.log("Novo user sucesso!: ", auth);
+          setCenario(cenarioCadastrarEditarToken);
+          if (flagErro) setFlagErro(false);
         } catch (e) {
           console.log("Erro novo user: ", e.message);
-          if (!flagErro) setFlagErro(true);
           setCenario(cenarioCadastrarEditar);
+          if (!flagErro) setFlagErro(true);
           return;
         }
-        console.log("Novo user sucesso!: ", auth);
-        if (flagErro) setFlagErro(false);
-        setCenario(cenarioCadastrarEditarToken);
         break;
 
       case cenarioCadastrarEditarToken:
         if (!validarSintaxeToken(token)) {
+          const error = NewErrorMessage("ob105");
+          Alert.alert(errorTextOops, error.message);
           if (!flagErro) setFlagErro(true);
           return;
         };
+
         setCenario(cenarioCadastrarValidarToken); //Renderiza tela no modo aguardando
 
-        //TODO: Realizar cadastramento
         try {
-          //console.log("ViewLogin -- SigIn");
-          const user = await signIn(email, senhaUm);
+          const isTokenValido = await checkToken(user, token);
+          console.log("isTokenValido: ", isTokenValido);
           router.replace('(main)');
         } catch (e) {
-          if (!flagErro) setFlagErro(true);
+          const error = NewErrorMessage("ob106");
+          Alert.alert(errorTextOops, error.message);
           setCenario(cenarioCadastrarEditarToken);
+          if (!flagErro) setFlagErro(true);
+          return;
         }
         break;
     };
@@ -244,7 +288,7 @@ export default function ViewLogin() {
         {cenario == cenarioCadastrarEditarToken || cenario == cenarioCadastrarValidarToken ?
           <View style={myStyles.containerFacilidades}>
             <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={reenviarToken}>
-              <Text style={myStylesComuns.buttonTextoStyleFlat}>Clique aqui para receber outro código</Text>
+              <Text style={myStylesComuns.buttonTextoStyleFlat}>Clique para receber novo código</Text>
             </TouchableOpacity>
           </View>
           : ""}

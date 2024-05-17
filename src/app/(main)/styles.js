@@ -62,7 +62,7 @@ export const myStyles = StyleSheet.create({
     backgroundColor: "transparent",
     alignContent: "center",
     justifyContent: "center",
-    marginTop: 18
+    marginTop: 2
   },
   containerLavaSeca: {
     flexDirection: 'column',
