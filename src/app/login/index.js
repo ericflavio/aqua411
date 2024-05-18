@@ -203,7 +203,9 @@ export default function ViewLogin() {
         try {
           const isTokenValido = await checkToken(user, token);
           console.log("isTokenValido: ", isTokenValido);
-          router.replace('(main)');
+          if (isTokenValido) {
+            router.replace('(main)');
+          } 
         } catch (e) {
           const error = NewErrorMessage("ob106");
           Alert.alert(errorTextOops, error.message);
@@ -211,6 +213,12 @@ export default function ViewLogin() {
           if (!flagErro) setFlagErro(true);
           return;
         }
+        //Token inválido
+        const error = NewErrorMessage("ob107");
+        Alert.alert(errorTextOops, error.message);
+        setCenario(cenarioCadastrarEditarToken);
+        if (!flagErro) setFlagErro(true);
+        return;
         break;
     };
   }
