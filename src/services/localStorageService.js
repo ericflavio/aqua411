@@ -37,9 +37,7 @@ export async function GetLocalDataLogin() {
 export async function RemoveLocalDataLogin() {
   try {
     const response = await AsyncStorage.removeItem(idDB);
-    return true;
   } catch (e) {
     //console.log("AsyncStorage(erro): ", e)
-    return false;
   }
 }

@@ -129,7 +129,7 @@ export default function ViewLogin() {
           const user = await logIn(email, senhaUm);
           console.log("aqui----user: ", user);
           if (user.isContaAtiva && user.isContaAtiva == true) {
-            router.replace('/'); //Conta ativa
+            router.replace('/home'); //Conta ativa
           } else {
             if (flagErro) setFlagErro(false);
             setCenario(cenarioCadastrarEditarToken); //Conta não ativa
@@ -199,8 +199,15 @@ export default function ViewLogin() {
           const isTokenValido = await checkToken(user, token);
           console.log("isTokenValido: ", isTokenValido);
           if (isTokenValido) {
-            router.replace('/');
-          } 
+            router.replace('/home');
+          } else {
+            //Token inválido
+            const error = NewErrorMessage("ob107");
+            Alert.alert(errorTextOops, error.message);
+            setCenario(cenarioCadastrarEditarToken);
+            if (!flagErro) setFlagErro(true);
+            return;
+          }
         } catch (e) {
           const error = NewErrorMessage("ob106");
           Alert.alert(errorTextOops, error.message);
@@ -208,12 +215,6 @@ export default function ViewLogin() {
           if (!flagErro) setFlagErro(true);
           return;
         }
-        //Token inválido
-        const error = NewErrorMessage("ob107");
-        Alert.alert(errorTextOops, error.message);
-        setCenario(cenarioCadastrarEditarToken);
-        if (!flagErro) setFlagErro(true);
-        return;
         break;
     };
   }
