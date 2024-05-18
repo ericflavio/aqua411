@@ -14,7 +14,6 @@ export default function RootLayout() {
 
   return (
     <AuthProvider>
-      <Slot />
       <AppRoutes />
     </AuthProvider>
   )
