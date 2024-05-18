@@ -1,8 +1,34 @@
-import { Tabs } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
 import { myStylesColors } from '../../styles/stylesColors';
+import { ActivityIndicator, View } from "react-native";
+import { useContext } from 'react';
+import { AuthContext } from "../../contexts/auth";
+import { Redirect, Tabs } from 'expo-router';
 
-export default function LayoutPrincipal() {
+export default function AppLayout() {
+  const { user, isLoading } = useContext(AuthContext);
+  console.log("AppLayout.user: ", user, " isLoading: ", isLoading);
+
+  //Procedimentos de recuperação de usário no storage local em curso
+  if (isLoading) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center" }}>
+        <ActivityIndicator size="large" />
+      </View>
+    )
+  }
+
+  //Procedimentos de recuperação de usário no storage local finalizado
+  if (!user || user == null) {
+    return <Redirect href="reception" />;
+  }
+
+  if (user.isContaAtiva == undefined
+    || user.isContaAtiva == false) {
+    return <Redirect href="login" />;
+  }
+
+  //Usuário logado e status ativo. Monta o layout do app
   return (
     <Tabs screenOptions={{
       headerShown: false,
@@ -28,7 +54,7 @@ export default function LayoutPrincipal() {
     }}>
 
       <Tabs.Screen
-        name="index"
+        name="home/index"
         options={{
           title: "Inicio",
           tabBarIcon: ({ size, color }) =>

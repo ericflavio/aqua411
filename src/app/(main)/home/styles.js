@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
-import { myStylesComuns } from "../../styles/stylesComuns";
-import { myStylesColors } from "../../styles/stylesColors";
+import { myStylesComuns } from "../../../styles/stylesComuns";
+import { myStylesColors } from "../../../styles/stylesColors";
 
 export const myStyles = StyleSheet.create({
 

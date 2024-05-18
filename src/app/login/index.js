@@ -15,11 +15,6 @@ export default function ViewLogin() {
   const { user, logIn, signIn, checkToken } = useContext(AuthContext);
   console.log("ViewLogin <inicio> user: ", user);
 
-  //Se eventualmente navegou até aqui mas já possui LOGIN realizado com sucesso
-  if (user && user.isContaAtiva && user.isContaAtiva == true) {
-    return <Redirect replace href="(main)" />;
-  }
-
   const [cenario, setCenario] = useState(1);
   const [flagErro, setFlagErro] = useState(false);
   const [email, setEmail] = useState("ericflavio@gmail.com");
@@ -134,7 +129,7 @@ export default function ViewLogin() {
           const user = await logIn(email, senhaUm);
           console.log("aqui----user: ", user);
           if (user.isContaAtiva && user.isContaAtiva == true) {
-            router.replace('(main)'); //Conta ativa
+            router.replace('/'); //Conta ativa
           } else {
             if (flagErro) setFlagErro(false);
             setCenario(cenarioCadastrarEditarToken); //Conta não ativa
@@ -204,7 +199,7 @@ export default function ViewLogin() {
           const isTokenValido = await checkToken(user, token);
           console.log("isTokenValido: ", isTokenValido);
           if (isTokenValido) {
-            router.replace('(main)');
+            router.replace('/');
           } 
         } catch (e) {
           const error = NewErrorMessage("ob106");

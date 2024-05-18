@@ -15,7 +15,6 @@ export default function AppRoutes() {
           tabBarShowLabel: true,
         }} >
 
-        <Stack.Screen name="index" />
         <Stack.Screen name="(main)" />
         <Stack.Screen name="login/index" />
         <Stack.Screen name="reception/index" />
