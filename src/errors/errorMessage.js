@@ -35,9 +35,9 @@ export default function NewErrorMessage(cod, e) {
         case "ob101": newError.message = "Informe um e-mail válido."; break;
         case "ob102": newError.message = "Informe uma senha válida."; break;
         case "ob103": newError.message = "Informe duas senhas iguais."; break;
-        case "ob104": newError.message = "Estamos com dificuldade de validar as credenciais informadas."; break;
+        case "ob104": newError.message = "Estamos com dificuldade para validar os dados informadas."; break;
         case "ob105": newError.message = "Informe um código com 4 dígitos."; break;
-        case "ob106": newError.message = "Estamos com dificuldade de validar o código informado."; break;
+        case "ob106": newError.message = "Estamos com dificuldade para validar o código informado."; break;
         case "ob107": newError.message = "O código informado não é o esperado."; break;
         default:
           newError.cod = "de2702" + cod.substr(0, 2);

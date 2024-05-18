@@ -17,7 +17,7 @@ export default function ViewLogin() {
 
   //Se eventualmente navegou até aqui mas já possui LOGIN realizado com sucesso
   if (user && user.isContaAtiva && user.isContaAtiva == true) {
-    return <Redirect href="(main)" />;
+    return <Redirect replace href="(main)" />;
   }
 
   const [cenario, setCenario] = useState(1);

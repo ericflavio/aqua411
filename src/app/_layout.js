@@ -2,6 +2,7 @@
 //task, por ele invocada, é a de Contexto, e por fim as rotas/páginas.
 import AuthProvider from '../contexts/auth';
 import AppRoutes from '../routes/appRoutes';
+import { Slot } from 'expo-router';
 
 //Seta a rota inicial
 /* export const unstable_settings = {
@@ -13,6 +14,7 @@ export default function RootLayout() {
 
   return (
     <AuthProvider>
+      <Slot />
       <AppRoutes />
     </AuthProvider>
   )

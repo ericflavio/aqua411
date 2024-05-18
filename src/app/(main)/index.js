@@ -133,7 +133,7 @@ export default function ViewLojaMaquinas() {
 
   //Se por acaso chegou aqui sem a conta estar validada
   if (!user || user.isContaAtiva == undefined || user.isContaAtiva == false) {
-    return <Redirect href="/index" />;
+    return <Redirect replace href="reception" />;
   }
 
   const [cenario, setCenario] = useState(cenarioTeste);
