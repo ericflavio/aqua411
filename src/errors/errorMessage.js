@@ -6,7 +6,7 @@ export default function NewErrorMessage(cod, e) {
   //Se entrar apenas COD, devolve-se a mensagem correspondente.
   //Na ausência do COD, espera-se o "e" para montar o retorno.
 
- var newError = {
+  var newError = {
     cod: "",
     message: ""
   }
@@ -32,13 +32,18 @@ export default function NewErrorMessage(cod, e) {
   switch (cod.substr(0, 2)) {
     case "ob": // Onboarding (tratamento de signIn e logIn)
       switch (cod) {
+        //Campos
         case "ob101": newError.message = "Informe um e-mail válido."; break;
         case "ob102": newError.message = "Informe uma senha válida."; break;
         case "ob103": newError.message = "Informe duas senhas iguais."; break;
+        //Login
         case "ob104": newError.message = "Estamos com dificuldade para validar os dados informadas."; break;
+        //Token
         case "ob105": newError.message = "Informe um código com 4 dígitos."; break;
         case "ob106": newError.message = "Estamos com dificuldade para validar o código informado."; break;
         case "ob107": newError.message = "O código informado não é o esperado."; break;
+        //Cadastro
+        case "ob108": newError.message = "Estamos com dificuldade para cadastrar os dados informadas."; break;
         default:
           newError.cod = "de2702" + cod.substr(0, 2);
           newError.message = msgDefault + " [" + cod + "]";

@@ -178,7 +178,8 @@ export default function ViewLogin() {
           setCenario(cenarioCadastrarEditarToken);
           if (flagErro) setFlagErro(false);
         } catch (e) {
-          console.log("Erro novo user: ", e.message);
+          const error = NewErrorMessage("ob108");
+          Alert.alert(errorTextOops, error.message);
           setCenario(cenarioCadastrarEditar);
           if (!flagErro) setFlagErro(true);
           return;
