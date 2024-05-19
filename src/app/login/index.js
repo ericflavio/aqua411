@@ -129,7 +129,7 @@ export default function ViewLogin() {
           const user = await logIn(email, senhaUm);
           console.log("aqui----user: ", user);
           if (user.isContaAtiva && user.isContaAtiva == true) {
-            router.replace('/home'); //Conta ativa
+            router.replace('/'); //Conta ativa
           } else {
             if (flagErro) setFlagErro(false);
             setCenario(cenarioCadastrarEditarToken); //Conta não ativa
@@ -199,7 +199,7 @@ export default function ViewLogin() {
           const isTokenValido = await checkToken(user, token);
           console.log("isTokenValido: ", isTokenValido);
           if (isTokenValido) {
-            router.replace('/home');
+            router.replace('/');
           } else {
             //Token inválido
             const error = NewErrorMessage("ob107");

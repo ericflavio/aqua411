@@ -6,9 +6,9 @@ export const AuthContext = createContext({}); // Inicializa contexto vazio
 
 //É necessário criar o provedor do contexto
 export default function AuthProvider({ children }) {
-  console.log("children: ", children);
   const [user, setUser] = useState(null);
-  const [isLoading, setLoading] = useState(true); //Inicialização do app
+  const [isLoading, setLoading] = useState(true);
+  console.log("AuthProvider _ ", "isLoading: ", isLoading , " user: ", user !== null ? user.login : "[null]",  "isContaAtiva: ", user !== null && user.isContaAtiva !== undefined ? user.isContaAtiva : "[undefined]");
 
   useEffect(() => {
     //Toda vez que o app se iniciar/contexto for criado
@@ -21,20 +21,14 @@ export default function AuthProvider({ children }) {
   //Funções assíncronas para invocação das APIs
   async function signIn(email, senha) {
     if (!email || !senha) return null;
-    console.log("authContext-signIn: ", email, senha);
+
     try {
       const auth = await signInService(email, senha);
-      console.log("<!>auth: ", auth);
       await SetLocalDataLogin(auth) //Persiste o usuário localmente
       setUser(auth) //Rerender atualização dos dados do Contexto
       return auth;
     } catch (e) {
-      console.log("erro<2>: ", e.message);
-      const erro = {
-        message: e.message,
-        cod: 100
-      }
-      throw erro;
+      throw e;
     }
   };
 
@@ -45,30 +39,23 @@ export default function AuthProvider({ children }) {
   };
 
   async function logIn(email, senha) {
-    console.log("authContext-logIn");
     if (!email || !senha) return null;
+
     try {
       const auth = await logInService(email, senha);
-      console.log("auth: ", auth);
       await SetLocalDataLogin(auth) //Persiste o usuário localmente
       setUser(auth) //Rerender atualização dos dados do Contexto
       return auth;
     } catch (e) {
-      //console.log("erro<2>: ", e.message);
-      const erro = {
-        message: e.message,
-        cod: 100
-      }
-      throw erro;
+      throw e;
     }
   };
 
   async function checkToken(user, token) {
     if (!user || !token) return false;
-    console.log("authContext-checkToken, user: ", user, " token: ", token);
+
     try {
       const isTokenValido = await checkTokenService(user, token);
-      console.log("isTokenValido: ", isTokenValido);
       if (isTokenValido) {
         user.isContaAtiva = true;
         await SetLocalDataLogin(user) //Persiste o usuário localmente
@@ -76,11 +63,7 @@ export default function AuthProvider({ children }) {
       }
       return true;
     } catch (e) {
-      const erro = {
-        message: e.message,
-        cod: 100
-      }
-      throw erro;
+      throw e;
     }
   };
 
@@ -91,12 +74,14 @@ export default function AuthProvider({ children }) {
   };
 
   async function loadUserFromLocalStorage() {
+    var auth = null;
     try {
-      const auth = await GetLocalDataLogin();
-      if (auth && auth !== null) {
-        setUser(auth) //Rerender e atualização dos dados do Contexto
-      }
-    } catch (e) { }
+      auth = await GetLocalDataLogin();
+    } catch (e) {}
+    
+    if (auth && auth !== null) {
+      setUser(auth) //Rerender e atualização dos dados do Contexto
+    }
     setLoading(false);
   };
 

@@ -3,14 +3,9 @@
 import AuthProvider from '../contexts/auth';
 import { Slot } from 'expo-router';
 
-//Seta a rota inicial. Obs: não é necessário colocar "(main)"
-export const unstable_settings = {
-  initialRouteName: "/home/index",
-};
-
 //Slot => representa todas as rotas filhas (childrens)
 export default function RootLayout() {
-  console.log("_layout:Rota principal do app")
+  console.log("_layout_root <iniciando o app>");
 
   return (
     <AuthProvider>

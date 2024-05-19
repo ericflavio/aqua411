@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
 import { View, Text, Image, SafeAreaView, ScrollView, TouchableOpacity, Dimensions } from "react-native";
 import { myStyles } from "./styles";
-import { myStylesComuns } from '../../../styles/stylesComuns';
-import { GradienteFill } from '../../../componentes/gradienteFill';
-import { AuthContext } from "../../../contexts/auth";
+import { myStylesComuns } from '../../styles/stylesComuns';
+import { GradienteFill } from '../../componentes/gradienteFill';
+import { AuthContext } from "../../contexts/auth";
 import { Redirect } from 'expo-router';
 
 var cenarioTeste = 1;
@@ -27,33 +27,33 @@ function maquina(tipMaq, idMaq, status, view) {
     case 1:
       txStatus = "Disponível";
       if (tipMaq == undefined || tipMaq == "LAVA") {
-        imgMaq = require('../../../assets/maquinas/lava_disp.png')
+        imgMaq = require('../../assets/maquinas/lava_disp.png')
       } else {
-        imgMaq = require('../../../assets/maquinas/seca_disp.png')
+        imgMaq = require('../../assets/maquinas/seca_disp.png')
       }
       break;
     case 2:
       txStatus = "Ocupada";
       if (tipMaq == undefined || tipMaq == "LAVA") {
-        imgMaq = require('../../../assets/maquinas/lava_emuso.png')
+        imgMaq = require('../../assets/maquinas/lava_emuso.png')
       } else {
-        imgMaq = require('../../../assets/maquinas/seca_emuso.png')
+        imgMaq = require('../../assets/maquinas/seca_emuso.png')
       }
       break;
     case 3:
       txStatus = "Manutenção";
       if (tipMaq == undefined || tipMaq == "LAVA") {
-        imgMaq = require('../../../assets/maquinas/lava_manut.png')
+        imgMaq = require('../../assets/maquinas/lava_manut.png')
       } else {
-        imgMaq = require('../../../assets/maquinas/seca_manut.png')
+        imgMaq = require('../../assets/maquinas/seca_manut.png')
       }
       break;
     default:
       txStatus = "Disponível";
       if (tipMaq == undefined || tipMaq == "LAVA") {
-        imgMaq = require('../../../assets/maquinas/lava_disp.png')
+        imgMaq = require('../../assets/maquinas/lava_disp.png')
       } else {
-        imgMaq = require('../../../assets/maquinas/seca_disp.png')
+        imgMaq = require('../../assets/maquinas/seca_disp.png')
       }
   };
 
@@ -128,13 +128,13 @@ function horarioFuncionamento(in24h, horaIni, horaFim) {
 //Tela principal HOME
 export default function ViewLojaMaquinas() {
   const { user } = useContext(AuthContext);
-  console.log("Main: ViewLojaMaquinas - user: ", user);
+  console.log("(main)/home _ ");
 
   //Se por acaso chegou aqui sem a conta estar validada
-  if (!user || user.isContaAtiva == undefined || user.isContaAtiva == false) {
+/*   if (!user || user.isContaAtiva == undefined || user.isContaAtiva == false) {
     return <Redirect replace href="reception" />;
   }
-
+ */
   const [cenario, setCenario] = useState(cenarioTeste);
 
   //Consulta API com novos status dos equipamentos
@@ -195,7 +195,7 @@ export default function ViewLojaMaquinas() {
             <View style={myStyles.containerUnidadeEndereco}>
               <Image
                 style={myStyles.imgLocalizacao}
-                source={require('../../../assets/icones/icon_local2.png')}
+                source={require('../../assets/icones/icon_local2.png')}
               />
               <Text style={myStylesComuns.textoSubtitulo}>
                 Unidade: ASA NORTE
@@ -206,11 +206,11 @@ export default function ViewLojaMaquinas() {
               {relogioOnOff == true ?
                 <Image
                   style={myStyles.imgRelogio}
-                  source={require('../../../assets/icones/aqua_relogio_abertos.png')}
+                  source={require('../../assets/icones/aqua_relogio_abertos.png')}
                 /> :
                 <Image
                   style={myStyles.imgRelogio}
-                  source={require('../../../assets/icones/aqua_relogio_fechados.png')}
+                  source={require('../../assets/icones/aqua_relogio_fechados.png')}
                 />
               }
               <Text style={myStylesComuns.textoComum}>
@@ -242,7 +242,7 @@ export default function ViewLojaMaquinas() {
             <View style={myStyles.containerUltimaAtualizacao}>
               <Image
                 style={myStyles.imgRelogio}
-                source={require('../../../assets/icones/aqua_relogio_comum.png')}
+                source={require('../../assets/icones/aqua_relogio_comum.png')}
               />
               <Text style={myStylesComuns.textoComum}>
                 26/06/2024 08:36

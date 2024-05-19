@@ -7,7 +7,7 @@ import { Redirect, Tabs } from 'expo-router';
 
 export default function AppLayout() {
   const { user, isLoading } = useContext(AuthContext);
-  console.log("AppLayout.user: ", user, " isLoading: ", isLoading);
+  console.log("_layout(main)_ ",  "isLoading: ", isLoading , " user: ", user !== null ? user.login : "[null]",  "isContaAtiva: ", user !== null && user.isContaAtiva !== undefined ? user.isContaAtiva : "[undefined]");
 
   //Procedimentos de recuperação de usário no storage local em curso
   if (isLoading) {
@@ -20,12 +20,12 @@ export default function AppLayout() {
 
   //Procedimentos de recuperação de usário no storage local finalizado
   if (!user || user == null) {
-    return <Redirect href="reception" />;
+    return <Redirect href="/reception" />;
   }
 
   if (user.isContaAtiva == undefined
     || user.isContaAtiva == false) {
-    return <Redirect href="login" />;
+    return <Redirect href="/login" />;
   }
 
   //Usuário logado e status ativo. Monta o layout do app
@@ -54,7 +54,7 @@ export default function AppLayout() {
     }}>
 
       <Tabs.Screen
-        name="home/index"
+        name="index"
         options={{
           title: "Inicio",
           tabBarIcon: ({ size, color }) =>
