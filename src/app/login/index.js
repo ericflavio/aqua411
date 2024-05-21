@@ -274,7 +274,7 @@ export default function ViewLogin() {
         {cenario == cenarioEntrarEditar || cenario == cenarioEntrarValidar ?
           <View style={myStyles.containerFacilidades}>
             <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={fluxoCadastrar}>
-              <Text style={myStylesComuns.buttonTextoStyleFlat}>Precisa de ajuda com a senha?</Text>
+              <Text style={myStylesComuns.buttonTextoStyleFlat}>Esqueceu sua senha?</Text>
             </TouchableOpacity>
             <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={fluxoCadastrar}>
               <Text style={myStylesComuns.buttonTextoStyleFlat}>Clique aqui para se cadastrar</Text>

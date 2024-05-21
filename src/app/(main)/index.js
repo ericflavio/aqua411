@@ -176,7 +176,7 @@ export default function ViewLojaMaquinas() {
   };
   let headerHeight = 0; //Eventual header na página
   let bodyHeight = screenHeight - headerHeight + 0;
-
+ 
   //sem loja favoritada OU loja com status diferente de "ativa"
   if (!user.idLojaFavoritada || user.idLojaFavoritada == null) {
     return (
@@ -264,6 +264,12 @@ export default function ViewLojaMaquinas() {
               <Text style={myStylesComuns.textoComum}>
                 Abertos diariamente de 6h às 23h
               </Text>
+            </View>
+
+            <View style={myStyles.containerFacilidades}>
+              <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={false} onPress={atualizarStatus}>
+                <Text style={myStylesComuns.buttonTextoStyleFlat}>Selecione outra loja aqui</Text>
+              </TouchableOpacity>
             </View>
           </View>
 
