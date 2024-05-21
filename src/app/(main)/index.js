@@ -23,6 +23,8 @@ function maquina(tipMaq, idMaq, status, view) {
   var txStatus = "Indefinido";
   tipMaq = tipMaq.toUpperCase();
 
+  if (!flagViewStatusMaquina) { status = 1 };
+
   switch (status) {
     case 1:
       txStatus = "Disponível";
@@ -130,11 +132,6 @@ export default function ViewLojaMaquinas() {
   const { user } = useContext(AuthContext);
   console.log("(main)/home _ ");
 
-  //Se por acaso chegou aqui sem a conta estar validada
-/*   if (!user || user.isContaAtiva == undefined || user.isContaAtiva == false) {
-    return <Redirect replace href="reception" />;
-  }
- */
   const [cenario, setCenario] = useState(cenarioTeste);
 
   //Consulta API com novos status dos equipamentos
@@ -180,6 +177,57 @@ export default function ViewLojaMaquinas() {
   let headerHeight = 0; //Eventual header na página
   let bodyHeight = screenHeight - headerHeight + 0;
 
+  //sem loja favoritada OU loja com status diferente de "ativa"
+  if (!user.idLojaFavoritada || user.idLojaFavoritada == null) {
+    return (
+      <SafeAreaView style={myStylesComuns.containerPrincipalSafeArea}>
+        {GradienteFill()}
+        <ScrollView style={myStylesComuns.containerPrincipalScroll} showsVerticalScrollIndicator={false}>
+
+          <View style={{ height: bodyHeight, paddingBottom: 96 }}>
+            <View style={myStyles.containerHeader}>
+              <Text style={myStylesComuns.textoTituloPagina}>
+                Receba informações da sua lavanderia favorita
+              </Text>
+            </View>
+            <View style={myStyles.containerBody1}>
+              <View style={myStyles.containerUnidadeEndereco}>
+                <Text style={myStylesComuns.textoSubtitulo}>
+                  Você ainda não selecionou uma lavanderia favorita
+                </Text>
+              </View>
+            </View>
+
+            <TouchableOpacity style={myStylesComuns.button} onPress={atualizarStatus}>
+              <Image
+                style={myStyles.imgLocalizacao}
+                source={require('../../assets/icones/icon_local2.png')}
+              />
+              <Text style={myStylesComuns.buttonTextoStyle}>Pesquisar lavanderias</Text>
+            </TouchableOpacity>
+
+            <View style={myStyles.containerBody2}>
+              <View style={myStyles.containerMaquinas}>
+                {maquina("seca", 2, seca[1], false)}
+                {maquina("seca", 4, seca[1], false)}
+                {maquina("seca", 6, seca[1], false)}
+              </View>
+              <View style={myStyles.containerMaquinas}>
+                {maquina("lava", 1, lava[1], false)}
+                {maquina("lava", 3, lava[1], false)}
+                {maquina("lava", 5, lava[1], false)}
+              </View>
+              <Text style={myStylesComuns.textoComum}>
+                Esta é uma imagem ilustrativa
+              </Text>
+            </View>
+          </View>
+        </ScrollView>
+      </SafeAreaView >
+    )
+  }
+
+  //Com loja favoritada
   return (
     <SafeAreaView style={myStylesComuns.containerPrincipalSafeArea}>
       {GradienteFill()}

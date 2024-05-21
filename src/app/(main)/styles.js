@@ -18,7 +18,7 @@ export const myStyles = StyleSheet.create({
   containerBody2: {
     flex:1,
     flexDirection: "column",
-    alignItems: "stretch",
+    alignItems: "center",
     justifyContent: "center",
     borderWidth: myStylesComuns.containerBordaOnOff
   },

@@ -9,7 +9,11 @@ export async function logInService(email, senha) {
         login: "ericflavio@gmail.com",
         id: "1001",
         token: "e14-gadff-134314-13-1-599-361",
-        isContaAtiva: false
+        isContaAtiva: false,
+        islogista: false,
+        isFranquia: false,
+        isFranqueador: false,
+        idLojaFavoritada: null
       })
     } else {
       reject(new Error('Credenciais inválidas'));
@@ -27,7 +31,11 @@ export async function signInService(email, senha) {
         login: "ericflavio@gmail.com",
         id: "1001",
         token: "e14-gadff-134314-13-1-599-361",
-        isContaAtiva: false
+        isContaAtiva: false,
+        islogista: false,
+        isFranquia: false,
+        isFranqueador: false,
+        idLojaFavoritada: null
       })
     } else {
       reject(new Error('Credenciais inválidas'));

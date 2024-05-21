@@ -7,7 +7,7 @@ import { Redirect, Tabs } from 'expo-router';
 
 export default function AppLayout() {
   const { user, isLoading } = useContext(AuthContext);
-  console.log("_layout(main)_ ",  "isLoading: ", isLoading , " user: ", user !== null ? user.login : "[null]",  "isContaAtiva: ", user !== null && user.isContaAtiva !== undefined ? user.isContaAtiva : "[undefined]");
+  console.log("_layout(main)_ ", "isLoading: ", isLoading, " user: ", user !== null ? user.login : "[null]", "isContaAtiva: ", user !== null && user.isContaAtiva !== undefined ? user.isContaAtiva : "[undefined]");
 
   //Procedimentos de recuperação de usário no storage local em curso
   if (isLoading) {
@@ -68,6 +68,15 @@ export default function AppLayout() {
           title: "Promo",
           tabBarIcon: ({ size, color }) =>
             <MaterialIcons name="card-giftcard" size={36} color={color} />
+        }}
+      />
+
+      <Tabs.Screen
+        name="cadastro/index"
+        options={{
+          title: "Cadastro",
+          tabBarIcon: ({ size, color }) =>
+            <MaterialIcons name="person" size={36} color={color} />
         }}
       />
     </Tabs>
