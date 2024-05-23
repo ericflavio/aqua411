@@ -38,20 +38,17 @@ export const myStylesComuns = StyleSheet.create({
     marginTop: 40,
     marginBottom: 25,
     color: myStylesColors.corTextoTitulo,
-    borderWidth: 0
   },
   textoSubtitulo: {
     fontSize: 22,
     fontWeight: "700",
     marginTop: 0,
     color: myStylesColors.corTextoSubtitulo,
-    borderWidth: 0
   },
   textoComum: {
     fontSize: 20,
     fontWeight: "500",
     color: myStylesColors.corTextoPadrao,
-    borderWidth: 0
   },
   //Botões
   buttonTextoStyle: {

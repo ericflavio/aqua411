@@ -37,7 +37,7 @@ export default function ViewLogin() {
   switch (cenario) {
     case cenarioEntrarEditar:
       !flagErro
-        ? textoRecepcionista = "Já tem cadastro? Informe os dados para entrar"
+        ? textoRecepcionista = "Entre com seus dados, ou clique na opção de cadastramento"
         : textoRecepcionista = "Verifique as informações e tente novamente";
       break;
     case cenarioEntrarValidar:
@@ -236,7 +236,7 @@ export default function ViewLogin() {
               style={myStyles.imgAvatar}
               source={require('../../assets/outros/sheep_padrao.png')}
             />
-            <MaterialIcons name="textsms" size={36} color={(flagErro ? myStylesColors.corErro : myStylesColors.corAzulClaro)} />
+            <MaterialIcons name="textsms" size={32} color={(flagErro ? myStylesColors.corErro : myStylesColors.corAzulClaro)} />
           </View>
 
           <View style={myStyles.conteinerTextoAvatar}>
@@ -273,11 +273,20 @@ export default function ViewLogin() {
 
         {cenario == cenarioEntrarEditar || cenario == cenarioEntrarValidar ?
           <View style={myStyles.containerFacilidades}>
+            <Text styles={myStylesComuns.textoComum}>
+              Opções que podem te ajudar:
+            </Text>
             <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={fluxoCadastrar}>
-              <Text style={myStylesComuns.buttonTextoStyleFlat}>Esqueceu sua senha?</Text>
+              <View styles={{ flexDirection: "row", gap: 4 }}>
+                <MaterialIcons name="lock-open" size={24} color={myStylesColors.corTextoPadrao} />
+                <Text style={myStylesComuns.buttonTextoStyleFlat}>Esqueceu sua senha?</Text>
+              </View>
             </TouchableOpacity>
             <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={fluxoCadastrar}>
-              <Text style={myStylesComuns.buttonTextoStyleFlat}>Clique aqui para se cadastrar</Text>
+              <View styles={{ flexDirection: "row" }}>
+                <MaterialIcons name="person-add-alt" size={24} color={myStylesColors.corTextoPadrao} />
+                <Text style={myStylesComuns.buttonTextoStyleFlat}>Clique aqui para se cadastrar</Text>
+              </View>
             </TouchableOpacity>
           </View>
           : ""}

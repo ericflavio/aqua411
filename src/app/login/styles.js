@@ -32,14 +32,13 @@ export const myStyles = StyleSheet.create({
   containerFacilidades: {
     flex:0,
     flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 12,
+    alignItems: "flex-start",
+    marginTop: 20,
     borderWidth:0,
   },
   imgAvatar: {
-    width: 50, 
-    height: 50, 
+    width: 54, 
+    height: 54, 
     resizeMode: 'contain',
   },
 });

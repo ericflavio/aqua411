@@ -4,6 +4,7 @@ import { myStylesComuns } from '../../styles/stylesComuns';
 import { Link, router } from 'expo-router';
 import { MaterialIcons } from "@expo/vector-icons";
 import { myStylesColors } from "../../styles/stylesColors";
+import { GradienteFill } from '../../componentes/gradienteFill';
 import * as Animatable from 'react-native-animatable';
 
 export default function ViewReception() {
@@ -14,6 +15,7 @@ export default function ViewReception() {
 
   return (
     <View style={myStylesComuns.containerPrincipalSafeArea}>
+      {GradienteFill()}
       <View style={myStyles.containerHeader}>
         <Animatable.Text
           animation="slideInLeft"
@@ -21,7 +23,7 @@ export default function ViewReception() {
           Você ainda lava roupa em casa?
         </Animatable.Text>
         <Text style={myStylesComuns.textoSubtitulo}>
-          Está na hora de conhecer os benefícios das lavanderias automatizadas
+          Está na hora de conhecer os benefícios das lavanderias inteligentes
         </Text>
         <View style={myStyles.containerViewButton}>
           <TouchableOpacity style={myStylesComuns.button} onPress={goToLogin}>
