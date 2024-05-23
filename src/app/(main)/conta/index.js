@@ -17,6 +17,10 @@ export default function ViewContaGestao() {
 
   const iconSize = 32;
 
+  function adicionarLoja() {
+    console.log("+loja")
+  }
+
   return (
     <SafeAreaView style={myStylesComuns.containerPrincipalSafeArea}>
       {GradienteFill()}
@@ -48,7 +52,7 @@ export default function ViewContaGestao() {
 
         <Text style={myStylesComuns.textoComum}>Cadastre suas lavanderias</Text>
         <View style={myStyles.containerOthers}>
-          <TouchableOpacity style={myStylesComuns.buttonFlatWithBgCollor} onPress={{}} >
+          <TouchableOpacity style={myStylesComuns.buttonFlatWithBgCollor} onPress={adicionarLoja} >
             <View style={myStylesComuns.buttonContainerWithIconH}>
               <MaterialIcons name="add-business" size={iconSize} color={myStylesColors.corTextoPadrao} />
               <Text style={myStylesComuns.buttonTextStyleFlat}>Adicionar nova loja</Text>
