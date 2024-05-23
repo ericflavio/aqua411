@@ -14,7 +14,7 @@ import NewErrorMessage, { errorTextOops } from '../../../errors/errorMessage';
 //Tela principal
 export default function ViewAddLoja() {
   const { user, logIn, signIn, checkToken } = useContext(AuthContext);
-  console.log("ViewLogin <inicio> user: ", user);
+  console.log("ViewAddLoja <inicio> user: ", user);
 
   const [cenario, setCenario] = useState(1);
   const [flagErro, setFlagErro] = useState(false);

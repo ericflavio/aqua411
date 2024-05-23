@@ -6,6 +6,7 @@ import { myStylesColors } from "../../../styles/stylesColors";
 import { MaterialIcons } from "@expo/vector-icons";
 import { GradienteFill } from '../../../componentes/gradienteFill';
 import { AuthContext } from "../../../contexts/auth";
+import { router } from 'expo-router';
 
 //Funcçoes de apoio
 
@@ -19,6 +20,7 @@ export default function ViewContaGestao() {
 
   function adicionarLoja() {
     console.log("+loja")
+    router.navigate ('lojaAdicionar/index');
   }
 
   return (
