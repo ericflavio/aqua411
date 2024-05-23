@@ -81,6 +81,7 @@ export default function ViewContaGestao() {
             </View>
           </TouchableOpacity>
         </View>
+
       </ScrollView>
     </SafeAreaView >
   )
