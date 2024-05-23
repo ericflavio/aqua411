@@ -6,9 +6,10 @@ import { Alert } from 'react-native';
 export const idDB = "@lavanderias:DadosLogin"
 
 export async function SetLocalDataLogin(user) {
+  console.log("ssss user ", user.idLogin);
   if (!user || user == undefined || user == null ||
-    !user.login || user.login == undefined || user.login == null) {
-    Alert.alert("Alerta", "Erro ao setar usuário local");
+    !user.idLogin || user.idLogin == undefined || user.idLogin == null) {
+    Alert.alert("Alerta", "Erro ao setar usuário local2");
     return false;
   }
 

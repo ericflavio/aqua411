@@ -203,7 +203,7 @@ export default function ViewLojaMaquinas() {
                 style={myStyles.imgLocalizacao}
                 source={require('../../assets/icones/icon_local2.png')}
               />
-              <Text style={myStylesComuns.buttonTextoStyle}>Pesquisar lavanderias</Text>
+              <Text style={myStylesComuns.buttonTextStyle}>Pesquisar lavanderias</Text>
             </TouchableOpacity>
 
             <View style={myStyles.containerBody2}>
@@ -268,7 +268,7 @@ export default function ViewLojaMaquinas() {
 
             <View style={myStyles.containerFacilidades}>
               <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={false} onPress={atualizarStatus}>
-                <Text style={myStylesComuns.buttonTextoStyleFlat}>Selecione outra loja aqui</Text>
+                <Text style={myStylesComuns.buttonTextStyleFlat}>Selecione outra loja aqui</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -305,7 +305,7 @@ export default function ViewLojaMaquinas() {
 
             {flagViewStatusMaquina == true ?
               <TouchableOpacity style={myStylesComuns.button} onPress={atualizarStatus}>
-                <Text style={myStylesComuns.buttonTextoStyle}>Atualizar</Text>
+                <Text style={myStylesComuns.buttonTextStyle}>Atualizar</Text>
               </TouchableOpacity> : ""
             }
           </View>

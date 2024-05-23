@@ -1,10 +1,10 @@
 //Tratamento de autenticação de usuário; Baseado no FireBase
 
-export async function logInService(email, senha) {
+export async function logInService(idLogin, senha) {
   console.log("authService-logIn");
   return new Promise((resolve, reject) => {
     //setTimeout(() => {
-    if (email === "ericflavio@gmail.com") {
+    if (idLogin === "ericflavio@gmail.com") {
       resolve({
         idlogin: "ericflavio@gmail.com",
         tipLogin: "email",
@@ -23,11 +23,11 @@ export async function logInService(email, senha) {
   })
 }
 
-export async function signInService(email, senha) {
+export async function signInService(idLogin, senha) {
   console.log("authService-signIn");
   return new Promise((resolve, reject) => {
     //setTimeout(() => {
-    if (email === "ericflavio@gmail.com") {
+    if (idLogin === "ericflavio@gmail.com") {
       resolve({
         idlogin: "ericflavio@gmail.com",
         tipLogin: "email",

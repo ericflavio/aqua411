@@ -7,7 +7,7 @@ import { Redirect, Tabs } from 'expo-router';
 
 export default function AppLayout() {
   const { user, isLoading } = useContext(AuthContext);
-  console.log("_layout(main)_ ", "isLoading: ", isLoading, " user: ", user !== null ? user.login : "[null]", "isLiveAccount: ", user !== null && user.isLiveAccount !== undefined ? user.isLiveAccount : "[undefined]");
+  console.log("_layout(main)_ ", "isLoading: ", isLoading, " user: ", user !== null ? user.idLogin : "[null]", "isLiveAccount: ", user !== null && user.isLiveAccount !== undefined ? user.isLiveAccount : "[undefined]");
 
   //Procedimentos de recuperação de usário no storage local em curso
   if (isLoading) {

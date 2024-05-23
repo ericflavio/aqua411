@@ -8,7 +8,7 @@ export const AuthContext = createContext({}); // Inicializa contexto vazio
 export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [isLoading, setLoading] = useState(true);
-  console.log("AuthProvider _ ", "isLoading: ", isLoading , " user: ", user !== null ? user.login : "[null]",  "isLiveAccount: ", user !== null && user.isLiveAccount !== undefined ? user.isLiveAccount : "[undefined]");
+  console.log("AuthProvider _ ", "isLoading: ", isLoading, " user: ", user !== null ? user.idLogin : "[null]", "isLiveAccount: ", user !== null && user.isLiveAccount !== undefined ? user.isLiveAccount : "[undefined]");
 
   useEffect(() => {
     //Toda vez que o app se iniciar/contexto for criado
@@ -19,11 +19,11 @@ export default function AuthProvider({ children }) {
   }, [])
 
   //Funções assíncronas para invocação das APIs
-  async function signIn(email, senha) {
-    if (!email || !senha) return null;
+  async function signIn(idLogin, senha) {
+    if (!idLogin || !senha) return null;
 
     try {
-      const auth = await signInService(email, senha);
+      const auth = await signInService(idLogin, senha);
       await SetLocalDataLogin(auth) //Persiste o usuário localmente
       setUser(auth) //Rerender atualização dos dados do Contexto
       return auth;
@@ -38,11 +38,11 @@ export default function AuthProvider({ children }) {
     return true;
   };
 
-  async function logIn(email, senha) {
-    if (!email || !senha) return null;
+  async function logIn(idLogin, senha) {
+    if (!idLogin || !senha) return null;
 
     try {
-      const auth = await logInService(email, senha);
+      const auth = await logInService(idLogin, senha);
       await SetLocalDataLogin(auth) //Persiste o usuário localmente
       setUser(auth) //Rerender atualização dos dados do Contexto
       return auth;
@@ -77,8 +77,8 @@ export default function AuthProvider({ children }) {
     var auth = null;
     try {
       auth = await GetLocalDataLogin();
-    } catch (e) {}
-    
+    } catch (e) { }
+
     if (auth && auth !== null) {
       setUser(auth) //Rerender e atualização dos dados do Contexto
     }

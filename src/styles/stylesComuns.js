@@ -21,6 +21,10 @@ export const myStylesComuns = StyleSheet.create({
     borderColor: "#98e07eff",
     marginTop: "10%"
   },
+  containerButtonWithIcon: {
+    flexDirection:"row",
+    borderWidth:1
+  },
 
   //Textos
   textoNegritoForte: "700",
@@ -51,12 +55,12 @@ export const myStylesComuns = StyleSheet.create({
     color: myStylesColors.corTextoPadrao,
   },
   //Botões
-  buttonTextoStyle: {
+  buttonTextStyle: {
     fontSize: 18,
     fontWeight: "700",
     color: myStylesColors.corTextoPadrao,
   },
-  buttonTextoStyleFlat: {
+  buttonTextStyleFlat: {
     fontSize: 18,
     fontWeight: "500",
     color: myStylesColors.corTextoPadrao,

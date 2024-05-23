@@ -37,7 +37,7 @@ export default function ViewLogin() {
   switch (cenario) {
     case cenarioEntrarEditar:
       !flagErro
-        ? textoRecepcionista = "Entre com seus dados, ou clique na opção de cadastramento"
+        ? textoRecepcionista = "Entre ou crie um novo cadastro"
         : textoRecepcionista = "Verifique as informações e tente novamente";
       break;
     case cenarioEntrarValidar:
@@ -264,28 +264,26 @@ export default function ViewLogin() {
           }
 
           <TouchableOpacity style={myStylesComuns.button} disabled={!flagEditavel} onPress={prosseguir} >
-            <View style={{ flexDirection: "row" }}>
-              <Text style={myStylesComuns.buttonTextoStyle}>Prosseguir</Text>
+            <View style={myStylesComuns.containerButtonWithIcon}>
+              <Text style={myStylesComuns.buttonTextStyle}>{cenario == cenarioCadastrarEditar || cenario == cenarioCadastrarValidar ? "Cadastrar" : "Entrar"}</Text>
               {!flagEditavel ? <ActivityIndicator /> : ""}
             </View>
           </TouchableOpacity>
+          {cenario == cenarioEntrarEditar || cenario == cenarioEntrarValidar ?
+            <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={fluxoCadastrar}>
+              <View styles={myStylesComuns.containerButtonWithIcon}>
+                <MaterialIcons name="lock-reset" size={24} color={myStylesColors.corTextoPadrao} />
+                <Text style={myStylesComuns.buttonTextStyleFlat}>Esqueceu sua senha?</Text>
+              </View>
+            </TouchableOpacity> : ""}
         </View>
 
         {cenario == cenarioEntrarEditar || cenario == cenarioEntrarValidar ?
           <View style={myStyles.containerFacilidades}>
-            <Text styles={myStylesComuns.textoComum}>
-              Opções que podem te ajudar:
-            </Text>
-            <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={fluxoCadastrar}>
-              <View styles={{ flexDirection: "row", gap: 4 }}>
-                <MaterialIcons name="lock-open" size={24} color={myStylesColors.corTextoPadrao} />
-                <Text style={myStylesComuns.buttonTextoStyleFlat}>Esqueceu sua senha?</Text>
-              </View>
-            </TouchableOpacity>
             <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={fluxoCadastrar}>
               <View styles={{ flexDirection: "row" }}>
                 <MaterialIcons name="person-add-alt" size={24} color={myStylesColors.corTextoPadrao} />
-                <Text style={myStylesComuns.buttonTextoStyleFlat}>Clique aqui para se cadastrar</Text>
+                <Text style={myStylesComuns.buttonTextStyleFlat}>Clique aqui para se cadastrar</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -294,7 +292,7 @@ export default function ViewLogin() {
         {cenario == cenarioCadastrarEditar || cenario == cenarioCadastrarValidar ?
           <View style={myStyles.containerFacilidades}>
             <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={fluxoEntrar}>
-              <Text style={myStylesComuns.buttonTextoStyleFlat}>Clique aqui se já tiver cadastro</Text>
+              <Text style={myStylesComuns.buttonTextStyleFlat}>Clique aqui se já tiver cadastro</Text>
             </TouchableOpacity>
           </View>
           : ""}
@@ -302,7 +300,7 @@ export default function ViewLogin() {
         {cenario == cenarioCadastrarEditarToken || cenario == cenarioCadastrarValidarToken ?
           <View style={myStyles.containerFacilidades}>
             <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={reenviarToken}>
-              <Text style={myStylesComuns.buttonTextoStyleFlat}>Clique para receber novo código</Text>
+              <Text style={myStylesComuns.buttonTextStyleFlat}>Clique para receber novo código</Text>
             </TouchableOpacity>
           </View>
           : ""}
