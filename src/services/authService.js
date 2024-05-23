@@ -6,7 +6,7 @@ export async function logInService(idLogin, senha) {
     //setTimeout(() => {
     if (idLogin === "ericflavio@gmail.com") {
       resolve({
-        idlogin: "ericflavio@gmail.com",
+        idLogin: "ericflavio@gmail.com",
         tipLogin: "email",
         idUser: "1001",
         token: "e14-gadff-134314-13-1-599-361",
@@ -26,10 +26,10 @@ export async function logInService(idLogin, senha) {
 export async function signInService(idLogin, senha) {
   console.log("authService-signIn");
   return new Promise((resolve, reject) => {
-    //setTimeout(() => {
+    setTimeout(() => {
     if (idLogin === "ericflavio@gmail.com") {
       resolve({
-        idlogin: "ericflavio@gmail.com",
+        idLogin: "ericflavio@gmail.com",
         tipLogin: "email",
         idUser: "1001",
         token: "e14-gadff-134314-13-1-599-361",
@@ -42,7 +42,7 @@ export async function signInService(idLogin, senha) {
     } else {
       reject(new Error('Credenciais inválidas'));
     }
-    //s}, 1500);
+    }, 1500);
   })
 }
 

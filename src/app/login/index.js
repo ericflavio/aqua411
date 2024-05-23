@@ -269,6 +269,7 @@ export default function ViewLogin() {
               {!flagEditavel ? <ActivityIndicator /> : ""}
             </View>
           </TouchableOpacity>
+
           {cenario == cenarioEntrarEditar || cenario == cenarioEntrarValidar ?
             <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={fluxoCadastrar}>
               <View styles={myStylesComuns.containerButtonWithIcon}>

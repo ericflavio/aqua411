@@ -30,14 +30,14 @@ export default function NewErrorMessage(cod, e) {
   //Cada sessão do aplicativo deve criar um prefixo com dois dígitos iniciais
 
   switch (cod.substr(0, 2)) {
-    case "ob": // Onboarding (tratamento de signIn e logIn)
+    case "ob": // Onboarding (tratamento de signI, logIn e logOut)
       switch (cod) {
         //Campos
         case "ob101": newError.message = "Informe um e-mail válido."; break;
         case "ob102": newError.message = "Informe uma senha válida."; break;
         case "ob103": newError.message = "Informe duas senhas iguais."; break;
         //Login
-        case "ob104": newError.message = "Estamos com dificuldade para validar os dados informadas."; break;
+        case "ob104": newError.message = "Não reconhecemos os dados informados. Verifique e tente novamente."; break;
         //Token
         case "ob105": newError.message = "Informe um código com 4 dígitos."; break;
         case "ob106": newError.message = "Estamos com dificuldade para validar o código informado."; break;
@@ -49,11 +49,11 @@ export default function NewErrorMessage(cod, e) {
           newError.message = msgDefault + " [" + cod + "]";
       }
       break;
-    case "xx": // Onboarding (tratamento de signIn e logIn)
+    case "pl": // Persistência local
       switch (cod) {
-        case "xx101": newError.message = "Informe um e-mail válido."; break;
-        case "xx102": newError.message = "Informe uma senha válida."; break;
-        case "xx103": newError.message = "Informe duas senhas iguais."; break;
+        case "pl10": newError.message = "Informe os dados para persistir" + " [" + cod + "]"; break;
+        case "pl11": newError.message = "Falha ao persistir os dados"+ " [" + cod + "]"; break;
+        case "pl12": newError.message = "Falha ao recuperar dados persistidos"+ " [" + cod + "]"; break;
         default:
           newError.cod = "de2702" + cod.substr(0, 2);
           newError.message = msgDefault + " [" + cod + "]";
