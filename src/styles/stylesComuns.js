@@ -54,7 +54,7 @@ export const myStylesComuns = StyleSheet.create({
     flexDirection:"row",
     gap:6,
     borderWidth:0,
-    minWidth: "100%"
+    minWidth: "100%",
   },
   buttonContainerWithIconV: {
     flexDirection:"column",
@@ -104,7 +104,8 @@ export const myStylesComuns = StyleSheet.create({
     minHeight: 70,
     minWidth: "50%",
     borderWidth:1,
-    borderColor: myStylesColors.corCinzaClaro
+    borderColor: myStylesColors.corCinzaClaro,
+    borderRadius: 6
   },
 
   //InputText
