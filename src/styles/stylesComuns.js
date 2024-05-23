@@ -50,9 +50,16 @@ export const myStylesComuns = StyleSheet.create({
     color: myStylesColors.corTextoPadrao,
   },
   //Botões
-  buttonContainerWithIcon: {
+  buttonContainerWithIconH: {
     flexDirection:"row",
     gap:6,
+    borderWidth:0,
+    minWidth: "100%"
+  },
+  buttonContainerWithIconV: {
+    flexDirection:"column",
+    gap:6,
+    alignItems:"center",
     borderWidth:0
   },
   buttonTextStyle: {
@@ -86,6 +93,18 @@ export const myStylesComuns = StyleSheet.create({
     padding: 4,
     maxWidth: "100%",
     borderWidth:0
+  },
+  buttonFlatWithBgCollor: {
+    alignItems: 'center',
+    justifyContent: "center",
+    backgroundColor: "white",
+    marginTop: 0,
+    marginBottom: 0,
+    padding: 4,
+    minHeight: 70,
+    minWidth: "50%",
+    borderWidth:1,
+    borderColor: myStylesColors.corCinzaClaro
   },
 
   //InputText

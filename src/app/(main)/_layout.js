@@ -82,9 +82,9 @@ export default function AppLayout() {
       />
 
       <Tabs.Screen
-        name="cadastro/index"
+        name="conta/index"
         options={{
-          title: "Cadastro",
+          title: "Conta",
           tabBarIcon: ({ size, color }) =>
             <MaterialIcons name="person" size={36} color={color} />
         }}
