@@ -54,7 +54,7 @@ export default function ViewLogin() {
       break;
     case cenarioCadastrarEditarToken:
       !flagErro
-        ? textoRecepcionista = "Por segurança, confirme com o código enviado para o seu e-mail"
+        ? textoRecepcionista = "Por segurança, informe o código enviado para o seu e-mail"
         : textoRecepcionista = "Verifique o código e tente novamente";
       break;
     case cenarioCadastrarValidarToken:
@@ -242,7 +242,7 @@ export default function ViewLogin() {
             <View style={myStylesComuns.buttonContainerWithIcon}>
               {!flagEditavel ? <ActivityIndicator /> : ""}
               <Text style={myStylesComuns.buttonTextStyle}>
-                {cenario == cenarioCadastrarEditar || cenario == cenarioCadastrarValidar ? "Cadastrar" : "Entrar"}</Text>
+                {cenario == cenarioEntrarEditar || cenario == cenarioEntrarValidar ? "Entrar" : "Cadastrar"}</Text>
             </View>
           </TouchableOpacity>
         </View>
