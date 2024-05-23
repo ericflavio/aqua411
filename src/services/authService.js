@@ -6,14 +6,15 @@ export async function logInService(email, senha) {
     //setTimeout(() => {
     if (email === "ericflavio@gmail.com") {
       resolve({
-        login: "ericflavio@gmail.com",
-        id: "1001",
+        idlogin: "ericflavio@gmail.com",
+        tipLogin: "email",
+        idUser: "1001",
         token: "e14-gadff-134314-13-1-599-361",
-        isContaAtiva: false,
-        islogista: false,
-        isFranquia: false,
-        isFranqueador: false,
-        idLojaFavoritada: null
+        isLiveAccount: false,
+        isHasStore: false,
+        isFranchise: false,
+        isFranchiser: false,
+        idFavoriteStore: null
       })
     } else {
       reject(new Error('Credenciais inválidas'));
@@ -28,14 +29,15 @@ export async function signInService(email, senha) {
     //setTimeout(() => {
     if (email === "ericflavio@gmail.com") {
       resolve({
-        login: "ericflavio@gmail.com",
-        id: "1001",
+        idlogin: "ericflavio@gmail.com",
+        tipLogin: "email",
+        idUser: "1001",
         token: "e14-gadff-134314-13-1-599-361",
-        isContaAtiva: false,
-        islogista: false,
-        isFranquia: false,
-        isFranqueador: false,
-        idLojaFavoritada: null
+        isLiveAccount: false,
+        isHasStore: false,
+        isFranchise: false,
+        isFranchiser: false,
+        idFavoriteStore: null
       })
     } else {
       reject(new Error('Credenciais inválidas'));

@@ -178,7 +178,7 @@ export default function ViewLojaMaquinas() {
   let bodyHeight = screenHeight - headerHeight + 0;
  
   //sem loja favoritada OU loja com status diferente de "ativa"
-  if (!user.idLojaFavoritada || user.idLojaFavoritada == null) {
+  if (!user.idFavoriteStore || user.idFavoriteStore == null) {
     return (
       <SafeAreaView style={myStylesComuns.containerPrincipalSafeArea}>
         {GradienteFill()}
