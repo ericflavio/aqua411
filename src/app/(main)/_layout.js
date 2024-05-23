@@ -1,6 +1,6 @@
 import { MaterialIcons } from "@expo/vector-icons";
 import { myStylesColors } from '../../styles/stylesColors';
-import { ActivityIndicator, View } from "react-native";
+import { ActivityIndicator, View, Image } from "react-native";
 import { useContext } from 'react';
 import { AuthContext } from "../../contexts/auth";
 import { Redirect, Tabs } from 'expo-router';
@@ -12,8 +12,18 @@ export default function AppLayout() {
   //Procedimentos de recuperação de usário no storage local em curso
   if (isLoading) {
     return (
-      <View style={{ flex: 1, justifyContent: "center" }}>
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center", gap: 12 }}>
         <ActivityIndicator size="large" />
+        <Image
+          style={{
+            width: 140,
+            height: 140,
+            overflow: "scroll",
+            resizeMode: "contain",
+            justifyContent: "center"
+          }}
+          source={require('../../assets/icones/app_icon_01.png')}
+        />
       </View>
     )
   }
