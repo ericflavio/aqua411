@@ -18,6 +18,7 @@ export default function AppLayout() {
       }} >
 
       <Stack.Screen name="lojaAdicionar/index" />
+      
       <Stack.Screen name="lojaGerenciar/index" />
     </Stack>
   )
