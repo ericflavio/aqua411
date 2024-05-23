@@ -8,7 +8,6 @@ import { GradienteFill } from '../../componentes/gradienteFill';
 import * as Animatable from 'react-native-animatable';
 
 export default function ViewReception() {
-  console.log("ViewReception");
   function goToLogin() {
     router.replace('/login');
   }

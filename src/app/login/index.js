@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Redirect, router } from 'expo-router';
+import { router } from 'expo-router';
 import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, ActivityIndicator, Alert } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { myStyles } from "./styles";
@@ -9,6 +9,7 @@ import { InputText } from '../../componentes/inputText';
 import { GradienteFill } from '../../componentes/gradienteFill';
 import { AuthContext } from "../../contexts/auth";
 import NewErrorMessage, { errorTextOops } from '../../errors/errorMessage';
+
 
 //Tela principal
 export default function ViewLogin() {
@@ -37,7 +38,7 @@ export default function ViewLogin() {
   switch (cenario) {
     case cenarioEntrarEditar:
       !flagErro
-        ? textoRecepcionista = "Entre ou crie um novo cadastro"
+        ? textoRecepcionista = "Entre com seus dados ou crie um novo cadastro"
         : textoRecepcionista = "Verifique as informações e tente novamente";
       break;
     case cenarioEntrarValidar:
@@ -53,7 +54,7 @@ export default function ViewLogin() {
       break;
     case cenarioCadastrarEditarToken:
       !flagErro
-        ? textoRecepcionista = "Ative sua conta com o código enviado para o seu e-mail"
+        ? textoRecepcionista = "Por segurança, confirme com o código enviado para o seu e-mail"
         : textoRecepcionista = "Verifique o código e tente novamente";
       break;
     case cenarioCadastrarValidarToken:
@@ -61,6 +62,11 @@ export default function ViewLogin() {
       break;
   };
 
+  function showMsgError(cod) {
+    const error = NewErrorMessage(cod);
+    Alert.alert(errorTextOops, error.message);
+    if (!flagErro) setFlagErro(true);
+  }
   function fluxoEntrar() {
     if (flagErro) setFlagErro(false);
     setCenario(cenarioEntrarEditar);
@@ -110,24 +116,17 @@ export default function ViewLogin() {
     switch (cenario) {
       case cenarioEntrarEditar:
         if (!validarSintaxeEmail(email)) {
-          const error = NewErrorMessage("ob101");
-          Alert.alert(errorTextOops, error.message);
-          if (!flagErro) setFlagErro(true);
+          showMsgError("ob101");
           return;
         };
         if (!validarSintaxeSenha(senhaUm)) {
-          const error = NewErrorMessage("ob102");
-          Alert.alert(errorTextOops, error.message);
-          if (!flagErro) setFlagErro(true);
+          showMsgError("ob102");
           return;
         };
-
         setCenario(cenarioEntrarValidar); //Renderiza tela no modo aguardando realização do login
 
         try {
-          //console.log("ViewLogin -- logIn");
           const user = await logIn(email, senhaUm);
-          console.log("aqui----user: ", user);
           if (user.isLiveAccount && user.isLiveAccount == true) {
             router.replace('/'); //Conta ativa
           } else {
@@ -135,85 +134,61 @@ export default function ViewLogin() {
             setCenario(cenarioCadastrarEditarToken); //Conta não ativa
           }
         } catch (e) {
-          const error = NewErrorMessage("ob104", e);
-          Alert.alert(errorTextOops, error.message);
+          showMsgError("ob104", e);
           setCenario(cenarioEntrarEditar);
-          if (!flagErro) setFlagErro(true);
           return;
         }
         break;
 
       case cenarioCadastrarEditar:
         if (!validarSintaxeEmail(email)) {
-          const error = NewErrorMessage("ob101");
-          Alert.alert(errorTextOops, error.message);
-          if (!flagErro) setFlagErro(true);
+          showMsgError("ob101");
           return;
         };
         if (!validarSintaxeSenha(senhaUm)) {
-          const error = NewErrorMessage("ob102");
-          Alert.alert(errorTextOops, error.message);
-          if (!flagErro) setFlagErro(true);
+          showMsgError("ob102");
           return;
         };
         if (!validarSintaxeSenha(senhaDois)) {
-          const error = NewErrorMessage("ob102");
-          Alert.alert(errorTextOops, error.message);
-          if (!flagErro) setFlagErro(true);
+          showMsgError("ob102");
           return;
         };
         if (senhaUm !== senhaDois) {
-          const error = NewErrorMessage("ob103");
-          Alert.alert(errorTextOops, error.message);
-          if (!flagErro) setFlagErro(true);
+          showMsgError("ob103");
           return;
         };
-
         setCenario(cenarioCadastrarValidar); //Renderiza tela no modo aguardando realização do cadastramento
 
         try {
-          console.log("ViewLogin/ Prosseguir -- sigIn");
           const auth = await signIn(email, senhaUm);
-          console.log("Novo user sucesso!: ", auth);
           setCenario(cenarioCadastrarEditarToken);
           if (flagErro) setFlagErro(false);
         } catch (e) {
-          const error = NewErrorMessage("ob108");
-          Alert.alert(errorTextOops, error.message);
+          showMsgError("ob108");
           setCenario(cenarioCadastrarEditar);
-          if (!flagErro) setFlagErro(true);
           return;
         }
         break;
 
       case cenarioCadastrarEditarToken:
         if (!validarSintaxeToken(token)) {
-          const error = NewErrorMessage("ob105");
-          Alert.alert(errorTextOops, error.message);
-          if (!flagErro) setFlagErro(true);
+          showMsgError("ob105");
           return;
         };
-
         setCenario(cenarioCadastrarValidarToken); //Renderiza tela no modo aguardando
 
         try {
           const isTokenValido = await checkToken(user, token);
-          console.log("isTokenValido: ", isTokenValido);
           if (isTokenValido) {
             router.replace('/');
           } else {
-            //Token inválido
-            const error = NewErrorMessage("ob107");
-            Alert.alert(errorTextOops, error.message);
+            showMsgError("ob107");
             setCenario(cenarioCadastrarEditarToken);
-            if (!flagErro) setFlagErro(true);
             return;
           }
         } catch (e) {
-          const error = NewErrorMessage("ob106");
-          Alert.alert(errorTextOops, error.message);
+          showMsgError("ob106");
           setCenario(cenarioCadastrarEditarToken);
-          if (!flagErro) setFlagErro(true);
           return;
         }
         break;
@@ -264,46 +239,47 @@ export default function ViewLogin() {
           }
 
           <TouchableOpacity style={myStylesComuns.button} disabled={!flagEditavel} onPress={prosseguir} >
-            <View style={myStylesComuns.containerButtonWithIcon}>
-              <Text style={myStylesComuns.buttonTextStyle}>{cenario == cenarioCadastrarEditar || cenario == cenarioCadastrarValidar ? "Cadastrar" : "Entrar"}</Text>
+            <View style={myStylesComuns.buttonContainerWithIcon}>
               {!flagEditavel ? <ActivityIndicator /> : ""}
+              <Text style={myStylesComuns.buttonTextStyle}>
+                {cenario == cenarioCadastrarEditar || cenario == cenarioCadastrarValidar ? "Cadastrar" : "Entrar"}</Text>
             </View>
           </TouchableOpacity>
-
-          {cenario == cenarioEntrarEditar || cenario == cenarioEntrarValidar ?
-            <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={fluxoCadastrar}>
-              <View styles={myStylesComuns.containerButtonWithIcon}>
-                <MaterialIcons name="lock-reset" size={24} color={myStylesColors.corTextoPadrao} />
-                <Text style={myStylesComuns.buttonTextStyleFlat}>Esqueceu sua senha?</Text>
-              </View>
-            </TouchableOpacity> : ""}
         </View>
 
         {cenario == cenarioEntrarEditar || cenario == cenarioEntrarValidar ?
-          <View style={myStyles.containerFacilidades}>
-            <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={fluxoCadastrar}>
-              <View styles={{ flexDirection: "row" }}>
-                <MaterialIcons name="person-add-alt" size={24} color={myStylesColors.corTextoPadrao} />
-                <Text style={myStylesComuns.buttonTextStyleFlat}>Clique aqui para se cadastrar</Text>
+          <>
+            <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={fluxoEntrar} >
+              <View style={myStylesComuns.buttonContainerWithIcon}>
+                <MaterialIcons name="lock-reset" size={24} color={myStylesColors.corTextoPadrao} />
+                <Text style={myStylesComuns.buttonTextStyleFlat}>Esqueceu sua senha?</Text>
               </View>
             </TouchableOpacity>
-          </View>
+            <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={fluxoCadastrar} >
+              <View style={myStylesComuns.buttonContainerWithIcon}>
+                <MaterialIcons name="person-add-alt" size={24} color={myStylesColors.corTextoPadrao} />
+                <Text style={myStylesComuns.buttonTextStyleFlat}>Clique aqui para novo cadastro</Text>
+              </View>
+            </TouchableOpacity>
+          </>
           : ""}
 
         {cenario == cenarioCadastrarEditar || cenario == cenarioCadastrarValidar ?
-          <View style={myStyles.containerFacilidades}>
-            <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={fluxoEntrar}>
-              <Text style={myStylesComuns.buttonTextStyleFlat}>Clique aqui se já tiver cadastro</Text>
-            </TouchableOpacity>
-          </View>
+          <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={fluxoEntrar} >
+            <View style={myStylesComuns.buttonContainerWithIcon}>
+              <MaterialIcons name="login" size={24} color={myStylesColors.corTextoPadrao} />
+              <Text style={myStylesComuns.buttonTextStyleFlat}>Clique aqui se já possuir cadastro</Text>
+            </View>
+          </TouchableOpacity>
           : ""}
 
         {cenario == cenarioCadastrarEditarToken || cenario == cenarioCadastrarValidarToken ?
-          <View style={myStyles.containerFacilidades}>
-            <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={reenviarToken}>
-              <Text style={myStylesComuns.buttonTextStyleFlat}>Clique para receber novo código</Text>
-            </TouchableOpacity>
-          </View>
+          <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={reenviarToken} >
+            <View style={myStylesComuns.buttonContainerWithIcon}>
+              <MaterialIcons name="mail-outline" size={24} color={myStylesColors.corTextoPadrao} />
+              <Text style={myStylesComuns.buttonTextStyleFlat}>Me envie um novo código</Text>
+            </View>
+          </TouchableOpacity>
           : ""}
       </ScrollView>
     </SafeAreaView >

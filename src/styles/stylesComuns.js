@@ -21,11 +21,6 @@ export const myStylesComuns = StyleSheet.create({
     borderColor: "#98e07eff",
     marginTop: "10%"
   },
-  containerButtonWithIcon: {
-    flexDirection:"row",
-    borderWidth:1
-  },
-
   //Textos
   textoNegritoForte: "700",
   textoNegritoMedio: "500",
@@ -55,6 +50,11 @@ export const myStylesComuns = StyleSheet.create({
     color: myStylesColors.corTextoPadrao,
   },
   //Botões
+  buttonContainerWithIcon: {
+    flexDirection:"row",
+    gap:6,
+    borderWidth:0
+  },
   buttonTextStyle: {
     fontSize: 18,
     fontWeight: "700",
@@ -71,15 +71,18 @@ export const myStylesComuns = StyleSheet.create({
     borderColor: myStylesColors.corCinzMedio,
     borderWidth: 1,
     borderRadius: 8,
+    borderBottomWidth: 4,
     marginTop: 12,
     marginBottom: 6,
     padding: 14,
-    borderBottomWidth: 4,
     maxWidth: "100%",
-    fontWeight: "700"
+    fontWeight: "700",
   },
   buttonFlat: {
+    alignItems: 'flex-start',
     backgroundColor: 'transparent',
+    marginTop: 10,
+    marginBottom: 0,
     padding: 4,
     maxWidth: "100%",
     borderWidth:0

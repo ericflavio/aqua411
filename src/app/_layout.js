@@ -6,7 +6,6 @@ import { Slot } from 'expo-router';
 //Slot => representa todas as rotas filhas (childrens)
 export default function RootLayout() {
   console.log("_layout_root <iniciando o app>");
-
   return (
     <AuthProvider>
       <Slot />

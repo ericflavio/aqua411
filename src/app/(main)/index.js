@@ -130,7 +130,7 @@ function horarioFuncionamento(in24h, horaIni, horaFim) {
 //Tela principal HOME
 export default function ViewLojaMaquinas() {
   const { user } = useContext(AuthContext);
-  console.log("(main)/home _ ");
+  console.log("(main)/index <inicio>");
 
   const [cenario, setCenario] = useState(cenarioTeste);
 
@@ -187,7 +187,7 @@ export default function ViewLojaMaquinas() {
           <View style={{ height: bodyHeight, paddingBottom: 96 }}>
             <View style={myStyles.containerHeader}>
               <Text style={myStylesComuns.textoTituloPagina}>
-                Receba informações da sua lavanderia favorita
+                Informações da sua lavanderia favorita
               </Text>
             </View>
             <View style={myStyles.containerBody1}>

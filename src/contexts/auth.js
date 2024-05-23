@@ -8,7 +8,7 @@ export const AuthContext = createContext({}); // Inicializa contexto vazio
 export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [isLoading, setLoading] = useState(true);
-  console.log("AuthProvider _ ", "isLoading: ", isLoading, " user: ", user !== null ? user.idLogin : "[null]", "isLiveAccount: ", user !== null && user.isLiveAccount !== undefined ? user.isLiveAccount : "[undefined]");
+  console.log("AuthProvider <inicio> _ ", "isLoading: ", isLoading, " user: ", user !== null ? user.idLogin : "[null]", "isLiveAccount: ", user !== null && user.isLiveAccount !== undefined ? user.isLiveAccount : "[undefined]");
 
   useEffect(() => {
     //Toda vez que o app se iniciar/contexto for criado
