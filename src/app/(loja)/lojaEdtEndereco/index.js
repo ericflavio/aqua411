@@ -157,8 +157,8 @@ export default function ViewAddLoja() {
       {GradienteFill()}
       <ScrollView style={myStylesComuns.containerPrincipalScroll} showsVerticalScrollIndicator={false}>
 
-        <MaterialIcons name="add-business" size={myStylesComuns.iconSizeButtonRegular} color={myStylesColors.corTextoPadrao} />
-        <View style={myStyles.containerRecepcionista}>
+        <View style={myStyles.containerPrincipal}>
+          <MaterialIcons name="add-business" size={myStylesComuns.iconSizeButtonRegular} color={myStylesColors.corTextoPadrao} />
           {InputText(onChangeCep, "CEP", 1, 8, "default", flagEditavel, cep, null, false)}
           <View>
             <Text style={myStylesComuns.textoComum}>{endereco.localidade} - {endereco.uf}</Text>

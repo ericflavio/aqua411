@@ -4,9 +4,9 @@ import { useContext } from 'react';
 import { AuthContext } from "../../contexts/auth";
 import { Stack } from 'expo-router';
 
-export default function LojistaLayout() {
+export default function LojaLayout() {
   const { user, isLoading } = useContext(AuthContext);
-  console.log("_layout (lojista)_ ", "isLoading: ", isLoading, " user: ", user !== null ? user.idLogin : "[null]", "isLiveAccount: ", user !== null && user.isLiveAccount !== undefined ? user.isLiveAccount : "[undefined]");
+  console.log("_layout (loja)_ ", "isLoading: ", isLoading, " user: ", user !== null ? user.idLogin : "[null]", "isLiveAccount: ", user !== null && user.isLiveAccount !== undefined ? user.isLiveAccount : "[undefined]");
 
   return (
     <Stack
@@ -17,7 +17,7 @@ export default function LojistaLayout() {
         tabBarShowLabel: true,
       }} >
 
-      <Stack.Screen name="lojaAdicionar/index" options={{headerTitle:"Incluir lavanderia"}}/>
+      <Stack.Screen name="lojaEdtEndereco/index" options={{headerTitle:"Informações da loja"}}/>
     </Stack>
   )
 }
