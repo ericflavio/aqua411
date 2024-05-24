@@ -116,6 +116,7 @@ export const myStylesComuns = StyleSheet.create({
     borderWidth: 0,
     fontSize: 20,
     fontWeight: "bold",
+    borderWidth: 1,
     borderLeftWidth: 3,
     borderLeftColor: myStylesColors.corAzulClaro,
     borderRadius: 8,

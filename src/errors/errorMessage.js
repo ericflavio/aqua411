@@ -52,8 +52,18 @@ export default function NewErrorMessage(cod, e) {
     case "pl": // Persistência local
       switch (cod) {
         case "pl10": newError.message = "Informe os dados para persistir" + " [" + cod + "]"; break;
-        case "pl11": newError.message = "Falha ao persistir os dados"+ " [" + cod + "]"; break;
-        case "pl12": newError.message = "Falha ao recuperar dados persistidos"+ " [" + cod + "]"; break;
+        case "pl11": newError.message = "Falha ao persistir os dados" + " [" + cod + "]"; break;
+        case "pl12": newError.message = "Falha ao recuperar dados persistidos" + " [" + cod + "]"; break;
+        default:
+          newError.cod = "de2702" + cod.substr(0, 2);
+          newError.message = msgDefault + " [" + cod + "]";
+      }
+      break;
+    case "vc": // Validação de CEP
+      switch (cod) {
+        case "vc10": newError.message = "Informe o CEP com 8 dígitos numéricos" + " [" + cod + "]"; break;
+        case "vc11": newError.message = "CEP inválido" + " [" + cod + "]"; break;
+        case "vc12": newError.message = "Estamos com dificuldades de validar o CEP. Tente novamente mais tarde" + " [" + cod + "]"; break;
         default:
           newError.cod = "de2702" + cod.substr(0, 2);
           newError.message = msgDefault + " [" + cod + "]";

@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import { AuthContext } from "../../contexts/auth";
 import { Stack } from 'expo-router';
 
-export default function AppLayout() {
+export default function LojistaLayout() {
   const { user, isLoading } = useContext(AuthContext);
   console.log("_layout (lojista)_ ", "isLoading: ", isLoading, " user: ", user !== null ? user.idLogin : "[null]", "isLiveAccount: ", user !== null && user.isLiveAccount !== undefined ? user.isLiveAccount : "[undefined]");
 
@@ -17,7 +17,7 @@ export default function AppLayout() {
         tabBarShowLabel: true,
       }} >
 
-      <Stack.Screen name="lojaAdicionar/index" options={{headerTitle:"Incluir loja"}}/>
+      <Stack.Screen name="lojaAdicionar/index" options={{headerTitle:"Incluir lavanderia"}}/>
     </Stack>
   )
 }
