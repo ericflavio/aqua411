@@ -1,60 +1,58 @@
 import { StyleSheet } from "react-native";
 import { myStylesColors } from './stylesColors';
+import { myStyleSize } from './stylesSize';
 
 export const myStylesComuns = StyleSheet.create({
   //Icones
-  iconSizeButtonRegular: 32,
-  iconSizeButtonSmall: 26,
-  iconSizeButtonLarge: 36,
-  iconSizeTabBar: 34,
-  iconSizeRegular: 36,
-  iconSizeSmall: 32,
-  iconSizeLarge: 40,
+  iconSizeButtonRegular: myStyleSize.iconSizeButtonRegular,
+  iconSizeButtonSmall: myStyleSize.iconSizeButtonSmall,
+  iconSizeButtonLarge: myStyleSize.iconSizeButtonLarge,
+  iconSizeTabBar: myStyleSize.iconSizeTabBar,
+  iconSizeRegular: myStyleSize.iconSizeRegular,
+  iconSizeSmall: myStyleSize.iconSizeSmall,
+  iconSizeLarge: myStyleSize.iconSizeLarge,
+
   //Container
-  containerBordaOnOff: 0,
-  containerBordaRaio: 8,
-  containerTamanhoMedioTelas: 800,
+  containerBordaRaio: myStyleSize.containerBordaRaio,
+  containerTamanhoMedioTelas: myStyleSize.containerTamanhoMedioTelas,
 
   containerPrincipalSafeArea: {
     flex: 1,
     backgroundColor: myStylesColors.corBackgroundClaro,
     alignItems: "center",
-    borderWidth: 0,
+    borderWidth: myStyleSize.containerBordaOnOff,
     borderBlockColor: "#fa7251ff",
   },
   containerPrincipalScroll: {
     flex: 1,
     width: "86%",
-    borderWidth: 0,
+    borderWidth: myStyleSize.containerBordaOnOff,
     borderColor: "#98e07eff",
     marginTop: "10%"
   },
-  //Textos
-  textoNegritoForte: "700",
-  textoNegritoMedio: "500",
-  TextoNegritoOff: "100",
-  textoFonteTam0: 32,
-  textoFonteTam1: 26,
-  textoFonteTam2: 21,
-  textoFonteTam3: 19,
-  textoFonteTam4: 12,
 
+  //Textos
   textoTituloPagina: {
-    fontSize: 32,
-    fontWeight: "700",
+    fontSize: myStyleSize.textoFonteTam0,
+    fontWeight: myStyleSize.textoNegritoForte,
     marginTop: 40,
     marginBottom: 25,
     color: myStylesColors.corTextoTitulo,
   },
   textoSubtitulo: {
-    fontSize: 22,
-    fontWeight: "700",
+    fontSize: myStyleSize.textoFonteTam2,
+    fontWeight: myStyleSize.textoNegritoForte,
     marginTop: 0,
     color: myStylesColors.corTextoSubtitulo,
   },
   textoComum: {
-    fontSize: 20,
-    fontWeight: "500",
+    fontSize: myStyleSize.textoFonteTam3,
+    fontWeight: myStyleSize.textoNegritoMedio,
+    color: myStylesColors.corTextoPadrao,
+  },
+  textoPequeno: {
+    fontSize: myStyleSize.textoFonteTam5,
+    fontWeight: myStyleSize.TextoNegritoOff,
     color: myStylesColors.corTextoPadrao,
   },
   //Botões
@@ -80,13 +78,13 @@ export const myStylesComuns = StyleSheet.create({
     borderWidth:0
   },
   buttonTextStyle: {
-    fontSize: 18,
-    fontWeight: "700",
+    fontSize: myStyleSize.textoFonteTam4,
+    fontWeight: myStyleSize.textoNegritoForte,
     color: myStylesColors.corTextoPadrao,
   },
   buttonTextStyleFlat: {
-    fontSize: 18,
-    fontWeight: "500",
+    fontSize: myStyleSize.textoFonteTam4,
+    fontWeight: myStyleSize.textoNegritoMedio,
     color: myStylesColors.corTextoPadrao,
   },
   button: {

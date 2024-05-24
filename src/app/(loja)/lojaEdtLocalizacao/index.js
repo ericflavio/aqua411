@@ -59,10 +59,10 @@ export default function ViewEdtLocalizacaoLoja() {
     return isValid;
   }
   function validarSintaxeLongitude(longitude) {
-    return false;
+    if (longitude.length < 10) { return false } else { return true };
   }
   function validarSintaxeLatitude(latitude) {
-    return false;
+    if (latitude.length < 10) { return false } else { return true };
   }
 
   function onChangeLatitude(latitude) {
@@ -78,6 +78,15 @@ export default function ViewEdtLocalizacaoLoja() {
   async function prosseguir() {
     switch (cenario) {
       case cenarioEditar:
+
+        if (latitude.length > 0 && !validarSintaxeLatitude(latitude)) {
+          showMsgError("gu12");
+          return;
+        }
+        if (longitude.length > 0 && !validarSintaxeLongitude(longitude)) {
+          showMsgError("gu13");
+          return;
+        }
 
         if (urlGoogleMaps.length > 0) {
           if (!validarSintaxeUrl(urlGoogleMaps)) {
@@ -115,11 +124,9 @@ export default function ViewEdtLocalizacaoLoja() {
         </View>
 
         <View style={myStyles.containerPrincipal}>
-          <Text style={myStylesComuns.textoFonteTam3}>Cole aqui a URL do GoogleMaps</Text>
-          {InputText("Endereço/url GoogleMaps", onChangeUrl, "Endereço WEB (URl)", 1, 200, "default", flagEditavel, urlGoogleMaps, false)}
-          <Text style={myStylesComuns.textoFonteTam3}>Latitude e Longitude no formato de grau decimal</Text>
           {InputText("Latitude", onChangeLatitude, "Latitude (ex. 15,23456)", 1, 12, "default", flagEditavel, latitude, false)}
           {InputText("Longitude", onChangeLongitude, "Longitude (ex. -30,67890)", 1, 12, "default", flagEditavel, longitude, false)}
+          {InputText("Cole aqui o endereço/url GoogleMaps", onChangeUrl, "url GoogleMaps", 1, 200, "default", flagEditavel, urlGoogleMaps, false)}
 
           <TouchableOpacity style={myStylesComuns.button} disabled={!flagEditavel} onPress={prosseguir} >
             <View style={myStylesComuns.buttonContainerWithIconHC}>
@@ -127,6 +134,10 @@ export default function ViewEdtLocalizacaoLoja() {
               <Text style={myStylesComuns.buttonTextStyle}>Continuar</Text>
             </View>
           </TouchableOpacity>
+        </View>
+        <View style={myStyles.containerBottom}>
+          <MaterialIcons name="check-circle-outline" size={myStylesComuns.iconSizeSmall} color={myStylesColors.corSucesso} />
+          <Text style={myStylesComuns.texto}>Informações opcionais. Você pode continuar sem informá-las</Text>
         </View>
 
       </ScrollView>

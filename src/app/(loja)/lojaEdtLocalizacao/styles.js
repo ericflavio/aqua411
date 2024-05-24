@@ -17,4 +17,10 @@ export const myStyles = StyleSheet.create({
     padding: 8,
     borderWidth: myStylesComuns.containerBordaOnOff
   },
+  containerBottom: {
+    flexDirection:"row", 
+    marginTop: 10,
+    gap:8, 
+    paddingLeft:8
+  },
 });
