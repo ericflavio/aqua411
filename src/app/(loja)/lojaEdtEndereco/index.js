@@ -12,18 +12,15 @@ import NewErrorMessage, { errorTextOops } from '../../../errors/errorMessage';
 import { consultaCepService } from '../../../services/cepService';
 
 //Tela principal
-export default function ViewAddLoja() {
+export default function ViewEdtEnderecoLoja() {
   const { user } = useContext(AuthContext);
-  console.log("ViewAddLoja <inicio> user: ", user);
+  console.log("ViewEdtEnderecoLoja <inicio> user: ", user);
 
   const [cenario, setCenario] = useState(1);
   const [flagErro, setFlagErro] = useState(false);
   const [email, setEmail] = useState(null);
 
-  const [cep, setCep] = useState(null);
-  const [numero, setNumero] = useState("");
-  const [complemento, setComplemento] = useState("");
-  const [endereco, setEndereco] = useState({
+  const voidEndereco = {
     cep: "",
     localidade: "",
     uf: "",
@@ -31,11 +28,13 @@ export default function ViewAddLoja() {
     bairro: "",
     logradouro: "",
     numero: "",
-    complemento: "",
-  })
+    complemento: ""
+  };
 
-  //cep
-  //complemento do cep
+  const [cep, setCep] = useState(null);
+  const [numero, setNumero] = useState("");
+  const [complemento, setComplemento] = useState("");
+  const [endereco, setEndereco] = useState(voidEndereco)
 
   //url google maps
   //longitude e latitude
@@ -56,8 +55,8 @@ export default function ViewAddLoja() {
 
   //link da camera ao vivo
 
-  const cenarioEditar = 1; // Edita dados de login
-  const cenarioValidar = 11; // Valida dados fornecidos para login
+  const cenarioEditar = 1;
+  const cenarioValidar = 11;
 
   var flagEditavel = true;
   cenario > 10 ? flagEditavel = false : flagEditavel = true;
@@ -68,15 +67,11 @@ export default function ViewAddLoja() {
     if (!flagErro) setFlagErro(true);
   }
 
-  function onChangeEmail(emailEdt) {
-    //TODO: configurar Upercase -- automaticupscale = false
-    //console.log("email: ", emailEdt)
-    //if (emailEdt === undefined) emailEdt = "";
-    //var emailEdtLC = emailEdt.toLowerCase();
-    //console.log("emailEdtLC: ", emailEdtLC)
-    setEmail(emailEdt);
+  async function onChangeNumero(numero) {
+    setNumero(numero);
   }
-  async function onChangeEndereco(endereco) {
+  async function onChangeComplemento(complemento) {
+    setComplemento(complemento);
   }
 
   async function onChangeCep(cep) {
@@ -95,7 +90,7 @@ export default function ViewAddLoja() {
         const endereco = await consultaCepService(cep);
         if (endereco.erro) {
           showMsgError("vc11");
-          setEndereco(null);
+          setEndereco(voidEndereco);
         } else {
           setEndereco({
             cep: endereco.cep,
@@ -107,22 +102,16 @@ export default function ViewAddLoja() {
             numero: numero,
             complemento: complemento,
           })
-          setCenario(cenarioEditar);
         }
+        setCenario(cenarioEditar);
         return;
       } catch (e) {
         showMsgError("vc12");
-        setEndereco(null);
+        setEndereco(voidEndereco);
         setCenario(cenarioEditar);
         return;
       }
     }
-  }
-
-  function validarSintaxeEmail(email) {
-    if (!email || email.length <= 5) return false;
-    const regex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+$/i;
-    return regex.test(email);
   }
 
   async function prosseguir() {
@@ -157,19 +146,20 @@ export default function ViewAddLoja() {
       {GradienteFill()}
       <ScrollView style={myStylesComuns.containerPrincipalScroll} showsVerticalScrollIndicator={false}>
 
-        <View style={myStyles.containerPrincipal}>
+        <View style={myStyles.containerHeader}>
           <MaterialIcons name="add-business" size={myStylesComuns.iconSizeButtonRegular} color={myStylesColors.corTextoPadrao} />
+          <Text style={myStylesComuns.textoSubtitulo}>Endereço</Text>
+        </View>
+
+        <View style={myStyles.containerPrincipal}>
           {InputText(onChangeCep, "CEP", 1, 8, "default", flagEditavel, cep, null, false)}
-          <View>
-            <Text style={myStylesComuns.textoComum}>{endereco.localidade} - {endereco.uf}</Text>
-            <Text style={myStylesComuns.textoComum}>DDD {endereco.ddd}</Text>
-            <Text style={myStylesComuns.textoComum}>Bairro {endereco.bairro}</Text>
+          <View style={{ paddingLeft: 10 }}>
+            <Text style={myStylesComuns.textoComum}>{endereco.localidade} {endereco.uf}</Text>
+            <Text style={myStylesComuns.textoComum}>{endereco.bairro}</Text>
             <Text style={myStylesComuns.textoComum}>{endereco.logradouro}</Text>
           </View>
-          {InputText(onChangeEndereco, "Número, ou s/n", 1, 5, "default", flagEditavel, numero, null, false)}
-          {InputText(onChangeEndereco, "Complemento", 1, 80, "default", flagEditavel, complemento, null, false)}
-
-          {/*InputText(onChangeEmail, "seu_email@algo.com", 1, 4, "e-mail", flagEditavel, email, null, false)*/}
+          {InputText(onChangeNumero, "Número, ou s/n", 1, 5, "default", flagEditavel, numero, null, false)}
+          {InputText(onChangeComplemento, "Complemento", 1, 80, "default", flagEditavel, complemento, null, false)}
 
           <TouchableOpacity style={myStylesComuns.button} disabled={!flagEditavel} onPress={prosseguir} >
             <View style={myStylesComuns.buttonContainerWithIconHC}>
