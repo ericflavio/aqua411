@@ -9,7 +9,6 @@ export const myStyles = StyleSheet.create({
     width:"100%"
   },
   containerBasics: {
-    flex:1,
     flexDirection: "row",
     alignContent: "stretch",
     gap:8,
@@ -18,7 +17,6 @@ export const myStyles = StyleSheet.create({
     width:"100%"
   },
   containerOthers: {
-    flex:1,
     alignItems:"flex-start",
     alignContent:"stretch",
     gap:8,

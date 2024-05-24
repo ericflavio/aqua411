@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image } from "react-native";
 import { myStyles } from "./styles";
 import { myStylesComuns } from '../../../styles/stylesComuns';
@@ -11,16 +11,13 @@ import { router } from 'expo-router';
 //Funcçoes de apoio
 
 //Tela principal HOME
-export default function ViewContaGestao() {
+export default function ViewConta() {
   const { user } = useContext(AuthContext);
   var name = "Olá!";
   user.name ? name = user.name : name = user.idLogin;
 
-  const iconSize = 32;
-
   function adicionarLoja() {
-    console.log("+loja")
-    router.navigate ('/lojaAdicionar');
+    router.navigate('/lojaAdicionar');
   }
 
   return (
@@ -40,13 +37,13 @@ export default function ViewContaGestao() {
         <View style={myStyles.containerBasics}>
           <TouchableOpacity style={myStylesComuns.buttonFlatWithBgCollor} onPress={{}} >
             <View style={myStylesComuns.buttonContainerWithIconV}>
-              <MaterialIcons name="help-outline" size={iconSize} color={myStylesColors.corTextoPadrao} />
+              <MaterialIcons name="help-outline" size={myStylesComuns.iconSizeButtonRegular} color={myStylesColors.corTextoPadrao} />
               <Text style={myStylesComuns.buttonTextStyleFlat}>Ajuda</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity style={myStylesComuns.buttonFlatWithBgCollor} onPress={{}} >
             <View style={myStylesComuns.buttonContainerWithIconV}>
-              <MaterialIcons name="payment" size={iconSize} color={myStylesColors.corTextoPadrao} />
+              <MaterialIcons name="payment" size={myStylesComuns.iconSizeButtonRegular} color={myStylesColors.corTextoPadrao} />
               <Text style={myStylesComuns.buttonTextStyleFlat}>Pagamentos</Text>
             </View>
           </TouchableOpacity>
@@ -56,13 +53,13 @@ export default function ViewContaGestao() {
         <View style={myStyles.containerOthers}>
           <TouchableOpacity style={myStylesComuns.buttonFlatWithBgCollor} onPress={adicionarLoja} >
             <View style={myStylesComuns.buttonContainerWithIconHL}>
-              <MaterialIcons name="add-business" size={iconSize} color={myStylesColors.corTextoPadrao} />
+              <MaterialIcons name="add-business" size={myStylesComuns.iconSizeButtonRegular} color={myStylesColors.corTextoPadrao} />
               <Text style={myStylesComuns.buttonTextStyleFlat}>Adicionar nova loja</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity style={myStylesComuns.buttonFlatWithBgCollor} onPress={{}} >
             <View style={myStylesComuns.buttonContainerWithIconHL}>
-              <MaterialIcons name="local-laundry-service" size={iconSize} color={myStylesColors.corTextoPadrao} />
+              <MaterialIcons name="local-laundry-service" size={myStylesComuns.iconSizeButtonRegular} color={myStylesColors.corTextoPadrao} />
               <Text style={myStylesComuns.buttonTextStyleFlat}>Gerenciar minhas lojas</Text>
             </View>
           </TouchableOpacity>
@@ -72,13 +69,13 @@ export default function ViewContaGestao() {
         <View style={myStyles.containerOthers}>
           <TouchableOpacity style={myStylesComuns.buttonFlatWithBgCollor} onPress={{}} >
             <View style={myStylesComuns.buttonContainerWithIconHL}>
-              <MaterialIcons name="business" size={iconSize} color={myStylesColors.corTextoPadrao} />
+              <MaterialIcons name="business" size={myStylesComuns.iconSizeButtonRegular} color={myStylesColors.corTextoPadrao} />
               <Text style={myStylesComuns.buttonTextStyleFlat}>Adicionar franquia</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity style={myStylesComuns.buttonFlatWithBgCollor} onPress={{}} >
             <View style={myStylesComuns.buttonContainerWithIconHL}>
-              <MaterialIcons name="business-center" size={iconSize} color={myStylesColors.corTextoPadrao} />
+              <MaterialIcons name="business-center" size={myStylesComuns.iconSizeButtonRegular} color={myStylesColors.corTextoPadrao} />
               <Text style={myStylesComuns.buttonTextStyleFlat}>Gerenciar minhas franquias</Text>
             </View>
           </TouchableOpacity>

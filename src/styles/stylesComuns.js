@@ -2,6 +2,14 @@ import { StyleSheet } from "react-native";
 import { myStylesColors } from './stylesColors';
 
 export const myStylesComuns = StyleSheet.create({
+  //Icones
+  iconSizeButtonRegular: 32,
+  iconSizeButtonSmall: 26,
+  iconSizeButtonLarge: 36,
+  iconSizeTabBar: 34,
+  iconSizeRegular: 36,
+  iconSizeSmall: 32,
+  iconSizeLarge: 40,
   //Container
   containerBordaOnOff: 0,
   containerBordaRaio: 8,
@@ -55,6 +63,7 @@ export const myStylesComuns = StyleSheet.create({
     alignItems:"flex-start",
     gap:6,
     borderWidth:0,
+    paddingLeft:8,
     minWidth: "100%",
   },
   buttonContainerWithIconHC: {

@@ -24,14 +24,14 @@ export default function ViewAddLoja() {
   const [numero, setNumero] = useState("");
   const [complemento, setComplemento] = useState("");
   const [endereco, setEndereco] = useState({
-    cep:"",
-    localidade:"",
-    uf:"",
-    ddd:"",
-    bairro:"",
-    logradouro:"",
-    numero:"",
-    complemento:"",
+    cep: "",
+    localidade: "",
+    uf: "",
+    ddd: "",
+    bairro: "",
+    logradouro: "",
+    numero: "",
+    complemento: "",
   })
 
   //cep
@@ -156,9 +156,9 @@ export default function ViewAddLoja() {
     <SafeAreaView style={myStylesComuns.containerPrincipalSafeArea}>
       {GradienteFill()}
       <ScrollView style={myStylesComuns.containerPrincipalScroll} showsVerticalScrollIndicator={false}>
+
+        <MaterialIcons name="add-business" size={myStylesComuns.iconSizeButtonRegular} color={myStylesColors.corTextoPadrao} />
         <View style={myStyles.containerRecepcionista}>
-
-
           {InputText(onChangeCep, "CEP", 1, 8, "default", flagEditavel, cep, null, false)}
           <View>
             <Text style={myStylesComuns.textoComum}>{endereco.localidade} - {endereco.uf}</Text>

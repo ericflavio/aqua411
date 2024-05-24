@@ -1,5 +1,6 @@
 import { MaterialIcons } from "@expo/vector-icons";
 import { myStylesColors } from '../../styles/stylesColors';
+import { myStylesComuns } from '../../styles/stylesComuns';
 import { ActivityIndicator, View, Image } from "react-native";
 import { useContext } from 'react';
 import { AuthContext } from "../../contexts/auth";
@@ -47,18 +48,18 @@ export default function AppLayout() {
       tabBarShowLabel: true,
       tabBarLabelStyle: {
         fontSize: 16,
-        //paddingBottom: 3
+        paddingBottom: 6,
       },
       tabBarStyle: {
         position: "absolute",
         backgroundColor: "white",
         borderTopWidth: 0,
-        borderRadius: 10,
+        borderRadius: 0,
         bottom: 0,
         left: 0,
         right: 0,
         elevation: 0,
-        height: 72,
+        height: 74,
       }
 
     }}>
@@ -68,7 +69,7 @@ export default function AppLayout() {
         options={{
           title: "Inicio",
           tabBarIcon: ({ size, color }) =>
-            <MaterialIcons name="local-laundry-service" size={36} color={color} />
+            <MaterialIcons name="local-laundry-service" size={myStylesComuns.iconSizeTabBar} color={color} />
         }}
       />
 
@@ -77,7 +78,7 @@ export default function AppLayout() {
         options={{
           title: "Promo",
           tabBarIcon: ({ size, color }) =>
-            <MaterialIcons name="card-giftcard" size={36} color={color} />
+            <MaterialIcons name="card-giftcard" size={myStylesComuns.iconSizeTabBar} color={color} />
         }}
       />
 
@@ -86,7 +87,7 @@ export default function AppLayout() {
         options={{
           title: "Conta",
           tabBarIcon: ({ size, color }) =>
-            <MaterialIcons name="person" size={36} color={color} />
+            <MaterialIcons name="person" size={myStylesComuns.iconSizeTabBar} color={color} />
         }}
       />
     </Tabs>
