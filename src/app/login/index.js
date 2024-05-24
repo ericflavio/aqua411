@@ -239,7 +239,7 @@ export default function ViewLogin() {
           }
 
           <TouchableOpacity style={myStylesComuns.button} disabled={!flagEditavel} onPress={prosseguir} >
-            <View style={myStylesComuns.buttonContainerWithIconH}>
+            <View style={myStylesComuns.buttonContainerWithIconHC}>
               {!flagEditavel ? <ActivityIndicator /> : ""}
               <Text style={myStylesComuns.buttonTextStyle}>
                 {cenario == cenarioEntrarEditar || cenario == cenarioEntrarValidar ? "Entrar" : "Cadastrar"}</Text>
@@ -250,13 +250,13 @@ export default function ViewLogin() {
         {cenario == cenarioEntrarEditar || cenario == cenarioEntrarValidar ?
           <>
             <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={fluxoEntrar} >
-              <View style={myStylesComuns.buttonContainerWithIconH}>
+              <View style={myStylesComuns.buttonContainerWithIconHL}>
                 <MaterialIcons name="lock-reset" size={24} color={myStylesColors.corTextoPadrao} />
                 <Text style={myStylesComuns.buttonTextStyleFlat}>Esqueceu sua senha?</Text>
               </View>
             </TouchableOpacity>
             <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={fluxoCadastrar} >
-              <View style={myStylesComuns.buttonContainerWithIconH}>
+              <View style={myStylesComuns.buttonContainerWithIconHL}>
                 <MaterialIcons name="person-add-alt" size={24} color={myStylesColors.corTextoPadrao} />
                 <Text style={myStylesComuns.buttonTextStyleFlat}>Clique aqui para novo cadastro</Text>
               </View>
@@ -266,7 +266,7 @@ export default function ViewLogin() {
 
         {cenario == cenarioCadastrarEditar || cenario == cenarioCadastrarValidar ?
           <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={fluxoEntrar} >
-            <View style={myStylesComuns.buttonContainerWithIconH}>
+            <View style={myStylesComuns.buttonContainerWithIconHL}>
               <MaterialIcons name="login" size={24} color={myStylesColors.corTextoPadrao} />
               <Text style={myStylesComuns.buttonTextStyleFlat}>Clique aqui se já possuir cadastro</Text>
             </View>
@@ -275,7 +275,7 @@ export default function ViewLogin() {
 
         {cenario == cenarioCadastrarEditarToken || cenario == cenarioCadastrarValidarToken ?
           <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={reenviarToken} >
-            <View style={myStylesComuns.buttonContainerWithIconH}>
+            <View style={myStylesComuns.buttonContainerWithIconHL}>
               <MaterialIcons name="mail-outline" size={24} color={myStylesColors.corTextoPadrao} />
               <Text style={myStylesComuns.buttonTextStyleFlat}>Me envie um novo código</Text>
             </View>

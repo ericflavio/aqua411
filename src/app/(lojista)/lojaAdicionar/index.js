@@ -21,6 +21,7 @@ export default function ViewAddLoja() {
   const [email, setEmail] = useState(null);
 
   const [cep, setCep] = useState(null);
+  const [numero, setNumero] = useState("");
   const [complemento, setComplemento] = useState("");
   const [endereco, setEndereco] = useState({
     cep:"",
@@ -29,6 +30,7 @@ export default function ViewAddLoja() {
     ddd:"",
     bairro:"",
     logradouro:"",
+    numero:"",
     complemento:"",
   })
 
@@ -102,6 +104,7 @@ export default function ViewAddLoja() {
             ddd: endereco.ddd,
             bairro: endereco.bairro,
             logradouro: endereco.logradouro,
+            numero: numero,
             complemento: complemento,
           })
           setCenario(cenarioEditar);
@@ -163,14 +166,15 @@ export default function ViewAddLoja() {
             <Text style={myStylesComuns.textoComum}>Bairro {endereco.bairro}</Text>
             <Text style={myStylesComuns.textoComum}>{endereco.logradouro}</Text>
           </View>
+          {InputText(onChangeEndereco, "Número, ou s/n", 1, 5, "default", flagEditavel, numero, null, false)}
           {InputText(onChangeEndereco, "Complemento", 1, 80, "default", flagEditavel, complemento, null, false)}
 
-          {InputText(onChangeEmail, "seu_email@algo.com", 1, 4, "e-mail", flagEditavel, email, null, false)}
+          {/*InputText(onChangeEmail, "seu_email@algo.com", 1, 4, "e-mail", flagEditavel, email, null, false)*/}
 
           <TouchableOpacity style={myStylesComuns.button} disabled={!flagEditavel} onPress={prosseguir} >
-            <View style={myStylesComuns.buttonContainerWithIconH}>
+            <View style={myStylesComuns.buttonContainerWithIconHC}>
               {!flagEditavel ? <ActivityIndicator /> : ""}
-              <Text style={myStylesComuns.buttonTextStyle}>Verificar CEP</Text>
+              <Text style={myStylesComuns.buttonTextStyle}>Continuar</Text>
             </View>
           </TouchableOpacity>
         </View>

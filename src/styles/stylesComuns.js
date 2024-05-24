@@ -50,8 +50,16 @@ export const myStylesComuns = StyleSheet.create({
     color: myStylesColors.corTextoPadrao,
   },
   //Botões
-  buttonContainerWithIconH: {
+  buttonContainerWithIconHL: {
     flexDirection:"row",
+    alignItems:"flex-start",
+    gap:6,
+    borderWidth:0,
+    minWidth: "100%",
+  },
+  buttonContainerWithIconHC: {
+    flexDirection:"row",
+    justifyContent:"center",
     gap:6,
     borderWidth:0,
     minWidth: "100%",
@@ -113,12 +121,11 @@ export const myStylesComuns = StyleSheet.create({
     marginTop: 6,
     height: 54,
     margin: 0,
-    borderWidth: 0,
     fontSize: 20,
     fontWeight: "bold",
-    borderWidth: 1,
-    borderLeftWidth: 3,
-    borderLeftColor: myStylesColors.corAzulClaro,
+    borderWidth: 0,
+    borderBottomWidth: 1.5,
+    borderBottomColor: myStylesColors.corAzulClaro,
     borderRadius: 8,
     backgroundColor: "white",
     padding: 10,

@@ -52,32 +52,32 @@ export default function ViewContaGestao() {
           </TouchableOpacity>
         </View>
 
-        <Text style={myStylesComuns.textoComum}>Cadastre suas lavanderias</Text>
+        <Text style={myStylesComuns.textoComum}>Cadastre sua lavanderia</Text>
         <View style={myStyles.containerOthers}>
           <TouchableOpacity style={myStylesComuns.buttonFlatWithBgCollor} onPress={adicionarLoja} >
-            <View style={myStylesComuns.buttonContainerWithIconH}>
+            <View style={myStylesComuns.buttonContainerWithIconHL}>
               <MaterialIcons name="add-business" size={iconSize} color={myStylesColors.corTextoPadrao} />
               <Text style={myStylesComuns.buttonTextStyleFlat}>Adicionar nova loja</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity style={myStylesComuns.buttonFlatWithBgCollor} onPress={{}} >
-            <View style={myStylesComuns.buttonContainerWithIconH}>
+            <View style={myStylesComuns.buttonContainerWithIconHL}>
               <MaterialIcons name="local-laundry-service" size={iconSize} color={myStylesColors.corTextoPadrao} />
               <Text style={myStylesComuns.buttonTextStyleFlat}>Gerenciar minhas lojas</Text>
             </View>
           </TouchableOpacity>
         </View>
 
-        <Text style={myStylesComuns.textoComum}>Opções para franqueadores</Text>
+        <Text style={myStylesComuns.textoComum}>Opções para franqueador(a)</Text>
         <View style={myStyles.containerOthers}>
           <TouchableOpacity style={myStylesComuns.buttonFlatWithBgCollor} onPress={{}} >
-            <View style={myStylesComuns.buttonContainerWithIconH}>
+            <View style={myStylesComuns.buttonContainerWithIconHL}>
               <MaterialIcons name="business" size={iconSize} color={myStylesColors.corTextoPadrao} />
               <Text style={myStylesComuns.buttonTextStyleFlat}>Adicionar franquia</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity style={myStylesComuns.buttonFlatWithBgCollor} onPress={{}} >
-            <View style={myStylesComuns.buttonContainerWithIconH}>
+            <View style={myStylesComuns.buttonContainerWithIconHL}>
               <MaterialIcons name="business-center" size={iconSize} color={myStylesColors.corTextoPadrao} />
               <Text style={myStylesComuns.buttonTextStyleFlat}>Gerenciar minhas franquias</Text>
             </View>
