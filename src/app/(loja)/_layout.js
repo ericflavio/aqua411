@@ -18,6 +18,7 @@ export default function LojaLayout() {
       }} >
 
       <Stack.Screen name="lojaEdtEndereco/index" options={{headerTitle:"Informações da loja"}}/>
+      <Stack.Screen name="lojaEdtLocalizacao/index" options={{headerTitle:"Informações da loja"}}/>
     </Stack>
   )
 }

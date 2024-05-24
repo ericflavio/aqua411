@@ -59,7 +59,9 @@ export default function NewErrorMessage(cod, e) {
           newError.message = msgDefault + " [" + cod + "]";
       }
       break;
-    case "vc": // Validação de CEP
+
+    //Compartilhado
+    case "vc": // Validação de CEP e endereço
       switch (cod) {
         case "vc10": newError.message = "Informe o CEP com 8 dígitos numéricos" + " [" + cod + "]"; break;
         case "vc11": newError.message = "CEP inválido" + " [" + cod + "]"; break;

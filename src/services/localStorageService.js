@@ -32,6 +32,7 @@ export async function SetLocalDataLogin(user) {
   user.timestamp = dataHora;
 
   try {
+    //parse de json para string
     const jsonValue = JSON.stringify(user);
     await AsyncStorage.setItem(idDB, jsonValue);
   } catch (e) {
@@ -43,6 +44,7 @@ export async function SetLocalDataLogin(user) {
 export async function GetLocalDataLogin() {
   try {
     const response = await AsyncStorage.getItem(idDB);
+    //Parce de string para json
     const userDataLogin = response ? JSON.parse(response) : null;
     return userDataLogin;
   } catch (e) {

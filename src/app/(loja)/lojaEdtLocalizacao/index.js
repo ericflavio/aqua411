@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { router } from 'expo-router';
+import { router, useLocalSearchParams  } from 'expo-router';
 import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, ActivityIndicator, Alert } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { myStyles } from "./styles";
@@ -12,9 +12,11 @@ import NewErrorMessage, { errorTextOops } from '../../../errors/errorMessage';
 import { consultaCepService } from '../../../services/cepService';
 
 //Tela principal
-export default function ViewEdtEnderecoLoja() {
+export default function ViewEdtLocalizacaoLoja() {
   const { user } = useContext(AuthContext);
-  console.log("ViewEdtEnderecoLoja <inicio>");
+  const { navigateParmLoja } = useLocalSearchParams();
+  var loja = JSON.parse(navigateParmLoja)
+  console.log("ViewEdtLocalizacaoLoja <inicio> loja: ", loja.endereco);
 
   const [cenario, setCenario] = useState(1);
   const [flagErro, setFlagErro] = useState(false);
@@ -31,7 +33,7 @@ export default function ViewEdtEnderecoLoja() {
     complemento: ""
   };
 
-  const [cep, setCep] = useState("70847060");
+  const [cep, setCep] = useState(null);
   const [numero, setNumero] = useState("");
   const [complemento, setComplemento] = useState("");
   const [endereco, setEndereco] = useState(voidEndereco)
@@ -61,18 +63,6 @@ export default function ViewEdtEnderecoLoja() {
   var flagEditavel = true;
   cenario > 10 ? flagEditavel = false : flagEditavel = true;
 
-  function goTo() {
-    //Compoe a parte do endereco no objeto LOJA e passa adiante
-    const loja = {};
-    loja.endereco = endereco;
-    router.navigate({
-      pathname: "/lojaEdtLocalizacao",
-      params: {
-        navigateParmLoja: JSON.stringify(loja)
-      }
-    })
-  }
-
   function showMsgError(cod) {
     const error = NewErrorMessage(cod);
     Alert.alert(errorTextOops, error.message);
@@ -97,6 +87,7 @@ export default function ViewEdtEnderecoLoja() {
     setCep(cep);
 
     if (cep.length >= 8) {
+
       if (!validarSintaxeCep(cep)) {
         showMsgError("vc10");
         return;
@@ -132,11 +123,30 @@ export default function ViewEdtEnderecoLoja() {
   }
 
   async function prosseguir() {
-    if (cep.length < 8 || !validarSintaxeCep(cep)) {
-      showMsgError("vc10");
-      return;
+    switch (cenario) {
+      case cenarioEditar:
+        if (cep.length < 8 || !validarSintaxeCep(cep)) {
+          showMsgError("vc10");
+          return;
+        };
+
+        setCenario(cenarioValidar); //Renderiza tela no modo aguardando realização do login
+
+        /*      try {
+               const user = await logIn(email, senhaUm);
+               if (user.isLiveAccount && user.isLiveAccount == true) {
+                 router.replace('/'); //Conta ativa
+               } else {
+                 if (flagErro) setFlagErro(false);
+                 setCenario(cenarioCadastrarEditarToken); //Conta não ativa
+               }
+             } catch (e) {
+               showMsgError("ob104", e);
+               setCenario(cenarioEditar);
+               return;
+             } */
+        break;
     };
-    goTo(); //Vai para próxima tela (levando parametros)
   }
 
   return (
@@ -145,7 +155,7 @@ export default function ViewEdtEnderecoLoja() {
       <ScrollView style={myStylesComuns.containerPrincipalScroll} showsVerticalScrollIndicator={false}>
 
         <View style={myStyles.containerHeader}>
-          <MaterialIcons name="add-business" size={myStylesComuns.iconSizeButtonRegular} color={myStylesColors.corTextoPadrao} />
+          <MaterialIcons name="location-on" size={myStylesComuns.iconSizeButtonRegular} color={myStylesColors.corTextoPadrao} />
           <Text style={myStylesComuns.textoSubtitulo}>Endereço</Text>
         </View>
 
