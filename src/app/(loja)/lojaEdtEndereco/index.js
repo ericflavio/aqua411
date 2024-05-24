@@ -153,14 +153,14 @@ export default function ViewEdtEnderecoLoja() {
         </View>
 
         <View style={myStyles.containerPrincipal}>
-          {InputText(onChangeCep, "CEP", 1, 8, "default", flagEditavel, cep, null, false)}
+          {InputText("CEP", onChangeCep, "CEP", 1, 8, "default", flagEditavel, cep, false)}
           <View style={{ paddingLeft: 10 }}>
             <Text style={myStylesComuns.textoComum}>{endereco.localidade} {endereco.uf}</Text>
             <Text style={myStylesComuns.textoComum}>{endereco.bairro}</Text>
             <Text style={myStylesComuns.textoComum}>{endereco.logradouro}</Text>
           </View>
-          {InputText(onChangeNumero, "Número, ou s/n", 1, 5, "default", flagEditavel, numero, null, false)}
-          {InputText(onChangeComplemento, "Complemento", 1, 80, "default", flagEditavel, complemento, null, false)}
+          {InputText("Número", onChangeNumero, "Número, ou s/n", 1, 5, "default", flagEditavel, numero, false)}
+          {InputText("Complemento", onChangeComplemento, "Complemento", 1, 80, "default", flagEditavel, complemento, false)}
 
           <TouchableOpacity style={myStylesComuns.button} disabled={!flagEditavel} onPress={prosseguir} >
             <View style={myStylesComuns.buttonContainerWithIconHC}>

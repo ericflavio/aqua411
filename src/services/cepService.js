@@ -2,9 +2,10 @@
 import axios from 'axios';
 
 export async function consultaCepService(cep) {
-  const baseUrl = 'https://viacep.com.br/ws/' + cep + '/json/';
+  //const baseUrl = 'https://viacep.com.br/ws/' + cep + '/json/';
   try {
     const response = await axios.get('https://viacep.com.br/ws/' + cep + '/json'); 
+    //console.log("response ", response.status)
     return response.data;
   } catch (e) {
     throw e;

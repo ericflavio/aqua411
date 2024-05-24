@@ -71,6 +71,15 @@ export default function NewErrorMessage(cod, e) {
           newError.message = msgDefault + " [" + cod + "]";
       }
       break;
+    case "gu": // Georeferenciamento e URL
+      switch (cod) {
+        case "gu10": newError.message = "Não parece um endereço web (URL) válido" + " [" + cod + "]"; break;
+        case "gu11": newError.message = "Informe um endereço web (URL) válido" + " [" + cod + "]"; break;
+        default:
+          newError.cod = "de2702" + cod.substr(0, 2);
+          newError.message = msgDefault + " [" + cod + "]";
+      }
+      break;
 
     default:
       newError.cod = "de2703" + cod.substr(0, 2);

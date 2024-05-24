@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { router, useLocalSearchParams } from 'expo-router';
+import { useLocalSearchParams } from 'expo-router';
 import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, ActivityIndicator, Alert } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { myStyles } from "./styles";
@@ -9,7 +9,7 @@ import { InputText } from '../../../componentes/inputText';
 import { GradienteFill } from '../../../componentes/gradienteFill';
 import { AuthContext } from "../../../contexts/auth";
 import NewErrorMessage, { errorTextOops } from '../../../errors/errorMessage';
-import { consultaCepService } from '../../../services/cepService';
+import { pingUrg, pingUrl } from '../../../services/urlService';
 
 //Tela principal
 export default function ViewEdtLocalizacaoLoja() {
@@ -53,20 +53,10 @@ export default function ViewEdtLocalizacaoLoja() {
     if (!flagErro) setFlagErro(true);
   }
 
-  function onChangeUrl(urlGoogleMaps) {
-    setUrlGoogleMaps(urlGoogleMaps);
-  }
-  function onChangeLatitude(latitude) {
-    setLatitude(latitude);
-  }
-  function onChangeLongitude(longitude) {
-    setLongitude(longitude);
-  }
-
-  function validarSintaxeUtl(url) {
-    //const regex = /^[0-9]{8}$/;
-    //const isCepValido = regex.test(cep);
-    return false; //isCepValido;
+  function validarSintaxeUrl(url) {
+    const regex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi;
+    const isValid = regex.test(url);
+    return isValid;
   }
   function validarSintaxeLongitude(longitude) {
     return false;
@@ -75,69 +65,42 @@ export default function ViewEdtLocalizacaoLoja() {
     return false;
   }
 
-  async function onChangeCep(cep) {
-    setUrlGoogleMaps(cep);
-
-    if (cep.length >= 8) {
-
-      if (!validarSintaxeCep(cep)) {
-        showMsgError("vc10");
-        return;
-      }
-      setCenario(cenarioValidar);
-
-      try {
-        const endereco = await consultaCepService(cep);
-        if (endereco.erro) {
-          showMsgError("vc11");
-          setEndereco(voidEndereco);
-        } else {
-          setEndereco({
-            cep: endereco.cep,
-            localidade: endereco.localidade,
-            uf: endereco.uf,
-            ddd: endereco.ddd,
-            bairro: endereco.bairro,
-            logradouro: endereco.logradouro,
-            numero: numero,
-            complemento: complemento,
-          })
-        }
-        setCenario(cenarioEditar);
-        return;
-      } catch (e) {
-        showMsgError("vc12");
-        setEndereco(voidEndereco);
-        setCenario(cenarioEditar);
-        return;
-      }
-    }
+  function onChangeLatitude(latitude) {
+    setLatitude(latitude);
+  }
+  function onChangeLongitude(longitude) {
+    setLongitude(longitude);
+  }
+  async function onChangeUrl(urlGoogleMaps) {
+    setUrlGoogleMaps(urlGoogleMaps);
   }
 
   async function prosseguir() {
     switch (cenario) {
       case cenarioEditar:
-        if (cep.length < 8 || !validarSintaxeCep(cep)) {
-          showMsgError("vc10");
-          return;
-        };
 
-        setCenario(cenarioValidar); //Renderiza tela no modo aguardando realização do login
+        if (urlGoogleMaps.length > 0) {
+          if (!validarSintaxeUrl(urlGoogleMaps)) {
+            showMsgError("gu10");
+            return;
+          }
 
-        /*      try {
-               const user = await logIn(email, senhaUm);
-               if (user.isLiveAccount && user.isLiveAccount == true) {
-                 router.replace('/'); //Conta ativa
-               } else {
-                 if (flagErro) setFlagErro(false);
-                 setCenario(cenarioCadastrarEditarToken); //Conta não ativa
-               }
-             } catch (e) {
-               showMsgError("ob104", e);
-               setCenario(cenarioEditar);
-               return;
-             } */
-        break;
+          setCenario(cenarioValidar);
+
+          try {
+            const isValidUrl = await pingUrl(urlGoogleMaps);
+            if (isValidUrl.erro) {
+              showMsgError("vc11");
+              setCenario(cenarioEditar);
+            }
+            return;
+          } catch (e) {
+            showMsgError("vc11");
+            setCenario(cenarioEditar);
+            return;
+          }
+        }
+      //GOTO
     };
   }
 
@@ -148,18 +111,15 @@ export default function ViewEdtLocalizacaoLoja() {
 
         <View style={myStyles.containerHeader}>
           <MaterialIcons name="location-on" size={myStylesComuns.iconSizeButtonRegular} color={myStylesColors.corTextoPadrao} />
-          <Text style={myStylesComuns.textoSubtitulo}>Endereço</Text>
+          <Text style={myStylesComuns.textoSubtitulo}>Endereço digital</Text>
         </View>
 
         <View style={myStyles.containerPrincipal}>
-          {InputText(onChangeCep, "CEP", 1, 8, "default", flagEditavel, cep, null, false)}
-          <View style={{ paddingLeft: 10 }}>
-            <Text style={myStylesComuns.textoComum}>{endereco.localidade} {endereco.uf}</Text>
-            <Text style={myStylesComuns.textoComum}>{endereco.bairro}</Text>
-            <Text style={myStylesComuns.textoComum}>{endereco.logradouro}</Text>
-          </View>
-          {InputText(onChangeNumero, "Número, ou s/n", 1, 5, "default", flagEditavel, numero, null, false)}
-          {InputText(onChangeComplemento, "Complemento", 1, 80, "default", flagEditavel, complemento, null, false)}
+          <Text style={myStylesComuns.textoFonteTam3}>Cole aqui a URL do GoogleMaps</Text>
+          {InputText("Endereço/url GoogleMaps", onChangeUrl, "Endereço WEB (URl)", 1, 200, "default", flagEditavel, urlGoogleMaps, false)}
+          <Text style={myStylesComuns.textoFonteTam3}>Latitude e Longitude no formato de grau decimal</Text>
+          {InputText("Latitude", onChangeLatitude, "Latitude (ex. 15,23456)", 1, 12, "default", flagEditavel, latitude, false)}
+          {InputText("Longitude", onChangeLongitude, "Longitude (ex. -30,67890)", 1, 12, "default", flagEditavel, longitude, false)}
 
           <TouchableOpacity style={myStylesComuns.button} disabled={!flagEditavel} onPress={prosseguir} >
             <View style={myStylesComuns.buttonContainerWithIconHC}>

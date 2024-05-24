@@ -222,18 +222,18 @@ export default function ViewLogin() {
 
           {cenario == cenarioCadastrarEditarToken || cenario == cenarioCadastrarValidarToken ?
             <View style={{ marginTop: 0 }}>
-              {InputText(onChangeToken, "Código de confirmação", 1, 4, "default", flagEditavel, token, null, false)}
+              {InputText("Código de validação", onChangeToken, "Código de confirmação", 1, 4, "default", flagEditavel, token, false)}
             </View>
             :
             <View style={{ marginTop: 18 }}>
-              {InputText(onChangeEmail, "seu_email@", 1, 60, "email-address", flagEditavel, email, null, false)}
-              {InputText(setSenhaUm, "sua senha", 1, 10, "default", flagEditavel, senhaUm, null, true)}
+              {InputText("E-mail", onChangeEmail, "seu_email@", 1, 60, "email-address", flagEditavel, email, false)}
+              {InputText("Senha", setSenhaUm, "sua senha", 1, 10, "default", flagEditavel, senhaUm, true)}
             </View>
           }
 
           {cenario == cenarioCadastrarEditar || cenario == cenarioCadastrarValidar ?
             <View style={{ marginTop: 0 }}>
-              {InputText(setSenhaDois, "repita a mesma senha", 1, 10, "default", flagEditavel, senhaDois, null, true)}
+              {InputText("Confirmação de senha", setSenhaDois, "repita a mesma senha", 1, 10, "default", flagEditavel, senhaDois, true)}
             </View>
             : ""
           }
