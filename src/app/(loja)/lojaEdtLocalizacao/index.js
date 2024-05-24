@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { router, useLocalSearchParams  } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
 import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, ActivityIndicator, Alert } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { myStyles } from "./styles";
@@ -20,26 +20,10 @@ export default function ViewEdtLocalizacaoLoja() {
 
   const [cenario, setCenario] = useState(1);
   const [flagErro, setFlagErro] = useState(false);
-  const [email, setEmail] = useState(null);
 
-  const voidEndereco = {
-    cep: "",
-    localidade: "",
-    uf: "",
-    ddd: "",
-    bairro: "",
-    logradouro: "",
-    numero: "",
-    complemento: ""
-  };
-
-  const [cep, setCep] = useState(null);
-  const [numero, setNumero] = useState("");
-  const [complemento, setComplemento] = useState("");
-  const [endereco, setEndereco] = useState(voidEndereco)
-
-  //url google maps
-  //longitude e latitude
+  const [urlGoogleMaps, setUrlGoogleMaps] = useState("");
+  const [latitude, setLatitude] = useState("");
+  const [longitude, setLongitude] = useState("");
 
   //horário de funcionamento
   //url site da loja
@@ -69,22 +53,30 @@ export default function ViewEdtLocalizacaoLoja() {
     if (!flagErro) setFlagErro(true);
   }
 
-  function onChangeNumero(numero) {
-    setNumero(numero);
+  function onChangeUrl(urlGoogleMaps) {
+    setUrlGoogleMaps(urlGoogleMaps);
+  }
+  function onChangeLatitude(latitude) {
+    setLatitude(latitude);
+  }
+  function onChangeLongitude(longitude) {
+    setLongitude(longitude);
   }
 
-  function onChangeComplemento(complemento) {
-    setComplemento(complemento);
+  function validarSintaxeUtl(url) {
+    //const regex = /^[0-9]{8}$/;
+    //const isCepValido = regex.test(cep);
+    return false; //isCepValido;
   }
-
-  function validarSintaxeCep(cep) {
-    const regex = /^[0-9]{8}$/;
-    const isCepValido = regex.test(cep);
-    return isCepValido;
+  function validarSintaxeLongitude(longitude) {
+    return false;
+  }
+  function validarSintaxeLatitude(latitude) {
+    return false;
   }
 
   async function onChangeCep(cep) {
-    setCep(cep);
+    setUrlGoogleMaps(cep);
 
     if (cep.length >= 8) {
 

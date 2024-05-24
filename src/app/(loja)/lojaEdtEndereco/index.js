@@ -65,6 +65,9 @@ export default function ViewEdtEnderecoLoja() {
     //Compoe a parte do endereco no objeto LOJA e passa adiante
     const loja = {};
     loja.endereco = endereco;
+    loja.endereco.numero = numero;
+    loja.endereco.complemento = complemento;
+
     router.navigate({
       pathname: "/lojaEdtLocalizacao",
       params: {
