@@ -20,7 +20,7 @@ export default function ViewContaGestao() {
 
   function adicionarLoja() {
     console.log("+loja")
-    router.navigate ('//lojaAdicionar/index');
+    router.navigate ('/lojaAdicionar');
   }
 
   return (

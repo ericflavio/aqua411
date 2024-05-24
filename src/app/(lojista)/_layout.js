@@ -17,8 +17,7 @@ export default function AppLayout() {
         tabBarShowLabel: true,
       }} >
 
-      <Stack.Screen name="lojaAdicionar/index" />
-      <Stack.Screen name="lojaGerenciar/index" />
+      <Stack.Screen name="lojaAdicionar/index" options={{headerTitle:"Incluir loja"}}/>
     </Stack>
   )
 }
