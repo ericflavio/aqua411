@@ -107,7 +107,7 @@ export default function ViewEdtEnderecoLoja() {
         const endereco = await consultaCepService(cep);
         if (endereco.erro) {
           showMsgError("vc11");
-          setEndereco(voidEndereco);
+          setEndereco(voidEndereco); 
         } else {
           setEndereco({
             cep: endereco.cep,
