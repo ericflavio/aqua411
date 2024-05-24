@@ -18,7 +18,30 @@ export default function ViewAddLoja() {
 
   const [cenario, setCenario] = useState(1);
   const [flagErro, setFlagErro] = useState(false);
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(null);
+  const [cep, setCep] = useState(null);
+
+  //cep
+  //complemento do cep
+
+  //url google maps
+  //longitude e latitude
+
+  //horário de funcionamento
+  //url site da loja
+  //url site da franquia
+  //telefone de contato
+  //flag mostrar status maquina
+  //url de callback de status maquinas
+
+  //layout de exibição das maquinas
+  ///+ adicionar maquinas
+
+  //flag is Franquia
+  /// selecionar franquia
+  /// id da franquia
+
+  //link da camera ao vivo
 
   const cenarioEditar = 1; // Edita dados de login
   const cenarioValidar = 11; // Valida dados fornecidos para login
@@ -39,6 +62,14 @@ export default function ViewAddLoja() {
     //var emailEdtLC = emailEdt.toLowerCase();
     //console.log("emailEdtLC: ", emailEdtLC)
     setEmail(emailEdt);
+  }
+  function onChangeCep(cepEdt) {
+    //TODO: configurar Upercase -- automaticupscale = false
+    //console.log("email: ", emailEdt)
+    //if (emailEdt === undefined) emailEdt = "";
+    //var emailEdtLC = emailEdt.toLowerCase();
+    //console.log("emailEdtLC: ", emailEdtLC)
+    setCep(cepEdt);
   }
   function validarSintaxeEmail(email) {
     //const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@a-zA-Z0-9?(?:\.a-zA-Z0-9?)*$/;
@@ -80,6 +111,11 @@ export default function ViewAddLoja() {
       <ScrollView style={myStylesComuns.containerPrincipalScroll} showsVerticalScrollIndicator={false}>
         <View style={myStyles.containerRecepcionista}>
 
+
+          <View style={{ marginTop: 0 }}>
+            {InputText(onChangeCep, "CEP", 1, 8, "default", flagEditavel, cep, null, false)}
+          </View>
+
           <View style={{ marginTop: 0 }}>
             {InputText(onChangeEmail, "seu_email@algo.com", 1, 4, "e-mail", flagEditavel, email, null, false)}
           </View>
@@ -87,8 +123,7 @@ export default function ViewAddLoja() {
           <TouchableOpacity style={myStylesComuns.button} disabled={!flagEditavel} onPress={prosseguir} >
             <View style={myStylesComuns.buttonContainerWithIconH}>
               {!flagEditavel ? <ActivityIndicator /> : ""}
-              <Text style={myStylesComuns.buttonTextStyle}>
-                {cenario == cenarioEditar || cenario == cenarioValidar ? "Entrar" : "Cadastrar"}</Text>
+              <Text style={myStylesComuns.buttonTextStyle}>Verificar CEP</Text>
             </View>
           </TouchableOpacity>
         </View>
