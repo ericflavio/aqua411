@@ -17,6 +17,8 @@ export default function LojaLayout() {
         tabBarShowLabel: true,
       }} >
 
+      <Stack.Screen name="lojaEdtMenu/index" options={{headerTitle:"Informações da loja"}}/>
+      
       <Stack.Screen name="lojaEdtEndereco/index" options={{headerTitle:"Informações da loja"}}/>
       <Stack.Screen name="lojaEdtLocalizacao/index" options={{headerTitle:"Informações da loja"}}/>
       <Stack.Screen name="lojaEdtHorario/index" options={{headerTitle:"Informações da loja"}}/>

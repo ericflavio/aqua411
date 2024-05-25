@@ -17,7 +17,7 @@ export default function ViewConta() {
   user.name ? name = user.name : name = user.idLogin;
 
   function adicionarLoja() {
-    router.navigate('/lojaEdtEndereco');
+    router.navigate('/lojaEdtMenu/index');
   }
 
   return (
