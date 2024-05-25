@@ -145,7 +145,7 @@ export default function ViewEdtLocalizacaoLoja() {
           {InputText("Longitude", onChangeLongitude, "ex. -30,67890", 1, 12, "default", flagEditavel, longitude, false)}
           {InputText("Cole aqui o endereço/url GoogleMaps", onChangeUrl, "url GoogleMaps", 1, 200, "default", flagEditavel, urlGoogleMaps, false)}
 
-          <TouchableOpacity style={myStyleApp.button} disabled={!flagEditavel} onPress={prosseguir} >
+          <TouchableOpacity style={myStyleApp.buttonHC} disabled={!flagEditavel} onPress={prosseguir} >
             {!flagEditavel ? <ActivityIndicator /> : ""}
             <Text style={myStyleApp.buttonTextStyle}>Continuar</Text>
           </TouchableOpacity>

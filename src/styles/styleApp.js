@@ -51,7 +51,7 @@ export const myStyleApp = StyleSheet.create({
     color: myStyleColor.corTextoPadrao,
   },
   //Botões: estilo do touchable
-  button: { //Horizontal centralizado, padrão do app
+  buttonHC: { //Horizontal centralizado
     flexDirection:"row",
     justifyContent:"center",
     alignItems: 'center',
@@ -67,7 +67,7 @@ export const myStyleApp = StyleSheet.create({
     minWidth: "100%",
     fontWeight: "700",
   },
-  buttonFlat: {//Horizontal, alinhamento esquerdo, sem background
+  buttonFlatTranspHL: {//Horizontal flat, esquerdo, transparente
     flexDirection:"row",
     alignItems: 'flex-start',
     backgroundColor: 'transparent',
@@ -78,7 +78,7 @@ export const myStyleApp = StyleSheet.create({
     borderWidth:0,
     gap:6,
   },
-  buttonFlatBgcV: { //Vertical, centralizado, com background
+  buttonFlatV: { //Vertical flat, centralizado 
     flexDirection:"column",
     alignItems: 'center',
     justifyContent: "center",
@@ -93,7 +93,7 @@ export const myStyleApp = StyleSheet.create({
     borderRadius: 6,
     gap:6
   },
-  buttonFlatBgcHL: { //Horizontal, centralizado, com background
+  buttonFlatHL: { //Horizontal flat, esquerdo
     flexDirection:"row",
     alignItems: 'center',
     justifyContent: "flex-start",
@@ -101,11 +101,29 @@ export const myStyleApp = StyleSheet.create({
     marginTop: 0,
     marginBottom: 0,
     padding: 4,
+    paddingLeft: 8,
     minHeight: 70,
-    minWidth: "50%",
+    minWidth: "100%",
     borderWidth:1,
     borderColor: myStyleColor.corCinzaClaro,
     borderRadius: 6,
+    gap:6
+  },
+  buttonFlatListHL: { //Horizontal flat, esquerdo, estilo lista
+    flexDirection:"row",
+    alignItems: 'center',
+    justifyContent: "flex-start",
+    backgroundColor: "white",
+    marginTop: 0,
+    marginBottom: 0,
+    padding: 4,
+    paddingLeft: 8,
+    minHeight: 70,
+    minWidth: "100%",
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    borderColor: myStyleColor.corCinzaClaro,
+    borderRadius: 0,
     gap:6
   },
    //Botões: estilo do texto dentro do touchable

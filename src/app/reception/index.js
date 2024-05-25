@@ -25,7 +25,7 @@ export default function ViewReception() {
           Está na hora de conhecer os benefícios das lavanderias inteligentes
         </Text>
         <View style={myStyles.containerViewButton}>
-          <TouchableOpacity style={myStyleApp.button} onPress={goToLogin}>
+          <TouchableOpacity style={myStyleApp.buttonHC} onPress={goToLogin}>
             <View style={myStyles.containerButton}>
               <Text style={myStyleApp.buttonTextStyle}>Começar</Text>
               <MaterialIcons name="arrow-outward" size={myStyleApp.size.iconSizeButtonSmall} color={myStyleColor.corAzulClaro} />

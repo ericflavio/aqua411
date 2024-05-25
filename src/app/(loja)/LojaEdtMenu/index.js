@@ -32,14 +32,34 @@ export default function ViewEdtMenu() {
       {GradienteFill()}
       <ScrollView style={myStyleApp.containerPrincipalScroll} showsVerticalScrollIndicator={false}>
 
-        {/*   <View style={myStyles.containerHeader}>
+        {<View style={myStyles.containerHeader}>
           <Text style={myStyleApp.textoSubtitulo}>Loja #1 - Asa Norte</Text>
-        </View> */}
+        </View>}
 
         <View style={myStyles.containerPrincipal}>
-          <TouchableOpacity style={myStyleApp.button} disabled={false} onPress={goTo} >
-              <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corTextoPadrao} />
-              <Text style={myStyleApp.buttonTextStyle}>Endereço</Text>
+          <TouchableOpacity style={myStyleApp.buttonFlatListHL} disabled={false} onPress={goTo} >
+            <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corTextoPadrao} />
+            <Text style={myStyleApp.buttonTextStyle}>Identidade</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={myStyleApp.buttonFlatListHL} disabled={false} onPress={goTo} >
+            <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corTextoPadrao} />
+            <Text style={myStyleApp.buttonTextStyle}>Endereço</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={myStyleApp.buttonFlatListHL} disabled={false} onPress={goTo} >
+            <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corTextoPadrao} />
+            <Text style={myStyleApp.buttonTextStyle}>Localização</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={myStyleApp.buttonFlatListHL} disabled={false} onPress={goTo} >
+            <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corTextoPadrao} />
+            <Text style={myStyleApp.buttonTextStyle}>Horário de funcionamento</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={myStyleApp.buttonFlatListHL} disabled={false} onPress={goTo} >
+            <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corTextoPadrao} />
+            <Text style={myStyleApp.buttonTextStyle}>Equipamentos</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={myStyleApp.buttonFlatListHL} disabled={false} onPress={goTo} >
+            <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corTextoPadrao} />
+            <Text style={myStyleApp.buttonTextStyle}>Facilidades</Text>
           </TouchableOpacity>
         </View>
 
