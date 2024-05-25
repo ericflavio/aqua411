@@ -8,13 +8,7 @@ export const myStyles = StyleSheet.create({
     paddingLeft:8
   },
   containerPrincipal: {
-    flex:0,
-    flexDirection: "column",
-    alignItems: "stretch",
-    justifyContent: "center",
-    backgroundColor: "white",
-    borderRadius: 16,
-    padding: 8,
-    borderWidth: myStyleApp.containerBordaOnOff
+    flex:1,
+    borderWidth: myStyleApp.size.containerBordaOnOff
   },
 });

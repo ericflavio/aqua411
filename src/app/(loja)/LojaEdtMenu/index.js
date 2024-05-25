@@ -5,27 +5,24 @@ import { myStyles } from "./styles";
 import { myStyleApp } from '../../../styles/styleApp';
 import { GradienteFill } from '../../../componentes/gradienteFill';
 import { AuthContext } from "../../../contexts/auth";
+import { MaterialIcons } from "@expo/vector-icons";
 
 //Tela principal
 export default function ViewEdtMenu() {
-  const { user } = useContext(AuthContext);
   console.log("ViewEdtMenu Loja <inicio>");
-
-  const { navigateParmLoja } = useLocalSearchParams();
-  var loja = JSON.parse(navigateParmLoja)
-  console.log("loja: ", loja.endereco);
+  const { user } = useContext(AuthContext);
+  const { navigateParmLojaId } = useLocalSearchParams();
+  var idLoja = "";
+  if (navigateParmLojaId) {
+    idLoja = JSON.parse(navigateParmLojaId)
+  }
+  console.log("loja-id: ", idLoja);
 
   function goTo() {
-    //Compoe a parte do endereco no objeto LOJA e passa adiante
-    const loja = {};
-    loja.endereco = endereco;
-    loja.endereco.numero = numero;
-    loja.endereco.complemento = complemento;
-
     router.navigate({
-      pathname: "/lojaEdtLocalizacao",
+      pathname: "/lojaEdtEndereco",
       params: {
-        navigateParmLoja: JSON.stringify(loja)
+        navigateParmLojaId: JSON.stringify(idLoja)
       }
     })
   }
@@ -35,16 +32,14 @@ export default function ViewEdtMenu() {
       {GradienteFill()}
       <ScrollView style={myStyleApp.containerPrincipalScroll} showsVerticalScrollIndicator={false}>
 
-        <View style={myStyles.containerHeader}>
+        {/*   <View style={myStyles.containerHeader}>
           <Text style={myStyleApp.textoSubtitulo}>Loja #1 - Asa Norte</Text>
-        </View>
+        </View> */}
 
         <View style={myStyles.containerPrincipal}>
-          <TouchableOpacity style={myStyleApp.button} disabled={!flagEditavel} onPress={goTo} >
-            <View style={myStyleApp.buttonContainerWithIconHC}>
-              {!flagEditavel ? <ActivityIndicator /> : ""}
+          <TouchableOpacity style={myStyleApp.button} disabled={false} onPress={goTo} >
+              <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corTextoPadrao} />
               <Text style={myStyleApp.buttonTextStyle}>Endereço</Text>
-            </View>
           </TouchableOpacity>
         </View>
 

@@ -51,6 +51,7 @@ export const myStyleApp = StyleSheet.create({
     color: myStyleColor.corTextoPadrao,
   },
   //Botões
+  //Container: estilo da view (inside touchable), para unir texto e ícone/activitindicator
   buttonContainerWithIconHL: {
     flexDirection:"row",
     alignItems:"flex-start",
@@ -72,16 +73,7 @@ export const myStyleApp = StyleSheet.create({
     alignItems:"center",
     borderWidth:0
   },
-  buttonTextStyle: {
-    fontSize: myStyleSize.textoFonteTam4,
-    fontWeight: myStyleSize.textoNegritoForte,
-    color: myStyleColor.corTextoPadrao,
-  },
-  buttonTextStyleFlat: {
-    fontSize: myStyleSize.textoFonteTam4,
-    fontWeight: myStyleSize.textoNegritoMedio,
-    color: myStyleColor.corTextoPadrao,
-  },
+  //Botões: estilo do touchable
   button: {
     alignItems: 'center',
     backgroundColor: 'white',
@@ -116,6 +108,17 @@ export const myStyleApp = StyleSheet.create({
     borderWidth:1,
     borderColor: myStyleColor.corCinzaClaro,
     borderRadius: 6
+  },
+   //Botões: estilo do texto dentro do touchable
+   buttonTextStyle: {
+    fontSize: myStyleSize.textoFonteTam4,
+    fontWeight: myStyleSize.textoNegritoForte,
+    color: myStyleColor.corTextoPadrao,
+  },
+  buttonTextStyleFlat: {
+    fontSize: myStyleSize.textoFonteTam4,
+    fontWeight: myStyleSize.textoNegritoMedio,
+    color: myStyleColor.corTextoPadrao,
   },
 
   //InputText
