@@ -137,7 +137,7 @@ export default function ViewEdtLocalizacaoLoja() {
         </View>
         <View style={myStyles.containerBottom}>
           <MaterialIcons name="check-circle-outline" size={myStylesComuns.iconSizeSmall} color={myStylesColors.corSucesso} />
-          <Text style={myStylesComuns.texto}>Informações opcionais. Você pode continuar sem informá-las</Text>
+          <Text style={myStylesComuns.textoPequeno}>Informações opcionais. Você pode continuar sem informá-las</Text>
         </View>
 
       </ScrollView>

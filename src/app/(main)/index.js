@@ -63,11 +63,11 @@ function maquina(tipMaq, idMaq, status, view) {
     return (
       <View>
         <View style={myStyles.containerLavaSeca}>
-          <Text style={myStyles.textoLavaSeca}>
+          <Text style={myStylesComuns.textoPequeno}>
             {tipMaq + " " + idMaq}
           </Text>
           {flagViewStatusMaquina == true ?
-            <Text style={myStyles.textoLavaSeca}>
+            <Text style={myStylesComuns.textoPequeno}>
               {txStatus}
             </Text> : ""}
         </View>
@@ -85,11 +85,11 @@ function maquina(tipMaq, idMaq, status, view) {
           source={imgMaq}
         />
         <View style={myStyles.containerLavaSeca}>
-          <Text style={myStyles.textoLavaSeca}>
+          <Text style={myStylesComuns.textoPequeno}>
             {tipMaq + " " + idMaq}
           </Text>
           {flagViewStatusMaquina == true ?
-            <Text style={myStyles.textoLavaSeca}>
+            <Text style={myStylesComuns.textoPequeno}>
               {txStatus}
             </Text> : ""}
         </View>

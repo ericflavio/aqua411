@@ -84,9 +84,4 @@ export const myStyles = StyleSheet.create({
     height: 80, 
     resizeMode: 'contain'
   },
-  textoLavaSeca: {
-    fontSize: myStylesComuns.textoFonteTam4,
-    fontWeight: myStylesComuns.textoNegritoMedio,
-    color: myStylesColors.corTextoPadrao
-  },
 });
