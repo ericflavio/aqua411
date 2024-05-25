@@ -49,24 +49,20 @@ export default function ViewConta() {
           </TouchableOpacity>
         </View>
 
-        <Text style={myStyleApp.textoComum}>Cadastre sua lavanderia</Text>
         <View style={myStyles.containerOthers}>
           <TouchableOpacity style={myStyleApp.buttonFlatWithBgCollor} onPress={adicionarLoja} >
             <View style={myStyleApp.buttonContainerWithIconHL}>
               <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeButtonRegular} color={myStyleColor.corTextoPadrao} />
-              <Text style={myStyleApp.buttonTextStyleFlat}>Adicionar nova loja</Text>
+              <Text style={myStyleApp.buttonTextStyleFlat}>Adicionar minha lavanderia</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity style={myStyleApp.buttonFlatWithBgCollor} onPress={{}} >
             <View style={myStyleApp.buttonContainerWithIconHL}>
               <MaterialIcons name="local-laundry-service" size={myStyleApp.size.iconSizeButtonRegular} color={myStyleColor.corTextoPadrao} />
-              <Text style={myStyleApp.buttonTextStyleFlat}>Gerenciar minhas lojas</Text>
+              <Text style={myStyleApp.buttonTextStyleFlat}>Gerenciar minhas lavanderias</Text>
             </View>
           </TouchableOpacity>
-        </View>
 
-        <Text style={myStyleApp.textoComum}>Opções para franqueador(a)</Text>
-        <View style={myStyles.containerOthers}>
           <TouchableOpacity style={myStyleApp.buttonFlatWithBgCollor} onPress={{}} >
             <View style={myStyleApp.buttonContainerWithIconHL}>
               <MaterialIcons name="business" size={myStyleApp.size.iconSizeButtonRegular} color={myStyleColor.corTextoPadrao} />

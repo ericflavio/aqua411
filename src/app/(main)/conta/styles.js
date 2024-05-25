@@ -13,7 +13,7 @@ export const myStyles = StyleSheet.create({
     alignContent: "stretch",
     gap:8,
     borderWidth: myStyleApp.containerBordaOnOff,
-    marginBottom: 30,
+    marginBottom: 8,
     width:"100%"
   },
   containerOthers: {
