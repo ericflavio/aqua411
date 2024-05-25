@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { useLocalSearchParams } from 'expo-router';
+import {router, useLocalSearchParams } from 'expo-router';
 import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, ActivityIndicator, Alert } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { myStyles } from "./styles";
@@ -9,7 +9,7 @@ import { InputText } from '../../../componentes/inputText';
 import { GradienteFill } from '../../../componentes/gradienteFill';
 import { AuthContext } from "../../../contexts/auth";
 import NewErrorMessage, { errorTextOops } from '../../../errors/errorMessage';
-import { pingUrg, pingUrl } from '../../../services/urlService';
+import { pingUrl } from '../../../services/urlService';
 
 //Tela principal
 export default function ViewEdtLocalizacaoLoja() {
@@ -26,9 +26,8 @@ export default function ViewEdtLocalizacaoLoja() {
   const [longitude, setLongitude] = useState("");
 
   //horário de funcionamento
-  //url site da loja
-  //url site da franquia
   //telefone de contato
+
   //flag mostrar status maquina
   //url de callback de status maquinas
 
@@ -75,6 +74,24 @@ export default function ViewEdtLocalizacaoLoja() {
     setUrlGoogleMaps(urlGoogleMaps);
   }
 
+  function goTo() {
+    //Compoe dados e passa adiante como parametro
+    const localizacao = {
+      latitude: latitude,
+      longitude: longitude,
+      urlGoogleMapas: urlGoogleMaps
+    }
+    loja.localizacao = localizacao;
+    console.log("xxxxx ", loja)
+
+    router.navigate({
+      pathname: "/lojaEdtHorario",
+      params: {
+        navigateParmLoja: JSON.stringify(loja)
+      }
+    })
+  }
+
   async function prosseguir() {
     switch (cenario) {
       case cenarioEditar:
@@ -98,18 +115,18 @@ export default function ViewEdtLocalizacaoLoja() {
 
           try {
             const isValidUrl = await pingUrl(urlGoogleMaps);
-            if (isValidUrl.erro) {
-              showMsgError("vc11");
+            if (!isValidUrl) {
+              showMsgError("gu11");
               setCenario(cenarioEditar);
+              return;
             }
-            return;
           } catch (e) {
-            showMsgError("vc11");
+            showMsgError("gu11");
             setCenario(cenarioEditar);
             return;
           }
         }
-      //GOTO
+        goTo();
     };
   }
 
@@ -137,7 +154,7 @@ export default function ViewEdtLocalizacaoLoja() {
         </View>
         <View style={myStyles.containerBottom}>
           <MaterialIcons name="check-circle-outline" size={myStyleApp.size.iconSizeSmall} color={myStyleColor.corAzulClaro} />
-          <Text style={myStyleApp.textoPequeno}>Informações opcionais. Você pode continuar sem informá-las</Text>
+          <Text style={myStyleApp.textoPequeno}>Estas informações são opcionais</Text>
         </View>
 
       </ScrollView>

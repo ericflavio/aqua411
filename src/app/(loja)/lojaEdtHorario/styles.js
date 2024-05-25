@@ -17,13 +17,4 @@ export const myStyles = StyleSheet.create({
     padding: 8,
     borderWidth: myStyleApp.containerBordaOnOff
   },
-  containerBottom: {
-    flexDirection:"row", 
-    alignItems: 'center',
-    marginTop: 10,
-    gap:8, 
-    padding:8,
-    maxWidth:"100%",
-    borderWidth:0
-  },
 });
