@@ -28,7 +28,7 @@ export default function ViewReception() {
           <TouchableOpacity style={myStylesComuns.button} onPress={goToLogin}>
             <View style={myStyles.containerButton}>
               <Text style={myStylesComuns.buttonTextStyle}>Começar</Text>
-              <MaterialIcons name="arrow-outward" size={myStylesComuns.iconSizeButtonSmall} color={myStylesColors.corAzulClaro} />
+              <MaterialIcons name="arrow-outward" size={myStylesComuns.size.iconSizeButtonSmall} color={myStylesColors.corAzulClaro} />
             </View>
           </TouchableOpacity>
         </View>

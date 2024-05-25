@@ -5,14 +5,7 @@ import { myStyleSize } from './stylesSize';
 export const myStylesComuns = StyleSheet.create({
   //
   size: myStyleSize,
-  //Icones
-  iconSizeButtonRegular: myStyleSize.iconSizeButtonRegular,
-  iconSizeButtonSmall: myStyleSize.iconSizeButtonSmall,
-  iconSizeButtonLarge: myStyleSize.iconSizeButtonLarge,
-  iconSizeTabBar: myStyleSize.iconSizeTabBar,
-  iconSizeRegular: myStyleSize.iconSizeRegular,
-  iconSizeSmall: myStyleSize.iconSizeSmall,
-  iconSizeLarge: myStyleSize.iconSizeLarge,
+  color: myStylesColors,
 
   //Container
   containerBordaRaio: myStyleSize.containerBordaRaio,

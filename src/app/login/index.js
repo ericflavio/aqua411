@@ -211,7 +211,7 @@ export default function ViewLogin() {
               style={myStyles.imgAvatar}
               source={require('../../assets/outros/sheep_padrao.png')}
             />
-            <MaterialIcons name="textsms" size={myStylesComuns.iconSizeSmall} color={(flagErro ? myStylesColors.corErro : myStylesColors.corAzulClaro)} />
+            <MaterialIcons name="textsms" size={myStylesComuns.size.iconSizeSmall} color={(flagErro ? myStylesColors.corErro : myStylesColors.corAzulClaro)} />
           </View>
 
           <View style={myStyles.conteinerTextoAvatar}>
@@ -251,13 +251,13 @@ export default function ViewLogin() {
           <>
             <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={fluxoEntrar} >
               <View style={myStylesComuns.buttonContainerWithIconHL}>
-                <MaterialIcons name="lock-reset" size={myStylesComuns.iconSizeButtonSmall} color={myStylesColors.corTextoPadrao} />
+                <MaterialIcons name="lock-reset" size={myStylesComuns.size.iconSizeButtonSmall} color={myStylesColors.corTextoPadrao} />
                 <Text style={myStylesComuns.buttonTextStyleFlat}>Esqueceu sua senha?</Text>
               </View>
             </TouchableOpacity>
             <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={fluxoCadastrar} >
               <View style={myStylesComuns.buttonContainerWithIconHL}>
-                <MaterialIcons name="person-add-alt" size={myStylesComuns.iconSizeButtonSmall} color={myStylesColors.corTextoPadrao} />
+                <MaterialIcons name="person-add-alt" size={myStylesComuns.size.iconSizeButtonSmall} color={myStylesColors.corTextoPadrao} />
                 <Text style={myStylesComuns.buttonTextStyleFlat}>Clique aqui para novo cadastro</Text>
               </View>
             </TouchableOpacity>
@@ -267,7 +267,7 @@ export default function ViewLogin() {
         {cenario == cenarioCadastrarEditar || cenario == cenarioCadastrarValidar ?
           <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={fluxoEntrar} >
             <View style={myStylesComuns.buttonContainerWithIconHL}>
-              <MaterialIcons name="login" size={myStylesComuns.iconSizeButtonSmall} color={myStylesColors.corTextoPadrao} />
+              <MaterialIcons name="login" size={myStylesComuns.size.iconSizeButtonSmall} color={myStylesColors.corTextoPadrao} />
               <Text style={myStylesComuns.buttonTextStyleFlat}>Clique aqui se já possuir cadastro</Text>
             </View>
           </TouchableOpacity>
@@ -276,7 +276,7 @@ export default function ViewLogin() {
         {cenario == cenarioCadastrarEditarToken || cenario == cenarioCadastrarValidarToken ?
           <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={reenviarToken} >
             <View style={myStylesComuns.buttonContainerWithIconHL}>
-              <MaterialIcons name="mail-outline" size={myStylesComuns.iconSizeButtonSmall} color={myStylesColors.corTextoPadrao} />
+              <MaterialIcons name="mail-outline" size={myStylesComuns.size.iconSizeButtonSmall} color={myStylesColors.corTextoPadrao} />
               <Text style={myStylesComuns.buttonTextStyleFlat}>Me envie um novo código</Text>
             </View>
           </TouchableOpacity>

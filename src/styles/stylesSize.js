@@ -1,12 +1,13 @@
 //Tamanhos mais utilizados.
-//Obs: Importar apenas dentro da StulesComuns.
+//Obs: Importar apenas dentro da StylesComuns.
 
 export const myStyleSize = {
-  //Icones
+  //Icones para botões e tabbars
   iconSizeButtonRegular: 32,
   iconSizeButtonSmall: 26,
   iconSizeButtonLarge: 36,
   iconSizeTabBar: 34,
+  //Icones gerais
   iconSizeRegular: 36,
   iconSizeSmall: 32,
   iconSizeLarge: 40,

@@ -69,7 +69,7 @@ export default function AppLayout() {
         options={{
           title: "Inicio",
           tabBarIcon: ({ size, color }) =>
-            <MaterialIcons name="local-laundry-service" size={myStylesComuns.iconSizeTabBar} color={color} />
+            <MaterialIcons name="local-laundry-service" size={myStylesComuns.size.iconSizeTabBar} color={color} />
         }}
       />
 
@@ -78,7 +78,7 @@ export default function AppLayout() {
         options={{
           title: "Promo",
           tabBarIcon: ({ size, color }) =>
-            <MaterialIcons name="card-giftcard" size={myStylesComuns.iconSizeTabBar} color={color} />
+            <MaterialIcons name="card-giftcard" size={myStylesComuns.size.iconSizeTabBar} color={color} />
         }}
       />
 
@@ -87,7 +87,7 @@ export default function AppLayout() {
         options={{
           title: "Conta",
           tabBarIcon: ({ size, color }) =>
-            <MaterialIcons name="person" size={myStylesComuns.iconSizeTabBar} color={color} />
+            <MaterialIcons name="person" size={myStylesComuns.size.iconSizeTabBar} color={color} />
         }}
       />
     </Tabs>
