@@ -3,8 +3,8 @@ import { router } from 'expo-router';
 import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, ActivityIndicator, Alert } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { myStyles } from "./styles";
-import { myStylesComuns } from '../../styles/stylesComuns';
-import { myStylesColors } from "../../styles/stylesColors";
+import { myStyleApp } from '../../styles/styleApp';
+import { myStyleColor } from "../../styles/stylesColors";
 import { InputText } from '../../componentes/inputText';
 import { GradienteFill } from '../../componentes/gradienteFill';
 import { AuthContext } from "../../contexts/auth";
@@ -196,11 +196,11 @@ export default function ViewLogin() {
   }
 
   return (
-    <SafeAreaView style={myStylesComuns.containerPrincipalSafeArea}>
+    <SafeAreaView style={myStyleApp.containerPrincipalSafeArea}>
       {GradienteFill()}
-      <ScrollView style={myStylesComuns.containerPrincipalScroll} showsVerticalScrollIndicator={false}>
+      <ScrollView style={myStyleApp.containerPrincipalScroll} showsVerticalScrollIndicator={false}>
         <View style={myStyles.containerHeader}>
-          <Text style={myStylesComuns.textoTituloPagina}>
+          <Text style={myStyleApp.textoTituloPagina}>
             Que bom você por aqui
           </Text>
         </View>
@@ -211,11 +211,11 @@ export default function ViewLogin() {
               style={myStyles.imgAvatar}
               source={require('../../assets/outros/sheep_padrao.png')}
             />
-            <MaterialIcons name="textsms" size={myStylesComuns.size.iconSizeSmall} color={(flagErro ? myStylesColors.corErro : myStylesColors.corAzulClaro)} />
+            <MaterialIcons name="textsms" size={myStyleApp.size.iconSizeSmall} color={(flagErro ? myStyleColor.corErro : myStyleColor.corAzulClaro)} />
           </View>
 
           <View style={myStyles.conteinerTextoAvatar}>
-            <Text style={myStylesComuns.textoComum}>
+            <Text style={myStyleApp.textoComum}>
               {textoRecepcionista}
             </Text>
           </View>
@@ -238,10 +238,10 @@ export default function ViewLogin() {
             : ""
           }
 
-          <TouchableOpacity style={myStylesComuns.button} disabled={!flagEditavel} onPress={prosseguir} >
-            <View style={myStylesComuns.buttonContainerWithIconHC}>
+          <TouchableOpacity style={myStyleApp.button} disabled={!flagEditavel} onPress={prosseguir} >
+            <View style={myStyleApp.buttonContainerWithIconHC}>
               {!flagEditavel ? <ActivityIndicator /> : ""}
-              <Text style={myStylesComuns.buttonTextStyle}>
+              <Text style={myStyleApp.buttonTextStyle}>
                 {cenario == cenarioEntrarEditar || cenario == cenarioEntrarValidar ? "Entrar" : "Cadastrar"}</Text>
             </View>
           </TouchableOpacity>
@@ -249,35 +249,35 @@ export default function ViewLogin() {
 
         {cenario == cenarioEntrarEditar || cenario == cenarioEntrarValidar ?
           <>
-            <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={fluxoEntrar} >
-              <View style={myStylesComuns.buttonContainerWithIconHL}>
-                <MaterialIcons name="lock-reset" size={myStylesComuns.size.iconSizeButtonSmall} color={myStylesColors.corTextoPadrao} />
-                <Text style={myStylesComuns.buttonTextStyleFlat}>Esqueceu sua senha?</Text>
+            <TouchableOpacity style={myStyleApp.buttonFlat} disabled={!flagEditavel} onPress={fluxoEntrar} >
+              <View style={myStyleApp.buttonContainerWithIconHL}>
+                <MaterialIcons name="lock-reset" size={myStyleApp.size.iconSizeButtonSmall} color={myStyleColor.corTextoPadrao} />
+                <Text style={myStyleApp.buttonTextStyleFlat}>Esqueceu sua senha?</Text>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={fluxoCadastrar} >
-              <View style={myStylesComuns.buttonContainerWithIconHL}>
-                <MaterialIcons name="person-add-alt" size={myStylesComuns.size.iconSizeButtonSmall} color={myStylesColors.corTextoPadrao} />
-                <Text style={myStylesComuns.buttonTextStyleFlat}>Clique aqui para novo cadastro</Text>
+            <TouchableOpacity style={myStyleApp.buttonFlat} disabled={!flagEditavel} onPress={fluxoCadastrar} >
+              <View style={myStyleApp.buttonContainerWithIconHL}>
+                <MaterialIcons name="person-add-alt" size={myStyleApp.size.iconSizeButtonSmall} color={myStyleColor.corTextoPadrao} />
+                <Text style={myStyleApp.buttonTextStyleFlat}>Clique aqui para novo cadastro</Text>
               </View>
             </TouchableOpacity>
           </>
           : ""}
 
         {cenario == cenarioCadastrarEditar || cenario == cenarioCadastrarValidar ?
-          <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={fluxoEntrar} >
-            <View style={myStylesComuns.buttonContainerWithIconHL}>
-              <MaterialIcons name="login" size={myStylesComuns.size.iconSizeButtonSmall} color={myStylesColors.corTextoPadrao} />
-              <Text style={myStylesComuns.buttonTextStyleFlat}>Clique aqui se já possuir cadastro</Text>
+          <TouchableOpacity style={myStyleApp.buttonFlat} disabled={!flagEditavel} onPress={fluxoEntrar} >
+            <View style={myStyleApp.buttonContainerWithIconHL}>
+              <MaterialIcons name="login" size={myStyleApp.size.iconSizeButtonSmall} color={myStyleColor.corTextoPadrao} />
+              <Text style={myStyleApp.buttonTextStyleFlat}>Clique aqui se já possuir cadastro</Text>
             </View>
           </TouchableOpacity>
           : ""}
 
         {cenario == cenarioCadastrarEditarToken || cenario == cenarioCadastrarValidarToken ?
-          <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={!flagEditavel} onPress={reenviarToken} >
-            <View style={myStylesComuns.buttonContainerWithIconHL}>
-              <MaterialIcons name="mail-outline" size={myStylesComuns.size.iconSizeButtonSmall} color={myStylesColors.corTextoPadrao} />
-              <Text style={myStylesComuns.buttonTextStyleFlat}>Me envie um novo código</Text>
+          <TouchableOpacity style={myStyleApp.buttonFlat} disabled={!flagEditavel} onPress={reenviarToken} >
+            <View style={myStyleApp.buttonContainerWithIconHL}>
+              <MaterialIcons name="mail-outline" size={myStyleApp.size.iconSizeButtonSmall} color={myStyleColor.corTextoPadrao} />
+              <Text style={myStyleApp.buttonTextStyleFlat}>Me envie um novo código</Text>
             </View>
           </TouchableOpacity>
           : ""}

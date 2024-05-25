@@ -1,10 +1,10 @@
 import { StyleSheet } from "react-native";
-import { myStylesComuns } from "../../../styles/stylesComuns";
-import { myStylesColors } from "../../../styles/stylesColors";
+import { myStyleApp } from "../../../styles/styleApp";
+import { myStyleColor } from "../../../styles/stylesColors";
 
 export const myStyles = StyleSheet.create({
   containerHeader: {
-    borderWidth: myStylesComuns.containerBordaOnOff,
+    borderWidth: myStyleApp.containerBordaOnOff,
     marginBottom: 30,
     width:"100%"
   },
@@ -12,7 +12,7 @@ export const myStyles = StyleSheet.create({
     flexDirection: "row",
     alignContent: "stretch",
     gap:8,
-    borderWidth: myStylesComuns.containerBordaOnOff,
+    borderWidth: myStyleApp.containerBordaOnOff,
     marginBottom: 30,
     width:"100%"
   },
@@ -20,7 +20,7 @@ export const myStyles = StyleSheet.create({
     alignItems:"flex-start",
     alignContent:"stretch",
     gap:8,
-    borderWidth: myStylesComuns.containerBordaOnOff,
+    borderWidth: myStyleApp.containerBordaOnOff,
     marginBottom: 30,
     width:"100%"
   },

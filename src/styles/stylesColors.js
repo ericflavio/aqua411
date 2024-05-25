@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 //Cores mais utilizadas
 //Obs: Importar apenas dentro da StylesComuns.
 
-export const myStylesColors = StyleSheet.create({
+export const myStyleColor = StyleSheet.create({
   //Tema
   corTemaAppPrincipal: "#041e52ff",
   corTemaAppSecundario: "#2ba6daff",

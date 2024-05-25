@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { View, Text, Image, SafeAreaView, ScrollView, TouchableOpacity, Dimensions } from "react-native";
 import { myStyles } from "./styles";
-import { myStylesComuns } from '../../styles/stylesComuns';
+import { myStyleApp } from '../../styles/styleApp';
 import { GradienteFill } from '../../componentes/gradienteFill';
 import { AuthContext } from "../../contexts/auth";
 import { Redirect } from 'expo-router';
@@ -63,11 +63,11 @@ function maquina(tipMaq, idMaq, status, view) {
     return (
       <View>
         <View style={myStyles.containerLavaSeca}>
-          <Text style={myStylesComuns.textoPequeno}>
+          <Text style={myStyleApp.textoPequeno}>
             {tipMaq + " " + idMaq}
           </Text>
           {flagViewStatusMaquina == true ?
-            <Text style={myStylesComuns.textoPequeno}>
+            <Text style={myStyleApp.textoPequeno}>
               {txStatus}
             </Text> : ""}
         </View>
@@ -85,11 +85,11 @@ function maquina(tipMaq, idMaq, status, view) {
           source={imgMaq}
         />
         <View style={myStyles.containerLavaSeca}>
-          <Text style={myStylesComuns.textoPequeno}>
+          <Text style={myStyleApp.textoPequeno}>
             {tipMaq + " " + idMaq}
           </Text>
           {flagViewStatusMaquina == true ?
-            <Text style={myStylesComuns.textoPequeno}>
+            <Text style={myStyleApp.textoPequeno}>
               {txStatus}
             </Text> : ""}
         </View>
@@ -172,7 +172,7 @@ export default function ViewLojaMaquinas() {
   try {
     screenHeight = Dimensions.get('window').height;
   } catch {
-    screenHeight = myStylesComuns.containerTamanhoMedioTelas;
+    screenHeight = myStyleApp.containerTamanhoMedioTelas;
   };
   let headerHeight = 0; //Eventual header na página
   let bodyHeight = screenHeight - headerHeight + 0;
@@ -180,30 +180,30 @@ export default function ViewLojaMaquinas() {
   //sem loja favoritada OU loja com status diferente de "ativa"
   if (!user.idFavoriteStore || user.idFavoriteStore == null) {
     return (
-      <SafeAreaView style={myStylesComuns.containerPrincipalSafeArea}>
+      <SafeAreaView style={myStyleApp.containerPrincipalSafeArea}>
         {GradienteFill()}
-        <ScrollView style={myStylesComuns.containerPrincipalScroll} showsVerticalScrollIndicator={false}>
+        <ScrollView style={myStyleApp.containerPrincipalScroll} showsVerticalScrollIndicator={false}>
 
           <View style={{ height: bodyHeight, paddingBottom: 96 }}>
             <View style={myStyles.containerHeader}>
-              <Text style={myStylesComuns.textoTituloPagina}>
+              <Text style={myStyleApp.textoTituloPagina}>
                 Informações da sua lavanderia favorita
               </Text>
             </View>
             <View style={myStyles.containerBody1}>
               <View style={myStyles.containerUnidadeEndereco}>
-                <Text style={myStylesComuns.textoSubtitulo}>
+                <Text style={myStyleApp.textoSubtitulo}>
                   Você ainda não selecionou uma lavanderia favorita
                 </Text>
               </View>
             </View>
 
-            <TouchableOpacity style={myStylesComuns.button} onPress={atualizarStatus}>
+            <TouchableOpacity style={myStyleApp.button} onPress={atualizarStatus}>
               <Image
                 style={myStyles.imgLocalizacao}
                 source={require('../../assets/icones/icon_local2.png')}
               />
-              <Text style={myStylesComuns.buttonTextStyle}>Pesquisar lavanderias</Text>
+              <Text style={myStyleApp.buttonTextStyle}>Pesquisar lavanderias</Text>
             </TouchableOpacity>
 
             <View style={myStyles.containerBody2}>
@@ -217,7 +217,7 @@ export default function ViewLojaMaquinas() {
                 {maquina("lava", 3, lava[1], false)}
                 {maquina("lava", 5, lava[1], false)}
               </View>
-              <Text style={myStylesComuns.textoComum}>
+              <Text style={myStyleApp.textoComum}>
                 Esta é uma imagem ilustrativa
               </Text>
             </View>
@@ -229,13 +229,13 @@ export default function ViewLojaMaquinas() {
 
   //Com loja favoritada
   return (
-    <SafeAreaView style={myStylesComuns.containerPrincipalSafeArea}>
+    <SafeAreaView style={myStyleApp.containerPrincipalSafeArea}>
       {GradienteFill()}
-      <ScrollView style={myStylesComuns.containerPrincipalScroll} showsVerticalScrollIndicator={false}>
+      <ScrollView style={myStyleApp.containerPrincipalScroll} showsVerticalScrollIndicator={false}>
 
         <View style={{ height: bodyHeight, paddingBottom: 96 }}>
           <View style={myStyles.containerHeader}>
-            <Text style={myStylesComuns.textoTituloPagina}>
+            <Text style={myStyleApp.textoTituloPagina}>
               Sua lavanderia fora de casa
             </Text>
           </View>
@@ -245,7 +245,7 @@ export default function ViewLojaMaquinas() {
                 style={myStyles.imgLocalizacao}
                 source={require('../../assets/icones/icon_local2.png')}
               />
-              <Text style={myStylesComuns.textoSubtitulo}>
+              <Text style={myStyleApp.textoSubtitulo}>
                 Unidade: ASA NORTE
               </Text>
             </View>
@@ -261,14 +261,14 @@ export default function ViewLojaMaquinas() {
                   source={require('../../assets/icones/aqua_relogio_fechados.png')}
                 />
               }
-              <Text style={myStylesComuns.textoComum}>
+              <Text style={myStyleApp.textoComum}>
                 Abertos diariamente de 6h às 23h
               </Text>
             </View>
 
             <View style={myStyles.containerFacilidades}>
-              <TouchableOpacity style={myStylesComuns.buttonFlat} disabled={false} onPress={atualizarStatus}>
-                <Text style={myStylesComuns.buttonTextStyleFlat}>Selecione outra loja aqui</Text>
+              <TouchableOpacity style={myStyleApp.buttonFlat} disabled={false} onPress={atualizarStatus}>
+                <Text style={myStyleApp.buttonTextStyleFlat}>Selecione outra loja aqui</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -276,7 +276,7 @@ export default function ViewLojaMaquinas() {
           <View style={myStyles.containerBody2}>
             {/*
             <View style={myStyles.containerBroadcast}>
-              <Text style={myStylesComuns.textoComum}>
+              <Text style={myStyleApp.textoComum}>
                 Excepcionalmente hoje, 25/04/2024, quinta-feira, funcionaremos de 6h às 15h
               </Text>
             </View>
@@ -298,14 +298,14 @@ export default function ViewLojaMaquinas() {
                 style={myStyles.imgRelogio}
                 source={require('../../assets/icones/aqua_relogio_comum.png')}
               />
-              <Text style={myStylesComuns.textoComum}>
+              <Text style={myStyleApp.textoComum}>
                 26/06/2024 08:36
               </Text>
             </View>
 
             {flagViewStatusMaquina == true ?
-              <TouchableOpacity style={myStylesComuns.button} onPress={atualizarStatus}>
-                <Text style={myStylesComuns.buttonTextStyle}>Atualizar</Text>
+              <TouchableOpacity style={myStyleApp.button} onPress={atualizarStatus}>
+                <Text style={myStyleApp.buttonTextStyle}>Atualizar</Text>
               </TouchableOpacity> : ""
             }
           </View>

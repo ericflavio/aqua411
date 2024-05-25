@@ -3,8 +3,8 @@ import { useLocalSearchParams } from 'expo-router';
 import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, ActivityIndicator, Alert } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { myStyles } from "./styles";
-import { myStylesComuns } from '../../../styles/stylesComuns';
-import { myStylesColors } from "../../../styles/stylesColors";
+import { myStyleApp } from '../../../styles/styleApp';
+import { myStyleColor } from "../../../styles/stylesColors";
 import { InputText } from '../../../componentes/inputText';
 import { GradienteFill } from '../../../componentes/gradienteFill';
 import { AuthContext } from "../../../contexts/auth";
@@ -114,13 +114,13 @@ export default function ViewEdtLocalizacaoLoja() {
   }
 
   return (
-    <SafeAreaView style={myStylesComuns.containerPrincipalSafeArea}>
+    <SafeAreaView style={myStyleApp.containerPrincipalSafeArea}>
       {GradienteFill()}
-      <ScrollView style={myStylesComuns.containerPrincipalScroll} showsVerticalScrollIndicator={false}>
+      <ScrollView style={myStyleApp.containerPrincipalScroll} showsVerticalScrollIndicator={false}>
 
         <View style={myStyles.containerHeader}>
-          <MaterialIcons name="location-on" size={myStylesComuns.size.iconSizeButtonRegular} color={myStylesColors.corTextoPadrao} />
-          <Text style={myStylesComuns.textoSubtitulo}>Endereço digital</Text>
+          <MaterialIcons name="location-on" size={myStyleApp.size.iconSizeButtonRegular} color={myStyleColor.corTextoPadrao} />
+          <Text style={myStyleApp.textoSubtitulo}>Endereço digital</Text>
         </View>
 
         <View style={myStyles.containerPrincipal}>
@@ -128,16 +128,16 @@ export default function ViewEdtLocalizacaoLoja() {
           {InputText("Longitude", onChangeLongitude, "ex. -30,67890", 1, 12, "default", flagEditavel, longitude, false)}
           {InputText("Cole aqui o endereço/url GoogleMaps", onChangeUrl, "url GoogleMaps", 1, 200, "default", flagEditavel, urlGoogleMaps, false)}
 
-          <TouchableOpacity style={myStylesComuns.button} disabled={!flagEditavel} onPress={prosseguir} >
-            <View style={myStylesComuns.buttonContainerWithIconHC}>
+          <TouchableOpacity style={myStyleApp.button} disabled={!flagEditavel} onPress={prosseguir} >
+            <View style={myStyleApp.buttonContainerWithIconHC}>
               {!flagEditavel ? <ActivityIndicator /> : ""}
-              <Text style={myStylesComuns.buttonTextStyle}>Continuar</Text>
+              <Text style={myStyleApp.buttonTextStyle}>Continuar</Text>
             </View>
           </TouchableOpacity>
         </View>
         <View style={myStyles.containerBottom}>
-          <MaterialIcons name="check-circle-outline" size={myStylesComuns.size.iconSizeSmall} color={myStylesColors.corAzulClaro} />
-          <Text style={myStylesComuns.textoPequeno}>Informações opcionais. Você pode continuar sem informá-las</Text>
+          <MaterialIcons name="check-circle-outline" size={myStyleApp.size.iconSizeSmall} color={myStyleColor.corAzulClaro} />
+          <Text style={myStyleApp.textoPequeno}>Informações opcionais. Você pode continuar sem informá-las</Text>
         </View>
 
       </ScrollView>

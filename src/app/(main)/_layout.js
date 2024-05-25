@@ -1,6 +1,6 @@
 import { MaterialIcons } from "@expo/vector-icons";
-import { myStylesColors } from '../../styles/stylesColors';
-import { myStylesComuns } from '../../styles/stylesComuns';
+import { myStyleColor } from '../../styles/stylesColors';
+import { myStyleApp } from '../../styles/styleApp';
 import { ActivityIndicator, View, Image } from "react-native";
 import { useContext } from 'react';
 import { AuthContext } from "../../contexts/auth";
@@ -43,8 +43,8 @@ export default function AppLayout() {
   return (
     <Tabs screenOptions={{
       headerShown: false,
-      tabBarInactiveTintColor: myStylesColors.corCinzMedio,
-      tabBarActiveTintColor: myStylesColors.corAzulEscuro,
+      tabBarInactiveTintColor: myStyleColor.corCinzMedio,
+      tabBarActiveTintColor: myStyleColor.corAzulEscuro,
       tabBarShowLabel: true,
       tabBarLabelStyle: {
         fontSize: 16,
@@ -69,7 +69,7 @@ export default function AppLayout() {
         options={{
           title: "Inicio",
           tabBarIcon: ({ size, color }) =>
-            <MaterialIcons name="local-laundry-service" size={myStylesComuns.size.iconSizeTabBar} color={color} />
+            <MaterialIcons name="local-laundry-service" size={myStyleApp.size.iconSizeTabBar} color={color} />
         }}
       />
 
@@ -78,7 +78,7 @@ export default function AppLayout() {
         options={{
           title: "Promo",
           tabBarIcon: ({ size, color }) =>
-            <MaterialIcons name="card-giftcard" size={myStylesComuns.size.iconSizeTabBar} color={color} />
+            <MaterialIcons name="card-giftcard" size={myStyleApp.size.iconSizeTabBar} color={color} />
         }}
       />
 
@@ -87,7 +87,7 @@ export default function AppLayout() {
         options={{
           title: "Conta",
           tabBarIcon: ({ size, color }) =>
-            <MaterialIcons name="person" size={myStylesComuns.size.iconSizeTabBar} color={color} />
+            <MaterialIcons name="person" size={myStyleApp.size.iconSizeTabBar} color={color} />
         }}
       />
     </Tabs>

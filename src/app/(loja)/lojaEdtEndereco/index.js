@@ -3,8 +3,8 @@ import { router } from 'expo-router';
 import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, ActivityIndicator, Alert } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { myStyles } from "./styles";
-import { myStylesComuns } from '../../../styles/stylesComuns';
-import { myStylesColors } from "../../../styles/stylesColors";
+import { myStyleApp } from '../../../styles/styleApp';
+import { myStyleColor } from "../../../styles/stylesColors";
 import { InputText } from '../../../componentes/inputText';
 import { GradienteFill } from '../../../componentes/gradienteFill';
 import { AuthContext } from "../../../contexts/auth";
@@ -143,29 +143,29 @@ export default function ViewEdtEnderecoLoja() {
   }
 
   return (
-    <SafeAreaView style={myStylesComuns.containerPrincipalSafeArea}>
+    <SafeAreaView style={myStyleApp.containerPrincipalSafeArea}>
       {GradienteFill()}
-      <ScrollView style={myStylesComuns.containerPrincipalScroll} showsVerticalScrollIndicator={false}>
+      <ScrollView style={myStyleApp.containerPrincipalScroll} showsVerticalScrollIndicator={false}>
 
         <View style={myStyles.containerHeader}>
-          <MaterialIcons name="add-business" size={myStylesComuns.size.iconSizeRegular} color={myStylesColors.corTextoPadrao} />
-          <Text style={myStylesComuns.textoSubtitulo}>Endereço</Text>
+          <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeRegular} color={myStyleColor.corTextoPadrao} />
+          <Text style={myStyleApp.textoSubtitulo}>Endereço</Text>
         </View>
 
         <View style={myStyles.containerPrincipal}>
           {InputText("CEP", onChangeCep, "CEP", 1, 8, "default", flagEditavel, cep, false)}
           <View style={{ paddingLeft: 10, marginTop:10 }}>
-            <Text style={myStylesComuns.textoComum}>{endereco.localidade} {endereco.uf}</Text>
-            <Text style={myStylesComuns.textoComum}>{endereco.bairro}</Text>
-            <Text style={myStylesComuns.textoComum}>{endereco.logradouro}</Text>
+            <Text style={myStyleApp.textoComum}>{endereco.localidade} {endereco.uf}</Text>
+            <Text style={myStyleApp.textoComum}>{endereco.bairro}</Text>
+            <Text style={myStyleApp.textoComum}>{endereco.logradouro}</Text>
           </View>
           {InputText("Número", onChangeNumero, "Número, ou s/n", 1, 5, "default", flagEditavel, numero, false)}
           {InputText("Complemento", onChangeComplemento, "Complemento", 1, 80, "default", flagEditavel, complemento, false)}
 
-          <TouchableOpacity style={myStylesComuns.button} disabled={!flagEditavel} onPress={prosseguir} >
-            <View style={myStylesComuns.buttonContainerWithIconHC}>
+          <TouchableOpacity style={myStyleApp.button} disabled={!flagEditavel} onPress={prosseguir} >
+            <View style={myStyleApp.buttonContainerWithIconHC}>
               {!flagEditavel ? <ActivityIndicator /> : ""}
-              <Text style={myStylesComuns.buttonTextStyle}>Continuar</Text>
+              <Text style={myStyleApp.buttonTextStyle}>Continuar</Text>
             </View>
           </TouchableOpacity>
         </View>

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, SafeAreaView, ScrollView, TouchableOpacity } from "react-native";
 import { myStyles } from "./styles";
-import { myStylesComuns } from '../../../styles/stylesComuns';
-import { myStylesColors } from "../../../styles/stylesColors";
+import { myStyleApp } from '../../../styles/styleApp';
+import { myStyleColor } from "../../../styles/stylesColors";
 import { MaterialIcons } from "@expo/vector-icons";
 import { GradienteFill } from '../../../componentes/gradienteFill';
 
@@ -30,12 +30,12 @@ function montaPromocao(vigente) {
     <TouchableOpacity disabled={!vigente} style={(vigente ? myStyles.buttonPromoVigente : myStyles.buttonPromoEncerrada)} onPress={detalhaPromo}>
       <View style={myStyles.containerPromoCabecalho}>
         <Text style={myStyles.textoTituloPromo}>{promo.nome}</Text>
-        <MaterialIcons name="card-giftcard" size={myStylesComuns.size.iconSizeButtonRegular} color={(vigente ? myStylesColors.corTemaAppSecundario : "grey")} />
+        <MaterialIcons name="card-giftcard" size={myStyleApp.size.iconSizeButtonRegular} color={(vigente ? myStyleColor.corTemaAppSecundario : "grey")} />
       </View>
       <View style={myStyles.containerPromoPeriodo}>
-        <MaterialIcons name="calendar-month" size={myStylesComuns.size.iconSizeButtonRegular} color={"grey"} />
-        <Text style={myStylesComuns.textoComum}>{promo.dataInicio} <Text> até </Text></Text>
-        <Text style={myStylesComuns.textoComum}>{promo.dataFim}</Text>
+        <MaterialIcons name="calendar-month" size={myStyleApp.size.iconSizeButtonRegular} color={"grey"} />
+        <Text style={myStyleApp.textoComum}>{promo.dataInicio} <Text> até </Text></Text>
+        <Text style={myStyleApp.textoComum}>{promo.dataFim}</Text>
       </View>
       <Text style={myStyles.textoPromo}>{promo.descricao}</Text>
     </TouchableOpacity>
@@ -46,14 +46,14 @@ function montaPromocao(vigente) {
 export default function ViewPromocao() {
 
   return (
-    <SafeAreaView style={myStylesComuns.containerPrincipalSafeArea}>
+    <SafeAreaView style={myStyleApp.containerPrincipalSafeArea}>
       {GradienteFill()}
-      <ScrollView style={myStylesComuns.containerPrincipalScroll} showsVerticalScrollIndicator={false}>
+      <ScrollView style={myStyleApp.containerPrincipalScroll} showsVerticalScrollIndicator={false}>
         <View style={myStyles.containerHeader}>
-          <Text style={myStylesComuns.textoTituloPagina}>
+          <Text style={myStyleApp.textoTituloPagina}>
             Promoções para você economizar
           </Text>
-          <Text style={myStylesComuns.textoComum}>
+          <Text style={myStyleApp.textoComum}>
             Mais detalhes você pode encontrar na loja e no atendimento via Whatsapp
           </Text>
         </View>

@@ -1,11 +1,11 @@
 import { StyleSheet } from "react-native";
-import { myStylesColors } from './stylesColors';
-import { myStyleSize } from './stylesSize';
+import { myStyleColor } from './stylesColors';
+import { myStyleSize } from './styleSize';
 
-export const myStylesComuns = StyleSheet.create({
+export const myStyleApp = StyleSheet.create({
   //
   size: myStyleSize,
-  color: myStylesColors,
+  color: myStyleColor,
 
   //Container
   containerBordaRaio: myStyleSize.containerBordaRaio,
@@ -13,7 +13,7 @@ export const myStylesComuns = StyleSheet.create({
 
   containerPrincipalSafeArea: {
     flex: 1,
-    backgroundColor: myStylesColors.corBackgroundClaro,
+    backgroundColor: myStyleColor.corBackgroundClaro,
     alignItems: "center",
     borderWidth: myStyleSize.containerBordaOnOff,
     borderBlockColor: "#fa7251ff",
@@ -32,23 +32,23 @@ export const myStylesComuns = StyleSheet.create({
     fontWeight: myStyleSize.textoNegritoForte,
     marginTop: 40,
     marginBottom: 25,
-    color: myStylesColors.corTextoTitulo,
+    color: myStyleColor.corTextoTitulo,
   },
   textoSubtitulo: {
     fontSize: myStyleSize.textoFonteTam2,
     fontWeight: myStyleSize.textoNegritoForte,
     marginTop: 0,
-    color: myStylesColors.corTextoSubtitulo,
+    color: myStyleColor.corTextoSubtitulo,
   },
   textoComum: {
     fontSize: myStyleSize.textoFonteTam3,
     fontWeight: myStyleSize.textoNegritoMedio,
-    color: myStylesColors.corTextoPadrao,
+    color: myStyleColor.corTextoPadrao,
   },
   textoPequeno: {
     fontSize: myStyleSize.textoFonteTam5,
     fontWeight: myStyleSize.TextoNegritoOff,
-    color: myStylesColors.corTextoPadrao,
+    color: myStyleColor.corTextoPadrao,
   },
   //Botões
   buttonContainerWithIconHL: {
@@ -75,17 +75,17 @@ export const myStylesComuns = StyleSheet.create({
   buttonTextStyle: {
     fontSize: myStyleSize.textoFonteTam4,
     fontWeight: myStyleSize.textoNegritoForte,
-    color: myStylesColors.corTextoPadrao,
+    color: myStyleColor.corTextoPadrao,
   },
   buttonTextStyleFlat: {
     fontSize: myStyleSize.textoFonteTam4,
     fontWeight: myStyleSize.textoNegritoMedio,
-    color: myStylesColors.corTextoPadrao,
+    color: myStyleColor.corTextoPadrao,
   },
   button: {
     alignItems: 'center',
     backgroundColor: 'white',
-    borderColor: myStylesColors.corCinzMedio,
+    borderColor: myStyleColor.corCinzMedio,
     borderWidth: 1,
     borderRadius: 8,
     borderBottomWidth: 4,
@@ -114,7 +114,7 @@ export const myStylesComuns = StyleSheet.create({
     minHeight: 70,
     minWidth: "50%",
     borderWidth:1,
-    borderColor: myStylesColors.corCinzaClaro,
+    borderColor: myStyleColor.corCinzaClaro,
     borderRadius: 6
   },
 
@@ -127,7 +127,7 @@ export const myStylesComuns = StyleSheet.create({
     fontWeight: "bold",
     borderWidth: 0,
     borderBottomWidth: 1.5,
-    borderBottomColor: myStylesColors.corInputTextBorder,
+    borderBottomColor: myStyleColor.corInputTextBorder,
     borderRadius: 8,
     backgroundColor: "white",
     padding: 10,

@@ -1,9 +1,9 @@
 import { View, Image, Text, TouchableOpacity } from "react-native";
 import { myStyles } from './styles';
-import { myStylesComuns } from '../../styles/stylesComuns';
+import { myStyleApp } from '../../styles/styleApp';
 import { Link, router } from 'expo-router';
 import { MaterialIcons } from "@expo/vector-icons";
-import { myStylesColors } from "../../styles/stylesColors";
+import { myStyleColor } from "../../styles/stylesColors";
 import { GradienteFill } from '../../componentes/gradienteFill';
 import * as Animatable from 'react-native-animatable';
 
@@ -13,22 +13,22 @@ export default function ViewReception() {
   }
 
   return (
-    <View style={myStylesComuns.containerPrincipalSafeArea}>
+    <View style={myStyleApp.containerPrincipalSafeArea}>
       {GradienteFill()}
       <View style={myStyles.containerHeader}>
         <Animatable.Text
           animation="slideInLeft"
-          style={myStylesComuns.textoTituloPagina}>
+          style={myStyleApp.textoTituloPagina}>
           Você ainda lava roupa em casa?
         </Animatable.Text>
-        <Text style={myStylesComuns.textoSubtitulo}>
+        <Text style={myStyleApp.textoSubtitulo}>
           Está na hora de conhecer os benefícios das lavanderias inteligentes
         </Text>
         <View style={myStyles.containerViewButton}>
-          <TouchableOpacity style={myStylesComuns.button} onPress={goToLogin}>
+          <TouchableOpacity style={myStyleApp.button} onPress={goToLogin}>
             <View style={myStyles.containerButton}>
-              <Text style={myStylesComuns.buttonTextStyle}>Começar</Text>
-              <MaterialIcons name="arrow-outward" size={myStylesComuns.size.iconSizeButtonSmall} color={myStylesColors.corAzulClaro} />
+              <Text style={myStyleApp.buttonTextStyle}>Começar</Text>
+              <MaterialIcons name="arrow-outward" size={myStyleApp.size.iconSizeButtonSmall} color={myStyleColor.corAzulClaro} />
             </View>
           </TouchableOpacity>
         </View>

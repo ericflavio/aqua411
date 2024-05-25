@@ -1,17 +1,17 @@
 import { StyleSheet } from "react-native";
-import { myStylesComuns } from "../../styles/stylesComuns";
+import { myStyleApp } from "../../styles/styleApp";
 
 export const myStyles = StyleSheet.create({
   containerHeader: {
     flex:0,
-    borderWidth: myStylesComuns.containerBordaOnOff
+    borderWidth: myStyleApp.containerBordaOnOff
   },
   conteinerTextoAvatar: {
     flexDirection: "column",
     alignItems: "stretch",
     justifyContent: "flex-start",
     minHeight: 54,
-    borderWidth: myStylesComuns.containerBordaOnOff
+    borderWidth: myStyleApp.containerBordaOnOff
   },
   containerRecepcionista: {
     flex:0,
@@ -21,13 +21,13 @@ export const myStyles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 16,
     padding: 8,
-    borderWidth: myStylesComuns.containerBordaOnOff
+    borderWidth: myStyleApp.containerBordaOnOff
   },
   containerAvatar: {
     flex:0,
     flexDirection: "row",
     alignItems: "stretch",
-    borderWidth: myStylesComuns.containerBordaOnOff
+    borderWidth: myStyleApp.containerBordaOnOff
   },
   containerFacilidades: {
     flex:0,

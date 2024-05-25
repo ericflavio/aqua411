@@ -1,6 +1,6 @@
 //Define todas as rotas do app
 import { Stack } from "expo-router";
-import { myStylesColors } from '../styles/stylesColors';
+import { myStyleColor } from '../styles/stylesColors';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export default function AppRoutes() {
@@ -10,8 +10,8 @@ export default function AppRoutes() {
       <Stack
         screenOptions={{
           headerShown: false,
-          tabBarInactiveTintColor: myStylesColors.corCinzMedio,
-          tabBarActiveTintColor: myStylesColors.corTemaAppSecundario,
+          tabBarInactiveTintColor: myStyleColor.corCinzMedio,
+          tabBarActiveTintColor: myStyleColor.corTemaAppSecundario,
           tabBarShowLabel: true,
         }} >
 

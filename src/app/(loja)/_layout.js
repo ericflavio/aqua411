@@ -1,4 +1,4 @@
-import { myStylesColors } from '../../styles/stylesColors';
+import { myStyleColor } from '../../styles/stylesColors';
 import { ActivityIndicator, View, Image } from "react-native";
 import { useContext } from 'react';
 import { AuthContext } from "../../contexts/auth";
@@ -12,8 +12,8 @@ export default function LojaLayout() {
     <Stack
       screenOptions={{
         headerShown: true,
-        tabBarInactiveTintColor: myStylesColors.corCinzMedio,
-        tabBarActiveTintColor: myStylesColors.corTemaAppSecundario,
+        tabBarInactiveTintColor: myStyleColor.corCinzMedio,
+        tabBarActiveTintColor: myStyleColor.corTemaAppSecundario,
         tabBarShowLabel: true,
       }} >
 
