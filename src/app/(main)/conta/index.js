@@ -35,45 +35,33 @@ export default function ViewConta() {
         </View>
 
         <View style={myStyles.containerBasics}>
-          <TouchableOpacity style={myStyleApp.buttonFlatWithBgCollor} onPress={{}} >
-            <View style={myStyleApp.buttonContainerWithIconV}>
-              <MaterialIcons name="help-outline" size={myStyleApp.size.iconSizeButtonRegular} color={myStyleColor.corTextoPadrao} />
-              <Text style={myStyleApp.buttonTextStyleFlat}>Ajuda</Text>
-            </View>
+          <TouchableOpacity style={myStyleApp.buttonFlatBgcV} onPress={{}} >
+            <MaterialIcons name="help-outline" size={myStyleApp.size.iconSizeButtonRegular} color={myStyleColor.corTextoPadrao} />
+            <Text style={myStyleApp.buttonTextStyleFlat}>Ajuda</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={myStyleApp.buttonFlatWithBgCollor} onPress={{}} >
-            <View style={myStyleApp.buttonContainerWithIconV}>
-              <MaterialIcons name="payment" size={myStyleApp.size.iconSizeButtonRegular} color={myStyleColor.corTextoPadrao} />
-              <Text style={myStyleApp.buttonTextStyleFlat}>Pagamentos</Text>
-            </View>
+          <TouchableOpacity style={myStyleApp.buttonFlatBgcV} onPress={{}} >
+            <MaterialIcons name="payment" size={myStyleApp.size.iconSizeButtonRegular} color={myStyleColor.corTextoPadrao} />
+            <Text style={myStyleApp.buttonTextStyleFlat}>Pagamentos</Text>
           </TouchableOpacity>
         </View>
 
         <View style={myStyles.containerOthers}>
-          <TouchableOpacity style={myStyleApp.buttonFlatWithBgCollor} onPress={adicionarLoja} >
-            <View style={myStyleApp.buttonContainerWithIconHL}>
-              <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeButtonRegular} color={myStyleColor.corTextoPadrao} />
-              <Text style={myStyleApp.buttonTextStyleFlat}>Adicionar minha lavanderia</Text>
-            </View>
+          <TouchableOpacity style={myStyleApp.buttonFlatBgcHL} onPress={adicionarLoja} >
+            <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeButtonRegular} color={myStyleColor.corTextoPadrao} />
+            <Text style={myStyleApp.buttonTextStyleFlat}>Adicionar minha lavanderia</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={myStyleApp.buttonFlatWithBgCollor} onPress={{}} >
-            <View style={myStyleApp.buttonContainerWithIconHL}>
-              <MaterialIcons name="local-laundry-service" size={myStyleApp.size.iconSizeButtonRegular} color={myStyleColor.corTextoPadrao} />
-              <Text style={myStyleApp.buttonTextStyleFlat}>Gerenciar minhas lavanderias</Text>
-            </View>
+          <TouchableOpacity style={myStyleApp.buttonFlatBgcHL} onPress={{}} >
+            <MaterialIcons name="local-laundry-service" size={myStyleApp.size.iconSizeButtonRegular} color={myStyleColor.corTextoPadrao} />
+            <Text style={myStyleApp.buttonTextStyleFlat}>Gerenciar minhas lavanderias</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={myStyleApp.buttonFlatWithBgCollor} onPress={{}} >
-            <View style={myStyleApp.buttonContainerWithIconHL}>
-              <MaterialIcons name="business" size={myStyleApp.size.iconSizeButtonRegular} color={myStyleColor.corTextoPadrao} />
-              <Text style={myStyleApp.buttonTextStyleFlat}>Adicionar franquia</Text>
-            </View>
+          <TouchableOpacity style={myStyleApp.buttonFlatBgcHL} onPress={{}} >
+            <MaterialIcons name="business" size={myStyleApp.size.iconSizeButtonRegular} color={myStyleColor.corTextoPadrao} />
+            <Text style={myStyleApp.buttonTextStyleFlat}>Adicionar franquia</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={myStyleApp.buttonFlatWithBgCollor} onPress={{}} >
-            <View style={myStyleApp.buttonContainerWithIconHL}>
-              <MaterialIcons name="business-center" size={myStyleApp.size.iconSizeButtonRegular} color={myStyleColor.corTextoPadrao} />
-              <Text style={myStyleApp.buttonTextStyleFlat}>Gerenciar minhas franquias</Text>
-            </View>
+          <TouchableOpacity style={myStyleApp.buttonFlatBgcHL} onPress={{}} >
+            <MaterialIcons name="business-center" size={myStyleApp.size.iconSizeButtonRegular} color={myStyleColor.corTextoPadrao} />
+            <Text style={myStyleApp.buttonTextStyleFlat}>Gerenciar minhas franquias</Text>
           </TouchableOpacity>
         </View>
 

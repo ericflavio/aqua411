@@ -163,10 +163,8 @@ export default function ViewEdtEnderecoLoja() {
           {InputText("Complemento", onChangeComplemento, "Complemento", 1, 80, "default", flagEditavel, complemento, false)}
 
           <TouchableOpacity style={myStyleApp.button} disabled={!flagEditavel} onPress={prosseguir} >
-            <View style={myStyleApp.buttonContainerWithIconHC}>
               {!flagEditavel ? <ActivityIndicator /> : ""}
               <Text style={myStyleApp.buttonTextStyle}>Continuar</Text>
-            </View>
           </TouchableOpacity>
         </View>
 

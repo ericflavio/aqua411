@@ -114,7 +114,7 @@ export default function ViewEdtHorario() {
         const endereco = await consultaCepService(cep);
         if (endereco.erro) {
           showMsgError("vc11");
-          setEndereco(voidEndereco); 
+          setEndereco(voidEndereco);
         } else {
           setEndereco({
             cep: endereco.cep,
@@ -158,7 +158,7 @@ export default function ViewEdtHorario() {
 
         <View style={myStyles.containerPrincipal}>
           {InputText("CEP", onChangeCep, "CEP", 1, 8, "default", flagEditavel, cep, false)}
-          <View style={{ paddingLeft: 10, marginTop:10 }}>
+          <View style={{ paddingLeft: 10, marginTop: 10 }}>
             <Text style={myStyleApp.textoComum}>{endereco.localidade} {endereco.uf}</Text>
             <Text style={myStyleApp.textoComum}>{endereco.bairro}</Text>
             <Text style={myStyleApp.textoComum}>{endereco.logradouro}</Text>
@@ -167,10 +167,8 @@ export default function ViewEdtHorario() {
           {InputText("Complemento", onChangeComplemento, "Complemento", 1, 80, "default", flagEditavel, complemento, false)}
 
           <TouchableOpacity style={myStyleApp.button} disabled={!flagEditavel} onPress={prosseguir} >
-            <View style={myStyleApp.buttonContainerWithIconHC}>
-              {!flagEditavel ? <ActivityIndicator /> : ""}
-              <Text style={myStyleApp.buttonTextStyle}>Continuar</Text>
-            </View>
+            {!flagEditavel ? <ActivityIndicator /> : ""}
+            <Text style={myStyleApp.buttonTextStyle}>Continuar</Text>
           </TouchableOpacity>
         </View>
 

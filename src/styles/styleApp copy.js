@@ -50,10 +50,31 @@ export const myStyleApp = StyleSheet.create({
     fontWeight: myStyleSize.TextoNegritoOff,
     color: myStyleColor.corTextoPadrao,
   },
-  //Botões: estilo do touchable
-  button: { //Horizontal centralizado, padrão do app
+  //Botões
+  //Container: estilo da view (inside touchable), para unir texto e ícone/activitindicator
+  buttonContainerWithIconHL: {
+    flexDirection:"row",
+    alignItems:"flex-start",
+    gap:6,
+    borderWidth:0,
+    paddingLeft:8,
+    minWidth: "100%",
+  },
+  buttonContainerWithIconHC: {
     flexDirection:"row",
     justifyContent:"center",
+    gap:6,
+    borderWidth:0,
+    minWidth: "100%",
+  },
+  buttonContainerWithIconV: {
+    flexDirection:"column",
+    gap:6,
+    alignItems:"center",
+    borderWidth:0
+  },
+  //Botões: estilo do touchable
+  button: {
     alignItems: 'center',
     backgroundColor: 'white',
     borderColor: myStyleColor.corCinzMedio,
@@ -63,23 +84,19 @@ export const myStyleApp = StyleSheet.create({
     marginTop: 12,
     marginBottom: 6,
     padding: 14,
-    gap:6,
-    minWidth: "100%",
+    maxWidth: "100%",
     fontWeight: "700",
   },
-  buttonFlat: {//Horizontal, alinhamento esquerdo, sem background
-    flexDirection:"row",
+  buttonFlat: {
     alignItems: 'flex-start',
     backgroundColor: 'transparent',
     marginTop: 10,
     marginBottom: 0,
     padding: 4,
     maxWidth: "100%",
-    borderWidth:0,
-    gap:6,
+    borderWidth:0
   },
-  buttonFlatBgcV: { //Vertical, centralizado, com background
-    flexDirection:"column",
+  buttonFlatWithBgCollor: {
     alignItems: 'center',
     justifyContent: "center",
     backgroundColor: "white",
@@ -90,23 +107,7 @@ export const myStyleApp = StyleSheet.create({
     minWidth: "50%",
     borderWidth:1,
     borderColor: myStyleColor.corCinzaClaro,
-    borderRadius: 6,
-    gap:6
-  },
-  buttonFlatBgcHL: { //Horizontal, centralizado, com background
-    flexDirection:"row",
-    alignItems: 'center',
-    justifyContent: "flex-start",
-    backgroundColor: "white",
-    marginTop: 0,
-    marginBottom: 0,
-    padding: 4,
-    minHeight: 70,
-    minWidth: "50%",
-    borderWidth:1,
-    borderColor: myStyleColor.corCinzaClaro,
-    borderRadius: 6,
-    gap:6
+    borderRadius: 6
   },
    //Botões: estilo do texto dentro do touchable
    buttonTextStyle: {

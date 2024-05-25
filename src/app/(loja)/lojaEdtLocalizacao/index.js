@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import {router, useLocalSearchParams } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
 import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, ActivityIndicator, Alert } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { myStyles } from "./styles";
@@ -146,10 +146,8 @@ export default function ViewEdtLocalizacaoLoja() {
           {InputText("Cole aqui o endereço/url GoogleMaps", onChangeUrl, "url GoogleMaps", 1, 200, "default", flagEditavel, urlGoogleMaps, false)}
 
           <TouchableOpacity style={myStyleApp.button} disabled={!flagEditavel} onPress={prosseguir} >
-            <View style={myStyleApp.buttonContainerWithIconHC}>
-              {!flagEditavel ? <ActivityIndicator /> : ""}
-              <Text style={myStyleApp.buttonTextStyle}>Continuar</Text>
-            </View>
+            {!flagEditavel ? <ActivityIndicator /> : ""}
+            <Text style={myStyleApp.buttonTextStyle}>Continuar</Text>
           </TouchableOpacity>
         </View>
         <View style={myStyles.containerBottom}>
