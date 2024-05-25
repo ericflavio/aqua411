@@ -3,6 +3,8 @@ import { myStylesColors } from './stylesColors';
 import { myStyleSize } from './stylesSize';
 
 export const myStylesComuns = StyleSheet.create({
+  //
+  size: myStyleSize,
   //Icones
   iconSizeButtonRegular: myStyleSize.iconSizeButtonRegular,
   iconSizeButtonSmall: myStyleSize.iconSizeButtonSmall,
@@ -132,7 +134,7 @@ export const myStylesComuns = StyleSheet.create({
     fontWeight: "bold",
     borderWidth: 0,
     borderBottomWidth: 1.5,
-    borderBottomColor: myStylesColors.corAzulClaro,
+    borderBottomColor: myStylesColors.corInputTextBorder,
     borderRadius: 8,
     backgroundColor: "white",
     padding: 10,

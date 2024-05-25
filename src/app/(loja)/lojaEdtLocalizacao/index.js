@@ -124,8 +124,8 @@ export default function ViewEdtLocalizacaoLoja() {
         </View>
 
         <View style={myStyles.containerPrincipal}>
-          {InputText("Latitude", onChangeLatitude, "Latitude (ex. 15,23456)", 1, 12, "default", flagEditavel, latitude, false)}
-          {InputText("Longitude", onChangeLongitude, "Longitude (ex. -30,67890)", 1, 12, "default", flagEditavel, longitude, false)}
+          {InputText("Latitude", onChangeLatitude, "ex. 15,23456", 1, 12, "default", flagEditavel, latitude, false)}
+          {InputText("Longitude", onChangeLongitude, "ex. -30,67890", 1, 12, "default", flagEditavel, longitude, false)}
           {InputText("Cole aqui o endereço/url GoogleMaps", onChangeUrl, "url GoogleMaps", 1, 200, "default", flagEditavel, urlGoogleMaps, false)}
 
           <TouchableOpacity style={myStylesComuns.button} disabled={!flagEditavel} onPress={prosseguir} >
@@ -136,7 +136,7 @@ export default function ViewEdtLocalizacaoLoja() {
           </TouchableOpacity>
         </View>
         <View style={myStyles.containerBottom}>
-          <MaterialIcons name="check-circle-outline" size={myStylesComuns.iconSizeSmall} color={myStylesColors.corSucesso} />
+          <MaterialIcons name="check-circle-outline" size={myStylesComuns.iconSizeSmall} color={myStylesColors.corAzulClaro} />
           <Text style={myStylesComuns.textoPequeno}>Informações opcionais. Você pode continuar sem informá-las</Text>
         </View>
 

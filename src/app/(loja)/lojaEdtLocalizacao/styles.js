@@ -21,6 +21,8 @@ export const myStyles = StyleSheet.create({
     flexDirection:"row", 
     marginTop: 10,
     gap:8, 
-    paddingLeft:8
+    padding:8,
+    maxWidth:"100%",
+    borderWidth:0
   },
 });

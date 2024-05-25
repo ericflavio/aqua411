@@ -1,3 +1,5 @@
+//Tamanhos mais utilizados.
+//Obs: Importar apenas dentro da StulesComuns.
 
 export const myStyleSize = {
   //Icones
