@@ -12,7 +12,7 @@ export default function LojaLayout() {
     <Stack
       screenOptions={{
         headerShown: true,
-        tabBarInactiveTintColor: myStyleColor.corCinzMedio,
+        tabBarInactiveTintColor: myStyleColor.corCinzaMedio,
         tabBarActiveTintColor: myStyleColor.corTemaAppSecundario,
         tabBarShowLabel: true,
       }} >

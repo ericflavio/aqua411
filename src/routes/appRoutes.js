@@ -10,7 +10,7 @@ export default function AppRoutes() {
       <Stack
         screenOptions={{
           headerShown: false,
-          tabBarInactiveTintColor: myStyleColor.corCinzMedio,
+          tabBarInactiveTintColor: myStyleColor.corCinzaMedio,
           tabBarActiveTintColor: myStyleColor.corTemaAppSecundario,
           tabBarShowLabel: true,
         }} >

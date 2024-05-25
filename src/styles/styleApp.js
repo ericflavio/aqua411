@@ -56,7 +56,7 @@ export const myStyleApp = StyleSheet.create({
     justifyContent:"center",
     alignItems: 'center',
     backgroundColor: 'white',
-    borderColor: myStyleColor.corCinzMedio,
+    borderColor: myStyleColor.corCinzaMedio,
     borderWidth: 1,
     borderRadius: 8,
     borderBottomWidth: 4,
@@ -112,7 +112,7 @@ export const myStyleApp = StyleSheet.create({
   buttonFlatListHL: { //Horizontal flat, esquerdo, estilo lista
     flexDirection:"row",
     alignItems: 'center',
-    justifyContent: "flex-start",
+    justifyContent: "space-between",
     backgroundColor: "white",
     marginTop: 0,
     marginBottom: 0,
@@ -121,7 +121,7 @@ export const myStyleApp = StyleSheet.create({
     minHeight: 70,
     minWidth: "100%",
     borderTopWidth: 1,
-    borderBottomWidth: 1,
+    borderBottomWidth: 0.5,
     borderColor: myStyleColor.corCinzaClaro,
     borderRadius: 0,
     gap:6

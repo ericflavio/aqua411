@@ -23,8 +23,8 @@ export const myStyleColor = StyleSheet.create({
   corAzulEscuro: "#041e52ff",
   corAzulClaro: "#2ba6daff",
   //Cinza
-  corCinzEscuro: "#606060ff",
-  corCinzMedio: "#bebebeff",
+  corCinzaEscuro: "#606060ff",
+  corCinzaMedio: "#bebebeff",
   corCinzaClaro: "#f1f1f1ff",
   //Preto
   corPretoAbsoluto: "#000000ff",

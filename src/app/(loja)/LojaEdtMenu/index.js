@@ -38,28 +38,39 @@ export default function ViewEdtMenu() {
 
         <View style={myStyles.containerPrincipal}>
           <TouchableOpacity style={myStyleApp.buttonFlatListHL} disabled={false} onPress={goTo} >
-            <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corTextoPadrao} />
-            <Text style={myStyleApp.buttonTextStyle}>Identidade</Text>
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corTextoPadrao} />
+              <Text style={myStyleApp.buttonTextStyle}>Endereço</Text>
+            </View>
+            <MaterialIcons name="navigate-next" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corCinzaMedio} />
           </TouchableOpacity>
           <TouchableOpacity style={myStyleApp.buttonFlatListHL} disabled={false} onPress={goTo} >
-            <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corTextoPadrao} />
-            <Text style={myStyleApp.buttonTextStyle}>Endereço</Text>
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corTextoPadrao} />
+              <Text style={myStyleApp.buttonTextStyle}>Localização</Text>
+            </View>
+            <MaterialIcons name="navigate-next" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corCinzaMedio} />
           </TouchableOpacity>
           <TouchableOpacity style={myStyleApp.buttonFlatListHL} disabled={false} onPress={goTo} >
-            <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corTextoPadrao} />
-            <Text style={myStyleApp.buttonTextStyle}>Localização</Text>
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corTextoPadrao} />
+              <Text style={myStyleApp.buttonTextStyle}>Horário de funcionamento</Text>
+            </View>
+            <MaterialIcons name="navigate-next" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corCinzaMedio} />
           </TouchableOpacity>
           <TouchableOpacity style={myStyleApp.buttonFlatListHL} disabled={false} onPress={goTo} >
-            <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corTextoPadrao} />
-            <Text style={myStyleApp.buttonTextStyle}>Horário de funcionamento</Text>
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corTextoPadrao} />
+              <Text style={myStyleApp.buttonTextStyle}>Equipamentos</Text>
+            </View>
+            <MaterialIcons name="navigate-next" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corCinzaMedio} />
           </TouchableOpacity>
           <TouchableOpacity style={myStyleApp.buttonFlatListHL} disabled={false} onPress={goTo} >
-            <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corTextoPadrao} />
-            <Text style={myStyleApp.buttonTextStyle}>Equipamentos</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={myStyleApp.buttonFlatListHL} disabled={false} onPress={goTo} >
-            <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corTextoPadrao} />
-            <Text style={myStyleApp.buttonTextStyle}>Facilidades</Text>
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corTextoPadrao} />
+              <Text style={myStyleApp.buttonTextStyle}>Facilidades</Text>
+            </View>
+            <MaterialIcons name="navigate-next" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corCinzaMedio} />
           </TouchableOpacity>
         </View>
 
