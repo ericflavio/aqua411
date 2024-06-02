@@ -1,5 +1,5 @@
 import { LinearGradient } from 'expo-linear-gradient';
-import { Dimensions } from "react-native";
+import { Dimensions , Text} from "react-native";
 
 function tamanhoTela() {
   //Seta tamanho ideal das VIEWS baseado no tamanho da tela do aparelho
@@ -15,6 +15,7 @@ function tamanhoTela() {
 };
 
 export function GradienteFill(corForte, corFraca, tamanho) {
+  return (<></>);
   if (tamanho == undefined) tamanho = tamanhoTela();
 
   return (

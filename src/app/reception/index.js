@@ -1,7 +1,7 @@
 import { View, Image, Text, TouchableOpacity } from "react-native";
 import { myStyles } from './styles';
 import { myStyleApp } from '../../styles/styleApp';
-import { Link, router } from 'expo-router';
+import { router } from 'expo-router';
 import { MaterialIcons } from "@expo/vector-icons";
 import { myStyleColor } from "../../styles/stylesColors";
 import { GradienteFill } from '../../componentes/gradienteFill';
@@ -34,9 +34,10 @@ export default function ViewReception() {
         </View>
       </View>
       <View style={myStyles.containerBody}>
-        <Image
+        <Animatable.Image
+          animation="zoomInUp"
           style={myStyles.imgCenaBttom}
-          source={require('../../assets/outros/ovelha_cena_01.png')}
+          source={require('../../assets/outros/sheep_chuva_01.png')}
         />
       </View>
     </View>

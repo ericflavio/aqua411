@@ -1,12 +1,10 @@
-import { StyleSheet , StatusBar} from "react-native";
+import { StyleSheet, StatusBar } from "react-native";
 import { myStyleColor } from './stylesColors';
 import { myStyleSize } from './styleSize';
 
 export const myStyleApp = StyleSheet.create({
-  //
   size: myStyleSize,
   color: myStyleColor,
-
   //Container
   containerBordaRaio: myStyleSize.containerBordaRaio,
   containerTamanhoMedioTelas: myStyleSize.containerTamanhoMedioTelas,
@@ -33,7 +31,6 @@ export const myStyleApp = StyleSheet.create({
     borderColor: "#98e07eff",
     marginTop: "0%"
   },
-
 
   //Textos
   textoTituloPagina: {
@@ -63,10 +60,11 @@ export const myStyleApp = StyleSheet.create({
     //fontWeight: myStyleSize.TextoNegritoOff,
     color: myStyleColor.corTextoPadrao,
   },
+
   //Botões: estilo do touchable
   buttonHC: { //Horizontal centralizado
-    flexDirection:"row",
-    justifyContent:"center",
+    flexDirection: "row",
+    justifyContent: "center",
     alignItems: 'center',
     backgroundColor: myStyleColor.buttonBkg,
     borderColor: myStyleColor.buttonBorder,
@@ -76,57 +74,58 @@ export const myStyleApp = StyleSheet.create({
     marginTop: 12,
     marginBottom: 6,
     padding: 14,
-    gap:6,
+    gap: 6,
     minWidth: "100%",
     fontWeight: "700",
   },
   buttonFlatTranspHL: {//Horizontal flat, esquerdo, transparente
-    flexDirection:"row",
+    flexDirection: "row",
     alignItems: 'flex-start',
     backgroundColor: 'transparent',
     marginTop: 10,
     marginBottom: 0,
     padding: 4,
     maxWidth: "100%",
-    borderWidth:0,
-    gap:6,
+    borderWidth: 0,
+    gap: 6,
   },
   buttonFlatV: { //Vertical flat, centralizado 
-    flexDirection:"column",
+    flexDirection: "column",
     alignItems: 'center',
     justifyContent: "center",
     backgroundColor: "white",
+    borderColor: myStyleColor.corCinzaClaro,
     marginTop: 0,
     marginBottom: 0,
     padding: 4,
     minHeight: 70,
     minWidth: "50%",
-    borderWidth:1,
-    borderColor: myStyleColor.corCinzaClaro,
+    borderWidth: 1,
     borderRadius: 6,
-    gap:6
+    gap: 6
   },
   buttonFlatHL: { //Horizontal flat, esquerdo
-    flexDirection:"row",
+    flexDirection: "row",
     alignItems: 'center',
     justifyContent: "flex-start",
     backgroundColor: "white",
+    borderColor: myStyleColor.corCinzaClaro,
     marginTop: 0,
     marginBottom: 0,
     padding: 4,
     paddingLeft: 8,
     minHeight: 70,
     minWidth: "100%",
-    borderWidth:1,
-    borderColor: myStyleColor.corCinzaClaro,
+    borderWidth: 1,
     borderRadius: 6,
-    gap:6
+    gap: 6
   },
   buttonFlatListHL: { //Horizontal flat, esquerdo, estilo lista
-    flexDirection:"row",
+    flexDirection: "row",
     alignItems: 'center',
     justifyContent: "space-between",
     backgroundColor: "white",
+    borderColor: myStyleColor.corCinzaClaro,
     marginTop: 0,
     marginBottom: 0,
     padding: 4,
@@ -135,15 +134,14 @@ export const myStyleApp = StyleSheet.create({
     minWidth: "100%",
     borderTopWidth: 1,
     borderBottomWidth: 0.5,
-    borderColor: myStyleColor.corCinzaClaro,
     borderRadius: 0,
-    gap:6
+    gap: 6
   },
-   //Botões: estilo do texto dentro do touchable
-   buttonTextStyle: {
+  //Botões: estilo do texto dentro do touchable
+  buttonTextStyle: {
     fontSize: myStyleSize.textoFonteTam4,
     fontWeight: myStyleSize.textoNegritoForte,
-    color: "white",
+    color: myStyleColor.corTextoPadrao,
   },
   buttonTextStyleFlat: {
     fontSize: myStyleSize.textoFonteTam4,

@@ -14,7 +14,8 @@ export const myStyles = StyleSheet.create({
     backgroundColor: "transparent",
     borderWidth: 0,
     justifyContent: "flex-end",
-    borderWidth:0
+    borderWidth:0,
+    marginBottom: 30,
   },
   containerViewButton: {
     width:"60%"

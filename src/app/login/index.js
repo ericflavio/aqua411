@@ -206,13 +206,13 @@ export default function ViewLogin() {
         </View>
 
         <View style={myStyles.containerRecepcionista}>
-          <View style={myStyles.containerAvatar}>
+          {/* <View style={myStyles.containerAvatar}>
             <Image
               style={myStyles.imgAvatar}
               source={require('../../assets/outros/sheep_padrao.png')}
             />
             <MaterialIcons name="textsms" size={myStyleApp.size.iconSizeSmall} color={(flagErro ? myStyleColor.corErro : myStyleColor.corAzulClaro)} />
-          </View>
+          </View> */}
 
           <View style={myStyles.conteinerTextoAvatar}>
             <Text style={myStyleApp.textoComum}>
