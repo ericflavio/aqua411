@@ -13,7 +13,7 @@ export const myStyleApp = StyleSheet.create({
 
   containerPrincipalSafeArea: {
     flex: 1,
-    backgroundColor: myStyleColor.corBackgroundClaro,
+    backgroundColor: myStyleColor.BkgSafeArea,
     alignItems: "center",
     borderWidth: myStyleSize.containerBordaOnOff,
     borderBlockColor: "#fa7251ff",
@@ -68,7 +68,7 @@ export const myStyleApp = StyleSheet.create({
     flexDirection:"row",
     justifyContent:"center",
     alignItems: 'center',
-    backgroundColor: myStyleColor.buttonBackground,
+    backgroundColor: myStyleColor.buttonBkg,
     borderColor: myStyleColor.buttonBorder,
     borderWidth: 1,
     borderRadius: 9,

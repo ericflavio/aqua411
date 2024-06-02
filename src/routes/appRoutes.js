@@ -11,7 +11,7 @@ export default function AppRoutes() {
         screenOptions={{
           headerShown: false,
           tabBarInactiveTintColor: myStyleColor.corCinzaMedio,
-          tabBarActiveTintColor: myStyleColor.corTemaAppSecundario,
+          tabBarActiveTintColor: myStyleColor.corTema10B,
           tabBarShowLabel: true,
         }} >
 

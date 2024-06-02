@@ -13,7 +13,7 @@ export default function LojaLayout() {
       screenOptions={{
         headerShown: true,
         tabBarInactiveTintColor: myStyleColor.corCinzaMedio,
-        tabBarActiveTintColor: myStyleColor.corTemaAppSecundario,
+        tabBarActiveTintColor: myStyleColor.corTema10B,
         tabBarShowLabel: true,
       }} >
 
