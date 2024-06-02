@@ -68,10 +68,10 @@ export const myStyleApp = StyleSheet.create({
     flexDirection:"row",
     justifyContent:"center",
     alignItems: 'center',
-    backgroundColor: 'white',
-    borderColor: myStyleColor.corCinzaMedio,
+    backgroundColor: myStyleColor.buttonBackground,
+    borderColor: myStyleColor.buttonBorder,
     borderWidth: 1,
-    borderRadius: 8,
+    borderRadius: 9,
     borderBottomWidth: 4,
     marginTop: 12,
     marginBottom: 6,
@@ -143,7 +143,7 @@ export const myStyleApp = StyleSheet.create({
    buttonTextStyle: {
     fontSize: myStyleSize.textoFonteTam4,
     fontWeight: myStyleSize.textoNegritoForte,
-    color: myStyleColor.corTextoPadrao,
+    color: "white",
   },
   buttonTextStyleFlat: {
     fontSize: myStyleSize.textoFonteTam4,

@@ -1,9 +1,19 @@
 import { StyleSheet } from "react-native";
-
-//Cores mais utilizadas
 //Obs: Importar apenas dentro da StylesComuns.
 
+const tema = "claro";
+
+//Botões
+tema === "claro"? buttonBackground = '#f8cd37ff' : buttonBackground = '#f5f1e0ff';
+tema === "claro"? buttonBorder = '#606060ff' : buttonBorder = '#f8cd37ff';
+tema === "claro"? buttonText = '#ffffff' : buttonText = '#343434ff';
+tema === "claro"? buttonIcon = '#ffffff' : buttonIcon = '#f8cd37ff';
+
 export const myStyleColor = StyleSheet.create({
+  buttonBackground,
+  buttonBorder,
+  buttonText,
+  buttonIcon,
   //Tema
   corTemaAppPrincipal: "#041e52ff",
   corTemaAppSecundario: "#2ba6daff",
@@ -28,7 +38,7 @@ export const myStyleColor = StyleSheet.create({
   corCinzaClaro: "#f1f1f1ff",
   //Preto
   corPretoAbsoluto: "#000000ff",
-  corPretoRelativo: "#1f1f1fff",
+  corPretoRelativo: "#343434ff",
   //Variados
   corErro: "#fa7251ff",
   corAlerta: "#ffe275ff",
