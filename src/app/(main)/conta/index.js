@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image } from "react-native";
+import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, Alert } from "react-native";
 import { myStyles } from "./styles";
 import { myStyleApp } from '../../../styles/styleApp';
 import { myStyleColor } from "../../../styles/stylesColors";
@@ -12,12 +12,22 @@ import { router } from 'expo-router';
 
 //Tela principal HOME
 export default function ViewConta() {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   var name = "Olá!";
   user.name ? name = user.name : name = user.idLogin;
 
   function adicionarLoja() {
     router.navigate('/LojaEdtMenu');
+  }
+  async function logoutApp() {
+    Alert.alert('SAIR', 'Você deseja sair do aplicativo agora?', [
+      {
+        text: 'Ficar',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
+      },
+      { text: 'Sair', onPress: () => logOut() },
+    ]);
   }
 
   return (
@@ -64,6 +74,11 @@ export default function ViewConta() {
             <Text style={myStyleApp.buttonTextStyleFlat}>Gerenciar minhas franquias</Text>
           </TouchableOpacity>
         </View>
+
+        <TouchableOpacity style={myStyleApp.buttonFlatTranspHL} onPress={logoutApp} >
+          <MaterialIcons name="logout" size={myStyleApp.size.iconSizeButtonRegular} color={myStyleColor.corTextoPadrao} />
+          <Text style={myStyleApp.buttonTextStyleFlat}>Sair do app</Text>
+        </TouchableOpacity>
 
       </ScrollView>
     </SafeAreaView >

@@ -69,7 +69,7 @@ export default function AuthProvider({ children }) {
 
   async function logOut() {
     await RemoveLocalDataLogin() //Remove o usuário localmente
-    setAuth(null); //limpar o state do objeto user
+    setUser(null); //limpar o state do objeto user
     return true;
   };
 
