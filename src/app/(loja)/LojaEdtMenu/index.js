@@ -30,13 +30,14 @@ export default function ViewEdtMenu() {
   return (
     <SafeAreaView style={myStyleApp.containerPrincipalSafeArea}>
       {GradienteFill()}
-      <ScrollView style={myStyleApp.containerPrincipalScroll} showsVerticalScrollIndicator={false}>
-
-        {<View style={myStyles.containerHeader}>
-          <Text style={myStyleApp.textoSubtitulo}>Loja #1 - Asa Norte</Text>
-        </View>}
+      <ScrollView style={myStyleApp.containerPrincipalScrollWB} showsVerticalScrollIndicator={false}>
+        <Image
+          style={myStyles.imgNovaLoja}
+          source={require('../../../assets/outros/sheep_novaLoja_01.png')}
+        />
 
         <View style={myStyles.containerPrincipal}>
+
           <TouchableOpacity style={myStyleApp.buttonFlatListHL} disabled={false} onPress={goTo} >
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corTextoPadrao} />

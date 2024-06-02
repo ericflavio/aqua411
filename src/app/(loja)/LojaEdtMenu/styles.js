@@ -8,7 +8,15 @@ export const myStyles = StyleSheet.create({
     paddingLeft:8
   },
   containerPrincipal: {
-    flex:1,
+    flex:0,
     borderWidth: myStyleApp.size.containerBordaOnOff
+  },
+  imgNovaLoja: {
+    height: "100%", 
+    width: "100%",
+    //overflow:"scroll",
+    //resizeMode: "stretch",
+    alignSelf: "flex-start",
+    //position: "relative"
   },
 });

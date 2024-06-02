@@ -12,7 +12,7 @@ export const myStyleSize = {
   iconSizeSmall: 32,
   iconSizeLarge: 40,
   //Container
-  containerBordaOnOff: 0,
+  containerBordaOnOff: 1,
   containerBordaRaio: 8,
   containerTamanhoMedioTelas: 800,
   //Textos

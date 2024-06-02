@@ -30,7 +30,10 @@
     },
     "plugins": [
       "expo-router",
-      "expo-font"
+      ["expo-font",
+      {
+        "fonts": ["./assets/fonts/Lato-Regular.ttf"]
+      }]
     ]
   }
 }

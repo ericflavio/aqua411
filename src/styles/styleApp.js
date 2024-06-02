@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet , StatusBar} from "react-native";
 import { myStyleColor } from './stylesColors';
 import { myStyleSize } from './styleSize';
 
@@ -17,6 +17,7 @@ export const myStyleApp = StyleSheet.create({
     alignItems: "center",
     borderWidth: myStyleSize.containerBordaOnOff,
     borderBlockColor: "#fa7251ff",
+    paddingTop: StatusBar.currentHeight
   },
   containerPrincipalScroll: {
     flex: 1,
@@ -25,29 +26,41 @@ export const myStyleApp = StyleSheet.create({
     borderColor: "#98e07eff",
     marginTop: "10%"
   },
+  containerPrincipalScrollWB: {
+    flex: 1,
+    width: "100%",
+    borderWidth: myStyleSize.containerBordaOnOff,
+    borderColor: "#98e07eff",
+    marginTop: "0%"
+  },
+
 
   //Textos
   textoTituloPagina: {
+    fontFamily: 'Lato-Bold',
     fontSize: myStyleSize.textoFonteTam0,
-    fontWeight: myStyleSize.textoNegritoForte,
-    marginTop: 40,
+    //fontWeight: myStyleSize.textoNegritoForte,
+    marginTop: 20,
     marginBottom: 25,
     color: myStyleColor.corTextoTitulo,
   },
   textoSubtitulo: {
+    fontFamily: 'Lato-Regular',
     fontSize: myStyleSize.textoFonteTam2,
-    fontWeight: myStyleSize.textoNegritoForte,
+    //fontWeight: myStyleSize.textoNegritoForte,
     marginTop: 0,
     color: myStyleColor.corTextoSubtitulo,
   },
   textoComum: {
+    fontFamily: 'Lato-Regular',
     fontSize: myStyleSize.textoFonteTam3,
-    fontWeight: myStyleSize.textoNegritoMedio,
+    //fontWeight: myStyleSize.textoNegritoMedio,
     color: myStyleColor.corTextoPadrao,
   },
   textoPequeno: {
+    fontFamily: 'Lato-Thin',
     fontSize: myStyleSize.textoFonteTam5,
-    fontWeight: myStyleSize.TextoNegritoOff,
+    //fontWeight: myStyleSize.TextoNegritoOff,
     color: myStyleColor.corTextoPadrao,
   },
   //Botões: estilo do touchable

@@ -2,16 +2,45 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { myStyleColor } from '../../styles/stylesColors';
 import { myStyleApp } from '../../styles/styleApp';
 import { ActivityIndicator, View, Image } from "react-native";
-import { useContext } from 'react';
+import { useContext , useCallback } from 'react';
 import { AuthContext } from "../../contexts/auth";
 import { Redirect, Tabs } from 'expo-router';
+import { useFonts } from 'expo-font';
 
 export default function AppLayout() {
   const { user, isLoading } = useContext(AuthContext);
   console.log("_layout (main)_ ", "isLoading: ", isLoading, " user: ", user !== null ? user.idLogin : "[null]", "isLiveAccount: ", user !== null && user.isLiveAccount !== undefined ? user.isLiveAccount : "[undefined]");
+  const [fontsLoaded, fontError] = useFonts({
+    'Lato-Bold': require('../../assets/fonts/Lato-Bold.ttf'),
+    'Lato-Light': require('../../assets/fonts/Lato-Light.ttf'),
+    'Lato-Regular': require('../../assets/fonts/Lato-Regular.ttf'),
+    'Lato-Thin': require('../../assets/fonts/Lato-Thin.ttf'),
+  });
+
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded || fontError) {
+      return (
+        <View style={{ flex: 1, justifyContent: "center", alignItems: "center", gap: 12 }}>
+          <ActivityIndicator size="large" />
+          <Image
+            style={{
+              width: 300,
+              height: 300,
+              overflow: "scroll",
+              resizeMode: "contain",
+              justifyContent: "center"
+            }}
+            source={require('../../assets/icones/app_icon_01.png')}
+          />
+        </View>
+      )
+    }
+  }, [fontsLoaded, fontError]);
+
 
   //Procedimentos de recuperação de usário no storage local em curso
-  if (isLoading) {
+  console.log("fontsLoaded ", fontsLoaded, " fontError ", fontError );
+  if (isLoading || !fontsLoaded) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center", gap: 12 }}>
         <ActivityIndicator size="large" />
