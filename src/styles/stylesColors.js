@@ -11,17 +11,17 @@ corTema30 = "#4ea0f8ff";
 corTema10A = "#f8cd37ff";
 corTema10B = "#8e7262ff";
 
+//Textos gerais
+tema === "claro" ? textoPadrao = '#262626ff' : textoPadrao = '#f5f1e0ff';
+tema === "claro" ? textoDestaque = corTema10B : textoDestaque = corTema10A;
+tema === "claro" ? textoTitulo = corTema10B : textoTitulo = corTema60A;
+tema === "claro" ? textoSubtitulo = "#262626ff" : textoSubtitulo = corTema60B;
+
 //Botões (incluindo também seus textos)
 tema === "claro" ? buttonBkg = '#f8cd37ff' : buttonBackground = '#f5f1e0ff';
 tema === "claro" ? buttonBorder = '#606060ff' : buttonBorder = '#f8cd37ff';
-tema === "claro" ? buttonText = '#ffffff' : buttonText = '#343434ff';
-tema === "claro" ? buttonIcon = '#ffffff' : buttonIcon = '#f8cd37ff';
-
-//Textos gerais
-tema === "claro" ? textoPadrao = '#1f1f1fff' : textoPadrao = '#f5f1e0ff';
-tema === "claro" ? textoDestaque = corTema10B : textoDestaque = corTema10A;
-tema === "claro" ? textoTitulo = corTema10B : textoTitulo = corTema60A;
-tema === "claro" ? textoSubtitulo = corTema10B : textoSubtitulo = corTema60B;
+tema === "claro" ? buttonText = textoPadrao : buttonText = textoPadrao;
+tema === "claro" ? buttonIcon = textoPadrao : buttonIcon = textoPadrao;
 
 //Background da safe-area
 tema === "claro" ? BkgSafeArea = '#ffffff' : BkgSafeArea = '#262626ff';
@@ -35,7 +35,7 @@ export const myStyleColor = StyleSheet.create({
   corTema10A,
   corTema10B,
   //Botões
-  buttonBackground,
+  buttonBkg,
   buttonBorder,
   buttonText,
   buttonIcon,
