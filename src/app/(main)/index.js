@@ -4,7 +4,7 @@ import { myStyles } from "./styles";
 import { myStyleApp } from '../../styles/styleApp';
 import { GradienteFill } from '../../componentes/gradienteFill';
 import { AuthContext } from "../../contexts/auth";
-import { Redirect } from 'expo-router';
+import { MaterialIcons } from "@expo/vector-icons";
 
 var cenarioTeste = 1;
 var seca = [1, 1, 1];
@@ -176,7 +176,7 @@ export default function ViewLojaMaquinas() {
   };
   let headerHeight = 0; //Eventual header na página
   let bodyHeight = screenHeight - headerHeight + 0;
- 
+
   //sem loja favoritada OU loja com status diferente de "ativa"
   if (!user.idFavoriteStore || user.idFavoriteStore == null) {
     return (
@@ -199,10 +199,11 @@ export default function ViewLojaMaquinas() {
             </View>
 
             <TouchableOpacity style={myStyleApp.buttonHC} onPress={atualizarStatus}>
-              <Image
+              {/*  <Image
                 style={myStyles.imgLocalizacao}
                 source={require('../../assets/icones/icon_local2.png')}
-              />
+              /> */}
+              <MaterialIcons name="location-on" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corTextoPadrao} />
               <Text style={myStyleApp.buttonTextStyle}>Pesquisar lavanderias</Text>
             </TouchableOpacity>
 
@@ -241,10 +242,11 @@ export default function ViewLojaMaquinas() {
           </View>
           <View style={myStyles.containerBody1}>
             <View style={myStyles.containerUnidadeEndereco}>
-              <Image
+              {/*  <Image
                 style={myStyles.imgLocalizacao}
                 source={require('../../assets/icones/icon_local2.png')}
-              />
+              /> */}
+              <MaterialIcons name="location-on" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corTextoPadrao} />
               <Text style={myStyleApp.textoSubtitulo}>
                 Unidade: ASA NORTE
               </Text>

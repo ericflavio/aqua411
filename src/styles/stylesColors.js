@@ -6,10 +6,10 @@ const tema = "claro";
 //Cores da paleta do app
 corTema60A = "#ffffff";
 corTema60B = "#f5f1e0ff";
-corTema60C = "#262626ff";
-corTema30 = "#4ea0f8ff";
-corTema10A = "#f8cd37ff";
-corTema10B = "#8e7262ff";
+corTema60C = "#364366ff", //"#262626ff";
+corTema30 = "#84d3f8ff", //"#4ea0f8ff";
+corTema10A = "#ee7087ff", //"#f8cd37ff";
+corTema10B = "#669e8eff", //#968078ff",//"#8e7262ff";
 
 //Textos gerais
 tema === "claro" ? textoPadrao = '#262626ff' : textoPadrao = '#f5f1e0ff';
@@ -18,10 +18,11 @@ tema === "claro" ? textoTitulo = corTema10B : textoTitulo = corTema60A;
 tema === "claro" ? textoSubtitulo = "#262626ff" : textoSubtitulo = corTema60B;
 
 //Botões (incluindo também seus textos)
-tema === "claro" ? buttonBkg = '#f8cd37ff' : buttonBackground = '#f5f1e0ff';
-tema === "claro" ? buttonBorder = '#606060ff' : buttonBorder = '#f8cd37ff';
-tema === "claro" ? buttonText = textoPadrao : buttonText = textoPadrao;
-tema === "claro" ? buttonIcon = textoPadrao : buttonIcon = textoPadrao;
+tema === "claro" ? buttonBkg = corTema10A : buttonBackground = corTema60B;
+tema === "claro" ? buttonBorder = '#606060ff' : buttonBorder = corTema30;
+tema === "claro" ? buttonText = "white" : buttonText = "white";
+tema === "claro" ? buttonTextFlat = textoPadrao : buttonTextFlat = textoPadrao;
+tema === "claro" ? buttonIcon = "white" : buttonIcon = "white";
 
 //Background da safe-area
 tema === "claro" ? BkgSafeArea = '#ffffff' : BkgSafeArea = '#262626ff';
@@ -49,7 +50,7 @@ export const myStyleColor = StyleSheet.create({
   //Container de InputTextos
   corInputTextBorder: corTema30,
   //Azul
-  corAzulEscuro: "#376ba4ff",
+  corAzulEscuro: "#364366ff",
   corAzulClaro: "#4ea0f8ff",
   //Cinza
   corCinzaEscuro: "#606060ff",

@@ -150,12 +150,12 @@ export const myStyleApp = StyleSheet.create({
   buttonTextStyle: {
     fontSize: myStyleSize.textoFonteTam4,
     fontWeight: myStyleSize.textoNegritoForte,
-    color: myStyleColor.corTextoPadrao,
+    color: myStyleColor.buttonText,
   },
   buttonTextStyleFlat: {
     fontSize: myStyleSize.textoFonteTam4,
     fontWeight: myStyleSize.textoNegritoMedio,
-    color: myStyleColor.corTextoPadrao,
+    color: myStyleColor.buttonTextFlat,
   },
 
   //InputText
