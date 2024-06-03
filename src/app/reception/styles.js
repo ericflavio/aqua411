@@ -17,9 +17,11 @@ export const myStyles = StyleSheet.create({
     justifyContent: "flex-end",
     borderWidth:0,
     marginBottom: 30,
+    zIndex: 0
   },
   containerViewButton: {
-    width:"60%"
+    width:"60%",
+    zIndex: 1
   },
   containerButton: {
     flexDirection: "row", 
@@ -27,9 +29,8 @@ export const myStyles = StyleSheet.create({
     alignItems: "center" 
   },
   imgCenaBttom: {
-    //width: "100%",
-    height: 300, 
-    overflow:"scroll",
+    width: 400,
+    overflow:"hidden",
     resizeMode: "contain",
     alignSelf: "flex-end",
   },
