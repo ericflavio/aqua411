@@ -33,7 +33,7 @@ export default function ViewConta() {
   return (
     <SafeAreaView style={myStyleApp.containerSafeArea}>
       {GradienteFill()}
-      <ScrollView style={myStyleApp.containerScroll} showsVerticalScrollIndicator={false}>
+      <ScrollView style={myStyleApp.containerScroll} contentContainerStyle={myStyleApp.containerScrollContent} showsVerticalScrollIndicator={false}>
         <View style={myStyles.containerHeader}>
           <Text style={myStyleApp.textoTituloPagina}>
             {name}
@@ -75,7 +75,7 @@ export default function ViewConta() {
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity style={myStyleApp.buttonFlaHL_transp} onPress={logoutApp} >
+        <TouchableOpacity style={myStyleApp.buttonFlatHL_transp} onPress={logoutApp} >
           <MaterialIcons name="logout" size={myStyleApp.size.iconSizeButtonRegular} color={myStyleColor.buttonTextFlat} />
           <Text style={myStyleApp.buttonTextStyleFlat}>Sair do app</Text>
         </TouchableOpacity>

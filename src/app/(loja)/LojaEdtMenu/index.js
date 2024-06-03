@@ -30,7 +30,7 @@ export default function ViewEdtMenu() {
   return (
     <SafeAreaView style={myStyleApp.containerSafeAreaSemPadding}> 
       {GradienteFill()}
-      <ScrollView contentContainerStyle={myStyleApp.containerScrollWB} showsVerticalScrollIndicator={false}>
+      <ScrollView style={myStyleApp.containerScrollWB} contentContainerStyle={myStyleApp.containerScrollContent} showsVerticalScrollIndicator={false}>
         <Image
           style={myStyles.imgNovaLoja}
           source={require('../../../assets/outros/sheep_novaLoja_01.png')}

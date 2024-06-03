@@ -133,7 +133,7 @@ export default function ViewEdtLocalizacaoLoja() {
   return (
     <SafeAreaView style={myStyleApp.containerSafeArea}>
       {GradienteFill()}
-      <ScrollView style={myStyleApp.containerScroll} showsVerticalScrollIndicator={false}>
+      <ScrollView style={myStyleApp.containerScroll} contentContainerStyle={myStyleApp.containerScrollContent} showsVerticalScrollIndicator={false}>
 
         <View style={myStyles.containerHeader}>
           <MaterialIcons name="location-on" size={myStyleApp.size.iconSizeButtonRegular} color={myStyleColor.textoSubtitulo} />

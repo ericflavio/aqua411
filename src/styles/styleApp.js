@@ -5,6 +5,7 @@ import { myStyleSize } from './styleSize';
 export const myStyleApp = StyleSheet.create({
   size: myStyleSize,
   color: myStyleColor,
+
   //Container
   containerBordaRaio: myStyleSize.containerBordaRaio,
   containerTamanhoMedioTelas: myStyleSize.containerTamanhoMedioTelas,
@@ -34,10 +35,13 @@ export const myStyleApp = StyleSheet.create({
   },
   containerScrollWB: { // Sem Borda lateral
     flex: 0,
-    justifyContent: "flex-start",
     width: "100%",
     borderWidth: myStyleSize.containerBordaOnOff,
     borderColor: "#98e07eff",
+  },
+  containerScrollContent: {
+    justifyContent: "flex-start",
+    paddingBottom: 40,
   },
 
   //Textos

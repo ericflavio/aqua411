@@ -182,7 +182,7 @@ export default function ViewLojaMaquinas() {
     return (
       <SafeAreaView style={myStyleApp.containerSafeArea}>
         {GradienteFill()}
-        <ScrollView style={myStyleApp.containerScroll} showsVerticalScrollIndicator={false}>
+        <ScrollView style={myStyleApp.containerScroll} contentContainerStyle={myStyleApp.containerScrollContent} showsVerticalScrollIndicator={false}>
 
           <View style={{ height: bodyHeight, paddingBottom: 96 }}>
             <View style={myStyles.containerHeader}>
@@ -232,7 +232,7 @@ export default function ViewLojaMaquinas() {
   return (
     <SafeAreaView style={myStyleApp.containerSafeArea}>
       {GradienteFill()}
-      <ScrollView style={myStyleApp.containerScroll} showsVerticalScrollIndicator={false}>
+      <ScrollView style={myStyleApp.containerScroll} contentContainerStyle={myStyleApp.containerScrollContent} showsVerticalScrollIndicator={false}>
 
         <View style={{ height: bodyHeight, paddingBottom: 96 }}>
           <View style={myStyles.containerHeader}>
@@ -269,7 +269,7 @@ export default function ViewLojaMaquinas() {
             </View>
 
             <View style={myStyles.containerFacilidades}>
-              <TouchableOpacity style={myStyleApp.buttonFlaHL_transp} disabled={false} onPress={atualizarStatus}>
+              <TouchableOpacity style={myStyleApp.buttonFlatHL_transp} disabled={false} onPress={atualizarStatus}>
                 <Text style={myStyleApp.buttonTextStyleFlat}>Selecione outra loja aqui</Text>
               </TouchableOpacity>
             </View>

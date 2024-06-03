@@ -149,7 +149,7 @@ export default function ViewEdtHorario() {
   return (
     <SafeAreaView style={myStyleApp.containerSafeArea}>
       {GradienteFill()}
-      <ScrollView style={myStyleApp.containerScroll} showsVerticalScrollIndicator={false}>
+      <ScrollView style={myStyleApp.containerScroll} contentContainerStyle={myStyleApp.containerScrollContent} showsVerticalScrollIndicator={false}>
 
         <View style={myStyles.containerHeader}>
           <MaterialIcons name="access-time" size={myStyleApp.size.iconSizeRegular} color={myStyleColor.textoSubtitulo} />
