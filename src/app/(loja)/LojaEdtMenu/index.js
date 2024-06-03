@@ -28,16 +28,15 @@ export default function ViewEdtMenu() {
   }
 
   return (
-    <SafeAreaView style={myStyleApp.containerPrincipalSafeArea}>
+    <SafeAreaView style={myStyleApp.containerPrincipalSafeAreaStack}>
       {GradienteFill()}
-      <ScrollView style={myStyleApp.containerPrincipalScrollWB} showsVerticalScrollIndicator={false}>
+      <ScrollView contentContainerStyle={myStyleApp.containerPrincipalScrollWB} showsVerticalScrollIndicator={false}>
         <Image
           style={myStyles.imgNovaLoja}
           source={require('../../../assets/outros/sheep_novaLoja_01.png')}
         />
 
         <View style={myStyles.containerPrincipal}>
-
           <TouchableOpacity style={myStyleApp.buttonFlatListHL} disabled={false} onPress={goTo} >
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corTextoPadrao} />
@@ -47,29 +46,15 @@ export default function ViewEdtMenu() {
           </TouchableOpacity>
           <TouchableOpacity style={myStyleApp.buttonFlatListHL} disabled={false} onPress={goTo} >
             <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corTextoPadrao} />
+              <MaterialIcons name="location-on" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corTextoPadrao} />
               <Text style={myStyleApp.buttonTextStyleFlat}>Localização</Text>
             </View>
             <MaterialIcons name="navigate-next" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corCinzaMedio} />
           </TouchableOpacity>
           <TouchableOpacity style={myStyleApp.buttonFlatListHL} disabled={false} onPress={goTo} >
             <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corTextoPadrao} />
+              <MaterialIcons name="access-time" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corTextoPadrao} />
               <Text style={myStyleApp.buttonTextStyleFlat}>Horário de funcionamento</Text>
-            </View>
-            <MaterialIcons name="navigate-next" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corCinzaMedio} />
-          </TouchableOpacity>
-          <TouchableOpacity style={myStyleApp.buttonFlatListHL} disabled={false} onPress={goTo} >
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corTextoPadrao} />
-              <Text style={myStyleApp.buttonTextStyleFlat}>Equipamentos</Text>
-            </View>
-            <MaterialIcons name="navigate-next" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corCinzaMedio} />
-          </TouchableOpacity>
-          <TouchableOpacity style={myStyleApp.buttonFlatListHL} disabled={false} onPress={goTo} >
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corTextoPadrao} />
-              <Text style={myStyleApp.buttonTextStyleFlat}>Facilidades</Text>
             </View>
             <MaterialIcons name="navigate-next" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corCinzaMedio} />
           </TouchableOpacity>

@@ -13,11 +13,10 @@ export const myStyles = StyleSheet.create({
     marginBottom: 40,
   },
   imgNovaLoja: {
-    //height: "100%", 
-    width: "100%",
-    //overflow:"scroll",
-    //resizeMode: "stretch",
-    alignSelf: "flex-start",
+    //height: 252, 
+    //width: 450,
+    overflow:"hidden",
+    resizeMode: "contain",
     //position: "relative"
   },
 });

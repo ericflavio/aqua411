@@ -9,7 +9,7 @@ export const myStyleApp = StyleSheet.create({
   containerBordaRaio: myStyleSize.containerBordaRaio,
   containerTamanhoMedioTelas: myStyleSize.containerTamanhoMedioTelas,
 
-  containerPrincipalSafeArea: {
+  containerPrincipalSafeArea: { //Com padding
     flex: 1,
     justifyContent:"flex-start",
     backgroundColor: myStyleColor.BkgSafeArea,
@@ -18,19 +18,27 @@ export const myStyleApp = StyleSheet.create({
     borderBlockColor: "#fa7251ff",
     paddingTop: StatusBar.currentHeight
   },
+  containerPrincipalSafeAreaStack: { //Sem padding
+    flex: 1,
+    justifyContent:"flex-start",
+    backgroundColor: myStyleColor.BkgSafeArea,
+    alignItems: "center",
+    borderWidth: myStyleSize.containerBordaOnOff,
+    borderBlockColor: "#fa7251ff",
+    //paddingTop: StatusBar.currentHeight
+  },
   containerPrincipalScroll: { // Com borda lateral
     flex: 0,
     width: "86%",
     borderWidth: myStyleSize.containerBordaOnOff,
     borderColor: "#98e07eff",
-    marginTop: "0%"
   },
   containerPrincipalScrollWB: { // Sem Borda lateral
     flex: 0,
+    justifyContent: "flex-start",
     width: "100%",
     borderWidth: myStyleSize.containerBordaOnOff,
     borderColor: "#98e07eff",
-    marginTop: "0%"
   },
 
   //Textos

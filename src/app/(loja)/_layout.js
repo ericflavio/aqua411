@@ -21,7 +21,6 @@ export default function LojaLayout() {
         //headerTintColor: '#ffffff',
         headerTitleStyle: {
           fontFamily: 'Lato-Bold',
-          title: "xxxxxx"
         },
       }} >
 

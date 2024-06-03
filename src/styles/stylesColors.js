@@ -49,7 +49,7 @@ export const myStyleColor = StyleSheet.create({
   //Container de InputTextos
   corInputTextBorder: corTema30,
   //Azul
-  corAzulEscuro: "#202783ff",
+  corAzulEscuro: "#376ba4ff",
   corAzulClaro: "#4ea0f8ff",
   //Cinza
   corCinzaEscuro: "#606060ff",
