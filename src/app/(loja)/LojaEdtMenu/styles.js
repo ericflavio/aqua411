@@ -12,7 +12,7 @@ export const myStyles = StyleSheet.create({
     borderWidth: myStyleApp.size.containerBordaOnOff
   },
   imgNovaLoja: {
-    height: "100%", 
+    //height: "100%", 
     width: "100%",
     //overflow:"scroll",
     //resizeMode: "stretch",

@@ -11,21 +11,22 @@ export const myStyleApp = StyleSheet.create({
 
   containerPrincipalSafeArea: {
     flex: 1,
+    justifyContent:"flex-start",
     backgroundColor: myStyleColor.BkgSafeArea,
     alignItems: "center",
     borderWidth: myStyleSize.containerBordaOnOff,
     borderBlockColor: "#fa7251ff",
     paddingTop: StatusBar.currentHeight
   },
-  containerPrincipalScroll: {
-    flex: 1,
+  containerPrincipalScroll: { // Com borda lateral
+    flex: 0,
     width: "86%",
     borderWidth: myStyleSize.containerBordaOnOff,
     borderColor: "#98e07eff",
-    marginTop: "10%"
+    marginTop: "0%"
   },
-  containerPrincipalScrollWB: {
-    flex: 1,
+  containerPrincipalScrollWB: { // Sem Borda lateral
+    flex: 0,
     width: "100%",
     borderWidth: myStyleSize.containerBordaOnOff,
     borderColor: "#98e07eff",

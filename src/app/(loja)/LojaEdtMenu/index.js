@@ -41,35 +41,35 @@ export default function ViewEdtMenu() {
           <TouchableOpacity style={myStyleApp.buttonFlatListHL} disabled={false} onPress={goTo} >
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corTextoPadrao} />
-              <Text style={myStyleApp.buttonTextStyle}>Endereço</Text>
+              <Text style={myStyleApp.buttonTextStyleFlat}>Endereço</Text>
             </View>
             <MaterialIcons name="navigate-next" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corCinzaMedio} />
           </TouchableOpacity>
           <TouchableOpacity style={myStyleApp.buttonFlatListHL} disabled={false} onPress={goTo} >
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corTextoPadrao} />
-              <Text style={myStyleApp.buttonTextStyle}>Localização</Text>
+              <Text style={myStyleApp.buttonTextStyleFlat}>Localização</Text>
             </View>
             <MaterialIcons name="navigate-next" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corCinzaMedio} />
           </TouchableOpacity>
           <TouchableOpacity style={myStyleApp.buttonFlatListHL} disabled={false} onPress={goTo} >
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corTextoPadrao} />
-              <Text style={myStyleApp.buttonTextStyle}>Horário de funcionamento</Text>
+              <Text style={myStyleApp.buttonTextStyleFlat}>Horário de funcionamento</Text>
             </View>
             <MaterialIcons name="navigate-next" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corCinzaMedio} />
           </TouchableOpacity>
           <TouchableOpacity style={myStyleApp.buttonFlatListHL} disabled={false} onPress={goTo} >
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corTextoPadrao} />
-              <Text style={myStyleApp.buttonTextStyle}>Equipamentos</Text>
+              <Text style={myStyleApp.buttonTextStyleFlat}>Equipamentos</Text>
             </View>
             <MaterialIcons name="navigate-next" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corCinzaMedio} />
           </TouchableOpacity>
           <TouchableOpacity style={myStyleApp.buttonFlatListHL} disabled={false} onPress={goTo} >
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corTextoPadrao} />
-              <Text style={myStyleApp.buttonTextStyle}>Facilidades</Text>
+              <Text style={myStyleApp.buttonTextStyleFlat}>Facilidades</Text>
             </View>
             <MaterialIcons name="navigate-next" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corCinzaMedio} />
           </TouchableOpacity>
