@@ -9,7 +9,8 @@ export const myStyles = StyleSheet.create({
   },
   containerPrincipal: {
     flex:0,
-    borderWidth: myStyleApp.size.containerBordaOnOff
+    borderWidth: myStyleApp.size.containerBordaOnOff,
+    marginBottom: 40,
   },
   imgNovaLoja: {
     //height: "100%", 

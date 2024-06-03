@@ -12,15 +12,24 @@ export default function LojaLayout() {
     <Stack
       screenOptions={{
         headerShown: true,
+        headerTitle: "Informações da loja",
+        animationEnabled: true,
         tabBarInactiveTintColor: myStyleColor.corCinzaMedio,
         tabBarActiveTintColor: myStyleColor.corTema10B,
         tabBarShowLabel: true,
+        headerMode: 'screen',
+        //headerTintColor: '#ffffff',
+        headerTitleStyle: {
+          fontFamily: 'Lato-Bold',
+          title: "xxxxxx"
+        },
       }} >
 
-      <Stack.Screen name="LojaEdtMenu/index" options={{headerTitle:"Informações da loja"}}/>
-      <Stack.Screen name="lojaEdtEndereco/index" options={{headerTitle:"Informações da loja"}}/>
-      <Stack.Screen name="lojaEdtLocalizacao/index" options={{headerTitle:"Informações da loja"}}/>
-      <Stack.Screen name="lojaEdtHorario/index" options={{headerTitle:"Informações da loja"}}/>
+      {/* Títulos por página: inserir options={{headerTitle:"Informações da loja"}} */}
+      <Stack.Screen name="LojaEdtMenu/index"/>
+      <Stack.Screen name="lojaEdtEndereco/index"/>
+      <Stack.Screen name="lojaEdtLocalizacao/index"/>
+      <Stack.Screen name="lojaEdtHorario/index"/>
     </Stack>
   )
 }

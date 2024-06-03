@@ -18,11 +18,11 @@ export function GradienteFill(corForte, corFraca, tamanho) {
   if (tamanho == undefined) tamanho = tamanhoTela();
 
   if (!corForte || corForte === null || corForte === "") {
-    return (<></>);
+    return (null);
     corForte = 'rgba(119,183,248,100)';
   }
   if (!corFraca || corFraca === null || corFraca === "") {
-    return (<></>);
+    return (null);
     corFraca = 'white';
   }
 
