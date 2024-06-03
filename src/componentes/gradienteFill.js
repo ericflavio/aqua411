@@ -10,18 +10,17 @@ function tamanhoTela() {
     screenHeight = myStyleApp.containerTamanhoMedioTelas;
   };
   let headerHeight = 0; //Eventual header na página
-  let bodyHeight = screenHeight - headerHeight + 0;
+  let bodyHeight = screenHeight - headerHeight + 100;
   return bodyHeight;
 };
 
 export function GradienteFill(corForte, corFraca, tamanho) {
-  return (<></>);
   if (tamanho == undefined) tamanho = tamanhoTela();
 
   return (
     <LinearGradient
       // Background Linear Gradient
-      colors={['white', 'rgba(201,237,255,100)']}
+      colors={['white', 'rgba(78,160,248,100)']}
       style={{
         position: 'absolute',
         left: 0,

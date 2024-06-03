@@ -151,7 +151,7 @@ export default function ViewEdtLocalizacaoLoja() {
           </TouchableOpacity>
         </View>
         <View style={myStyles.containerBottom}>
-          <MaterialIcons name="check-circle-outline" size={myStyleApp.size.iconSizeSmall} color={myStyleColor.corAzulClaro} />
+          <MaterialIcons name="check-circle-outline" size={myStyleApp.size.iconSizeSmall} color={myStyleColor.corTextoPadrao} />
           <Text style={myStyleApp.textoPequeno}>Estas informações são opcionais</Text>
         </View>
 
