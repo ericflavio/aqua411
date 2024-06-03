@@ -47,7 +47,7 @@ export const myStyleApp = StyleSheet.create({
   //Textos
   textoTituloPagina: {
     fontFamily: 'Lato-Bold',
-    fontSize: myStyleSize.textoFonteTam0,
+    fontSize: myStyleSize.textoSize0,
     //fontWeight: myStyleSize.textoNegritoForte,
     marginTop: 20,
     marginBottom: 25,
@@ -55,20 +55,20 @@ export const myStyleApp = StyleSheet.create({
   },
   textoSubtitulo: {
     fontFamily: 'Lato-Regular',
-    fontSize: myStyleSize.textoFonteTam2,
+    fontSize: myStyleSize.textoSize2,
     //fontWeight: myStyleSize.textoNegritoForte,
     marginTop: 0,
     color: myStyleColor.textoSubtitulo,
   },
-  textoComum: {
+  textoRegular: {
     fontFamily: 'Lato-Regular',
-    fontSize: myStyleSize.textoFonteTam3,
+    fontSize: myStyleSize.textoSize3,
     //fontWeight: myStyleSize.textoNegritoMedio,
     color: myStyleColor.textoRegular,
   },
   textoPequeno: {
     fontFamily: 'Lato-Thin',
-    fontSize: myStyleSize.textoFonteTam5,
+    fontSize: myStyleSize.textoSize5,
     //fontWeight: myStyleSize.TextoNegritoOff,
     color: myStyleColor.textoRegular,
   },
@@ -151,12 +151,12 @@ export const myStyleApp = StyleSheet.create({
   },
   //Botões: estilo do texto dentro do touchable
   buttonTextStyle: {
-    fontSize: myStyleSize.textoFonteTam4,
+    fontSize: myStyleSize.textoSize4,
     fontWeight: myStyleSize.textoNegritoForte,
     color: myStyleColor.buttonText,
   },
   buttonTextStyleFlat: {
-    fontSize: myStyleSize.textoFonteTam4,
+    fontSize: myStyleSize.textoSize4,
     fontWeight: myStyleSize.textoNegritoMedio,
     color: myStyleColor.buttonTextFlat,
   },

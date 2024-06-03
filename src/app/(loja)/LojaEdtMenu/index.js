@@ -28,13 +28,17 @@ export default function ViewEdtMenu() {
   }
 
   return (
-    <SafeAreaView style={myStyleApp.containerSafeAreaSemPadding}> 
+    <SafeAreaView style={myStyleApp.containerSafeAreaSemPadding}>
       {GradienteFill()}
       <ScrollView style={myStyleApp.containerScrollWB} contentContainerStyle={myStyleApp.containerScrollContent} showsVerticalScrollIndicator={false}>
         <Image
           style={myStyles.imgNovaLoja}
           source={require('../../../assets/outros/sheep_novaLoja_01.png')}
         />
+        <View style={myStyles.containerDadosLoja}>
+          <Text style={myStyleApp.textoSubtitulo}>LOJA AINDA SEM NOME</Text>
+          <Text style={myStyleApp.textoRegular}>Status: <Text style={myStyles.textoStatus}>Em edição</Text></Text>
+        </View>
 
         <View style={myStyles.containerPrincipal}>
           <TouchableOpacity style={myStyleApp.buttonFlatHL_list} disabled={false} onPress={goTo} >

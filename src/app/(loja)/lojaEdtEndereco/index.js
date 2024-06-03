@@ -155,9 +155,9 @@ export default function ViewEdtEnderecoLoja() {
         <View style={myStyles.containerPrincipal}>
           {InputText("CEP", onChangeCep, "CEP", 1, 8, "default", flagEditavel, cep, false)}
           <View style={{ paddingLeft: 10, marginTop:10 }}>
-            <Text style={myStyleApp.textoComum}>{endereco.localidade} {endereco.uf}</Text>
-            <Text style={myStyleApp.textoComum}>{endereco.bairro}</Text>
-            <Text style={myStyleApp.textoComum}>{endereco.logradouro}</Text>
+            <Text style={myStyleApp.textoRegular}>{endereco.localidade} {endereco.uf}</Text>
+            <Text style={myStyleApp.textoRegular}>{endereco.bairro}</Text>
+            <Text style={myStyleApp.textoRegular}>{endereco.logradouro}</Text>
           </View>
           {InputText("Número", onChangeNumero, "Número, ou s/n", 1, 5, "default", flagEditavel, numero, false)}
           {InputText("Complemento", onChangeComplemento, "Complemento", 1, 80, "default", flagEditavel, complemento, false)}

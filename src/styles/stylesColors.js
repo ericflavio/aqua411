@@ -61,5 +61,5 @@ export const myStyleColor = StyleSheet.create({
   //Variados
   erro: "#fa7251ff",
   alerta: "#ffe275ff",
-  sucesso: "#98e07eff",
+  sucesso: "#669e8eff",
 });

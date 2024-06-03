@@ -218,7 +218,7 @@ export default function ViewLojaMaquinas() {
                 {maquina("lava", 3, lava[1], false)}
                 {maquina("lava", 5, lava[1], false)}
               </View>
-              <Text style={myStyleApp.textoComum}>
+              <Text style={myStyleApp.textoRegular}>
                 Esta é uma imagem ilustrativa
               </Text>
             </View>
@@ -263,7 +263,7 @@ export default function ViewLojaMaquinas() {
                   source={require('../../assets/icones/aqua_relogio_fechados.png')}
                 />
               }
-              <Text style={myStyleApp.textoComum}>
+              <Text style={myStyleApp.textoRegular}>
                 Abertos diariamente de 6h às 23h
               </Text>
             </View>
@@ -278,7 +278,7 @@ export default function ViewLojaMaquinas() {
           <View style={myStyles.containerBody2}>
             {/*
             <View style={myStyles.containerBroadcast}>
-              <Text style={myStyleApp.textoComum}>
+              <Text style={myStyleApp.textoRegular}>
                 Excepcionalmente hoje, 25/04/2024, quinta-feira, funcionaremos de 6h às 15h
               </Text>
             </View>
@@ -300,7 +300,7 @@ export default function ViewLojaMaquinas() {
                 style={myStyles.imgRelogio}
                 source={require('../../assets/icones/aqua_relogio_comum.png')}
               />
-              <Text style={myStyleApp.textoComum}>
+              <Text style={myStyleApp.textoRegular}>
                 26/06/2024 08:36
               </Text>
             </View>

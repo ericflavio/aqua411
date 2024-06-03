@@ -207,7 +207,7 @@ export default function ViewLogin() {
 
         <View style={myStyles.containerRecepcionista}>
           <View style={myStyles.conteinerTextoAvatar}>
-            <Text style={myStyleApp.textoComum}>
+            <Text style={myStyleApp.textoRegular}>
               {textoRecepcionista}
             </Text>
           </View>
