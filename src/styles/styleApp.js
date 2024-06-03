@@ -9,7 +9,7 @@ export const myStyleApp = StyleSheet.create({
   containerBordaRaio: myStyleSize.containerBordaRaio,
   containerTamanhoMedioTelas: myStyleSize.containerTamanhoMedioTelas,
 
-  containerPrincipalSafeArea: { //Com padding
+  containerSafeArea: { //Com padding
     flex: 1,
     justifyContent:"flex-start",
     backgroundColor: myStyleColor.bkgSafeArea,
@@ -18,22 +18,21 @@ export const myStyleApp = StyleSheet.create({
     borderBlockColor: "#fa7251ff",
     paddingTop: StatusBar.currentHeight
   },
-  containerPrincipalSafeAreaStack: { //Sem padding
+  containerSafeAreaSemPadding: { //Sem padding
     flex: 1,
     justifyContent:"flex-start",
     backgroundColor: myStyleColor.bkgSafeArea,
     alignItems: "center",
     borderWidth: myStyleSize.containerBordaOnOff,
     borderBlockColor: "#fa7251ff",
-    //paddingTop: StatusBar.currentHeight
   },
-  containerPrincipalScroll: { // Com borda lateral
+  containerScroll: { // Com borda lateral
     flex: 0,
-    width: "86%",
+    width: "88%",
     borderWidth: myStyleSize.containerBordaOnOff,
     borderColor: "#98e07eff",
   },
-  containerPrincipalScrollWB: { // Sem Borda lateral
+  containerScrollWB: { // Sem Borda lateral
     flex: 0,
     justifyContent: "flex-start",
     width: "100%",
@@ -61,13 +60,13 @@ export const myStyleApp = StyleSheet.create({
     fontFamily: 'Lato-Regular',
     fontSize: myStyleSize.textoFonteTam3,
     //fontWeight: myStyleSize.textoNegritoMedio,
-    color: myStyleColor.textoPadrao,
+    color: myStyleColor.textoRegular,
   },
   textoPequeno: {
     fontFamily: 'Lato-Thin',
     fontSize: myStyleSize.textoFonteTam5,
     //fontWeight: myStyleSize.TextoNegritoOff,
-    color: myStyleColor.textoPadrao,
+    color: myStyleColor.textoRegular,
   },
 
   //Botões: estilo do touchable
@@ -86,17 +85,6 @@ export const myStyleApp = StyleSheet.create({
     gap: 6,
     minWidth: "100%",
     fontWeight: "700",
-  },
-  buttonFlatTranspHL: {//Horizontal flat, esquerdo, transparente
-    flexDirection: "row",
-    alignItems: 'flex-start',
-    backgroundColor: 'transparent',
-    marginTop: 10,
-    marginBottom: 0,
-    padding: 4,
-    maxWidth: "100%",
-    borderWidth: 0,
-    gap: 6,
   },
   buttonFlatV: { //Vertical flat, centralizado 
     flexDirection: "column",
@@ -129,7 +117,18 @@ export const myStyleApp = StyleSheet.create({
     borderRadius: 6,
     gap: 6
   },
-  buttonFlatListHL: { //Horizontal flat, esquerdo, estilo lista
+  buttonFlatHL_transp: {//Horizontal flat, esquerdo, transparente
+    flexDirection: "row",
+    alignItems: 'flex-start',
+    backgroundColor: 'transparent',
+    marginTop: 10,
+    marginBottom: 0,
+    padding: 4,
+    maxWidth: "100%",
+    borderWidth: 0,
+    gap: 6,
+  },
+  buttonFlatHL_list: { //Horizontal flat, esquerdo, estilo lista
     flexDirection: "row",
     alignItems: 'center',
     justifyContent: "space-between",

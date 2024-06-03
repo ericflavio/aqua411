@@ -143,12 +143,12 @@ export default function ViewEdtEnderecoLoja() {
   }
 
   return (
-    <SafeAreaView style={myStyleApp.containerPrincipalSafeArea}>
+    <SafeAreaView style={myStyleApp.containerSafeArea}>
       {GradienteFill()}
-      <ScrollView style={myStyleApp.containerPrincipalScroll} showsVerticalScrollIndicator={false}>
+      <ScrollView style={myStyleApp.containerScroll} showsVerticalScrollIndicator={false}>
 
         <View style={myStyles.containerHeader}>
-          <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeRegular} color={myStyleColor.textoPadrao} />
+          <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeRegular} color={myStyleColor.textoSubtitulo} />
           <Text style={myStyleApp.textoSubtitulo}>Endereço</Text>
         </View>
 

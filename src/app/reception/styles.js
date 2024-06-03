@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { myStyleApp } from "../../styles/styleApp";
 
 export const myStyles = StyleSheet.create({
   containerHeader: {
@@ -31,5 +32,20 @@ export const myStyles = StyleSheet.create({
     overflow:"scroll",
     resizeMode: "contain",
     alignSelf: "flex-end",
+  },
+  textoTituloPagina: {
+    fontFamily: 'Lato-Bold',
+    fontSize: myStyleApp.size.textoFonteTam0,
+    //fontWeight: myStyleSize.textoNegritoForte,
+    marginTop: 20,
+    marginBottom: 25,
+    color: myStyleApp.color.tema10B,
+  },
+  textoSubtitulo: {
+    fontFamily: 'Lato-Regular',
+    fontSize: myStyleApp.size.textoFonteTam2,
+    //fontWeight: myStyleSize.textoNegritoForte,
+    marginTop: 0,
+    color: myStyleApp.color.tema10B,
   },
 });

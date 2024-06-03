@@ -180,9 +180,9 @@ export default function ViewLojaMaquinas() {
   //sem loja favoritada OU loja com status diferente de "ativa"
   if (!user.idFavoriteStore || user.idFavoriteStore == null) {
     return (
-      <SafeAreaView style={myStyleApp.containerPrincipalSafeArea}>
+      <SafeAreaView style={myStyleApp.containerSafeArea}>
         {GradienteFill()}
-        <ScrollView style={myStyleApp.containerPrincipalScroll} showsVerticalScrollIndicator={false}>
+        <ScrollView style={myStyleApp.containerScroll} showsVerticalScrollIndicator={false}>
 
           <View style={{ height: bodyHeight, paddingBottom: 96 }}>
             <View style={myStyles.containerHeader}>
@@ -203,7 +203,7 @@ export default function ViewLojaMaquinas() {
                 style={myStyles.imgLocalizacao}
                 source={require('../../assets/icones/icon_local2.png')}
               /> */}
-              <MaterialIcons name="location-on" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.textoPadrao} />
+              <MaterialIcons name="location-on" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.buttonText} />
               <Text style={myStyleApp.buttonTextStyle}>Pesquisar lavanderias</Text>
             </TouchableOpacity>
 
@@ -230,9 +230,9 @@ export default function ViewLojaMaquinas() {
 
   //Com loja favoritada
   return (
-    <SafeAreaView style={myStyleApp.containerPrincipalSafeArea}>
+    <SafeAreaView style={myStyleApp.containerSafeArea}>
       {GradienteFill()}
-      <ScrollView style={myStyleApp.containerPrincipalScroll} showsVerticalScrollIndicator={false}>
+      <ScrollView style={myStyleApp.containerScroll} showsVerticalScrollIndicator={false}>
 
         <View style={{ height: bodyHeight, paddingBottom: 96 }}>
           <View style={myStyles.containerHeader}>
@@ -246,7 +246,7 @@ export default function ViewLojaMaquinas() {
                 style={myStyles.imgLocalizacao}
                 source={require('../../assets/icones/icon_local2.png')}
               /> */}
-              <MaterialIcons name="location-on" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.textoPadrao} />
+              <MaterialIcons name="location-on" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.buttonText} />
               <Text style={myStyleApp.textoSubtitulo}>
                 Unidade: ASA NORTE
               </Text>
@@ -269,7 +269,7 @@ export default function ViewLojaMaquinas() {
             </View>
 
             <View style={myStyles.containerFacilidades}>
-              <TouchableOpacity style={myStyleApp.buttonFlatTranspHL} disabled={false} onPress={atualizarStatus}>
+              <TouchableOpacity style={myStyleApp.buttonFlaHL_transp} disabled={false} onPress={atualizarStatus}>
                 <Text style={myStyleApp.buttonTextStyleFlat}>Selecione outra loja aqui</Text>
               </TouchableOpacity>
             </View>

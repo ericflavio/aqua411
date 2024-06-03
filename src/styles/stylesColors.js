@@ -12,7 +12,7 @@ tema10A = "#ee7087ff", //"#f8cd37ff";
 tema10B = "#968078ff",//"#8e7262ff"; "#669e8eff"
 
 //Textos gerais
-tema === "claro" ? textoPadrao = '#262626ff' : textoPadrao = '#f5f1e0ff';
+tema === "claro" ? textoRegular = '#262626ff' : textoRegular = '#f5f1e0ff';
 tema === "claro" ? textoDestaque = tema10B : textoDestaque = tema10A;
 tema === "claro" ? textoTitulo = tema10B : textoTitulo = tema60A;
 tema === "claro" ? textoSubtitulo = "#262626ff" : textoSubtitulo = tema60B;
@@ -21,7 +21,7 @@ tema === "claro" ? textoSubtitulo = "#262626ff" : textoSubtitulo = tema60B;
 tema === "claro" ? buttonBkg = tema10A : buttonBackground = tema60B;
 tema === "claro" ? buttonBorder = '#606060ff' : buttonBorder = tema30A;
 tema === "claro" ? buttonText = "white" : buttonText = "white";
-tema === "claro" ? buttonTextFlat = textoPadrao : buttonTextFlat = textoPadrao;
+tema === "claro" ? buttonTextFlat = textoRegular : buttonTextFlat = textoRegular;
 
 //Background da safe-area
 tema === "claro" ? bkgSafeArea = '#ffffff' : bkgSafeArea = '#262626ff';
@@ -39,11 +39,10 @@ export const myStyleColor = StyleSheet.create({
   buttonBorder,
   buttonText,
   buttonTextFlat,
-  buttonIcon,
   //Background
   bkgSafeArea,
   //Textos
-  textoPadrao,
+  textoRegular,
   textoDestaque,
   textoTitulo,
   textoSubtitulo,

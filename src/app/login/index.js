@@ -196,9 +196,9 @@ export default function ViewLogin() {
   }
 
   return (
-    <SafeAreaView style={myStyleApp.containerPrincipalSafeArea}>
+    <SafeAreaView style={myStyleApp.containerSafeArea}>
       {GradienteFill()}
-      <ScrollView style={myStyleApp.containerPrincipalScroll} showsVerticalScrollIndicator={false}>
+      <ScrollView style={myStyleApp.containerScroll} showsVerticalScrollIndicator={false}>
         <View style={myStyles.containerHeader}>
           <Text style={myStyleApp.textoTituloPagina}>
             Que bom você por aqui
@@ -206,14 +206,6 @@ export default function ViewLogin() {
         </View>
 
         <View style={myStyles.containerRecepcionista}>
-          {/* <View style={myStyles.containerAvatar}>
-            <Image
-              style={myStyles.imgAvatar}
-              source={require('../../assets/outros/sheep_padrao.png')}
-            />
-            <MaterialIcons name="textsms" size={myStyleApp.size.iconSizeSmall} color={(flagErro ? myStyleColor.erro : myStyleColor.azulClaro)} />
-          </View> */}
-
           <View style={myStyles.conteinerTextoAvatar}>
             <Text style={myStyleApp.textoComum}>
               {textoRecepcionista}
@@ -247,27 +239,27 @@ export default function ViewLogin() {
 
         {cenario == cenarioEntrarEditar || cenario == cenarioEntrarValidar ?
           <>
-            <TouchableOpacity style={myStyleApp.buttonFlatTranspHL} disabled={!flagEditavel} onPress={fluxoEntrar} >
-              <MaterialIcons name="lock-reset" size={myStyleApp.size.iconSizeButtonSmall} color={myStyleColor.textoPadrao} />
+            <TouchableOpacity style={myStyleApp.buttonFlaHL_transp} disabled={!flagEditavel} onPress={fluxoEntrar} >
+              <MaterialIcons name="lock-reset" size={myStyleApp.size.iconSizeButtonSmall} color={myStyleColor.buttonTextFlat} />
               <Text style={myStyleApp.buttonTextStyleFlat}>Esqueceu sua senha?</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={myStyleApp.buttonFlatTranspHL} disabled={!flagEditavel} onPress={fluxoCadastrar} >
-              <MaterialIcons name="person-add-alt" size={myStyleApp.size.iconSizeButtonSmall} color={myStyleColor.textoPadrao} />
+            <TouchableOpacity style={myStyleApp.buttonFlaHL_transp} disabled={!flagEditavel} onPress={fluxoCadastrar} >
+              <MaterialIcons name="person-add-alt" size={myStyleApp.size.iconSizeButtonSmall} color={myStyleColor.buttonTextFlat} />
               <Text style={myStyleApp.buttonTextStyleFlat}>Clique aqui para novo cadastro</Text>
             </TouchableOpacity>
           </>
           : ""}
 
         {cenario == cenarioCadastrarEditar || cenario == cenarioCadastrarValidar ?
-          <TouchableOpacity style={myStyleApp.buttonFlatTranspHL} disabled={!flagEditavel} onPress={fluxoEntrar} >
-            <MaterialIcons name="login" size={myStyleApp.size.iconSizeButtonSmall} color={myStyleColor.textoPadrao} />
+          <TouchableOpacity style={myStyleApp.buttonFlaHL_transp} disabled={!flagEditavel} onPress={fluxoEntrar} >
+            <MaterialIcons name="login" size={myStyleApp.size.iconSizeButtonSmall} color={myStyleColor.buttonTextFlat} />
             <Text style={myStyleApp.buttonTextStyleFlat}>Clique aqui se já possuir cadastro</Text>
           </TouchableOpacity>
           : ""}
 
         {cenario == cenarioCadastrarEditarToken || cenario == cenarioCadastrarValidarToken ?
-          <TouchableOpacity style={myStyleApp.buttonFlatTranspHL} disabled={!flagEditavel} onPress={reenviarToken} >
-            <MaterialIcons name="mail-outline" size={myStyleApp.size.iconSizeButtonSmall} color={myStyleColor.textoPadrao} />
+          <TouchableOpacity style={myStyleApp.buttonFlaHL_transp} disabled={!flagEditavel} onPress={reenviarToken} >
+            <MaterialIcons name="mail-outline" size={myStyleApp.size.iconSizeButtonSmall} color={myStyleColor.buttonTextFlat} />
             <Text style={myStyleApp.buttonTextStyleFlat}>Me envie um novo código</Text>
           </TouchableOpacity>
           : ""}

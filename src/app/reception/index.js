@@ -13,22 +13,22 @@ export default function ViewReception() {
   }
 
   return (
-    <View style={myStyleApp.containerPrincipalSafeArea}>
+    <View style={myStyleApp.containerSafeArea}>
       {GradienteFill('rgba(158,205,255,100)','white')}
       <View style={myStyles.containerHeader}>
         <Animatable.Text
           animation="slideInLeft"
-          style={myStyleApp.textoTituloPagina}>
+          style={myStyles.textoTituloPagina}>
           Você ainda lava roupa em casa?
         </Animatable.Text>
-        <Text style={myStyleApp.textoSubtitulo}>
+        <Text style={myStyles.textoSubtitulo}>
           Está na hora de conhecer os benefícios das lavanderias inteligentes
         </Text>
         <View style={myStyles.containerViewButton}>
           <TouchableOpacity style={myStyleApp.buttonHC} onPress={goToLogin}>
             <View style={myStyles.containerButton}>
               <Text style={myStyleApp.buttonTextStyle}>Começar</Text>
-              <MaterialIcons name="arrow-outward" size={myStyleApp.size.iconSizeButtonSmall} color={myStyleColor.textoPadrao} />
+              <MaterialIcons name="arrow-outward" size={myStyleApp.size.iconSizeButtonSmall} color={myStyleColor.buttonText} />
             </View>
           </TouchableOpacity>
         </View>

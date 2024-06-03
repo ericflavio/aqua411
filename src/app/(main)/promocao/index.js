@@ -30,7 +30,7 @@ function montaPromocao(vigente) {
     <TouchableOpacity disabled={!vigente} style={(vigente ? myStyles.buttonPromoVigente : myStyles.buttonPromoEncerrada)} onPress={detalhaPromo}>
       <View style={myStyles.containerPromoCabecalho}>
         <Text style={myStyles.textoTituloPromo}>{promo.nome}</Text>
-        <MaterialIcons name="card-giftcard" size={myStyleApp.size.iconSizeButtonRegular} color={(vigente ? myStyleColor.tema10B : "grey")} />
+        <MaterialIcons name="card-giftcard" size={myStyleApp.size.iconSizeButtonRegular} color={(vigente ? myStyleColor.tema10A : myStyleColor.cinzaClaro)} />
       </View>
       <View style={myStyles.containerPromoPeriodo}>
         <MaterialIcons name="calendar-month" size={myStyleApp.size.iconSizeButtonRegular} color={"grey"} />
@@ -46,9 +46,9 @@ function montaPromocao(vigente) {
 export default function ViewPromocao() {
 
   return (
-    <SafeAreaView style={myStyleApp.containerPrincipalSafeArea}>
+    <SafeAreaView style={myStyleApp.containerSafeArea}>
       {GradienteFill()}
-      <ScrollView style={myStyleApp.containerPrincipalScroll} showsVerticalScrollIndicator={false}>
+      <ScrollView style={myStyleApp.containerScroll} showsVerticalScrollIndicator={false}>
         <View style={myStyles.containerHeader}>
           <Text style={myStyleApp.textoTituloPagina}>
             Promoções para você economizar
