@@ -17,10 +17,19 @@ function tamanhoTela() {
 export function GradienteFill(corForte, corFraca, tamanho) {
   if (tamanho == undefined) tamanho = tamanhoTela();
 
+  if (!corForte || corForte === null || corForte === "") {
+    return (<></>);
+    corForte = 'rgba(119,183,248,100)';
+  }
+  if (!corFraca || corFraca === null || corFraca === "") {
+    return (<></>);
+    corFraca = 'white';
+  }
+
   return (
     <LinearGradient
-      // Background Linear Gradient
-      colors={['white', 'rgba(78,160,248,100)']}
+      // A cor mais fraca começa no topo (liner horizontal)
+      colors={[corFraca, corForte]}
       style={{
         position: 'absolute',
         left: 0,

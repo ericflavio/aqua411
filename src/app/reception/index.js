@@ -14,7 +14,7 @@ export default function ViewReception() {
 
   return (
     <View style={myStyleApp.containerPrincipalSafeArea}>
-      {GradienteFill()}
+      {GradienteFill('rgba(119,183,248,100)','white')}
       <View style={myStyles.containerHeader}>
         <Animatable.Text
           animation="slideInLeft"
