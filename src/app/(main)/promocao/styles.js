@@ -5,7 +5,7 @@ import { myStyleColor } from "../../../styles/stylesColors";
 export const myStyles = StyleSheet.create({
   containerHeader: {
     flex: 0,
-    borderWidth: myStyleApp.containerBordaOnOff,
+    borderWidth: myStyleApp.size.containerBordaOnOff,
     marginBottom: 30
   },
   containerPromoCabecalho: {
@@ -13,7 +13,7 @@ export const myStyles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    borderWidth: myStyleApp.containerBordaOnOff,
+    borderWidth: myStyleApp.size.containerBordaOnOff,
     alignSelf: "flex-start"
   },
   containerPromoPeriodo: {
@@ -21,7 +21,7 @@ export const myStyles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "flex-start",
-    borderWidth: myStyleApp.containerBordaOnOff,
+    borderWidth: myStyleApp.size.containerBordaOnOff,
     alignSelf: "flex-start"
   },
   containerPromoLista: {

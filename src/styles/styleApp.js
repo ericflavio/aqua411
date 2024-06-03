@@ -41,7 +41,7 @@ export const myStyleApp = StyleSheet.create({
   },
   containerScrollContent: {
     justifyContent: "flex-start",
-    paddingBottom: 40,
+    paddingBottom: 72,
   },
 
   //Textos
@@ -100,10 +100,10 @@ export const myStyleApp = StyleSheet.create({
     marginBottom: 0,
     padding: 4,
     minHeight: 70,
-    minWidth: "50%",
+    minWidth: "49%",
     borderWidth: 1,
     borderRadius: 6,
-    gap: 6
+    gap: 4
   },
   buttonFlatHL: { //Horizontal flat, esquerdo
     flexDirection: "row",

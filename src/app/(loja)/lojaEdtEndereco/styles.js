@@ -15,6 +15,6 @@ export const myStyles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 16,
     padding: 8,
-    borderWidth: myStyleApp.containerBordaOnOff
+    borderWidth: myStyleApp.size.containerBordaOnOff
   },
 });

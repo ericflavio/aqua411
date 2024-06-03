@@ -4,15 +4,15 @@ import { myStyleColor } from "../../../styles/stylesColors";
 
 export const myStyles = StyleSheet.create({
   containerHeader: {
-    borderWidth: myStyleApp.containerBordaOnOff,
+    borderWidth: myStyleApp.size.containerBordaOnOff,
     marginBottom: 30,
     width:"100%"
   },
   containerBasics: {
     flexDirection: "row",
-    alignContent: "stretch",
-    gap:8,
-    borderWidth: myStyleApp.containerBordaOnOff,
+    justifyContent: "space-between",
+    gap:7,
+    borderWidth: myStyleApp.size.containerBordaOnOff,
     marginBottom: 8,
     width:"100%"
   },
@@ -20,7 +20,7 @@ export const myStyles = StyleSheet.create({
     alignItems:"flex-start",
     alignContent:"stretch",
     gap:8,
-    borderWidth: myStyleApp.containerBordaOnOff,
+    borderWidth: myStyleApp.size.containerBordaOnOff,
     marginBottom: 30,
     width:"100%"
   },
