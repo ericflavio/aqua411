@@ -48,7 +48,7 @@ export const myStyles = StyleSheet.create({
     },
   containerBroadcast: {
     marginVertical: 20,
-    backgroundColor: myStyleColor.corAlerta,
+    backgroundColor: myStyleColor.alerta,
     alignItems: "flex-start",
     alignContent: "flex-start",
     justifyContent: "flex-start",

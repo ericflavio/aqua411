@@ -72,8 +72,8 @@ export default function AppLayout() {
   return (
     <Tabs screenOptions={{
       headerShown: false,
-      tabBarInactiveTintColor: myStyleColor.corCinzaMedio,
-      tabBarActiveTintColor: myStyleColor.corAzulEscuro,
+      tabBarInactiveTintColor: myStyleColor.cinzaMedio,
+      tabBarActiveTintColor: myStyleColor.azulEscuro,
       tabBarShowLabel: true,
       tabBarLabelStyle: {
         fontSize: 16,
@@ -81,7 +81,7 @@ export default function AppLayout() {
       },
       tabBarStyle: {
         position: "absolute",
-        backgroundColor: myStyleColor.corTema60B,
+        backgroundColor: myStyleColor.tema60B,
         borderTopWidth: 0,
         borderRadius: 0,
         bottom: 0,

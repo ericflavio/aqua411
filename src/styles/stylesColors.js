@@ -4,63 +4,63 @@ import { StyleSheet } from "react-native";
 const tema = "claro";
 
 //Cores da paleta do app
-corTema60A = "#ffffff";
-corTema60B = "#f5f1e0ff";
-corTema60C = "#364366ff", //"#262626ff";
-corTema30 = "#84d3f8ff", //"#4ea0f8ff";
-corTema10A = "#ee7087ff", //"#f8cd37ff";
-corTema10B = "#669e8eff", //#968078ff",//"#8e7262ff";
+tema60A = "#ffffff";
+tema60B = "#f5f1e0ff";
+tema60C = "#364366ff", //"#262626ff";
+tema30A = "#84d3f8ff", //"#4ea0f8ff";
+tema10A = "#ee7087ff", //"#f8cd37ff";
+tema10B = "#968078ff",//"#8e7262ff"; "#669e8eff"
 
 //Textos gerais
 tema === "claro" ? textoPadrao = '#262626ff' : textoPadrao = '#f5f1e0ff';
-tema === "claro" ? textoDestaque = corTema10B : textoDestaque = corTema10A;
-tema === "claro" ? textoTitulo = corTema10B : textoTitulo = corTema60A;
-tema === "claro" ? textoSubtitulo = "#262626ff" : textoSubtitulo = corTema60B;
+tema === "claro" ? textoDestaque = tema10B : textoDestaque = tema10A;
+tema === "claro" ? textoTitulo = tema10B : textoTitulo = tema60A;
+tema === "claro" ? textoSubtitulo = "#262626ff" : textoSubtitulo = tema60B;
 
 //Botões (incluindo também seus textos)
-tema === "claro" ? buttonBkg = corTema10A : buttonBackground = corTema60B;
-tema === "claro" ? buttonBorder = '#606060ff' : buttonBorder = corTema30;
+tema === "claro" ? buttonBkg = tema10A : buttonBackground = tema60B;
+tema === "claro" ? buttonBorder = '#606060ff' : buttonBorder = tema30A;
 tema === "claro" ? buttonText = "white" : buttonText = "white";
 tema === "claro" ? buttonTextFlat = textoPadrao : buttonTextFlat = textoPadrao;
-tema === "claro" ? buttonIcon = "white" : buttonIcon = "white";
 
 //Background da safe-area
-tema === "claro" ? BkgSafeArea = '#ffffff' : BkgSafeArea = '#262626ff';
+tema === "claro" ? bkgSafeArea = '#ffffff' : bkgSafeArea = '#262626ff';
 
 export const myStyleColor = StyleSheet.create({
   //CPaleta de cores do app
-  corTema60A,
-  corTema60B,
-  corTema60C,
-  corTema30,
-  corTema10A,
-  corTema10B,
+  tema60A,
+  tema60B,
+  tema60C,
+  tema30A,
+  tema10A,
+  tema10B,
   //Botões
   buttonBkg,
   buttonBorder,
   buttonText,
+  buttonTextFlat,
   buttonIcon,
   //Background
-  BkgSafeArea,
+  bkgSafeArea,
   //Textos
-  corTextoPadrao: textoPadrao,
-  corTextoDestaque: textoDestaque,
-  corTextoTitulo: textoTitulo,
-  corTextoSubtitulo: textoSubtitulo,
+  textoPadrao,
+  textoDestaque,
+  textoTitulo,
+  textoSubtitulo,
   //Container de InputTextos
-  corInputTextBorder: corTema30,
+  inputTextBorder: tema30A,
   //Azul
-  corAzulEscuro: "#364366ff",
-  corAzulClaro: "#4ea0f8ff",
+  azulEscuro: "#364366ff",
+  azulClaro: "#4ea0f8ff",
   //Cinza
-  corCinzaEscuro: "#606060ff",
-  corCinzaMedio: "#bebebeff",
-  corCinzaClaro: "#f1f1f1ff",
+  cinzaEscuro: "#606060ff",
+  cinzaMedio: "#bebebeff",
+  cinzaClaro: "#f1f1f1ff",
   //Preto
-  corPretoAbsoluto: "#000000ff",
-  corPretoRelativo: "#262626ff",
+  pretoAbsoluto: "#000000ff",
+  pretoRelativo: "#262626ff",
   //Variados
-  corErro: "#fa7251ff",
-  corAlerta: "#ffe275ff",
-  corSucesso: "#98e07eff",
+  erro: "#fa7251ff",
+  alerta: "#ffe275ff",
+  sucesso: "#98e07eff",
 });

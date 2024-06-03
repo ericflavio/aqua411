@@ -21,7 +21,7 @@ export function InputText(label, funcao, textPlaceHolder, qtdLinhas, tamanhoMáx
         onChangeText={funcao}
         value={valorInicial}
         placeholder={textPlaceHolder}
-        placeholderTextColor={myStyleColor.corCinzaMedio}
+        placeholderTextColor={myStyleColor.cinzaMedio}
         keyboardType={tipoTeclado}
         secureTextEntry={flagSecure}
         editable={flagEditavel}

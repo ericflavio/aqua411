@@ -33,7 +33,7 @@ export const myStyles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "700",
     marginBottom: 10,
-    color: myStyleColor.corAzulEscuro,
+    color: myStyleColor.azulEscuro,
     borderWidth: 0,
   },
   textoPromo: {

@@ -39,24 +39,24 @@ export default function ViewEdtMenu() {
         <View style={myStyles.containerPrincipal}>
           <TouchableOpacity style={myStyleApp.buttonFlatListHL} disabled={false} onPress={goTo} >
             <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corTextoPadrao} />
+              <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.textoPadrao} />
               <Text style={myStyleApp.buttonTextStyleFlat}>Endereço</Text>
             </View>
-            <MaterialIcons name="navigate-next" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corCinzaMedio} />
+            <MaterialIcons name="navigate-next" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.cinzaMedio} />
           </TouchableOpacity>
           <TouchableOpacity style={myStyleApp.buttonFlatListHL} disabled={false} onPress={goTo} >
             <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <MaterialIcons name="location-on" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corTextoPadrao} />
+              <MaterialIcons name="location-on" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.textoPadrao} />
               <Text style={myStyleApp.buttonTextStyleFlat}>Localização</Text>
             </View>
-            <MaterialIcons name="navigate-next" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corCinzaMedio} />
+            <MaterialIcons name="navigate-next" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.cinzaMedio} />
           </TouchableOpacity>
           <TouchableOpacity style={myStyleApp.buttonFlatListHL} disabled={false} onPress={goTo} >
             <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <MaterialIcons name="access-time" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corTextoPadrao} />
+              <MaterialIcons name="access-time" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.textoPadrao} />
               <Text style={myStyleApp.buttonTextStyleFlat}>Horário de funcionamento</Text>
             </View>
-            <MaterialIcons name="navigate-next" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corCinzaMedio} />
+            <MaterialIcons name="navigate-next" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.cinzaMedio} />
           </TouchableOpacity>
         </View>
 

@@ -203,7 +203,7 @@ export default function ViewLojaMaquinas() {
                 style={myStyles.imgLocalizacao}
                 source={require('../../assets/icones/icon_local2.png')}
               /> */}
-              <MaterialIcons name="location-on" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corTextoPadrao} />
+              <MaterialIcons name="location-on" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.textoPadrao} />
               <Text style={myStyleApp.buttonTextStyle}>Pesquisar lavanderias</Text>
             </TouchableOpacity>
 
@@ -246,7 +246,7 @@ export default function ViewLojaMaquinas() {
                 style={myStyles.imgLocalizacao}
                 source={require('../../assets/icones/icon_local2.png')}
               /> */}
-              <MaterialIcons name="location-on" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.corTextoPadrao} />
+              <MaterialIcons name="location-on" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.textoPadrao} />
               <Text style={myStyleApp.textoSubtitulo}>
                 Unidade: ASA NORTE
               </Text>

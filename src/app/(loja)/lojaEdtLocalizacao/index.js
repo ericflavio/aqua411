@@ -136,7 +136,7 @@ export default function ViewEdtLocalizacaoLoja() {
       <ScrollView style={myStyleApp.containerPrincipalScroll} showsVerticalScrollIndicator={false}>
 
         <View style={myStyles.containerHeader}>
-          <MaterialIcons name="location-on" size={myStyleApp.size.iconSizeButtonRegular} color={myStyleColor.corTextoPadrao} />
+          <MaterialIcons name="location-on" size={myStyleApp.size.iconSizeButtonRegular} color={myStyleColor.textoPadrao} />
           <Text style={myStyleApp.textoSubtitulo}>Endereço digital</Text>
         </View>
 
@@ -151,7 +151,7 @@ export default function ViewEdtLocalizacaoLoja() {
           </TouchableOpacity>
         </View>
         <View style={myStyles.containerBottom}>
-          <MaterialIcons name="check-circle-outline" size={myStyleApp.size.iconSizeSmall} color={myStyleColor.corTextoPadrao} />
+          <MaterialIcons name="check-circle-outline" size={myStyleApp.size.iconSizeSmall} color={myStyleColor.textoPadrao} />
           <Text style={myStyleApp.textoPequeno}>Estas informações são opcionais</Text>
         </View>
 

@@ -152,7 +152,7 @@ export default function ViewEdtHorario() {
       <ScrollView style={myStyleApp.containerPrincipalScroll} showsVerticalScrollIndicator={false}>
 
         <View style={myStyles.containerHeader}>
-          <MaterialIcons name="access-time" size={myStyleApp.size.iconSizeRegular} color={myStyleColor.corTextoPadrao} />
+          <MaterialIcons name="access-time" size={myStyleApp.size.iconSizeRegular} color={myStyleColor.textoPadrao} />
           <Text style={myStyleApp.textoSubtitulo}>Horário de funcionamento</Text>
         </View>
 

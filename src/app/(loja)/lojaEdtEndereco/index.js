@@ -148,7 +148,7 @@ export default function ViewEdtEnderecoLoja() {
       <ScrollView style={myStyleApp.containerPrincipalScroll} showsVerticalScrollIndicator={false}>
 
         <View style={myStyles.containerHeader}>
-          <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeRegular} color={myStyleColor.corTextoPadrao} />
+          <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeRegular} color={myStyleColor.textoPadrao} />
           <Text style={myStyleApp.textoSubtitulo}>Endereço</Text>
         </View>
 

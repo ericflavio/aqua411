@@ -211,7 +211,7 @@ export default function ViewLogin() {
               style={myStyles.imgAvatar}
               source={require('../../assets/outros/sheep_padrao.png')}
             />
-            <MaterialIcons name="textsms" size={myStyleApp.size.iconSizeSmall} color={(flagErro ? myStyleColor.corErro : myStyleColor.corAzulClaro)} />
+            <MaterialIcons name="textsms" size={myStyleApp.size.iconSizeSmall} color={(flagErro ? myStyleColor.erro : myStyleColor.azulClaro)} />
           </View> */}
 
           <View style={myStyles.conteinerTextoAvatar}>
@@ -248,11 +248,11 @@ export default function ViewLogin() {
         {cenario == cenarioEntrarEditar || cenario == cenarioEntrarValidar ?
           <>
             <TouchableOpacity style={myStyleApp.buttonFlatTranspHL} disabled={!flagEditavel} onPress={fluxoEntrar} >
-              <MaterialIcons name="lock-reset" size={myStyleApp.size.iconSizeButtonSmall} color={myStyleColor.corTextoPadrao} />
+              <MaterialIcons name="lock-reset" size={myStyleApp.size.iconSizeButtonSmall} color={myStyleColor.textoPadrao} />
               <Text style={myStyleApp.buttonTextStyleFlat}>Esqueceu sua senha?</Text>
             </TouchableOpacity>
             <TouchableOpacity style={myStyleApp.buttonFlatTranspHL} disabled={!flagEditavel} onPress={fluxoCadastrar} >
-              <MaterialIcons name="person-add-alt" size={myStyleApp.size.iconSizeButtonSmall} color={myStyleColor.corTextoPadrao} />
+              <MaterialIcons name="person-add-alt" size={myStyleApp.size.iconSizeButtonSmall} color={myStyleColor.textoPadrao} />
               <Text style={myStyleApp.buttonTextStyleFlat}>Clique aqui para novo cadastro</Text>
             </TouchableOpacity>
           </>
@@ -260,14 +260,14 @@ export default function ViewLogin() {
 
         {cenario == cenarioCadastrarEditar || cenario == cenarioCadastrarValidar ?
           <TouchableOpacity style={myStyleApp.buttonFlatTranspHL} disabled={!flagEditavel} onPress={fluxoEntrar} >
-            <MaterialIcons name="login" size={myStyleApp.size.iconSizeButtonSmall} color={myStyleColor.corTextoPadrao} />
+            <MaterialIcons name="login" size={myStyleApp.size.iconSizeButtonSmall} color={myStyleColor.textoPadrao} />
             <Text style={myStyleApp.buttonTextStyleFlat}>Clique aqui se já possuir cadastro</Text>
           </TouchableOpacity>
           : ""}
 
         {cenario == cenarioCadastrarEditarToken || cenario == cenarioCadastrarValidarToken ?
           <TouchableOpacity style={myStyleApp.buttonFlatTranspHL} disabled={!flagEditavel} onPress={reenviarToken} >
-            <MaterialIcons name="mail-outline" size={myStyleApp.size.iconSizeButtonSmall} color={myStyleColor.corTextoPadrao} />
+            <MaterialIcons name="mail-outline" size={myStyleApp.size.iconSizeButtonSmall} color={myStyleColor.textoPadrao} />
             <Text style={myStyleApp.buttonTextStyleFlat}>Me envie um novo código</Text>
           </TouchableOpacity>
           : ""}
