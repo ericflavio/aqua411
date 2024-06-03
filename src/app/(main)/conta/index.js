@@ -17,8 +17,12 @@ export default function ViewConta() {
   user.name ? name = user.name : name = user.idLogin;
 
   function adicionarLoja() {
-    router.navigate('/LojaEdtMenu');
+    router.navigate('/lojaMenu');
   }
+  function listarUnidades() {
+    router.navigate('/lojaUnidades');
+  }
+
   async function logoutApp() {
     Alert.alert('SAIR', 'Você deseja sair do aplicativo agora?', [
       {
@@ -60,7 +64,7 @@ export default function ViewConta() {
             <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeButtonRegular} color={myStyleColor.buttonTextFlat} />
             <Text style={myStyleApp.buttonTextStyleFlat}>Eu tenho uma lavanderia</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={myStyleApp.buttonFlatHL} onPress={{}} >
+          <TouchableOpacity style={myStyleApp.buttonFlatHL} onPress={{listarUnidades}} >
             <MaterialIcons name="local-laundry-service" size={myStyleApp.size.iconSizeButtonRegular} color={myStyleColor.buttonTextFlat} />
             <Text style={myStyleApp.buttonTextStyleFlat}>Gerenciar minhas lavanderias</Text>
           </TouchableOpacity>

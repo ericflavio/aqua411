@@ -69,7 +69,7 @@ export default function ViewEdtEnderecoLoja() {
     loja.endereco.complemento = complemento;
 
     router.navigate({
-      pathname: "/lojaEdtLocalizacao",
+      pathname: "/lojaLocalizacao",
       params: {
         navigateParmLoja: JSON.stringify(loja)
       }

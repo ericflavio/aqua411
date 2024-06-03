@@ -85,7 +85,7 @@ export default function ViewEdtLocalizacaoLoja() {
     console.log("xxxxx ", loja)
 
     router.navigate({
-      pathname: "/lojaEdtHorario",
+      pathname: "/lojaHorario",
       params: {
         navigateParmLoja: JSON.stringify(loja)
       }

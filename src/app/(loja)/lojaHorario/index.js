@@ -73,7 +73,7 @@ export default function ViewEdtHorario() {
     loja.endereco.complemento = complemento;
 
     router.navigate({
-      pathname: "/lojaEdtLocalizacao",
+      pathname: "/lojaLocalizacao",
       params: {
         navigateParmLoja: JSON.stringify(loja)
       }

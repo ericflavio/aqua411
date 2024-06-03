@@ -9,18 +9,12 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { consultaLojaEmEdicao } from '../../../services/lojaService';
 
 //Tela principal
-export default function ViewEdtMenuLoja() {
-  console.log("ViewEdtMenuLoja <inicio>");
+export default function ViewLojaUnidades() {
+  console.log("ViewLojaUnidades <inicio>");
   const { user } = useContext(AuthContext);
-  const [lojaDadosBasicos, setLojaDadosBasicos] = useState(null);
-  const [disabledEndereco, setDisabledEndereco] = useState(true);
-  const [disabled, setDisabled] = useState(true);
-
-  let nomeLoja = "LOJA AINDA SEM NOME";
-  let statusLoja = "Editando";
+  const [listaUnidades, setListaUnidades] = useState(null);
 
   useEffect(() => {
-    console.log(">>> useefect");
     fetchLoja();
   }, [])
 
@@ -33,20 +27,13 @@ export default function ViewEdtMenuLoja() {
     setDisabledEndereco(false); // Libera edição do endereço
   }
 
-  console.log("idLoja recuperado: ", lojaDadosBasicos);
-
   function goTo() {
     router.navigate({
-      pathname: "/lojaEdtEndereco",
+      pathname: "/lojaMenu",
       params: {
         navigateParmLojaId: JSON.stringify(idLoja)
       }
     })
-  }
-
-  if (lojaDadosBasicos !== null) {
-    nomeLoja = lojaDadosBasicos.nome;
-    statusLoja = lojaDadosBasicos.status;
   }
 
   return (
@@ -57,17 +44,6 @@ export default function ViewEdtMenuLoja() {
           style={myStyles.imgNovaLoja}
           source={require('../../../assets/outros/sheep_novaLoja_01.png')}
         />
-
-        {lojaDadosBasicos !== null ?
-          <View style={myStyles.containerDadosLoja}>
-            <Text style={myStyleApp.textoSubtitulo}>{nomeLoja}</Text>
-            <Text style={myStyleApp.textoRegular}>Status: <Text style={myStyles.textoStatus}>{statusLoja}</Text></Text>
-          </View>
-          :
-          <View style={myStyles.containerDadosLoja}>
-            <Text style={myStyleApp.textoRegular}>Cadastre sua loja para que seus clientes possam favoritá-la. Começe pelo endereço, nas opções abaixo.</Text>
-          </View>
-        }
 
         <View style={myStyles.containerPrincipal}>
           <TouchableOpacity style={myStyleApp.buttonFlatHL_list} disabled={disabledEndereco} onPress={goTo} >

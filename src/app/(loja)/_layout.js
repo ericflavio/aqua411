@@ -25,10 +25,11 @@ export default function LojaLayout() {
       }} >
 
       {/* Títulos por página: inserir options={{headerTitle:"Informações da loja"}} */}
-      <Stack.Screen name="LojaEdtMenu/index"/>
-      <Stack.Screen name="lojaEdtEndereco/index"/>
-      <Stack.Screen name="lojaEdtLocalizacao/index"/>
-      <Stack.Screen name="lojaEdtHorario/index"/>
+      <Stack.Screen name="lojaMenu/index"/>
+      <Stack.Screen name="lojaEndereco/index"/>
+      <Stack.Screen name="lojaLocalizacao/index"/>
+      <Stack.Screen name="lojaHorario/index"/>
+      <Stack.Screen name="lojaUnidades/index"/>
     </Stack>
   )
 }
