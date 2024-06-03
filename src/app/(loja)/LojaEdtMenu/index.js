@@ -1,22 +1,39 @@
-import React, { useContext } from 'react';
-import { router, useLocalSearchParams } from 'expo-router';
+import React, { useContext, useEffect, useState } from 'react';
+import { router } from 'expo-router';
 import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, ActivityIndicator } from "react-native";
 import { myStyles } from "./styles";
 import { myStyleApp } from '../../../styles/styleApp';
 import { GradienteFill } from '../../../componentes/gradienteFill';
 import { AuthContext } from "../../../contexts/auth";
 import { MaterialIcons } from "@expo/vector-icons";
+import { consultaLojaEmEdicao } from '../../../services/lojaService';
 
 //Tela principal
-export default function ViewEdtMenu() {
-  console.log("ViewEdtMenu Loja <inicio>");
+export default function ViewEdtMenuLoja() {
+  console.log("ViewEdtMenuLoja <inicio>");
   const { user } = useContext(AuthContext);
-  const { navigateParmLojaId } = useLocalSearchParams();
-  var idLoja = "";
-  if (navigateParmLojaId) {
-    idLoja = JSON.parse(navigateParmLojaId)
+  const [lojaDadosBasicos, setLojaDadosBasicos] = useState(null);
+  const [disabledEndereco, setDisabledEndereco] = useState(true);
+  const [disabled, setDisabled] = useState(true);
+
+  let nomeLoja = "LOJA AINDA SEM NOME";
+  let statusLoja = "Editando";
+
+  useEffect(() => {
+    console.log(">>> useefect");
+    fetchLoja();
+  }, [])
+
+  async function fetchLoja() {
+    resLoja = await consultaLojaEmEdicao("s");
+    if (resLoja !== null) {
+      setDisabled(false); // Libera edição das demais opções
+      setLojaDadosBasicos(resLoja);
+    }
+    setDisabledEndereco(false); // Libera edição do endereço
   }
-  console.log("loja-id: ", idLoja);
+
+  console.log("idLoja recuperado: ", lojaDadosBasicos);
 
   function goTo() {
     router.navigate({
@@ -27,6 +44,11 @@ export default function ViewEdtMenu() {
     })
   }
 
+  if (lojaDadosBasicos !== null) {
+    nomeLoja = lojaDadosBasicos.nome;
+    statusLoja = lojaDadosBasicos.status;
+  }
+
   return (
     <SafeAreaView style={myStyleApp.containerSafeAreaSemPadding}>
       {GradienteFill()}
@@ -35,27 +57,34 @@ export default function ViewEdtMenu() {
           style={myStyles.imgNovaLoja}
           source={require('../../../assets/outros/sheep_novaLoja_01.png')}
         />
-        <View style={myStyles.containerDadosLoja}>
-          <Text style={myStyleApp.textoSubtitulo}>LOJA AINDA SEM NOME</Text>
-          <Text style={myStyleApp.textoRegular}>Status: <Text style={myStyles.textoStatus}>Em edição</Text></Text>
-        </View>
+
+        {lojaDadosBasicos !== null ?
+          <View style={myStyles.containerDadosLoja}>
+            <Text style={myStyleApp.textoSubtitulo}>{nomeLoja}</Text>
+            <Text style={myStyleApp.textoRegular}>Status: <Text style={myStyles.textoStatus}>{statusLoja}</Text></Text>
+          </View>
+          :
+          <View style={myStyles.containerDadosLoja}>
+            <Text style={myStyleApp.textoRegular}>Cadastre sua loja para que seus clientes possam favoritá-la. Começe pelo endereço, nas opções abaixo.</Text>
+          </View>
+        }
 
         <View style={myStyles.containerPrincipal}>
-          <TouchableOpacity style={myStyleApp.buttonFlatHL_list} disabled={false} onPress={goTo} >
+          <TouchableOpacity style={myStyleApp.buttonFlatHL_list} disabled={disabledEndereco} onPress={goTo} >
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.buttonTextFlat} />
               <Text style={myStyleApp.buttonTextStyleFlat}>Endereço</Text>
             </View>
             <MaterialIcons name="navigate-next" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.cinzaMedio} />
           </TouchableOpacity>
-          <TouchableOpacity style={myStyleApp.buttonFlatHL_list} disabled={false} onPress={goTo} >
+          <TouchableOpacity style={myStyleApp.buttonFlatHL_list} disabled={disabled} onPress={goTo} >
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <MaterialIcons name="location-on" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.buttonTextFlat} />
               <Text style={myStyleApp.buttonTextStyleFlat}>Localização</Text>
             </View>
             <MaterialIcons name="navigate-next" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.cinzaMedio} />
           </TouchableOpacity>
-          <TouchableOpacity style={myStyleApp.buttonFlatHL_list} disabled={false} onPress={goTo} >
+          <TouchableOpacity style={myStyleApp.buttonFlatHL_list} disabled={disabled} onPress={goTo} >
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <MaterialIcons name="access-time" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.buttonTextFlat} />
               <Text style={myStyleApp.buttonTextStyleFlat}>Horário de funcionamento</Text>

@@ -58,7 +58,7 @@ export default function ViewConta() {
         <View style={myStyles.containerOthers}>
           <TouchableOpacity style={myStyleApp.buttonFlatHL} onPress={adicionarLoja} >
             <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeButtonRegular} color={myStyleColor.buttonTextFlat} />
-            <Text style={myStyleApp.buttonTextStyleFlat}>Adicionar minha lavanderia</Text>
+            <Text style={myStyleApp.buttonTextStyleFlat}>Eu tenho uma lavanderia</Text>
           </TouchableOpacity>
           <TouchableOpacity style={myStyleApp.buttonFlatHL} onPress={{}} >
             <MaterialIcons name="local-laundry-service" size={myStyleApp.size.iconSizeButtonRegular} color={myStyleColor.buttonTextFlat} />
@@ -67,7 +67,7 @@ export default function ViewConta() {
 
           <TouchableOpacity style={myStyleApp.buttonFlatHL} onPress={{}} >
             <MaterialIcons name="business" size={myStyleApp.size.iconSizeButtonRegular} color={myStyleColor.textoRegular} />
-            <Text style={myStyleApp.buttonTextStyleFlat}>Adicionar franquia</Text>
+            <Text style={myStyleApp.buttonTextStyleFlat}>Sou responsável por uma franquia</Text>
           </TouchableOpacity>
           <TouchableOpacity style={myStyleApp.buttonFlatHL} onPress={{}} >
             <MaterialIcons name="business-center" size={myStyleApp.size.iconSizeButtonRegular} color={myStyleColor.buttonTextFlat} />
