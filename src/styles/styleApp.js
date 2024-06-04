@@ -12,7 +12,7 @@ export const myStyleApp = StyleSheet.create({
 
   containerSafeArea: { //Com padding
     flex: 1,
-    justifyContent:"flex-start",
+    justifyContent: "flex-start",
     backgroundColor: myStyleColor.bkgSafeArea,
     alignItems: "center",
     borderWidth: myStyleSize.containerBordaOnOff,
@@ -21,7 +21,7 @@ export const myStyleApp = StyleSheet.create({
   },
   containerSafeAreaSemPadding: { //Sem padding
     flex: 1,
-    justifyContent:"flex-start",
+    justifyContent: "flex-start",
     backgroundColor: myStyleColor.bkgSafeArea,
     alignItems: "center",
     borderWidth: myStyleSize.containerBordaOnOff,
@@ -42,6 +42,16 @@ export const myStyleApp = StyleSheet.create({
   containerScrollContent: {
     justifyContent: "flex-start",
     paddingBottom: 72,
+  },
+  continerViewPrincipal: { //Com borda lateral
+    flex: 1,
+    justifyContent: "flex-start",
+    alignItems: "stretch",
+    backgroundColor: myStyleColor.bkgSafeArea,
+    borderWidth: myStyleSize.containerBordaOnOff,
+    borderBlockColor: "#fa7251ff",
+    marginBottom: 40,
+    width: "88%",
   },
 
   //Textos
