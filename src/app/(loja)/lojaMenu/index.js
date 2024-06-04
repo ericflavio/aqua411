@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { router } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
 import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, ActivityIndicator } from "react-native";
 import { myStyles } from "./styles";
 import { myStyleApp } from '../../../styles/styleApp';
@@ -16,20 +16,32 @@ export default function ViewEdtMenuLoja() {
   const [disabledEndereco, setDisabledEndereco] = useState(true);
   const [disabled, setDisabled] = useState(true);
 
+  //Caso criação de nova loja: não chega parâmetro
+  //Caso edição (loja selecionada na lista): chega parâmetro
+  const { navigateParmLoja } = useLocalSearchParams();
+  navigateParmLoja ? parmLoja = JSON.parse(navigateParmLoja) : parmLoja = null;
+
   let nomeLoja = "LOJA AINDA SEM NOME";
   let statusLoja = "Editando";
 
   useEffect(() => {
-    console.log(">>> useefect");
     fetchLoja();
   }, [])
 
   async function fetchLoja() {
-    resLoja = await consultaLojaEmEdicao("s");
-    if (resLoja !== null) {
+
+    if (parmLoja !== null) {
+      //Edição de loja: parametros de identificação recebidos
       setDisabled(false); // Libera edição das demais opções
-      setLojaDadosBasicos(resLoja);
-    }
+      setLojaDadosBasicos(parmLoja);
+    } else {
+      //Inclusão de nova loja: sem parametro recebido
+      resLoja = await consultaLojaEmEdicao("s"); //Verifica se já possui alguma sendo criada
+      if (resLoja !== null) {
+        setDisabled(false); // Libera edição das demais opções
+        setLojaDadosBasicos(resLoja);
+      }
+    };
     setDisabledEndereco(false); // Libera edição do endereço
   }
 
@@ -60,8 +72,14 @@ export default function ViewEdtMenuLoja() {
 
         {lojaDadosBasicos !== null ?
           <View style={myStyles.containerDadosLoja}>
-            <Text style={myStyleApp.textoSubtitulo}>{nomeLoja}</Text>
-            <Text style={myStyleApp.textoRegular}>Status: <Text style={myStyles.textoStatus}>{statusLoja}</Text></Text>
+            <Text style={myStyleApp.textoTituloPagina}>{nomeLoja}</Text>
+            <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+              <Text style={myStyleApp.textoRegular}>Status: <Text style={myStyles.textoStatus}>{statusLoja}</Text></Text>
+              <TouchableOpacity style={myStyleApp.buttonHR} onPress={{}} >
+                <Text style={myStyleApp.buttonTextStyle}>Trocar Status</Text>
+                <MaterialIcons name="edit" size={myStyleApp.size.iconSizeButtonSmall} color={myStyleApp.color.buttonText} />
+              </TouchableOpacity>
+            </View>
           </View>
           :
           <View style={myStyles.containerDadosLoja}>

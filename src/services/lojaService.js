@@ -42,7 +42,7 @@ export async function consultaLojaEmEdicao(l) {
         resolve({
           idLoja: "LOJA00001",
           nome: "Aquamagic-AsaNorte-Brasilia-DF",
-          status: "Em edição"
+          status: "Editando"
         })
       } else {
         resolve(null)

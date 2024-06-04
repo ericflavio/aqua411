@@ -9,7 +9,7 @@ export const myStyleSize = {
   iconSizeTabBar: 34,
   //Icones gerais
   iconSizeRegular: 36,
-  iconSizeSmall: 32,
+  iconSizeSmall: 30,
   iconSizeLarge: 40,
   //Container
   containerBordaOnOff: 0,

@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { router, useLocalSearchParams } from 'expo-router';
-import { View, Text, SafeAreaView, TouchableOpacity, FlatList, Alert } from "react-native";
+import { View, Text, SafeAreaView, TouchableOpacity, FlatList, Alert, ActivityIndicator } from "react-native";
 import { myStyles } from "./styles";
 import { myStyleApp } from '../../../styles/styleApp';
 import { GradienteFill } from '../../../componentes/gradienteFill';
 import { AuthContext } from "../../../contexts/auth";
-import { consultaUnidades, consultaListaStatusLoja } from '../../../services/lojaService';
+import { consultaUnidades } from '../../../services/lojaService';
 import { myStyleColor } from '../../../styles/stylesColors';
 
 //Tela principal
@@ -13,6 +13,7 @@ export default function ViewLojaUnidades() {
   console.log("ViewLojaUnidades <inicio>");
   const { user } = useContext(AuthContext);
   const [listaUnidades, setListaUnidades] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetchUnidades();
@@ -20,30 +21,39 @@ export default function ViewLojaUnidades() {
 
   async function fetchUnidades() {
     const resUnidades = await consultaUnidades(user);
-    const resStatus = await consultaListaStatusLoja();
     setListaUnidades(resUnidades);
+    setIsLoading(false);
   }
 
   //Componente visual de cada Unidade (card)
-  const Item = ({ unidade, onPress }) => (
+  const Item = ({ item, onPress }) => (
     <TouchableOpacity onPress={onPress} >
       <View style={myStyles.containerCardUnidade}>
         <View style={{ backgroundColor: myStyleColor.tema30A, height: 38, padding: 6, justifyContent: "center" }}>
-          <Text style={myStyleApp.textoRegular}>Status: {unidade.status}</Text>
+          <Text style={myStyleApp.textoRegular}>Status: {item.status}</Text>
         </View>
         <View style={{ padding: 6, gap: 8, justifyContent: "flex-start" }}>
-          <Text style={myStyleApp.textoSubtitulo}>{unidade.nome}</Text>
+          <Text style={myStyleApp.textoSubtitulo}>{item.nome}</Text>
         </View>
       </View >
     </TouchableOpacity>
   );
+  //Renderização do componente acima
+  const renderItem = ({ item }) => {
+    return (
+      <Item
+        item={item}
+        onPress={() => handleItem(item)}
+      />
+    );
+  };
 
-  function goTo(unidade) {
-    Alert ("Chegou ");
+  function handleItem(item) {
+    //Vai para o menu de opções para editar uma loja
     router.navigate({
       pathname: "/lojaMenu",
       params: {
-        navigateParmLojaId: JSON.stringify(idLoja)
+        navigateParmLoja: JSON.stringify(item)
       }
     })
   }
@@ -53,22 +63,27 @@ export default function ViewLojaUnidades() {
       {GradienteFill()}
       <View style={myStyles.containerHeader}>
         <Text style={myStyleApp.textoTituloPagina}>
-          Gerencie aqui suas lojas
+          Gerencie suas lojas
         </Text>
         <Text style={myStyleApp.textoRegular}>
           Selecione abaixo uma unidade previamente cadastrada e atualize os dados que desejar
         </Text>
       </View>
 
-      <View style={myStyleApp.continerViewPrincipal}>
-        <FlatList
-          data={listaUnidades}
-          renderItem={({ item }) => <Item unidade={item} />}
-          keyExtractor={item => item.idLoja}
-          //extraData={item => item.idLoja}
-          onPress={goTo(1)}
-        />
-      </View>
+      {!isLoading ?
+        <View style={myStyleApp.continerViewPrincipal}>
+          <FlatList
+            vertical
+            showsVerticalScrollIndicator={false}
+            data={listaUnidades}
+            renderItem={renderItem}
+            keyExtractor={item => item.idLoja}
+            extraData={item => item.idLoja}
+          />
+        </View>
+        :
+        <ActivityIndicator size="large" />
+      }
     </SafeAreaView >
   )
 }
