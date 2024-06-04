@@ -149,7 +149,8 @@ export const myStyleApp = StyleSheet.create({
   },
   buttonFlatHL_transp: {//Horizontal flat, esquerdo, transparente
     flexDirection: "row",
-    alignItems: 'flex-start',
+    justifyContent: "flex-start",
+    alignItems: 'center',
     backgroundColor: 'transparent',
     marginTop: 10,
     marginBottom: 0,

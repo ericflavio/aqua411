@@ -58,7 +58,6 @@ export default function ViewEdtMenuLoja() {
   }
 
   async function fetchStatusList() {
-    console.log("Pesquisando status ------------->")
     try {
       resList = await consultaListaStatusLoja();
     } catch (e) {
@@ -119,15 +118,18 @@ export default function ViewEdtMenuLoja() {
 
         {showStatus ?
           <Animatable.View animation="fadeIn">
-            {LojaHandleStatus(statusList, selectedStatus, handleSelectNewStatus)}
+            {LojaHandleStatus(statusList, statusLoja, selectedStatus, handleSelectNewStatus)}
 
             <View style={{ marginLeft: 12, marginRight: 12 }}>
+              <TouchableOpacity style={myStyleApp.buttonFlatHL_transp} disabled={false} onPress={{}} >
+                <MaterialIcons name="info-outline" size={myStyleApp.size.iconSizeSmall} color={myStyleApp.color.buttonTextFlat} />
+                <Text style={myStyleApp.buttonTextStyleFlat}>Ler a descrição do status</Text>
+              </TouchableOpacity>
               <TouchableOpacity style={myStyleApp.buttonHC} disabled={false} onPress={{}} >
                 <Text style={myStyleApp.buttonTextStyle}>
                   Confirmar novo status</Text>
               </TouchableOpacity>
             </View>
-
           </Animatable.View>
           : <></>}
 

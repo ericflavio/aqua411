@@ -46,7 +46,7 @@ export async function consultaUnidades(user) {
     {
       idLoja: "Loja00001",
       nome: "loja-01",
-      status: "Editando"
+      status: "Criando"
     },
     {
       idLoja: "Loja00002",
