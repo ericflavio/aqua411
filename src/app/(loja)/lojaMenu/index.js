@@ -6,7 +6,8 @@ import { myStyleApp } from '../../../styles/styleApp';
 import { GradienteFill } from '../../../componentes/gradienteFill';
 import { AuthContext } from "../../../contexts/auth";
 import { MaterialIcons } from "@expo/vector-icons";
-import { consultaLojaEmEdicao } from '../../../services/lojaService';
+import { consultaLojaEmEdicao, consultaListaStatusLoja } from '../../../services/lojaService';
+import * as Animatable from 'react-native-animatable';
 
 //Tela principal
 export default function ViewEdtMenuLoja() {
@@ -15,28 +16,34 @@ export default function ViewEdtMenuLoja() {
   const [lojaDadosBasicos, setLojaDadosBasicos] = useState(null);
   const [disabledEndereco, setDisabledEndereco] = useState(true);
   const [disabled, setDisabled] = useState(true);
+  const [showStatus, setShowStatus] = useState(false);
 
   //Caso criação de nova loja: não chega parâmetro
   //Caso edição (loja selecionada na lista): chega parâmetro
   const { navigateParmLoja } = useLocalSearchParams();
   navigateParmLoja ? parmLoja = JSON.parse(navigateParmLoja) : parmLoja = null;
 
-  let nomeLoja = "LOJA AINDA SEM NOME";
-  let statusLoja = "Editando";
+  let nomeLoja = "";
+  let statusLoja = "";
+  let statusList = [];
 
   useEffect(() => {
     fetchLoja();
+    fetchStatusList();
   }, [])
 
   async function fetchLoja() {
-
     if (parmLoja !== null) {
       //Edição de loja: parametros de identificação recebidos
       setDisabled(false); // Libera edição das demais opções
       setLojaDadosBasicos(parmLoja);
     } else {
       //Inclusão de nova loja: sem parametro recebido
-      resLoja = await consultaLojaEmEdicao("s"); //Verifica se já possui alguma sendo criada
+      try {
+        resLoja = await consultaLojaEmEdicao("n"); //Verifica se já possui alguma sendo criada
+      } catch {
+        resLoja = null;
+      };
       if (resLoja !== null) {
         setDisabled(false); // Libera edição das demais opções
         setLojaDadosBasicos(resLoja);
@@ -44,8 +51,14 @@ export default function ViewEdtMenuLoja() {
     };
     setDisabledEndereco(false); // Libera edição do endereço
   }
-
-  console.log("idLoja recuperado: ", lojaDadosBasicos);
+  async function fetchStatusList() {
+    try {
+      statusList = await consultaListaStatusLoja();
+    } catch {
+      statusList = null;
+    }
+    console.log("status recuperados ", statusList)
+  }
 
   function goTo() {
     router.navigate({
@@ -56,9 +69,13 @@ export default function ViewEdtMenuLoja() {
     })
   }
 
+  function handleStatus(){
+    setShowStatus(!showStatus);
+  }
+
   if (lojaDadosBasicos !== null) {
     nomeLoja = lojaDadosBasicos.nome;
-    statusLoja = lojaDadosBasicos.status;
+    statusLoja = lojaDadosBasicos.status.toUpperCase();;
   }
 
   return (
@@ -75,7 +92,7 @@ export default function ViewEdtMenuLoja() {
             <Text style={myStyleApp.textoTituloPagina}>{nomeLoja}</Text>
             <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
               <Text style={myStyleApp.textoRegular}>Status: <Text style={myStyles.textoStatus}>{statusLoja}</Text></Text>
-              <TouchableOpacity style={myStyleApp.buttonHR} onPress={{}} >
+              <TouchableOpacity style={myStyleApp.buttonHR} onPress={handleStatus} >
                 <Text style={myStyleApp.buttonTextStyle}>Trocar Status</Text>
                 <MaterialIcons name="edit" size={myStyleApp.size.iconSizeButtonSmall} color={myStyleApp.color.buttonText} />
               </TouchableOpacity>
@@ -86,6 +103,15 @@ export default function ViewEdtMenuLoja() {
             <Text style={myStyleApp.textoRegular}>Cadastre sua loja para que seus clientes possam favoritá-la. Começe pelo endereço, nas opções abaixo.</Text>
           </View>
         }
+
+        {showStatus ?
+          <Animatable.View animation="fadeIn">
+            <Text>Selecione o novo status</Text>
+            <Text>Selecione o novo status</Text>
+            <Text>Selecione o novo status</Text>
+            <Text>Selecione o novo status</Text>
+          </Animatable.View>
+          : <></>}
 
         <View style={myStyles.containerPrincipal}>
           <TouchableOpacity style={myStyleApp.buttonFlatHL_list} disabled={disabledEndereco} onPress={goTo} >
@@ -110,6 +136,15 @@ export default function ViewEdtMenuLoja() {
             <MaterialIcons name="navigate-next" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.cinzaMedio} />
           </TouchableOpacity>
         </View>
+
+        {setLojaDadosBasicos !== null && statusLoja === "EDITANDO" ?
+          <View style={{ marginLeft: 12, marginRight: 12 }}>
+            <TouchableOpacity style={myStyleApp.buttonHC} disabled={disabled} onPress={{}} >
+              <Text style={myStyleApp.buttonTextStyle}>
+                Excluir esta loja</Text>
+            </TouchableOpacity>
+          </View>
+          : <></>}
 
       </ScrollView>
     </SafeAreaView >

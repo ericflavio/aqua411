@@ -192,7 +192,7 @@ export default function ViewLojaMaquinas() {
             </View>
             <View style={myStyles.containerBody1}>
               <View style={myStyles.containerUnidadeEndereco}>
-                <Text style={myStyleApp.textoSubtitulo}>
+                <Text style={myStyleApp.textoRegular}>
                   Você ainda não selecionou uma lavanderia favorita
                 </Text>
               </View>
