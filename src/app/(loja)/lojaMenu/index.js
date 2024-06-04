@@ -20,6 +20,7 @@ export default function ViewEdtMenuLoja() {
   const [disabled, setDisabled] = useState(true);
   const [showStatus, setShowStatus] = useState(false);
   const [statusList, setStatusList] = useState(null);
+  const [selectedStatus, setSelectedStatus] = useState("");
 
   //Caso criação de nova loja: não chega parâmetro
   //Caso edição (loja selecionada na lista): chega parâmetro
@@ -78,8 +79,11 @@ export default function ViewEdtMenuLoja() {
     })
   }
 
-  function handleStatus() {
+  function handleShowStatus() {
     setShowStatus(!showStatus);
+  }
+  function handleSelectNewStatus(statusPicker) {
+    setSelectedStatus(statusPicker);
   }
 
   if (lojaDadosBasicos !== null) {
@@ -101,7 +105,7 @@ export default function ViewEdtMenuLoja() {
             <Text style={myStyleApp.textoTituloPagina}>{nomeLoja}</Text>
             <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
               <Text style={myStyleApp.textoRegular}>Status: <Text style={myStyles.textoStatus}>{statusLoja}</Text></Text>
-              <TouchableOpacity style={myStyleApp.buttonHR} onPress={handleStatus} >
+              <TouchableOpacity style={myStyleApp.buttonHR} onPress={handleShowStatus} >
                 <Text style={myStyleApp.buttonTextStyle}>Trocar Status</Text>
                 {/*<MaterialIcons name="edit" size={myStyleApp.size.iconSizeButtonSmall} color={myStyleApp.color.buttonText} />*/}
               </TouchableOpacity>
@@ -115,7 +119,15 @@ export default function ViewEdtMenuLoja() {
 
         {showStatus ?
           <Animatable.View animation="fadeIn">
-            {LojaHandleStatus(statusList)}
+            {LojaHandleStatus(statusList, selectedStatus, handleSelectNewStatus)}
+
+            <View style={{ marginLeft: 12, marginRight: 12 }}>
+              <TouchableOpacity style={myStyleApp.buttonHC} disabled={false} onPress={{}} >
+                <Text style={myStyleApp.buttonTextStyle}>
+                  Confirmar novo status</Text>
+              </TouchableOpacity>
+            </View>
+
           </Animatable.View>
           : <></>}
 
