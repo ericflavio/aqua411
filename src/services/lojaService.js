@@ -7,7 +7,7 @@ export async function consultaListaStatusLoja() {
       id: "Criando",
       nome: "Criando",
       descricao: "A loja está sendo criada. Apenas o proprietário pesquisar e favoritar esta loja.",
-      dfs: ["Ativa", "Excluída"]
+      dfs: ["Ativa"]
     },
     {
       id: "Ativa",
@@ -27,12 +27,12 @@ export async function consultaListaStatusLoja() {
       descricao: "Não aparece nas pesquisas de lojas.",
       dfs: []
     },
-    {
+/*     {
       id: "Excluída",
       nome: "Excluída",
       descricao: "Foi excluída durante sua criação.",
       dfs: []
-    },
+    }, */
   ];
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -51,12 +51,12 @@ export async function consultaUnidades(user) {
     {
       idLoja: "Loja00002",
       nome: "loja-02",
-      status: "Ativa"
+      status: "Inativa"
     },
     {
       idLoja: "Loja00003",
       nome: "loja-03",
-      status: "Excluída"
+      status: "Suspensa"
     }
   ];
   return new Promise((resolve, reject) => {

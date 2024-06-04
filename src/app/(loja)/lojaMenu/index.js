@@ -20,6 +20,7 @@ export default function ViewEdtMenuLoja() {
   const [disabledEndereco, setDisabledEndereco] = useState(true);
   const [disabled, setDisabled] = useState(true);
   const [showViewStatus, setShowViewStatus] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [selectedStatus, setSelectedStatus] = useState(""); //Quando novo status é selecionado para atualizar
   const [statusList, setStatusList] = useState(null); //Relação de todos os status
   const [statusListToChange, setStatusListToChange] = useState(null); //Status possíveis pelo DFS
@@ -89,7 +90,6 @@ export default function ViewEdtMenuLoja() {
       }
     }
     //Atualiza os estados
-    console.log("XXXX ", arrayPicker, statusListToChange)
     if (arrayPicker !== statusListToChange) {
       setStatusListToChange(arrayPicker);
     }
@@ -106,15 +106,23 @@ export default function ViewEdtMenuLoja() {
 
   function handleShowViewStatus() {
     if (statusListToChange === null || Object.keys(statusListToChange).length === 0) {
-      Alert("O status atual não pode ser alterado!");
+      Alert.alert("O status atual não pode ser alterado!");
       return;
     }
     setShowViewStatus(!showViewStatus);
   }
-
   function handleSelectNewStatus(statusPicker) {
     setSelectedStatus(statusPicker);
   }
+
+  //Monta descrição dos status possíveis, para consulta.
+  var ddd = ["um", "dois"];
+
+  /* if (statusListToChange !== null && Object.keys(statusListToChange).length > 0) {
+    ddd = statusListToChange;
+  }
+ */
+  console.log("ddd ------------: ", ddd, ' - ', statusListToChange)
 
   return (
     <SafeAreaView style={myStyleApp.containerSafeAreaSemPadding}>
@@ -128,13 +136,7 @@ export default function ViewEdtMenuLoja() {
         {lojaDadosBasicos !== null ?
           <View style={myStyles.containerDadosLoja}>
             <Text style={myStyleApp.textoTituloPagina}>{lojaDadosBasicos.nome}</Text>
-            <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
-              <Text style={myStyleApp.textoRegular}>Status: <Text style={myStyles.textoStatus}>{lojaDadosBasicos.status}</Text></Text>
-              <TouchableOpacity style={myStyleApp.buttonHR} onPress={handleShowViewStatus} >
-                <Text style={myStyleApp.buttonTextStyle}>Trocar Status</Text>
-                {/*<MaterialIcons name="edit" size={myStyleApp.size.iconSizeButtonSmall} color={myStyleApp.color.buttonText} />*/}
-              </TouchableOpacity>
-            </View>
+            <Text style={myStyleApp.textoRegular}>Status: <Text style={myStyles.textoStatus}>{lojaDadosBasicos.status}</Text></Text>
           </View>
           :
           <View style={myStyles.containerDadosLoja}>
@@ -142,22 +144,13 @@ export default function ViewEdtMenuLoja() {
           </View>
         }
 
-        {showViewStatus ?
-          <Animatable.View animation="fadeIn">
-            {LojaHandleStatus(statusListToChange, statusList, lojaDadosBasicos.status, selectedStatus, handleSelectNewStatus)}
+        <View style={{ backgroundColor: myStyleApp.color.cinzaClaro, minHeight: 24, paddingLeft: 12 }}>
+          <Text style={myStyleApp.textoPequeno}>Ações de gerenciamento</Text>
+        </View>
 
-            <View style={{ marginLeft: 12, marginRight: 12 }}>
-              <TouchableOpacity style={myStyleApp.buttonFlatHL_transp} disabled={false} onPress={{}} >
-                <MaterialIcons name="info-outline" size={myStyleApp.size.iconSizeSmall} color={myStyleApp.color.buttonTextFlat} />
-                <Text style={myStyleApp.buttonTextStyleFlat}>Ler a descrição do status</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={myStyleApp.buttonHC} disabled={false} onPress={{}} >
-                <Text style={myStyleApp.buttonTextStyle}>
-                  Confirmar novo status</Text>
-              </TouchableOpacity>
-            </View>
-          </Animatable.View>
-          : <></>}
+        <View style={{ backgroundColor: myStyleApp.color.cinzaClaro, minHeight: 24, paddingLeft: 12 }}>
+          <Text style={myStyleApp.textoPequeno}>Opções de edição</Text>
+        </View>
 
         <View style={myStyles.containerPrincipal}>
           <TouchableOpacity style={myStyleApp.buttonFlatHL_list} disabled={disabledEndereco} onPress={goTo} >
@@ -183,7 +176,7 @@ export default function ViewEdtMenuLoja() {
           </TouchableOpacity>
 
           <View style={{ backgroundColor: myStyleApp.color.cinzaClaro, minHeight: 24, paddingLeft: 12 }}>
-            <Text style={myStyleApp.textoPequeno}>Opções para assinantes</Text>
+            <Text style={myStyleApp.textoPequeno}>Opções de edição para assinantes</Text>
           </View>
         </View>
 

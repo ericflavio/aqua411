@@ -1,11 +1,13 @@
 import { myStyleColor } from '../styles/stylesColors';
 import { myStyleApp } from '../styles/styleApp';
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Modal, TouchableOpacity } from "react-native";
 import { NewErrorMessage } from '../errors/errorMessage';
 import { Picker } from '@react-native-picker/picker';
+import { MaterialIcons } from "@expo/vector-icons";
 
 export default function LojaHandleStatus(statusListToChange, statusList, currentStatus, selectedStatus, onSelectNewStatus) {
   var msg = "Pesquisando status...";
+  var showModal = false;
 
   if (statusListToChange === undefined || statusListToChange === null || Object.keys(statusListToChange).length === 0) {
     error = NewErrorMessage("lj002");
@@ -44,7 +46,7 @@ const styles = StyleSheet.create({
     marginRight: 12,
     marginBottom: 25,
     borderWidth: 1,
-    borderColor: myStyleColor.tema60A,
+    borderColor: myStyleColor.tema10A,
     borderRadius: 4
   },
 });
