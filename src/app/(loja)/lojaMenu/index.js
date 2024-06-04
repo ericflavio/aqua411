@@ -4,9 +4,9 @@ import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, Activity
 import { myStyles } from "./styles";
 import { myStyleApp } from '../../../styles/styleApp';
 import { GradienteFill } from '../../../componentes/gradienteFill';
+import { LojaHandleStatus } from '../../../componentes/lojaHandleStatus';
 import { AuthContext } from "../../../contexts/auth";
 import { MaterialIcons } from "@expo/vector-icons";
-import { consultaLojaEmEdicao, consultaListaStatusLoja } from '../../../services/lojaService';
 import * as Animatable from 'react-native-animatable';
 
 //Tela principal
@@ -29,7 +29,6 @@ export default function ViewEdtMenuLoja() {
 
   useEffect(() => {
     fetchLoja();
-    fetchStatusList();
   }, [])
 
   async function fetchLoja() {
@@ -51,14 +50,6 @@ export default function ViewEdtMenuLoja() {
     };
     setDisabledEndereco(false); // Libera edição do endereço
   }
-  async function fetchStatusList() {
-    try {
-      statusList = await consultaListaStatusLoja();
-    } catch {
-      statusList = null;
-    }
-    console.log("status recuperados ", statusList)
-  }
 
   function goTo() {
     router.navigate({
@@ -69,7 +60,7 @@ export default function ViewEdtMenuLoja() {
     })
   }
 
-  function handleStatus(){
+  function handleStatus() {
     setShowStatus(!showStatus);
   }
 
@@ -94,7 +85,7 @@ export default function ViewEdtMenuLoja() {
               <Text style={myStyleApp.textoRegular}>Status: <Text style={myStyles.textoStatus}>{statusLoja}</Text></Text>
               <TouchableOpacity style={myStyleApp.buttonHR} onPress={handleStatus} >
                 <Text style={myStyleApp.buttonTextStyle}>Trocar Status</Text>
-                <MaterialIcons name="edit" size={myStyleApp.size.iconSizeButtonSmall} color={myStyleApp.color.buttonText} />
+                {/*<MaterialIcons name="edit" size={myStyleApp.size.iconSizeButtonSmall} color={myStyleApp.color.buttonText} />*/}
               </TouchableOpacity>
             </View>
           </View>
@@ -106,10 +97,7 @@ export default function ViewEdtMenuLoja() {
 
         {showStatus ?
           <Animatable.View animation="fadeIn">
-            <Text>Selecione o novo status</Text>
-            <Text>Selecione o novo status</Text>
-            <Text>Selecione o novo status</Text>
-            <Text>Selecione o novo status</Text>
+            {LojaHandleStatus()}
           </Animatable.View>
           : <></>}
 

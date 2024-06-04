@@ -64,7 +64,7 @@ export const myStyleApp = StyleSheet.create({
     color: myStyleColor.textoTitulo,
   },
   textoSubtitulo: {
-    fontFamily: 'Lato-Regular',
+    fontFamily: 'Lato-Bold',
     fontSize: myStyleSize.textoSize1,
     //fontWeight: myStyleSize.textoNegritoForte,
     marginTop: 0,

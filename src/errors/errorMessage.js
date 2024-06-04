@@ -1,8 +1,9 @@
-//Centralizador das mensagens de erro
+import { Alert, ToastAndroid, Platform } from 'react-native';
 
+//Centralizador das mensagens de erro
 export const errorTextOops = "Oops!";
 
-export default function NewErrorMessage(cod, e) {
+export function NewErrorMessage(cod, e) {
   //Se entrar apenas COD, devolve-se a mensagem correspondente.
   //Na ausência do COD, espera-se o "e" para montar o retorno.
 
@@ -49,23 +50,32 @@ export default function NewErrorMessage(cod, e) {
           newError.message = msgDefault + " [" + cod + "]";
       }
       break;
-    case "pl": // Persistência local
+    case "lj": // Lojas
       switch (cod) {
-        case "pl10": newError.message = "Informe os dados para persistir" + " [" + cod + "]"; break;
-        case "pl11": newError.message = "Falha ao persistir os dados" + " [" + cod + "]"; break;
-        case "pl12": newError.message = "Falha ao recuperar dados persistidos" + " [" + cod + "]"; break;
+        //Status
+        case "lj001": newError.message = "Informe um e-mail válido."; break;
+
         default:
           newError.cod = "de2702" + cod.substr(0, 2);
           newError.message = msgDefault + " [" + cod + "]";
       }
       break;
-
     //Compartilhado
+    case "pl": // Persistência local
+      switch (cod) {
+        case "pl010": newError.message = "Informe os dados para persistir" + " [" + cod + "]"; break;
+        case "pl011": newError.message = "Falha ao persistir os dados" + " [" + cod + "]"; break;
+        case "pl012": newError.message = "Falha ao recuperar dados persistidos" + " [" + cod + "]"; break;
+        default:
+          newError.cod = "de2702" + cod.substr(0, 2);
+          newError.message = msgDefault + " [" + cod + "]";
+      }
+      break;
     case "vc": // Validação de CEP e endereço
       switch (cod) {
-        case "vc10": newError.message = "Informe o CEP com 8 dígitos numéricos" + " [" + cod + "]"; break;
-        case "vc11": newError.message = "CEP inválido" + " [" + cod + "]"; break;
-        case "vc12": newError.message = "Estamos com dificuldades de validar o CEP. Tente novamente mais tarde" + " [" + cod + "]"; break;
+        case "vc010": newError.message = "Informe o CEP com 8 dígitos numéricos" + " [" + cod + "]"; break;
+        case "vc011": newError.message = "CEP inválido" + " [" + cod + "]"; break;
+        case "vc012": newError.message = "Estamos com dificuldades de validar o CEP. Tente novamente mais tarde" + " [" + cod + "]"; break;
         default:
           newError.cod = "de2702" + cod.substr(0, 2);
           newError.message = msgDefault + " [" + cod + "]";
@@ -73,10 +83,10 @@ export default function NewErrorMessage(cod, e) {
       break;
     case "gu": // Georeferenciamento e URL
       switch (cod) {
-        case "gu10": newError.message = "Não parece um endereço web válido" + " [" + cod + "]"; break;
-        case "gu11": newError.message = "Informe um endereço web válido" + " [" + cod + "]"; break;
-        case "gu12": newError.message = "Informe um código de Latitude válido" + " [" + cod + "]"; break;
-        case "gu13": newError.message = "Informe um código de Longitude válido" + " [" + cod + "]"; break;
+        case "gu010": newError.message = "Não parece um endereço web válido" + " [" + cod + "]"; break;
+        case "gu011": newError.message = "Informe um endereço web válido" + " [" + cod + "]"; break;
+        case "gu012": newError.message = "Informe um código de Latitude válido" + " [" + cod + "]"; break;
+        case "gu013": newError.message = "Informe um código de Longitude válido" + " [" + cod + "]"; break;
         default:
           newError.cod = "de2702" + cod.substr(0, 2);
           newError.message = msgDefault + " [" + cod + "]";
@@ -90,3 +100,18 @@ export default function NewErrorMessage(cod, e) {
 
   return newError;
 }
+
+export async function ShowMsgError(cod) {
+  const error = NewErrorMessage(cod);
+
+  if (Platform.OS === 'ios') {
+    Alert.alert(errorTextOops, error.message);
+  } else {
+    ToastAndroid.showWithGravity(
+      error.message,
+      ToastAndroid.LONG,
+      ToastAndroid.BOTTOM,
+    );
+  }
+}
+

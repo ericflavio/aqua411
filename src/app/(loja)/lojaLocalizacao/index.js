@@ -97,17 +97,17 @@ export default function ViewEdtLocalizacaoLoja() {
       case cenarioEditar:
 
         if (latitude.length > 0 && !validarSintaxeLatitude(latitude)) {
-          showMsgError("gu12");
+          showMsgError("gu012");
           return;
         }
         if (longitude.length > 0 && !validarSintaxeLongitude(longitude)) {
-          showMsgError("gu13");
+          showMsgError("gu013");
           return;
         }
 
         if (urlGoogleMaps.length > 0) {
           if (!validarSintaxeUrl(urlGoogleMaps)) {
-            showMsgError("gu10");
+            showMsgError("gu010");
             return;
           }
 
@@ -116,12 +116,12 @@ export default function ViewEdtLocalizacaoLoja() {
           try {
             const isValidUrl = await pingUrl(urlGoogleMaps);
             if (!isValidUrl) {
-              showMsgError("gu11");
+              showMsgError("gu011");
               setCenario(cenarioEditar);
               return;
             }
           } catch (e) {
-            showMsgError("gu11");
+            showMsgError("gu011");
             setCenario(cenarioEditar);
             return;
           }

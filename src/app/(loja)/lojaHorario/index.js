@@ -105,7 +105,7 @@ export default function ViewEdtHorario() {
 
     if (cep.length >= 8) {
       if (!validarSintaxeCep(cep)) {
-        showMsgError("vc10");
+        showMsgError("vc010");
         return;
       }
       setCenario(cenarioValidar);
@@ -113,7 +113,7 @@ export default function ViewEdtHorario() {
       try {
         const endereco = await consultaCepService(cep);
         if (endereco.erro) {
-          showMsgError("vc11");
+          showMsgError("vc011");
           setEndereco(voidEndereco);
         } else {
           setEndereco({
@@ -130,7 +130,7 @@ export default function ViewEdtHorario() {
         setCenario(cenarioEditar);
         return;
       } catch (e) {
-        showMsgError("vc12");
+        showMsgError("vc012");
         setEndereco(voidEndereco);
         setCenario(cenarioEditar);
         return;
@@ -140,7 +140,7 @@ export default function ViewEdtHorario() {
 
   async function prosseguir() {
     if (cep.length < 8 || !validarSintaxeCep(cep)) {
-      showMsgError("vc10");
+      showMsgError("vc010");
       return;
     };
     goTo(); //Vai para próxima tela (levando parametros)

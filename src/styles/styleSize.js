@@ -3,14 +3,14 @@
 
 export const myStyleSize = {
   //Icones para botões e tabbars
-  iconSizeButtonRegular: 32,
+  iconSizeButtonRegular: 30,
   iconSizeButtonSmall: 26,
-  iconSizeButtonLarge: 36,
+  iconSizeButtonLarge: 34,
   iconSizeTabBar: 34,
   //Icones gerais
-  iconSizeRegular: 36,
-  iconSizeSmall: 30,
-  iconSizeLarge: 40,
+  iconSizeRegular: 32,
+  iconSizeSmall: 28,
+  iconSizeLarge: 38,
   //Container
   containerBordaOnOff: 0,
   containerBordaRaio: 8,
@@ -19,9 +19,9 @@ export const myStyleSize = {
   textoNegritoForte: "700",
   textoNegritoMedio: "500",
   TextoNegritoOff: "100",
-  textoSize0: 32,
-  textoSize1: 26,
-  textoSize2: 22,
+  textoSize0: 30,
+  textoSize1: 24,
+  textoSize2: 20,
   textoSize3: 20,
   textoSize4: 18,
   textoSize5: 16,

@@ -13,7 +13,7 @@ function showMsgError(cod) {
     Alert.alert(errorTextOops, error.message);
   } else {
     ToastAndroid.showWithGravity(
-      error.message,
+      error.message, 
       ToastAndroid.LONG,
       ToastAndroid.BOTTOM,
     );
@@ -23,7 +23,7 @@ function showMsgError(cod) {
 export async function SetLocalDataLogin(user) {
   if (!user || user === undefined || user === null ||
     !user.idLogin || user.idLogin === undefined || user.idLogin === null) {
-    showMsgError("pl10");
+    showMsgError("pl010");
     return false;
   }
 
@@ -36,7 +36,7 @@ export async function SetLocalDataLogin(user) {
     const jsonValue = JSON.stringify(user);
     await AsyncStorage.setItem(idDB, jsonValue);
   } catch (e) {
-    showMsgError("pl11");
+    showMsgError("pl011");
     throw error;
   }
 }
@@ -48,7 +48,7 @@ export async function GetLocalDataLogin() {
     const userDataLogin = response ? JSON.parse(response) : null;
     return userDataLogin;
   } catch (e) {
-    showMsgError("pl12");
+    showMsgError("pl012");
     return null;
   }
 }
