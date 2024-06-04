@@ -155,9 +155,13 @@ export default function ViewEdtMenuLoja() {
             </View>
             <MaterialIcons name="navigate-next" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.cinzaMedio} />
           </TouchableOpacity>
+
+          <View style={{ backgroundColor: myStyleApp.color.cinzaClaro, minHeight:24, paddingLeft:12}}>
+            <Text style={myStyleApp.textoPequeno}>Opções para assinantes</Text>
+          </View>
         </View>
 
-        {setLojaDadosBasicos !== null && statusLoja === "EDITANDO" ?
+        {setLojaDadosBasicos !== null && statusLoja === "CRIANDO" ?
           <View style={{ marginLeft: 12, marginRight: 12 }}>
             <TouchableOpacity style={myStyleApp.buttonHC} disabled={disabled} onPress={{}} >
               <Text style={myStyleApp.buttonTextStyle}>

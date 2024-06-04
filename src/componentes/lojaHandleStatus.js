@@ -33,9 +33,8 @@ export default function LojaHandleStatus(statusList, currentStatus, selectedStat
           onValueChange={(itemValue, itemIndex) =>
             onSelectNewStatus(itemValue)
           }>
-{/*            <Picker.Item label="Java" value="java" />
+          {/*<Picker.Item label="Java" value="java" />
           <Picker.Item label="JavaScript" value="js" /> */}
-
           {arrayPicker.map((item, index) => {
             return (< Picker.Item label={item} value={item} key={index} />);
           })}
