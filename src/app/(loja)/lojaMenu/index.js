@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { router, useLocalSearchParams } from 'expo-router';
-import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, ActivityIndicator } from "react-native";
+import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, ActivityIndicator, Alert } from "react-native";
 import { myStyles } from "./styles";
 import { myStyleApp } from '../../../styles/styleApp';
 import { GradienteFill } from '../../../componentes/gradienteFill';
@@ -11,11 +11,12 @@ import * as Animatable from 'react-native-animatable';
 import { consultaListaStatusLoja, consultaLojaEmEdicao } from '../../../services/lojaService';
 import { ShowErrorMessage } from '../../../errors/errorMessage';
 
+console.log("ViewEdtMenuLoja <inicio>");
+
 //Tela principal
 export default function ViewEdtMenuLoja() {
-  console.log("ViewEdtMenuLoja <inicio>");
   const { user } = useContext(AuthContext);
-  const [lojaDadosBasicos, setLojaDadosBasicos] = useState({ status: "Criando", nome: "" });
+  const [lojaDadosBasicos, setLojaDadosBasicos] = useState({ status: "", nome: "" });
   const [disabledEndereco, setDisabledEndereco] = useState(true);
   const [disabled, setDisabled] = useState(true);
   const [showViewStatus, setShowViewStatus] = useState(false);
@@ -34,10 +35,12 @@ export default function ViewEdtMenuLoja() {
   }, [])
 
   async function fetchLoja() {
+    let statusInicial = "";
     if (parmLoja !== null) {
       //Edição de loja: parametros de identificação recebidos
-      setDisabled(false); // Libera edição das demais opções
+      statusInicial = parmLoja.status;
       setLojaDadosBasicos(parmLoja);
+      setDisabled(false); // Libera edição das demais opções
     } else {
       //Inclusão de nova loja; parametro não recebido
       try {
@@ -46,15 +49,17 @@ export default function ViewEdtMenuLoja() {
         resLoja = null; //Não encontrou uma Loja me estágio de criação para continuar.
       };
       if (resLoja !== null) {
-        setDisabled(false); // Libera edição das demais opções
+        statusInicial = resLoja.status;
         setLojaDadosBasicos(resLoja);
+        setDisabled(false); // Libera edição das demais opções
       }
     };
     setDisabledEndereco(false); // Libera edição do endereço
 
     //Consulta a lista de status que podem ser atribuídos a uma loja
     if (statusList === null) { //Ainda não foi consultado
-      await fetchStatusList();
+      resList = await fetchStatusList();
+      filtraNovosStatusPossiveis(resList, statusInicial)
     }
   }
 
@@ -67,8 +72,8 @@ export default function ViewEdtMenuLoja() {
     }
     if (resList !== null) {
       setStatusList(resList);
-      filtraNovosStatusPossiveis(resList, lojaDadosBasicos.status)
     }
+    return resList;
   }
 
   function filtraNovosStatusPossiveis(resList, statusInicial) {
@@ -77,12 +82,14 @@ export default function ViewEdtMenuLoja() {
       //Monta os possíveis novos status
       for (var i = 0; i < resList.length; i++) {
         if (resList[i].id.toUpperCase() === statusInicial.toUpperCase()) {
+          console.log("achei no indice: ", i, " ", statusInicial)
           arrayPicker = resList[i].dfs
           break;
         }
       }
     }
     //Atualiza os estados
+    console.log("XXXX ", arrayPicker, statusListToChange)
     if (arrayPicker !== statusListToChange) {
       setStatusListToChange(arrayPicker);
     }
@@ -98,8 +105,13 @@ export default function ViewEdtMenuLoja() {
   }
 
   function handleShowViewStatus() {
+    if (statusListToChange === null || Object.keys(statusListToChange).length === 0) {
+      Alert("O status atual não pode ser alterado!");
+      return;
+    }
     setShowViewStatus(!showViewStatus);
   }
+
   function handleSelectNewStatus(statusPicker) {
     setSelectedStatus(statusPicker);
   }

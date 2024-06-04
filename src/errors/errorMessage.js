@@ -55,7 +55,7 @@ export function NewErrorMessage(cod, e) {
       switch (cod) {
         //Status
         case "lj001": newError.message = "Estamos com dificuldades para pesquisar os Status." + tn; break;
-        case "lj002": newError.message = "Nenhum novo Status foi localizado." + tn; break;
+        case "lj002": newError.message = "Não há novos status possíveis."; break;
 
         default:
           newError.cod = "de2702" + cod.substr(0, 2);

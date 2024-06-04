@@ -11,7 +11,6 @@ export default function LojaHandleStatus(statusListToChange, statusList, current
     error = NewErrorMessage("lj002");
     msg = error.message;
   }
-  console.log(">>>>>> listTochange: ", statusListToChange, " currentStatus: ", currentStatus)
 
   return (
     <View style={styles.containerPicker}>
@@ -30,7 +29,7 @@ export default function LojaHandleStatus(statusListToChange, statusList, current
           })}
         </Picker>
         :
-        <Text style={myStyleApp.textoPequeno}>
+        <Text style={myStyleApp.textoRegular}>
           {msg}
         </Text>
       }
@@ -45,7 +44,7 @@ const styles = StyleSheet.create({
     marginRight: 12,
     marginBottom: 25,
     borderWidth: 1,
-    borderColor: myStyleColor.tema60B,
+    borderColor: myStyleColor.tema60A,
     borderRadius: 4
   },
 });
