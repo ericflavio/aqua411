@@ -2,6 +2,7 @@ import { Alert, ToastAndroid, Platform } from 'react-native';
 
 //Centralizador das mensagens de erro
 export const errorTextOops = "Oops!";
+const tn = " Tente novamente mais tarde.";
 
 export function NewErrorMessage(cod, e) {
   //Se entrar apenas COD, devolve-se a mensagem correspondente.
@@ -12,7 +13,7 @@ export function NewErrorMessage(cod, e) {
     message: ""
   }
 
-  const msgDefault = "Lamentamos, mas um erro inesperado aconteceu. Tente novamente mais tarde.";
+  const msgDefault = "Lamentamos, mas um erro inesperado aconteceu." + tn;
 
   if (!cod || cod == null || cod == "") {
     if (e && (e.message || e.cod)) {
@@ -53,7 +54,8 @@ export function NewErrorMessage(cod, e) {
     case "lj": // Lojas
       switch (cod) {
         //Status
-        case "lj001": newError.message = "Informe um e-mail válido."; break;
+        case "lj001": newError.message = "Estamos com dificuldades para pesquisar os Status." + tn; break;
+        case "lj002": newError.message = "Nenhum novo Status foi localizado." + tn; break;
 
         default:
           newError.cod = "de2702" + cod.substr(0, 2);
@@ -75,7 +77,7 @@ export function NewErrorMessage(cod, e) {
       switch (cod) {
         case "vc010": newError.message = "Informe o CEP com 8 dígitos numéricos" + " [" + cod + "]"; break;
         case "vc011": newError.message = "CEP inválido" + " [" + cod + "]"; break;
-        case "vc012": newError.message = "Estamos com dificuldades de validar o CEP. Tente novamente mais tarde" + " [" + cod + "]"; break;
+        case "vc012": newError.message = "Estamos com dificuldades de validar o CEP." + tn + " [" + cod + "]"; break;
         default:
           newError.cod = "de2702" + cod.substr(0, 2);
           newError.message = msgDefault + " [" + cod + "]";
@@ -101,17 +103,23 @@ export function NewErrorMessage(cod, e) {
   return newError;
 }
 
-export async function ShowMsgError(cod) {
+export async function ShowErrorMessage(cod, showType) {
   const error = NewErrorMessage(cod);
 
-  if (Platform.OS === 'ios') {
-    Alert.alert(errorTextOops, error.message);
+  if (showType && (showType === "t" || showType === "T" || showType === "toast")) {
+    //Toast
+    if (Platform.OS === 'ios') {
+      Alert.alert(errorTextOops, error.message);
+    } else {
+      ToastAndroid.showWithGravity(
+        error.message,
+        ToastAndroid.LONG,
+        ToastAndroid.BOTTOM,
+      );
+    }
   } else {
-    ToastAndroid.showWithGravity(
-      error.message,
-      ToastAndroid.LONG,
-      ToastAndroid.BOTTOM,
-    );
+    //Default ALERT
+    Alert.alert(errorTextOops, error.message);
   }
 }
 

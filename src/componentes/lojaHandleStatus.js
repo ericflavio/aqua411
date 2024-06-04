@@ -1,24 +1,27 @@
+import React from 'react';
 import { myStyleColor } from '../styles/stylesColors';
 import { myStyleApp } from '../styles/styleApp';
-import { TextInput, View, Text, } from "react-native";
-import { consultaListaStatusLoja } from '../services/lojaService'
-import { ShowMsgError } from '../errors/errorMessage';
+import { TextInput, View, Text } from "react-native";
+import { NewErrorMessage } from '../errors/errorMessage';
 
-async function fetchStatusList() {
-  try {
-    statusList = await consultaListaStatusLoja();
-  } catch (e) {
-    ShowMsgError("lj001");
-    statusList = null;
+export default function LojaHandleStatus(statusList) {
+  var msg = "Pesquisando...";
+  var hasStatus = true;
+
+  if (statusList === undefined || statusList === null || Object.keys(statusList).length === 0) {
+    error = NewErrorMessage("lj002");
+    msg = error.message;
+    hasStatus = false;
   }
-  console.log("status recuperados ", statusList)
-}
-
-export function LojaHandleStatus(statusAtual, funcao) {
-  fetchStatusList();
 
   return (
     <View>
-      <Text>handle status</Text>
-    </View>)
+      {hasStatus ?
+        <Text>{msg}</Text >
+        :
+        <Text>{msg}</Text>
+      }
+
+    </View >
+  )
 }

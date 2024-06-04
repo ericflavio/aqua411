@@ -4,10 +4,12 @@ import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, Activity
 import { myStyles } from "./styles";
 import { myStyleApp } from '../../../styles/styleApp';
 import { GradienteFill } from '../../../componentes/gradienteFill';
-import { LojaHandleStatus } from '../../../componentes/lojaHandleStatus';
+import LojaHandleStatus from '../../../componentes/lojaHandleStatus';
 import { AuthContext } from "../../../contexts/auth";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as Animatable from 'react-native-animatable';
+import { consultaListaStatusLoja, consultaLojaEmEdicao } from '../../../services/lojaService';
+import { ShowErrorMessage } from '../../../errors/errorMessage';
 
 //Tela principal
 export default function ViewEdtMenuLoja() {
@@ -17,6 +19,7 @@ export default function ViewEdtMenuLoja() {
   const [disabledEndereco, setDisabledEndereco] = useState(true);
   const [disabled, setDisabled] = useState(true);
   const [showStatus, setShowStatus] = useState(false);
+  const [statusList, setStatusList] = useState(null);
 
   //Caso criação de nova loja: não chega parâmetro
   //Caso edição (loja selecionada na lista): chega parâmetro
@@ -25,10 +28,12 @@ export default function ViewEdtMenuLoja() {
 
   let nomeLoja = "";
   let statusLoja = "";
-  let statusList = [];
 
   useEffect(() => {
     fetchLoja();
+    if (statusList === null) {
+      fetchStatusList();
+    }
   }, [])
 
   async function fetchLoja() {
@@ -49,6 +54,19 @@ export default function ViewEdtMenuLoja() {
       }
     };
     setDisabledEndereco(false); // Libera edição do endereço
+  }
+
+  async function fetchStatusList() {
+    console.log("Pesquisando status ------------->")
+    try {
+      resList = await consultaListaStatusLoja();
+    } catch (e) {
+      ShowErrorMessage("lj001", "t");
+      resList = null;
+    }
+    if (resList !== null) {
+      setStatusList(resList);
+    }
   }
 
   function goTo() {
@@ -97,7 +115,7 @@ export default function ViewEdtMenuLoja() {
 
         {showStatus ?
           <Animatable.View animation="fadeIn">
-            {LojaHandleStatus()}
+            {LojaHandleStatus(statusList)}
           </Animatable.View>
           : <></>}
 

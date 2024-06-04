@@ -1,29 +1,15 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Alert, ToastAndroid, Platform } from 'react-native';
-import NewErrorMessage, { errorTextOops } from '../errors/errorMessage';
+import { ShowErrorMessage } from '../errors/errorMessage';
 //TODO: Sempre atualizar a chave do nome do DB AsyncStorage, no padrão
 //@nomedoapp:coleção
 
 export const idDB = "@lavanderias:DadosLogin"
 
-function showMsgError(cod) {
-  const error = NewErrorMessage(cod);
-
-  if (Platform.OS === 'ios') {
-    Alert.alert(errorTextOops, error.message);
-  } else {
-    ToastAndroid.showWithGravity(
-      error.message, 
-      ToastAndroid.LONG,
-      ToastAndroid.BOTTOM,
-    );
-  }
-}
-
 export async function SetLocalDataLogin(user) {
   if (!user || user === undefined || user === null ||
     !user.idLogin || user.idLogin === undefined || user.idLogin === null) {
-    showMsgError("pl010");
+    ShowErrorMessage("pl010","t");
     return false;
   }
 
@@ -36,7 +22,7 @@ export async function SetLocalDataLogin(user) {
     const jsonValue = JSON.stringify(user);
     await AsyncStorage.setItem(idDB, jsonValue);
   } catch (e) {
-    showMsgError("pl011");
+    ShowErrorMessage("pl011","t");
     throw error;
   }
 }
@@ -48,7 +34,7 @@ export async function GetLocalDataLogin() {
     const userDataLogin = response ? JSON.parse(response) : null;
     return userDataLogin;
   } catch (e) {
-    showMsgError("pl012");
+    ShowErrorMessage("pl012","t");
     return null;
   }
 }
