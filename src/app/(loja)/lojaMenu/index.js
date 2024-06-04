@@ -15,26 +15,22 @@ import { ShowErrorMessage } from '../../../errors/errorMessage';
 export default function ViewEdtMenuLoja() {
   console.log("ViewEdtMenuLoja <inicio>");
   const { user } = useContext(AuthContext);
-  const [lojaDadosBasicos, setLojaDadosBasicos] = useState(null);
+  const [lojaDadosBasicos, setLojaDadosBasicos] = useState({ status: "Criando", nome: "" });
   const [disabledEndereco, setDisabledEndereco] = useState(true);
   const [disabled, setDisabled] = useState(true);
-  const [showStatus, setShowStatus] = useState(false);
-  const [statusList, setStatusList] = useState(null);
-  const [selectedStatus, setSelectedStatus] = useState("");
+  const [showViewStatus, setShowViewStatus] = useState(false);
+  const [selectedStatus, setSelectedStatus] = useState(""); //Quando novo status é selecionado para atualizar
+  const [statusList, setStatusList] = useState(null); //Relação de todos os status
+  const [statusListToChange, setStatusListToChange] = useState(null); //Status possíveis pelo DFS
 
   //Caso criação de nova loja: não chega parâmetro
   //Caso edição (loja selecionada na lista): chega parâmetro
   const { navigateParmLoja } = useLocalSearchParams();
   navigateParmLoja ? parmLoja = JSON.parse(navigateParmLoja) : parmLoja = null;
 
-  let nomeLoja = "";
-  let statusLoja = "";
-
   useEffect(() => {
+    console.log("useEffetc>>><1>")
     fetchLoja();
-    if (statusList === null) {
-      fetchStatusList();
-    }
   }, [])
 
   async function fetchLoja() {
@@ -43,11 +39,11 @@ export default function ViewEdtMenuLoja() {
       setDisabled(false); // Libera edição das demais opções
       setLojaDadosBasicos(parmLoja);
     } else {
-      //Inclusão de nova loja: sem parametro recebido
+      //Inclusão de nova loja; parametro não recebido
       try {
         resLoja = await consultaLojaEmEdicao("n"); //Verifica se já possui alguma sendo criada
       } catch {
-        resLoja = null;
+        resLoja = null; //Não encontrou uma Loja me estágio de criação para continuar.
       };
       if (resLoja !== null) {
         setDisabled(false); // Libera edição das demais opções
@@ -55,6 +51,11 @@ export default function ViewEdtMenuLoja() {
       }
     };
     setDisabledEndereco(false); // Libera edição do endereço
+
+    //Consulta a lista de status que podem ser atribuídos a uma loja
+    if (statusList === null) { //Ainda não foi consultado
+      await fetchStatusList();
+    }
   }
 
   async function fetchStatusList() {
@@ -66,6 +67,24 @@ export default function ViewEdtMenuLoja() {
     }
     if (resList !== null) {
       setStatusList(resList);
+      filtraNovosStatusPossiveis(resList, lojaDadosBasicos.status)
+    }
+  }
+
+  function filtraNovosStatusPossiveis(resList, statusInicial) {
+    let arrayPicker = null;
+    if (resList !== null && Object.keys(resList).length > 0) {
+      //Monta os possíveis novos status
+      for (var i = 0; i < resList.length; i++) {
+        if (resList[i].id.toUpperCase() === statusInicial.toUpperCase()) {
+          arrayPicker = resList[i].dfs
+          break;
+        }
+      }
+    }
+    //Atualiza os estados
+    if (arrayPicker !== statusListToChange) {
+      setStatusListToChange(arrayPicker);
     }
   }
 
@@ -78,16 +97,11 @@ export default function ViewEdtMenuLoja() {
     })
   }
 
-  function handleShowStatus() {
-    setShowStatus(!showStatus);
+  function handleShowViewStatus() {
+    setShowViewStatus(!showViewStatus);
   }
   function handleSelectNewStatus(statusPicker) {
     setSelectedStatus(statusPicker);
-  }
-
-  if (lojaDadosBasicos !== null) {
-    nomeLoja = lojaDadosBasicos.nome;
-    statusLoja = lojaDadosBasicos.status.toUpperCase();;
   }
 
   return (
@@ -101,10 +115,10 @@ export default function ViewEdtMenuLoja() {
 
         {lojaDadosBasicos !== null ?
           <View style={myStyles.containerDadosLoja}>
-            <Text style={myStyleApp.textoTituloPagina}>{nomeLoja}</Text>
+            <Text style={myStyleApp.textoTituloPagina}>{lojaDadosBasicos.nome}</Text>
             <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
-              <Text style={myStyleApp.textoRegular}>Status: <Text style={myStyles.textoStatus}>{statusLoja}</Text></Text>
-              <TouchableOpacity style={myStyleApp.buttonHR} onPress={handleShowStatus} >
+              <Text style={myStyleApp.textoRegular}>Status: <Text style={myStyles.textoStatus}>{lojaDadosBasicos.status}</Text></Text>
+              <TouchableOpacity style={myStyleApp.buttonHR} onPress={handleShowViewStatus} >
                 <Text style={myStyleApp.buttonTextStyle}>Trocar Status</Text>
                 {/*<MaterialIcons name="edit" size={myStyleApp.size.iconSizeButtonSmall} color={myStyleApp.color.buttonText} />*/}
               </TouchableOpacity>
@@ -116,9 +130,9 @@ export default function ViewEdtMenuLoja() {
           </View>
         }
 
-        {showStatus ?
+        {showViewStatus ?
           <Animatable.View animation="fadeIn">
-            {LojaHandleStatus(statusList, statusLoja, selectedStatus, handleSelectNewStatus)}
+            {LojaHandleStatus(statusListToChange, statusList, lojaDadosBasicos.status, selectedStatus, handleSelectNewStatus)}
 
             <View style={{ marginLeft: 12, marginRight: 12 }}>
               <TouchableOpacity style={myStyleApp.buttonFlatHL_transp} disabled={false} onPress={{}} >
@@ -156,12 +170,12 @@ export default function ViewEdtMenuLoja() {
             <MaterialIcons name="navigate-next" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.cinzaMedio} />
           </TouchableOpacity>
 
-          <View style={{ backgroundColor: myStyleApp.color.cinzaClaro, minHeight:24, paddingLeft:12}}>
+          <View style={{ backgroundColor: myStyleApp.color.cinzaClaro, minHeight: 24, paddingLeft: 12 }}>
             <Text style={myStyleApp.textoPequeno}>Opções para assinantes</Text>
           </View>
         </View>
 
-        {setLojaDadosBasicos !== null && statusLoja === "CRIANDO" ?
+        {setLojaDadosBasicos !== null && (lojaDadosBasicos.status === "CRIANDO" || lojaDadosBasicos.status === "Criando") ?
           <View style={{ marginLeft: 12, marginRight: 12 }}>
             <TouchableOpacity style={myStyleApp.buttonHC} disabled={disabled} onPress={{}} >
               <Text style={myStyleApp.buttonTextStyle}>
