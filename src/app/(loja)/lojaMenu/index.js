@@ -37,6 +37,7 @@ export default function ViewEdtMenuLoja() {
 
   async function fetchLoja() {
     let statusInicial = "";
+    console.log("parm ", parmLoja)
     if (parmLoja !== null) {
       //Edição de loja: parametros de identificação recebidos
       statusInicial = parmLoja.status;
@@ -115,15 +116,7 @@ export default function ViewEdtMenuLoja() {
     setSelectedStatus(statusPicker);
   }
 
-  //Monta descrição dos status possíveis, para consulta.
-  var ddd = ["um", "dois"];
-
-  /* if (statusListToChange !== null && Object.keys(statusListToChange).length > 0) {
-    ddd = statusListToChange;
-  }
- */
-  console.log("ddd ------------: ", ddd, ' - ', statusListToChange)
-
+  console.log("dadosBasicos :", lojaDadosBasicos)
   return (
     <SafeAreaView style={myStyleApp.containerSafeAreaSemPadding}>
       {GradienteFill()}
@@ -133,7 +126,7 @@ export default function ViewEdtMenuLoja() {
           source={require('../../../assets/outros/sheep_novaLoja_01.png')}
         />
 
-        {lojaDadosBasicos !== null ?
+        {lojaDadosBasicos !== null && lojaDadosBasicos.nome !== "" ?
           <View style={myStyles.containerDadosLoja}>
             <Text style={myStyleApp.textoTituloPagina}>{lojaDadosBasicos.nome}</Text>
             <Text style={myStyleApp.textoRegular}>Status: <Text style={myStyles.textoStatus}>{lojaDadosBasicos.status}</Text></Text>
@@ -148,9 +141,30 @@ export default function ViewEdtMenuLoja() {
           <Text style={myStyleApp.textoPequeno}>Ações de gerenciamento</Text>
         </View>
 
+        <View style={myStyles.containerOthers}>
+          <TouchableOpacity style={myStyleApp.buttonFlatHL} onPress={{}} >
+            <MaterialIcons name="delete-outline" size={myStyleApp.size.iconSizeButtonRegular} color={myStyleApp.color.buttonTextFlat} />
+            <Text style={myStyleApp.buttonTextStyleFlat}>Desistir de cadastrar</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={myStyleApp.buttonFlatHL} onPress={{}} >
+            <MaterialIcons name="saved-search" size={myStyleApp.size.iconSizeButtonRegular} color={myStyleApp.color.buttonTextFlat} />
+            <Text style={myStyleApp.buttonTextStyleFlat}>Aparecer nas buscas</Text>
+          </TouchableOpacity>
+{/*           <TouchableOpacity style={myStyleApp.buttonFlatHL} onPress={{}} >
+            <MaterialIcons name="pause-presentation" size={myStyleApp.size.iconSizeButtonRegular} color={myStyleApp.color.buttonTextFlat} />
+            <Text style={myStyleApp.buttonTextStyleFlat}>Omitir temporariamnte das buscas</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={myStyleApp.buttonFlatHL} onPress={{}} >
+            <MaterialIcons name="cancel-presentation" size={myStyleApp.size.iconSizeButtonRegular} color={myStyleApp.color.buttonTextFlat} />
+            <Text style={myStyleApp.buttonTextStyleFlat}>Desativar permanentemente</Text>
+          </TouchableOpacity> */}
+        </View>
+
+
         <View style={{ backgroundColor: myStyleApp.color.cinzaClaro, minHeight: 24, paddingLeft: 12 }}>
           <Text style={myStyleApp.textoPequeno}>Opções de edição</Text>
         </View>
+
 
         <View style={myStyles.containerPrincipal}>
           <TouchableOpacity style={myStyleApp.buttonFlatHL_list} disabled={disabledEndereco} onPress={goTo} >
@@ -179,15 +193,6 @@ export default function ViewEdtMenuLoja() {
             <Text style={myStyleApp.textoPequeno}>Opções de edição para assinantes</Text>
           </View>
         </View>
-
-        {setLojaDadosBasicos !== null && (lojaDadosBasicos.status === "CRIANDO" || lojaDadosBasicos.status === "Criando") ?
-          <View style={{ marginLeft: 12, marginRight: 12 }}>
-            <TouchableOpacity style={myStyleApp.buttonHC} disabled={disabled} onPress={{}} >
-              <Text style={myStyleApp.buttonTextStyle}>
-                Excluir esta loja</Text>
-            </TouchableOpacity>
-          </View>
-          : <></>}
 
       </ScrollView>
     </SafeAreaView >
