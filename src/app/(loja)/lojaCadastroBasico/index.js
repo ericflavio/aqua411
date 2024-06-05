@@ -96,7 +96,7 @@ export default function ViewLojaCadastroBasico() {
           {InputText("Apelido da loja (ninguém verá essa informação)", onChangeApelidoLoja, "Apelido da loja", 1, 40, "default", flagEditavel, apelidoLoja, false)}
           {InputText("CNPJ (opcional)", onChangeCnpj, "CNPJ", 1, 16, "default", flagEditavel, cnpj, false)}
 
-          <TouchableOpacity style={myStyleApp.buttonHC} onPress={goTo}>
+          <TouchableOpacity style={myStyleApp.buttonHC} disabled={!flagEditavel} onPress={goTo}>
             <View style={myStyles.containerButton}>
               <Text style={myStyleApp.buttonTextStyle}>Confirmar e prosseguir</Text>
             </View>
