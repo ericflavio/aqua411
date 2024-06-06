@@ -167,8 +167,8 @@ export default function ViewEdtHorario() {
           {InputText("Complemento", onChangeComplemento, "Complemento", 1, 80, "default", flagEditavel, complemento, false)}
 
           <TouchableOpacity style={styleApp.buttonHC} disabled={!flagEditavel} onPress={prosseguir} >
-            {!flagEditavel ? <ActivityIndicator /> : ""}
-            <Text style={styleApp.buttonTextStyle}>Continuar</Text>
+            {!flagEditavel ? <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor}/> : ""}
+            <Text style={styleApp.buttonTextRegular}>Continuar</Text>
           </TouchableOpacity>
         </View>
 

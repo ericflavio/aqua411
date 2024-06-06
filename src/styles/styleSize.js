@@ -13,8 +13,8 @@ export const styleSize = {
   iconSizeLarge: 38,
   //Container
   containerBordaOnOff: 0,
-  containerBordaRaioOn: 8,
-  containerBordaRaioOff: 0,
+  containerBorderRadiusOn: 8,
+  containerBorderRadiusOff: 0,
   containerOcupacaoHorizontalFull: "100%",
   ContainerOcupacaoHorizontalParcial: "88%",
   containerOcupacaoMargens: 14,
@@ -29,4 +29,6 @@ export const styleSize = {
   textoSize3: 20,
   textoSize4: 18,
   textoSize5: 16,
+  //Activity Indicadtor
+  activityIndicatorSize: "small",
 };

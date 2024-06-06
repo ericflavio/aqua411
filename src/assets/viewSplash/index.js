@@ -10,7 +10,7 @@ export default function ViewLoading() {
       <Link href={"/principal"}>Ir para main</Link>
      <Link href={"/login"}>Ir para login</Link>*/}
       <View style={myStyles.containerSpiner}>
-        <ActivityIndicator size="large" />
+        <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor} />
       </View>
       <Image
         style={myStyles.imgLogo}

@@ -231,8 +231,8 @@ export default function ViewLogin() {
           }
 
           <TouchableOpacity style={styleApp.buttonHC} disabled={!flagEditavel} onPress={prosseguir} >
-            {!flagEditavel ? <ActivityIndicator /> : ""}
-            <Text style={styleApp.buttonTextStyle}>
+            {!flagEditavel ? <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor}/> : ""}
+            <Text style={styleApp.buttonTextRegular}>
               {cenario == cenarioEntrarEditar || cenario == cenarioEntrarValidar ? "Entrar" : "Cadastrar"}</Text>
           </TouchableOpacity>
         </View>
@@ -241,11 +241,11 @@ export default function ViewLogin() {
           <>
             <TouchableOpacity style={styleApp.buttonFlatHL_transp} disabled={!flagEditavel} onPress={fluxoEntrar} >
               <MaterialIcons name="lock-reset" size={styleApp.size.iconSizeButtonSmall} color={styleColor.buttonTextFlat} />
-              <Text style={styleApp.buttonTextStyleFlat}>Esqueceu sua senha?</Text>
+              <Text style={styleApp.buttonTextFlat}>Esqueceu sua senha?</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styleApp.buttonFlatHL_transp} disabled={!flagEditavel} onPress={fluxoCadastrar} >
               <MaterialIcons name="person-add-alt" size={styleApp.size.iconSizeButtonSmall} color={styleColor.buttonTextFlat} />
-              <Text style={styleApp.buttonTextStyleFlat}>Clique aqui para novo cadastro</Text>
+              <Text style={styleApp.buttonTextFlat}>Clique aqui para novo cadastro</Text>
             </TouchableOpacity>
           </>
           : ""}
@@ -253,14 +253,14 @@ export default function ViewLogin() {
         {cenario == cenarioCadastrarEditar || cenario == cenarioCadastrarValidar ?
           <TouchableOpacity style={styleApp.buttonFlatHL_transp} disabled={!flagEditavel} onPress={fluxoEntrar} >
             <MaterialIcons name="login" size={styleApp.size.iconSizeButtonSmall} color={styleColor.buttonTextFlat} />
-            <Text style={styleApp.buttonTextStyleFlat}>Clique aqui se já possuir cadastro</Text>
+            <Text style={styleApp.buttonTextFlat}>Clique aqui se já possuir cadastro</Text>
           </TouchableOpacity>
           : ""}
 
         {cenario == cenarioCadastrarEditarToken || cenario == cenarioCadastrarValidarToken ?
           <TouchableOpacity style={styleApp.buttonFlatHL_transp} disabled={!flagEditavel} onPress={reenviarToken} >
             <MaterialIcons name="mail-outline" size={styleApp.size.iconSizeButtonSmall} color={styleColor.buttonTextFlat} />
-            <Text style={styleApp.buttonTextStyleFlat}>Me envie um novo código</Text>
+            <Text style={styleApp.buttonTextFlat}>Me envie um novo código</Text>
           </TouchableOpacity>
           : ""}
       </ScrollView>

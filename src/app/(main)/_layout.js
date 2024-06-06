@@ -21,7 +21,7 @@ export default function AppLayout() {
     if (fontsLoaded || fontError) {
       return (
         <View style={{ flex: 1, justifyContent: "center", alignItems: "center", gap: 12 }}>
-          <ActivityIndicator size="large" />
+          <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor} />
           <Image
             style={{
               width: 300,
@@ -43,7 +43,7 @@ export default function AppLayout() {
   if (isLoading || !fontsLoaded) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center", gap: 12 }}>
-        <ActivityIndicator size="large" />
+        <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor} />
         <Image
           style={{
             width: 140,

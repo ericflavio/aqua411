@@ -78,7 +78,7 @@ export default function ViewLojaCadastroBasico() {
           source={require('../../../assets/outros/sheep_novaLoja_01.png')}
         />
 
-        {isLoading ? <ActivityIndicator size="large" /> :
+        {isLoading ? <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor}/> :
           <>
             {lojaDadosBasicos !== null && lojaDadosBasicos.nome !== "" ?
               <View style={myStyles.containerDadosLoja}>
@@ -93,12 +93,12 @@ export default function ViewLojaCadastroBasico() {
         }
 
         <View style={{ marginLeft: 12, marginRight: 12 }}>
-          {InputText("Apelido da loja (ninguém verá essa informação)", onChangeApelidoLoja, "Apelido da loja", 1, 40, "default", flagEditavel, apelidoLoja, false)}
-          {InputText("CNPJ (opcional)", onChangeCnpj, "CNPJ", 1, 16, "default", flagEditavel, cnpj, false)}
+          {InputText("Apelido da loja (ninguém verá essa informação)", onChangeApelidoLoja, "Apelido", 1, 40, "default", flagEditavel, apelidoLoja, false)}
+          {InputText("CNPJ da loja (opcional)", onChangeCnpj, "CNPJ", 1, 16, "default", flagEditavel, cnpj, false)}
 
           <TouchableOpacity style={styleApp.buttonHC} disabled={!flagEditavel} onPress={goTo}>
             <View style={myStyles.containerButton}>
-              <Text style={styleApp.buttonTextStyle}>Confirmar e prosseguir</Text>
+              <Text style={styleApp.buttonTextRegular}>Confirmar e prosseguir</Text>
             </View>
           </TouchableOpacity>
         </View>

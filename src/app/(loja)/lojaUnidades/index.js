@@ -82,7 +82,7 @@ export default function ViewLojaUnidades() {
           />
         </View>
         :
-        <ActivityIndicator size="large" />
+        <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor}/>
       }
     </SafeAreaView >
   )

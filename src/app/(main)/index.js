@@ -204,7 +204,7 @@ export default function ViewLojaMaquinas() {
                 source={require('../../assets/icones/icon_local2.png')}
               /> */}
               <MaterialIcons name="location-on" size={styleApp.size.iconSizeRegular} color={styleApp.color.buttonText} />
-              <Text style={styleApp.buttonTextStyle}>Pesquisar lavanderias</Text>
+              <Text style={styleApp.buttonTextRegular}>Pesquisar lavanderias</Text>
             </TouchableOpacity>
 
             <View style={myStyles.containerBody2}>
@@ -270,7 +270,7 @@ export default function ViewLojaMaquinas() {
 
             <View style={myStyles.containerFacilidades}>
               <TouchableOpacity style={styleApp.buttonFlatHL_transp} disabled={false} onPress={atualizarStatus}>
-                <Text style={styleApp.buttonTextStyleFlat}>Selecione outra loja aqui</Text>
+                <Text style={styleApp.buttonTextFlat}>Selecione outra loja aqui</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -307,7 +307,7 @@ export default function ViewLojaMaquinas() {
 
             {flagViewStatusMaquina == true ?
               <TouchableOpacity style={styleApp.buttonHC} onPress={atualizarStatus}>
-                <Text style={styleApp.buttonTextStyle}>Atualizar</Text>
+                <Text style={styleApp.buttonTextRegular}>Atualizar</Text>
               </TouchableOpacity> : ""
             }
           </View>

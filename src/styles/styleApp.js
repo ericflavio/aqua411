@@ -7,8 +7,8 @@ export const styleApp = StyleSheet.create({
   color: styleColor,
 
   //Container
-  containerBordaRaioOn: styleSize.containerBordaRaioOn,
-  containerBordaRaioOff: styleSize.containerBordaRaioOff,
+  containerBorderRadiusOn: styleSize.containerBorderRadiusOn,
+  containerBorderRadiusOff: styleSize.containerBorderRadiusOff,
   containerTamanhoMedioTelas: styleSize.containerTamanhoMedioTelas,
 
   containerSafeArea: { //Com padding
@@ -167,12 +167,12 @@ export const styleApp = StyleSheet.create({
     gap: 6
   },
   //Botões: estilo do texto dentro do touchable
-  buttonTextStyle: {
+  buttonTextRegular: {
     fontSize: styleSize.textoSize4,
     fontWeight: styleSize.textoNegritoForte,
     color: styleColor.buttonText,
   },
-  buttonTextStyleFlat: {
+  buttonTextFlat: {
     fontSize: styleSize.textoSize4,
     fontWeight: styleSize.textoNegritoMedio,
     color: styleColor.buttonTextFlat,
@@ -183,6 +183,7 @@ export const styleApp = StyleSheet.create({
     marginTop: 6,
     height: 54,
     margin: 0,
+    fontFamily: 'Lato-Regular',
     fontSize: 20,
     fontWeight: "bold",
     borderWidth: 0,

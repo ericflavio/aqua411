@@ -27,7 +27,7 @@ tema === "claro" ? buttonTextFlat = textoRegular : buttonTextFlat = textoRegular
 tema === "claro" ? bkgSafeArea = '#ffffff' : bkgSafeArea = '#262626ff';
 
 export const styleColor = StyleSheet.create({
-  //CPaleta de cores do app
+  //Paleta de cores do app
   tema60A,
   tema60B,
   tema60C,
@@ -62,4 +62,6 @@ export const styleColor = StyleSheet.create({
   erro: "#fa7251ff",
   alerta: "#ffe275ff",
   sucesso: "#669e8eff",
+  //Activity Indicadtor
+  activityIndicatorCollor: "#262626ff"
 });
