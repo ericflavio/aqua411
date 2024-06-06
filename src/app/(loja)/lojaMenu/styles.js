@@ -12,6 +12,7 @@ export const styles = StyleSheet.create({
     flex: 0,
     paddingHorizontal: 12,
     paddingVertical: 8,
+    paddingBottom: 14,
     borderWidth: styleApp.size.containerBordaOnOff,
     backgroundColor: styleColor.tema60pMedio,
   },

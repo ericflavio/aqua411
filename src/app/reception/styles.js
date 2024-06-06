@@ -34,19 +34,4 @@ export const styles = StyleSheet.create({
     resizeMode: "contain",
     alignSelf: "flex-end",
   },
-  textTitulo: {
-    fontFamily: 'Roboto-Bold',
-    fontSize: styleApp.size.textoSize0,
-    //fontWeight: styleSize.textoNegritoForte,
-    marginTop: 20,
-    marginBottom: 25,
-    color: styleApp.color.tema10pTerciaria,
-  },
-  textSubtitulo: {
-    fontFamily: 'Roboto-Regular',
-    fontSize: styleApp.size.textoSize2,
-    //fontWeight: styleSize.textoNegritoForte,
-    marginTop: 0,
-    color: styleApp.color.tema10pTerciaria,
-  },
 });

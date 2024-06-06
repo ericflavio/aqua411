@@ -128,9 +128,9 @@ export default function ViewEdtMenuLoja() {
 
         {lojaDadosBasicos !== null && lojaDadosBasicos.nome !== "" ?
           <View style={styles.containerDadosLoja}>
-            <Text style={styleApp.textRegular}>Apelido: {lojaDadosBasicos.apelido}</Text>
+            <Text style={styleApp.textSubtitulo}>{lojaDadosBasicos.nome}</Text>
             <Text style={styleApp.textRegular}>Status: <Text style={styles.textoStatus}>{lojaDadosBasicos.status}</Text></Text>
-            <Text style={styleApp.textTitulo}>{lojaDadosBasicos.nome}</Text>
+            <Text style={styleApp.textRegular}>Apelido: {lojaDadosBasicos.apelido}</Text>
           </View>
           :
           <View style={styles.containerDadosLoja}>
@@ -191,7 +191,7 @@ export default function ViewEdtMenuLoja() {
           </TouchableOpacity>
 
           <View style={styles.containerSection}>
-            <Text style={styleApp.textSmall}>Opções de edição para assinantes</Text>
+            <Text style={styleApp.textSmall}>{styleApp.textFraseOpcaoDeAssinantes}</Text>
             <MaterialIcons name="edit" size={20} color={styleApp.color.textRegular} />
           </View>
         </View>

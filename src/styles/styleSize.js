@@ -39,7 +39,7 @@ export const styleSize = {
   textoNegritoMedio: "500",
   TextoNegritoOff: "100",
   textoSize0: 30,
-  textoSize1: 24,
+  textoSize1: 22,
   textoSize2: 20,
   textoSize3: 20,
   textoSize4: 18,

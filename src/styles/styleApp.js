@@ -53,7 +53,7 @@ export const styleApp = StyleSheet.create({
     color: styleColor.textoTitulo,
   },
   textSubtitulo: {
-    fontFamily: 'Roboto-Bold',
+    fontFamily: 'Roboto-Medium',
     fontSize: styleSize.textoSize1,
     //fontWeight: styleSize.textoNegritoForte,
     marginTop: 0,
@@ -186,5 +186,7 @@ export const styleApp = StyleSheet.create({
     borderRadius: 0,
     gap: 6
   },
+  //Frases que se repetem
+  textFraseOpcaoDeAssinantes: "Opções de edição para assinantes do app",
 
 });

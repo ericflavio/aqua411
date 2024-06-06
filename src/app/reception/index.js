@@ -18,10 +18,10 @@ export default function ViewReception() {
       <View style={styles.containerHeader}>
         <Animatable.Text
           animation="slideInLeft"
-          style={styles.textTitulo}>
+          style={styleApp.textTitulo}>
           Você ainda lava roupa em casa?
         </Animatable.Text>
-        <Text style={styles.textSubtitulo}>
+        <Text style={styleApp.textSubtitulo}>
           Está na hora de conhecer os benefícios das lavanderias inteligentes
         </Text>
         <View style={styles.containerViewButton}>
