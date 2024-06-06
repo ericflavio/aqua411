@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native";
 import { styleApp } from "../../../styles/styleApp";
 import { styleColor } from "../../../styles/styleColors";
+import { styleSize } from "../../../styles/styleSize";
 
 export const styles = StyleSheet.create({
   containerHeader: {
@@ -19,6 +20,10 @@ export const styles = StyleSheet.create({
     flex: 0,
     borderWidth: styleApp.size.containerBordaOnOff,
     marginBottom: 40,
+  },
+  containerFormulario: {
+    marginLeft: styleSize.containerDistanciamentoLateralRegular,
+    marginRight: styleSize.containerDistanciamentoLateralRegular
   },
   textoStatus: {
     fontFamily: 'Roboto-Bold',

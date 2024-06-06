@@ -71,6 +71,12 @@ export const styleApp = StyleSheet.create({
     //fontWeight: styleSize.TextoNegritoOff,
     color: styleColor.textRegular,
   },
+  textSmallItalico: {
+    fontFamily: 'Roboto-LightItalic', 
+    fontSize: styleSize.textoSize5,
+    //fontWeight: styleSize.TextoNegritoOff,
+    color: styleColor.textRegular,
+  },
   //Textos dentro dos botões
   textButtonRegular: {
     fontFamily: 'Roboto-Bold',

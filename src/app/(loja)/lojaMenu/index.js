@@ -146,7 +146,7 @@ export default function ViewEdtMenuLoja() {
         <View style={styles.containerOthers}>
           <TouchableOpacity style={styleApp.buttonFlatHL} onPress={{}} >
             <MaterialIcons name="delete-outline" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.textButtonFlat} />
-            <Text style={styleApp.textButtonFlat}>Desistir de cadastrar</Text>
+            <Text style={styleApp.textButtonFlat}>Excluir (desistir de cadastrar)</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styleApp.buttonFlatHL} onPress={{}} >
             <MaterialIcons name="saved-search" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.textButtonFlat} />

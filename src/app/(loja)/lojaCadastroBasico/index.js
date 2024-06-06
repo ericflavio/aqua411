@@ -15,7 +15,7 @@ console.log("ViewLojaCadastroBasico <inicio>");
 //Tela principal
 export default function ViewLojaCadastroBasico() {
   const { user } = useContext(AuthContext);
-  const [lojaDadosBasicos, setLojaDadosBasicos] = useState({ status: "", nome: "", apelido:"" });
+  const [lojaDadosBasicos, setLojaDadosBasicos] = useState({ status: "", nome: "", apelido: "" });
   const [flagEditavel, setFlagEditavel] = useState(false);
   const [isLoading, setIsloading] = useState(true);
   const [apelido, setApelido] = useState("");
@@ -80,7 +80,7 @@ export default function ViewLojaCadastroBasico() {
           source={require('../../../assets/outros/sheep_novaLoja_01.png')}
         />
 
-        {isLoading ? <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor}/> :
+        {isLoading ? <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor} /> :
           <>
             {lojaDadosBasicos !== null && lojaDadosBasicos.nome !== "" ?
               <View style={styles.containerDadosLoja}>
@@ -94,8 +94,8 @@ export default function ViewLojaCadastroBasico() {
           </>
         }
 
-        <View style={{ marginLeft: 12, marginRight: 12 }}>
-          {InputText("Apelido da loja (ninguém verá essa informação)", onChangeApelido, "Apelido", 1, 40, "default", flagEditavel, apelido, false)}
+        <View style={styles.containerFormulario}>
+          {InputText("Apelido da loja", onChangeApelido, "Apelido", 1, 40, "default", flagEditavel, apelido, false)}
           {InputText("CNPJ da loja (opcional)", onChangeCnpj, "CNPJ", 1, 16, "default", flagEditavel, cnpj, false)}
 
           <TouchableOpacity style={styleApp.buttonHC} disabled={!flagEditavel} onPress={goTo}>
@@ -103,6 +103,10 @@ export default function ViewLojaCadastroBasico() {
               <Text style={styleApp.textButtonRegular}>Confirmar e prosseguir</Text>
             </View>
           </TouchableOpacity>
+
+          <View style={{ marginTop: 18 }}>
+            <Text style={styleApp.textSmallItalico}>As informações Apelido e CNPJ são restritas; Só você pode consultar.</Text>
+          </View>
         </View>
 
       </ScrollView>

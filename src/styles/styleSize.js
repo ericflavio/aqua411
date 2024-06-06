@@ -31,7 +31,8 @@ export const styleSize = {
   containerBorderRadius: bordaArredondadaParaContainers,
   containerOcupacaoHorizontalFull: "100%",
   ContainerOcupacaoHorizontalParcial: "88%",
-  containerOcupacaoMargens: 14,
+  containerDistanciamentoLateralRegular: 12,
+  containerDistanciamentoBottomlRegular: 72,
   containerTamanhoMedioTelas: 800,
   //Textos
   textoNegritoForte: "700",
