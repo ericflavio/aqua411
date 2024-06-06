@@ -33,7 +33,7 @@ export default function ViewLojaCadastroBasico() {
   async function fetchLoja() {
     let statusInicial = "";
     try {
-      resLoja = await consultaLojaEmEdicao("n"); //Verifica se já possui alguma sendo criada
+      resLoja = await consultaLojaEmEdicao("s"); //Verifica se já possui alguma sendo criada
     } catch {
       resLoja = null; //Não encontrou uma Loja me estágio de criação para continuar.
     };

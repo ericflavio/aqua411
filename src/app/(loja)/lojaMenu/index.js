@@ -46,7 +46,7 @@ export default function ViewEdtMenuLoja() {
     } else {
       //Inclusão de nova loja; parametro não recebido
       try {
-        resLoja = await consultaLojaEmEdicao("n"); //Verifica se já possui alguma sendo criada
+        resLoja = await consultaLojaEmEdicao("s"); //Verifica se já possui alguma sendo criada
       } catch {
         resLoja = null; //Não encontrou uma Loja me estágio de criação para continuar.
       };

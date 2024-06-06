@@ -66,7 +66,7 @@ export default function ViewLojaUnidades() {
       {GradienteFill()}
       <View style={myStyles.containerHeader}>
         <Text style={styleApp.textTitulo}>
-          Gerencie suas lojas
+          Gerenciar suas lojas
         </Text>
         <Text style={styleApp.textRegular}>
           Selecione abaixo uma unidade previamente cadastrada e atualize os dados que desejar
