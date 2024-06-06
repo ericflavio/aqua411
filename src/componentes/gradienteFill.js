@@ -7,7 +7,7 @@ function tamanhoTela() {
   try {
     screenHeight = Dimensions.get('window').height;
   } catch {
-    screenHeight = myStyleApp.containerTamanhoMedioTelas;
+    screenHeight = styleApp.containerTamanhoMedioTelas;
   };
   let headerHeight = 0; //Eventual header na página
   let bodyHeight = screenHeight - headerHeight + 100;

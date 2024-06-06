@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, SafeAreaView, ScrollView, TouchableOpacity } from "react-native";
 import { myStyles } from "./styles";
-import { myStyleApp } from '../../../styles/styleApp';
-import { myStyleColor } from "../../../styles/stylesColors";
+import { styleApp } from '../../../styles/styleApp';
+import { styleColor } from "../../../styles/styleColors";
 import { MaterialIcons } from "@expo/vector-icons";
 import { GradienteFill } from '../../../componentes/gradienteFill';
 
@@ -30,12 +30,12 @@ function montaPromocao(vigente) {
     <TouchableOpacity disabled={!vigente} style={(vigente ? myStyles.buttonPromoVigente : myStyles.buttonPromoEncerrada)} onPress={detalhaPromo}>
       <View style={myStyles.containerPromoCabecalho}>
         <Text style={myStyles.textoTituloPromo}>{promo.nome}</Text>
-        <MaterialIcons name="card-giftcard" size={myStyleApp.size.iconSizeButtonRegular} color={(vigente ? myStyleColor.tema10A : myStyleColor.cinzaClaro)} />
+        <MaterialIcons name="card-giftcard" size={styleApp.size.iconSizeButtonRegular} color={(vigente ? styleColor.tema10A : styleColor.cinzaClaro)} />
       </View>
       <View style={myStyles.containerPromoPeriodo}>
-        <MaterialIcons name="calendar-month" size={myStyleApp.size.iconSizeButtonRegular} color={"grey"} />
-        <Text style={myStyleApp.textoRegular}>{promo.dataInicio} <Text> até </Text></Text>
-        <Text style={myStyleApp.textoRegular}>{promo.dataFim}</Text>
+        <MaterialIcons name="calendar-month" size={styleApp.size.iconSizeButtonRegular} color={"grey"} />
+        <Text style={styleApp.textoRegular}>{promo.dataInicio} <Text> até </Text></Text>
+        <Text style={styleApp.textoRegular}>{promo.dataFim}</Text>
       </View>
       <Text style={myStyles.textoPromo}>{promo.descricao}</Text>
     </TouchableOpacity>
@@ -46,14 +46,14 @@ function montaPromocao(vigente) {
 export default function ViewPromocao() {
 
   return (
-    <SafeAreaView style={myStyleApp.containerSafeArea}>
+    <SafeAreaView style={styleApp.containerSafeArea}>
       {GradienteFill()}
-      <ScrollView style={myStyleApp.containerScroll} contentContainerStyle={myStyleApp.containerScrollContent} showsVerticalScrollIndicator={false}>
+      <ScrollView style={styleApp.containerScroll} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
         <View style={myStyles.containerHeader}>
-          <Text style={myStyleApp.textoTituloPagina}>
+          <Text style={styleApp.textoTituloPagina}>
             Promoções para você economizar
           </Text>
-          <Text style={myStyleApp.textoRegular}>
+          <Text style={styleApp.textoRegular}>
             Mais detalhes você pode encontrar na loja e no atendimento via Whatsapp
           </Text>
         </View>

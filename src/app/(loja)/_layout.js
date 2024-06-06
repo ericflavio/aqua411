@@ -1,4 +1,4 @@
-import { myStyleColor } from '../../styles/stylesColors';
+import { styleColor } from '../../styles/styleColors';
 import { ActivityIndicator, View, Image } from "react-native";
 import { useContext } from 'react';
 import { AuthContext } from "../../contexts/auth";
@@ -14,8 +14,8 @@ export default function LojaLayout() {
         headerShown: true,
         headerTitle: "Informações da loja",
         animationEnabled: true,
-        tabBarInactiveTintColor: myStyleColor.cinzaMedio,
-        tabBarActiveTintColor: myStyleColor.tema10B,
+        tabBarInactiveTintColor: styleColor.cinzaMedio,
+        tabBarActiveTintColor: styleColor.tema10B,
         tabBarShowLabel: true,
         headerMode: 'screen',
         //headerTintColor: '#ffffff',

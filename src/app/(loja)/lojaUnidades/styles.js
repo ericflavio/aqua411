@@ -1,26 +1,36 @@
 import { StyleSheet } from "react-native";
-import { myStyleApp } from "../../../styles/styleApp";
-import { myStyleColor } from "../../../styles/stylesColors";
+import { styleApp } from "../../../styles/styleApp";
+import { styleColor } from "../../../styles/styleColors";
 
 export const myStyles = StyleSheet.create({
   containerHeader: {
     gap: 0,
     width: "88%",
     marginBottom: 30,
-    borderWidth: myStyleApp.size.containerBordaOnOff
+    borderWidth: styleApp.size.containerBordaOnOff
   },
   containerCardUnidade: {
     padding: 0,
     borderWidth: 1,
-    borderColor: myStyleColor.tema30A,
+    borderColor: styleColor.tema30A,
     borderBottomStartRadius: 8,
     borderBottomEndRadius: 8,
     marginBottom: 8,
     height: 120,
-    backgroundColor: myStyleColor.tema60B,
+    backgroundColor: styleColor.tema60B,
+  },
+  continerViewPrincipal: { //Com borda lateral
+    flex: 1,
+    justifyContent: "flex-start",
+    alignItems: "stretch",
+    backgroundColor: styleColor.bkgSafeArea,
+    borderWidth: styleApp.size.containerBordaOnOff,
+    borderBlockColor: "#fa7251ff",
+    marginBottom: 40,
+    width: "88%",
   },
   textoStatus: {
-    size: myStyleApp.size.textoSize3,
-    color: myStyleColor.sucesso
+    size: styleApp.size.textoSize3,
+    color: styleColor.sucesso
   },
 });

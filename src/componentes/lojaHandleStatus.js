@@ -1,5 +1,5 @@
-import { myStyleColor } from '../styles/stylesColors';
-import { myStyleApp } from '../styles/styleApp';
+import { styleColor } from '../styles/styleColors';
+import { styleApp } from '../styles/styleApp';
 import { View, Text, StyleSheet, Modal, TouchableOpacity } from "react-native";
 import { NewErrorMessage } from '../errors/errorMessage';
 import { Picker } from '@react-native-picker/picker';
@@ -15,7 +15,7 @@ export default function LojaHandleStatus(statusListToChange, statusList, current
   }
 
   return (
-    <View style={styles.containerPicker}>
+    <View style={stylesLocal.containerPicker}>
       {statusListToChange !== null && Object.keys(statusListToChange).length > 0 ?
         <Picker
           selectedValue={selectedStatus}
@@ -31,7 +31,7 @@ export default function LojaHandleStatus(statusListToChange, statusList, current
           })}
         </Picker>
         :
-        <Text style={myStyleApp.textoRegular}>
+        <Text style={styleApp.textoRegular}>
           {msg}
         </Text>
       }
@@ -39,14 +39,14 @@ export default function LojaHandleStatus(statusListToChange, statusList, current
   )
 }
 
-const styles = StyleSheet.create({
+const stylesLocal = StyleSheet.create({
   containerPicker: {
     marginTop: 12,
     marginLeft: 12,
     marginRight: 12,
     marginBottom: 25,
     borderWidth: 1,
-    borderColor: myStyleColor.tema10A,
+    borderColor: styleColor.tema10A,
     borderRadius: 4
   },
 });

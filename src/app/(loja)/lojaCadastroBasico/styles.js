@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
-import { myStyleApp } from "../../../styles/styleApp";
-import { myStyleColor } from "../../../styles/stylesColors";
+import { styleApp } from "../../../styles/styleApp";
+import { styleColor } from "../../../styles/styleColors";
 
 export const myStyles = StyleSheet.create({
   containerHeader: {
@@ -12,18 +12,18 @@ export const myStyles = StyleSheet.create({
     flex: 0,
     paddingHorizontal: 12,
     paddingVertical: 16,
-    borderWidth: myStyleApp.size.containerBordaOnOff,
-    backgroundColor: myStyleColor.tema60B,
+    borderWidth: styleApp.size.containerBordaOnOff,
+    backgroundColor: styleColor.tema60B,
   },
   containerPrincipal: {
     flex: 0,
-    borderWidth: myStyleApp.size.containerBordaOnOff,
+    borderWidth: styleApp.size.containerBordaOnOff,
     marginBottom: 40,
   },
   textoStatus: {
     fontFamily: 'Lato-Bold',
-    size: myStyleApp.size.textoSize3,
-    color: myStyleColor.sucesso
+    size: styleApp.size.textoSize3,
+    color: styleColor.sucesso
   },
   imgNovaLoja: {
     //height: 252, 
@@ -36,7 +36,7 @@ export const myStyles = StyleSheet.create({
     justifyContent:"center",
     alignItems: "stretch",
     gap: 8,
-    borderWidth: myStyleApp.size.containerBordaOnOff,
+    borderWidth: styleApp.size.containerBordaOnOff,
     margin: 12,
     //width: "100%"
   },

@@ -3,8 +3,8 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, ActivityIndicator, Alert } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { myStyles } from "./styles";
-import { myStyleApp } from '../../../styles/styleApp';
-import { myStyleColor } from "../../../styles/stylesColors";
+import { styleApp } from '../../../styles/styleApp';
+import { styleColor } from "../../../styles/styleColors";
 import { InputText } from '../../../componentes/inputText';
 import { GradienteFill } from '../../../componentes/gradienteFill';
 import { AuthContext } from "../../../contexts/auth";
@@ -131,13 +131,13 @@ export default function ViewEdtLocalizacaoLoja() {
   }
 
   return (
-    <SafeAreaView style={myStyleApp.containerSafeArea}>
+    <SafeAreaView style={styleApp.containerSafeArea}>
       {GradienteFill()}
-      <ScrollView style={myStyleApp.containerScroll} contentContainerStyle={myStyleApp.containerScrollContent} showsVerticalScrollIndicator={false}>
+      <ScrollView style={styleApp.containerScroll} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
 
         <View style={myStyles.containerHeader}>
-          <MaterialIcons name="location-on" size={myStyleApp.size.iconSizeButtonRegular} color={myStyleColor.textoSubtitulo} />
-          <Text style={myStyleApp.textoSubtitulo}>Endereço digital</Text>
+          <MaterialIcons name="location-on" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textoSubtitulo} />
+          <Text style={styleApp.textoSubtitulo}>Endereço digital</Text>
         </View>
 
         <View style={myStyles.containerPrincipal}>
@@ -145,14 +145,14 @@ export default function ViewEdtLocalizacaoLoja() {
           {InputText("Longitude", onChangeLongitude, "ex. -30,67890", 1, 12, "default", flagEditavel, longitude, false)}
           {InputText("Cole aqui o endereço/url GoogleMaps", onChangeUrl, "url GoogleMaps", 1, 200, "default", flagEditavel, urlGoogleMaps, false)}
 
-          <TouchableOpacity style={myStyleApp.buttonHC} disabled={!flagEditavel} onPress={prosseguir} >
+          <TouchableOpacity style={styleApp.buttonHC} disabled={!flagEditavel} onPress={prosseguir} >
             {!flagEditavel ? <ActivityIndicator /> : ""}
-            <Text style={myStyleApp.buttonTextStyle}>Continuar</Text>
+            <Text style={styleApp.buttonTextStyle}>Continuar</Text>
           </TouchableOpacity>
         </View>
         <View style={myStyles.containerBottom}>
-          <MaterialIcons name="check-circle-outline" size={myStyleApp.size.iconSizeSmall} color={myStyleColor.textoRegular} />
-          <Text style={myStyleApp.textoPequeno}>Estas informações são opcionais</Text>
+          <MaterialIcons name="check-circle-outline" size={styleApp.size.iconSizeSmall} color={styleColor.textoRegular} />
+          <Text style={styleApp.textoPequeno}>Estas informações são opcionais</Text>
         </View>
 
       </ScrollView>

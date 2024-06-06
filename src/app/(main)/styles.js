@@ -1,33 +1,33 @@
 import { StyleSheet } from "react-native";
-import { myStyleApp } from "../../styles/styleApp";
-import { myStyleColor } from "../../styles/stylesColors";
+import { styleApp } from "../../styles/styleApp";
+import { styleColor } from "../../styles/styleColors";
 
 export const myStyles = StyleSheet.create({
 
   containerHeader: {
     flex:0,
-    borderWidth: myStyleApp.size.containerBordaOnOff
+    borderWidth: styleApp.size.containerBordaOnOff
   },
   containerBody1: {
     flex:0,
     flexDirection: "column",
     alignItems: "stretch",
     justifyContent: "center",
-    borderWidth: myStyleApp.size.containerBordaOnOff
+    borderWidth: styleApp.size.containerBordaOnOff
   },
   containerBody2: {
     flex:1,
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    borderWidth: myStyleApp.size.containerBordaOnOff
+    borderWidth: styleApp.size.containerBordaOnOff
   },
   containerUnidadeEndereco: {
     flexDirection: "row", 
     alignItems: "flex-start",
     alignContent: "flex-start",
     justifyContent: "flex-start",
-    borderWidth: myStyleApp.size.containerBordaOnOff,
+    borderWidth: styleApp.size.containerBordaOnOff,
     alignSelf: "flex-start"
   },
   containerHorarioFuncionamento: {
@@ -35,7 +35,7 @@ export const myStyles = StyleSheet.create({
     alignItems: "flex-start",
     alignContent: "flex-start",
     justifyContent: "flex-start",
-    borderWidth: myStyleApp.size.containerBordaOnOff,
+    borderWidth: styleApp.size.containerBordaOnOff,
     alignSelf: "flex-start"
   },
   containerUltimaAtualizacao: {
@@ -44,21 +44,21 @@ export const myStyles = StyleSheet.create({
     alignContent: "center",
     justifyContent: "center",
     width: "100%",
-    borderWidth: myStyleApp.size.containerBordaOnOff,
+    borderWidth: styleApp.size.containerBordaOnOff,
     },
   containerBroadcast: {
     marginVertical: 20,
-    backgroundColor: myStyleColor.alerta,
+    backgroundColor: styleColor.alerta,
     alignItems: "flex-start",
     alignContent: "flex-start",
     justifyContent: "flex-start",
     padding: 12,
-    borderRadius: myStyleApp.containerBordaRaio,
-    borderWidth: myStyleApp.size.containerBordaOnOff,
+    borderRadius: styleApp.containerBordaRaioOn,
+    borderWidth: styleApp.size.containerBordaOnOff,
   },
   containerMaquinas: {
     flexDirection: "row",
-    borderWidth: myStyleApp.size.containerBordaOnOff,
+    borderWidth: styleApp.size.containerBordaOnOff,
     backgroundColor: "transparent",
     alignContent: "center",
     justifyContent: "center",
@@ -67,7 +67,7 @@ export const myStyles = StyleSheet.create({
   containerLavaSeca: {
     flexDirection: 'column',
     alignItems: "center",
-    borderWidth: myStyleApp.size.containerBordaOnOff
+    borderWidth: styleApp.size.containerBordaOnOff
   },
   imgLocalizacao: {
     width: 30, 

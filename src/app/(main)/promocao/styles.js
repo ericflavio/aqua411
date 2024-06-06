@@ -1,11 +1,11 @@
 import { StyleSheet } from "react-native";
-import { myStyleApp } from "../../../styles/styleApp";
-import { myStyleColor } from "../../../styles/stylesColors";
+import { styleApp } from "../../../styles/styleApp";
+import { styleColor } from "../../../styles/styleColors";
 
 export const myStyles = StyleSheet.create({
   containerHeader: {
     flex: 0,
-    borderWidth: myStyleApp.size.containerBordaOnOff,
+    borderWidth: styleApp.size.containerBordaOnOff,
     marginBottom: 30
   },
   containerPromoCabecalho: {
@@ -13,7 +13,7 @@ export const myStyles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    borderWidth: myStyleApp.size.containerBordaOnOff,
+    borderWidth: styleApp.size.containerBordaOnOff,
     alignSelf: "flex-start"
   },
   containerPromoPeriodo: {
@@ -21,7 +21,7 @@ export const myStyles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "flex-start",
-    borderWidth: myStyleApp.size.containerBordaOnOff,
+    borderWidth: styleApp.size.containerBordaOnOff,
     alignSelf: "flex-start"
   },
   containerPromoLista: {
@@ -33,7 +33,7 @@ export const myStyles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "700",
     marginBottom: 10,
-    color: myStyleColor.azulEscuro,
+    color: styleColor.azulEscuro,
     borderWidth: 0,
   },
   textoPromo: {

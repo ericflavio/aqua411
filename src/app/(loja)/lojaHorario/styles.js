@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { myStyleApp } from "../../../styles/styleApp";
+import { styleApp } from "../../../styles/styleApp";
 
 export const myStyles = StyleSheet.create({
   containerHeader: {
@@ -15,6 +15,6 @@ export const myStyles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 16,
     padding: 8,
-    borderWidth: myStyleApp.size.containerBordaOnOff
+    borderWidth: styleApp.size.containerBordaOnOff
   },
 });

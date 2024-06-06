@@ -2,11 +2,11 @@ import React, { useContext, useEffect, useState } from 'react';
 import { router, useLocalSearchParams } from 'expo-router';
 import { View, Text, SafeAreaView, TouchableOpacity, FlatList, Alert, ActivityIndicator } from "react-native";
 import { myStyles } from "./styles";
-import { myStyleApp } from '../../../styles/styleApp';
+import { styleApp } from '../../../styles/styleApp';
 import { GradienteFill } from '../../../componentes/gradienteFill';
 import { AuthContext } from "../../../contexts/auth";
 import { consultaUnidades } from '../../../services/lojaService';
-import { myStyleColor } from '../../../styles/stylesColors';
+import { styleColor } from '../../../styles/styleColors';
 
 //Tela principal
 export default function ViewLojaUnidades() {
@@ -29,11 +29,11 @@ export default function ViewLojaUnidades() {
   const Item = ({ item, onPress }) => (
     <TouchableOpacity onPress={onPress} >
       <View style={myStyles.containerCardUnidade}>
-        <View style={{ backgroundColor: myStyleColor.tema30A, height: 38, padding: 6, justifyContent: "center" }}>
-          <Text style={myStyleApp.textoRegular}>Status: {item.status}</Text>
+        <View style={{ backgroundColor: styleColor.tema30A, height: 38, padding: 6, justifyContent: "center" }}>
+          <Text style={styleApp.textoRegular}>Status: {item.status}</Text>
         </View>
         <View style={{ padding: 6, gap: 8, justifyContent: "flex-start" }}>
-          <Text style={myStyleApp.textoSubtitulo}>{item.nome}</Text>
+          <Text style={styleApp.textoSubtitulo}>{item.nome}</Text>
         </View>
       </View >
     </TouchableOpacity>
@@ -59,19 +59,19 @@ export default function ViewLojaUnidades() {
   }
 
   return (
-    <SafeAreaView style={myStyleApp.containerSafeArea}>
+    <SafeAreaView style={styleApp.containerSafeArea}>
       {GradienteFill()}
       <View style={myStyles.containerHeader}>
-        <Text style={myStyleApp.textoTituloPagina}>
+        <Text style={styleApp.textoTituloPagina}>
           Gerencie suas lojas
         </Text>
-        <Text style={myStyleApp.textoRegular}>
+        <Text style={styleApp.textoRegular}>
           Selecione abaixo uma unidade previamente cadastrada e atualize os dados que desejar
         </Text>
       </View>
 
       {!isLoading ?
-        <View style={myStyleApp.continerViewPrincipal}>
+        <View style={myStyles.continerViewPrincipal}>
           <FlatList
             vertical
             showsVerticalScrollIndicator={false}

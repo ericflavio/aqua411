@@ -1,86 +1,76 @@
 import { StyleSheet, StatusBar } from "react-native";
-import { myStyleColor } from './stylesColors';
-import { myStyleSize } from './styleSize';
+import { styleColor } from './styleColors';
+import { styleSize } from './styleSize';
 
-export const myStyleApp = StyleSheet.create({
-  size: myStyleSize,
-  color: myStyleColor,
+export const styleApp = StyleSheet.create({
+  size: styleSize,
+  color: styleColor,
 
   //Container
-  containerBordaRaio: myStyleSize.containerBordaRaio,
-  containerTamanhoMedioTelas: myStyleSize.containerTamanhoMedioTelas,
+  containerBordaRaioOn: styleSize.containerBordaRaioOn,
+  containerBordaRaioOff: styleSize.containerBordaRaioOff,
+  containerTamanhoMedioTelas: styleSize.containerTamanhoMedioTelas,
 
   containerSafeArea: { //Com padding
     flex: 1,
     justifyContent: "flex-start",
-    backgroundColor: myStyleColor.bkgSafeArea,
+    backgroundColor: styleColor.bkgSafeArea,
     alignItems: "center",
-    borderWidth: myStyleSize.containerBordaOnOff,
+    borderWidth: styleSize.containerBordaOnOff,
     borderBlockColor: "#fa7251ff",
     paddingTop: StatusBar.currentHeight
   },
   containerSafeAreaSemPadding: { //Sem padding
     flex: 1,
     justifyContent: "flex-start",
-    backgroundColor: myStyleColor.bkgSafeArea,
+    backgroundColor: styleColor.bkgSafeArea,
     alignItems: "center",
-    borderWidth: myStyleSize.containerBordaOnOff,
+    borderWidth: styleSize.containerBordaOnOff,
     borderBlockColor: "#fa7251ff",
   },
   containerScroll: { // Com borda lateral
     flex: 0,
-    width: "88%",
-    borderWidth: myStyleSize.containerBordaOnOff,
+    width: styleSize.ContainerOcupacaoHorizontalParcial,
+    borderWidth: styleSize.containerBordaOnOff,
     borderColor: "#98e07eff",
   },
-  containerScrollWB: { // Sem Borda lateral
+  containerScrollFull: { // Sem borda lateral. Encosta nos cantos da tela
     flex: 0,
-    width: "100%",
-    borderWidth: myStyleSize.containerBordaOnOff,
+    width: styleSize.containerOcupacaoHorizontalFull,
+    borderWidth: styleSize.containerBordaOnOff,
     borderColor: "#98e07eff",
   },
-  containerScrollContent: {
+  containerScrollStyleContent: {
     justifyContent: "flex-start",
     paddingBottom: 72,
   },
-  continerViewPrincipal: { //Com borda lateral
-    flex: 1,
-    justifyContent: "flex-start",
-    alignItems: "stretch",
-    backgroundColor: myStyleColor.bkgSafeArea,
-    borderWidth: myStyleSize.containerBordaOnOff,
-    borderBlockColor: "#fa7251ff",
-    marginBottom: 40,
-    width: "88%",
-  },
-
   //Textos
   textoTituloPagina: {
     fontFamily: 'Lato-Bold',
-    fontSize: myStyleSize.textoSize0,
-    //fontWeight: myStyleSize.textoNegritoForte,
+    fontSize: styleSize.textoSize0,
+    //fontWeight: styleSize.textoNegritoForte,
     marginTop: 20,
     marginBottom: 20,
-    color: myStyleColor.textoTitulo,
+    color: styleColor.textoTitulo,
   },
   textoSubtitulo: {
     fontFamily: 'Lato-Bold',
-    fontSize: myStyleSize.textoSize1,
-    //fontWeight: myStyleSize.textoNegritoForte,
+    fontSize: styleSize.textoSize1,
+    //fontWeight: styleSize.textoNegritoForte,
     marginTop: 0,
-    color: myStyleColor.textoSubtitulo,
+    color: styleColor.textoSubtitulo,
   },
   textoRegular: {
     fontFamily: 'Lato-Regular',
-    fontSize: myStyleSize.textoSize3,
-    //fontWeight: myStyleSize.textoNegritoMedio,
-    color: myStyleColor.textoRegular,
+    fontSize: styleSize.textoSize3,
+    //fontWeight: styleSize.textoNegritoMedio,
+    color: styleColor.textoRegular,
   },
   textoPequeno: {
     fontFamily: 'Lato-Thin',
-    fontSize: myStyleSize.textoSize5,
-    //fontWeight: myStyleSize.TextoNegritoOff,
-    color: myStyleColor.textoRegular,
+    fontSize: styleSize.textoSize5,
+    //fontWeight: styleSize.TextoNegritoOff,
+    color: styleColor.textoRegular,
   },
 
   //Botões: estilo do touchable
@@ -88,8 +78,8 @@ export const myStyleApp = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: 'center',
-    backgroundColor: myStyleColor.buttonBkg,
-    borderColor: myStyleColor.buttonBorder,
+    backgroundColor: styleColor.buttonBkg,
+    borderColor: styleColor.buttonBorder,
     borderWidth: 1,
     borderRadius: 9,
     borderBottomWidth: 4,
@@ -104,8 +94,8 @@ export const myStyleApp = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-end",
     alignItems: 'center',
-    backgroundColor: myStyleColor.buttonBkg,
-    borderColor: myStyleColor.buttonBorder,
+    backgroundColor: styleColor.buttonBkg,
+    borderColor: styleColor.buttonBorder,
     borderWidth: 1,
     borderRadius: 9,
     borderBottomWidth: 4,
@@ -121,7 +111,7 @@ export const myStyleApp = StyleSheet.create({
     alignItems: 'center',
     justifyContent: "center",
     backgroundColor: "white",
-    borderColor: myStyleColor.cinzaClaro,
+    borderColor: styleColor.cinzaClaro,
     marginTop: 0,
     marginBottom: 0,
     padding: 4,
@@ -136,7 +126,7 @@ export const myStyleApp = StyleSheet.create({
     alignItems: 'center',
     justifyContent: "flex-start",
     backgroundColor: "white",
-    borderColor: myStyleColor.cinzaClaro,
+    borderColor: styleColor.cinzaClaro,
     marginTop: 0,
     marginBottom: 0,
     padding: 4,
@@ -164,7 +154,7 @@ export const myStyleApp = StyleSheet.create({
     alignItems: 'center',
     justifyContent: "space-between",
     backgroundColor: "white",
-    borderColor: myStyleColor.cinzaClaro,
+    borderColor: styleColor.cinzaClaro,
     marginTop: 0,
     marginBottom: 0,
     padding: 4,
@@ -178,14 +168,14 @@ export const myStyleApp = StyleSheet.create({
   },
   //Botões: estilo do texto dentro do touchable
   buttonTextStyle: {
-    fontSize: myStyleSize.textoSize4,
-    fontWeight: myStyleSize.textoNegritoForte,
-    color: myStyleColor.buttonText,
+    fontSize: styleSize.textoSize4,
+    fontWeight: styleSize.textoNegritoForte,
+    color: styleColor.buttonText,
   },
   buttonTextStyleFlat: {
-    fontSize: myStyleSize.textoSize4,
-    fontWeight: myStyleSize.textoNegritoMedio,
-    color: myStyleColor.buttonTextFlat,
+    fontSize: styleSize.textoSize4,
+    fontWeight: styleSize.textoNegritoMedio,
+    color: styleColor.buttonTextFlat,
   },
 
   //InputText
@@ -197,7 +187,7 @@ export const myStyleApp = StyleSheet.create({
     fontWeight: "bold",
     borderWidth: 0,
     borderBottomWidth: 1.5,
-    borderBottomColor: myStyleColor.inputTextBorder,
+    borderBottomColor: styleColor.inputTextBorder,
     borderRadius: 8,
     backgroundColor: "white",
     padding: 10,

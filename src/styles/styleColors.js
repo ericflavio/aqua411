@@ -7,8 +7,8 @@ const tema = "claro";
 tema60A = "#ffffff";
 tema60B = "#f5f1e0ff";
 tema60C = "#364366ff", //"#262626ff";
-tema30A = "#84d3f8ff", //"#4ea0f8ff";
-tema10A = "#ee7087ff", //"#f8cd37ff";
+tema30A = "#ee7087ff", //"#4ea0f8ff";
+tema10A = "#84d3f8ff", //"#f8cd37ff";
 tema10B = "#968078ff",//"#8e7262ff"; "#669e8eff"
 
 //Textos gerais
@@ -26,7 +26,7 @@ tema === "claro" ? buttonTextFlat = textoRegular : buttonTextFlat = textoRegular
 //Background da safe-area
 tema === "claro" ? bkgSafeArea = '#ffffff' : bkgSafeArea = '#262626ff';
 
-export const myStyleColor = StyleSheet.create({
+export const styleColor = StyleSheet.create({
   //CPaleta de cores do app
   tema60A,
   tema60B,

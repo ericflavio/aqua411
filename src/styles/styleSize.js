@@ -1,7 +1,7 @@
 //Tamanhos mais utilizados.
 //Obs: Importar apenas dentro da StylesComuns.
 
-export const myStyleSize = {
+export const styleSize = {
   //Icones para botões e tabbars
   iconSizeButtonRegular: 30,
   iconSizeButtonSmall: 26,
@@ -13,7 +13,11 @@ export const myStyleSize = {
   iconSizeLarge: 38,
   //Container
   containerBordaOnOff: 0,
-  containerBordaRaio: 8,
+  containerBordaRaioOn: 8,
+  containerBordaRaioOff: 0,
+  containerOcupacaoHorizontalFull: "100%",
+  ContainerOcupacaoHorizontalParcial: "88%",
+  containerOcupacaoMargens: 14,
   containerTamanhoMedioTelas: 800,
   //Textos
   textoNegritoForte: "700",

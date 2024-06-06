@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { router, useLocalSearchParams } from 'expo-router';
 import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, ActivityIndicator, Alert } from "react-native";
 import { myStyles } from "./styles";
-import { myStyleApp } from '../../../styles/styleApp';
+import { styleApp } from '../../../styles/styleApp';
 import { GradienteFill } from '../../../componentes/gradienteFill';
 import LojaHandleStatus from '../../../componentes/lojaHandleStatus';
 import { AuthContext } from "../../../contexts/auth";
@@ -118,9 +118,9 @@ export default function ViewEdtMenuLoja() {
 
   console.log("dadosBasicos :", lojaDadosBasicos)
   return (
-    <SafeAreaView style={myStyleApp.containerSafeAreaSemPadding}>
+    <SafeAreaView style={styleApp.containerSafeAreaSemPadding}>
       {GradienteFill()}
-      <ScrollView style={myStyleApp.containerScrollWB} contentContainerStyle={myStyleApp.containerScrollContent} showsVerticalScrollIndicator={false}>
+      <ScrollView style={styleApp.containerScrollFull} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
         <Image
           style={myStyles.imgNovaLoja}
           source={require('../../../assets/outros/sheep_novaLoja_01.png')}
@@ -128,69 +128,69 @@ export default function ViewEdtMenuLoja() {
 
         {lojaDadosBasicos !== null && lojaDadosBasicos.nome !== "" ?
           <View style={myStyles.containerDadosLoja}>
-            <Text style={myStyleApp.textoTituloPagina}>{lojaDadosBasicos.nome}</Text>
-            <Text style={myStyleApp.textoRegular}>Status: <Text style={myStyles.textoStatus}>{lojaDadosBasicos.status}</Text></Text>
+            <Text style={styleApp.textoTituloPagina}>{lojaDadosBasicos.nome}</Text>
+            <Text style={styleApp.textoRegular}>Status: <Text style={myStyles.textoStatus}>{lojaDadosBasicos.status}</Text></Text>
           </View>
           :
           <View style={myStyles.containerDadosLoja}>
-            <Text style={myStyleApp.textoRegular}>Cadastre sua loja para que seus clientes possam favoritá-la. Começe pelo endereço, nas opções abaixo.</Text>
+            <Text style={styleApp.textoRegular}>Cadastre sua loja para que seus clientes possam favoritá-la. Começe pelo endereço, nas opções abaixo.</Text>
           </View>
         }
 
-        <View style={{ backgroundColor: myStyleApp.color.cinzaClaro, minHeight: 24, paddingLeft: 12 }}>
-          <Text style={myStyleApp.textoPequeno}>Ações de gerenciamento</Text>
+        <View style={{ backgroundColor: styleApp.color.cinzaClaro, minHeight: 24, paddingLeft: 12 }}>
+          <Text style={styleApp.textoPequeno}>Ações de gerenciamento</Text>
         </View>
 
         <View style={myStyles.containerOthers}>
-          <TouchableOpacity style={myStyleApp.buttonFlatHL} onPress={{}} >
-            <MaterialIcons name="delete-outline" size={myStyleApp.size.iconSizeButtonRegular} color={myStyleApp.color.buttonTextFlat} />
-            <Text style={myStyleApp.buttonTextStyleFlat}>Desistir de cadastrar</Text>
+          <TouchableOpacity style={styleApp.buttonFlatHL} onPress={{}} >
+            <MaterialIcons name="delete-outline" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.buttonTextFlat} />
+            <Text style={styleApp.buttonTextStyleFlat}>Desistir de cadastrar</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={myStyleApp.buttonFlatHL} onPress={{}} >
-            <MaterialIcons name="saved-search" size={myStyleApp.size.iconSizeButtonRegular} color={myStyleApp.color.buttonTextFlat} />
-            <Text style={myStyleApp.buttonTextStyleFlat}>Aparecer nas buscas</Text>
+          <TouchableOpacity style={styleApp.buttonFlatHL} onPress={{}} >
+            <MaterialIcons name="saved-search" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.buttonTextFlat} />
+            <Text style={styleApp.buttonTextStyleFlat}>Aparecer nas buscas</Text>
           </TouchableOpacity>
-{/*           <TouchableOpacity style={myStyleApp.buttonFlatHL} onPress={{}} >
-            <MaterialIcons name="pause-presentation" size={myStyleApp.size.iconSizeButtonRegular} color={myStyleApp.color.buttonTextFlat} />
-            <Text style={myStyleApp.buttonTextStyleFlat}>Omitir temporariamnte das buscas</Text>
+{/*           <TouchableOpacity style={styleApp.buttonFlatHL} onPress={{}} >
+            <MaterialIcons name="pause-presentation" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.buttonTextFlat} />
+            <Text style={styleApp.buttonTextStyleFlat}>Omitir temporariamnte das buscas</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={myStyleApp.buttonFlatHL} onPress={{}} >
-            <MaterialIcons name="cancel-presentation" size={myStyleApp.size.iconSizeButtonRegular} color={myStyleApp.color.buttonTextFlat} />
-            <Text style={myStyleApp.buttonTextStyleFlat}>Desativar permanentemente</Text>
+          <TouchableOpacity style={styleApp.buttonFlatHL} onPress={{}} >
+            <MaterialIcons name="cancel-presentation" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.buttonTextFlat} />
+            <Text style={styleApp.buttonTextStyleFlat}>Desativar permanentemente</Text>
           </TouchableOpacity> */}
         </View>
 
 
-        <View style={{ backgroundColor: myStyleApp.color.cinzaClaro, minHeight: 24, paddingLeft: 12 }}>
-          <Text style={myStyleApp.textoPequeno}>Opções de edição</Text>
+        <View style={{ backgroundColor: styleApp.color.cinzaClaro, minHeight: 24, paddingLeft: 12 }}>
+          <Text style={styleApp.textoPequeno}>Opções de edição</Text>
         </View>
 
 
         <View style={myStyles.containerPrincipal}>
-          <TouchableOpacity style={myStyleApp.buttonFlatHL_list} disabled={disabledEndereco} onPress={goTo} >
+          <TouchableOpacity style={styleApp.buttonFlatHL_list} disabled={disabledEndereco} onPress={goTo} >
             <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <MaterialIcons name="add-business" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.buttonTextFlat} />
-              <Text style={myStyleApp.buttonTextStyleFlat}>Endereço</Text>
+              <MaterialIcons name="add-business" size={styleApp.size.iconSizeRegular} color={styleApp.color.buttonTextFlat} />
+              <Text style={styleApp.buttonTextStyleFlat}>Endereço</Text>
             </View>
-            <MaterialIcons name="navigate-next" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.cinzaMedio} />
+            <MaterialIcons name="navigate-next" size={styleApp.size.iconSizeRegular} color={styleApp.color.cinzaMedio} />
           </TouchableOpacity>
-          <TouchableOpacity style={myStyleApp.buttonFlatHL_list} disabled={disabled} onPress={goTo} >
+          <TouchableOpacity style={styleApp.buttonFlatHL_list} disabled={disabled} onPress={goTo} >
             <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <MaterialIcons name="location-on" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.buttonTextFlat} />
-              <Text style={myStyleApp.buttonTextStyleFlat}>Localização</Text>
+              <MaterialIcons name="location-on" size={styleApp.size.iconSizeRegular} color={styleApp.color.buttonTextFlat} />
+              <Text style={styleApp.buttonTextStyleFlat}>Localização</Text>
             </View>
-            <MaterialIcons name="navigate-next" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.cinzaMedio} />
+            <MaterialIcons name="navigate-next" size={styleApp.size.iconSizeRegular} color={styleApp.color.cinzaMedio} />
           </TouchableOpacity>
-          <TouchableOpacity style={myStyleApp.buttonFlatHL_list} disabled={disabled} onPress={goTo} >
+          <TouchableOpacity style={styleApp.buttonFlatHL_list} disabled={disabled} onPress={goTo} >
             <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <MaterialIcons name="access-time" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.buttonTextFlat} />
-              <Text style={myStyleApp.buttonTextStyleFlat}>Horário de funcionamento</Text>
+              <MaterialIcons name="access-time" size={styleApp.size.iconSizeRegular} color={styleApp.color.buttonTextFlat} />
+              <Text style={styleApp.buttonTextStyleFlat}>Horário de funcionamento</Text>
             </View>
-            <MaterialIcons name="navigate-next" size={myStyleApp.size.iconSizeRegular} color={myStyleApp.color.cinzaMedio} />
+            <MaterialIcons name="navigate-next" size={styleApp.size.iconSizeRegular} color={styleApp.color.cinzaMedio} />
           </TouchableOpacity>
 
-          <View style={{ backgroundColor: myStyleApp.color.cinzaClaro, minHeight: 24, paddingLeft: 12 }}>
-            <Text style={myStyleApp.textoPequeno}>Opções de edição para assinantes</Text>
+          <View style={{ backgroundColor: styleApp.color.cinzaClaro, minHeight: 24, paddingLeft: 12 }}>
+            <Text style={styleApp.textoPequeno}>Opções de edição para assinantes</Text>
           </View>
         </View>
 

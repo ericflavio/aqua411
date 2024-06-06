@@ -1,6 +1,6 @@
 import { MaterialIcons } from "@expo/vector-icons";
-import { myStyleColor } from '../../styles/stylesColors';
-import { myStyleApp } from '../../styles/styleApp';
+import { styleColor } from '../../styles/styleColors';
+import { styleApp } from '../../styles/styleApp';
 import { ActivityIndicator, View, Image } from "react-native";
 import { useContext , useCallback } from 'react';
 import { AuthContext } from "../../contexts/auth";
@@ -72,8 +72,8 @@ export default function AppLayout() {
   return (
     <Tabs screenOptions={{
       headerShown: false,
-      tabBarInactiveTintColor: myStyleColor.cinzaMedio,
-      tabBarActiveTintColor: myStyleColor.azulEscuro,
+      tabBarInactiveTintColor: styleColor.cinzaMedio,
+      tabBarActiveTintColor: styleColor.azulEscuro,
       tabBarShowLabel: true,
       tabBarLabelStyle: {
         fontSize: 16,
@@ -81,7 +81,7 @@ export default function AppLayout() {
       },
       tabBarStyle: {
         position: "absolute",
-        backgroundColor: myStyleColor.tema60B,
+        backgroundColor: styleColor.tema60B,
         borderTopWidth: 0,
         borderTopLeftRadius: 16,
         borderTopRightRadius: 16,
@@ -99,7 +99,7 @@ export default function AppLayout() {
         options={{
           title: "Inicio",
           tabBarIcon: ({ size, color }) =>
-            <MaterialIcons name="local-laundry-service" size={myStyleApp.size.iconSizeTabBar} color={color} />
+            <MaterialIcons name="local-laundry-service" size={styleApp.size.iconSizeTabBar} color={color} />
         }}
       />
 
@@ -108,7 +108,7 @@ export default function AppLayout() {
         options={{
           title: "Promo",
           tabBarIcon: ({ size, color }) =>
-            <MaterialIcons name="card-giftcard" size={myStyleApp.size.iconSizeTabBar} color={color} />
+            <MaterialIcons name="card-giftcard" size={styleApp.size.iconSizeTabBar} color={color} />
         }}
       />
 
@@ -117,7 +117,7 @@ export default function AppLayout() {
         options={{
           title: "Conta",
           tabBarIcon: ({ size, color }) =>
-            <MaterialIcons name="person" size={myStyleApp.size.iconSizeTabBar} color={color} />
+            <MaterialIcons name="person" size={styleApp.size.iconSizeTabBar} color={color} />
         }}
       />
     </Tabs>

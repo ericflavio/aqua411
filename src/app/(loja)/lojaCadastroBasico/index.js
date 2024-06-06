@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { router, useLocalSearchParams } from 'expo-router';
 import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, ActivityIndicator, Alert } from "react-native";
 import { myStyles } from "./styles";
-import { myStyleApp } from '../../../styles/styleApp';
+import { styleApp } from '../../../styles/styleApp';
 import { GradienteFill } from '../../../componentes/gradienteFill';
 import { AuthContext } from "../../../contexts/auth";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -70,9 +70,9 @@ export default function ViewLojaCadastroBasico() {
   }
 
   return (
-    <SafeAreaView style={myStyleApp.containerSafeAreaSemPadding}>
+    <SafeAreaView style={styleApp.containerSafeAreaSemPadding}>
       {GradienteFill()}
-      <ScrollView style={myStyleApp.containerScrollWB} contentContainerStyle={myStyleApp.containerScrollContent} showsVerticalScrollIndicator={false}>
+      <ScrollView style={styleApp.containerScrollFull} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
         <Image
           style={myStyles.imgNovaLoja}
           source={require('../../../assets/outros/sheep_novaLoja_01.png')}
@@ -82,11 +82,11 @@ export default function ViewLojaCadastroBasico() {
           <>
             {lojaDadosBasicos !== null && lojaDadosBasicos.nome !== "" ?
               <View style={myStyles.containerDadosLoja}>
-                <Text style={myStyleApp.textoRegular}>Você já iniciou o cadastramento de uma loja.</Text>
+                <Text style={styleApp.textoRegular}>Você já iniciou o cadastramento de uma loja.</Text>
               </View>
               :
               <View style={myStyles.containerDadosLoja}>
-                <Text style={myStyleApp.textoRegular}>Cadastre sua loja para que seus clientes possam receber avisos, alertas de promoções, orientações e muito mais.</Text>
+                <Text style={styleApp.textoRegular}>Cadastre sua loja para que seus clientes possam receber avisos, alertas de promoções, orientações e muito mais.</Text>
               </View>
             }
           </>
@@ -96,9 +96,9 @@ export default function ViewLojaCadastroBasico() {
           {InputText("Apelido da loja (ninguém verá essa informação)", onChangeApelidoLoja, "Apelido da loja", 1, 40, "default", flagEditavel, apelidoLoja, false)}
           {InputText("CNPJ (opcional)", onChangeCnpj, "CNPJ", 1, 16, "default", flagEditavel, cnpj, false)}
 
-          <TouchableOpacity style={myStyleApp.buttonHC} disabled={!flagEditavel} onPress={goTo}>
+          <TouchableOpacity style={styleApp.buttonHC} disabled={!flagEditavel} onPress={goTo}>
             <View style={myStyles.containerButton}>
-              <Text style={myStyleApp.buttonTextStyle}>Confirmar e prosseguir</Text>
+              <Text style={styleApp.buttonTextStyle}>Confirmar e prosseguir</Text>
             </View>
           </TouchableOpacity>
         </View>
