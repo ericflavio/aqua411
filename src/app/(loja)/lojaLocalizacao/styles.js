@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 import { styleApp } from "../../../styles/styleApp";
 
-export const myStyles = StyleSheet.create({
+export const styles = StyleSheet.create({
   containerHeader: {
     flexDirection:"row", 
     gap:8, 

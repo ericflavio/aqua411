@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { router, useLocalSearchParams } from 'expo-router';
 import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, ActivityIndicator, Alert } from "react-native";
-import { myStyles } from "./styles";
+import { styles } from "./styles";
 import { styleApp } from '../../../styles/styleApp';
 import { GradienteFill } from '../../../componentes/gradienteFill';
 import { AuthContext } from "../../../contexts/auth";
@@ -76,18 +76,18 @@ export default function ViewLojaCadastroBasico() {
       {GradienteFill()}
       <ScrollView style={styleApp.containerScrollFull} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
         <Image
-          style={myStyles.imgNovaLoja}
+          style={styles.imgNovaLoja}
           source={require('../../../assets/outros/sheep_novaLoja_01.png')}
         />
 
         {isLoading ? <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor}/> :
           <>
             {lojaDadosBasicos !== null && lojaDadosBasicos.nome !== "" ?
-              <View style={myStyles.containerDadosLoja}>
+              <View style={styles.containerDadosLoja}>
                 <Text style={styleApp.textRegular}>Você já iniciou o cadastramento de uma loja.</Text>
               </View>
               :
-              <View style={myStyles.containerDadosLoja}>
+              <View style={styles.containerDadosLoja}>
                 <Text style={styleApp.textRegular}>Cadastre sua loja para que seus clientes possam receber avisos, alertas de promoções, orientações e muito mais.</Text>
               </View>
             }
@@ -99,7 +99,7 @@ export default function ViewLojaCadastroBasico() {
           {InputText("CNPJ da loja (opcional)", onChangeCnpj, "CNPJ", 1, 16, "default", flagEditavel, cnpj, false)}
 
           <TouchableOpacity style={styleApp.buttonHC} disabled={!flagEditavel} onPress={goTo}>
-            <View style={myStyles.containerButton}>
+            <View style={styles.containerButton}>
               <Text style={styleApp.textButtonRegular}>Confirmar e prosseguir</Text>
             </View>
           </TouchableOpacity>

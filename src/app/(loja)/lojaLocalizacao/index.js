@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { router, useLocalSearchParams } from 'expo-router';
 import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, ActivityIndicator, Alert } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
-import { myStyles } from "./styles";
+import { styles } from "./styles";
 import { styleApp } from '../../../styles/styleApp';
 import { styleColor } from "../../../styles/styleColors";
 import { InputText } from '../../../componentes/inputText';
@@ -135,12 +135,12 @@ export default function ViewEdtLocalizacaoLoja() {
       {GradienteFill()}
       <ScrollView style={styleApp.containerScroll} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
 
-        <View style={myStyles.containerHeader}>
+        <View style={styles.containerHeader}>
           <MaterialIcons name="location-on" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textSubtitulo} />
           <Text style={styleApp.textSubtitulo}>Endereço digital</Text>
         </View>
 
-        <View style={myStyles.containerPrincipal}>
+        <View style={styles.containerPrincipal}>
           {InputText("Latitude", onChangeLatitude, "ex. 15,23456", 1, 12, "default", flagEditavel, latitude, false)}
           {InputText("Longitude", onChangeLongitude, "ex. -30,67890", 1, 12, "default", flagEditavel, longitude, false)}
           {InputText("Cole aqui o endereço/url GoogleMaps", onChangeUrl, "url GoogleMaps", 1, 200, "default", flagEditavel, urlGoogleMaps, false)}
@@ -150,7 +150,7 @@ export default function ViewEdtLocalizacaoLoja() {
             <Text style={styleApp.textButtonRegular}>Continuar</Text>
           </TouchableOpacity>
         </View>
-        <View style={myStyles.containerBottom}>
+        <View style={styles.containerBottom}>
           <MaterialIcons name="check-circle-outline" size={styleApp.size.iconSizeSmall} color={styleColor.textRegular} />
           <Text style={styleApp.textSmall}>Estas informações são opcionais</Text>
         </View>

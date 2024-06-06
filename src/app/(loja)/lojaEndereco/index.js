@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { router } from 'expo-router';
 import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, ActivityIndicator, Alert } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
-import { myStyles } from "./styles";
+import { styles } from "./styles";
 import { styleApp } from '../../../styles/styleApp';
 import { styleColor } from "../../../styles/styleColors";
 import { InputText } from '../../../componentes/inputText';
@@ -147,12 +147,12 @@ export default function ViewEdtEnderecoLoja() {
       {GradienteFill()}
       <ScrollView style={styleApp.containerScroll} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
 
-        <View style={myStyles.containerHeader}>
+        <View style={styles.containerHeader}>
           <MaterialIcons name="add-business" size={styleApp.size.iconSizeRegular} color={styleColor.textSubtitulo} />
           <Text style={styleApp.textSubtitulo}>Endereço</Text>
         </View>
 
-        <View style={myStyles.containerPrincipal}>
+        <View style={styles.containerPrincipal}>
           {InputText("CEP", onChangeCep, "CEP", 1, 8, "default", flagEditavel, cep, false)}
           <View style={{ paddingLeft: 10, marginTop:10 }}>
             <Text style={styleApp.textRegular}>{endereco.localidade} {endereco.uf}</Text>

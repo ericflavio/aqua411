@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { router } from 'expo-router';
 import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, ActivityIndicator, Alert } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
-import { myStyles } from "./styles";
+import { styles } from "./styles";
 import { styleApp } from '../../styles/styleApp';
 import { styleColor } from "../../styles/styleColors";
 import { InputText } from '../../componentes/inputText';
@@ -199,14 +199,14 @@ export default function ViewLogin() {
     <SafeAreaView style={styleApp.containerSafeArea}>
       {GradienteFill()}
       <ScrollView style={styleApp.containerScroll} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
-        <View style={myStyles.containerHeader}>
+        <View style={styles.containerHeader}>
           <Text style={styleApp.textTitulo}>
             Que bom você por aqui
           </Text>
         </View>
 
-        <View style={myStyles.containerRecepcionista}>
-          <View style={myStyles.conteinerTextoAvatar}>
+        <View style={styles.containerRecepcionista}>
+          <View style={styles.conteinerTextoAvatar}>
             <Text style={styleApp.textRegular}>
               {textoRecepcionista}
             </Text>

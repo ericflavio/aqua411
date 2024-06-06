@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { router, useLocalSearchParams } from 'expo-router';
 import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, ActivityIndicator, Alert } from "react-native";
-import { myStyles } from "./styles";
+import { styles } from "./styles";
 import { styleApp } from '../../../styles/styleApp';
 import { GradienteFill } from '../../../componentes/gradienteFill';
 import LojaHandleStatus from '../../../componentes/lojaHandleStatus';
@@ -122,28 +122,28 @@ export default function ViewEdtMenuLoja() {
       {GradienteFill()}
       <ScrollView style={styleApp.containerScrollFull} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
         <Image
-          style={myStyles.imgNovaLoja}
+          style={styles.imgNovaLoja}
           source={require('../../../assets/outros/sheep_novaLoja_01.png')}
         />
 
         {lojaDadosBasicos !== null && lojaDadosBasicos.nome !== "" ?
-          <View style={myStyles.containerDadosLoja}>
+          <View style={styles.containerDadosLoja}>
             <Text style={styleApp.textRegular}>Apelido: {lojaDadosBasicos.apelido}</Text>
-            <Text style={styleApp.textRegular}>Status: <Text style={myStyles.textoStatus}>{lojaDadosBasicos.status}</Text></Text>
+            <Text style={styleApp.textRegular}>Status: <Text style={styles.textoStatus}>{lojaDadosBasicos.status}</Text></Text>
             <Text style={styleApp.textTitulo}>{lojaDadosBasicos.nome}</Text>
           </View>
           :
-          <View style={myStyles.containerDadosLoja}>
+          <View style={styles.containerDadosLoja}>
             <Text style={styleApp.textRegular}>Atualize os dados da loja.</Text>
           </View>
         }
 
-        <View style={myStyles.containerSection}>
+        <View style={styles.containerSection}>
           <Text style={styleApp.textSmall}>Ações de gerenciamento</Text>
           <MaterialIcons name="settings" size={20} color={styleApp.color.textRegular} />
         </View>
 
-        <View style={myStyles.containerOthers}>
+        <View style={styles.containerOthers}>
           <TouchableOpacity style={styleApp.buttonFlatHL} onPress={{}} >
             <MaterialIcons name="delete-outline" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.textButtonFlat} />
             <Text style={styleApp.textButtonFlat}>Desistir de cadastrar</Text>
@@ -162,12 +162,12 @@ export default function ViewEdtMenuLoja() {
           </TouchableOpacity> */}
         </View>
 
-        <View style={myStyles.containerSection}>
+        <View style={styles.containerSection}>
           <Text style={styleApp.textSmall}>Configuração da loja</Text>
           <MaterialIcons name="edit" size={20} color={styleApp.color.textRegular} />
         </View>
 
-        <View style={myStyles.containerPrincipal}>
+        <View style={styles.containerPrincipal}>
           <TouchableOpacity style={styleApp.buttonFlatHL_list} disabled={disabledEndereco} onPress={goTo} >
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <MaterialIcons name="add-business" size={styleApp.size.iconSizeRegular} color={styleApp.color.textButtonFlat} />
@@ -190,7 +190,7 @@ export default function ViewEdtMenuLoja() {
             <MaterialIcons name="navigate-next" size={styleApp.size.iconSizeRegular} color={styleApp.color.cinzaMedio} />
           </TouchableOpacity>
 
-          <View style={myStyles.containerSection}>
+          <View style={styles.containerSection}>
             <Text style={styleApp.textSmall}>Opções de edição para assinantes</Text>
             <MaterialIcons name="edit" size={20} color={styleApp.color.textRegular} />
           </View>

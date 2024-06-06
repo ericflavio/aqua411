@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { router, useLocalSearchParams } from 'expo-router';
 import { View, Text, SafeAreaView, TouchableOpacity, FlatList, Alert, ActivityIndicator } from "react-native";
-import { myStyles } from "./styles";
+import { styles } from "./styles";
 import { styleApp } from '../../../styles/styleApp';
 import { GradienteFill } from '../../../componentes/gradienteFill';
 import { AuthContext } from "../../../contexts/auth";
@@ -28,7 +28,7 @@ export default function ViewLojaUnidades() {
   //Componente visual de cada Unidade (card)
   const Item = ({ item, onPress }) => (
     <TouchableOpacity onPress={onPress} >
-      <View style={myStyles.containerCardUnidade}>
+      <View style={styles.containerCardUnidade}>
         <View style={{ backgroundColor: styleColor.tema30pPrincipal, height: 38, padding: 6, justifyContent: "center" }}>
           <Text style={styleApp.textSmall}>{item.apelido}</Text>
         </View>
@@ -64,7 +64,7 @@ export default function ViewLojaUnidades() {
   return (
     <SafeAreaView style={styleApp.containerSafeArea}>
       {GradienteFill()}
-      <View style={myStyles.containerHeader}>
+      <View style={styles.containerHeader}>
         <Text style={styleApp.textTitulo}>
           Gerenciar suas lojas
         </Text>
@@ -74,7 +74,7 @@ export default function ViewLojaUnidades() {
       </View>
 
       {!isLoading ?
-        <View style={myStyles.continerViewPrincipal}>
+        <View style={styles.continerViewPrincipal}>
           <FlatList
             vertical
             showsVerticalScrollIndicator={false}

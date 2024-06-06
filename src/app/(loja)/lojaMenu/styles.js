@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 import { styleApp } from "../../../styles/styleApp";
 import { styleColor } from "../../../styles/styleColors";
 
-export const myStyles = StyleSheet.create({
+export const styles = StyleSheet.create({
   containerHeader: {
     flexDirection: "row",
     gap: 8,
@@ -11,7 +11,7 @@ export const myStyles = StyleSheet.create({
   containerDadosLoja: {
     flex: 0,
     paddingHorizontal: 12,
-    paddingVertical: 16,
+    paddingVertical: 8,
     borderWidth: styleApp.size.containerBordaOnOff,
     backgroundColor: styleColor.tema60pMedio,
   },

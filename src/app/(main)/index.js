@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { View, Text, Image, SafeAreaView, ScrollView, TouchableOpacity, Dimensions } from "react-native";
-import { myStyles } from "./styles";
+import { styles } from "./styles";
 import { styleApp } from '../../styles/styleApp';
 import { GradienteFill } from '../../componentes/gradienteFill';
 import { AuthContext } from "../../contexts/auth";
@@ -62,7 +62,7 @@ function maquina(tipMaq, idMaq, status, view) {
   if (tipMaq == "SECA") {
     return (
       <View>
-        <View style={myStyles.containerLavaSeca}>
+        <View style={styles.containerLavaSeca}>
           <Text style={styleApp.textSmall}>
             {tipMaq + " " + idMaq}
           </Text>
@@ -72,7 +72,7 @@ function maquina(tipMaq, idMaq, status, view) {
             </Text> : ""}
         </View>
         <Image
-          style={myStyles.imgMaquina}
+          style={styles.imgMaquina}
           source={imgMaq}
         />
       </View>
@@ -81,10 +81,10 @@ function maquina(tipMaq, idMaq, status, view) {
     return (
       <View>
         <Image
-          style={myStyles.imgMaquina}
+          style={styles.imgMaquina}
           source={imgMaq}
         />
-        <View style={myStyles.containerLavaSeca}>
+        <View style={styles.containerLavaSeca}>
           <Text style={styleApp.textSmall}>
             {tipMaq + " " + idMaq}
           </Text>
@@ -185,13 +185,13 @@ export default function ViewLojaMaquinas() {
         <ScrollView style={styleApp.containerScroll} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
 
           <View style={{ height: bodyHeight, paddingBottom: 96 }}>
-            <View style={myStyles.containerHeader}>
+            <View style={styles.containerHeader}>
               <Text style={styleApp.textTitulo}>
                 Informações da sua lavanderia favorita
               </Text>
             </View>
-            <View style={myStyles.containerBody1}>
-              <View style={myStyles.containerUnidadeEndereco}>
+            <View style={styles.containerBody1}>
+              <View style={styles.containerUnidadeEndereco}>
                 <Text style={styleApp.textRegular}>
                   Você ainda não selecionou uma lavanderia favorita
                 </Text>
@@ -200,20 +200,20 @@ export default function ViewLojaMaquinas() {
 
             <TouchableOpacity style={styleApp.buttonHC} onPress={atualizarStatus}>
               {/*  <Image
-                style={myStyles.imgLocalizacao}
+                style={styles.imgLocalizacao}
                 source={require('../../assets/icones/icon_local2.png')}
               /> */}
               <MaterialIcons name="location-on" size={styleApp.size.iconSizeRegular} color={styleApp.color.textButtonRegular} />
               <Text style={styleApp.textButtonRegular}>Pesquisar lavanderias</Text>
             </TouchableOpacity>
 
-            <View style={myStyles.containerBody2}>
-              <View style={myStyles.containerMaquinas}>
+            <View style={styles.containerBody2}>
+              <View style={styles.containerMaquinas}>
                 {maquina("seca", 2, seca[1], false)}
                 {maquina("seca", 4, seca[1], false)}
                 {maquina("seca", 6, seca[1], false)}
               </View>
-              <View style={myStyles.containerMaquinas}>
+              <View style={styles.containerMaquinas}>
                 {maquina("lava", 1, lava[1], false)}
                 {maquina("lava", 3, lava[1], false)}
                 {maquina("lava", 5, lava[1], false)}
@@ -235,15 +235,15 @@ export default function ViewLojaMaquinas() {
       <ScrollView style={styleApp.containerScroll} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
 
         <View style={{ height: bodyHeight, paddingBottom: 96 }}>
-          <View style={myStyles.containerHeader}>
+          <View style={styles.containerHeader}>
             <Text style={styleApp.textTitulo}>
               Sua lavanderia fora de casa
             </Text>
           </View>
-          <View style={myStyles.containerBody1}>
-            <View style={myStyles.containerUnidadeEndereco}>
+          <View style={styles.containerBody1}>
+            <View style={styles.containerUnidadeEndereco}>
               {/*  <Image
-                style={myStyles.imgLocalizacao}
+                style={styles.imgLocalizacao}
                 source={require('../../assets/icones/icon_local2.png')}
               /> */}
               <MaterialIcons name="location-on" size={styleApp.size.iconSizeRegular} color={styleApp.color.textButtonRegular} />
@@ -252,14 +252,14 @@ export default function ViewLojaMaquinas() {
               </Text>
             </View>
 
-            <View style={myStyles.containerHorarioFuncionamento}>
+            <View style={styles.containerHorarioFuncionamento}>
               {relogioOnOff == true ?
                 <Image
-                  style={myStyles.imgRelogio}
+                  style={styles.imgRelogio}
                   source={require('../../assets/icones/aqua_relogio_abertos.png')}
                 /> :
                 <Image
-                  style={myStyles.imgRelogio}
+                  style={styles.imgRelogio}
                   source={require('../../assets/icones/aqua_relogio_fechados.png')}
                 />
               }
@@ -268,36 +268,36 @@ export default function ViewLojaMaquinas() {
               </Text>
             </View>
 
-            <View style={myStyles.containerFacilidades}>
+            <View style={styles.containerFacilidades}>
               <TouchableOpacity style={styleApp.buttonFlatHL_transp} disabled={false} onPress={atualizarStatus}>
                 <Text style={styleApp.textButtonFlat}>Selecione outra loja aqui</Text>
               </TouchableOpacity>
             </View>
           </View>
 
-          <View style={myStyles.containerBody2}>
+          <View style={styles.containerBody2}>
             {/*
-            <View style={myStyles.containerBroadcast}>
+            <View style={styles.containerBroadcast}>
               <Text style={styleApp.textRegular}>
                 Excepcionalmente hoje, 25/04/2024, quinta-feira, funcionaremos de 6h às 15h
               </Text>
             </View>
             */}
-            <View style={myStyles.containerMaquinas}>
+            <View style={styles.containerMaquinas}>
               {maquina("seca", 2, seca[0], true)}
               {maquina("seca", 4, seca[1], true)}
               {maquina("seca", 6, seca[2], true)}
             </View>
-            <View style={myStyles.containerMaquinas}>
+            <View style={styles.containerMaquinas}>
               {maquina("lava", 1, lava[0], true)}
               {maquina("lava", 3, lava[1], true)}
               {maquina("lava", 5, lava[2], true)}
             </View>
             <Text></Text>
 
-            <View style={myStyles.containerUltimaAtualizacao}>
+            <View style={styles.containerUltimaAtualizacao}>
               <Image
-                style={myStyles.imgRelogio}
+                style={styles.imgRelogio}
                 source={require('../../assets/icones/aqua_relogio_comum.png')}
               />
               <Text style={styleApp.textRegular}>

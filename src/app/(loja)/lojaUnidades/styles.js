@@ -3,7 +3,7 @@ import { styleApp } from "../../../styles/styleApp";
 import { styleColor } from "../../../styles/styleColors";
 import { styleSize } from "../../../styles/styleSize";
 
-export const myStyles = StyleSheet.create({
+export const styles = StyleSheet.create({
   containerHeader: {
     gap: 0,
     width: "88%",
@@ -16,7 +16,7 @@ export const myStyles = StyleSheet.create({
     borderColor: "white",
     borderRadius: styleSize.containerBorderRadius,
     marginBottom: 8,
-    height: 120,
+    minHeight: 120,
     backgroundColor: "white",
   },
   continerViewPrincipal: { //Com borda lateral

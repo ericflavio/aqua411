@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 import { styleApp } from "../../../styles/styleApp";
 import { styleColor } from "../../../styles/styleColors";
 
-export const myStyles = StyleSheet.create({
+export const styles = StyleSheet.create({
   containerHeader: {
     borderWidth: styleApp.size.containerBordaOnOff,
     marginBottom: 30,

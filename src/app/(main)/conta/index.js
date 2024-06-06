@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, Alert } from "react-native";
-import { myStyles } from "./styles";
+import { styles } from "./styles";
 import { styleApp } from '../../../styles/styleApp';
 import { styleColor } from "../../../styles/styleColors";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -38,17 +38,17 @@ export default function ViewConta() {
     <SafeAreaView style={styleApp.containerSafeArea}>
       {GradienteFill()}
       <ScrollView style={styleApp.containerScroll} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
-        <View style={myStyles.containerHeader}>
+        <View style={styles.containerHeader}>
           <Text style={styleApp.textTitulo}>
             {name}
           </Text>
           <Image
-            style={myStyles.imageUser}
+            style={styles.imageUser}
             source={require('../../../assets/icones/app_icon_02.png')}
           />
         </View>
 
-        <View style={myStyles.containerBasics}>
+        <View style={styles.containerBasics}>
           <TouchableOpacity style={styleApp.buttonFlatV} onPress={{}} >
             <MaterialIcons name="help-outline" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
             <Text style={styleApp.textButtonFlat}>Ajuda</Text>
@@ -59,7 +59,7 @@ export default function ViewConta() {
           </TouchableOpacity>
         </View>
 
-        <View style={myStyles.containerOthers}>
+        <View style={styles.containerOthers}>
           <TouchableOpacity style={styleApp.buttonFlatHL} onPress={adicionarLoja} >
             <MaterialIcons name="add-business" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
             <Text style={styleApp.textButtonFlat}>Cadastrar uma loja que possuo</Text>
