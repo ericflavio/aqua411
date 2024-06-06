@@ -148,7 +148,7 @@ export default function ViewEdtMenuLoja() {
           </TouchableOpacity>
           <TouchableOpacity style={styleApp.buttonFlatHL} onPress={{}} >
             <MaterialIcons name="saved-search" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.buttonTextFlat} />
-            <Text style={styleApp.buttonTextFlat}>Aparecer nas buscas</Text>
+            <Text style={styleApp.buttonTextFlat}>Aparecer nas buscas dos clientes</Text>
           </TouchableOpacity>
 {/*           <TouchableOpacity style={styleApp.buttonFlatHL} onPress={{}} >
             <MaterialIcons name="pause-presentation" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.buttonTextFlat} />
