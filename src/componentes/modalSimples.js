@@ -29,7 +29,7 @@ export default function modalSimples(flagShow, onClose, msg, msgTitulo, msgTipo)
   return (
     <View style={stylesLocal.centeredView}>
       <Modal
-        animationType="fade"
+        animationType="slide" //fade slide none
         transparent={true}
         visible={flagShow}
         onRequestClose={() => { }}>
@@ -52,9 +52,8 @@ export default function modalSimples(flagShow, onClose, msg, msgTitulo, msgTipo)
 const stylesLocal = StyleSheet.create({
   centeredView: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     alignItems: 'center',
-    marginTop: 22,
   },
   modalView: {
     margin: 20,

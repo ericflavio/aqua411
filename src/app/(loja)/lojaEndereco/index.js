@@ -11,6 +11,7 @@ import { AuthContext } from "../../../contexts/auth";
 import { ShowErrorMessage } from '../../../errors/errorMessage';
 import { consultaCepService } from '../../../services/cepService';
 import { schemaLojaEndereco } from '../../../schemas/lojaSchema';
+import { atualizaEndereco } from '../../../services/lojaService';
 import modalSimples from '../../../componentes/modalSimples';
 
 //Tela principal
@@ -44,40 +45,16 @@ export default function ViewEdtEnderecoLoja() {
 
   const cenarioEditar = 1;
   const cenarioValidar = 11;
-
   var flagEditavel = true;
-  cenario > 10 ? flagEditavel = false : flagEditavel = true;
+  cenario !== cenarioEditar ? flagEditavel = false : flagEditavel = true;
 
-  function goTo() {
-    //Compoe a parte do endereco no objeto LOJA e passa adiante
-    const loja = {};
-    loja.endereco = endereco;
-    loja.endereco.numero = numero;
-    loja.endereco.complemento = complemento;
-
-    //Alert.alert("SUCESSO!", "");
-    setFlagModal(!flagModal);
-    setTimeout(() => {
-      setFlagModal(false);
-    }, styleApp.size.modalTimeClose);
-
-    console.log("sucesso")
-    /*     router.navigate({
-          pathname: "/lojaLocalizacao",
-          params: {
-            navigateParmLoja: JSON.stringify(loja)
-          }
-        }) */
-  }
-
+  //Trata inputs
   function onChangeNumero(numero) {
     setNumero(numero);
   }
-
   function onChangeComplemento(complemento) {
     setComplemento(complemento);
   }
-
   function validarSintaxeCep(cep) {
     const regex = /^[0-9]{8}$/;
     const isCepValido = regex.test(cep);
@@ -131,11 +108,27 @@ export default function ViewEdtEnderecoLoja() {
       if (!flagErro) setFlagErro(true);
       return;
     };
-    goTo(); //Vai para próxima tela (levando parametros)
+
+    setCenario(cenarioValidar);
+    try {
+      const res = await atualizaEndereco(endereco);
+      showMsgResultado();
+    } catch {
+      ShowErrorMessage("lj003");
+      if (!flagErro) setFlagErro(true);
+    }
+    setCenario(cenarioEditar);
   }
 
   function handleCloseModal() {
     setFlagModal(!flagModal);
+  }
+
+  function showMsgResultado() {
+    setFlagModal(!flagModal);
+    setTimeout(() => {
+      setFlagModal(false);
+    }, styleApp.size.modalTimeClose);
   }
 
   return (
@@ -148,10 +141,9 @@ export default function ViewEdtEnderecoLoja() {
           <Text style={styleApp.textSubtitulo}>Endereço</Text>
         </View>
 
+        {modalSimples(flagModal, handleCloseModal, "Informações atualizadas", "", "")}
+        
         <View style={styles.containerPrincipal}>
-
-          {modalSimples(flagModal, handleCloseModal, "Informações atualizadas", "", "")}
-
           {InputText("CEP", onChangeCep, "CEP", 1, 8, "default", flagEditavel, cep, false)}
           {endereco && endereco !== null ?
             <View style={{ paddingLeft: 10, marginTop: 10 }}>

@@ -56,6 +56,8 @@ export function NewErrorMessage(cod, e) {
         //Status
         case "lj001": newError.message = "Estamos com dificuldades para pesquisar os Status." + tn; break;
         case "lj002": newError.message = "Não há novos status possíveis."; break;
+        //Endereço
+        case "lj003": newError.message = "Não foi possível atualizar os dados do endereço." + tn ; break;
 
         default:
           newError.cod = "de2702" + cod.substr(0, 2);

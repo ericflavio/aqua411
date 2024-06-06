@@ -1,6 +1,6 @@
 //Consultar CEP
 import axios from 'axios';
-import { schemaLoja, schemaLojaStatus } from '../schemas/lojaSchema';
+import { schemaLoja, schemaLojaStatus, schemaLojaEndereco } from '../schemas/lojaSchema';
 
 export async function consultaListaStatusLoja() {
   const statusLoja = [
@@ -86,4 +86,42 @@ export async function consultaLojaEmEdicao(l) {
     }, 1000);
   })
 }
+
+//Endereco
+export async function consultaEndereco(id) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve({
+        cep: "70847060",
+        localidade: "Plano Piloto",
+        uf: "DF",
+        ddd: "61",
+        bairro: "Asa Norte",
+        logradouro: "SQN 109 Bloc A",
+        numero: "108",
+        complemento: "Apto",
+      })
+    }, 1000);
+  })
+}
+export async function IncluiEndereco(endereco) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (endereco) {
+        resolve(null)
+      } else {
+        resolve(null)
+      }
+    }, 1000);
+  })
+}
+export async function atualizaEndereco(endereco) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      //reject(null)
+      resolve(null)
+    }, 1000);
+  })
+}
+
 
