@@ -100,7 +100,7 @@ export default function ViewEdtMenuLoja() {
     router.navigate({
       pathname: "/lojaEndereco",
       params: {
-        navigateParmLojaId: JSON.stringify(idLoja)
+        navigateParmLoja: JSON.stringify(lojaDadosBasicos)
       }
     })
   }

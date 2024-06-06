@@ -1,5 +1,6 @@
 //Consultar CEP
 import axios from 'axios';
+import { schemaLoja, schemaLojaStatus } from '../schemas/lojaSchema';
 
 export async function consultaListaStatusLoja() {
   const statusLoja = [
@@ -27,12 +28,12 @@ export async function consultaListaStatusLoja() {
       descricao: "Não aparece nas pesquisas de lojas.",
       dfs: []
     },
-/*     {
-      id: "Excluída",
-      nome: "Excluída",
-      descricao: "Foi excluída durante sua criação.",
-      dfs: []
-    }, */
+    /*     {
+          id: "Excluída",
+          nome: "Excluída",
+          descricao: "Foi excluída durante sua criação.",
+          dfs: []
+        }, */
   ];
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -44,19 +45,19 @@ export async function consultaListaStatusLoja() {
 export async function consultaUnidades(user) {
   const res = [
     {
-      idLoja: "Loja00001",
+      id: "Loja00001",
       nome: "loja-01",
       apelido: "Apelido-loja",
       status: "Criando"
     },
     {
-      idLoja: "Loja00002",
+      id: "Loja00002",
       nome: "loja-02",
       apelido: "Apelido-loja",
       status: "Inativa"
     },
     {
-      idLoja: "Loja00003",
+      id: "Loja00003",
       nome: "loja-03",
       apelido: "Apelido-loja",
       status: "Suspensa"
@@ -74,7 +75,7 @@ export async function consultaLojaEmEdicao(l) {
     setTimeout(() => {
       if (l && l === "s") {
         resolve({
-          idLoja: "LOJA00001",
+          id: "LOJA00001",
           nome: "Aquamagic-AsaNorte-Brasilia-DF",
           apelido: "Apelido-loja",
           status: "Criando"

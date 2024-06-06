@@ -80,8 +80,8 @@ export default function ViewLojaUnidades() {
             showsVerticalScrollIndicator={false}
             data={listaUnidades}
             renderItem={renderItem}
-            keyExtractor={item => item.idLoja}
-            extraData={item => item.idLoja}
+            keyExtractor={item => item.id}
+            extraData={item => item.id}
           />
         </View>
         :
