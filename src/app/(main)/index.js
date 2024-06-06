@@ -270,7 +270,7 @@ export default function ViewLojaMaquinas() {
 
             <View style={myStyles.containerFacilidades}>
               <TouchableOpacity style={styleApp.buttonFlatHL_transp} disabled={false} onPress={atualizarStatus}>
-                <Text style={styleApp.textButtonFlat}>Selecione outra loja aqui</Text>
+                <Text style={styleApp.buttonTextFlat}>Selecione outra loja aqui</Text>
               </TouchableOpacity>
             </View>
           </View>

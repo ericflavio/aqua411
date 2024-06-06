@@ -18,13 +18,13 @@ tema === "claro" ? textoTitulo = tema10B : textoTitulo = tema60A;
 tema === "claro" ? textoSubtitulo = "#262626ff" : textoSubtitulo = tema60B;
 
 //Botões (incluindo também seus textos)
-tema === "claro" ? buttonBkg = tema10A : buttonBackground = tema60B;
+tema === "claro" ? buttonBackground = tema10A : buttonBackground = tema60B;
 tema === "claro" ? buttonBorder = '#606060ff' : buttonBorder = tema30A;
 tema === "claro" ? buttonText = "white" : buttonText = "white";
-tema === "claro" ? textButtonFlat = textoRegular : textButtonFlat = textoRegular;
+tema === "claro" ? buttonTextFlat = textoRegular : buttonTextFlat = textoRegular;
 
 //Background da safe-area
-tema === "claro" ? bkgSafeArea = '#ffffff' : bkgSafeArea = '#262626ff';
+tema === "claro" ? backgroundSafeArea = '#ffffff' : backgroundSafeArea = '#262626ff';
 
 export const styleColor = StyleSheet.create({
   //Paleta de cores do app
@@ -35,12 +35,12 @@ export const styleColor = StyleSheet.create({
   tema10A,
   tema10B,
   //Botões
-  buttonBkg,
+  buttonBackground,
   buttonBorder,
   buttonText,
-  textButtonFlat,
+  buttonTextFlat,
   //Background
-  bkgSafeArea,
+  backgroundSafeArea,
   //Textos
   textoRegular,
   textoDestaque,

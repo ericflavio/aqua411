@@ -14,7 +14,7 @@ export const styleApp = StyleSheet.create({
   containerSafeArea: { //Com padding
     flex: 1,
     justifyContent: "flex-start",
-    backgroundColor: styleColor.bkgSafeArea,
+    backgroundColor: styleColor.backgroundSafeArea,
     alignItems: "center",
     borderWidth: styleSize.containerBordaOnOff,
     borderBlockColor: "#fa7251ff",
@@ -23,7 +23,7 @@ export const styleApp = StyleSheet.create({
   containerSafeAreaSemPadding: { //Sem padding
     flex: 1,
     justifyContent: "flex-start",
-    backgroundColor: styleColor.bkgSafeArea,
+    backgroundColor: styleColor.backgroundSafeArea,
     alignItems: "center",
     borderWidth: styleSize.containerBordaOnOff,
     borderBlockColor: "#fa7251ff",
@@ -78,11 +78,11 @@ export const styleApp = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: 'center',
-    backgroundColor: styleColor.buttonBkg,
+    backgroundColor: styleColor.buttonBackground,
     borderColor: styleColor.buttonBorder,
-    borderWidth: 1,
-    borderRadius: 9,
-    borderBottomWidth: 4,
+    borderWidth: styleSize.buttonBorderWidth,
+    borderRadius: styleSize.buttomBorderRadius,
+    borderBottomWidth: styleSize.buttonBorderWidthBottom,
     marginTop: 12,
     marginBottom: 6,
     padding: 14,
@@ -94,11 +94,11 @@ export const styleApp = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-end",
     alignItems: 'center',
-    backgroundColor: styleColor.buttonBkg,
+    backgroundColor: styleColor.buttonBackground,
     borderColor: styleColor.buttonBorder,
-    borderWidth: 1,
-    borderRadius: 9,
-    borderBottomWidth: 4,
+    borderWidth: styleSize.buttonBorderWidth,
+    borderRadius: styleSize.buttomBorderRadius,
+    borderBottomWidth: styleSize.buttonBorderWidthBottom,
     marginTop: 0,
     marginBottom: 0,
     paddingLeft: 4,
@@ -118,7 +118,7 @@ export const styleApp = StyleSheet.create({
     minHeight: 70,
     minWidth: "49%",
     borderWidth: 1,
-    borderRadius: 6,
+    borderRadius: styleSize.buttomBorderRadius,
     gap: 4
   },
   buttonFlatHL: { //Horizontal flat, esquerdo
@@ -134,7 +134,7 @@ export const styleApp = StyleSheet.create({
     minHeight: 70,
     minWidth: "100%",
     borderWidth: 1,
-    borderRadius: 6,
+    borderRadius: styleSize.buttomBorderRadius,
     gap: 6
   },
   buttonFlatHL_transp: {//Horizontal flat, esquerdo, transparente
@@ -147,6 +147,7 @@ export const styleApp = StyleSheet.create({
     padding: 4,
     maxWidth: "100%",
     borderWidth: 0,
+    borderRadius: 0,
     gap: 6,
   },
   buttonFlatHL_list: { //Horizontal flat, esquerdo, estilo lista
@@ -173,11 +174,11 @@ export const styleApp = StyleSheet.create({
     //fontWeight: styleSize.textoNegritoForte,
     color: styleColor.buttonText,
   },
-  textButtonFlat: {
+  buttonTextFlat: {
     fontFamily: 'Lato-Regular',
     fontSize: styleSize.textoSize4,
     //fontWeight: styleSize.textoNegritoMedio,
-    color: styleColor.textButtonFlat,
+    color: styleColor.buttonTextFlat,
   },
 
   //InputText

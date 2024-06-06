@@ -1,7 +1,16 @@
 //Tamanhos mais utilizados.
 //Obs: Importar apenas dentro da StylesComuns.
 
+//botões regulares (não flat): Bordas e cantos
+const buttonBorderRegular = 0;
+const buttonBorderBottomRegular = 1;
+const buttonBorderRadiusRegular = 8;
+
 export const styleSize = {
+  //botões
+  buttonBorderWidth: buttonBorderRegular,
+  buttonBorderWidthBottom: buttonBorderBottomRegular,
+  buttomBorderRadius: buttonBorderRadiusRegular,
   //Icones para botões e tabbars
   iconSizeButtonRegular: 30,
   iconSizeButtonSmall: 26,

@@ -23,7 +23,7 @@ export const myStyles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "stretch",
-    backgroundColor: styleColor.bkgSafeArea,
+    backgroundColor: styleColor.backgroundSafeArea,
     borderWidth: styleApp.size.containerBordaOnOff,
     borderBlockColor: "#fa7251ff",
     marginBottom: 40,
