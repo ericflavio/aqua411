@@ -13,7 +13,7 @@ export const myStyles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 16,
     borderWidth: styleApp.size.containerBordaOnOff,
-    backgroundColor: styleColor.tema60B,
+    backgroundColor: styleColor.tema60pMedio,
   },
   containerPrincipal: {
     flex: 0,

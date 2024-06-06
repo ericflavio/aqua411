@@ -15,7 +15,7 @@ export default function LojaLayout() {
         headerTitle: "Informações da loja",
         animationEnabled: true,
         tabBarInactiveTintColor: styleColor.cinzaMedio,
-        tabBarActiveTintColor: styleColor.tema10B,
+        tabBarActiveTintColor: styleColor.tema10pTerciaria,
         tabBarShowLabel: true,
         headerMode: 'screen',
         //headerTintColor: '#ffffff',

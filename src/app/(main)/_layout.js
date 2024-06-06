@@ -81,7 +81,7 @@ export default function AppLayout() {
       },
       tabBarStyle: {
         position: "absolute",
-        backgroundColor: styleColor.tema60B,
+        backgroundColor: styleColor.tema60pMedio,
         borderTopWidth: 0,
         borderTopLeftRadius: 16,
         borderTopRightRadius: 16,

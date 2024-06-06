@@ -40,13 +40,13 @@ export const myStyles = StyleSheet.create({
     //fontWeight: styleSize.textoNegritoForte,
     marginTop: 20,
     marginBottom: 25,
-    color: styleApp.color.tema10B,
+    color: styleApp.color.tema10pTerciaria,
   },
   textSubtitulo: {
     fontFamily: 'Lato-Regular',
     fontSize: styleApp.size.textoSize2,
     //fontWeight: styleSize.textoNegritoForte,
     marginTop: 0,
-    color: styleApp.color.tema10B,
+    color: styleApp.color.tema10pTerciaria,
   },
 });

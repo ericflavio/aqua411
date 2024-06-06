@@ -29,14 +29,14 @@ export default function ViewLojaUnidades() {
   const Item = ({ item, onPress }) => (
     <TouchableOpacity onPress={onPress} >
       <View style={myStyles.containerCardUnidade}>
-        <View style={{ backgroundColor: styleColor.tema30A, height: 38, padding: 6, justifyContent: "center" }}>
-          <Text style={styleApp.textRegular}>Status: {item.apelido}</Text>
+        <View style={{ backgroundColor: styleColor.tema30pPrincipal, height: 38, padding: 6, justifyContent: "center" }}>
+          <Text style={styleApp.textRegular}>{item.apelido}</Text>
         </View>
         <View style={{ padding: 6, gap: 8, justifyContent: "flex-start" }}>
           <Text style={styleApp.textSubtitulo}>{item.nome}</Text>
         </View>
         <View style={{ padding: 6, gap: 8, justifyContent: "flex-start" }}>
-          <Text style={styleApp.textRegular}>{item.status}</Text>
+          <Text style={styleApp.textRegular}>Status: {item.status}</Text>
         </View>
       </View >
     </TouchableOpacity>

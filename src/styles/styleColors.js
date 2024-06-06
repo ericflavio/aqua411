@@ -4,22 +4,22 @@ import { StyleSheet } from "react-native";
 const tema = "claro";
 
 //Cores da paleta do app
-tema60A = "#ffffff";
-tema60B = "#f5f1e0ff";
-tema60C = "#364366ff", //"#262626ff";
-  tema30A = "#ee7087ff", //"#4ea0f8ff";
-  tema10A = "#84d3f8ff", //"#f8cd37ff";
-  tema10B = "#968078ff",//"#8e7262ff"; "#669e8eff"
+tema60pClaro = "#ffffff";
+tema60pMedio = "#f5f1e0ff";
+tema60pEscuro = "#364366ff",
+tema30pPrincipal = "#84d3f8ff",  // Cor principal que representa o APP
+tema10pSecundaria = "#968078ff", // Cor secundaria que representa o APP
+tema10pTerciaria = "#ee7087ff",  // Cor terciaria que representa o APP
 
-  //Textos gerais
-  tema === "claro" ? textRegular = '#262626ff' : textRegular = '#f5f1e0ff';
-tema === "claro" ? textoDestaque = tema10B : textoDestaque = tema10A;
-tema === "claro" ? textoTitulo = tema10B : textoTitulo = tema60A;
-tema === "claro" ? textSubtitulo = "#262626ff" : textSubtitulo = tema60B;
+//Textos gerais
+tema === "claro" ? textRegular = '#262626ff' : textRegular = '#f5f1e0ff';
+tema === "claro" ? textoDestaque = tema10pTerciaria : textoDestaque = tema10pSecundaria;
+tema === "claro" ? textoTitulo = tema10pTerciaria : textoTitulo = tema60pClaro;
+tema === "claro" ? textSubtitulo = "#262626ff" : textSubtitulo = tema60pMedio;
 
 //Botões (incluindo também seus textos)
-tema === "claro" ? buttonBackground = tema10A : buttonBackground = tema60B;
-tema === "claro" ? buttonBorder = '#bebebeff' : buttonBorder = tema30A;
+tema === "claro" ? buttonBackground = tema10pSecundaria : buttonBackground = tema60pMedio;
+tema === "claro" ? buttonBorder = '#bebebeff' : buttonBorder = tema30pPrincipal;
 tema === "claro" ? textButtonRegular = "white" : textButtonRegular = "white";
 tema === "claro" ? textButtonFlat = textRegular : textButtonFlat = textRegular;
 
@@ -28,12 +28,12 @@ tema === "claro" ? backgroundSafeArea = '#f7f7f8' : backgroundSafeArea = '#26262
 
 export const styleColor = StyleSheet.create({
   //Paleta de cores do app
-  tema60A,
-  tema60B,
-  tema60C,
-  tema30A,
-  tema10A,
-  tema10B,
+  tema60pClaro,
+  tema60pMedio,
+  tema60pEscuro,
+  tema30pPrincipal,
+  tema10pSecundaria,
+  tema10pTerciaria,
   //Botões
   buttonBackground,
   buttonBorder,
@@ -46,7 +46,7 @@ export const styleColor = StyleSheet.create({
   textoTitulo,
   textSubtitulo,
   //Container de InputTextos
-  inputTextBorder: tema30A,
+  inputTextBorder: tema30pPrincipal,
   //Azul
   azulEscuro: "#364366ff",
   azulClaro: "#4ea0f8ff",

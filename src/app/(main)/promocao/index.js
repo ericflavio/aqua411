@@ -30,7 +30,7 @@ function montaPromocao(vigente) {
     <TouchableOpacity disabled={!vigente} style={(vigente ? myStyles.buttonPromoVigente : myStyles.buttonPromoEncerrada)} onPress={detalhaPromo}>
       <View style={myStyles.containerPromoCabecalho}>
         <Text style={myStyles.textoTituloPromo}>{promo.nome}</Text>
-        <MaterialIcons name="card-giftcard" size={styleApp.size.iconSizeButtonRegular} color={(vigente ? styleColor.tema10A : styleColor.cinzaClaro)} />
+        <MaterialIcons name="card-giftcard" size={styleApp.size.iconSizeButtonRegular} color={(vigente ? styleColor.tema10pSecundaria : styleColor.cinzaClaro)} />
       </View>
       <View style={myStyles.containerPromoPeriodo}>
         <MaterialIcons name="calendar-month" size={styleApp.size.iconSizeButtonRegular} color={"grey"} />

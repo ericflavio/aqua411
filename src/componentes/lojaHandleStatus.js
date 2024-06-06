@@ -46,7 +46,7 @@ const styleLocal = StyleSheet.create({
     marginRight: 12,
     marginBottom: 25,
     borderWidth: 1,
-    borderColor: styleColor.tema10A,
+    borderColor: styleColor.tema10pSecundaria,
     borderRadius: 4
   },
 });

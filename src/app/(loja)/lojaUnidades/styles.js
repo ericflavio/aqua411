@@ -12,12 +12,12 @@ export const myStyles = StyleSheet.create({
   containerCardUnidade: {
     padding: 0,
     borderWidth: 1,
-    borderColor: styleColor.tema30A,
+    borderColor: styleColor.tema10pSecundaria,
     borderBottomStartRadius: 8,
     borderBottomEndRadius: 8,
     marginBottom: 8,
     height: 120,
-    backgroundColor: styleColor.tema60B,
+    backgroundColor: styleColor.tema10pSecundaria,
   },
   continerViewPrincipal: { //Com borda lateral
     flex: 1,
