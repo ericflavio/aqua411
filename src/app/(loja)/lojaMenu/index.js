@@ -31,7 +31,7 @@ export default function ViewEdtMenuLoja() {
   navigateParmLoja ? parmLoja = JSON.parse(navigateParmLoja) : parmLoja = null;
 
   useEffect(() => {
-    console.log("useEffetc>>><1>")
+    console.log("useEffetc>>><1>.parmLoja: ", navigateParmLoja)
     fetchLoja();
   }, [])
 
@@ -133,7 +133,7 @@ export default function ViewEdtMenuLoja() {
           </View>
           :
           <View style={myStyles.containerDadosLoja}>
-            <Text style={styleApp.textoRegular}>Cadastre sua loja para que seus clientes possam favoritá-la. Começe pelo endereço, nas opções abaixo.</Text>
+            <Text style={styleApp.textoRegular}>Atualize os dados da loja.</Text>
           </View>
         }
 
