@@ -72,6 +72,19 @@ export const styleApp = StyleSheet.create({
     //fontWeight: styleSize.TextoNegritoOff,
     color: styleColor.textRegular,
   },
+  //Textos dentro dos botões
+  textButtonRegular: {
+    fontFamily: 'Lato-Bold',
+    fontSize: styleSize.textoSize4,
+    //fontWeight: styleSize.textoNegritoForte,
+    color: styleColor.textButtonRegular,
+  },
+  textButtonFlat: {
+    fontFamily: 'Lato-Regular',
+    fontSize: styleSize.textoSize4,
+    //fontWeight: styleSize.textoNegritoMedio,
+    color: styleColor.textButtonFlat,
+  },
 
   //Botões: estilo do touchable
   buttonHC: { //Horizontal centralizado
@@ -167,35 +180,6 @@ export const styleApp = StyleSheet.create({
     borderBottomWidth: styleSize.buttonBorderFlatWidth / 2,
     borderRadius: 0,
     gap: 6
-  },
-  //Botões: estilo do texto dentro do touchable
-  textButtonRegular: {
-    fontFamily: 'Lato-Bold',
-    fontSize: styleSize.textoSize4,
-    //fontWeight: styleSize.textoNegritoForte,
-    color: styleColor.textButtonRegular,
-  },
-  textButtonFlat: {
-    fontFamily: 'Lato-Regular',
-    fontSize: styleSize.textoSize4,
-    //fontWeight: styleSize.textoNegritoMedio,
-    color: styleColor.textButtonFlat,
-  },
-
-  //InputText
-  inputText: {
-    marginTop: 6,
-    height: 54,
-    margin: 0,
-    fontFamily: 'Lato-Regular',
-    fontSize: 20,
-    //fontWeight: styleSize.textoNegritoMedio,
-    borderWidth: 0,
-    borderBottomWidth: 1.5,
-    borderBottomColor: styleColor.inputTextBorder,
-    borderRadius: 8,
-    backgroundColor: "white",
-    padding: 10,
   },
 
 });

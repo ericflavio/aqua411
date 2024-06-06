@@ -15,7 +15,7 @@ export default function LojaHandleStatus(statusListToChange, statusList, current
   }
 
   return (
-    <View style={stylesLocal.containerPicker}>
+    <View style={styleLocal.containerPicker}>
       {statusListToChange !== null && Object.keys(statusListToChange).length > 0 ?
         <Picker
           selectedValue={selectedStatus}
@@ -39,7 +39,7 @@ export default function LojaHandleStatus(statusListToChange, statusList, current
   )
 }
 
-const stylesLocal = StyleSheet.create({
+const styleLocal = StyleSheet.create({
   containerPicker: {
     marginTop: 12,
     marginLeft: 12,

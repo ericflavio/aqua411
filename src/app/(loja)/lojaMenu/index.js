@@ -128,6 +128,7 @@ export default function ViewEdtMenuLoja() {
 
         {lojaDadosBasicos !== null && lojaDadosBasicos.nome !== "" ?
           <View style={myStyles.containerDadosLoja}>
+            <Text style={styleApp.textRegular}>{lojaDadosBasicos.apelido}</Text>
             <Text style={styleApp.textTitulo}>{lojaDadosBasicos.nome}</Text>
             <Text style={styleApp.textRegular}>Status: <Text style={myStyles.textoStatus}>{lojaDadosBasicos.status}</Text></Text>
           </View>

@@ -1,6 +1,6 @@
 import { styleColor } from '../styles/styleColors';
 import { styleApp } from '../styles/styleApp';
-import { TextInput, View, Text } from "react-native";
+import { TextInput, View, Text, StyleSheet } from "react-native";
 
 export function InputText(label, funcao, textPlaceHolder, qtdLinhas, tamanhoMáximo, tipoTeclado, flagEditavel, valorInicial, flagSecure) {
   if (label == undefined) label = "";
@@ -17,7 +17,7 @@ export function InputText(label, funcao, textPlaceHolder, qtdLinhas, tamanhoMáx
   return (
     <View>
       <TextInput
-        style={styleApp.inputText}
+        style={styleLocal.inputText}
         onChangeText={funcao}
         value={valorInicial}
         placeholder={textPlaceHolder}
@@ -29,6 +29,24 @@ export function InputText(label, funcao, textPlaceHolder, qtdLinhas, tamanhoMáx
         numberOfLines={qtdLinhas}
         maxLength={tamanhoMáximo}
       />
-      <Text style={{paddingLeft:6}}>{label}</Text>
+      <Text style={{ paddingLeft: 6 }}>{label}</Text>
     </View>)
 }
+
+//InputText
+const styleLocal = StyleSheet.create({
+  inputText: {
+    marginTop: 6,
+    height: 54,
+    margin: 0,
+    fontFamily: 'Lato-Regular',
+    fontSize: 20,
+    //fontWeight: styleSize.textoNegritoMedio,
+    borderWidth: 0,
+    borderBottomWidth: 1.5,
+    borderBottomColor: styleColor.inputTextBorder,
+    borderRadius: 8,
+    backgroundColor: "white",
+    padding: 10,
+  },
+});

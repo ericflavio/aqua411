@@ -46,16 +46,19 @@ export async function consultaUnidades(user) {
     {
       idLoja: "Loja00001",
       nome: "loja-01",
+      apelido: "Apelido-loja",
       status: "Criando"
     },
     {
       idLoja: "Loja00002",
       nome: "loja-02",
+      apelido: "Apelido-loja",
       status: "Inativa"
     },
     {
       idLoja: "Loja00003",
       nome: "loja-03",
+      apelido: "Apelido-loja",
       status: "Suspensa"
     }
   ];
@@ -73,6 +76,7 @@ export async function consultaLojaEmEdicao(l) {
         resolve({
           idLoja: "LOJA00001",
           nome: "Aquamagic-AsaNorte-Brasilia-DF",
+          apelido: "Apelido-loja",
           status: "Criando"
         })
       } else {

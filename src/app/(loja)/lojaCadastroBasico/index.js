@@ -15,7 +15,7 @@ console.log("ViewLojaCadastroBasico <inicio>");
 //Tela principal
 export default function ViewLojaCadastroBasico() {
   const { user } = useContext(AuthContext);
-  const [lojaDadosBasicos, setLojaDadosBasicos] = useState({ status: "", nome: "" });
+  const [lojaDadosBasicos, setLojaDadosBasicos] = useState({ status: "", nome: "", apelido:"" });
   const [flagEditavel, setFlagEditavel] = useState(false);
   const [isLoading, setIsloading] = useState(true);
   const [apelido, setApelido] = useState("");
