@@ -117,7 +117,7 @@ export const styleApp = StyleSheet.create({
     padding: 4,
     minHeight: 70,
     minWidth: "49%",
-    borderWidth: 1,
+    borderWidth: styleSize.buttonBorderFlatWidth,
     borderRadius: styleSize.buttomBorderRadius,
     gap: 4
   },
@@ -133,7 +133,7 @@ export const styleApp = StyleSheet.create({
     paddingLeft: 8,
     minHeight: 70,
     minWidth: "100%",
-    borderWidth: 1,
+    borderWidth: styleSize.buttonBorderFlatWidth,
     borderRadius: styleSize.buttomBorderRadius,
     gap: 6
   },
@@ -146,7 +146,7 @@ export const styleApp = StyleSheet.create({
     marginBottom: 0,
     padding: 4,
     maxWidth: "100%",
-    borderWidth: 0,
+    borderWidth: styleSize.buttonBorderFlatWidth,
     borderRadius: 0,
     borderColor: styleColor.buttonBorder,
     gap: 6,
@@ -163,8 +163,8 @@ export const styleApp = StyleSheet.create({
     paddingLeft: 8,
     minHeight: 70,
     minWidth: "100%",
-    borderTopWidth: 1,
-    borderBottomWidth: 0.5,
+    borderTopWidth: styleSize.buttonBorderFlatWidth,
+    borderBottomWidth: styleSize.buttonBorderFlatWidth / 2,
     borderRadius: 0,
     gap: 6
   },

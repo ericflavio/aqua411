@@ -2,12 +2,14 @@
 //Obs: Importar apenas dentro da StylesComuns.
 
 //botões regulares (não flat): Bordas e cantos
+const buttonBorderFlatRegular = 0;
 const buttonBorderRegular = 0;
-const buttonBorderBottomRegular = 1;
+const buttonBorderBottomRegular = 0;
 const buttonBorderRadiusRegular = 8;
 
 export const styleSize = {
   //botões
+  buttonBorderFlatWidth: buttonBorderFlatRegular,
   buttonBorderWidth: buttonBorderRegular,
   buttonBorderWidthBottom: buttonBorderBottomRegular,
   buttomBorderRadius: buttonBorderRadiusRegular,

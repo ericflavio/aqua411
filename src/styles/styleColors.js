@@ -19,12 +19,12 @@ tema === "claro" ? textSubtitulo = "#262626ff" : textSubtitulo = tema60B;
 
 //Botões (incluindo também seus textos)
 tema === "claro" ? buttonBackground = tema10A : buttonBackground = tema60B;
-tema === "claro" ? buttonBorder = '#606060ff' : buttonBorder = tema30A;
+tema === "claro" ? buttonBorder = '#bebebeff' : buttonBorder = tema30A;
 tema === "claro" ? textButtonRegular = "white" : textButtonRegular = "white";
 tema === "claro" ? textButtonFlat = textRegular : textButtonFlat = textRegular;
 
 //Background da safe-area
-tema === "claro" ? backgroundSafeArea = '#ffffff' : backgroundSafeArea = '#262626ff';
+tema === "claro" ? backgroundSafeArea = '#f7f7f8' : backgroundSafeArea = '#262626ff';
 
 export const styleColor = StyleSheet.create({
   //Paleta de cores do app
