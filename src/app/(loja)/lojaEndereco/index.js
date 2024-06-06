@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { router } from 'expo-router';
-import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, ActivityIndicator, Alert } from "react-native";
+import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, ActivityIndicator, Alert, Modal } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { styles } from "./styles";
 import { styleApp } from '../../../styles/styleApp';
@@ -8,8 +8,10 @@ import { styleColor } from "../../../styles/styleColors";
 import { InputText } from '../../../componentes/inputText';
 import { GradienteFill } from '../../../componentes/gradienteFill';
 import { AuthContext } from "../../../contexts/auth";
-import NewErrorMessage, { errorTextOops } from '../../../errors/errorMessage';
+import { ShowErrorMessage } from '../../../errors/errorMessage';
 import { consultaCepService } from '../../../services/cepService';
+import { schemaLojaEndereco } from '../../../schemas/lojaSchema';
+import modalSucess from '../../../componentes/modalSucess';
 
 //Tela principal
 export default function ViewEdtEnderecoLoja() {
@@ -18,26 +20,11 @@ export default function ViewEdtEnderecoLoja() {
 
   const [cenario, setCenario] = useState(1);
   const [flagErro, setFlagErro] = useState(false);
-  const [email, setEmail] = useState(null);
-
-  const voidEndereco = {
-    cep: "",
-    localidade: "",
-    uf: "",
-    ddd: "",
-    bairro: "",
-    logradouro: "",
-    numero: "",
-    complemento: ""
-  };
-
+  const [flagModal, setFlagModal] = useState(false);
   const [cep, setCep] = useState("70847060");
   const [numero, setNumero] = useState("");
   const [complemento, setComplemento] = useState("");
-  const [endereco, setEndereco] = useState(voidEndereco)
-
-  //url google maps
-  //longitude e latitude
+  const [endereco, setEndereco] = useState(null)
 
   //horário de funcionamento
   //url site da loja
@@ -68,18 +55,19 @@ export default function ViewEdtEnderecoLoja() {
     loja.endereco.numero = numero;
     loja.endereco.complemento = complemento;
 
-    router.navigate({
-      pathname: "/lojaLocalizacao",
-      params: {
-        navigateParmLoja: JSON.stringify(loja)
-      }
-    })
-  }
+    //Alert.alert("SUCESSO!", "");
+    setFlagModal(!flagModal);
+    setTimeout(() => {
+      setFlagModal(false);
+    }, styleApp.size.modalTimeClose);
 
-  function showMsgError(cod) {
-    const error = NewErrorMessage(cod);
-    Alert.alert(errorTextOops, error.message);
-    if (!flagErro) setFlagErro(true);
+    console.log("sucesso")
+    /*     router.navigate({
+          pathname: "/lojaLocalizacao",
+          params: {
+            navigateParmLoja: JSON.stringify(loja)
+          }
+        }) */
   }
 
   function onChangeNumero(numero) {
@@ -101,7 +89,8 @@ export default function ViewEdtEnderecoLoja() {
 
     if (cep.length >= 8) {
       if (!validarSintaxeCep(cep)) {
-        showMsgError("vc010");
+        ShowErrorMessage("vc010");
+        if (!flagErro) setFlagErro(true);
         return;
       }
       setCenario(cenarioValidar);
@@ -109,8 +98,9 @@ export default function ViewEdtEnderecoLoja() {
       try {
         const endereco = await consultaCepService(cep);
         if (endereco.erro) {
-          showMsgError("vc011");
-          setEndereco(voidEndereco); 
+          ShowErrorMessage("vc011");
+          if (!flagErro) setFlagErro(true);
+          setEndereco(null);
         } else {
           setEndereco({
             cep: endereco.cep,
@@ -126,8 +116,9 @@ export default function ViewEdtEnderecoLoja() {
         setCenario(cenarioEditar);
         return;
       } catch (e) {
-        showMsgError("vc012");
-        setEndereco(voidEndereco);
+        ShowErrorMessage("vc012");
+        if (!flagErro) setFlagErro(true);;
+        setEndereco(null);
         setCenario(cenarioEditar);
         return;
       }
@@ -136,10 +127,15 @@ export default function ViewEdtEnderecoLoja() {
 
   async function prosseguir() {
     if (cep.length < 8 || !validarSintaxeCep(cep)) {
-      showMsgError("vc010");
+      ShowErrorMessage("vc010");
+      if (!flagErro) setFlagErro(true);
       return;
     };
     goTo(); //Vai para próxima tela (levando parametros)
+  }
+
+  function closeModal() {
+    setFlagModal(!flagModal);
   }
 
   return (
@@ -153,18 +149,23 @@ export default function ViewEdtEnderecoLoja() {
         </View>
 
         <View style={styles.containerPrincipal}>
+
+          {modalSucess(flagModal, closeModal)}
+
           {InputText("CEP", onChangeCep, "CEP", 1, 8, "default", flagEditavel, cep, false)}
-          <View style={{ paddingLeft: 10, marginTop:10 }}>
-            <Text style={styleApp.textRegular}>{endereco.localidade} {endereco.uf}</Text>
-            <Text style={styleApp.textRegular}>{endereco.bairro}</Text>
-            <Text style={styleApp.textRegular}>{endereco.logradouro}</Text>
-          </View>
+          {endereco && endereco !== null ?
+            <View style={{ paddingLeft: 10, marginTop: 10 }}>
+              <Text style={styleApp.textRegular}>{endereco.localidade} {endereco.uf}</Text>
+              <Text style={styleApp.textRegular}>{endereco.bairro}</Text>
+              <Text style={styleApp.textRegular}>{endereco.logradouro}</Text>
+            </View>
+            : <></>}
           {InputText("Número", onChangeNumero, "Número, ou s/n", 1, 5, "default", flagEditavel, numero, false)}
           {InputText("Complemento", onChangeComplemento, "Complemento", 1, 80, "default", flagEditavel, complemento, false)}
 
           <TouchableOpacity style={styleApp.buttonHC} disabled={!flagEditavel} onPress={prosseguir} >
-              {!flagEditavel ? <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor}/> : ""}
-              <Text style={styleApp.textButtonRegular}>Confirmar</Text>
+            {!flagEditavel ? <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor} /> : ""}
+            <Text style={styleApp.textButtonRegular}>Confirmar</Text>
           </TouchableOpacity>
         </View>
 

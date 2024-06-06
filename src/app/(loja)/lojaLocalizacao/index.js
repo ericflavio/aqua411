@@ -137,7 +137,7 @@ export default function ViewEdtLocalizacaoLoja() {
 
         <View style={styles.containerHeader}>
           <MaterialIcons name="location-on" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textSubtitulo} />
-          <Text style={styleApp.textSubtitulo}>Endereço digital</Text>
+          <Text style={styleApp.textSubtitulo}>Localização geográfica</Text>
         </View>
 
         <View style={styles.containerPrincipal}>
@@ -147,7 +147,7 @@ export default function ViewEdtLocalizacaoLoja() {
 
           <TouchableOpacity style={styleApp.buttonHC} disabled={!flagEditavel} onPress={prosseguir} >
             {!flagEditavel ? <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor}/> : ""}
-            <Text style={styleApp.textButtonRegular}>Continuar</Text>
+            <Text style={styleApp.textButtonRegular}>Confirmar</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.containerBottom}>

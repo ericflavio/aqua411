@@ -10,3 +10,13 @@ export const schemaLojaStatus = {
   descricao: "",
   dfs: [],
 };
+export const schemaLojaEndereco = {
+  cep: "",
+  localidade: "",
+  uf: "",
+  ddd: "",
+  bairro: "",
+  logradouro: "",
+  numero: "",
+  complemento: "",
+}

@@ -45,7 +45,7 @@ const styleLocal = StyleSheet.create({
     borderWidth: 0,
     borderBottomWidth: 1.5,
     borderBottomColor: styleColor.inputTextBorder,
-    borderRadius: 8,
+    borderRadius: styleApp.size.inputTextBorderRadius,
     backgroundColor: "white",
     padding: 10,
   },
