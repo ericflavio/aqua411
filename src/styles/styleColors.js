@@ -59,9 +59,10 @@ export const styleColor = StyleSheet.create({
   pretoAbsoluto: "#000000ff",
   pretoRelativo: "#262626ff",
   //Variados
-  erro: "#fa7251ff",
-  alerta: "#ffe275ff",
-  sucesso: "#669e8eff",
+  aviso: "#c1dfffff",
+  erro: "#ed979fff",
+  alerta: "#ffebaaff",
+  sucesso: "#aadbb6ff",
   //Activity Indicadtor
   activityIndicatorCollor: "#262626ff",
   //Background

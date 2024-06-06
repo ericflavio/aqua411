@@ -11,7 +11,7 @@ import { AuthContext } from "../../../contexts/auth";
 import { ShowErrorMessage } from '../../../errors/errorMessage';
 import { consultaCepService } from '../../../services/cepService';
 import { schemaLojaEndereco } from '../../../schemas/lojaSchema';
-import modalSucess from '../../../componentes/modalSucess';
+import modalSimples from '../../../componentes/modalSimples';
 
 //Tela principal
 export default function ViewEdtEnderecoLoja() {
@@ -134,7 +134,7 @@ export default function ViewEdtEnderecoLoja() {
     goTo(); //Vai para próxima tela (levando parametros)
   }
 
-  function closeModal() {
+  function handleCloseModal() {
     setFlagModal(!flagModal);
   }
 
@@ -150,7 +150,7 @@ export default function ViewEdtEnderecoLoja() {
 
         <View style={styles.containerPrincipal}>
 
-          {modalSucess(flagModal, closeModal)}
+          {modalSimples(flagModal, handleCloseModal, "Informações atualizadas", "", "")}
 
           {InputText("CEP", onChangeCep, "CEP", 1, 8, "default", flagEditavel, cep, false)}
           {endereco && endereco !== null ?
