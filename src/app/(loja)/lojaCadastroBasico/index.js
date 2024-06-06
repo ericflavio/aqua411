@@ -18,7 +18,7 @@ export default function ViewLojaCadastroBasico() {
   const [lojaDadosBasicos, setLojaDadosBasicos] = useState({ status: "", nome: "" });
   const [flagEditavel, setFlagEditavel] = useState(false);
   const [isLoading, setIsloading] = useState(true);
-  const [apelidoLoja, setApelidoLoja] = useState("");
+  const [apelido, setApelido] = useState("");
   const [cnpj, setCnpj] = useState("");
 
   //Caso criação de nova loja: não chega parâmetro
@@ -43,9 +43,9 @@ export default function ViewLojaCadastroBasico() {
       console.log("resLoja<2>: ", resLoja)
 
       if (resLoja.apelido && resLoja.apelido !== null && resLoja.apelido !== "") {
-        setApelidoLoja(resLoja.apelido)
+        setApelido(resLoja.apelido)
       } else {
-        setApelidoLoja(resLoja.nome)
+        setApelido(resLoja.nome)
       }
       if (resLoja.cnpj && resLoja.cnpj !== null && resLoja.cnpj !== "") {
         setCnpj(resLoja.cnpj)
@@ -64,9 +64,11 @@ export default function ViewLojaCadastroBasico() {
     })
   }
 
-  function onChangeApelidoLoja() {
+  function onChangeApelido(apelido) {
+    setApelido(apelido);
   }
-  function onChangeCnpj() {
+  function onChangeCnpj(cnpj) {
+    setCnpj(cnpj)
   }
 
   return (
@@ -93,7 +95,7 @@ export default function ViewLojaCadastroBasico() {
         }
 
         <View style={{ marginLeft: 12, marginRight: 12 }}>
-          {InputText("Apelido da loja (ninguém verá essa informação)", onChangeApelidoLoja, "Apelido", 1, 40, "default", flagEditavel, apelidoLoja, false)}
+          {InputText("Apelido da loja (ninguém verá essa informação)", onChangeApelido, "Apelido", 1, 40, "default", flagEditavel, apelido, false)}
           {InputText("CNPJ da loja (opcional)", onChangeCnpj, "CNPJ", 1, 16, "default", flagEditavel, cnpj, false)}
 
           <TouchableOpacity style={styleApp.buttonHC} disabled={!flagEditavel} onPress={goTo}>
