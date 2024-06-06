@@ -30,10 +30,10 @@ export default function ViewLojaUnidades() {
     <TouchableOpacity onPress={onPress} >
       <View style={myStyles.containerCardUnidade}>
         <View style={{ backgroundColor: styleColor.tema30A, height: 38, padding: 6, justifyContent: "center" }}>
-          <Text style={styleApp.textoRegular}>Status: {item.status}</Text>
+          <Text style={styleApp.textRegular}>Status: {item.status}</Text>
         </View>
         <View style={{ padding: 6, gap: 8, justifyContent: "flex-start" }}>
-          <Text style={styleApp.textoSubtitulo}>{item.nome}</Text>
+          <Text style={styleApp.textSubtitulo}>{item.nome}</Text>
         </View>
       </View >
     </TouchableOpacity>
@@ -62,10 +62,10 @@ export default function ViewLojaUnidades() {
     <SafeAreaView style={styleApp.containerSafeArea}>
       {GradienteFill()}
       <View style={myStyles.containerHeader}>
-        <Text style={styleApp.textoTituloPagina}>
+        <Text style={styleApp.textTitulo}>
           Gerencie suas lojas
         </Text>
-        <Text style={styleApp.textoRegular}>
+        <Text style={styleApp.textRegular}>
           Selecione abaixo uma unidade previamente cadastrada e atualize os dados que desejar
         </Text>
       </View>

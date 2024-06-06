@@ -34,7 +34,7 @@ export const myStyles = StyleSheet.create({
     resizeMode: "contain",
     alignSelf: "flex-end",
   },
-  textoTituloPagina: {
+  textTitulo: {
     fontFamily: 'Lato-Bold',
     fontSize: styleApp.size.textoSize0,
     //fontWeight: styleSize.textoNegritoForte,
@@ -42,7 +42,7 @@ export const myStyles = StyleSheet.create({
     marginBottom: 25,
     color: styleApp.color.tema10B,
   },
-  textoSubtitulo: {
+  textSubtitulo: {
     fontFamily: 'Lato-Regular',
     fontSize: styleApp.size.textoSize2,
     //fontWeight: styleSize.textoNegritoForte,

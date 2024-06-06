@@ -63,11 +63,11 @@ function maquina(tipMaq, idMaq, status, view) {
     return (
       <View>
         <View style={myStyles.containerLavaSeca}>
-          <Text style={styleApp.textoPequeno}>
+          <Text style={styleApp.textSmall}>
             {tipMaq + " " + idMaq}
           </Text>
           {flagViewStatusMaquina == true ?
-            <Text style={styleApp.textoPequeno}>
+            <Text style={styleApp.textSmall}>
               {txStatus}
             </Text> : ""}
         </View>
@@ -85,11 +85,11 @@ function maquina(tipMaq, idMaq, status, view) {
           source={imgMaq}
         />
         <View style={myStyles.containerLavaSeca}>
-          <Text style={styleApp.textoPequeno}>
+          <Text style={styleApp.textSmall}>
             {tipMaq + " " + idMaq}
           </Text>
           {flagViewStatusMaquina == true ?
-            <Text style={styleApp.textoPequeno}>
+            <Text style={styleApp.textSmall}>
               {txStatus}
             </Text> : ""}
         </View>
@@ -186,13 +186,13 @@ export default function ViewLojaMaquinas() {
 
           <View style={{ height: bodyHeight, paddingBottom: 96 }}>
             <View style={myStyles.containerHeader}>
-              <Text style={styleApp.textoTituloPagina}>
+              <Text style={styleApp.textTitulo}>
                 Informações da sua lavanderia favorita
               </Text>
             </View>
             <View style={myStyles.containerBody1}>
               <View style={myStyles.containerUnidadeEndereco}>
-                <Text style={styleApp.textoRegular}>
+                <Text style={styleApp.textRegular}>
                   Você ainda não selecionou uma lavanderia favorita
                 </Text>
               </View>
@@ -203,7 +203,7 @@ export default function ViewLojaMaquinas() {
                 style={myStyles.imgLocalizacao}
                 source={require('../../assets/icones/icon_local2.png')}
               /> */}
-              <MaterialIcons name="location-on" size={styleApp.size.iconSizeRegular} color={styleApp.color.buttonText} />
+              <MaterialIcons name="location-on" size={styleApp.size.iconSizeRegular} color={styleApp.color.textButtonRegular} />
               <Text style={styleApp.textButtonRegular}>Pesquisar lavanderias</Text>
             </TouchableOpacity>
 
@@ -218,7 +218,7 @@ export default function ViewLojaMaquinas() {
                 {maquina("lava", 3, lava[1], false)}
                 {maquina("lava", 5, lava[1], false)}
               </View>
-              <Text style={styleApp.textoRegular}>
+              <Text style={styleApp.textRegular}>
                 Esta é uma imagem ilustrativa
               </Text>
             </View>
@@ -236,7 +236,7 @@ export default function ViewLojaMaquinas() {
 
         <View style={{ height: bodyHeight, paddingBottom: 96 }}>
           <View style={myStyles.containerHeader}>
-            <Text style={styleApp.textoTituloPagina}>
+            <Text style={styleApp.textTitulo}>
               Sua lavanderia fora de casa
             </Text>
           </View>
@@ -246,8 +246,8 @@ export default function ViewLojaMaquinas() {
                 style={myStyles.imgLocalizacao}
                 source={require('../../assets/icones/icon_local2.png')}
               /> */}
-              <MaterialIcons name="location-on" size={styleApp.size.iconSizeRegular} color={styleApp.color.buttonText} />
-              <Text style={styleApp.textoSubtitulo}>
+              <MaterialIcons name="location-on" size={styleApp.size.iconSizeRegular} color={styleApp.color.textButtonRegular} />
+              <Text style={styleApp.textSubtitulo}>
                 Unidade: ASA NORTE
               </Text>
             </View>
@@ -263,14 +263,14 @@ export default function ViewLojaMaquinas() {
                   source={require('../../assets/icones/aqua_relogio_fechados.png')}
                 />
               }
-              <Text style={styleApp.textoRegular}>
+              <Text style={styleApp.textRegular}>
                 Abertos diariamente de 6h às 23h
               </Text>
             </View>
 
             <View style={myStyles.containerFacilidades}>
               <TouchableOpacity style={styleApp.buttonFlatHL_transp} disabled={false} onPress={atualizarStatus}>
-                <Text style={styleApp.buttonTextFlat}>Selecione outra loja aqui</Text>
+                <Text style={styleApp.textButtonFlat}>Selecione outra loja aqui</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -278,7 +278,7 @@ export default function ViewLojaMaquinas() {
           <View style={myStyles.containerBody2}>
             {/*
             <View style={myStyles.containerBroadcast}>
-              <Text style={styleApp.textoRegular}>
+              <Text style={styleApp.textRegular}>
                 Excepcionalmente hoje, 25/04/2024, quinta-feira, funcionaremos de 6h às 15h
               </Text>
             </View>
@@ -300,7 +300,7 @@ export default function ViewLojaMaquinas() {
                 style={myStyles.imgRelogio}
                 source={require('../../assets/icones/aqua_relogio_comum.png')}
               />
-              <Text style={styleApp.textoRegular}>
+              <Text style={styleApp.textRegular}>
                 26/06/2024 08:36
               </Text>
             </View>

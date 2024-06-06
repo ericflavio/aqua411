@@ -128,69 +128,69 @@ export default function ViewEdtMenuLoja() {
 
         {lojaDadosBasicos !== null && lojaDadosBasicos.nome !== "" ?
           <View style={myStyles.containerDadosLoja}>
-            <Text style={styleApp.textoTituloPagina}>{lojaDadosBasicos.nome}</Text>
-            <Text style={styleApp.textoRegular}>Status: <Text style={myStyles.textoStatus}>{lojaDadosBasicos.status}</Text></Text>
+            <Text style={styleApp.textTitulo}>{lojaDadosBasicos.nome}</Text>
+            <Text style={styleApp.textRegular}>Status: <Text style={myStyles.textoStatus}>{lojaDadosBasicos.status}</Text></Text>
           </View>
           :
           <View style={myStyles.containerDadosLoja}>
-            <Text style={styleApp.textoRegular}>Atualize os dados da loja.</Text>
+            <Text style={styleApp.textRegular}>Atualize os dados da loja.</Text>
           </View>
         }
 
         <View style={{ backgroundColor: styleApp.color.cinzaClaro, minHeight: 24, paddingLeft: 12 }}>
-          <Text style={styleApp.textoPequeno}>Ações de gerenciamento</Text>
+          <Text style={styleApp.textSmall}>Ações de gerenciamento</Text>
         </View>
 
         <View style={myStyles.containerOthers}>
           <TouchableOpacity style={styleApp.buttonFlatHL} onPress={{}} >
-            <MaterialIcons name="delete-outline" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.buttonTextFlat} />
-            <Text style={styleApp.buttonTextFlat}>Desistir de cadastrar</Text>
+            <MaterialIcons name="delete-outline" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.textButtonFlat} />
+            <Text style={styleApp.textButtonFlat}>Desistir de cadastrar</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styleApp.buttonFlatHL} onPress={{}} >
-            <MaterialIcons name="saved-search" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.buttonTextFlat} />
-            <Text style={styleApp.buttonTextFlat}>Aparecer nas buscas dos clientes</Text>
+            <MaterialIcons name="saved-search" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.textButtonFlat} />
+            <Text style={styleApp.textButtonFlat}>Aparecer nas buscas dos clientes</Text>
           </TouchableOpacity>
 {/*           <TouchableOpacity style={styleApp.buttonFlatHL} onPress={{}} >
-            <MaterialIcons name="pause-presentation" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.buttonTextFlat} />
-            <Text style={styleApp.buttonTextFlat}>Omitir temporariamnte das buscas</Text>
+            <MaterialIcons name="pause-presentation" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.textButtonFlat} />
+            <Text style={styleApp.textButtonFlat}>Omitir temporariamnte das buscas</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styleApp.buttonFlatHL} onPress={{}} >
-            <MaterialIcons name="cancel-presentation" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.buttonTextFlat} />
-            <Text style={styleApp.buttonTextFlat}>Desativar permanentemente</Text>
+            <MaterialIcons name="cancel-presentation" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.textButtonFlat} />
+            <Text style={styleApp.textButtonFlat}>Desativar permanentemente</Text>
           </TouchableOpacity> */}
         </View>
 
 
         <View style={{ backgroundColor: styleApp.color.cinzaClaro, minHeight: 24, paddingLeft: 12 }}>
-          <Text style={styleApp.textoPequeno}>Opções de edição</Text>
+          <Text style={styleApp.textSmall}>Opções de edição</Text>
         </View>
 
 
         <View style={myStyles.containerPrincipal}>
           <TouchableOpacity style={styleApp.buttonFlatHL_list} disabled={disabledEndereco} onPress={goTo} >
             <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <MaterialIcons name="add-business" size={styleApp.size.iconSizeRegular} color={styleApp.color.buttonTextFlat} />
-              <Text style={styleApp.buttonTextFlat}>Endereço</Text>
+              <MaterialIcons name="add-business" size={styleApp.size.iconSizeRegular} color={styleApp.color.textButtonFlat} />
+              <Text style={styleApp.textButtonFlat}>Endereço</Text>
             </View>
             <MaterialIcons name="navigate-next" size={styleApp.size.iconSizeRegular} color={styleApp.color.cinzaMedio} />
           </TouchableOpacity>
           <TouchableOpacity style={styleApp.buttonFlatHL_list} disabled={disabled} onPress={goTo} >
             <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <MaterialIcons name="location-on" size={styleApp.size.iconSizeRegular} color={styleApp.color.buttonTextFlat} />
-              <Text style={styleApp.buttonTextFlat}>Localização</Text>
+              <MaterialIcons name="location-on" size={styleApp.size.iconSizeRegular} color={styleApp.color.textButtonFlat} />
+              <Text style={styleApp.textButtonFlat}>Localização</Text>
             </View>
             <MaterialIcons name="navigate-next" size={styleApp.size.iconSizeRegular} color={styleApp.color.cinzaMedio} />
           </TouchableOpacity>
           <TouchableOpacity style={styleApp.buttonFlatHL_list} disabled={disabled} onPress={goTo} >
             <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <MaterialIcons name="access-time" size={styleApp.size.iconSizeRegular} color={styleApp.color.buttonTextFlat} />
-              <Text style={styleApp.buttonTextFlat}>Horário de funcionamento</Text>
+              <MaterialIcons name="access-time" size={styleApp.size.iconSizeRegular} color={styleApp.color.textButtonFlat} />
+              <Text style={styleApp.textButtonFlat}>Horário de funcionamento</Text>
             </View>
             <MaterialIcons name="navigate-next" size={styleApp.size.iconSizeRegular} color={styleApp.color.cinzaMedio} />
           </TouchableOpacity>
 
           <View style={{ backgroundColor: styleApp.color.cinzaClaro, minHeight: 24, paddingLeft: 12 }}>
-            <Text style={styleApp.textoPequeno}>Opções de edição para assinantes</Text>
+            <Text style={styleApp.textSmall}>Opções de edição para assinantes</Text>
           </View>
         </View>
 

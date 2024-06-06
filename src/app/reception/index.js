@@ -18,17 +18,17 @@ export default function ViewReception() {
       <View style={myStyles.containerHeader}>
         <Animatable.Text
           animation="slideInLeft"
-          style={myStyles.textoTituloPagina}>
+          style={myStyles.textTitulo}>
           Você ainda lava roupa em casa?
         </Animatable.Text>
-        <Text style={myStyles.textoSubtitulo}>
+        <Text style={myStyles.textSubtitulo}>
           Está na hora de conhecer os benefícios das lavanderias inteligentes
         </Text>
         <View style={myStyles.containerViewButton}>
           <TouchableOpacity style={styleApp.buttonHC} onPress={goToLogin}>
             <View style={myStyles.containerButton}>
               <Text style={styleApp.textButtonRegular}>Começar</Text>
-              <MaterialIcons name="arrow-outward" size={styleApp.size.iconSizeButtonSmall} color={styleColor.buttonText} />
+              <MaterialIcons name="arrow-outward" size={styleApp.size.iconSizeButtonSmall} color={styleColor.textButtonRegular} />
             </View>
           </TouchableOpacity>
         </View>

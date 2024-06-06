@@ -7,21 +7,21 @@ const tema = "claro";
 tema60A = "#ffffff";
 tema60B = "#f5f1e0ff";
 tema60C = "#364366ff", //"#262626ff";
-tema30A = "#ee7087ff", //"#4ea0f8ff";
-tema10A = "#84d3f8ff", //"#f8cd37ff";
-tema10B = "#968078ff",//"#8e7262ff"; "#669e8eff"
+  tema30A = "#ee7087ff", //"#4ea0f8ff";
+  tema10A = "#84d3f8ff", //"#f8cd37ff";
+  tema10B = "#968078ff",//"#8e7262ff"; "#669e8eff"
 
-//Textos gerais
-tema === "claro" ? textoRegular = '#262626ff' : textoRegular = '#f5f1e0ff';
+  //Textos gerais
+  tema === "claro" ? textRegular = '#262626ff' : textRegular = '#f5f1e0ff';
 tema === "claro" ? textoDestaque = tema10B : textoDestaque = tema10A;
 tema === "claro" ? textoTitulo = tema10B : textoTitulo = tema60A;
-tema === "claro" ? textoSubtitulo = "#262626ff" : textoSubtitulo = tema60B;
+tema === "claro" ? textSubtitulo = "#262626ff" : textSubtitulo = tema60B;
 
 //Botões (incluindo também seus textos)
 tema === "claro" ? buttonBackground = tema10A : buttonBackground = tema60B;
 tema === "claro" ? buttonBorder = '#606060ff' : buttonBorder = tema30A;
-tema === "claro" ? buttonText = "white" : buttonText = "white";
-tema === "claro" ? buttonTextFlat = textoRegular : buttonTextFlat = textoRegular;
+tema === "claro" ? textButtonRegular = "white" : textButtonRegular = "white";
+tema === "claro" ? textButtonFlat = textRegular : textButtonFlat = textRegular;
 
 //Background da safe-area
 tema === "claro" ? backgroundSafeArea = '#ffffff' : backgroundSafeArea = '#262626ff';
@@ -37,15 +37,14 @@ export const styleColor = StyleSheet.create({
   //Botões
   buttonBackground,
   buttonBorder,
-  buttonText,
-  buttonTextFlat,
-  //Background
-  backgroundSafeArea,
-  //Textos
-  textoRegular,
+  //Textos dentro de botões
+  textButtonRegular,
+  textButtonFlat,
+  //Textos fora de botões
+  textRegular,
   textoDestaque,
   textoTitulo,
-  textoSubtitulo,
+  textSubtitulo,
   //Container de InputTextos
   inputTextBorder: tema30A,
   //Azul
@@ -63,5 +62,7 @@ export const styleColor = StyleSheet.create({
   alerta: "#ffe275ff",
   sucesso: "#669e8eff",
   //Activity Indicadtor
-  activityIndicatorCollor: "#262626ff"
+  activityIndicatorCollor: "#262626ff",
+  //Background
+  backgroundSafeArea,
 });

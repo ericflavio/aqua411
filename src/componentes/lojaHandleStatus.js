@@ -31,7 +31,7 @@ export default function LojaHandleStatus(statusListToChange, statusList, current
           })}
         </Picker>
         :
-        <Text style={styleApp.textoRegular}>
+        <Text style={styleApp.textRegular}>
           {msg}
         </Text>
       }

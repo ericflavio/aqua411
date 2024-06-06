@@ -84,11 +84,11 @@ export default function ViewLojaCadastroBasico() {
           <>
             {lojaDadosBasicos !== null && lojaDadosBasicos.nome !== "" ?
               <View style={myStyles.containerDadosLoja}>
-                <Text style={styleApp.textoRegular}>Você já iniciou o cadastramento de uma loja.</Text>
+                <Text style={styleApp.textRegular}>Você já iniciou o cadastramento de uma loja.</Text>
               </View>
               :
               <View style={myStyles.containerDadosLoja}>
-                <Text style={styleApp.textoRegular}>Cadastre sua loja para que seus clientes possam receber avisos, alertas de promoções, orientações e muito mais.</Text>
+                <Text style={styleApp.textRegular}>Cadastre sua loja para que seus clientes possam receber avisos, alertas de promoções, orientações e muito mais.</Text>
               </View>
             }
           </>

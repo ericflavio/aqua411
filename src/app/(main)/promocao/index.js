@@ -34,8 +34,8 @@ function montaPromocao(vigente) {
       </View>
       <View style={myStyles.containerPromoPeriodo}>
         <MaterialIcons name="calendar-month" size={styleApp.size.iconSizeButtonRegular} color={"grey"} />
-        <Text style={styleApp.textoRegular}>{promo.dataInicio} <Text> até </Text></Text>
-        <Text style={styleApp.textoRegular}>{promo.dataFim}</Text>
+        <Text style={styleApp.textRegular}>{promo.dataInicio} <Text> até </Text></Text>
+        <Text style={styleApp.textRegular}>{promo.dataFim}</Text>
       </View>
       <Text style={myStyles.textoPromo}>{promo.descricao}</Text>
     </TouchableOpacity>
@@ -50,10 +50,10 @@ export default function ViewPromocao() {
       {GradienteFill()}
       <ScrollView style={styleApp.containerScroll} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
         <View style={myStyles.containerHeader}>
-          <Text style={styleApp.textoTituloPagina}>
+          <Text style={styleApp.textTitulo}>
             Promoções para você economizar
           </Text>
-          <Text style={styleApp.textoRegular}>
+          <Text style={styleApp.textRegular}>
             Mais detalhes você pode encontrar na loja e no atendimento via Whatsapp
           </Text>
         </View>

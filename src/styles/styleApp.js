@@ -45,7 +45,7 @@ export const styleApp = StyleSheet.create({
     paddingBottom: 72,
   },
   //Textos
-  textoTituloPagina: {
+  textTitulo: {
     fontFamily: 'Lato-Bold',
     fontSize: styleSize.textoSize0,
     //fontWeight: styleSize.textoNegritoForte,
@@ -53,24 +53,24 @@ export const styleApp = StyleSheet.create({
     marginBottom: 20,
     color: styleColor.textoTitulo,
   },
-  textoSubtitulo: {
+  textSubtitulo: {
     fontFamily: 'Lato-Bold',
     fontSize: styleSize.textoSize1,
     //fontWeight: styleSize.textoNegritoForte,
     marginTop: 0,
-    color: styleColor.textoSubtitulo,
+    color: styleColor.textSubtitulo,
   },
-  textoRegular: {
+  textRegular: {
     fontFamily: 'Lato-Regular',
     fontSize: styleSize.textoSize3,
     //fontWeight: styleSize.textoNegritoMedio,
-    color: styleColor.textoRegular,
+    color: styleColor.textRegular,
   },
-  textoPequeno: {
+  textSmall: {
     fontFamily: 'Lato-Thin',
     fontSize: styleSize.textoSize5,
     //fontWeight: styleSize.TextoNegritoOff,
-    color: styleColor.textoRegular,
+    color: styleColor.textRegular,
   },
 
   //Botões: estilo do touchable
@@ -126,7 +126,7 @@ export const styleApp = StyleSheet.create({
     alignItems: 'center',
     justifyContent: "flex-start",
     backgroundColor: "white",
-    borderColor: styleColor.cinzaClaro,
+    borderColor: styleColor.buttonBorder,
     marginTop: 0,
     marginBottom: 0,
     padding: 4,
@@ -148,6 +148,7 @@ export const styleApp = StyleSheet.create({
     maxWidth: "100%",
     borderWidth: 0,
     borderRadius: 0,
+    borderColor: styleColor.buttonBorder,
     gap: 6,
   },
   buttonFlatHL_list: { //Horizontal flat, esquerdo, estilo lista
@@ -155,7 +156,7 @@ export const styleApp = StyleSheet.create({
     alignItems: 'center',
     justifyContent: "space-between",
     backgroundColor: "white",
-    borderColor: styleColor.cinzaClaro,
+    borderColor: styleColor.buttonBorder,
     marginTop: 0,
     marginBottom: 0,
     padding: 4,
@@ -172,13 +173,13 @@ export const styleApp = StyleSheet.create({
     fontFamily: 'Lato-Bold',
     fontSize: styleSize.textoSize4,
     //fontWeight: styleSize.textoNegritoForte,
-    color: styleColor.buttonText,
+    color: styleColor.textButtonRegular,
   },
-  buttonTextFlat: {
+  textButtonFlat: {
     fontFamily: 'Lato-Regular',
     fontSize: styleSize.textoSize4,
     //fontWeight: styleSize.textoNegritoMedio,
-    color: styleColor.buttonTextFlat,
+    color: styleColor.textButtonFlat,
   },
 
   //InputText
