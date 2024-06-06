@@ -50,38 +50,38 @@ export default function ViewConta() {
 
         <View style={myStyles.containerBasics}>
           <TouchableOpacity style={styleApp.buttonFlatV} onPress={{}} >
-            <MaterialIcons name="help-outline" size={styleApp.size.iconSizeButtonRegular} color={styleColor.buttonTextFlat} />
-            <Text style={styleApp.buttonTextFlat}>Ajuda</Text>
+            <MaterialIcons name="help-outline" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
+            <Text style={styleApp.textButtonFlat}>Ajuda</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styleApp.buttonFlatV} onPress={{}} >
-            <MaterialIcons name="payment" size={styleApp.size.iconSizeButtonRegular} color={styleColor.buttonTextFlat} />
-            <Text style={styleApp.buttonTextFlat}>Pagamentos</Text>
+            <MaterialIcons name="payment" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
+            <Text style={styleApp.textButtonFlat}>Pagamentos</Text>
           </TouchableOpacity>
         </View>
 
         <View style={myStyles.containerOthers}>
           <TouchableOpacity style={styleApp.buttonFlatHL} onPress={adicionarLoja} >
-            <MaterialIcons name="add-business" size={styleApp.size.iconSizeButtonRegular} color={styleColor.buttonTextFlat} />
-            <Text style={styleApp.buttonTextFlat}>Cadastrar uma loja que possuo</Text>
+            <MaterialIcons name="add-business" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
+            <Text style={styleApp.textButtonFlat}>Cadastrar uma loja que possuo</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styleApp.buttonFlatHL} onPress={listarUnidades} >
-            <MaterialIcons name="local-laundry-service" size={styleApp.size.iconSizeButtonRegular} color={styleColor.buttonTextFlat} />
-            <Text style={styleApp.buttonTextFlat}>Gerenciar minhas lojas</Text>
+            <MaterialIcons name="local-laundry-service" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
+            <Text style={styleApp.textButtonFlat}>Gerenciar minhas lojas</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styleApp.buttonFlatHL} onPress={{}} >
             <MaterialIcons name="business" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textoRegular} />
-            <Text style={styleApp.buttonTextFlat}>Cadastrar uma franquia </Text>
+            <Text style={styleApp.textButtonFlat}>Cadastrar uma franquia </Text>
           </TouchableOpacity>
           <TouchableOpacity style={styleApp.buttonFlatHL} onPress={{}} >
-            <MaterialIcons name="business-center" size={styleApp.size.iconSizeButtonRegular} color={styleColor.buttonTextFlat} />
-            <Text style={styleApp.buttonTextFlat}>Gerenciar minhas franquias</Text>
+            <MaterialIcons name="business-center" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
+            <Text style={styleApp.textButtonFlat}>Gerenciar minhas franquias</Text>
           </TouchableOpacity>
         </View>
 
         <TouchableOpacity style={styleApp.buttonFlatHL_transp} onPress={logoutApp} >
-          <MaterialIcons name="logout" size={styleApp.size.iconSizeButtonRegular} color={styleColor.buttonTextFlat} />
-          <Text style={styleApp.buttonTextFlat}>Sair do app</Text>
+          <MaterialIcons name="logout" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
+          <Text style={styleApp.textButtonFlat}>Sair do app</Text>
         </TouchableOpacity>
 
       </ScrollView>

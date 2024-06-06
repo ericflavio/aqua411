@@ -167,15 +167,17 @@ export const styleApp = StyleSheet.create({
     gap: 6
   },
   //Botões: estilo do texto dentro do touchable
-  buttonTextRegular: {
+  textButtonRegular: {
+    fontFamily: 'Lato-Bold',
     fontSize: styleSize.textoSize4,
-    fontWeight: styleSize.textoNegritoForte,
+    //fontWeight: styleSize.textoNegritoForte,
     color: styleColor.buttonText,
   },
-  buttonTextFlat: {
+  textButtonFlat: {
+    fontFamily: 'Lato-Regular',
     fontSize: styleSize.textoSize4,
-    fontWeight: styleSize.textoNegritoMedio,
-    color: styleColor.buttonTextFlat,
+    //fontWeight: styleSize.textoNegritoMedio,
+    color: styleColor.textButtonFlat,
   },
 
   //InputText
@@ -185,7 +187,7 @@ export const styleApp = StyleSheet.create({
     margin: 0,
     fontFamily: 'Lato-Regular',
     fontSize: 20,
-    fontWeight: "bold",
+    //fontWeight: styleSize.textoNegritoMedio,
     borderWidth: 0,
     borderBottomWidth: 1.5,
     borderBottomColor: styleColor.inputTextBorder,

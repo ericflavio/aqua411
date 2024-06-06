@@ -147,7 +147,7 @@ export default function ViewEdtLocalizacaoLoja() {
 
           <TouchableOpacity style={styleApp.buttonHC} disabled={!flagEditavel} onPress={prosseguir} >
             {!flagEditavel ? <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor}/> : ""}
-            <Text style={styleApp.buttonTextRegular}>Continuar</Text>
+            <Text style={styleApp.textButtonRegular}>Continuar</Text>
           </TouchableOpacity>
         </View>
         <View style={myStyles.containerBottom}>

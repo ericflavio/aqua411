@@ -21,7 +21,7 @@ tema === "claro" ? textoSubtitulo = "#262626ff" : textoSubtitulo = tema60B;
 tema === "claro" ? buttonBkg = tema10A : buttonBackground = tema60B;
 tema === "claro" ? buttonBorder = '#606060ff' : buttonBorder = tema30A;
 tema === "claro" ? buttonText = "white" : buttonText = "white";
-tema === "claro" ? buttonTextFlat = textoRegular : buttonTextFlat = textoRegular;
+tema === "claro" ? textButtonFlat = textoRegular : textButtonFlat = textoRegular;
 
 //Background da safe-area
 tema === "claro" ? bkgSafeArea = '#ffffff' : bkgSafeArea = '#262626ff';
@@ -38,7 +38,7 @@ export const styleColor = StyleSheet.create({
   buttonBkg,
   buttonBorder,
   buttonText,
-  buttonTextFlat,
+  textButtonFlat,
   //Background
   bkgSafeArea,
   //Textos

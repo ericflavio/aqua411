@@ -164,7 +164,7 @@ export default function ViewEdtEnderecoLoja() {
 
           <TouchableOpacity style={styleApp.buttonHC} disabled={!flagEditavel} onPress={prosseguir} >
               {!flagEditavel ? <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor}/> : ""}
-              <Text style={styleApp.buttonTextRegular}>Confirmar</Text>
+              <Text style={styleApp.textButtonRegular}>Confirmar</Text>
           </TouchableOpacity>
         </View>
 

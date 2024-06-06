@@ -98,7 +98,7 @@ export default function ViewLojaCadastroBasico() {
 
           <TouchableOpacity style={styleApp.buttonHC} disabled={!flagEditavel} onPress={goTo}>
             <View style={myStyles.containerButton}>
-              <Text style={styleApp.buttonTextRegular}>Confirmar e prosseguir</Text>
+              <Text style={styleApp.textButtonRegular}>Confirmar e prosseguir</Text>
             </View>
           </TouchableOpacity>
         </View>

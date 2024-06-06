@@ -143,20 +143,20 @@ export default function ViewEdtMenuLoja() {
 
         <View style={myStyles.containerOthers}>
           <TouchableOpacity style={styleApp.buttonFlatHL} onPress={{}} >
-            <MaterialIcons name="delete-outline" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.buttonTextFlat} />
-            <Text style={styleApp.buttonTextFlat}>Desistir de cadastrar</Text>
+            <MaterialIcons name="delete-outline" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.textButtonFlat} />
+            <Text style={styleApp.textButtonFlat}>Desistir de cadastrar</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styleApp.buttonFlatHL} onPress={{}} >
-            <MaterialIcons name="saved-search" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.buttonTextFlat} />
-            <Text style={styleApp.buttonTextFlat}>Aparecer nas buscas dos clientes</Text>
+            <MaterialIcons name="saved-search" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.textButtonFlat} />
+            <Text style={styleApp.textButtonFlat}>Aparecer nas buscas dos clientes</Text>
           </TouchableOpacity>
 {/*           <TouchableOpacity style={styleApp.buttonFlatHL} onPress={{}} >
-            <MaterialIcons name="pause-presentation" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.buttonTextFlat} />
-            <Text style={styleApp.buttonTextFlat}>Omitir temporariamnte das buscas</Text>
+            <MaterialIcons name="pause-presentation" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.textButtonFlat} />
+            <Text style={styleApp.textButtonFlat}>Omitir temporariamnte das buscas</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styleApp.buttonFlatHL} onPress={{}} >
-            <MaterialIcons name="cancel-presentation" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.buttonTextFlat} />
-            <Text style={styleApp.buttonTextFlat}>Desativar permanentemente</Text>
+            <MaterialIcons name="cancel-presentation" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.textButtonFlat} />
+            <Text style={styleApp.textButtonFlat}>Desativar permanentemente</Text>
           </TouchableOpacity> */}
         </View>
 
@@ -169,22 +169,22 @@ export default function ViewEdtMenuLoja() {
         <View style={myStyles.containerPrincipal}>
           <TouchableOpacity style={styleApp.buttonFlatHL_list} disabled={disabledEndereco} onPress={goTo} >
             <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <MaterialIcons name="add-business" size={styleApp.size.iconSizeRegular} color={styleApp.color.buttonTextFlat} />
-              <Text style={styleApp.buttonTextFlat}>Endereço</Text>
+              <MaterialIcons name="add-business" size={styleApp.size.iconSizeRegular} color={styleApp.color.textButtonFlat} />
+              <Text style={styleApp.textButtonFlat}>Endereço</Text>
             </View>
             <MaterialIcons name="navigate-next" size={styleApp.size.iconSizeRegular} color={styleApp.color.cinzaMedio} />
           </TouchableOpacity>
           <TouchableOpacity style={styleApp.buttonFlatHL_list} disabled={disabled} onPress={goTo} >
             <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <MaterialIcons name="location-on" size={styleApp.size.iconSizeRegular} color={styleApp.color.buttonTextFlat} />
-              <Text style={styleApp.buttonTextFlat}>Localização</Text>
+              <MaterialIcons name="location-on" size={styleApp.size.iconSizeRegular} color={styleApp.color.textButtonFlat} />
+              <Text style={styleApp.textButtonFlat}>Localização</Text>
             </View>
             <MaterialIcons name="navigate-next" size={styleApp.size.iconSizeRegular} color={styleApp.color.cinzaMedio} />
           </TouchableOpacity>
           <TouchableOpacity style={styleApp.buttonFlatHL_list} disabled={disabled} onPress={goTo} >
             <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <MaterialIcons name="access-time" size={styleApp.size.iconSizeRegular} color={styleApp.color.buttonTextFlat} />
-              <Text style={styleApp.buttonTextFlat}>Horário de funcionamento</Text>
+              <MaterialIcons name="access-time" size={styleApp.size.iconSizeRegular} color={styleApp.color.textButtonFlat} />
+              <Text style={styleApp.textButtonFlat}>Horário de funcionamento</Text>
             </View>
             <MaterialIcons name="navigate-next" size={styleApp.size.iconSizeRegular} color={styleApp.color.cinzaMedio} />
           </TouchableOpacity>
