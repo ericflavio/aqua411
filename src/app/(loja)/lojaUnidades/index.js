@@ -30,7 +30,7 @@ export default function ViewLojaUnidades() {
     <TouchableOpacity onPress={onPress} >
       <View style={myStyles.containerCardUnidade}>
         <View style={{ backgroundColor: styleColor.tema30pPrincipal, height: 38, padding: 6, justifyContent: "center" }}>
-          <Text style={styleApp.textRegular}>{item.apelido}</Text>
+          <Text style={styleApp.textSmall}>{item.apelido}</Text>
         </View>
         <View style={{ padding: 6, gap: 8, justifyContent: "flex-start" }}>
           <Text style={styleApp.textSubtitulo}>{item.nome}</Text>

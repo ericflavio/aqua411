@@ -32,7 +32,7 @@
       "expo-router",
       ["expo-font",
       {
-        "fonts": ["./assets/fonts/Lato-Regular.ttf"]
+        "fonts": ["./assets/fonts/Roboto-Regular.ttf"]
       }]
     ]
   }

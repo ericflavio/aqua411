@@ -39,7 +39,7 @@ const styleLocal = StyleSheet.create({
     marginTop: 6,
     height: 54,
     margin: 0,
-    fontFamily: 'Lato-Regular',
+    fontFamily: 'Roboto-Regular',
     fontSize: 20,
     //fontWeight: styleSize.textoNegritoMedio,
     borderWidth: 0,

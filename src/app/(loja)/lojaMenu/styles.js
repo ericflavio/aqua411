@@ -21,7 +21,7 @@ export const myStyles = StyleSheet.create({
     marginBottom: 40,
   },
   textoStatus: {
-    fontFamily: 'Lato-Bold',
+    fontFamily: 'Roboto-Bold',
     size: styleApp.size.textoSize3,
     color: styleColor.sucesso
   },
@@ -40,4 +40,14 @@ export const myStyles = StyleSheet.create({
     margin: 12,
     //width: "100%"
   },
+  containerSection: {
+    backgroundColor: styleApp.color.cinzaClaro, 
+    minHeight: 28, 
+    padding: 4, 
+    paddingLeft: 12, 
+    paddingRight: 12, 
+    flexDirection: "row", 
+    justifyContent: "space-between", 
+    alignItems: "center" 
+  }
 });

@@ -11,10 +11,11 @@ export default function AppLayout() {
   const { user, isLoading } = useContext(AuthContext);
   console.log("_layout (main)_ ", "isLoading: ", isLoading, " user: ", user !== null ? user.idLogin : "[null]", "isLiveAccount: ", user !== null && user.isLiveAccount !== undefined ? user.isLiveAccount : "[undefined]");
   const [fontsLoaded, fontError] = useFonts({
-    'Lato-Bold': require('../../assets/fonts/Lato-Bold.ttf'),
-    'Lato-Light': require('../../assets/fonts/Lato-Light.ttf'),
-    'Lato-Regular': require('../../assets/fonts/Lato-Regular.ttf'),
-    'Lato-Thin': require('../../assets/fonts/Lato-Thin.ttf'),
+    'Roboto-Bold': require('../../assets/fonts/Roboto-Bold.ttf'),
+    'Roboto-Light': require('../../assets/fonts/Roboto-Light.ttf'),
+    'Roboto-Regular': require('../../assets/fonts/Roboto-Regular.ttf'),
+    'Roboto-Medium': require('../../assets/fonts/Roboto-Medium.ttf'),
+    'Roboto-LightItalic': require('../../assets/fonts/Roboto-LightItalic.ttf'),
   });
 
   const onLayoutRootView = useCallback(async () => {

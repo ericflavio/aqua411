@@ -7,8 +7,7 @@ export const styleApp = StyleSheet.create({
   color: styleColor,
 
   //Container
-  containerBorderRadiusOn: styleSize.containerBorderRadiusOn,
-  containerBorderRadiusOff: styleSize.containerBorderRadiusOff,
+  containerBorderRadius: styleSize.containerBorderRadius,
   containerTamanhoMedioTelas: styleSize.containerTamanhoMedioTelas,
 
   containerSafeArea: { //Com padding
@@ -46,7 +45,7 @@ export const styleApp = StyleSheet.create({
   },
   //Textos
   textTitulo: {
-    fontFamily: 'Lato-Bold',
+    fontFamily: 'Roboto-Bold',
     fontSize: styleSize.textoSize0,
     //fontWeight: styleSize.textoNegritoForte,
     marginTop: 20,
@@ -54,33 +53,33 @@ export const styleApp = StyleSheet.create({
     color: styleColor.textoTitulo,
   },
   textSubtitulo: {
-    fontFamily: 'Lato-Bold',
+    fontFamily: 'Roboto-Bold',
     fontSize: styleSize.textoSize1,
     //fontWeight: styleSize.textoNegritoForte,
     marginTop: 0,
     color: styleColor.textSubtitulo,
   },
   textRegular: {
-    fontFamily: 'Lato-Regular',
+    fontFamily: 'Roboto-Regular',
     fontSize: styleSize.textoSize3,
     //fontWeight: styleSize.textoNegritoMedio,
     color: styleColor.textRegular,
   },
   textSmall: {
-    fontFamily: 'Lato-Thin',
+    fontFamily: 'Roboto-Light', 
     fontSize: styleSize.textoSize5,
     //fontWeight: styleSize.TextoNegritoOff,
     color: styleColor.textRegular,
   },
   //Textos dentro dos botões
   textButtonRegular: {
-    fontFamily: 'Lato-Bold',
+    fontFamily: 'Roboto-Bold',
     fontSize: styleSize.textoSize4,
     //fontWeight: styleSize.textoNegritoForte,
     color: styleColor.textButtonRegular,
   },
   textButtonFlat: {
-    fontFamily: 'Lato-Regular',
+    fontFamily: 'Roboto-Regular',
     fontSize: styleSize.textoSize4,
     //fontWeight: styleSize.textoNegritoMedio,
     color: styleColor.textButtonFlat,
@@ -130,7 +129,7 @@ export const styleApp = StyleSheet.create({
     padding: 4,
     minHeight: 70,
     minWidth: "49%",
-    borderWidth: styleSize.buttonBorderFlatWidth,
+    borderWidth: styleSize.buttonBorderWidthFlat,
     borderRadius: styleSize.buttomBorderRadius,
     gap: 4
   },
@@ -146,7 +145,7 @@ export const styleApp = StyleSheet.create({
     paddingLeft: 8,
     minHeight: 70,
     minWidth: "100%",
-    borderWidth: styleSize.buttonBorderFlatWidth,
+    borderWidth: styleSize.buttonBorderWidthFlat,
     borderRadius: styleSize.buttomBorderRadius,
     gap: 6
   },
@@ -159,7 +158,7 @@ export const styleApp = StyleSheet.create({
     marginBottom: 0,
     padding: 4,
     maxWidth: "100%",
-    borderWidth: styleSize.buttonBorderFlatWidth,
+    borderWidth: styleSize.buttonBorderWidthFlat,
     borderRadius: 0,
     borderColor: styleColor.buttonBorder,
     gap: 6,
@@ -176,8 +175,8 @@ export const styleApp = StyleSheet.create({
     paddingLeft: 8,
     minHeight: 70,
     minWidth: "100%",
-    borderTopWidth: styleSize.buttonBorderFlatWidth,
-    borderBottomWidth: styleSize.buttonBorderFlatWidth / 2,
+    borderTopWidth: styleSize.buttonBorderWidthFlat,
+    borderBottomWidth: styleSize.buttonBorderWidthFlat / 2,
     borderRadius: 0,
     gap: 6
   },

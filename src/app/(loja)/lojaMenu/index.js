@@ -128,9 +128,9 @@ export default function ViewEdtMenuLoja() {
 
         {lojaDadosBasicos !== null && lojaDadosBasicos.nome !== "" ?
           <View style={myStyles.containerDadosLoja}>
-            <Text style={styleApp.textRegular}>{lojaDadosBasicos.apelido}</Text>
-            <Text style={styleApp.textTitulo}>{lojaDadosBasicos.nome}</Text>
+            <Text style={styleApp.textRegular}>Apelido: {lojaDadosBasicos.apelido}</Text>
             <Text style={styleApp.textRegular}>Status: <Text style={myStyles.textoStatus}>{lojaDadosBasicos.status}</Text></Text>
+            <Text style={styleApp.textTitulo}>{lojaDadosBasicos.nome}</Text>
           </View>
           :
           <View style={myStyles.containerDadosLoja}>
@@ -138,8 +138,9 @@ export default function ViewEdtMenuLoja() {
           </View>
         }
 
-        <View style={{ backgroundColor: styleApp.color.cinzaClaro, minHeight: 24, paddingLeft: 12 }}>
+        <View style={myStyles.containerSection}>
           <Text style={styleApp.textSmall}>Ações de gerenciamento</Text>
+          <MaterialIcons name="settings" size={20} color={styleApp.color.textRegular} />
         </View>
 
         <View style={myStyles.containerOthers}>
@@ -151,7 +152,7 @@ export default function ViewEdtMenuLoja() {
             <MaterialIcons name="saved-search" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.textButtonFlat} />
             <Text style={styleApp.textButtonFlat}>Aparecer nas buscas dos clientes</Text>
           </TouchableOpacity>
-{/*           <TouchableOpacity style={styleApp.buttonFlatHL} onPress={{}} >
+          {/*           <TouchableOpacity style={styleApp.buttonFlatHL} onPress={{}} >
             <MaterialIcons name="pause-presentation" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.textButtonFlat} />
             <Text style={styleApp.textButtonFlat}>Omitir temporariamnte das buscas</Text>
           </TouchableOpacity>
@@ -161,11 +162,10 @@ export default function ViewEdtMenuLoja() {
           </TouchableOpacity> */}
         </View>
 
-
-        <View style={{ backgroundColor: styleApp.color.cinzaClaro, minHeight: 24, paddingLeft: 12 }}>
-          <Text style={styleApp.textSmall}>Opções de edição</Text>
+        <View style={myStyles.containerSection}>
+          <Text style={styleApp.textSmall}>Configuração da loja</Text>
+          <MaterialIcons name="edit" size={20} color={styleApp.color.textRegular} />
         </View>
-
 
         <View style={myStyles.containerPrincipal}>
           <TouchableOpacity style={styleApp.buttonFlatHL_list} disabled={disabledEndereco} onPress={goTo} >
@@ -190,8 +190,9 @@ export default function ViewEdtMenuLoja() {
             <MaterialIcons name="navigate-next" size={styleApp.size.iconSizeRegular} color={styleApp.color.cinzaMedio} />
           </TouchableOpacity>
 
-          <View style={{ backgroundColor: styleApp.color.cinzaClaro, minHeight: 24, paddingLeft: 12 }}>
+          <View style={myStyles.containerSection}>
             <Text style={styleApp.textSmall}>Opções de edição para assinantes</Text>
+            <MaterialIcons name="edit" size={20} color={styleApp.color.textRegular} />
           </View>
         </View>
 

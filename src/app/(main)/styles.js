@@ -53,7 +53,7 @@ export const myStyles = StyleSheet.create({
     alignContent: "flex-start",
     justifyContent: "flex-start",
     padding: 12,
-    borderRadius: styleApp.containerBorderRadiusOn,
+    borderRadius: styleApp.containerBorderRadius,
     borderWidth: styleApp.size.containerBordaOnOff,
   },
   containerMaquinas: {

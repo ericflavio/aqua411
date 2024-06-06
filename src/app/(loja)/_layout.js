@@ -20,7 +20,7 @@ export default function LojaLayout() {
         headerMode: 'screen',
         //headerTintColor: '#ffffff',
         headerTitleStyle: {
-          fontFamily: 'Lato-Bold',
+          fontFamily: 'Roboto-Bold',
         },
       }} >
 

@@ -35,7 +35,7 @@ export const myStyles = StyleSheet.create({
     alignSelf: "flex-end",
   },
   textTitulo: {
-    fontFamily: 'Lato-Bold',
+    fontFamily: 'Roboto-Bold',
     fontSize: styleApp.size.textoSize0,
     //fontWeight: styleSize.textoNegritoForte,
     marginTop: 20,
@@ -43,7 +43,7 @@ export const myStyles = StyleSheet.create({
     color: styleApp.color.tema10pTerciaria,
   },
   textSubtitulo: {
-    fontFamily: 'Lato-Regular',
+    fontFamily: 'Roboto-Regular',
     fontSize: styleApp.size.textoSize2,
     //fontWeight: styleSize.textoNegritoForte,
     marginTop: 0,

@@ -21,7 +21,7 @@ export const myStyles = StyleSheet.create({
     marginBottom: 40,
   },
   textoStatus: {
-    fontFamily: 'Lato-Bold',
+    fontFamily: 'Roboto-Bold',
     size: styleApp.size.textoSize3,
     color: styleColor.sucesso
   },

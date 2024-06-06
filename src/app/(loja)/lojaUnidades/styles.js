@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native";
 import { styleApp } from "../../../styles/styleApp";
 import { styleColor } from "../../../styles/styleColors";
+import { styleSize } from "../../../styles/styleSize";
 
 export const myStyles = StyleSheet.create({
   containerHeader: {
@@ -10,14 +11,13 @@ export const myStyles = StyleSheet.create({
     borderWidth: styleApp.size.containerBordaOnOff
   },
   containerCardUnidade: {
-    padding: 0,
-    borderWidth: 1,
-    borderColor: styleColor.tema10pSecundaria,
-    borderBottomStartRadius: 8,
-    borderBottomEndRadius: 8,
+    padding: 6,
+    borderWidth: 4,
+    borderColor: "white",
+    borderRadius: styleSize.containerBorderRadius,
     marginBottom: 8,
     height: 120,
-    backgroundColor: styleColor.tema10pSecundaria,
+    backgroundColor: "white",
   },
   continerViewPrincipal: { //Com borda lateral
     flex: 1,

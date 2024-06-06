@@ -1,15 +1,19 @@
 //Tamanhos mais utilizados.
 //Obs: Importar apenas dentro da StylesComuns.
 
+//Borda arredondada (quando utilizada)
+const bordaArredondadaParaBotaoSize = 8;
+const bordaArredondadaParaContainers = 8;
+
 //botões regulares (não flat): Bordas e cantos
 const buttonBorderFlatRegular = 0;
 const buttonBorderRegular = 0;
 const buttonBorderBottomRegular = 0;
-const buttonBorderRadiusRegular = 8;
+const buttonBorderRadiusRegular = bordaArredondadaParaBotaoSize;
 
 export const styleSize = {
   //botões
-  buttonBorderFlatWidth: buttonBorderFlatRegular,
+  buttonBorderWidthFlat: buttonBorderFlatRegular,
   buttonBorderWidth: buttonBorderRegular,
   buttonBorderWidthBottom: buttonBorderBottomRegular,
   buttomBorderRadius: buttonBorderRadiusRegular,
@@ -22,10 +26,9 @@ export const styleSize = {
   iconSizeRegular: 32,
   iconSizeSmall: 28,
   iconSizeLarge: 38,
-  //Container
-  containerBordaOnOff: 0,
-  containerBorderRadiusOn: 8,
-  containerBorderRadiusOff: 0,
+  //Container (Views, SafeArea, Scrolls)
+  containerBordaOnOff: 0, //Ligar apenas para debug (padrão é desligado)
+  containerBorderRadius: bordaArredondadaParaContainers,
   containerOcupacaoHorizontalFull: "100%",
   ContainerOcupacaoHorizontalParcial: "88%",
   containerOcupacaoMargens: 14,
