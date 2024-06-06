@@ -13,15 +13,16 @@ tema10pTerciaria = "#ee7087ff",  // Cor terciaria que representa o APP
 
 //Textos gerais
 tema === "claro" ? textRegular = '#262626ff' : textRegular = '#f5f1e0ff';
-tema === "claro" ? textoDestaque = tema10pTerciaria : textoDestaque = tema10pSecundaria;
-tema === "claro" ? textoTitulo = tema10pTerciaria : textoTitulo = tema60pClaro;
+tema === "claro" ? textoDestaque = tema10pTerciaria : textoDestaque = tema10pTerciaria;
+tema === "claro" ? textoTitulo = tema10pSecundaria : textoTitulo = tema30pPrincipal;
 tema === "claro" ? textSubtitulo = "#262626ff" : textSubtitulo = tema60pMedio;
 
 //Botões (incluindo também seus textos)
-tema === "claro" ? buttonBackground = tema10pSecundaria : buttonBackground = tema60pMedio;
+tema === "claro" ? buttonBackground = tema30pPrincipal : buttonBackground = tema60pMedio;
 tema === "claro" ? buttonBorder = '#bebebeff' : buttonBorder = tema30pPrincipal;
-tema === "claro" ? textButtonRegular = "white" : textButtonRegular = "white";
-tema === "claro" ? textButtonFlat = textRegular : textButtonFlat = textRegular;
+/////Textos de botões
+  tema === "claro" ? textButtonRegular = "white" : textButtonRegular = tema60pEscuro;
+  tema === "claro" ? textButtonFlat = textRegular : textButtonFlat = textRegular;
 
 //Background da safe-area
 tema === "claro" ? backgroundSafeArea = '#f7f7f8' : backgroundSafeArea = '#262626ff';
@@ -41,10 +42,10 @@ export const styleColor = StyleSheet.create({
   textButtonRegular,
   textButtonFlat,
   //Textos fora de botões
-  textRegular,
-  textoDestaque,
   textoTitulo,
   textSubtitulo,
+  textRegular,
+  textoDestaque,
   //Container de InputTextos
   inputTextBorder: tema30pPrincipal,
   //Azul
