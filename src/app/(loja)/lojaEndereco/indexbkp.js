@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { router } from 'expo-router';
 import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, ActivityIndicator, Alert, Modal } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { styles } from "./styles";
@@ -19,22 +20,20 @@ export default function ViewEdtEnderecoLoja() {
   const [cenario, setCenario] = useState(1);
   const [isLoadingData, setisLoadingData] = useState(true);
   const [flagShowModal, setflagShowModal] = useState(false);
-  const [endereco, setEndereco] = useState(schemaLojaEndereco)
+  const [cep, setCep] = useState("70847060");
+  const [numero, setNumero] = useState("");
+  const [complemento, setComplemento] = useState("");
+  const [endereco, setEndereco] = useState(null)
 
   //*Dados básicos: [mínimo: apelido, cnpj] !! Falta configurar pra ser chamado do menu de edição da loja.
   //ok - Endereço
   //Localização geografica
   //horário de funcionamento
-  //Franquia vinculada: url site da franquia, isFranquia, idFranquia
-  ////Obs: Pode remover a vinculação? (pensar sobre isso)
+  //vincular franquia: url site da franquia, isFranquia, idFranquia
   //Contato: telefone, email
   //Maquinas: layout, flag mostrar status maquina, url de callback de status maquinas
   //Facilidades: alexa, mesa de dobra, qtd assentos, link da camera ao vivo, etc
   //CadastroComplementar: site, etc
-
-  //franquias
-  //Flag permite visualização do status das maquinas
-  //flag permite visualização das câmeras das máquinas
 
   //Cenarios
   const cenarioEditar = 1;
@@ -44,34 +43,48 @@ export default function ViewEdtEnderecoLoja() {
 
   //Ações ao final da construção do componente
   useEffect(() => {
+    console.log("useEffect, consultadados")
     fetchDados();
   }, [])
 
   //Carrega dados pre-existentes
   async function fetchDados() {
     try {
-      res = await consultaEndereco();
+      res = await consultaEndereco("s");
     } catch {
       res = null;
       ShowErrorMessage("lj007");
     };
     if (res !== null) {
       setEndereco(res);
+      setCep(res.cep);
+      setNumero(res.numero);
+      setComplemento(res.complemento);
+      /*       statusInicial = resLoja.status;
+            setLojaDadosBasicos(resLoja);
+            console.log("resLoja<2>: ", resLoja)
+      
+            if (resLoja.apelido && resLoja.apelido !== null && resLoja.apelido !== "") {
+              setApelido(resLoja.apelido)
+            } else {
+              setApelido(resLoja.nome)
+            }
+            if (resLoja.cnpj && resLoja.cnpj !== null && resLoja.cnpj !== "") {
+              setCnpj(resLoja.cnpj)
+            } */
     }
     setisLoadingData(false);
   }
 
   //Valida campos de formulario
-  function onChangeNumero(parmNumero) {
-    setEndereco({ ...endereco, numero: parmNumero });
+  function onChangeNumero(numero) {
+    setNumero(numero);
   }
-  function onChangeComplemento(parmComplemento) {
-    setEndereco({ ...endereco, complemento: parmComplemento });
+  function onChangeComplemento(complemento) {
+    setComplemento(complemento);
   }
   async function onChangeCep(cep) {
-    let data = endereco;
-    data.cep = cep;
-    setEndereco(data);
+    setCep(cep);
 
     if (cep.length >= 8) {
       if (!validarSintaxeCep(cep)) {
@@ -81,22 +94,25 @@ export default function ViewEdtEnderecoLoja() {
       setCenario(cenarioValidar);
 
       try {
-        const endCep = await consultaCepService(cep);
-        if (endCep.erro) {
+        const endereco = await consultaCepService(cep);
+        if (endereco.erro) {
           ShowErrorMessage("vc011");
           setEndereco(null);
           setNumero(null);
           setComplemento(null);
         } else {
-          schemaLojaEndereco.cep = endCep.cep;
-          schemaLojaEndereco.localidade = endCep.localidade;
-          schemaLojaEndereco.uf = endCep.uf;
-          schemaLojaEndereco.ddd = endCep.ddd;
-          schemaLojaEndereco.bairro = endCep.bairro;
-          schemaLojaEndereco.logradouro = endCep.logradouro;
-          schemaLojaEndereco.numero = "";
-          schemaLojaEndereco.complemento = "";
-          setEndereco(schemaLojaEndereco)
+          setEndereco({
+            cep: endereco.cep,
+            localidade: endereco.localidade,
+            uf: endereco.uf,
+            ddd: endereco.ddd,
+            bairro: endereco.bairro,
+            logradouro: endereco.logradouro,
+            numero: "",
+            complemento: "",
+          })
+          setNumero(null);
+          setComplemento(null);
         }
         setCenario(cenarioEditar);
         return;
@@ -118,6 +134,7 @@ export default function ViewEdtEnderecoLoja() {
   function handleCloseModal() {
     setflagShowModal(!flagShowModal);
   }
+
   function showMsgResultado() {
     setflagShowModal(!flagShowModal);
     setTimeout(() => {
@@ -129,7 +146,7 @@ export default function ViewEdtEnderecoLoja() {
   async function prosseguir() {
     if (isLoadingData) { return };
 
-    if (endereco.cep.length < 8 || !validarSintaxeCep(endereco.cep)) {
+    if (cep.length < 8 || !validarSintaxeCep(cep)) {
       ShowErrorMessage("vc010");
       return;
     };
@@ -149,6 +166,7 @@ export default function ViewEdtEnderecoLoja() {
     <SafeAreaView style={styleApp.containerSafeArea}>
       {GradienteFill()}
       <ScrollView style={styleApp.containerScroll} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
+
         <View style={styles.containerHeader}>
           <MaterialIcons name="add-business" size={styleApp.size.iconSizeRegular} color={styleColor.textSubtitulo} />
           <Text style={styleApp.textSubtitulo}>Endereço</Text>
@@ -157,7 +175,7 @@ export default function ViewEdtEnderecoLoja() {
         {modalSimples(flagShowModal, handleCloseModal, "Informações atualizadas!", "TipoMsg", "Título")}
 
         <View style={styles.containerPrincipal}>
-          {InputText("CEP", onChangeCep, "CEP", 1, 8, "default", flagEditavel, endereco.cep, false)}
+          {InputText("CEP", onChangeCep, "CEP", 1, 8, "default", flagEditavel, cep, false)}
           {endereco && endereco !== null ?
             <View style={{ paddingLeft: 10, marginTop: 10 }}>
               <Text style={styleApp.textRegular}>{endereco.localidade} {endereco.uf}</Text>
@@ -165,14 +183,15 @@ export default function ViewEdtEnderecoLoja() {
               <Text style={styleApp.textRegular}>{endereco.logradouro}</Text>
             </View>
             : <></>}
-          {InputText("Número", onChangeNumero, "Número, ou s/n", 1, 5, "default", flagEditavel, endereco.numero, false)}
-          {InputText("Complemento", onChangeComplemento, "Complemento", 1, 80, "default", flagEditavel, endereco.complemento, false)}
+          {InputText("Número", onChangeNumero, "Número, ou s/n", 1, 5, "default", flagEditavel, numero, false)}
+          {InputText("Complemento", onChangeComplemento, "Complemento", 1, 80, "default", flagEditavel, complemento, false)}
 
           <TouchableOpacity style={styleApp.buttonHC} disabled={!flagEditavel} onPress={prosseguir} >
             {!flagEditavel ? <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor} /> : ""}
             <Text style={styleApp.textButtonRegular}>Confirmar</Text>
           </TouchableOpacity>
         </View>
+
       </ScrollView>
     </SafeAreaView >
   )

@@ -1,12 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { router, useLocalSearchParams } from 'expo-router';
-import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, ActivityIndicator, Alert } from "react-native";
+import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, ActivityIndicator } from "react-native";
 import { styles } from "./styles";
 import { styleApp } from '../../../styles/styleApp';
 import { GradienteFill } from '../../../componentes/gradienteFill';
 import { AuthContext } from "../../../contexts/auth";
-import { MaterialIcons } from "@expo/vector-icons";
-import { consultaLojaEmEdicao } from '../../../services/lojaService';
+import { consultaLojaEmEdicao, atualizaDadosBasicos } from '../../../services/lojaService';
 import { ShowErrorMessage } from '../../../errors/errorMessage';
 import { InputText } from '../../../componentes/inputText';
 
@@ -15,44 +14,46 @@ console.log("ViewLojaCadastroBasico <inicio>");
 //Tela principal
 export default function ViewLojaCadastroBasico() {
   const { user } = useContext(AuthContext);
-  const [lojaDadosBasicos, setLojaDadosBasicos] = useState({ status: "", nome: "", apelido: "" });
-  const [flagEditavel, setFlagEditavel] = useState(false);
-  const [isLoading, setIsloading] = useState(true);
+  const [cenario, setCenario] = useState(1);
+  const [lojaDadosBasicos, setLojaDadosBasicos] = useState({ status: "", nome: "", apelido: "", cnpj: "" });
+  const [isLoadingData, setisLoadingData] = useState(true);
   const [apelido, setApelido] = useState("");
   const [cnpj, setCnpj] = useState("");
 
-  //Caso criação de nova loja: não chega parâmetro
-  //Caso edição (loja selecionada na lista): chega parâmetro
   const { navigateParmLoja } = useLocalSearchParams();
   navigateParmLoja ? parmLoja = JSON.parse(navigateParmLoja) : parmLoja = null;
 
+  const cenarioEditar = 1;
+  const cenarioValidar = 11;
+  var flagEditavel = true;
+  cenario !== cenarioEditar || isLoadingData ? flagEditavel = false : flagEditavel = true;
+
   useEffect(() => {
-    fetchLoja();
+    fetchDados();
   }, [])
 
-  async function fetchLoja() {
-    let statusInicial = "";
+  async function fetchDados() {
     try {
-      resLoja = await consultaLojaEmEdicao("s"); //Verifica se já possui alguma sendo criada
+      res = await consultaLojaEmEdicao("s"); //Verifica se já possui alguma sendo criada
     } catch {
-      resLoja = null; //Não encontrou uma Loja me estágio de criação para continuar.
+      res = null; //Não encontrou uma Loja me estágio de criação para continuar.
+      ShowErrorMessage("lj008");
     };
-    if (resLoja !== null) {
-      statusInicial = resLoja.status;
-      setLojaDadosBasicos(resLoja);
-      console.log("resLoja<2>: ", resLoja)
+    if (res !== null) {
+      statusInicial = res.status;
+      setLojaDadosBasicos(res);
+      console.log("res<2>: ", res)
 
-      if (resLoja.apelido && resLoja.apelido !== null && resLoja.apelido !== "") {
-        setApelido(resLoja.apelido)
+      if (res.apelido && res.apelido !== null && res.apelido !== "") {
+        setApelido(res.apelido)
       } else {
-        setApelido(resLoja.nome)
+        setApelido(res.nome)
       }
-      if (resLoja.cnpj && resLoja.cnpj !== null && resLoja.cnpj !== "") {
-        setCnpj(resLoja.cnpj)
+      if (res.cnpj && res.cnpj !== null && res.cnpj !== "") {
+        setCnpj(res.cnpj)
       }
     }
-    setFlagEditavel(true);
-    setIsloading(false);
+    setisLoadingData(false);
   }
 
   function goTo() {
@@ -71,6 +72,36 @@ export default function ViewLojaCadastroBasico() {
     setCnpj(cnpj)
   }
 
+  function validarSintaxeCnpj(cnpj) {
+    const regex = /^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/;
+    const isCnpjValido = regex.test(cnpj);
+    return isCnpjValido;
+  }
+
+  async function prosseguir() {
+    if (isLoadingData) { return };
+
+    if (apelido.length < 8) {
+      ShowErrorMessage("lj004");
+      return;
+    };
+    if (cnpj !== "" && (cnpj.length < 18 || !validarSintaxeCnpj(cnpj))) {
+      ShowErrorMessage("lj005");
+      return;
+    };
+
+    setCenario(cenarioValidar);
+    try {
+      const res = await atualizaDadosBasicos(lojaDadosBasicos);
+      //TODO: evitar que retorne para tela anterior.
+      setCenario(cenarioEditar);
+      goTo(); //Menu completo de configuração da loja
+    } catch {
+      ShowErrorMessage("lj006");
+      setCenario(cenarioEditar);
+    }
+  }
+
   return (
     <SafeAreaView style={styleApp.containerSafeAreaSemPadding}>
       {GradienteFill()}
@@ -80,7 +111,7 @@ export default function ViewLojaCadastroBasico() {
           source={require('../../../assets/outros/sheep_novaLoja_01.png')}
         />
 
-        {isLoading ? <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor} /> :
+        {isLoadingData ? <></> :
           <>
             {lojaDadosBasicos !== null && lojaDadosBasicos.nome !== "" ?
               <View style={styles.containerDadosLoja}>
@@ -96,12 +127,11 @@ export default function ViewLojaCadastroBasico() {
 
         <View style={styles.containerFormulario}>
           {InputText("Apelido da loja", onChangeApelido, "Apelido", 1, 40, "default", flagEditavel, apelido, false)}
-          {InputText("CNPJ da loja (opcional)", onChangeCnpj, "CNPJ", 1, 16, "default", flagEditavel, cnpj, false)}
+          {InputText("CNPJ (opcional) 00.000.000/0000-00", onChangeCnpj, "CNPJ", 1, 18, "default", flagEditavel, cnpj, false)}
 
-          <TouchableOpacity style={styleApp.buttonHC} disabled={!flagEditavel} onPress={goTo}>
-            <View style={styles.containerButton}>
-              <Text style={styleApp.textButtonRegular}>Confirmar e prosseguir</Text>
-            </View>
+          <TouchableOpacity style={styleApp.buttonHC} disabled={!flagEditavel} onPress={prosseguir}>
+            {!flagEditavel ? <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor} /> : ""}
+            <Text style={styleApp.textButtonRegular}>Confirmar e prosseguir</Text>
           </TouchableOpacity>
 
           <View style={{ marginTop: 18 }}>

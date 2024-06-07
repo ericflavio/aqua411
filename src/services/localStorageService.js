@@ -1,5 +1,4 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Alert, ToastAndroid, Platform } from 'react-native';
 import { ShowErrorMessage } from '../errors/errorMessage';
 //TODO: Sempre atualizar a chave do nome do DB AsyncStorage, no padrão
 //@nomedoapp:coleção

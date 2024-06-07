@@ -1,4 +1,3 @@
-//Consultar CEP
 import axios from 'axios';
 import { schemaLoja, schemaLojaStatus, schemaLojaEndereco } from '../schemas/lojaSchema';
 
@@ -48,19 +47,22 @@ export async function consultaUnidades(user) {
       id: "Loja00001",
       nome: "loja-01",
       apelido: "Apelido-loja",
-      status: "Criando"
+      status: "Criando",
+      cnpj: ""
     },
     {
       id: "Loja00002",
       nome: "loja-02",
       apelido: "Apelido-loja",
-      status: "Inativa"
+      status: "Inativa",
+      cnpj: ""
     },
     {
       id: "Loja00003",
       nome: "loja-03",
       apelido: "Apelido-loja",
-      status: "Suspensa"
+      status: "Suspensa",
+      cnpj: ""
     }
   ];
   return new Promise((resolve, reject) => {
@@ -78,11 +80,21 @@ export async function consultaLojaEmEdicao(l) {
           id: "LOJA00001",
           nome: "Aquamagic-AsaNorte-Brasilia-DF",
           apelido: "Apelido-loja",
-          status: "Criando"
+          status: "Criando",
+          cnpj: ""
         })
       } else {
         resolve(null)
       }
+    }, 1000);
+  })
+}
+
+export async function atualizaDadosBasicos(loja) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      //reject(null)
+      resolve(null)
     }, 1000);
   })
 }
@@ -93,15 +105,15 @@ export async function consultaEndereco(id) {
     setTimeout(() => {
       resolve({
         cep: "70847060",
-        localidade: "Plano Piloto",
+        localidade: "Brasilia",
         uf: "DF",
         ddd: "61",
         bairro: "Asa Norte",
-        logradouro: "SQN 109 Bloc A",
+        logradouro: "SQN 109 Bloco A",
         numero: "108",
         complemento: "Apto",
       })
-    }, 1000);
+    }, 2000);
   })
 }
 export async function IncluiEndereco(endereco) {
@@ -123,5 +135,7 @@ export async function atualizaEndereco(endereco) {
     }, 1000);
   })
 }
+
+
 
 

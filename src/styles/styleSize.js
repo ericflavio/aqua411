@@ -39,5 +39,5 @@ export const styleSize = {
   //inputText
   inputTextBorderRadius: 0,
   //Modal
-  modalTimeClose: 1300,
+  modalTimeAutoClose: 2000,
 };

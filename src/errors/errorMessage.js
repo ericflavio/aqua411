@@ -58,6 +58,12 @@ export function NewErrorMessage(cod, e) {
         case "lj002": newError.message = "Não há novos status possíveis."; break;
         //Endereço
         case "lj003": newError.message = "Não foi possível atualizar os dados do endereço." + tn ; break;
+        case "lj007": newError.message = "Estamos com dificuldades para pesquisar o endereço." + tn ; break;
+        //Dados básicos
+        case "lj004": newError.message = "Informe apelido com 8 dígitos, no mínimo." ; break;
+        case "lj005": newError.message = "Informe um CNPJ com formato válido" ; break;
+        case "lj006": newError.message = "Estamos com dificuldades para atualizar os dados agora." + tn ; break;
+        case "lj008": newError.message = "Estamos com dificuldades para pesquisar estes dados." + tn ; break;
 
         default:
           newError.cod = "de2702" + cod.substr(0, 2);

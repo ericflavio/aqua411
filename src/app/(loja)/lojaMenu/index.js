@@ -140,7 +140,7 @@ export default function ViewEdtMenuLoja() {
 
         <View style={styles.containerSection}>
           <Text style={styleApp.textSmall}>Ações de gerenciamento</Text>
-          <MaterialIcons name="settings" size={20} color={styleApp.color.textRegular} />
+          <MaterialIcons name="settings" size={20} color={styleApp.color.cinzaMedio} />
         </View>
 
         <View style={styles.containerOthers}>
@@ -164,7 +164,7 @@ export default function ViewEdtMenuLoja() {
 
         <View style={styles.containerSection}>
           <Text style={styleApp.textSmall}>Configuração da loja</Text>
-          <MaterialIcons name="edit" size={20} color={styleApp.color.textRegular} />
+          <MaterialIcons name="edit" size={20} color={styleApp.color.cinzaMedio} />
         </View>
 
         <View style={styles.containerPrincipal}>
@@ -192,7 +192,7 @@ export default function ViewEdtMenuLoja() {
 
           <View style={styles.containerSection}>
             <Text style={styleApp.textSmall}>{styleApp.textFraseOpcaoDeAssinantes}</Text>
-            <MaterialIcons name="edit" size={20} color={styleApp.color.textRegular} />
+            <MaterialIcons name="edit" size={20} color={styleApp.color.cinzaMedio} />
           </View>
         </View>
 
