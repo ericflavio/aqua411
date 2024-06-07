@@ -57,7 +57,7 @@ const stylesLocal = StyleSheet.create({
   modalView: {
     margin: 0,
     minHeight: 240,
-    minWidth: "100%",
+    minWidth: "92%",
     borderLeftWidth:1,
     borderRightWidth:1,
     borderTopWidth: 3,
@@ -68,6 +68,14 @@ const stylesLocal = StyleSheet.create({
     padding: 20,
     paddingTop: 35,
     alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 20,
+    elevation: 5,
   },
   modalView2: {
     margin: 20,
