@@ -21,7 +21,7 @@ export default function ViewEdtEnderecoLoja() {
 
   const [cenario, setCenario] = useState(1);
   const [flagErro, setFlagErro] = useState(false);
-  const [flagModal, setFlagModal] = useState(false);
+  const [flagShowModal, setflagShowModal] = useState(false);
   const [cep, setCep] = useState("70847060");
   const [numero, setNumero] = useState("");
   const [complemento, setComplemento] = useState("");
@@ -121,13 +121,13 @@ export default function ViewEdtEnderecoLoja() {
   }
 
   function handleCloseModal() {
-    setFlagModal(!flagModal);
+    setflagShowModal(!flagShowModal);
   }
 
   function showMsgResultado() {
-    setFlagModal(!flagModal);
+    setflagShowModal(!flagShowModal);
     setTimeout(() => {
-      setFlagModal(false);
+      setflagShowModal(false);
     }, styleApp.size.modalTimeClose);
   }
 
@@ -141,8 +141,8 @@ export default function ViewEdtEnderecoLoja() {
           <Text style={styleApp.textSubtitulo}>Endereço</Text>
         </View>
 
-        {modalSimples(flagModal, handleCloseModal, "Informações atualizadas", "", "")}
-        
+        {modalSimples(flagShowModal, handleCloseModal, "Informações atualizadas", "tipoMsg", "Título")}
+
         <View style={styles.containerPrincipal}>
           {InputText("CEP", onChangeCep, "CEP", 1, 8, "default", flagEditavel, cep, false)}
           {endereco && endereco !== null ?

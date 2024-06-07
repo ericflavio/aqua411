@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
   textoStatus: {
     fontFamily: 'Roboto-Bold',
     size: styleApp.size.textoSize3,
-    color: styleColor.sucesso
+    color: styleColor.erro
   },
   imgNovaLoja: {
     //height: 252, 

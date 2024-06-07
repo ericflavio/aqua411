@@ -2,18 +2,18 @@ import { Modal, StyleSheet, Text, Pressable, View, TouchableOpacity } from 'reac
 import { MaterialIcons } from "@expo/vector-icons";
 import { styleApp } from '../styles/styleApp';
 
-export default function modalSimples(flagShow, onClose, msg, msgTitulo, msgTipo) {
-  if (flagShow === undefined) {
-    flagShow = true
+export default function modalSimples(flagShowModal, onClose, msg, msgTipo, msgTitulo, ) {
+  if (flagShowModal === undefined) {
+    flagShowModal = true
   };
-  if (msgTitulo === undefined || msgTitulo === null) { //Obrigatório (com default)
-    msgTitulo = "Concluído!"
+  if (msg === undefined || msg === null || msg === "") {
+    msg = "Concluído ok!"
   };
-  if (msg === undefined || msg === null) { //Não obrigatório.
-    msg = ""
-  };
-  if (msgTipo === undefined || msgTipo === null) {
+  if (msgTipo === undefined || msgTipo === null || msgTipo === "") {
     msgTipo = "Sucesso"
+  };
+  if (msgTitulo === undefined || msgTitulo === null || msgTitulo === "Título") {
+    msgTitulo = ""
   };
 
   var borderModal = styleApp.color.cinzaMedio;
@@ -24,14 +24,13 @@ export default function modalSimples(flagShow, onClose, msg, msgTitulo, msgTipo)
     case "Erro": borderModal = styleApp.color.erro; break;
     default: borderModal = styleApp.color.sucesso; break;
   };
-  console.log("cor ", borderModal, styleApp.color.aviso);
 
   return (
     <View style={stylesLocal.centeredView}>
       <Modal
         animationType="slide" //fade slide none
         transparent={true}
-        visible={flagShow}
+        visible={flagShowModal}
         onRequestClose={() => { }}>
         <View style={stylesLocal.centeredView}>
           <View style={[stylesLocal.modalView, { borderColor: borderModal }]}>
@@ -60,6 +59,7 @@ const stylesLocal = StyleSheet.create({
     minHeight: 160,
     minWidth: 200,
     borderWidth: 2,
+    borderBottomWidth: 12,
     borderColor: "grey",
     backgroundColor: 'white',
     borderRadius: 20,

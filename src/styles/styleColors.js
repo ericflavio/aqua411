@@ -13,7 +13,6 @@ tema10pTerciaria = "#ee7087ff",  // Cor terciaria que representa o APP
 
 //Textos gerais
 tema === "claro" ? textRegular = '#262626ff' : textRegular = '#f5f1e0ff';
-tema === "claro" ? textoDestaque = tema10pTerciaria : textoDestaque = tema10pTerciaria;
 tema === "claro" ? textoTitulo = tema10pSecundaria : textoTitulo = tema30pPrincipal;
 tema === "claro" ? textSubtitulo = "#262626ff" : textSubtitulo = tema60pMedio;
 
@@ -22,7 +21,7 @@ tema === "claro" ? buttonBackground = tema30pPrincipal : buttonBackground = tema
 tema === "claro" ? buttonBorder = '#bebebeff' : buttonBorder = tema30pPrincipal;
 /////Textos de botões
   tema === "claro" ? textButtonRegular = "white" : textButtonRegular = tema60pEscuro;
-  tema === "claro" ? textButtonFlat = textRegular : textButtonFlat = textRegular;
+  tema === "claro" ? textButtonFlat = textRegular : textButtonFlat = tema60pEscuro;
 
 //Background da safe-area
 tema === "claro" ? backgroundSafeArea = '#f7f7f8' : backgroundSafeArea = '#262626ff';
@@ -45,7 +44,6 @@ export const styleColor = StyleSheet.create({
   textoTitulo,
   textSubtitulo,
   textRegular,
-  textoDestaque,
   //Container de InputTextos
   inputTextBorder: tema30pPrincipal,
   //Azul
