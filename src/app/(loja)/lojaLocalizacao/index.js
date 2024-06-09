@@ -12,9 +12,12 @@ import { schemaLojaLocalizacao } from '../../../schemas/lojaSchema';
 import { atualizaLocalizacaoLoja, consultaLocalizacaoLoja } from '../../../services/lojaService';
 import { pingUrl } from '../../../services/urlService';
 import modalSimples from '../../../componentes/modalSimples';
+import { useLocalSearchParams } from 'expo-router';
 
 export default function ViewLocalizacaoLoja() {
   const { user } = useContext(AuthContext);
+  const { navigateParmLoja } = useLocalSearchParams();
+  navigateParmLoja ? parmLoja = JSON.parse(navigateParmLoja) : parmLoja = null;
 
   const [cenario, setCenario] = useState(1);
   const [isLoadingData, setisLoadingData] = useState(true);

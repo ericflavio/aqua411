@@ -75,7 +75,7 @@ export async function consultaListaUnidades(user) {
 export async function consultaLojaEmEdicao(user) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      if (l && l === "s") {
+      if (user && user === "s") {
         schemaLojaDadosBasicos.id = "LOJA00001",
         schemaLojaDadosBasicos.nome = "Aquamagic-AsaNorte-Brasilia-DF",
         schemaLojaDadosBasicos.apelido = "Apelido-loja",

@@ -20,13 +20,10 @@ export default function ViewEdtMenuLoja() {
   const [disabledEndereco, setDisabledEndereco] = useState(true);
   const [disabled, setDisabled] = useState(true);
   const [showViewStatus, setShowViewStatus] = useState(false);
-  const [showModal, setShowModal] = useState(false);
-  const [selectedStatus, setSelectedStatus] = useState(""); //Quando novo status é selecionado para atualizar
   const [statusList, setStatusList] = useState(null); //Relação de todos os status
   const [statusListToChange, setStatusListToChange] = useState(null); //Status possíveis pelo DFS
 
-  //Caso criação de nova loja: não chega parâmetro
-  //Caso edição (loja selecionada na lista): chega parâmetro
+  //OS dados básicos sempre chegam, pela tela de criação ou pela lista de lojas
   const { navigateParmLoja } = useLocalSearchParams();
   navigateParmLoja ? parmLoja = JSON.parse(navigateParmLoja) : parmLoja = null;
 
@@ -37,12 +34,11 @@ export default function ViewEdtMenuLoja() {
   async function fetchLoja() {
     let statusInicial = "";
     if (parmLoja !== null) {
-      //Edição de loja: parametros de identificação recebidos
+      //Parametros de identificação recebidos
       statusInicial = parmLoja.status;
       setLojaDadosBasicos(parmLoja);
       setDisabled(false); // Libera edição das demais opções
     } else {
-      //Inclusão de nova loja; parametro não recebido
       try {
         resLoja = await consultaLojaEmEdicao("s"); //Verifica se já possui alguma sendo criada
       } catch {
@@ -117,9 +113,6 @@ export default function ViewEdtMenuLoja() {
     }
     setShowViewStatus(!showViewStatus);
   }
-  function handleSelectNewStatus(statusPicker) {
-    setSelectedStatus(statusPicker);
-  }
 
   console.log("dadosBasicos :", lojaDadosBasicos)
   return (
@@ -151,7 +144,7 @@ export default function ViewEdtMenuLoja() {
         <View style={styles.containerOthers}>
           <TouchableOpacity style={styleApp.buttonFlatHL} onPress={{}} >
             <MaterialIcons name="delete-outline" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.textButtonFlat} />
-            <Text style={styleApp.textButtonFlat}>Excluir (desistir de cadastrar)</Text>
+            <Text style={styleApp.textButtonFlat}>Desistir de cadastrar (excluir))</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styleApp.buttonFlatHL} onPress={{}} >
             <MaterialIcons name="saved-search" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.textButtonFlat} />

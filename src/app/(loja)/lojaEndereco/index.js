@@ -12,22 +12,17 @@ import { consultaCepService } from '../../../services/cepService';
 import { schemaLojaEndereco } from '../../../schemas/lojaSchema';
 import { atualizaEnderecoLoja, consultaEnderecoLoja } from '../../../services/lojaService';
 import modalSimples from '../../../componentes/modalSimples';
+import { useLocalSearchParams } from 'expo-router';
 
 export default function ViewEdtEnderecoLoja() {
   const { user } = useContext(AuthContext);
+  const { navigateParmLoja } = useLocalSearchParams();
+  navigateParmLoja ? parmLoja = JSON.parse(navigateParmLoja) : parmLoja = null;
 
   const [cenario, setCenario] = useState(1);
   const [isLoadingData, setisLoadingData] = useState(true);
   const [flagShowModal, setflagShowModal] = useState(false);
   const [endereco, setEndereco] = useState(schemaLojaEndereco)
-
-  //correções:
-  //1.Menu loja: receber parm dados básicos (da lista seleção, ou pela view de criação dos dados básicos)
-  //2.Menu loja: passar dados básicos da loja pra todos as views filhas
-  //3.View dados básicos: colocar na sistmática de objeto completo
-  //ok 4.View endereço: colocar na sistematica "parm" de validações de campos de tela
-  //5.Services: colocar na sistematica de receber sempre parm "data"
-  //6.View endereço: validar cep também na função prosseguir()
 
   //*Dados básicos: [mínimo: apelido, cnpj] !! Falta configurar pra ser chamado do menu de edição da loja.
   //ok - Endereço
@@ -83,37 +78,43 @@ export default function ViewEdtEnderecoLoja() {
         ShowErrorMessage("vc010");
         return;
       }
-      setCenario(cenarioValidar);
 
-      try {
-        const endCep = await consultaCepService(parm);
-        if (endCep.erro) {
-          ShowErrorMessage("vc011");
-          setEndereco({ cep: parm, localidade: "", uf: "", ddd: "", bairro: "", logradouro: "", numero: "", complemento: "" });
-          //setEndereco(null);
-        } else {
-          schemaLojaEndereco.cep = parm;
-          schemaLojaEndereco.localidade = endCep.localidade;
-          schemaLojaEndereco.uf = endCep.uf;
-          schemaLojaEndereco.ddd = endCep.ddd;
-          schemaLojaEndereco.bairro = endCep.bairro;
-          schemaLojaEndereco.logradouro = endCep.logradouro;
-          schemaLojaEndereco.numero = "";
-          schemaLojaEndereco.complemento = "";
-          setEndereco(schemaLojaEndereco)
-        }
-        setCenario(cenarioEditar);
-      } catch (e) {
-        ShowErrorMessage("vc012");
-        setEndereco({ cep: parm, localidade: "", uf: "", ddd: "", bairro: "", logradouro: "", numero: "", complemento: "" });
-        setCenario(cenarioEditar);
-      }
+      setCenario(cenarioValidar);
+      const isCepValido = await consultaCepWeb(parm);
+      setCenario(cenarioEditar);
     }
   }
   function validarSintaxeCep(cep) {
     const regex = /^[0-9]{8}$/;
     const isCepValido = regex.test(cep);
     return isCepValido;
+  }
+  async function consultaCepWeb(parm) {
+    var endCep = {};
+    try {
+      endCep = await consultaCepService(parm);
+    } catch {
+      ShowErrorMessage("vc012");
+      setEndereco({ cep: parm, localidade: "", uf: "", ddd: "", bairro: "", logradouro: "", numero: "", complemento: "" });
+      return false;
+    };
+
+    if (endCep.erro) {
+      ShowErrorMessage("vc011");
+      setEndereco({ cep: parm, localidade: "", uf: "", ddd: "", bairro: "", logradouro: "", numero: "", complemento: "" });
+      return false;
+    } else {
+      schemaLojaEndereco.cep = parm;
+      schemaLojaEndereco.localidade = endCep.localidade;
+      schemaLojaEndereco.uf = endCep.uf;
+      schemaLojaEndereco.ddd = endCep.ddd;
+      schemaLojaEndereco.bairro = endCep.bairro;
+      schemaLojaEndereco.logradouro = endCep.logradouro;
+      schemaLojaEndereco.numero = "";
+      schemaLojaEndereco.complemento = "";
+      setEndereco(schemaLojaEndereco)
+      return true;
+    }
   }
 
   //Funções auxiliares 
@@ -129,7 +130,7 @@ export default function ViewEdtEnderecoLoja() {
 
   //Ações ao clicar no botão principal (confirmar/prosseguir)
   async function prosseguir() {
-    if (isLoadingData) { return };
+    if (isLoadingData) { return }; //ignora o botão, ainda clicável, até que os dados sejam carregados
 
     if (endereco.cep.length < 8 || !validarSintaxeCep(endereco.cep)) {
       ShowErrorMessage("vc010");
@@ -137,6 +138,13 @@ export default function ViewEdtEnderecoLoja() {
     };
 
     setCenario(cenarioValidar);
+
+    const isCepValido = await consultaCepWeb(endereco.cep);
+    if (!isCepValido) {
+      setCenario(cenarioEditar)
+      return;
+    }
+
     try {
       const res = await atualizaEnderecoLoja(endereco);
       showMsgResultado();

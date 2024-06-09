@@ -8,14 +8,13 @@ import { AuthContext } from "../../../contexts/auth";
 import { consultaLojaEmEdicao, atualizaDadosBasicosLoja } from '../../../services/lojaService';
 import { ShowErrorMessage } from '../../../errors/errorMessage';
 import { InputText } from '../../../componentes/inputText';
-
-console.log("ViewLojaCadastroBasico <inicio>");
+import { schemaLojaDadosBasicos } from '../../../schemas/lojaSchema';
 
 //Tela principal
 export default function ViewLojaCadastroBasico() {
   const { user } = useContext(AuthContext);
   const [cenario, setCenario] = useState(1);
-  const [lojaDadosBasicos, setLojaDadosBasicos] = useState({ status: "", nome: "", apelido: "", cnpj: "" });
+  const [lojaDadosBasicos, setLojaDadosBasicos] = useState(schemaLojaDadosBasicos);
   const [isLoadingData, setisLoadingData] = useState(true);
   const [apelido, setApelido] = useState("");
   const [cnpj, setCnpj] = useState("");
@@ -36,13 +35,13 @@ export default function ViewLojaCadastroBasico() {
     try {
       res = await consultaLojaEmEdicao("s"); //Verifica se já possui alguma sendo criada
     } catch {
-      res = null; //Não encontrou uma Loja me estágio de criação para continuar.
+      res = null; //Erro na pesquisad de Loja em estágio de criação para continuar.
       ShowErrorMessage("lj008");
     };
     if (res !== null) {
+      goTo();
       statusInicial = res.status;
       setLojaDadosBasicos(res);
-      console.log("res<2>: ", res)
 
       if (res.apelido && res.apelido !== null && res.apelido !== "") {
         setApelido(res.apelido)
