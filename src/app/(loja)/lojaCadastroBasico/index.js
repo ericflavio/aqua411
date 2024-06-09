@@ -13,27 +13,29 @@ import { schemaLojaDadosBasicos } from '../../../schemas/lojaSchema';
 //Tela principal
 export default function ViewLojaCadastroBasico() {
   const { user } = useContext(AuthContext);
-  const [cenario, setCenario] = useState(1);
-  const [lojaDadosBasicos, setLojaDadosBasicos] = useState(schemaLojaDadosBasicos);
-  const [isLoadingData, setisLoadingData] = useState(true);
-  const [apelido, setApelido] = useState("");
-  const [cnpj, setCnpj] = useState("");
-
   const { navigateParmLoja } = useLocalSearchParams();
   navigateParmLoja ? parmLoja = JSON.parse(navigateParmLoja) : parmLoja = null;
 
+  const [cenario, setCenario] = useState(1);
+  const [lojaDadosBasicos, setLojaDadosBasicos] = useState(schemaLojaDadosBasicos);
+  const [isLoadingData, setisLoadingData] = useState(true);
+
+  console.log("parmloja ", parmLoja)
+
+  //Cenarios
   const cenarioEditar = 1;
   const cenarioValidar = 11;
   var flagEditavel = true;
   cenario !== cenarioEditar || isLoadingData ? flagEditavel = false : flagEditavel = true;
 
+  //Ações ao final da construção do componente
   useEffect(() => {
     fetchDados();
   }, [])
 
   async function fetchDados() {
     try {
-      res = await consultaLojaEmEdicao("s"); //Verifica se já possui alguma sendo criada
+      res = await consultaLojaEmEdicao("n"); //Verifica se já possui alguma sendo criada
     } catch {
       res = null; //Erro na pesquisad de Loja em estágio de criação para continuar.
       ShowErrorMessage("lj008");
@@ -42,19 +44,25 @@ export default function ViewLojaCadastroBasico() {
       goTo();
       statusInicial = res.status;
       setLojaDadosBasicos(res);
-
-      if (res.apelido && res.apelido !== null && res.apelido !== "") {
-        setApelido(res.apelido)
-      } else {
-        setApelido(res.nome)
-      }
-      if (res.cnpj && res.cnpj !== null && res.cnpj !== "") {
-        setCnpj(res.cnpj)
-      }
     }
     setisLoadingData(false);
   }
 
+  //Valida campos de formulario
+  function onChangeApelido(parm) {
+    setLojaDadosBasicos({ ...lojaDadosBasicos, apelido: parm });
+  }
+  function onChangeCnpj(parm) {
+    setLojaDadosBasicos({ ...lojaDadosBasicos, cnpj: parm });
+  }
+
+  function validarSintaxeCnpj() {
+    const regex = /^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/;
+    const isCnpjValido = regex.test(lojaDadosBasicos.cnpj);
+    return isCnpjValido;
+  }
+
+  //Funcoes auxiliares
   function goTo() {
     router.navigate({
       pathname: "/lojaMenu",
@@ -64,27 +72,15 @@ export default function ViewLojaCadastroBasico() {
     })
   }
 
-  function onChangeApelido(apelido) {
-    setApelido(apelido);
-  }
-  function onChangeCnpj(cnpj) {
-    setCnpj(cnpj)
-  }
-
-  function validarSintaxeCnpj(cnpj) {
-    const regex = /^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/;
-    const isCnpjValido = regex.test(cnpj);
-    return isCnpjValido;
-  }
-
+  //Funcao no botão de ação principal
   async function prosseguir() {
-    if (isLoadingData) { return };
+    if (isLoadingData) { return }; //ignora o botão, ainda clicável, até que os dados sejam carregados
 
-    if (apelido.length < 8) {
+    if (lojaDadosBasicos.apelido.length < 8) {
       ShowErrorMessage("lj004");
       return;
     };
-    if (cnpj !== "" && (cnpj.length < 18 || !validarSintaxeCnpj(cnpj))) {
+    if (lojaDadosBasicos.cnpj !== "" && (lojaDadosBasicos.cnpj.length < 18 || !validarSintaxeCnpj())) {
       ShowErrorMessage("lj005");
       return;
     };
@@ -125,8 +121,8 @@ export default function ViewLojaCadastroBasico() {
         }
 
         <View style={styles.containerFormulario}>
-          {InputText("Apelido da loja", onChangeApelido, "Apelido", 1, 40, "default", flagEditavel, apelido, false)}
-          {InputText("CNPJ (opcional) 00.000.000/0000-00", onChangeCnpj, "CNPJ", 1, 18, "default", flagEditavel, cnpj, false)}
+          {InputText("Apelido da loja", onChangeApelido, "Apelido", 1, 40, "default", flagEditavel, lojaDadosBasicos.apelido, false)}
+          {InputText("CNPJ (opcional) 00.000.000/0000-00", onChangeCnpj, "CNPJ", 1, 18, "default", flagEditavel, lojaDadosBasicos.cnpj, false)}
 
           <TouchableOpacity style={styleApp.buttonHC} disabled={!flagEditavel} onPress={prosseguir}>
             {!flagEditavel ? <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor} /> : ""}

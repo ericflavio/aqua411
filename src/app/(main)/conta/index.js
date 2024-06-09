@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, Alert } from "react-native";
 import { styles } from "./styles";
 import { styleApp } from '../../../styles/styleApp';
@@ -6,23 +6,53 @@ import { styleColor } from "../../../styles/styleColors";
 import { MaterialIcons } from "@expo/vector-icons";
 import { GradienteFill } from '../../../componentes/gradienteFill';
 import { AuthContext } from "../../../contexts/auth";
-import { router } from 'expo-router';
-
-//Funcçoes de apoio
+import { router, useLocalSearchParams } from 'expo-router';
+import { consultaLojaEmEdicao } from '../../../services/lojaService';
+import { ShowErrorMessage } from '../../../errors/errorMessage';
 
 //Tela principal HOME
 export default function ViewConta() {
   const { user, logOut } = useContext(AuthContext);
+  const [isLoadingData, setisLoadingData] = useState(true);
+
   var name = "Olá!";
   user.name ? name = user.name : name = user.idLogin;
+  var dadosLojaCriando = null;
+  var isLojaCriando = false;
+
+  useEffect(() => {
+    fetchDados();
+  }, [])
+
+  async function fetchDados() {
+    //Verifica se existe loja sendo criada (status = criando)
+    try {
+      dadosLojaCriando = await consultaLojaEmEdicao("n"); //Verifica se já possui alguma sendo criada
+    } catch {
+      dadosLojaCriando = null; //Erro na pesquisad de Loja em estágio de criação para continuar.
+      ShowErrorMessage("lj008");
+    };
+    if (dadosLojaCriando !== null) {
+      isLojaCriando = true;
+    };
+  }
 
   function adicionarLoja() {
-    router.navigate('/lojaCadastroBasico');
+    //Vai pro menu de edição, se existir loja já sendo criada, ou inicia um cadastro básico.
+    if (isLojaCriando) {
+      router.navigate({
+        pathname: "/lojaMenu",
+        params: {
+          navigateParmLoja: JSON.stringify(dadosLojaCriando)
+        }
+      })
+    } else {
+      router.navigate('/lojaCadastroBasico')
+    }
   }
   function listarUnidades() {
     router.navigate('/lojaUnidades');
   }
-
   async function logoutApp() {
     Alert.alert('SAIR', 'Você deseja sair do aplicativo agora?', [
       {
@@ -49,31 +79,31 @@ export default function ViewConta() {
         </View>
 
         <View style={styles.containerBasics}>
-          <TouchableOpacity style={styleApp.buttonFlatV} onPress={{}} >
+          <TouchableOpacity style={styleApp.buttonFlatV} disabled={!isLoadingData} onPress={{}} >
             <MaterialIcons name="help-outline" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
             <Text style={styleApp.textButtonFlat}>Ajuda</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styleApp.buttonFlatV} onPress={{}} >
+          <TouchableOpacity style={styleApp.buttonFlatV} disabled={!isLoadingData} onPress={{}} >
             <MaterialIcons name="payment" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
             <Text style={styleApp.textButtonFlat}>Pagamentos</Text>
           </TouchableOpacity>
         </View>
 
         <View style={styles.containerOthers}>
-          <TouchableOpacity style={styleApp.buttonFlatHL} onPress={adicionarLoja} >
+          <TouchableOpacity style={styleApp.buttonFlatHL} disabled={!isLoadingData} onPress={adicionarLoja} >
             <MaterialIcons name="add-business" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
             <Text style={styleApp.textButtonFlat}>Cadastrar uma loja que possuo</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styleApp.buttonFlatHL} onPress={listarUnidades} >
+          <TouchableOpacity style={styleApp.buttonFlatHL} disabled={!isLoadingData} onPress={listarUnidades} >
             <MaterialIcons name="local-laundry-service" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
             <Text style={styleApp.textButtonFlat}>Gerenciar minhas lojas</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styleApp.buttonFlatHL} onPress={{}} >
+          <TouchableOpacity style={styleApp.buttonFlatHL} disabled={!isLoadingData} onPress={{}} >
             <MaterialIcons name="business" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textRegular} />
             <Text style={styleApp.textButtonFlat}>Cadastrar uma franquia </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styleApp.buttonFlatHL} onPress={{}} >
+          <TouchableOpacity style={styleApp.buttonFlatHL} disabled={!isLoadingData} onPress={{}} >
             <MaterialIcons name="business-center" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
             <Text style={styleApp.textButtonFlat}>Gerenciar minhas franquias</Text>
           </TouchableOpacity>

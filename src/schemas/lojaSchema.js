@@ -10,7 +10,8 @@ export const schemaLojaDadosComplementares = {
   nome: "",
   apelido: "",
   status: "",
-  cnpj:""
+  cnpj:"",
+  imagem:"",
 };
 export const schemaLojaStatus = {
   id: "",

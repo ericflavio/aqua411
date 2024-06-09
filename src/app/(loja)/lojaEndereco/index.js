@@ -23,7 +23,7 @@ export default function ViewEdtEnderecoLoja() {
   const [isLoadingData, setisLoadingData] = useState(true);
   const [flagShowModal, setflagShowModal] = useState(false);
   const [endereco, setEndereco] = useState(schemaLojaEndereco)
-
+ 
   //*Dados básicos: [mínimo: apelido, cnpj] !! Falta configurar pra ser chamado do menu de edição da loja.
   //ok - Endereço
   //ok - Localização geografica

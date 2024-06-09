@@ -4,14 +4,11 @@ import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, Activity
 import { styles } from "./styles";
 import { styleApp } from '../../../styles/styleApp';
 import { GradienteFill } from '../../../componentes/gradienteFill';
-import LojaHandleStatus from '../../../componentes/lojaHandleStatus';
 import { AuthContext } from "../../../contexts/auth";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as Animatable from 'react-native-animatable';
 import { consultaListaStatusLoja, consultaLojaEmEdicao } from '../../../services/lojaService';
 import { ShowErrorMessage } from '../../../errors/errorMessage';
-
-console.log("ViewEdtMenuLoja <inicio>");
 
 //Tela principal
 export default function ViewEdtMenuLoja() {
@@ -126,7 +123,7 @@ export default function ViewEdtMenuLoja() {
 
         {lojaDadosBasicos !== null && lojaDadosBasicos.nome !== "" ?
           <View style={styles.containerDadosLoja}>
-            <Text style={styleApp.textSubtitulo}>{lojaDadosBasicos.nome}</Text>
+            <Animatable.Text animation="slideInLeft" style={styleApp.textSubtitulo}>{lojaDadosBasicos.nome}</Animatable.Text>
             <Text style={styleApp.textSmall}>Status: <Text style={styles.textoStatus}>{lojaDadosBasicos.status}</Text></Text>
             <Text style={styleApp.textSmall}>Apelido: {lojaDadosBasicos.apelido}</Text>
           </View>
