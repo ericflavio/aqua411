@@ -102,6 +102,14 @@ export default function ViewEdtMenuLoja() {
       }
     })
   }
+  function goToDadosBasicos() {
+    router.navigate({
+      pathname: '/lojaCadastroBasico',
+      params: {
+        navigateParmLoja: JSON.stringify(lojaDadosBasicos), inMinimoOuCompleto:"completo"
+      }
+    })
+  }
 
   function handleShowViewStatus() {
     if (statusListToChange === null || Object.keys(statusListToChange).length === 0) {
@@ -141,20 +149,12 @@ export default function ViewEdtMenuLoja() {
         <View style={styles.containerOthers}>
           <TouchableOpacity style={styleApp.buttonFlatHL} onPress={{}} >
             <MaterialIcons name="delete-outline" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.textButtonFlat} />
-            <Text style={styleApp.textButtonFlat}>Desistir de cadastrar (excluir))</Text>
+            <Text style={styleApp.textButtonFlat}>Desistir de cadastrar (excluir)</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styleApp.buttonFlatHL} onPress={{}} >
             <MaterialIcons name="saved-search" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.textButtonFlat} />
             <Text style={styleApp.textButtonFlat}>Aparecer nas buscas dos clientes</Text>
           </TouchableOpacity>
-          {/*           <TouchableOpacity style={styleApp.buttonFlatHL} onPress={{}} >
-            <MaterialIcons name="pause-presentation" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.textButtonFlat} />
-            <Text style={styleApp.textButtonFlat}>Omitir temporariamnte das buscas</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styleApp.buttonFlatHL} onPress={{}} >
-            <MaterialIcons name="cancel-presentation" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.textButtonFlat} />
-            <Text style={styleApp.textButtonFlat}>Desativar permanentemente</Text>
-          </TouchableOpacity> */}
         </View>
 
         <View style={styles.containerSection}>
@@ -181,6 +181,13 @@ export default function ViewEdtMenuLoja() {
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <MaterialIcons name="access-time" size={styleApp.size.iconSizeRegular} color={styleApp.color.textButtonFlat} />
               <Text style={styleApp.textButtonFlat}>Horário de funcionamento</Text>
+            </View>
+            <MaterialIcons name="navigate-next" size={styleApp.size.iconSizeRegular} color={styleApp.color.cinzaMedio} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styleApp.buttonFlatHL_list} disabled={disabled} onPress={goToDadosBasicos} >
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <MaterialIcons name="more-horiz" size={styleApp.size.iconSizeRegular} color={styleApp.color.textButtonFlat} />
+              <Text style={styleApp.textButtonFlat}>Outras informações</Text>
             </View>
             <MaterialIcons name="navigate-next" size={styleApp.size.iconSizeRegular} color={styleApp.color.cinzaMedio} />
           </TouchableOpacity>

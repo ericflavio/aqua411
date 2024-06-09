@@ -47,7 +47,12 @@ export default function ViewConta() {
         }
       })
     } else {
-      router.navigate('/lojaCadastroBasico')
+      router.navigate({
+        pathname: "/lojaCadastroBasico",
+        params: {
+          navigateParmLoja: JSON.stringify(dadosLojaCriando), inMinimoOuCompleto:"minimo"
+        }
+      })
     }
   }
   function listarUnidades() {

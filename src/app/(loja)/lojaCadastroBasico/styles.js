@@ -5,9 +5,12 @@ import { styleSize } from "../../../styles/styleSize";
 
 export const styles = StyleSheet.create({
   containerHeader: {
+    marginTop: 30,
     flexDirection: "row",
     gap: 8,
-    paddingLeft: 8
+    paddingLeft: 8,
+    marginLeft: styleApp.size.containerDistanciamentoLateralRegular,
+    marginRight: styleApp.size.containerDistanciamentoLateralRegular,
   },
   containerDadosLoja: {
     flex: 0,
@@ -18,12 +21,15 @@ export const styles = StyleSheet.create({
   },
   containerPrincipal: {
     flex: 0,
-    borderWidth: styleApp.size.containerBordaOnOff,
-    marginBottom: 40,
-  },
-  containerFormulario: {
-    marginLeft: styleSize.containerDistanciamentoLateralRegular,
-    marginRight: styleSize.containerDistanciamentoLateralRegular
+    flexDirection: "column",
+    alignItems: "stretch",
+    justifyContent: "center",
+    backgroundColor: "white",
+    borderRadius: 16,
+    padding: 8,
+    marginLeft: styleApp.size.containerDistanciamentoLateralRegular,
+    marginRight: styleApp.size.containerDistanciamentoLateralRegular,
+    borderWidth: styleApp.size.containerBordaOnOff
   },
   textoStatus: {
     fontFamily: 'Roboto-Bold',
@@ -38,7 +44,7 @@ export const styles = StyleSheet.create({
     //position: "relative"
   },
   containerOthers: {
-    justifyContent:"center",
+    justifyContent: "center",
     alignItems: "stretch",
     gap: 8,
     borderWidth: styleApp.size.containerBordaOnOff,

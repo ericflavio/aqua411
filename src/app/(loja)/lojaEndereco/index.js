@@ -24,6 +24,8 @@ export default function ViewEdtEnderecoLoja() {
   const [flagShowModal, setflagShowModal] = useState(false);
   const [endereco, setEndereco] = useState(schemaLojaEndereco)
  
+  //Correções:
+  //1. Inibir edições da loja se status "escluído" e "inativo" 
   //*Dados básicos: [mínimo: apelido, cnpj] !! Falta configurar pra ser chamado do menu de edição da loja.
   //ok - Endereço
   //ok - Localização geografica

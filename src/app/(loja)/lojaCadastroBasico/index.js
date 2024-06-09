@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { router, useLocalSearchParams } from 'expo-router';
 import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, ActivityIndicator } from "react-native";
 import { styles } from "./styles";
+import { MaterialIcons } from "@expo/vector-icons";
 import { styleApp } from '../../../styles/styleApp';
 import { GradienteFill } from '../../../componentes/gradienteFill';
 import { AuthContext } from "../../../contexts/auth";
@@ -14,7 +15,9 @@ import { schemaLojaDadosBasicos } from '../../../schemas/lojaSchema';
 export default function ViewLojaCadastroBasico() {
   const { user } = useContext(AuthContext);
   const { navigateParmLoja } = useLocalSearchParams();
+  const { inMinimoOuCompleto } = useLocalSearchParams();
   navigateParmLoja ? parmLoja = JSON.parse(navigateParmLoja) : parmLoja = null;
+  console.log("in ", inMinimoOuCompleto)
 
   const [cenario, setCenario] = useState(1);
   const [lojaDadosBasicos, setLojaDadosBasicos] = useState(schemaLojaDadosBasicos);
@@ -101,32 +104,31 @@ export default function ViewLojaCadastroBasico() {
     <SafeAreaView style={styleApp.containerSafeAreaSemPadding}>
       {GradienteFill()}
       <ScrollView style={styleApp.containerScrollFull} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
-        <Image
-          style={styles.imgNovaLoja}
-          source={require('../../../assets/outros/sheep_novaLoja_01.png')}
-        />
 
-        {isLoadingData ? <></> :
+        {!parmLoja || parmLoja === null ?
           <>
-            {lojaDadosBasicos !== null && lojaDadosBasicos.nome !== "" ?
-              <View style={styles.containerDadosLoja}>
-                <Text style={styleApp.textRegular}>Você já iniciou o cadastramento de uma loja.</Text>
-              </View>
-              :
-              <View style={styles.containerDadosLoja}>
-                <Text style={styleApp.textRegular}>Cadastre sua loja para que seus clientes possam receber avisos, alertas de promoções, orientações e muito mais.</Text>
-              </View>
-            }
+            <Image
+              style={styles.imgNovaLoja}
+              source={require('../../../assets/outros/sheep_novaLoja_01.png')}
+            />
+            <View style={styles.containerDadosLoja}>
+              <Text style={styleApp.textRegular}>Cadastre sua loja para seus clientes receberem avisos, promoções, etc.</Text>
+            </View>
           </>
-        }
+          : <></>}
 
-        <View style={styles.containerFormulario}>
+        <View style={styles.containerHeader}>
+          <MaterialIcons name="add-business" size={styleApp.size.iconSizeRegular} color={styleApp.color.textSubtitulo} />
+          <Text style={styleApp.textSubtitulo}>Informações da loja</Text>
+        </View>
+
+        <View style={styles.containerPrincipal}>
           {InputText("Apelido da loja", onChangeApelido, "Apelido", 1, 40, "default", flagEditavel, lojaDadosBasicos.apelido, false)}
           {InputText("CNPJ (opcional) 00.000.000/0000-00", onChangeCnpj, "CNPJ", 1, 18, "default", flagEditavel, lojaDadosBasicos.cnpj, false)}
 
           <TouchableOpacity style={styleApp.buttonHC} disabled={!flagEditavel} onPress={prosseguir}>
             {!flagEditavel ? <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor} /> : ""}
-            <Text style={styleApp.textButtonRegular}>Confirmar e prosseguir</Text>
+            <Text style={styleApp.textButtonRegular}>Confirmar</Text>
           </TouchableOpacity>
 
           <View style={{ marginTop: 18 }}>
