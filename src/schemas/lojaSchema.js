@@ -11,12 +11,17 @@ export const schemaLojaStatus = {
   dfs: [],
 };
 export const schemaLojaEndereco = {
-  cep: "7084706",
+  cep: "",
   localidade: "",
   uf: "",
   ddd: "",
   bairro: "",
   logradouro: "",
-  numero: "108",
-  complemento: "Apto",
+  numero: "",
+  complemento: "",
+};
+export const schemaLojaLocalizacao = {
+  latitude: "",
+  longitude: "",
+  urlMapa: "",
 }

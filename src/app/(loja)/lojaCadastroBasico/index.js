@@ -5,7 +5,7 @@ import { styles } from "./styles";
 import { styleApp } from '../../../styles/styleApp';
 import { GradienteFill } from '../../../componentes/gradienteFill';
 import { AuthContext } from "../../../contexts/auth";
-import { consultaLojaEmEdicao, atualizaDadosBasicos } from '../../../services/lojaService';
+import { consultaLojaEmEdicao, atualizaDadosBasicosLoja } from '../../../services/lojaService';
 import { ShowErrorMessage } from '../../../errors/errorMessage';
 import { InputText } from '../../../componentes/inputText';
 
@@ -92,7 +92,7 @@ export default function ViewLojaCadastroBasico() {
 
     setCenario(cenarioValidar);
     try {
-      const res = await atualizaDadosBasicos(lojaDadosBasicos);
+      const res = await atualizaDadosBasicosLoja(lojaDadosBasicos);
       //TODO: evitar que retorne para tela anterior.
       setCenario(cenarioEditar);
       goTo(); //Menu completo de configuração da loja

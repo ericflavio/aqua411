@@ -57,13 +57,16 @@ export function NewErrorMessage(cod, e) {
         case "lj001": newError.message = "Estamos com dificuldades para pesquisar os Status." + tn; break;
         case "lj002": newError.message = "Não há novos status possíveis."; break;
         //Endereço
-        case "lj003": newError.message = "Não foi possível atualizar os dados do endereço." + tn ; break;
-        case "lj007": newError.message = "Estamos com dificuldades para pesquisar o endereço." + tn ; break;
+        case "lj003": newError.message = "Não foi possível atualizar os dados do endereço." + tn; break;
+        case "lj007": newError.message = "Estamos com dificuldades para pesquisar o endereço." + tn; break;
         //Dados básicos
-        case "lj004": newError.message = "Informe apelido com 8 dígitos, no mínimo." ; break;
-        case "lj005": newError.message = "Informe um CNPJ com formato válido" ; break;
-        case "lj006": newError.message = "Estamos com dificuldades para atualizar os dados agora." + tn ; break;
-        case "lj008": newError.message = "Estamos com dificuldades para pesquisar estes dados." + tn ; break;
+        case "lj004": newError.message = "Informe apelido com 8 dígitos, no mínimo."; break;
+        case "lj005": newError.message = "Informe um CNPJ com formato válido"; break;
+        case "lj006": newError.message = "Estamos com dificuldades para atualizar os dados básicos agora." + tn; break;
+        case "lj008": newError.message = "Estamos com dificuldades para pesquisar os dados básicos da loja." + tn; break;
+        //Localizacao
+        case "lj009": newError.message = "Estamos com dificuldades para pesquisar os dados de localizacao." + tn; break;
+        case "lj010": newError.message = "Estamos com dificuldades para atualizar os dados de localizacao." + tn; break;
 
         default:
           newError.cod = "de2702" + cod.substr(0, 2);
@@ -93,10 +96,11 @@ export function NewErrorMessage(cod, e) {
       break;
     case "gu": // Georeferenciamento e URL
       switch (cod) {
-        case "gu010": newError.message = "Não parece um endereço web válido" + " [" + cod + "]"; break;
+        case "gu010": newError.message = "Informe um endereço válido que começa com 'https://maps.app.goo.gl/'" + " [" + cod + "]"; break;
         case "gu011": newError.message = "Informe um endereço web válido" + " [" + cod + "]"; break;
         case "gu012": newError.message = "Informe um código de Latitude válido" + " [" + cod + "]"; break;
         case "gu013": newError.message = "Informe um código de Longitude válido" + " [" + cod + "]"; break;
+        case "gu014": newError.message = "Estamos com dificuldades para validar a url informada" + " [" + cod + "]" + tn; break;
         default:
           newError.cod = "de2702" + cod.substr(0, 2);
           newError.message = msgDefault + " [" + cod + "]";

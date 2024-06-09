@@ -5,7 +5,7 @@ import { styles } from "./styles";
 import { styleApp } from '../../../styles/styleApp';
 import { GradienteFill } from '../../../componentes/gradienteFill';
 import { AuthContext } from "../../../contexts/auth";
-import { consultaUnidades } from '../../../services/lojaService';
+import { consultaListaUnidades } from '../../../services/lojaService';
 import { styleColor } from '../../../styles/styleColors';
 
 //Tela principal
@@ -20,7 +20,7 @@ export default function ViewLojaUnidades() {
   }, [])
 
   async function fetchUnidades() {
-    const resUnidades = await consultaUnidades(user);
+    const resUnidades = await consultaListaUnidades(user);
     setListaUnidades(resUnidades);
     setIsLoading(false);
   }

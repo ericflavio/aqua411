@@ -31,13 +31,11 @@ export default function ViewEdtMenuLoja() {
   navigateParmLoja ? parmLoja = JSON.parse(navigateParmLoja) : parmLoja = null;
 
   useEffect(() => {
-    console.log("useEffetc>>><1>.parmLoja: ", navigateParmLoja)
     fetchLoja();
   }, [])
 
   async function fetchLoja() {
     let statusInicial = "";
-    console.log("parm ", parmLoja)
     if (parmLoja !== null) {
       //Edição de loja: parametros de identificação recebidos
       statusInicial = parmLoja.status;
@@ -84,7 +82,6 @@ export default function ViewEdtMenuLoja() {
       //Monta os possíveis novos status
       for (var i = 0; i < resList.length; i++) {
         if (resList[i].id.toUpperCase() === statusInicial.toUpperCase()) {
-          console.log("achei no indice: ", i, " ", statusInicial)
           arrayPicker = resList[i].dfs
           break;
         }
@@ -96,9 +93,17 @@ export default function ViewEdtMenuLoja() {
     }
   }
 
-  function goTo() {
+  function goToEndereco() {
     router.navigate({
-      pathname: "/lojaEndereco",
+      pathname: '/lojaEndereco',
+      params: {
+        navigateParmLoja: JSON.stringify(lojaDadosBasicos)
+      }
+    })
+  }
+  function goToLocalizacao() {
+    router.navigate({
+      pathname: '/lojaLocalizacao',
       params: {
         navigateParmLoja: JSON.stringify(lojaDadosBasicos)
       }
@@ -168,21 +173,21 @@ export default function ViewEdtMenuLoja() {
         </View>
 
         <View style={styles.containerPrincipal}>
-          <TouchableOpacity style={styleApp.buttonFlatHL_list} disabled={disabledEndereco} onPress={goTo} >
+          <TouchableOpacity style={styleApp.buttonFlatHL_list} disabled={disabledEndereco} onPress={goToEndereco} >
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <MaterialIcons name="add-business" size={styleApp.size.iconSizeRegular} color={styleApp.color.textButtonFlat} />
               <Text style={styleApp.textButtonFlat}>Endereço</Text>
             </View>
             <MaterialIcons name="navigate-next" size={styleApp.size.iconSizeRegular} color={styleApp.color.cinzaMedio} />
           </TouchableOpacity>
-          <TouchableOpacity style={styleApp.buttonFlatHL_list} disabled={disabled} onPress={goTo} >
+          <TouchableOpacity style={styleApp.buttonFlatHL_list} disabled={disabled} onPress={goToLocalizacao} >
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <MaterialIcons name="location-on" size={styleApp.size.iconSizeRegular} color={styleApp.color.textButtonFlat} />
               <Text style={styleApp.textButtonFlat}>Localização</Text>
             </View>
             <MaterialIcons name="navigate-next" size={styleApp.size.iconSizeRegular} color={styleApp.color.cinzaMedio} />
           </TouchableOpacity>
-          <TouchableOpacity style={styleApp.buttonFlatHL_list} disabled={disabled} onPress={goTo} >
+          <TouchableOpacity style={styleApp.buttonFlatHL_list} disabled={disabled} onPress={goToEndereco} >
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <MaterialIcons name="access-time" size={styleApp.size.iconSizeRegular} color={styleApp.color.textButtonFlat} />
               <Text style={styleApp.textButtonFlat}>Horário de funcionamento</Text>

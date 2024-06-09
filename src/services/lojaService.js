@@ -1,5 +1,10 @@
 import axios from 'axios';
-import { schemaLoja, schemaLojaStatus, schemaLojaEndereco } from '../schemas/lojaSchema';
+import {
+  schemaLoja,
+  schemaLojaStatus,
+  schemaLojaEndereco,
+  schemaLojaLocalizacao
+} from '../schemas/lojaSchema';
 
 export async function consultaListaStatusLoja() {
   const statusLoja = [
@@ -27,12 +32,6 @@ export async function consultaListaStatusLoja() {
       descricao: "Não aparece nas pesquisas de lojas.",
       dfs: []
     },
-    /*     {
-          id: "Excluída",
-          nome: "Excluída",
-          descricao: "Foi excluída durante sua criação.",
-          dfs: []
-        }, */
   ];
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -41,7 +40,7 @@ export async function consultaListaStatusLoja() {
   })
 }
 
-export async function consultaUnidades(user) {
+export async function consultaListaUnidades(user) {
   const res = [
     {
       id: "Loja00001",
@@ -90,7 +89,7 @@ export async function consultaLojaEmEdicao(l) {
   })
 }
 
-export async function atualizaDadosBasicos(loja) {
+export async function atualizaDadosBasicosLoja(loja) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       //reject(null)
@@ -100,7 +99,7 @@ export async function atualizaDadosBasicos(loja) {
 }
 
 //Endereco
-export async function consultaEndereco(id) {
+export async function consultaEnderecoLoja(id) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve({
@@ -116,7 +115,7 @@ export async function consultaEndereco(id) {
     }, 2000);
   })
 }
-export async function IncluiEndereco(endereco) {
+export async function IncluiEnderecoLoja(endereco) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (endereco) {
@@ -127,10 +126,36 @@ export async function IncluiEndereco(endereco) {
     }, 1000);
   })
 }
-export async function atualizaEndereco(endereco) {
+export async function atualizaEnderecoLoja(endereco) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       //reject(null)
+      resolve(null)
+    }, 1000);
+  })
+}
+
+//Localização geográfica
+export async function consultaLocalizacaoLoja(data) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      //schemaLojaLocalizacao.latitude = "13.0929340";
+      //schemaLojaLocalizacao.longitude = "-27.9828120";
+      //schemaLojaLocalizacao.urlMapa = "https://maps.google.com";
+      resolve(null)
+    }, 2000);
+  })
+}
+export async function IncluiLocalizacaoLoja(data) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(null)
+    }, 1000);
+  })
+}
+export async function atualizaLocalizacaoLoja(data) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
       resolve(null)
     }, 1000);
   })

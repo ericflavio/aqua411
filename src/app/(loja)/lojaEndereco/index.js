@@ -10,7 +10,7 @@ import { AuthContext } from "../../../contexts/auth";
 import { ShowErrorMessage } from '../../../errors/errorMessage';
 import { consultaCepService } from '../../../services/cepService';
 import { schemaLojaEndereco } from '../../../schemas/lojaSchema';
-import { atualizaEndereco, consultaEndereco } from '../../../services/lojaService';
+import { atualizaEnderecoLoja, consultaEnderecoLoja } from '../../../services/lojaService';
 import modalSimples from '../../../componentes/modalSimples';
 
 export default function ViewEdtEnderecoLoja() {
@@ -21,16 +21,23 @@ export default function ViewEdtEnderecoLoja() {
   const [flagShowModal, setflagShowModal] = useState(false);
   const [endereco, setEndereco] = useState(schemaLojaEndereco)
 
+  //correções:
+  //1.Menu loja: receber parm dados básicos (da lista seleção, ou pela view de criação dos dados básicos)
+  //2.Menu loja: passar dados básicos da loja pra todos as views filhas
+  //3.View dados básicos: colocar na sistmática de objeto completo
+  //ok 4.View endereço: colocar na sistematica "parm" de validações de campos de tela
+  //5.Services: colocar na sistematica de receber sempre parm "data"
+  //6.View endereço: validar cep também na função prosseguir()
+
   //*Dados básicos: [mínimo: apelido, cnpj] !! Falta configurar pra ser chamado do menu de edição da loja.
   //ok - Endereço
-  //Localização geografica
+  //ok - Localização geografica
   //horário de funcionamento
-  //Franquia vinculada: url site da franquia, isFranquia, idFranquia
-  ////Obs: Pode remover a vinculação? (pensar sobre isso)
+  //Franquia vinculada: url site da franquia, isFranquia, idFranquia. Obs: Pode remover a vinculação? (pensar sobre isso)
   //Contato: telefone, email
   //Maquinas: layout, flag mostrar status maquina, url de callback de status maquinas
-  //Facilidades: alexa, mesa de dobra, qtd assentos, link da camera ao vivo, etc
-  //CadastroComplementar: site, etc
+  //Facilidades: alexa(comandos), wifi livre (nome da rede) a.c., mesa de dobra, qtd assentos, link da camera ao vivo, ver status máquina?, push de conclusão do ciclo?
+  //CadastroComplementar: site, imagem de capa: uma foto da loja.
 
   //franquias
   //Flag permite visualização do status das maquinas
@@ -50,7 +57,7 @@ export default function ViewEdtEnderecoLoja() {
   //Carrega dados pre-existentes
   async function fetchDados() {
     try {
-      res = await consultaEndereco();
+      res = await consultaEnderecoLoja();
     } catch {
       res = null;
       ShowErrorMessage("lj007");
@@ -62,33 +69,30 @@ export default function ViewEdtEnderecoLoja() {
   }
 
   //Valida campos de formulario
-  function onChangeNumero(parmNumero) {
-    setEndereco({ ...endereco, numero: parmNumero });
+  function onChangeNumero(parm) {
+    setEndereco({ ...endereco, numero: parm });
   }
-  function onChangeComplemento(parmComplemento) {
-    setEndereco({ ...endereco, complemento: parmComplemento });
+  function onChangeComplemento(parm) {
+    setEndereco({ ...endereco, complemento: parm });
   }
-  async function onChangeCep(cep) {
-    let data = endereco;
-    data.cep = cep;
-    setEndereco(data);
+  async function onChangeCep(parm) {
+    setEndereco({ ...endereco, cep: parm });
 
-    if (cep.length >= 8) {
-      if (!validarSintaxeCep(cep)) {
+    if (parm.length >= 8) {
+      if (!validarSintaxeCep(parm)) {
         ShowErrorMessage("vc010");
         return;
       }
       setCenario(cenarioValidar);
 
       try {
-        const endCep = await consultaCepService(cep);
+        const endCep = await consultaCepService(parm);
         if (endCep.erro) {
           ShowErrorMessage("vc011");
-          setEndereco(null);
-          setNumero(null);
-          setComplemento(null);
+          setEndereco({ cep: parm, localidade: "", uf: "", ddd: "", bairro: "", logradouro: "", numero: "", complemento: "" });
+          //setEndereco(null);
         } else {
-          schemaLojaEndereco.cep = endCep.cep;
+          schemaLojaEndereco.cep = parm;
           schemaLojaEndereco.localidade = endCep.localidade;
           schemaLojaEndereco.uf = endCep.uf;
           schemaLojaEndereco.ddd = endCep.ddd;
@@ -99,12 +103,10 @@ export default function ViewEdtEnderecoLoja() {
           setEndereco(schemaLojaEndereco)
         }
         setCenario(cenarioEditar);
-        return;
       } catch (e) {
         ShowErrorMessage("vc012");
-        setEndereco(null);
+        setEndereco({ cep: parm, localidade: "", uf: "", ddd: "", bairro: "", logradouro: "", numero: "", complemento: "" });
         setCenario(cenarioEditar);
-        return;
       }
     }
   }
@@ -136,7 +138,7 @@ export default function ViewEdtEnderecoLoja() {
 
     setCenario(cenarioValidar);
     try {
-      const res = await atualizaEndereco(endereco);
+      const res = await atualizaEnderecoLoja(endereco);
       showMsgResultado();
     } catch {
       ShowErrorMessage("lj003");

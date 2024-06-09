@@ -1,6 +1,5 @@
-import React, { useState, useContext } from 'react';
-import { router, useLocalSearchParams } from 'expo-router';
-import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, ActivityIndicator, Alert } from "react-native";
+import React, { useState, useContext, useEffect } from 'react';
+import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, ActivityIndicator, Alert, Modal } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { styles } from "./styles";
 import { styleApp } from '../../../styles/styleApp';
@@ -8,153 +7,145 @@ import { styleColor } from "../../../styles/styleColors";
 import { InputText } from '../../../componentes/inputText';
 import { GradienteFill } from '../../../componentes/gradienteFill';
 import { AuthContext } from "../../../contexts/auth";
-import NewErrorMessage, { errorTextOops } from '../../../errors/errorMessage';
+import { ShowErrorMessage } from '../../../errors/errorMessage';
+import { schemaLojaLocalizacao } from '../../../schemas/lojaSchema';
+import { atualizaLocalizacaoLoja, consultaLocalizacaoLoja } from '../../../services/lojaService';
 import { pingUrl } from '../../../services/urlService';
+import modalSimples from '../../../componentes/modalSimples';
 
-//Tela principal
-export default function ViewEdtLocalizacaoLoja() {
+export default function ViewLocalizacaoLoja() {
   const { user } = useContext(AuthContext);
-  const { navigateParmLoja } = useLocalSearchParams();
-  var loja = JSON.parse(navigateParmLoja)
-  console.log("ViewEdtLocalizacaoLoja <inicio> loja: ", loja.endereco);
 
   const [cenario, setCenario] = useState(1);
-  const [flagErro, setFlagErro] = useState(false);
+  const [isLoadingData, setisLoadingData] = useState(true);
+  const [flagShowModal, setflagShowModal] = useState(false);
+  const [localizacao, setLocalizacao] = useState(schemaLojaLocalizacao)
 
-  const [urlGoogleMaps, setUrlGoogleMaps] = useState("");
-  const [latitude, setLatitude] = useState("");
-  const [longitude, setLongitude] = useState("");
-
-  //horário de funcionamento
-  //telefone de contato
-
-  //flag mostrar status maquina
-  //url de callback de status maquinas
-
-  //layout de exibição das maquinas
-  ///+ adicionar maquinas
-
-  //flag is Franquia
-  /// selecionar franquia
-  /// id da franquia
-
-  //link da camera ao vivo
-
+  //Cenarios
   const cenarioEditar = 1;
   const cenarioValidar = 11;
-
   var flagEditavel = true;
-  cenario > 10 ? flagEditavel = false : flagEditavel = true;
+  cenario !== cenarioEditar || isLoadingData ? flagEditavel = false : flagEditavel = true;
 
-  function showMsgError(cod) {
-    const error = NewErrorMessage(cod);
-    Alert.alert(errorTextOops, error.message);
-    if (!flagErro) setFlagErro(true);
+  //Ações ao final da construção do componente
+  useEffect(() => {
+    fetchDados();
+  }, [])
+
+  //Carrega dados pre-existentes
+  async function fetchDados() {
+    try {
+      res = await consultaLocalizacaoLoja();
+    } catch {
+      res = null;
+      ShowErrorMessage("lj009");
+    };
+    if (res !== null) {
+      setLocalizacao(res);
+    }
+    setisLoadingData(false);
   }
 
-  function validarSintaxeUrl(url) {
+  //Valida campos de formulario
+  function onChangeLatitude(parm) {
+    setLocalizacao({ ...localizacao, latitude: parm });
+  }
+  function onChangeLongitude(parm) {
+    setLocalizacao({ ...localizacao, longitude: parm });
+  }
+  function onChangeUrl(parm) {
+    setLocalizacao({ ...localizacao, urlMapa: parm });
+  }
+  function validarSintaxeUrl() {
+    if (!localizacao.urlMapa.includes('https://maps.app.goo.gl/')) {
+      return false
+    }
+
     const regex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi;
-    const isValid = regex.test(url);
+    const isValid = regex.test(localizacao.urlMapa);
     return isValid;
   }
-  function validarSintaxeLongitude(longitude) {
-    if (longitude.length < 10) { return false } else { return true };
+  function validarSintaxeLongitude() {
+    if (localizacao.longitude.length < 10) { return false } else { return true };
   }
-  function validarSintaxeLatitude(latitude) {
-    if (latitude.length < 10) { return false } else { return true };
-  }
-
-  function onChangeLatitude(latitude) {
-    setLatitude(latitude);
-  }
-  function onChangeLongitude(longitude) {
-    setLongitude(longitude);
-  }
-  async function onChangeUrl(urlGoogleMaps) {
-    setUrlGoogleMaps(urlGoogleMaps);
+  function validarSintaxeLatitude() {
+    if (localizacao.latitude.length < 10) { return false } else { return true };
   }
 
-  function goTo() {
-    //Compoe dados e passa adiante como parametro
-    const localizacao = {
-      latitude: latitude,
-      longitude: longitude,
-      urlGoogleMapas: urlGoogleMaps
-    }
-    loja.localizacao = localizacao;
-    console.log("xxxxx ", loja)
-
-    router.navigate({
-      pathname: "/lojaHorario",
-      params: {
-        navigateParmLoja: JSON.stringify(loja)
-      }
-    })
+  //Funções auxiliares 
+  function handleCloseModal() {
+    setflagShowModal(!flagShowModal);
+  }
+  function showMsgResultado() {
+    setflagShowModal(!flagShowModal);
+    setTimeout(() => {
+      setflagShowModal(false);
+    }, styleApp.size.modalTimeAutoClose);
   }
 
+  //Ações ao clicar no botão principal (confirmar/prosseguir)
   async function prosseguir() {
-    switch (cenario) {
-      case cenarioEditar:
+    if (isLoadingData) { return };
 
-        if (latitude.length > 0 && !validarSintaxeLatitude(latitude)) {
-          showMsgError("gu012");
-          return;
-        }
-        if (longitude.length > 0 && !validarSintaxeLongitude(longitude)) {
-          showMsgError("gu013");
-          return;
-        }
-
-        if (urlGoogleMaps.length > 0) {
-          if (!validarSintaxeUrl(urlGoogleMaps)) {
-            showMsgError("gu010");
-            return;
-          }
-
-          setCenario(cenarioValidar);
-
-          try {
-            const isValidUrl = await pingUrl(urlGoogleMaps);
-            if (!isValidUrl) {
-              showMsgError("gu011");
-              setCenario(cenarioEditar);
-              return;
-            }
-          } catch (e) {
-            showMsgError("gu011");
-            setCenario(cenarioEditar);
-            return;
-          }
-        }
-        goTo();
+    if (!validarSintaxeLatitude()) {
+      ShowErrorMessage("gu012");
+      return;
     };
+    if (!validarSintaxeLongitude()) {
+      ShowErrorMessage("gu013");
+      return;
+    };
+    if (!validarSintaxeUrl()) {
+      ShowErrorMessage("gu010");
+      return;
+    };
+
+    setCenario(cenarioValidar);
+
+    try {
+      const isValidUrl = await pingUrl(localizacao.urlMapa);
+      if (!isValidUrl) {
+        ShowErrorMessage("gu011");
+        setCenario(cenarioEditar);
+        return;
+      }
+    } catch (e) {
+      ShowErrorMessage("gu014");
+      setCenario(cenarioEditar);
+      return;
+    }
+
+    try {
+      const res = await atualizaLocalizacaoLoja(localizacao);
+      showMsgResultado();
+    } catch {
+      ShowErrorMessage("lj010");
+    }
+    setCenario(cenarioEditar);
   }
 
+  //Apresentação da view principal
   return (
     <SafeAreaView style={styleApp.containerSafeArea}>
       {GradienteFill()}
       <ScrollView style={styleApp.containerScroll} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
-
         <View style={styles.containerHeader}>
-          <MaterialIcons name="location-on" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textSubtitulo} />
-          <Text style={styleApp.textSubtitulo}>Localização geográfica</Text>
+          <MaterialIcons name="location-on" size={styleApp.size.iconSizeRegular} color={styleColor.textSubtitulo} />
+          <Text style={styleApp.textSubtitulo}>localização geográfica</Text>
         </View>
 
+        {modalSimples(flagShowModal, handleCloseModal, "Informações atualizadas!", "TipoMsg", "Título")}
+
         <View style={styles.containerPrincipal}>
-          {InputText("Latitude", onChangeLatitude, "ex. 15,23456", 1, 12, "default", flagEditavel, latitude, false)}
-          {InputText("Longitude", onChangeLongitude, "ex. -30,67890", 1, 12, "default", flagEditavel, longitude, false)}
-          {InputText("Cole aqui o endereço/url GoogleMaps", onChangeUrl, "url GoogleMaps", 1, 200, "default", flagEditavel, urlGoogleMaps, false)}
+          {InputText("Latitude", onChangeLatitude, "ex. 15,23456", 1, 12, "default", flagEditavel, localizacao.latitude, false)}
+          {InputText("Longitude", onChangeLongitude, "ex. -30,67890", 1, 12, "default", flagEditavel, localizacao.longitude, false)}
+          {InputText("Cole aqui o endereço/url GoogleMaps", onChangeUrl, "url GoogleMaps", 1, 200, "default", flagEditavel, localizacao.urlMapa, false)}
 
           <TouchableOpacity style={styleApp.buttonHC} disabled={!flagEditavel} onPress={prosseguir} >
-            {!flagEditavel ? <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor}/> : ""}
+            {!flagEditavel ? <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor} /> : ""}
             <Text style={styleApp.textButtonRegular}>Confirmar</Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.containerBottom}>
-          <MaterialIcons name="check-circle-outline" size={styleApp.size.iconSizeSmall} color={styleColor.textRegular} />
-          <Text style={styleApp.textSmall}>Estas informações são opcionais</Text>
-        </View>
-
       </ScrollView>
     </SafeAreaView >
   )

@@ -1,8 +1,9 @@
 import { Modal, StyleSheet, Text, Pressable, View, TouchableOpacity } from 'react-native';
 import { MaterialIcons } from "@expo/vector-icons";
 import { styleApp } from '../styles/styleApp';
+import { GradienteFill } from '../componentes/gradienteFill';
 
-export default function modalSimples(flagShowModal, onClose, msg, msgTipo, msgTitulo, ) {
+export default function modalSimples(flagShowModal, onClose, msg, msgTipo, msgTitulo,) {
   if (flagShowModal === undefined) {
     flagShowModal = true
   };
@@ -34,7 +35,7 @@ export default function modalSimples(flagShowModal, onClose, msg, msgTipo, msgTi
         onRequestClose={() => { }}>
         <View style={stylesLocal.centeredView}>
           <View style={[stylesLocal.modalView, { borderColor: borderModal }]}>
-            <Text style={[styleApp.textSubtitulo, {color:borderModal }]}>{msgTitulo}</Text>
+            <Text style={[styleApp.textSubtitulo, { color: borderModal }]}>{msgTitulo}</Text>
             {msg !== "" ? <Text style={styleApp.textRegular}>{msg}</Text> : <></>}
             <View style={{ marginTop: 20 }}>
               <TouchableOpacity style={styleApp.buttonFlatHL_transp} disabled={false} onPress={onClose} >
@@ -58,8 +59,8 @@ const stylesLocal = StyleSheet.create({
     margin: 0,
     minHeight: 240,
     minWidth: "92%",
-    borderLeftWidth:1,
-    borderRightWidth:1,
+    borderLeftWidth: 1,
+    borderRightWidth: 1,
     borderTopWidth: 3,
     borderColor: "grey",
     backgroundColor: 'white',
