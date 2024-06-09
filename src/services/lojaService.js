@@ -13,24 +13,28 @@ export async function consultaListaStatusLoja() {
       id: "Criando",
       nome: "Criando",
       descricao: "A loja está sendo criada. Apenas o proprietário pesquisar e favoritar esta loja.",
+      inPermiteEdicao: true,
       dfs: ["Ativa"]
     },
     {
       id: "Ativa",
       nome: "Ativa",
       descricao: "Todas as pessoas podem pesquisar e favoritar esta loja.",
+      inPermiteEdicao: true,
       dfs: ["Suspensa", "Inativa"]
     },
     {
       id: "Suspensa",
       nome: "Suspensa",
       descricao: "Situação temporária. Pode ser pesquisada, porém ninguém pode favoritá-la.",
+      inPermiteEdicao: true,
       dfs: ["Ativa", "Inativa"]
     },
     {
       id: "Inativa",
       nome: "Inativa",
       descricao: "Não aparece nas pesquisas de lojas.",
+      inPermiteEdicao: false,
       dfs: []
     },
   ];

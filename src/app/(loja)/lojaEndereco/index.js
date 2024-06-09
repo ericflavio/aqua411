@@ -26,7 +26,9 @@ export default function ViewEdtEnderecoLoja() {
  
   //Correções:
   //1. Inibir edições da loja se status "escluído" e "inativo" 
-  //*Dados básicos: [mínimo: apelido, cnpj] !! Falta configurar pra ser chamado do menu de edição da loja.
+  //2. view dados básicos: não consultar no DB se o parmLoja chegar preenchido. E tratar campos adicionais.
+
+  //*Dados básicos: tratar campos adicionais (além do mínimo)
   //ok - Endereço
   //ok - Localização geografica
   //horário de funcionamento
