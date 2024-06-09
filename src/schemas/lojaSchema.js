@@ -1,8 +1,16 @@
-export const schemaLoja = {
+export const schemaLojaDadosBasicos = {
   id: "",
   nome: "",
   apelido: "",
-  status: ""
+  status: "",
+  cnpj: ""
+};
+export const schemaLojaDadosComplementares = {
+  id: "",
+  nome: "",
+  apelido: "",
+  status: "",
+  cnpj:""
 };
 export const schemaLojaStatus = {
   id: "",
