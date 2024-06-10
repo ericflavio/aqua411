@@ -21,12 +21,13 @@ export default function ViewEdtMenuLoja() {
 
   const [lojaDados, setLojaDados] = useState(parmLoja);
   const [disabled, setDisabled] = useState(false);
-  const [showViewStatus, setShowViewStatus] = useState(false);
   const [statusList, setStatusList] = useState(null); //Relação de todos os status
-  const [flagStatusEditavel, setStatusEditavel] = useState(true);
-  const [statusListToChange, setStatusListToChange] = useState(null); //Status possíveis pelo DFS
+  const [flagStatusEditavel, setStatusEditavel] = useState(true); //Indica se loja neste estado pode ser editada
+  const [statusListToChange, setStatusListToChange] = useState(null); //Novos Status permitidos pelo DFS
+  const [isProcessing, setProcessing] = useState(true);
 
   //Providências após a construção do objeto principal
+  //TODO: persistir status localmente (raramente mudam)
   useEffect(() => {
     fetchLoja();
   }, [])
@@ -34,39 +35,28 @@ export default function ViewEdtMenuLoja() {
   async function fetchLoja() {
     //Consulta a lista de status que podem ser atribuídos a uma loja
     if (statusList === null) { //Ainda não foi consultado
-      resList = await fetchStatusList();
-      filtraNovosStatusPossiveis(resList, lojaDados.status)
+      try {
+        resList = await consultaListaStatusLoja();
+      } catch (e) {
+        ShowErrorMessage("lj001", "t");
+        resList = null;
+      }
+      if (resList !== null && Object.keys(resList).length > 0) {
+        setStatusList(resList);
+        filtraNovosStatusPossiveis(resList, lojaDados.status)
+      }
     }
-  }
-
-  async function fetchStatusList() {
-    try {
-      resList = await consultaListaStatusLoja();
-    } catch (e) {
-      ShowErrorMessage("lj001", "t");
-      resList = null;
-    }
-    if (resList !== null) {
-      setStatusList(resList);
-    }
-    return resList;
+    setProcessing(!isProcessing);
   }
 
   function filtraNovosStatusPossiveis(resList, statusInicial) {
-    let arrayPicker = null;
-    if (resList !== null && Object.keys(resList).length > 0) {
-      //Monta os possíveis novos status
-      for (var i = 0; i < resList.length; i++) {
-        if (resList[i].id.toUpperCase() === statusInicial.toUpperCase()) {
-          setStatusEditavel(resList[i].inPermiteEdicao)
-          arrayPicker = resList[i].dfs
-          break;
-        }
+    //Monta os possíveis novos status
+    for (var i = 0; i < resList.length; i++) {
+      if (resList[i].id.toUpperCase() === statusInicial.toUpperCase()) {
+        setStatusEditavel(resList[i].inPermiteEdicao)
+        setStatusListToChange(resList[i].dfs)
+        break;
       }
-    }
-    //Atualiza os estados
-    if (arrayPicker !== statusListToChange) {
-      setStatusListToChange(arrayPicker);
     }
   }
 
@@ -95,16 +85,8 @@ export default function ViewEdtMenuLoja() {
     })
   }
 
-  function handleShowViewStatus() {
-    if (statusListToChange === null || Object.keys(statusListToChange).length === 0) {
-      Alert.alert("O status atual não pode ser alterado!");
-      return;
-    }
-    setShowViewStatus(!showViewStatus);
-  }
-
   console.log("dadosBasicos :", lojaDados)
-  console.log("flagEdicao :", flagStatusEditavel)
+  console.log("flagEdicao :", flagStatusEditavel, ' : ', statusListToChange)
   return (
     <SafeAreaView style={styleApp.containerSafeAreaSemPadding}>
       {GradienteFill()}
@@ -113,81 +95,85 @@ export default function ViewEdtMenuLoja() {
           style={styles.imgNovaLoja}
           source={require('../../../assets/outros/sheep_novaLoja_01.png')}
         />
-
-        {parmLoja === null ?
-          <View style={styles.containerDadosLoja}>
-            <Text style={styleApp.textSubtitulo}>As informações da loja eram esperadas e não foram recebidas neste ponto.</Text>
-            <Text style={styleApp.textSmall}>Tente novamante em instantes. Se o problema persistir, entre em contato com o nosso suporte.</Text>
-          </View>
+        {isProcessing ?
+          <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor} />
           :
           <>
-            <View style={styles.containerDadosLoja}>
-              <Animatable.Text animation="slideInLeft" style={styleApp.textSubtitulo}>
-                {lojaDados.nome !== null && lojaDados.nome !== "" ? lojaDados.nome : "Sua nova loja"}
-              </Animatable.Text>
-              <Text style={styleApp.textSmall}>Status: <Text style={styles.textoStatus}>{lojaDados.status}</Text></Text>
-              <Text style={styleApp.textSmall}>Apelido: {lojaDados.apelido}</Text>
-            </View>
-
-            <View style={styles.containerSection}>
-              <Text style={styleApp.textSmall}>Ações de gerenciamento</Text>
-              <MaterialIcons name="settings" size={20} color={styleApp.color.cinzaMedio} />
-            </View>
-
-            <View style={styles.containerOthers}>
-              <TouchableOpacity style={styleApp.buttonFlatHL} onPress={{}} >
-                <MaterialIcons name="delete-outline" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.textButtonFlat} />
-                <Text style={styleApp.textButtonFlat}>Desistir de cadastrar (excluir)</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styleApp.buttonFlatHL} onPress={{}} >
-                <MaterialIcons name="saved-search" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.textButtonFlat} />
-                <Text style={styleApp.textButtonFlat}>Aparecer nas buscas dos clientes</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={styles.containerSection}>
-              <Text style={styleApp.textSmall}>Configuração da loja</Text>
-              <MaterialIcons name="edit" size={20} color={styleApp.color.cinzaMedio} />
-            </View>
-
-            <View style={styles.containerPrincipal}>
-              <TouchableOpacity style={styleApp.buttonFlatHL_list} disabled={disabled} onPress={goToEndereco} >
-                <View style={{ flexDirection: "row", alignItems: "center" }}>
-                  <MaterialIcons name="add-business" size={styleApp.size.iconSizeRegular} color={styleApp.color.textButtonFlat} />
-                  <Text style={styleApp.textButtonFlat}>Endereço</Text>
-                </View>
-                <MaterialIcons name="navigate-next" size={styleApp.size.iconSizeRegular} color={styleApp.color.cinzaMedio} />
-              </TouchableOpacity>
-              <TouchableOpacity style={styleApp.buttonFlatHL_list} disabled={disabled} onPress={goToLocalizacao} >
-                <View style={{ flexDirection: "row", alignItems: "center" }}>
-                  <MaterialIcons name="location-on" size={styleApp.size.iconSizeRegular} color={styleApp.color.textButtonFlat} />
-                  <Text style={styleApp.textButtonFlat}>Localização</Text>
-                </View>
-                <MaterialIcons name="navigate-next" size={styleApp.size.iconSizeRegular} color={styleApp.color.cinzaMedio} />
-              </TouchableOpacity>
-              <TouchableOpacity style={styleApp.buttonFlatHL_list} disabled={disabled} onPress={goToEndereco} >
-                <View style={{ flexDirection: "row", alignItems: "center" }}>
-                  <MaterialIcons name="access-time" size={styleApp.size.iconSizeRegular} color={styleApp.color.textButtonFlat} />
-                  <Text style={styleApp.textButtonFlat}>Horário de funcionamento</Text>
-                </View>
-                <MaterialIcons name="navigate-next" size={styleApp.size.iconSizeRegular} color={styleApp.color.cinzaMedio} />
-              </TouchableOpacity>
-              <TouchableOpacity style={styleApp.buttonFlatHL_list} disabled={disabled} onPress={goToDadosBasicos} >
-                <View style={{ flexDirection: "row", alignItems: "center" }}>
-                  <MaterialIcons name="more-vert" size={styleApp.size.iconSizeRegular} color={styleApp.color.textButtonFlat} />
-                  <Text style={styleApp.textButtonFlat}>Outras informações</Text>
-                </View>
-                <MaterialIcons name="navigate-next" size={styleApp.size.iconSizeRegular} color={styleApp.color.cinzaMedio} />
-              </TouchableOpacity>
-
-              <View style={styles.containerSection}>
-                <Text style={styleApp.textSmall}>{styleApp.textFraseOpcaoDeAssinantes}</Text>
-                <MaterialIcons name="edit" size={20} color={styleApp.color.cinzaMedio} />
+            {parmLoja === null || statusList === null ?
+              <View style={styles.containerDadosLoja}>
+                <Text style={styleApp.textSubtitulo}>As informações da loja eram esperadas e não foram recebidas.</Text>
+                <Text style={styleApp.textSmall}>Tente novamante em instantes. Se o problema persistir, entre em contato com o nosso suporte.</Text>
               </View>
-            </View>
+              :
+              <>
+                <View style={styles.containerDadosLoja}>
+                  <Animatable.Text animation="slideInLeft" style={styleApp.textSubtitulo}>
+                    {lojaDados.nome !== null && lojaDados.nome !== "" ? lojaDados.nome : "Sua nova loja"}
+                  </Animatable.Text>
+                  <Text style={styleApp.textSmall}>Status: <Text style={styles.textoStatus}>{lojaDados.status}</Text></Text>
+                  <Text style={styleApp.textSmall}>Apelido: {lojaDados.apelido}</Text>
+                </View>
+
+                <View style={styles.containerSection}>
+                  <Text style={styleApp.textSmall}>Ações de gerenciamento</Text>
+                  <MaterialIcons name="settings" size={20} color={styleApp.color.cinzaMedio} />
+                </View>
+
+                <View style={styles.containerOthers}>
+                  <TouchableOpacity style={styleApp.buttonFlatHL} onPress={{}} >
+                    <MaterialIcons name="delete-outline" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.textButtonFlat} />
+                    <Text style={styleApp.textButtonFlat}>Desistir de cadastrar (excluir)</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styleApp.buttonFlatHL} onPress={{}} >
+                    <MaterialIcons name="saved-search" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.textButtonFlat} />
+                    <Text style={styleApp.textButtonFlat}>Aparecer nas buscas dos clientes</Text>
+                  </TouchableOpacity>
+                </View>
+
+                <View style={styles.containerSection}>
+                  <Text style={styleApp.textSmall}>Configuração da loja</Text>
+                  <MaterialIcons name="edit" size={20} color={styleApp.color.cinzaMedio} />
+                </View>
+
+                <View style={styles.containerPrincipal}>
+                  <TouchableOpacity style={styleApp.buttonFlatHL_list} disabled={disabled} onPress={goToEndereco} >
+                    <View style={{ flexDirection: "row", alignItems: "center" }}>
+                      <MaterialIcons name="add-business" size={styleApp.size.iconSizeRegular} color={styleApp.color.textButtonFlat} />
+                      <Text style={styleApp.textButtonFlat}>Endereço</Text>
+                    </View>
+                    <MaterialIcons name="navigate-next" size={styleApp.size.iconSizeRegular} color={styleApp.color.cinzaMedio} />
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styleApp.buttonFlatHL_list} disabled={disabled} onPress={goToLocalizacao} >
+                    <View style={{ flexDirection: "row", alignItems: "center" }}>
+                      <MaterialIcons name="location-on" size={styleApp.size.iconSizeRegular} color={styleApp.color.textButtonFlat} />
+                      <Text style={styleApp.textButtonFlat}>Localização</Text>
+                    </View>
+                    <MaterialIcons name="navigate-next" size={styleApp.size.iconSizeRegular} color={styleApp.color.cinzaMedio} />
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styleApp.buttonFlatHL_list} disabled={disabled} onPress={goToEndereco} >
+                    <View style={{ flexDirection: "row", alignItems: "center" }}>
+                      <MaterialIcons name="access-time" size={styleApp.size.iconSizeRegular} color={styleApp.color.textButtonFlat} />
+                      <Text style={styleApp.textButtonFlat}>Horário de funcionamento</Text>
+                    </View>
+                    <MaterialIcons name="navigate-next" size={styleApp.size.iconSizeRegular} color={styleApp.color.cinzaMedio} />
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styleApp.buttonFlatHL_list} disabled={disabled} onPress={goToDadosBasicos} >
+                    <View style={{ flexDirection: "row", alignItems: "center" }}>
+                      <MaterialIcons name="more-vert" size={styleApp.size.iconSizeRegular} color={styleApp.color.textButtonFlat} />
+                      <Text style={styleApp.textButtonFlat}>Outras informações</Text>
+                    </View>
+                    <MaterialIcons name="navigate-next" size={styleApp.size.iconSizeRegular} color={styleApp.color.cinzaMedio} />
+                  </TouchableOpacity>
+
+                  <View style={styles.containerSection}>
+                    <Text style={styleApp.textSmall}>{styleApp.textFraseOpcaoDeAssinantes}</Text>
+                    <MaterialIcons name="edit" size={20} color={styleApp.color.cinzaMedio} />
+                  </View>
+                </View>
+              </>
+            }
           </>
         }
-
       </ScrollView>
     </SafeAreaView >
   )

@@ -14,7 +14,7 @@ import { schemaLojaDadosMinimos } from '../../../schemas/lojaSchema';
 //Tela principal HOME
 export default function ViewConta() {
   const { user, logOut } = useContext(AuthContext);
-  const [isLoadingData, setisLoadingData] = useState(true);
+  const [isProcessing, setProcessing] = useState(true);
   const [lojaDados, setLojaDados] = useState(null);
 
   var name = "Olá!";
@@ -35,7 +35,7 @@ export default function ViewConta() {
     if (res !== null) {
       setLojaDados(res);
     };
-    setisLoadingData(!setisLoadingData);
+    setProcessing(!setProcessing);
   }
 
   function adicionarLoja() {
@@ -83,36 +83,36 @@ export default function ViewConta() {
               style={styles.imageUser}
               source={require('../../../assets/icones/app_icon_02.png')}
             />
-            {isLoadingData ? <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor} /> : ""}
+            {isProcessing ? <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor} /> : ""}
           </View>
         </View>
 
         <View style={styles.containerBasics}>
-          <TouchableOpacity style={styleApp.buttonFlatV} disabled={isLoadingData} onPress={{}} >
+          <TouchableOpacity style={styleApp.buttonFlatV} disabled={isProcessing} onPress={{}} >
             <MaterialIcons name="help-outline" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
             <Text style={styleApp.textButtonFlat}>Ajuda</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styleApp.buttonFlatV} disabled={isLoadingData} onPress={{}} >
+          <TouchableOpacity style={styleApp.buttonFlatV} disabled={isProcessing} onPress={{}} >
             <MaterialIcons name="payment" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
             <Text style={styleApp.textButtonFlat}>Pagamentos</Text>
           </TouchableOpacity>
         </View>
 
         <View style={styles.containerOthers}>
-          <TouchableOpacity style={styleApp.buttonFlatHL} disabled={isLoadingData} onPress={adicionarLoja} >
+          <TouchableOpacity style={styleApp.buttonFlatHL} disabled={isProcessing} onPress={adicionarLoja} >
             <MaterialIcons name="add-business" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
             <Text style={styleApp.textButtonFlat}>Cadastrar uma loja que possuo</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styleApp.buttonFlatHL} disabled={isLoadingData} onPress={listarUnidades} >
+          <TouchableOpacity style={styleApp.buttonFlatHL} disabled={isProcessing} onPress={listarUnidades} >
             <MaterialIcons name="local-laundry-service" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
             <Text style={styleApp.textButtonFlat}>Gerenciar minhas lojas</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styleApp.buttonFlatHL} disabled={isLoadingData} onPress={{}} >
+          <TouchableOpacity style={styleApp.buttonFlatHL} disabled={isProcessing} onPress={{}} >
             <MaterialIcons name="business" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textRegular} />
             <Text style={styleApp.textButtonFlat}>Cadastrar uma franquia </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styleApp.buttonFlatHL} disabled={isLoadingData} onPress={{}} >
+          <TouchableOpacity style={styleApp.buttonFlatHL} disabled={isProcessing} onPress={{}} >
             <MaterialIcons name="business-center" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
             <Text style={styleApp.textButtonFlat}>Gerenciar minhas franquias</Text>
           </TouchableOpacity>

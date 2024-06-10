@@ -20,14 +20,16 @@ export default function ViewEdtEnderecoLoja() {
   navigateParmLoja ? parmLoja = JSON.parse(navigateParmLoja) : parmLoja = null;
 
   const [cenario, setCenario] = useState(1);
-  const [isLoadingData, setisLoadingData] = useState(true);
+  const [isProcessing, setProcessing] = useState(true);
   const [flagShowModal, setflagShowModal] = useState(false);
   const [endereco, setEndereco] = useState(schemaLojaEndereco)
  
   //Correções:
-  //1. Inibir edições da loja se status "excluído" e "inativo" 
-  //2. view dados básicos: E tratar campos adicionais.
+  //1. Inibir edições da loja se status "excluído" e "inativo"; tratar menuzinho "opções de gerenciamento"
+  //2. view dados básicos: tratar campos adicionais.
   //3. Regex cnpj 
+  //4. Equalizar isProscessing com flagEditavel
+  //5. Usar flag ou in ou is ou has; padronizar
 
   //*Dados básicos: tratar campos adicionais (além do mínimo)
   //ok - Endereço
@@ -47,7 +49,7 @@ export default function ViewEdtEnderecoLoja() {
   const cenarioEditar = 1;
   const cenarioValidar = 11;
   var flagEditavel = true;
-  cenario !== cenarioEditar || isLoadingData ? flagEditavel = false : flagEditavel = true;
+  cenario !== cenarioEditar || isProcessing ? flagEditavel = false : flagEditavel = true;
 
   //Ações ao final da construção do componente
   useEffect(() => {
@@ -65,7 +67,7 @@ export default function ViewEdtEnderecoLoja() {
     if (res !== null) {
       setEndereco(res);
     }
-    setisLoadingData(false);
+    setProcessing(false);
   }
 
   //Valida campos de formulario
@@ -135,7 +137,7 @@ export default function ViewEdtEnderecoLoja() {
 
   //Ações ao clicar no botão principal (confirmar/prosseguir)
   async function prosseguir() {
-    if (isLoadingData) { return }; //ignora o botão, ainda clicável, até que os dados sejam carregados
+    if (isProcessing) { return }; //ignora o botão, ainda clicável, até que os dados sejam carregados
 
     if (endereco.cep.length < 8 || !validarSintaxeCep(endereco.cep)) {
       ShowErrorMessage("vc010");

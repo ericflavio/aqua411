@@ -20,7 +20,7 @@ export default function ViewLocalizacaoLoja() {
   navigateParmLoja ? parmLoja = JSON.parse(navigateParmLoja) : parmLoja = null;
 
   const [cenario, setCenario] = useState(1);
-  const [isLoadingData, setisLoadingData] = useState(true);
+  const [isProcessing, setProcessing] = useState(true);
   const [flagShowModal, setflagShowModal] = useState(false);
   const [localizacao, setLocalizacao] = useState(schemaLojaLocalizacao)
 
@@ -28,7 +28,7 @@ export default function ViewLocalizacaoLoja() {
   const cenarioEditar = 1;
   const cenarioValidar = 11;
   var flagEditavel = true;
-  cenario !== cenarioEditar || isLoadingData ? flagEditavel = false : flagEditavel = true;
+  cenario !== cenarioEditar || isProcessing ? flagEditavel = false : flagEditavel = true;
 
   //Ações ao final da construção do componente
   useEffect(() => {
@@ -46,7 +46,7 @@ export default function ViewLocalizacaoLoja() {
     if (res !== null) {
       setLocalizacao(res);
     }
-    setisLoadingData(false);
+    setProcessing(false);
   }
 
   //Valida campos de formulario
@@ -88,7 +88,7 @@ export default function ViewLocalizacaoLoja() {
 
   //Ações ao clicar no botão principal (confirmar/prosseguir)
   async function prosseguir() {
-    if (isLoadingData) { return };
+    if (isProcessing) { return };
 
     if (!validarSintaxeLatitude()) {
       ShowErrorMessage("gu012");
