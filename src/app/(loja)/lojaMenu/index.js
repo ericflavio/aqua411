@@ -7,7 +7,7 @@ import { GradienteFill } from '../../../componentes/gradienteFill';
 import { AuthContext } from "../../../contexts/auth";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as Animatable from 'react-native-animatable';
-import { consultaListaStatusLoja, consultaLojaEmEdicao } from '../../../services/lojaService';
+import { consultaListaStatusLoja } from '../../../services/lojaService';
 import { ShowErrorMessage } from '../../../errors/errorMessage';
 import { schemaLojaDadosMinimos } from '../../../schemas/lojaSchema';
 
@@ -32,29 +32,10 @@ export default function ViewEdtMenuLoja() {
   }, [])
 
   async function fetchLoja() {
-    let statusInicial = "";
-    if (parmLoja !== null) {
-      //Parametros de identificação recebidos
-      statusInicial = parmLoja.status;
-      setLojaDados(parmLoja);
-      setDisabled(false); // Libera edição das demais opções
-    } else {
-      try {
-        resLoja = await consultaLojaEmEdicao("s"); //Verifica se já possui alguma sendo criada
-      } catch {
-        resLoja = null; //Não encontrou uma Loja me estágio de criação para continuar.
-      };
-      if (resLoja !== null) {
-        statusInicial = resLoja.status;
-        setLojaDados(resLoja);
-        setDisabled(false); // Libera edição das demais opções
-      }
-    };
-
     //Consulta a lista de status que podem ser atribuídos a uma loja
     if (statusList === null) { //Ainda não foi consultado
       resList = await fetchStatusList();
-      filtraNovosStatusPossiveis(resList, statusInicial)
+      filtraNovosStatusPossiveis(resList, lojaDados.status)
     }
   }
 
@@ -70,10 +51,6 @@ export default function ViewEdtMenuLoja() {
     }
     return resList;
   }
-
-  function verificaEdicaoHabilitada() {
-
-  };
 
   function filtraNovosStatusPossiveis(resList, statusInicial) {
     let arrayPicker = null;
@@ -112,7 +89,7 @@ export default function ViewEdtMenuLoja() {
     router.navigate({
       pathname: '/lojaCadastroBasico',
       params: {
-        navigateParmLoja: JSON.stringify(lojaDados), inMinimoOuCompleto: "completo"
+        navigateParmLoja: JSON.stringify(lojaDados)
       }
     })
   }

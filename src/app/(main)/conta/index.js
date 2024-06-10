@@ -7,7 +7,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { GradienteFill } from '../../../componentes/gradienteFill';
 import { AuthContext } from "../../../contexts/auth";
 import { router, useLocalSearchParams } from 'expo-router';
-import { consultaLojaEmEdicao } from '../../../services/lojaService';
+import { consultaExistenciaLojaEmCriacao } from '../../../services/lojaService';
 import { ShowErrorMessage } from '../../../errors/errorMessage';
 import { schemaLojaDadosMinimos } from '../../../schemas/lojaSchema';
 
@@ -29,7 +29,7 @@ export default function ViewConta() {
     //TODO: consultar novamente (ao voltar pra tela, ou ao clicar no botão de crir loja? )
     //Verifica se existe loja sendo criada (status = criando)
     try {
-      lojaDadosMinimos = await consultaLojaEmEdicao("n"); //Verifica se já possui alguma sendo criada
+      lojaDadosMinimos = await consultaExistenciaLojaEmCriacao("n"); //Verifica se já possui alguma sendo criada
     } catch {
       lojaDadosMinimos = null; //Erro na pesquisad de Loja em estágio de criação para continuar.
       ShowErrorMessage("lj008");

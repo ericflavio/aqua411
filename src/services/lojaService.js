@@ -76,7 +76,7 @@ export async function consultaListaUnidades(user) {
   })
 }
 
-export async function consultaLojaEmEdicao(user) {
+export async function consultaExistenciaLojaEmCriacao(user) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (user && user === "s") {
@@ -86,6 +86,25 @@ export async function consultaLojaEmEdicao(user) {
         schemaLojaDadosMinimos.status = "Criando",
         schemaLojaDadosMinimos.cnpj = ""
         resolve(schemaLojaDadosMinimos)
+      } else {
+        resolve(null)
+      }
+    }, 1000);
+  })
+}
+export async function consultaDadosLoja(id) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (id && id === "s") {
+        schemaLojaDados.id = "LOJA00001",
+        schemaLojaDados.nome = "Aquamagic-AsaNorte-Brasilia-DF",
+        schemaLojaDados.apelido = "Apelido-loja",
+        schemaLojaDados.status = "Criando",
+        schemaLojaDados.cnpj = "",
+        schemaLojaDados.email = "",
+        schemaLojaDados.whatsapp = "",
+        schemaLojaDados.idImagemCapa =""
+        resolve(schemaLojaDados)
       } else {
         resolve(null)
       }

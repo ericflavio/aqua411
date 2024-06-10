@@ -10,7 +10,6 @@ import { styleColor } from '../../../styles/styleColors';
 
 //Tela principal
 export default function ViewLojaUnidades() {
-  console.log("ViewLojaUnidades <inicio>");
   const { user } = useContext(AuthContext);
   const [listaUnidades, setListaUnidades] = useState(null);
   const [isLoading, setIsLoading] = useState(true);

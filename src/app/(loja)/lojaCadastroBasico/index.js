@@ -6,7 +6,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { styleApp } from '../../../styles/styleApp';
 import { GradienteFill } from '../../../componentes/gradienteFill';
 import { AuthContext } from "../../../contexts/auth";
-import { consultaLojaEmEdicao, atualizaDadosBasicosLoja } from '../../../services/lojaService';
+import { consultaExistenciaLojaEmCriacao, atualizaDadosBasicosLoja } from '../../../services/lojaService';
 import { ShowErrorMessage } from '../../../errors/errorMessage';
 import { InputText } from '../../../componentes/inputText';
 import { schemaLojaDados, schemaLojaDadosMinimos } from '../../../schemas/lojaSchema';
@@ -21,8 +21,6 @@ export default function ViewLojaCadastroBasico() {
   //Duas situações sobre o parâmetro navigateParmLoja:
   //a) Se chegar null, significa que uma nova loja está sendo criada (status "Criando")
   //b) Se chegar <> null, siginifica que a loja já foi criada e está sendo editada.
-
-  console.log("parm ", parmLoja, ' in: ', inMinimo);
 
   const [cenario, setCenario] = useState(1);
   const [lojaDados, setLojaDados] = useState(schemaLojaDados);
@@ -40,16 +38,15 @@ export default function ViewLojaCadastroBasico() {
   }, [])
 
   async function fetchDados() {
-    //No caso de edição de loja existente: consulta dados adiconais aos que já chegaram via parâmetro
+    //No caso de edição de loja existente: consulta dados adicionais aos que já chegaram via parâmetro
     if (parmLoja !== null) {
       try {
-        res = await consultaLojaEmEdicao("n"); //Verifica se já possui alguma sendo criada
+        res = await consultaExistenciaLojaEmCriacao("s"); //Verifica se já possui alguma sendo criada
       } catch {
         res = null; //Erro na pesquisad de Loja em estágio de criação para continuar.
         ShowErrorMessage("lj008");
       };
       if (res !== null) {
-        statusInicial = res.status;
         setLojaDados(res);
       }
     }
