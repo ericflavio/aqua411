@@ -9,20 +9,20 @@ import { MaterialIcons } from "@expo/vector-icons";
 import * as Animatable from 'react-native-animatable';
 import { consultaListaStatusLoja, consultaLojaEmEdicao } from '../../../services/lojaService';
 import { ShowErrorMessage } from '../../../errors/errorMessage';
+import { schemaLojaDadosBasicos } from '../../../schemas/lojaSchema';
 
 //Tela principal
 export default function ViewEdtMenuLoja() {
   const { user } = useContext(AuthContext);
-  const [lojaDadosBasicos, setLojaDadosBasicos] = useState({ status: "", nome: "" });
-  const [disabledEndereco, setDisabledEndereco] = useState(true);
+  //OS dados básicos sempre devem chegar, pela tela de criação ou pela lista de lojas
+  const { navigateParmLoja } = useLocalSearchParams();
+  navigateParmLoja ? parmLoja = JSON.parse(navigateParmLoja) : parmLoja = null;
+
+  const [lojaDadosBasicos, setLojaDadosBasicos] = useState(schemaLojaDadosBasicos);
   const [disabled, setDisabled] = useState(true);
   const [showViewStatus, setShowViewStatus] = useState(false);
   const [statusList, setStatusList] = useState(null); //Relação de todos os status
   const [statusListToChange, setStatusListToChange] = useState(null); //Status possíveis pelo DFS
-
-  //OS dados básicos sempre chegam, pela tela de criação ou pela lista de lojas
-  const { navigateParmLoja } = useLocalSearchParams();
-  navigateParmLoja ? parmLoja = JSON.parse(navigateParmLoja) : parmLoja = null;
 
   useEffect(() => {
     fetchLoja();
@@ -47,7 +47,6 @@ export default function ViewEdtMenuLoja() {
         setDisabled(false); // Libera edição das demais opções
       }
     };
-    setDisabledEndereco(false); // Libera edição do endereço
 
     //Consulta a lista de status que podem ser atribuídos a uma loja
     if (statusList === null) { //Ainda não foi consultado
@@ -68,6 +67,10 @@ export default function ViewEdtMenuLoja() {
     }
     return resList;
   }
+
+  function verificaEdicaoHabilitada() {
+
+  };
 
   function filtraNovosStatusPossiveis(resList, statusInicial) {
     let arrayPicker = null;
@@ -106,7 +109,7 @@ export default function ViewEdtMenuLoja() {
     router.navigate({
       pathname: '/lojaCadastroBasico',
       params: {
-        navigateParmLoja: JSON.stringify(lojaDadosBasicos), inMinimoOuCompleto:"completo"
+        navigateParmLoja: JSON.stringify(lojaDadosBasicos), inMinimoOuCompleto: "completo"
       }
     })
   }
@@ -163,7 +166,7 @@ export default function ViewEdtMenuLoja() {
         </View>
 
         <View style={styles.containerPrincipal}>
-          <TouchableOpacity style={styleApp.buttonFlatHL_list} disabled={disabledEndereco} onPress={goToEndereco} >
+          <TouchableOpacity style={styleApp.buttonFlatHL_list} disabled={disabled} onPress={goToEndereco} >
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <MaterialIcons name="add-business" size={styleApp.size.iconSizeRegular} color={styleApp.color.textButtonFlat} />
               <Text style={styleApp.textButtonFlat}>Endereço</Text>
@@ -186,7 +189,7 @@ export default function ViewEdtMenuLoja() {
           </TouchableOpacity>
           <TouchableOpacity style={styleApp.buttonFlatHL_list} disabled={disabled} onPress={goToDadosBasicos} >
             <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <MaterialIcons name="more-horiz" size={styleApp.size.iconSizeRegular} color={styleApp.color.textButtonFlat} />
+              <MaterialIcons name="more-vert" size={styleApp.size.iconSizeRegular} color={styleApp.color.textButtonFlat} />
               <Text style={styleApp.textButtonFlat}>Outras informações</Text>
             </View>
             <MaterialIcons name="navigate-next" size={styleApp.size.iconSizeRegular} color={styleApp.color.cinzaMedio} />

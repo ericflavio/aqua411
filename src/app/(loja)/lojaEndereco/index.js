@@ -27,6 +27,7 @@ export default function ViewEdtEnderecoLoja() {
   //Correções:
   //1. Inibir edições da loja se status "escluído" e "inativo" 
   //2. view dados básicos: não consultar no DB se o parmLoja chegar preenchido. E tratar campos adicionais.
+  //3. Regex cnpj 
 
   //*Dados básicos: tratar campos adicionais (além do mínimo)
   //ok - Endereço

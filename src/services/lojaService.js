@@ -10,30 +10,30 @@ import {
 export async function consultaListaStatusLoja() {
   const statusLoja = [
     {
-      id: "Criando",
+      id: "Criando", //Cadastramento iniciado. Ainda não foi ativada pela primeria vez.
       nome: "Criando",
-      descricao: "A loja está sendo criada. Apenas o proprietário pesquisar e favoritar esta loja.",
+      descricao: "A loja está sendo criada. Omitida da consulta de lojas, e ninguém pode favoritá-la.",
       inPermiteEdicao: true,
       dfs: ["Ativa"]
     },
     {
-      id: "Ativa",
+      id: "Ativa", //Proprietário autorizou que a loja seja encontrata nas pesquisas
       nome: "Ativa",
       descricao: "Todas as pessoas podem pesquisar e favoritar esta loja.",
       inPermiteEdicao: true,
       dfs: ["Suspensa", "Inativa"]
     },
     {
-      id: "Suspensa",
+      id: "Suspensa", //Temporariamente omitda da consulta de pesquisa de lojas. Também não pode ser favoritada por ninguém.
       nome: "Suspensa",
-      descricao: "Situação temporária. Pode ser pesquisada, porém ninguém pode favoritá-la.",
+      descricao: "Situação temporária: Omitida da consulta de lojas, e ninguém pode favoritá-la.",
       inPermiteEdicao: true,
       dfs: ["Ativa", "Inativa"]
     },
     {
-      id: "Inativa",
+      id: "Inativa", //Permanentemente omitida dos resultados das 
       nome: "Inativa",
-      descricao: "Não aparece nas pesquisas de lojas.",
+      descricao: "Permanentemente omitida da consulta de lojas, e ninguém pode mais favoritá-la.",
       inPermiteEdicao: false,
       dfs: []
     },

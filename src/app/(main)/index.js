@@ -218,9 +218,6 @@ export default function ViewLojaMaquinas() {
                 {maquina("lava", 3, lava[1], false)}
                 {maquina("lava", 5, lava[1], false)}
               </View>
-              <Text style={styleApp.textRegular}>
-                Esta é uma imagem ilustrativa
-              </Text>
             </View>
           </View>
         </ScrollView>

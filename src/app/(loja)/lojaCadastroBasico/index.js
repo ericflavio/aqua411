@@ -17,13 +17,13 @@ export default function ViewLojaCadastroBasico() {
   const { navigateParmLoja } = useLocalSearchParams();
   const { inMinimoOuCompleto } = useLocalSearchParams();
   navigateParmLoja ? parmLoja = JSON.parse(navigateParmLoja) : parmLoja = null;
-  console.log("in ", inMinimoOuCompleto)
+  //Duas situações: 
+  //a) Se chegar null, significa que uma nova loja está sendo criada (status "Criando")
+  //b) Se chegar <> null, siginifica que a loja já foi criada e está sendo editada.
 
   const [cenario, setCenario] = useState(1);
   const [lojaDadosBasicos, setLojaDadosBasicos] = useState(schemaLojaDadosBasicos);
   const [isLoadingData, setisLoadingData] = useState(true);
-
-  console.log("parmloja ", parmLoja)
 
   //Cenarios
   const cenarioEditar = 1;
