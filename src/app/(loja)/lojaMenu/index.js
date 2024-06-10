@@ -9,7 +9,6 @@ import { MaterialIcons } from "@expo/vector-icons";
 import * as Animatable from 'react-native-animatable';
 import { consultaListaStatusLoja } from '../../../services/lojaService';
 import { ShowErrorMessage } from '../../../errors/errorMessage';
-import { schemaLojaDadosMinimos } from '../../../schemas/lojaSchema';
 
 //Tela principal
 export default function ViewEdtMenuLoja() {
@@ -24,6 +23,7 @@ export default function ViewEdtMenuLoja() {
   const [disabled, setDisabled] = useState(false);
   const [showViewStatus, setShowViewStatus] = useState(false);
   const [statusList, setStatusList] = useState(null); //Relação de todos os status
+  const [flagStatusEditavel, setStatusEditavel] = useState(true);
   const [statusListToChange, setStatusListToChange] = useState(null); //Status possíveis pelo DFS
 
   //Providências após a construção do objeto principal
@@ -58,6 +58,7 @@ export default function ViewEdtMenuLoja() {
       //Monta os possíveis novos status
       for (var i = 0; i < resList.length; i++) {
         if (resList[i].id.toUpperCase() === statusInicial.toUpperCase()) {
+          setStatusEditavel(resList[i].inPermiteEdicao)
           arrayPicker = resList[i].dfs
           break;
         }
@@ -103,6 +104,7 @@ export default function ViewEdtMenuLoja() {
   }
 
   console.log("dadosBasicos :", lojaDados)
+  console.log("flagEdicao :", flagStatusEditavel)
   return (
     <SafeAreaView style={styleApp.containerSafeAreaSemPadding}>
       {GradienteFill()}
@@ -119,17 +121,13 @@ export default function ViewEdtMenuLoja() {
           </View>
           :
           <>
-            {lojaDados !== null && lojaDados.nome !== "" ?
-              <View style={styles.containerDadosLoja}>
-                <Animatable.Text animation="slideInLeft" style={styleApp.textSubtitulo}>{lojaDados.nome}</Animatable.Text>
-                <Text style={styleApp.textSmall}>Status: <Text style={styles.textoStatus}>{lojaDados.status}</Text></Text>
-                <Text style={styleApp.textSmall}>Apelido: {lojaDados.apelido}</Text>
-              </View>
-              :
-              <View style={styles.containerDadosLoja}>
-                <Text style={styleApp.textRegular}>Atualize os dados da loja.</Text>
-              </View>
-            }
+            <View style={styles.containerDadosLoja}>
+              <Animatable.Text animation="slideInLeft" style={styleApp.textSubtitulo}>
+                {lojaDados.nome !== null && lojaDados.nome !== "" ? lojaDados.nome : "Sua nova loja"}
+              </Animatable.Text>
+              <Text style={styleApp.textSmall}>Status: <Text style={styles.textoStatus}>{lojaDados.status}</Text></Text>
+              <Text style={styleApp.textSmall}>Apelido: {lojaDados.apelido}</Text>
+            </View>
 
             <View style={styles.containerSection}>
               <Text style={styleApp.textSmall}>Ações de gerenciamento</Text>

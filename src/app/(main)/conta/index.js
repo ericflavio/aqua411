@@ -15,45 +15,43 @@ import { schemaLojaDadosMinimos } from '../../../schemas/lojaSchema';
 export default function ViewConta() {
   const { user, logOut } = useContext(AuthContext);
   const [isLoadingData, setisLoadingData] = useState(true);
+  const [lojaDados, setLojaDados] = useState(null);
 
   var name = "Olá!";
   user.name ? name = user.name : name = user.idLogin;
-  var hasLojaCriando = false;
-  var lojaDadosMinimos = null;
 
   useEffect(() => {
     fetchDados();
   }, [])
 
   async function fetchDados() {
-    //TODO: consultar novamente (ao voltar pra tela, ou ao clicar no botão de crir loja? )
     //Verifica se existe loja sendo criada (status = criando)
     try {
-      lojaDadosMinimos = await consultaExistenciaLojaEmCriacao("n"); //Verifica se já possui alguma sendo criada
+      res = await consultaExistenciaLojaEmCriacao("s"); //Verifica se já possui alguma sendo criada
     } catch {
-      lojaDadosMinimos = null; //Erro na pesquisad de Loja em estágio de criação para continuar.
+      res = null; //Erro na pesquisad de Loja em estágio de criação para continuar.
       ShowErrorMessage("lj008");
     };
-    if (lojaDadosMinimos !== null) {
-      hasLojaCriando = true;
+    if (res !== null) {
+      setLojaDados(res);
     };
     setisLoadingData(!setisLoadingData);
   }
 
   function adicionarLoja() {
     //Vai pro menu de edição, se existir loja já sendo criada, ou inicia um cadastro básico.
-    if (hasLojaCriando) {
+    if (lojaDados !== null) {
       router.navigate({
         pathname: "/lojaMenu",
         params: {
-          navigateParmLoja: JSON.stringify(lojaDadosMinimos)
+          navigateParmLoja: JSON.stringify(lojaDados)
         }
       })
     } else {
       router.navigate({
         pathname: "/lojaCadastroBasico",
         params: {
-          navigateParmLoja: null, tipoDadosMinimo: true
+          navigateParmLoja: null
         }
       })
     }

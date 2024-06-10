@@ -15,9 +15,7 @@ import { schemaLojaDados, schemaLojaDadosMinimos } from '../../../schemas/lojaSc
 export default function ViewLojaCadastroBasico() {
   const { user } = useContext(AuthContext);
   const { navigateParmLoja } = useLocalSearchParams();
-  const { tipoDadosMinimo } = useLocalSearchParams();
   navigateParmLoja ? parmLoja = JSON.parse(navigateParmLoja) : parmLoja = null;
-  tipoDadosMinimo ? inMinimo = true : inMinimo = false;
   //Duas situações sobre o parâmetro navigateParmLoja:
   //a) Se chegar null, significa que uma nova loja está sendo criada (status "Criando")
   //b) Se chegar <> null, siginifica que a loja já foi criada e está sendo editada.
@@ -69,10 +67,12 @@ export default function ViewLojaCadastroBasico() {
 
   //Funcoes auxiliares
   function goTo() {
+    parm = lojaDados;
+    parm.status = "Criando";
     router.navigate({
       pathname: "/lojaMenu",
       params: {
-        navigateParmLoja: JSON.stringify(lojaDados)
+        navigateParmLoja: JSON.stringify(parm)
       }
     })
   }
@@ -127,6 +127,13 @@ export default function ViewLojaCadastroBasico() {
         <View style={styles.containerPrincipal}>
           {InputText("Apelido da loja", onChangeApelido, "Apelido", 1, 40, "default", flagEditavel, lojaDados.apelido, false)}
           {InputText("CNPJ (opcional) 00.000.000/0000-00", onChangeCnpj, "CNPJ", 1, 18, "default", flagEditavel, lojaDados.cnpj, false)}
+
+          {parmLoja && parmLoja !== null ?
+            <>
+              {InputText("E-mail", onChangeApelido, "emailda@loja.com", 1, 80, "default", flagEditavel, lojaDados.email, false)}
+            </>
+            : <></>
+          }
 
           <TouchableOpacity style={styleApp.buttonHC} disabled={!flagEditavel} onPress={prosseguir}>
             {!flagEditavel ? <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor} /> : ""}
