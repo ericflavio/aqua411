@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, Alert } from "react-native";
+import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, Alert, ActivityIndicator } from "react-native";
 import { styles } from "./styles";
 import { styleApp } from '../../../styles/styleApp';
 import { styleColor } from "../../../styles/styleColors";
@@ -9,6 +9,7 @@ import { AuthContext } from "../../../contexts/auth";
 import { router, useLocalSearchParams } from 'expo-router';
 import { consultaLojaEmEdicao } from '../../../services/lojaService';
 import { ShowErrorMessage } from '../../../errors/errorMessage';
+import { schemaLojaDadosMinimos } from '../../../schemas/lojaSchema';
 
 //Tela principal HOME
 export default function ViewConta() {
@@ -17,40 +18,42 @@ export default function ViewConta() {
 
   var name = "Olá!";
   user.name ? name = user.name : name = user.idLogin;
-  var dadosLojaCriando = null;
-  var isLojaCriando = false;
+  var hasLojaCriando = false;
+  var lojaDadosMinimos = null;
 
   useEffect(() => {
     fetchDados();
   }, [])
 
   async function fetchDados() {
+    //TODO: consultar novamente (ao voltar pra tela, ou ao clicar no botão de crir loja? )
     //Verifica se existe loja sendo criada (status = criando)
     try {
-      dadosLojaCriando = await consultaLojaEmEdicao("n"); //Verifica se já possui alguma sendo criada
+      lojaDadosMinimos = await consultaLojaEmEdicao("n"); //Verifica se já possui alguma sendo criada
     } catch {
-      dadosLojaCriando = null; //Erro na pesquisad de Loja em estágio de criação para continuar.
+      lojaDadosMinimos = null; //Erro na pesquisad de Loja em estágio de criação para continuar.
       ShowErrorMessage("lj008");
     };
-    if (dadosLojaCriando !== null) {
-      isLojaCriando = true;
+    if (lojaDadosMinimos !== null) {
+      hasLojaCriando = true;
     };
+    setisLoadingData(!setisLoadingData);
   }
 
   function adicionarLoja() {
     //Vai pro menu de edição, se existir loja já sendo criada, ou inicia um cadastro básico.
-    if (isLojaCriando) {
+    if (hasLojaCriando) {
       router.navigate({
         pathname: "/lojaMenu",
         params: {
-          navigateParmLoja: JSON.stringify(dadosLojaCriando)
+          navigateParmLoja: JSON.stringify(lojaDadosMinimos)
         }
       })
     } else {
       router.navigate({
         pathname: "/lojaCadastroBasico",
         params: {
-          navigateParmLoja: JSON.stringify(dadosLojaCriando), inMinimoOuCompleto:"minimo"
+          navigateParmLoja: null, tipoDadosMinimo: true
         }
       })
     }
@@ -77,38 +80,41 @@ export default function ViewConta() {
           <Text style={styleApp.textTitulo}>
             {name}
           </Text>
-          <Image
-            style={styles.imageUser}
-            source={require('../../../assets/icones/app_icon_02.png')}
-          />
+          <View style={{ flexDirection: "row" }}>
+            <Image
+              style={styles.imageUser}
+              source={require('../../../assets/icones/app_icon_02.png')}
+            />
+            {isLoadingData ? <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor} /> : ""}
+          </View>
         </View>
 
         <View style={styles.containerBasics}>
-          <TouchableOpacity style={styleApp.buttonFlatV} disabled={!isLoadingData} onPress={{}} >
+          <TouchableOpacity style={styleApp.buttonFlatV} disabled={isLoadingData} onPress={{}} >
             <MaterialIcons name="help-outline" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
             <Text style={styleApp.textButtonFlat}>Ajuda</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styleApp.buttonFlatV} disabled={!isLoadingData} onPress={{}} >
+          <TouchableOpacity style={styleApp.buttonFlatV} disabled={isLoadingData} onPress={{}} >
             <MaterialIcons name="payment" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
             <Text style={styleApp.textButtonFlat}>Pagamentos</Text>
           </TouchableOpacity>
         </View>
 
         <View style={styles.containerOthers}>
-          <TouchableOpacity style={styleApp.buttonFlatHL} disabled={!isLoadingData} onPress={adicionarLoja} >
+          <TouchableOpacity style={styleApp.buttonFlatHL} disabled={isLoadingData} onPress={adicionarLoja} >
             <MaterialIcons name="add-business" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
             <Text style={styleApp.textButtonFlat}>Cadastrar uma loja que possuo</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styleApp.buttonFlatHL} disabled={!isLoadingData} onPress={listarUnidades} >
+          <TouchableOpacity style={styleApp.buttonFlatHL} disabled={isLoadingData} onPress={listarUnidades} >
             <MaterialIcons name="local-laundry-service" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
             <Text style={styleApp.textButtonFlat}>Gerenciar minhas lojas</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styleApp.buttonFlatHL} disabled={!isLoadingData} onPress={{}} >
+          <TouchableOpacity style={styleApp.buttonFlatHL} disabled={isLoadingData} onPress={{}} >
             <MaterialIcons name="business" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textRegular} />
             <Text style={styleApp.textButtonFlat}>Cadastrar uma franquia </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styleApp.buttonFlatHL} disabled={!isLoadingData} onPress={{}} >
+          <TouchableOpacity style={styleApp.buttonFlatHL} disabled={isLoadingData} onPress={{}} >
             <MaterialIcons name="business-center" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
             <Text style={styleApp.textButtonFlat}>Gerenciar minhas franquias</Text>
           </TouchableOpacity>

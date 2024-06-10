@@ -9,20 +9,23 @@ import { AuthContext } from "../../../contexts/auth";
 import { consultaLojaEmEdicao, atualizaDadosBasicosLoja } from '../../../services/lojaService';
 import { ShowErrorMessage } from '../../../errors/errorMessage';
 import { InputText } from '../../../componentes/inputText';
-import { schemaLojaDadosBasicos } from '../../../schemas/lojaSchema';
+import { schemaLojaDados, schemaLojaDadosMinimos } from '../../../schemas/lojaSchema';
 
 //Tela principal
 export default function ViewLojaCadastroBasico() {
   const { user } = useContext(AuthContext);
   const { navigateParmLoja } = useLocalSearchParams();
-  const { inMinimoOuCompleto } = useLocalSearchParams();
+  const { tipoDadosMinimo } = useLocalSearchParams();
   navigateParmLoja ? parmLoja = JSON.parse(navigateParmLoja) : parmLoja = null;
-  //Duas situações: 
+  tipoDadosMinimo ? inMinimo = true : inMinimo = false;
+  //Duas situações sobre o parâmetro navigateParmLoja:
   //a) Se chegar null, significa que uma nova loja está sendo criada (status "Criando")
   //b) Se chegar <> null, siginifica que a loja já foi criada e está sendo editada.
 
+  console.log("parm ", parmLoja, ' in: ', inMinimo);
+
   const [cenario, setCenario] = useState(1);
-  const [lojaDadosBasicos, setLojaDadosBasicos] = useState(schemaLojaDadosBasicos);
+  const [lojaDados, setLojaDados] = useState(schemaLojaDados);
   const [isLoadingData, setisLoadingData] = useState(true);
 
   //Cenarios
@@ -37,31 +40,33 @@ export default function ViewLojaCadastroBasico() {
   }, [])
 
   async function fetchDados() {
-    try {
-      res = await consultaLojaEmEdicao("n"); //Verifica se já possui alguma sendo criada
-    } catch {
-      res = null; //Erro na pesquisad de Loja em estágio de criação para continuar.
-      ShowErrorMessage("lj008");
-    };
-    if (res !== null) {
-      goTo();
-      statusInicial = res.status;
-      setLojaDadosBasicos(res);
+    //No caso de edição de loja existente: consulta dados adiconais aos que já chegaram via parâmetro
+    if (parmLoja !== null) {
+      try {
+        res = await consultaLojaEmEdicao("n"); //Verifica se já possui alguma sendo criada
+      } catch {
+        res = null; //Erro na pesquisad de Loja em estágio de criação para continuar.
+        ShowErrorMessage("lj008");
+      };
+      if (res !== null) {
+        statusInicial = res.status;
+        setLojaDados(res);
+      }
     }
     setisLoadingData(false);
   }
 
   //Valida campos de formulario
   function onChangeApelido(parm) {
-    setLojaDadosBasicos({ ...lojaDadosBasicos, apelido: parm });
+    setLojaDados({ ...lojaDados, apelido: parm });
   }
   function onChangeCnpj(parm) {
-    setLojaDadosBasicos({ ...lojaDadosBasicos, cnpj: parm });
+    setLojaDados({ ...lojaDados, cnpj: parm });
   }
 
   function validarSintaxeCnpj() {
     const regex = /^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/;
-    const isCnpjValido = regex.test(lojaDadosBasicos.cnpj);
+    const isCnpjValido = regex.test(lojaDados.cnpj);
     return isCnpjValido;
   }
 
@@ -70,7 +75,7 @@ export default function ViewLojaCadastroBasico() {
     router.navigate({
       pathname: "/lojaMenu",
       params: {
-        navigateParmLoja: JSON.stringify(lojaDadosBasicos)
+        navigateParmLoja: JSON.stringify(lojaDados)
       }
     })
   }
@@ -79,18 +84,18 @@ export default function ViewLojaCadastroBasico() {
   async function prosseguir() {
     if (isLoadingData) { return }; //ignora o botão, ainda clicável, até que os dados sejam carregados
 
-    if (lojaDadosBasicos.apelido.length < 8) {
+    if (lojaDados.apelido.length < 8) {
       ShowErrorMessage("lj004");
       return;
     };
-    if (lojaDadosBasicos.cnpj !== "" && (lojaDadosBasicos.cnpj.length < 18 || !validarSintaxeCnpj())) {
+    if (lojaDados.cnpj !== "" && (lojaDados.cnpj.length < 18 || !validarSintaxeCnpj())) {
       ShowErrorMessage("lj005");
       return;
     };
 
     setCenario(cenarioValidar);
     try {
-      const res = await atualizaDadosBasicosLoja(lojaDadosBasicos);
+      const res = await atualizaDadosBasicosLoja(lojaDados);
       //TODO: evitar que retorne para tela anterior.
       setCenario(cenarioEditar);
       goTo(); //Menu completo de configuração da loja
@@ -123,8 +128,8 @@ export default function ViewLojaCadastroBasico() {
         </View>
 
         <View style={styles.containerPrincipal}>
-          {InputText("Apelido da loja", onChangeApelido, "Apelido", 1, 40, "default", flagEditavel, lojaDadosBasicos.apelido, false)}
-          {InputText("CNPJ (opcional) 00.000.000/0000-00", onChangeCnpj, "CNPJ", 1, 18, "default", flagEditavel, lojaDadosBasicos.cnpj, false)}
+          {InputText("Apelido da loja", onChangeApelido, "Apelido", 1, 40, "default", flagEditavel, lojaDados.apelido, false)}
+          {InputText("CNPJ (opcional) 00.000.000/0000-00", onChangeCnpj, "CNPJ", 1, 18, "default", flagEditavel, lojaDados.cnpj, false)}
 
           <TouchableOpacity style={styleApp.buttonHC} disabled={!flagEditavel} onPress={prosseguir}>
             {!flagEditavel ? <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor} /> : ""}

@@ -1,26 +1,28 @@
-export const schemaLojaDadosBasicos = {
+export var schemaLojaDadosMinimos = {
   id: "",
   nome: "",
   apelido: "",
   status: "",
   cnpj: ""
 };
-export const schemaLojaDadosComplementares = {
+export var schemaLojaDados = {
   id: "",
   nome: "",
   apelido: "",
   status: "",
-  cnpj:"",
-  imagem:"",
+  cnpj: "",
+  email: "",
+  whatsapp: "",
+  idImagemCapa: "",
 };
-export const schemaLojaStatus = {
+export var schemaLojaStatus = {
   id: "",
   nome: "",
   descricao: "",
   inPermiteEdicao: false,
   dfs: [],
 };
-export const schemaLojaEndereco = {
+export var schemaLojaEndereco = {
   cep: "",
   localidade: "",
   uf: "",
@@ -30,12 +32,12 @@ export const schemaLojaEndereco = {
   numero: "",
   complemento: "",
 };
-export const schemaLojaLocalizacao = {
+export var schemaLojaLocalizacao = {
   latitude: "",
   longitude: "",
   urlMapa: "",
 };
-export const schemaLojaHorarioFuncionamento = {
+export var schemaLojaHorarioFuncionamento = {
   flagSempreAberto: false, //24h por dia
   dia: ["Seg","Ter","Qua","Qui","Sex","Sáb","Dom"],
   flagDiaAberto: [true,true,true,true,true,true,true],

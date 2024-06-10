@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {
-  schemaLojaDadosBasicos,
-  schemaLojaDadosComplementares,
+  schemaLojaDadosMinimos,
+  schemaLojaDados,
   schemaLojaStatus,
   schemaLojaEndereco,
   schemaLojaLocalizacao
@@ -50,21 +50,21 @@ export async function consultaListaUnidades(user) {
     {
       id: "Loja00001",
       nome: "loja-01",
-      apelido: "Apelido-loja",
+      apelido: "Apelido-01",
       status: "Criando",
       cnpj: ""
     },
     {
       id: "Loja00002",
       nome: "loja-02",
-      apelido: "Apelido-loja",
+      apelido: "Apelido-02",
       status: "Inativa",
       cnpj: ""
     },
     {
       id: "Loja00003",
       nome: "loja-03",
-      apelido: "Apelido-loja",
+      apelido: "Apelido-03",
       status: "Suspensa",
       cnpj: ""
     }
@@ -80,12 +80,12 @@ export async function consultaLojaEmEdicao(user) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (user && user === "s") {
-        schemaLojaDadosBasicos.id = "LOJA00001",
-        schemaLojaDadosBasicos.nome = "Aquamagic-AsaNorte-Brasilia-DF",
-        schemaLojaDadosBasicos.apelido = "Apelido-loja",
-        schemaLojaDadosBasicos.status = "Criando",
-        schemaLojaDadosBasicos.cnpj = ""
-        resolve(schemaLojaDadosBasicos)
+        schemaLojaDadosMinimos.id = "LOJA00001",
+        schemaLojaDadosMinimos.nome = "Aquamagic-AsaNorte-Brasilia-DF",
+        schemaLojaDadosMinimos.apelido = "Apelido-loja",
+        schemaLojaDadosMinimos.status = "Criando",
+        schemaLojaDadosMinimos.cnpj = ""
+        resolve(schemaLojaDadosMinimos)
       } else {
         resolve(null)
       }
