@@ -19,12 +19,21 @@ export default function ViewEdtMenuLoja() {
   //a) Sempre deve chegar preenchido: por seleção de loja na listagem, ou da tela de criação inicial de nova loja.
   //b) Se chegar <> null siginifica que houve algum erro prévio.
 
+  //Controles básicos
+  const [cenario, setCenario] = useState(1);
+  const [isProcessing, setProcessing] = useState(true);
+  const [flagShowModal, setflagShowModal] = useState(false);
+  //Outras declarações
   const [lojaDados, setLojaDados] = useState(parmLoja);
   const [disabled, setDisabled] = useState(false);
   const [statusList, setStatusList] = useState(null); //Relação de todos os status
   const [flagStatusEditavel, setStatusEditavel] = useState(true); //Indica se loja neste estado pode ser editada
   const [statusListToChange, setStatusListToChange] = useState(null); //Novos Status permitidos pelo DFS
-  const [isProcessing, setProcessing] = useState(true);
+
+  //Cenarios
+  const cenarioEditar = 1;
+  const cenarioValidar = 11;
+  cenario !== cenarioEditar || isProcessing ? isEditavel = false : isEditavel = true;
 
   //Providências após a construção do objeto principal
   //TODO: persistir status localmente (raramente mudam)
@@ -95,6 +104,7 @@ export default function ViewEdtMenuLoja() {
           style={styles.imgNovaLoja}
           source={require('../../../assets/outros/sheep_novaLoja_01.png')}
         />
+
         {isProcessing ?
           <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor} />
           :

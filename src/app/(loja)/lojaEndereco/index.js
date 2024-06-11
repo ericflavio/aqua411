@@ -19,17 +19,18 @@ export default function ViewEdtEnderecoLoja() {
   const { navigateParmLoja } = useLocalSearchParams();
   navigateParmLoja ? parmLoja = JSON.parse(navigateParmLoja) : parmLoja = null;
 
+  //Controles básicos
   const [cenario, setCenario] = useState(1);
   const [isProcessing, setProcessing] = useState(true);
   const [flagShowModal, setflagShowModal] = useState(false);
+  //Outras declarações
   const [endereco, setEndereco] = useState(schemaLojaEndereco)
- 
+
   //Correções:
   //1. Inibir edições da loja se status "excluído" e "inativo"; tratar menuzinho "opções de gerenciamento"
   //2. view dados básicos: tratar campos adicionais.
-  //3. Regex cnpj 
-  //4. Equalizar isProscessing com flagEditavel
-  //5. Usar flag ou in ou is ou has; padronizar
+  //6. Pequisar o endereço/horario/localização na entrada da suas telas (isProcessing)
+  //7.revisar o LOGIN :manter flagErro? 
 
   //*Dados básicos: tratar campos adicionais (além do mínimo)
   //ok - Endereço
@@ -48,8 +49,7 @@ export default function ViewEdtEnderecoLoja() {
   //Cenarios
   const cenarioEditar = 1;
   const cenarioValidar = 11;
-  var flagEditavel = true;
-  cenario !== cenarioEditar || isProcessing ? flagEditavel = false : flagEditavel = true;
+  cenario !== cenarioEditar || isProcessing ? isEditavel = false : isEditavel = true;
 
   //Ações ao final da construção do componente
   useEffect(() => {
@@ -67,7 +67,7 @@ export default function ViewEdtEnderecoLoja() {
     if (res !== null) {
       setEndereco(res);
     }
-    setProcessing(false);
+    setProcessing(!isProcessing);
   }
 
   //Valida campos de formulario
@@ -128,7 +128,7 @@ export default function ViewEdtEnderecoLoja() {
   function handleCloseModal() {
     setflagShowModal(!flagShowModal);
   }
-  function showMsgResultado() {
+  function showModalMsgResultado() {
     setflagShowModal(!flagShowModal);
     setTimeout(() => {
       setflagShowModal(false);
@@ -154,7 +154,7 @@ export default function ViewEdtEnderecoLoja() {
 
     try {
       const res = await atualizaEnderecoLoja(endereco);
-      showMsgResultado();
+      showModalMsgResultado();
     } catch {
       ShowErrorMessage("lj003");
     }
@@ -174,7 +174,7 @@ export default function ViewEdtEnderecoLoja() {
         {modalSimples(flagShowModal, handleCloseModal, "Informações atualizadas!", "TipoMsg", "Título")}
 
         <View style={styles.containerPrincipal}>
-          {InputText("CEP", onChangeCep, "CEP", 1, 8, "default", flagEditavel, endereco.cep, false)}
+          {InputText("CEP", onChangeCep, "CEP", 1, 8, "default", isEditavel, endereco.cep, false)}
           {endereco && endereco !== null ?
             <View style={{ paddingLeft: 10, marginTop: 10 }}>
               <Text style={styleApp.textRegular}>{endereco.localidade} {endereco.uf}</Text>
@@ -182,11 +182,11 @@ export default function ViewEdtEnderecoLoja() {
               <Text style={styleApp.textRegular}>{endereco.logradouro}</Text>
             </View>
             : <></>}
-          {InputText("Número", onChangeNumero, "Número, ou s/n", 1, 5, "default", flagEditavel, endereco.numero, false)}
-          {InputText("Complemento", onChangeComplemento, "Complemento", 1, 80, "default", flagEditavel, endereco.complemento, false)}
+          {InputText("Número", onChangeNumero, "Número, ou s/n", 1, 5, "default", isEditavel, endereco.numero, false)}
+          {InputText("Complemento", onChangeComplemento, "Complemento", 1, 80, "default", isEditavel, endereco.complemento, false)}
 
-          <TouchableOpacity style={styleApp.buttonHC} disabled={!flagEditavel} onPress={prosseguir} >
-            {!flagEditavel ? <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor} /> : ""}
+          <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir} >
+            {!isEditavel ? <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor} /> : ""}
             <Text style={styleApp.textButtonRegular}>Confirmar</Text>
           </TouchableOpacity>
         </View>

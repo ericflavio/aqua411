@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, ActivityIndicator, Alert, Modal } from "react-native";
+import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, ActivityIndicator } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { styles } from "./styles";
 import { styleApp } from '../../../styles/styleApp';
@@ -19,16 +19,17 @@ export default function ViewLocalizacaoLoja() {
   const { navigateParmLoja } = useLocalSearchParams();
   navigateParmLoja ? parmLoja = JSON.parse(navigateParmLoja) : parmLoja = null;
 
+  //Controles básicos
   const [cenario, setCenario] = useState(1);
   const [isProcessing, setProcessing] = useState(true);
   const [flagShowModal, setflagShowModal] = useState(false);
+  //Outras declarações
   const [localizacao, setLocalizacao] = useState(schemaLojaLocalizacao)
 
   //Cenarios
   const cenarioEditar = 1;
   const cenarioValidar = 11;
-  var flagEditavel = true;
-  cenario !== cenarioEditar || isProcessing ? flagEditavel = false : flagEditavel = true;
+  cenario !== cenarioEditar || isProcessing ? isEditavel = false : isEditavel = true;
 
   //Ações ao final da construção do componente
   useEffect(() => {
@@ -46,7 +47,7 @@ export default function ViewLocalizacaoLoja() {
     if (res !== null) {
       setLocalizacao(res);
     }
-    setProcessing(false);
+    setProcessing(!isProcessing);
   }
 
   //Valida campos de formulario
@@ -79,7 +80,7 @@ export default function ViewLocalizacaoLoja() {
   function handleCloseModal() {
     setflagShowModal(!flagShowModal);
   }
-  function showMsgResultado() {
+  function showModalMsgResultado() {
     setflagShowModal(!flagShowModal);
     setTimeout(() => {
       setflagShowModal(false);
@@ -120,7 +121,7 @@ export default function ViewLocalizacaoLoja() {
 
     try {
       const res = await atualizaLocalizacaoLoja(localizacao);
-      showMsgResultado();
+      showModalMsgResultado();
     } catch {
       ShowErrorMessage("lj010");
     }
@@ -140,12 +141,12 @@ export default function ViewLocalizacaoLoja() {
         {modalSimples(flagShowModal, handleCloseModal, "Informações atualizadas!", "TipoMsg", "Título")}
 
         <View style={styles.containerPrincipal}>
-          {InputText("Latitude", onChangeLatitude, "ex. 15,23456", 1, 12, "default", flagEditavel, localizacao.latitude, false)}
-          {InputText("Longitude", onChangeLongitude, "ex. -30,67890", 1, 12, "default", flagEditavel, localizacao.longitude, false)}
-          {InputText("Cole aqui o endereço/url GoogleMaps", onChangeUrl, "url GoogleMaps", 1, 200, "default", flagEditavel, localizacao.urlMapa, false)}
+          {InputText("Latitude", onChangeLatitude, "ex. 15,23456", 1, 12, "default", isEditavel, localizacao.latitude, false)}
+          {InputText("Longitude", onChangeLongitude, "ex. -30,67890", 1, 12, "default", isEditavel, localizacao.longitude, false)}
+          {InputText("Cole aqui o endereço/url GoogleMaps", onChangeUrl, "url GoogleMaps", 1, 200, "default", isEditavel, localizacao.urlMapa, false)}
 
-          <TouchableOpacity style={styleApp.buttonHC} disabled={!flagEditavel} onPress={prosseguir} >
-            {!flagEditavel ? <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor} /> : ""}
+          <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir} >
+            {!isEditavel ? <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor} /> : ""}
             <Text style={styleApp.textButtonRegular}>Confirmar</Text>
           </TouchableOpacity>
         </View>

@@ -11,8 +11,18 @@ import { styleColor } from '../../../styles/styleColors';
 //Tela principal
 export default function ViewLojaUnidades() {
   const { user } = useContext(AuthContext);
+
+  //Controles básicos
+  const [cenario, setCenario] = useState(1);
+  const [isProcessing, setProcessing] = useState(true);
+  const [flagShowModal, setflagShowModal] = useState(false);
+  //Outras declarações
   const [listaUnidades, setListaUnidades] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+
+  //Cenarios
+  const cenarioEditar = 1;
+  const cenarioValidar = 11;
+  cenario !== cenarioEditar || isProcessing ? isEditavel = false : isEditavel = true;
 
   useEffect(() => {
     fetchUnidades();
@@ -21,7 +31,7 @@ export default function ViewLojaUnidades() {
   async function fetchUnidades() {
     const resUnidades = await consultaListaUnidades(user);
     setListaUnidades(resUnidades);
-    setIsLoading(false);
+    setProcessing(!isProcessing);
   }
 
   //Componente visual de cada Unidade (card)
@@ -72,7 +82,9 @@ export default function ViewLojaUnidades() {
         </Text>
       </View>
 
-      {!isLoading ?
+      {isProcessing ?
+        <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor} />
+        :
         <View style={styles.continerViewPrincipal}>
           <FlatList
             vertical
@@ -83,8 +95,6 @@ export default function ViewLojaUnidades() {
             extraData={item => item.id}
           />
         </View>
-        :
-        <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor}/>
       }
     </SafeAreaView >
   )

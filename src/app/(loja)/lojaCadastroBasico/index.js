@@ -10,6 +10,7 @@ import { consultaExistenciaLojaEmCriacao, atualizaDadosBasicosLoja } from '../..
 import { ShowErrorMessage } from '../../../errors/errorMessage';
 import { InputText } from '../../../componentes/inputText';
 import { schemaLojaDados, schemaLojaDadosMinimos } from '../../../schemas/lojaSchema';
+import modalSimples from '../../../componentes/modalSimples';
 
 //Tela principal
 export default function ViewLojaCadastroBasico() {
@@ -20,15 +21,17 @@ export default function ViewLojaCadastroBasico() {
   //a) Se chegar null, significa que uma nova loja está sendo criada (status "Criando")
   //b) Se chegar <> null, siginifica que a loja já foi criada e está sendo editada.
 
+  //Controles básicos
   const [cenario, setCenario] = useState(1);
-  const [lojaDados, setLojaDados] = useState(schemaLojaDados);
   const [isProcessing, setProcessing] = useState(true);
+  const [flagShowModal, setflagShowModal] = useState(false);
+  //Outras declarações
+  const [lojaDados, setLojaDados] = useState(schemaLojaDados);
 
   //Cenarios
   const cenarioEditar = 1;
   const cenarioValidar = 11;
-  var flagEditavel = true;
-  cenario !== cenarioEditar || isProcessing ? flagEditavel = false : flagEditavel = true;
+  cenario !== cenarioEditar || isProcessing ? isEditavel = false : isEditavel = true;
 
   //Ações ao final da construção do componente
   useEffect(() => {
@@ -48,7 +51,7 @@ export default function ViewLojaCadastroBasico() {
         setLojaDados(res);
       }
     }
-    setProcessing(false);
+    setProcessing(!isProcessing);
   }
 
   //Valida campos de formulario
@@ -76,6 +79,15 @@ export default function ViewLojaCadastroBasico() {
       }
     })
   }
+  function showModalMsgResultado() {
+    setflagShowModal(!flagShowModal);
+    setTimeout(() => {
+      setflagShowModal(false);
+    }, styleApp.size.modalTimeAutoClose);
+  }
+  function handleCloseModal() {
+    setflagShowModal(!flagShowModal);
+  }
 
   //Funcao no botão de ação principal
   async function prosseguir() {
@@ -93,12 +105,18 @@ export default function ViewLojaCadastroBasico() {
     setCenario(cenarioValidar);
     try {
       const res = await atualizaDadosBasicosLoja(lojaDados);
-      //TODO: evitar que retorne para tela anterior.
-      setCenario(cenarioEditar);
-      goTo(); //Menu completo de configuração da loja
     } catch {
       ShowErrorMessage("lj006");
       setCenario(cenarioEditar);
+    }
+
+    setCenario(cenarioEditar);
+    console.log("parm------>", parmLoja)
+    if (parmLoja === null) {
+      //TODO: evitar que retorne para tela anterior.
+      goTo(); //Menu completo de configuração da loja
+    } else {
+      showModalMsgResultado();
     }
   }
 
@@ -106,6 +124,7 @@ export default function ViewLojaCadastroBasico() {
     <SafeAreaView style={styleApp.containerSafeAreaSemPadding}>
       {GradienteFill()}
       <ScrollView style={styleApp.containerScrollFull} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
+        {modalSimples(flagShowModal, handleCloseModal, "Informações atualizadas!", "TipoMsg", "Título")}
 
         {!parmLoja || parmLoja === null ?
           <>
@@ -125,18 +144,18 @@ export default function ViewLojaCadastroBasico() {
         </View>
 
         <View style={styles.containerPrincipal}>
-          {InputText("Apelido da loja", onChangeApelido, "Apelido", 1, 40, "default", flagEditavel, lojaDados.apelido, false)}
-          {InputText("CNPJ (opcional) 00.000.000/0000-00", onChangeCnpj, "CNPJ", 1, 18, "default", flagEditavel, lojaDados.cnpj, false)}
+          {InputText("Apelido da loja", onChangeApelido, "Apelido", 1, 40, "default", isEditavel, lojaDados.apelido, false)}
+          {InputText("CNPJ (opcional) 00.000.000/0000-00", onChangeCnpj, "CNPJ", 1, 18, "default", isEditavel, lojaDados.cnpj, false)}
 
           {parmLoja && parmLoja !== null ?
             <>
-              {InputText("E-mail", onChangeApelido, "emailda@loja.com", 1, 80, "default", flagEditavel, lojaDados.email, false)}
+              {InputText("E-mail", onChangeApelido, "emailda@loja.com", 1, 80, "default", isEditavel, lojaDados.email, false)}
             </>
             : <></>
           }
 
-          <TouchableOpacity style={styleApp.buttonHC} disabled={!flagEditavel} onPress={prosseguir}>
-            {!flagEditavel ? <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor} /> : ""}
+          <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir}>
+            {!isEditavel ? <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor} /> : ""}
             <Text style={styleApp.textButtonRegular}>Confirmar</Text>
           </TouchableOpacity>
 

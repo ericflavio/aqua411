@@ -2,13 +2,13 @@ import { styleColor } from '../styles/styleColors';
 import { styleApp } from '../styles/styleApp';
 import { TextInput, View, Text, StyleSheet } from "react-native";
 
-export function InputText(label, funcao, textPlaceHolder, qtdLinhas, tamanhoMáximo, tipoTeclado, flagEditavel, valorInicial, flagSecure) {
+export function InputText(label, funcao, textPlaceHolder, qtdLinhas, tamanhoMáximo, tipoTeclado, isEditavel, valorInicial, flagSecure) {
   if (label == undefined) label = "";
   if (textPlaceHolder == undefined) textPlaceHolder = "";
   if (qtdLinhas == undefined) qtdLinhas = 1;
   if (tamanhoMáximo == undefined) tamanhoMáximo = 80;
   if (tipoTeclado == undefined) tipoTeclado = "default";
-  if (flagEditavel == undefined) flagEditavel = true;
+  if (isEditavel == undefined) isEditavel = true;
   if (valorInicial == undefined) valorInicial = null;
   if (flagSecure == undefined) flagSecure = false;
 
@@ -24,7 +24,7 @@ export function InputText(label, funcao, textPlaceHolder, qtdLinhas, tamanhoMáx
         placeholderTextColor={styleColor.cinzaMedio}
         keyboardType={tipoTeclado}
         secureTextEntry={flagSecure}
-        editable={flagEditavel}
+        editable={isEditavel}
         multiline={flagMultiline}
         numberOfLines={qtdLinhas}
         maxLength={tamanhoMáximo}
