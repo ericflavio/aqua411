@@ -14,7 +14,7 @@ export default function ViewLojaUnidades() {
 
   //Controles básicos
   const [cenario, setCenario] = useState(1);
-  const [isProcessing, setProcessing] = useState(true);
+  const [isLoadingDataInitial, setLoadingDataInitial] = useState(true);
   const [flagShowModal, setflagShowModal] = useState(false);
   //Outras declarações
   const [listaUnidades, setListaUnidades] = useState(null);
@@ -22,7 +22,7 @@ export default function ViewLojaUnidades() {
   //Cenarios
   const cenarioEditar = 1;
   const cenarioValidar = 11;
-  cenario !== cenarioEditar || isProcessing ? isEditavel = false : isEditavel = true;
+  cenario !== cenarioEditar || isLoadingDataInitial ? isEditavel = false : isEditavel = true;
 
   useEffect(() => {
     fetchUnidades();
@@ -31,7 +31,7 @@ export default function ViewLojaUnidades() {
   async function fetchUnidades() {
     const resUnidades = await consultaListaUnidades(user);
     setListaUnidades(resUnidades);
-    setProcessing(!isProcessing);
+    setLoadingDataInitial(!isLoadingDataInitial);
   }
 
   //Componente visual de cada Unidade (card)
@@ -82,7 +82,7 @@ export default function ViewLojaUnidades() {
         </Text>
       </View>
 
-      {isProcessing ?
+      {isLoadingDataInitial ?
         <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor} />
         :
         <View style={styles.continerViewPrincipal}>

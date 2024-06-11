@@ -21,7 +21,7 @@ export default function ViewEdtMenuLoja() {
 
   //Controles básicos
   const [cenario, setCenario] = useState(1);
-  const [isProcessing, setProcessing] = useState(true);
+  const [isLoadingDataInitial, setLoadingDataInitial] = useState(true);
   const [flagShowModal, setflagShowModal] = useState(false);
   //Outras declarações
   const [lojaDados, setLojaDados] = useState(parmLoja);
@@ -33,7 +33,7 @@ export default function ViewEdtMenuLoja() {
   //Cenarios
   const cenarioEditar = 1;
   const cenarioValidar = 11;
-  cenario !== cenarioEditar || isProcessing ? isEditavel = false : isEditavel = true;
+  cenario !== cenarioEditar || isLoadingDataInitial ? isEditavel = false : isEditavel = true;
 
   //Providências após a construção do objeto principal
   //TODO: persistir status localmente (raramente mudam)
@@ -55,7 +55,7 @@ export default function ViewEdtMenuLoja() {
         filtraNovosStatusPossiveis(resList, lojaDados.status)
       }
     }
-    setProcessing(!isProcessing);
+    setLoadingDataInitial(!isLoadingDataInitial);
   }
 
   function filtraNovosStatusPossiveis(resList, statusInicial) {
@@ -73,7 +73,7 @@ export default function ViewEdtMenuLoja() {
     router.navigate({
       pathname: '/lojaEndereco',
       params: {
-        navigateParmLoja: JSON.stringify(lojaDados), naviateParmOnlyConsulta : !flagStatusEditavel
+        navigateParmLoja: JSON.stringify(lojaDados), naviateParmOnlyConsulta : JSON.stringify(!flagStatusEditavel)
       }
     })
   }
@@ -105,7 +105,7 @@ export default function ViewEdtMenuLoja() {
           source={require('../../../assets/outros/sheep_novaLoja_01.png')}
         />
 
-        {isProcessing ?
+        {isLoadingDataInitial ?
           <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor} />
           :
           <>

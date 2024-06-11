@@ -18,12 +18,11 @@ export default function ViewEdtEnderecoLoja() {
   const { user } = useContext(AuthContext);
   const { navigateParmLoja, naviateParmOnlyConsulta } = useLocalSearchParams();
   navigateParmLoja ? parmLoja = JSON.parse(navigateParmLoja) : parmLoja = null;
-  naviateParmOnlyConsulta ? parmOnlyConsulta = naviateParmOnlyConsulta : parmOnlyConsulta = true;
-  console.log("parmOnlyConsulta ", parmOnlyConsulta);
+  naviateParmOnlyConsulta ? parmOnlyConsulta = JSON.parse(naviateParmOnlyConsulta) : parmOnlyConsulta = false;
 
   //Controles básicos
   const [cenario, setCenario] = useState(1);
-  const [isProcessing, setProcessing] = useState(true);
+  const [isLoadingDataInitial, setLoadingDataInitial] = useState(true);
   const [flagShowModal, setflagShowModal] = useState(false);
   //Outras declarações
   const [endereco, setEndereco] = useState(schemaLojaEndereco)
@@ -31,7 +30,8 @@ export default function ViewEdtEnderecoLoja() {
   //Correções:
   //1. Inibir edições da loja se status "excluído" e "inativo"; tratar menuzinho "opções de gerenciamento"
   //2. view dados básicos: tratar campos adicionais.
-  //6. Pequisar o endereço/horario/localização na entrada da suas telas (isProcessing)
+  //6. Pequisar o endereço/horario/localização na entrada da suas telas (isLoadingDataInitial)
+  ////6.1 Persistir localmente? 
   //7.revisar o LOGIN :manter flagErro? 
 
   //*Dados básicos: tratar campos adicionais (persistir mínimo ou completo)
@@ -50,7 +50,7 @@ export default function ViewEdtEnderecoLoja() {
   //Cenarios
   const cenarioEditar = 1;
   const cenarioValidar = 11;
-  cenario !== cenarioEditar || isProcessing || parmOnlyConsulta ? isEditavel = false : isEditavel = true;
+  cenario !== cenarioEditar || isLoadingDataInitial || parmOnlyConsulta ? isEditavel = false : isEditavel = true;
 
   //Ações ao final da construção do componente
   useEffect(() => {
@@ -68,7 +68,7 @@ export default function ViewEdtEnderecoLoja() {
     if (res !== null) {
       setEndereco(res);
     }
-    setProcessing(!isProcessing);
+    setLoadingDataInitial(!isLoadingDataInitial);
   }
 
   //Valida campos de formulario
@@ -138,7 +138,7 @@ export default function ViewEdtEnderecoLoja() {
 
   //Ações ao clicar no botão principal (confirmar/prosseguir)
   async function prosseguir() {
-    if (isProcessing) { return }; //ignora o botão, ainda clicável, até que os dados sejam carregados
+    if (isLoadingDataInitial) { return }; //ignora o botão, ainda clicável, até que os dados sejam carregados
 
     if (endereco.cep.length < 8 || !validarSintaxeCep(endereco.cep)) {
       ShowErrorMessage("vc010");

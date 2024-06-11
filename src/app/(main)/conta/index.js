@@ -16,7 +16,7 @@ export default function ViewConta() {
   const { user, logOut } = useContext(AuthContext);
   //Controles básicos
   const [cenario, setCenario] = useState(1);
-  const [isProcessing, setProcessing] = useState(true);
+  const [isLoadingDataInitial, setLoadingDataInitial] = useState(true);
   const [flagShowModal, setflagShowModal] = useState(false);
   //Outras declarações
   const [lojaDados, setLojaDados] = useState(null);
@@ -27,7 +27,7 @@ export default function ViewConta() {
   //Cenarios
   const cenarioEditar = 1;
   const cenarioValidar = 11;
-  cenario !== cenarioEditar || isProcessing ? isEditavel = false : isEditavel = true;
+  cenario !== cenarioEditar || isLoadingDataInitial ? isEditavel = false : isEditavel = true;
 
   useEffect(() => {
     fetchDados();
@@ -44,7 +44,7 @@ export default function ViewConta() {
     if (res !== null) {
       setLojaDados(res);
     };
-    setProcessing(!isProcessing);
+    setLoadingDataInitial(!isLoadingDataInitial);
   }
 
   function adicionarLoja() {
@@ -92,7 +92,7 @@ export default function ViewConta() {
               style={styles.imageUser}
               source={require('../../../assets/icones/app_icon_02.png')}
             />
-            {isProcessing ? <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor} /> : ""}
+            {isLoadingDataInitial ? <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor} /> : ""}
           </View>
         </View>
 

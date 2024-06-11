@@ -21,7 +21,7 @@ export default function ViewEdtEnderecoLoja() {
 
   //Controles básicos
   const [cenario, setCenario] = useState(1);
-  const [isProcessing, setProcessing] = useState(true);
+  const [isLoadingDataInitial, setLoadingDataInitial] = useState(true);
   const [flagShowModal, setflagShowModal] = useState(false);
   //Outras declarações
   const [endereco, setEndereco] = useState(schemaLojaEndereco)
@@ -31,7 +31,7 @@ export default function ViewEdtEnderecoLoja() {
   //2. view dados básicos: tratar campos adicionais.
   //4. Equalizar isProscessing com isEditavel
   //5. Usar flag ou in ou is ou has; padronizar
-  //6. Pequisar o endereço na entrada (isProcessing)
+  //6. Pequisar o endereço na entrada (isLoadingDataInitial)
 
   //*Dados básicos: tratar campos adicionais (além do mínimo)
   //ok - Endereço
@@ -50,7 +50,7 @@ export default function ViewEdtEnderecoLoja() {
   //Cenarios
   const cenarioEditar = 1;
   const cenarioValidar = 11;
-  cenario !== cenarioEditar || isProcessing ? isEditavel = false : isEditavel = true;
+  cenario !== cenarioEditar || isLoadingDataInitial ? isEditavel = false : isEditavel = true;
 
   //Ações ao final da construção do componente
   useEffect(() => {
@@ -68,7 +68,7 @@ export default function ViewEdtEnderecoLoja() {
     if (res !== null) {
       setEndereco(res);
     }
-    setProcessing(!isProcessing);
+    setLoadingDataInitial(!isLoadingDataInitial);
   }
 
   //Valida campos de formulario
@@ -138,7 +138,7 @@ export default function ViewEdtEnderecoLoja() {
 
   //Ações ao clicar no botão principal (confirmar/prosseguir)
   async function prosseguir() {
-    if (isProcessing) { return }; //ignora o botão, ainda clicável, até que os dados sejam carregados
+    if (isLoadingDataInitial) { return }; //ignora o botão, ainda clicável, até que os dados sejam carregados
 
     if (endereco.cep.length < 8 || !validarSintaxeCep(endereco.cep)) {
       ShowErrorMessage("vc010");

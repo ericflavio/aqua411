@@ -23,7 +23,7 @@ export default function ViewLojaCadastroBasico() {
 
   //Controles básicos
   const [cenario, setCenario] = useState(1);
-  const [isProcessing, setProcessing] = useState(true);
+  const [isLoadingDataInitial, setLoadingDataInitial] = useState(true);
   const [flagShowModal, setflagShowModal] = useState(false);
   //Outras declarações
   const [lojaDados, setLojaDados] = useState(schemaLojaDados);
@@ -31,7 +31,7 @@ export default function ViewLojaCadastroBasico() {
   //Cenarios
   const cenarioEditar = 1;
   const cenarioValidar = 11;
-  cenario !== cenarioEditar || isProcessing ? isEditavel = false : isEditavel = true;
+  cenario !== cenarioEditar || isLoadingDataInitial ? isEditavel = false : isEditavel = true;
 
   //Ações ao final da construção do componente
   useEffect(() => {
@@ -51,7 +51,7 @@ export default function ViewLojaCadastroBasico() {
         setLojaDados(res);
       }
     }
-    setProcessing(!isProcessing);
+    setLoadingDataInitial(!isLoadingDataInitial);
   }
 
   //Valida campos de formulario
@@ -91,7 +91,7 @@ export default function ViewLojaCadastroBasico() {
 
   //Funcao no botão de ação principal
   async function prosseguir() {
-    if (isProcessing) { return }; //ignora o botão, ainda clicável, até que os dados sejam carregados
+    if (isLoadingDataInitial) { return }; //ignora o botão, ainda clicável, até que os dados sejam carregados
 
     if (lojaDados.apelido.length < 8) {
       ShowErrorMessage("lj004");
