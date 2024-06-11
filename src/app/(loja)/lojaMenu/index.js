@@ -73,7 +73,7 @@ export default function ViewEdtMenuLoja() {
     router.navigate({
       pathname: '/lojaEndereco',
       params: {
-        navigateParmLoja: JSON.stringify(lojaDados)
+        navigateParmLoja: JSON.stringify(lojaDados), naviateParmOnlyConsulta : !flagStatusEditavel
       }
     })
   }
@@ -81,7 +81,7 @@ export default function ViewEdtMenuLoja() {
     router.navigate({
       pathname: '/lojaLocalizacao',
       params: {
-        navigateParmLoja: JSON.stringify(lojaDados)
+        navigateParmLoja: JSON.stringify(lojaDados), naviateParmOnlyConsulta : !flagStatusEditavel
       }
     })
   }
@@ -89,7 +89,7 @@ export default function ViewEdtMenuLoja() {
     router.navigate({
       pathname: '/lojaCadastroBasico',
       params: {
-        navigateParmLoja: JSON.stringify(lojaDados)
+        navigateParmLoja: JSON.stringify(lojaDados), naviateParmOnlyConsulta : !flagStatusEditavel
       }
     })
   }

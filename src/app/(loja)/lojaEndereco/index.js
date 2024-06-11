@@ -16,8 +16,10 @@ import { useLocalSearchParams } from 'expo-router';
 
 export default function ViewEdtEnderecoLoja() {
   const { user } = useContext(AuthContext);
-  const { navigateParmLoja } = useLocalSearchParams();
+  const { navigateParmLoja, naviateParmOnlyConsulta } = useLocalSearchParams();
   navigateParmLoja ? parmLoja = JSON.parse(navigateParmLoja) : parmLoja = null;
+  naviateParmOnlyConsulta ? parmOnlyConsulta = naviateParmOnlyConsulta : parmOnlyConsulta = true;
+  console.log("parmOnlyConsulta ", parmOnlyConsulta);
 
   //Controles básicos
   const [cenario, setCenario] = useState(1);
@@ -32,7 +34,7 @@ export default function ViewEdtEnderecoLoja() {
   //6. Pequisar o endereço/horario/localização na entrada da suas telas (isProcessing)
   //7.revisar o LOGIN :manter flagErro? 
 
-  //*Dados básicos: tratar campos adicionais (além do mínimo)
+  //*Dados básicos: tratar campos adicionais (persistir mínimo ou completo)
   //ok - Endereço
   //ok - Localização geografica
   //horário de funcionamento
@@ -40,7 +42,6 @@ export default function ViewEdtEnderecoLoja() {
   //Contato: telefone, email
   //Maquinas: layout, flag mostrar status maquina, url de callback de status maquinas
   //Facilidades: alexa(comandos), wifi livre (nome da rede) a.c., mesa de dobra, qtd assentos, link da camera ao vivo, ver status máquina?, push de conclusão do ciclo?
-  //CadastroComplementar: site, imagem de capa: uma foto da loja.
 
   //franquias
   //Flag permite visualização do status das maquinas
@@ -49,7 +50,7 @@ export default function ViewEdtEnderecoLoja() {
   //Cenarios
   const cenarioEditar = 1;
   const cenarioValidar = 11;
-  cenario !== cenarioEditar || isProcessing ? isEditavel = false : isEditavel = true;
+  cenario !== cenarioEditar || isProcessing || parmOnlyConsulta ? isEditavel = false : isEditavel = true;
 
   //Ações ao final da construção do componente
   useEffect(() => {
