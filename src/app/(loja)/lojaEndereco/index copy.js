@@ -22,7 +22,8 @@ export default function ViewEdtEnderecoLoja() {
 
   //Controles básicos
   const [cenario, setCenario] = useState(1);
-  const [processing, setProcessing] = useState({isLoading: true, isExecuting: false});
+  const [isLoadingDataInitial, setLoadingDataInitial] = useState(true);
+  const [isProcessing, setProcessing] = useState({isLoadingData: true, isExecuting: false});
   const [flagShowModal, setflagShowModal] = useState(false);
   //Outras declarações
   const [endereco, setEndereco] = useState(schemaLojaEndereco)
@@ -30,7 +31,7 @@ export default function ViewEdtEnderecoLoja() {
   //Correções:
   //1. Inibir edições da loja se status "excluído" e "inativo"; tratar menuzinho "opções de gerenciamento"
   //2. view dados básicos: tratar campos adicionais.
-  //6. Pequisar o endereço/horario/localização na entrada da suas telas (processing.isLoading)
+  //6. Pequisar o endereço/horario/localização na entrada da suas telas (isLoadingDataInitial)
   ////6.1 Persistir localmente? 
   //7.revisar o LOGIN :manter flagErro? 
 
@@ -47,7 +48,10 @@ export default function ViewEdtEnderecoLoja() {
   //Flag permite visualização do status das maquinas
   //flag permite visualização das câmeras das máquinas
 
-  processing.isExecuting || processing.isLoading || parmOnlyConsulta ? isEditavel = false : isEditavel = true;
+  //Cenarios
+  const cenarioEditar = 1;
+  const cenarioValidar = 11;
+  cenario !== cenarioEditar || isLoadingDataInitial || parmOnlyConsulta ? isEditavel = false : isEditavel = true;
 
   //Ações ao final da construção do componente
   useEffect(() => {
@@ -65,7 +69,7 @@ export default function ViewEdtEnderecoLoja() {
     if (res !== null) {
       setEndereco(res);
     }
-    setProcessing({ ...processing, isLoading: false });
+    setLoadingDataInitial(!isLoadingDataInitial);
   }
 
   //Valida campos de formulario
@@ -84,9 +88,9 @@ export default function ViewEdtEnderecoLoja() {
         return;
       }
 
-      setProcessing({ ...processing, isExecuting: true });
+      setCenario(cenarioValidar);
       const isCepValido = await consultaCepWeb(parm);
-      setProcessing({ ...processing, isExecuting: false });
+      setCenario(cenarioEditar);
     }
   }
   function validarSintaxeCep(cep) {
@@ -135,18 +139,18 @@ export default function ViewEdtEnderecoLoja() {
 
   //Ações ao clicar no botão principal (confirmar/prosseguir)
   async function prosseguir() {
-    if (processing.isLoading) { return }; //ignora o botão, ainda clicável, até que os dados sejam carregados
+    if (isLoadingDataInitial) { return }; //ignora o botão, ainda clicável, até que os dados sejam carregados
 
     if (endereco.cep.length < 8 || !validarSintaxeCep(endereco.cep)) {
       ShowErrorMessage("vc010");
       return;
     };
 
-    setProcessing({ ...processing, isExecuting: true });
+    setCenario(cenarioValidar);
 
     const isCepValido = await consultaCepWeb(endereco.cep);
     if (!isCepValido) {
-      setProcessing({ ...processing, isExecuting: false });
+      setCenario(cenarioEditar)
       return;
     }
 
@@ -156,7 +160,7 @@ export default function ViewEdtEnderecoLoja() {
     } catch {
       ShowErrorMessage("lj003");
     }
-    setProcessing({ ...processing, isExecuting: false });
+    setCenario(cenarioEditar);
   }
 
   //Apresentação da view principal
@@ -167,9 +171,10 @@ export default function ViewEdtEnderecoLoja() {
         <View style={styles.containerHeader}>
           <MaterialIcons name="add-business" size={styleApp.size.iconSizeRegular} color={styleColor.textSubtitulo} />
           <Text style={styleApp.textSubtitulo}>Endereço</Text>
+          {isLoadingDataInitial ? <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor} /> : ""}
         </View>
 
-        {modalSimples(flagShowModal, handleCloseModal, "Informações atualizadas!", "TipoMsg", "Título", processing)}
+        {modalSimples(flagShowModal, handleCloseModal, "Informações atualizadas!", "TipoMsg", "Título")}
 
         <View style={styles.containerPrincipal}>
           {InputText("CEP", onChangeCep, "CEP", 1, 8, "default", isEditavel, endereco.cep, false)}
@@ -184,6 +189,7 @@ export default function ViewEdtEnderecoLoja() {
           {InputText("Complemento", onChangeComplemento, "Complemento", 1, 80, "default", isEditavel, endereco.complemento, false)}
 
           <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir} >
+            {!isEditavel && !isLoadingDataInitial ? <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor} /> : ""}
             <Text style={styleApp.textButtonRegular}>Confirmar</Text>
           </TouchableOpacity>
         </View>

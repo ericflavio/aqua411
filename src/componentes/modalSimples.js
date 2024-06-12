@@ -1,12 +1,22 @@
-import { Modal, StyleSheet, Text, Pressable, View, TouchableOpacity } from 'react-native';
+import { Modal, StyleSheet, Text, View, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { MaterialIcons } from "@expo/vector-icons";
 import { styleApp } from '../styles/styleApp';
-import { GradienteFill } from '../componentes/gradienteFill';
 
-export default function modalSimples(flagShowModal, onClose, msg, msgTipo, msgTitulo,) {
+export default function modalSimples(flagShowModal, onClose, msg, msgTipo, msgTitulo, processing) {
+  console.log("proces", processing, flagShowModal);
+  if (!processing) {
+    processing = { isLoading: false, isExecuting: false }
+  }
   if (flagShowModal === undefined) {
     flagShowModal = true
   };
+  if (processing.isLoading || processing.isExecuting) {
+    flagShowModal = true
+    motion = "fade"
+  } else {
+    motion = "slide"
+  }
+  console.log("show-->", flagShowModal);
   if (msg === undefined || msg === null || msg === "") {
     msg = "Concluído ok!"
   };
@@ -29,21 +39,29 @@ export default function modalSimples(flagShowModal, onClose, msg, msgTipo, msgTi
   return (
     <View style={stylesLocal.centeredView}>
       <Modal
-        animationType="slide" //fade slide none
+        animationType={motion} //fade slide none
         transparent={true}
         visible={flagShowModal}
         onRequestClose={() => { }}>
-        <View style={stylesLocal.centeredView}>
-          <View style={[stylesLocal.modalView, { borderColor: borderModal }]}>
-            <Text style={[styleApp.textSubtitulo, { color: borderModal }]}>{msgTitulo}</Text>
-            {msg !== "" ? <Text style={styleApp.textRegular}>{msg}</Text> : <></>}
-            <View style={{ marginTop: 20 }}>
-              <TouchableOpacity style={styleApp.buttonFlatHL_transp} disabled={false} onPress={onClose} >
-                <MaterialIcons name="close" size={styleApp.size.iconSizeButtonLarge} color={styleApp.color.textButtonFlat} />
-              </TouchableOpacity>
+        {processing.isLoading || processing.isExecuting ?
+          <View style={stylesLocal.centeredView}>
+            <View style={[stylesLocal.modalViewProcessing, { borderColor: borderModal }]}>
+              <ActivityIndicator size={"large"} color={styleApp.color.activityIndicatorCollor} />
             </View>
           </View>
-        </View>
+          :
+          <View style={stylesLocal.bottomView}>
+            <View style={[stylesLocal.modalView, { borderColor: borderModal }]}>
+              <Text style={[styleApp.textSubtitulo, { color: borderModal }]}>{msgTitulo}</Text>
+              {msg !== "" ? <Text style={styleApp.textRegular}>{msg}</Text> : <></>}
+              <View style={{ marginTop: 20 }}>
+                <TouchableOpacity style={styleApp.buttonFlatHL_transp} disabled={false} onPress={onClose} >
+                  <MaterialIcons name="close" size={styleApp.size.iconSizeButtonLarge} color={styleApp.color.textButtonFlat} />
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        }
       </Modal>
     </View>
   );
@@ -51,6 +69,11 @@ export default function modalSimples(flagShowModal, onClose, msg, msgTipo, msgTi
 
 const stylesLocal = StyleSheet.create({
   centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  bottomView: {
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
@@ -78,24 +101,11 @@ const stylesLocal = StyleSheet.create({
     shadowRadius: 20,
     elevation: 5,
   },
-  modalView2: {
+  modalViewProcessing: {
     margin: 20,
-    minHeight: 160,
-    minWidth: 200,
-    borderWidth: 2,
-    borderBottomWidth: 12,
-    borderColor: "grey",
-    backgroundColor: 'white',
+    backgroundColor: 'transparent',
     borderRadius: 20,
-    padding: 20,
+    padding: 35,
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 20,
-    elevation: 5,
-  }
+  },
 });
