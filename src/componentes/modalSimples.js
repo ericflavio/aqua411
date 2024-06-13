@@ -3,7 +3,6 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { styleApp } from '../styles/styleApp';
 
 export default function modalSimples(flagShowModal, onClose, msg, msgTipo, msgTitulo, processing) {
-  console.log("proces", processing, flagShowModal);
   if (!processing) {
     processing = { isLoading: false, isExecuting: false }
   }
@@ -16,7 +15,6 @@ export default function modalSimples(flagShowModal, onClose, msg, msgTipo, msgTi
   } else {
     motion = "slide"
   }
-  console.log("show-->", flagShowModal);
   if (msg === undefined || msg === null || msg === "") {
     msg = "Concluído ok!"
   };

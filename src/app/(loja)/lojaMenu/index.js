@@ -67,11 +67,27 @@ export default function ViewEdtMenuLoja() {
   }
 
   function filtraNovosStatusPossiveis(resList, statusInicial) {
-    //Monta os possíveis novos status
-    for (var i = 0; i < resList.length; i++) {
-      if (resList[i].id.toUpperCase() === statusInicial.toUpperCase()) {
+    //Monta a chamada dos possíveis novos status (ações de gerenciamento)
+    for (var i = 0; i < resList.length; i++) { //Todos os status existentes
+      if (resList[i].id.toUpperCase() === statusInicial.toUpperCase()) { //Status da loja encontrado
         setStatusEditavel(resList[i].inPermiteEdicao)
-        setStatusListToChange(resList[i].dfs)
+
+        resDfs = resList[i].dfs
+        for (var x = 0; x < resDfs.length; x++) { //Todos os novos status possíveis (DFS)
+          console.log("rsss ", x, resDfs[x])
+          idDfs = resDfs[x];
+
+          for (var y = 0; y < resList.length; y++) {
+            if (resList[y].id.toUpperCase() === idDfs.toUpperCase()) {
+              resDfs[x] = { id: idDfs, titulo: resList[y].tituloAcionamento, icone: resList[y].icone }; break;
+              break;
+            }
+          }
+          if (y > resList.length) {
+            resDfs[x] = { id: idDfs, titulo: "(" + idDfs + ")", icone: "change-history" }
+          }
+        }
+        setStatusListToChange(resDfs)
         break;
       }
     }
@@ -102,8 +118,23 @@ export default function ViewEdtMenuLoja() {
     })
   }
 
-  console.log("dadosBasicos :", lojaDados)
-  console.log("flagEdicao :", flagStatusEditavel, ' : ', statusListToChange)
+  //Componentes
+  const opcaoDeGerenciamento = () => {
+    if (!statusListToChange || statusListToChange.length === 0) {
+      return;
+    }
+    return (
+      <View>
+        {statusListToChange.map((op, index) => (
+          <TouchableOpacity key={index} style={[styleApp.buttonFlatHL, { marginTop: 2 }, { marginBottom: 2 }]} onPress={() => console.log('Clicou em:', op.id)} >
+            <MaterialIcons name={op.icone} size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.textButtonFlat} />
+            <Text style={styleApp.textButtonFlat}>{op.titulo}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+    );
+  };
+
   return (
     <SafeAreaView style={styleApp.containerSafeAreaSemPadding}>
       {GradienteFill()}
@@ -138,21 +169,28 @@ export default function ViewEdtMenuLoja() {
                     <Text style={[styleApp.textSmallItalico, { color: 'white' }]}>O status atual não permite alterações</Text>
                   </View>
                 }
-                <View style={styles.containerSection}>
-                  <Text style={styleApp.textSmall}>Ações de gerenciamento</Text>
-                  <MaterialIcons name="settings" size={20} color={styleApp.color.cinzaMedio} />
-                </View>
 
-                <View style={styles.containerOthers}>
-                  <TouchableOpacity style={styleApp.buttonFlatHL} onPress={{}} >
+                {statusListToChange.length === 0 ? <></> :
+                  <>
+                    <View style={styles.containerSection}>
+                      <Text style={styleApp.textSmall}>Ações de gerenciamento</Text>
+                      <MaterialIcons name="settings" size={20} color={styleApp.color.cinzaMedio} />
+                    </View>
+
+                    <View style={styles.containerOthers}>
+                      {/*                   <TouchableOpacity style={styleApp.buttonFlatHL} onPress={{}} >
                     <MaterialIcons name="delete-outline" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.textButtonFlat} />
                     <Text style={styleApp.textButtonFlat}>Desistir de cadastrar (excluir)</Text>
                   </TouchableOpacity>
                   <TouchableOpacity style={styleApp.buttonFlatHL} onPress={{}} >
                     <MaterialIcons name="saved-search" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.textButtonFlat} />
                     <Text style={styleApp.textButtonFlat}>Aparecer nas buscas dos clientes</Text>
-                  </TouchableOpacity>
-                </View>
+                  </TouchableOpacity> */}
+
+                      {opcaoDeGerenciamento()}
+                    </View>
+                  </>
+                }
 
                 <View style={styles.containerSection}>
                   <Text style={styleApp.textSmall}>Configuração da loja</Text>

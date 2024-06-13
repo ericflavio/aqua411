@@ -28,10 +28,8 @@ export default function ViewEdtEnderecoLoja() {
   const [endereco, setEndereco] = useState(schemaLojaEndereco)
 
   //Correções:
-  //1. tratar menuzinho "opções de gerenciamento"
-  //3. persistir loja em edição localmente? ou loja favorita? ou outro dado ?
-  //7.revisar o LOGIN :manter flagErro? colocar na sistemática "processing"
-
+  //persistir loja em edição localmente? ou loja favorita? ou outro dado ?
+  //revisar o LOGIN :manter flagErro? colocar na sistemática "processing"
   //*Dados básicos: tratar campos adicionais (persistir mínimo ou completo)
   //ok - Endereço
   //ok - Localização geografica
