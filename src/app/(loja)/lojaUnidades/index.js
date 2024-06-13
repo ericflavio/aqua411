@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { router, useLocalSearchParams } from 'expo-router';
+import { router } from 'expo-router';
 import { View, Text, SafeAreaView, TouchableOpacity, FlatList, Alert, ActivityIndicator } from "react-native";
 import { styles } from "./styles";
 import { styleApp } from '../../../styles/styleApp';
@@ -7,22 +7,19 @@ import { GradienteFill } from '../../../componentes/gradienteFill';
 import { AuthContext } from "../../../contexts/auth";
 import { consultaListaUnidades } from '../../../services/lojaService';
 import { styleColor } from '../../../styles/styleColors';
+import modalSimples from '../../../componentes/modalSimples';
 
 //Tela principal
 export default function ViewLojaUnidades() {
   const { user } = useContext(AuthContext);
 
   //Controles básicos
-  const [cenario, setCenario] = useState(1);
-  const [isLoadingDataInitial, setLoadingDataInitial] = useState(true);
+  const [processing, setProcessing] = useState({ isLoading: true, isExecuting: false, isOnlyConsulta: false });
+  processing.isExecuting || processing.isLoading || processing.isOnlyConsulta ? isEditavel = false : isEditavel = true;
   const [flagShowModal, setflagShowModal] = useState(false);
+
   //Outras declarações
   const [listaUnidades, setListaUnidades] = useState(null);
-
-  //Cenarios
-  const cenarioEditar = 1;
-  const cenarioValidar = 11;
-  cenario !== cenarioEditar || isLoadingDataInitial ? isEditavel = false : isEditavel = true;
 
   useEffect(() => {
     fetchUnidades();
@@ -31,8 +28,20 @@ export default function ViewLojaUnidades() {
   async function fetchUnidades() {
     const resUnidades = await consultaListaUnidades(user);
     setListaUnidades(resUnidades);
-    setLoadingDataInitial(!isLoadingDataInitial);
+    setProcessing({ ...processing, isLoading: false });
   }
+
+  //Funções auxiliares 
+  function handleCloseModal() {
+    setflagShowModal(!flagShowModal);
+  }
+  function showModalMsgResultado() {
+    setflagShowModal(!flagShowModal);
+    setTimeout(() => {
+      setflagShowModal(false);
+    }, styleApp.size.modalTimeAutoClose);
+  }
+
 
   //Componente visual de cada Unidade (card)
   const Item = ({ item, onPress }) => (
@@ -80,10 +89,11 @@ export default function ViewLojaUnidades() {
         <Text style={styleApp.textRegular}>
           Selecione abaixo uma unidade previamente cadastrada e atualize os dados que desejar
         </Text>
+        {modalSimples(flagShowModal, handleCloseModal, "Informações atualizadas!", "TipoMsg", "Título", processing)}
       </View>
 
-      {isLoadingDataInitial ?
-        <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor} />
+      {processing.isLoading ?
+        <></>
         :
         <View style={styles.continerViewPrincipal}>
           <FlatList

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { router, useLocalSearchParams } from 'expo-router';
-import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, ActivityIndicator, Alert } from "react-native";
+import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image } from "react-native";
 import { styles } from "./styles";
 import { styleApp } from '../../../styles/styleApp';
 import { GradienteFill } from '../../../componentes/gradienteFill';
@@ -9,6 +9,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import * as Animatable from 'react-native-animatable';
 import { consultaListaStatusLoja } from '../../../services/lojaService';
 import { ShowErrorMessage } from '../../../errors/errorMessage';
+import modalSimples from '../../../componentes/modalSimples';
 
 //Tela principal
 export default function ViewEdtMenuLoja() {
@@ -20,9 +21,10 @@ export default function ViewEdtMenuLoja() {
   //b) Se chegar <> null siginifica que houve algum erro prévio.
 
   //Controles básicos
-  const [cenario, setCenario] = useState(1);
-  const [isLoadingDataInitial, setLoadingDataInitial] = useState(true);
+  const [processing, setProcessing] = useState({ isLoading: true, isExecuting: false, isOnlyConsulta: false });
+  processing.isExecuting || processing.isLoading || processing.isOnlyConsulta ? isEditavel = false : isEditavel = true;
   const [flagShowModal, setflagShowModal] = useState(false);
+
   //Outras declarações
   const [lojaDados, setLojaDados] = useState(parmLoja);
   const [disabled, setDisabled] = useState(false);
@@ -30,16 +32,22 @@ export default function ViewEdtMenuLoja() {
   const [flagStatusEditavel, setStatusEditavel] = useState(true); //Indica se loja neste estado pode ser editada
   const [statusListToChange, setStatusListToChange] = useState(null); //Novos Status permitidos pelo DFS
 
-  //Cenarios
-  const cenarioEditar = 1;
-  const cenarioValidar = 11;
-  cenario !== cenarioEditar || isLoadingDataInitial ? isEditavel = false : isEditavel = true;
-
   //Providências após a construção do objeto principal
   //TODO: persistir status localmente (raramente mudam)
   useEffect(() => {
     fetchLoja();
   }, [])
+
+  //Funções auxiliares 
+  function handleCloseModal() {
+    setflagShowModal(!flagShowModal);
+  }
+  function showModalMsgResultado() {
+    setflagShowModal(!flagShowModal);
+    setTimeout(() => {
+      setflagShowModal(false);
+    }, styleApp.size.modalTimeAutoClose);
+  }
 
   async function fetchLoja() {
     //Consulta a lista de status que podem ser atribuídos a uma loja
@@ -55,7 +63,7 @@ export default function ViewEdtMenuLoja() {
         filtraNovosStatusPossiveis(resList, lojaDados.status)
       }
     }
-    setLoadingDataInitial(!isLoadingDataInitial);
+    setProcessing({ ...processing, isLoading: false });
   }
 
   function filtraNovosStatusPossiveis(resList, statusInicial) {
@@ -73,7 +81,7 @@ export default function ViewEdtMenuLoja() {
     router.navigate({
       pathname: '/lojaEndereco',
       params: {
-        navigateParmLoja: JSON.stringify(lojaDados), naviateParmOnlyConsulta : JSON.stringify(!flagStatusEditavel)
+        navigateParmLoja: JSON.stringify(lojaDados), naviateParmOnlyConsulta: JSON.stringify(!flagStatusEditavel)
       }
     })
   }
@@ -81,7 +89,7 @@ export default function ViewEdtMenuLoja() {
     router.navigate({
       pathname: '/lojaLocalizacao',
       params: {
-        navigateParmLoja: JSON.stringify(lojaDados), naviateParmOnlyConsulta : !flagStatusEditavel
+        navigateParmLoja: JSON.stringify(lojaDados), naviateParmOnlyConsulta: !flagStatusEditavel
       }
     })
   }
@@ -89,7 +97,7 @@ export default function ViewEdtMenuLoja() {
     router.navigate({
       pathname: '/lojaCadastroBasico',
       params: {
-        navigateParmLoja: JSON.stringify(lojaDados), naviateParmOnlyConsulta : !flagStatusEditavel
+        navigateParmLoja: JSON.stringify(lojaDados), naviateParmOnlyConsulta: !flagStatusEditavel
       }
     })
   }
@@ -105,8 +113,10 @@ export default function ViewEdtMenuLoja() {
           source={require('../../../assets/outros/sheep_novaLoja_01.png')}
         />
 
-        {isLoadingDataInitial ?
-          <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor} />
+        {modalSimples(flagShowModal, handleCloseModal, "Informações atualizadas!", "TipoMsg", "Título", processing)}
+
+        {processing.isLoading ?
+          <></>
           :
           <>
             {parmLoja === null || statusList === null ?

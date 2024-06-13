@@ -1,33 +1,30 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, Alert, ActivityIndicator } from "react-native";
+import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, Alert } from "react-native";
 import { styles } from "./styles";
 import { styleApp } from '../../../styles/styleApp';
 import { styleColor } from "../../../styles/styleColors";
 import { MaterialIcons } from "@expo/vector-icons";
 import { GradienteFill } from '../../../componentes/gradienteFill';
 import { AuthContext } from "../../../contexts/auth";
-import { router, useLocalSearchParams } from 'expo-router';
+import { router } from 'expo-router';
 import { consultaExistenciaLojaEmCriacao } from '../../../services/lojaService';
 import { ShowErrorMessage } from '../../../errors/errorMessage';
 import { schemaLojaDadosMinimos } from '../../../schemas/lojaSchema';
+import modalSimples from '../../../componentes/modalSimples';
 
 //Tela principal HOME
 export default function ViewConta() {
   const { user, logOut } = useContext(AuthContext);
   //Controles básicos
-  const [cenario, setCenario] = useState(1);
-  const [isLoadingDataInitial, setLoadingDataInitial] = useState(true);
+  const [processing, setProcessing] = useState({ isLoading: true, isExecuting: false, isOnlyConsulta: false });
+  processing.isExecuting || processing.isLoading || processing.isOnlyConsulta ? isEditavel = false : isEditavel = true;
   const [flagShowModal, setflagShowModal] = useState(false);
+
   //Outras declarações
   const [lojaDados, setLojaDados] = useState(null);
 
   var name = "Olá!";
   user.name ? name = user.name : name = user.idLogin;
-
-  //Cenarios
-  const cenarioEditar = 1;
-  const cenarioValidar = 11;
-  cenario !== cenarioEditar || isLoadingDataInitial ? isEditavel = false : isEditavel = true;
 
   useEffect(() => {
     fetchDados();
@@ -36,7 +33,7 @@ export default function ViewConta() {
   async function fetchDados() {
     //Verifica se existe loja sendo criada (status = criando)
     try {
-      res = await consultaExistenciaLojaEmCriacao("n"); //Verifica se já possui alguma sendo criada
+      res = await consultaExistenciaLojaEmCriacao("s"); //Verifica se já possui alguma sendo criada
     } catch {
       res = null; //Erro na pesquisad de Loja em estágio de criação para continuar.
       ShowErrorMessage("lj008");
@@ -44,7 +41,18 @@ export default function ViewConta() {
     if (res !== null) {
       setLojaDados(res);
     };
-    setLoadingDataInitial(!isLoadingDataInitial);
+    setProcessing({ ...processing, isLoading: false });
+  }
+
+  //Funções auxiliares 
+  function handleCloseModal() {
+    setflagShowModal(!flagShowModal);
+  }
+  function showModalMsgResultado() {
+    setflagShowModal(!flagShowModal);
+    setTimeout(() => {
+      setflagShowModal(false);
+    }, styleApp.size.modalTimeAutoClose);
   }
 
   function adicionarLoja() {
@@ -92,8 +100,8 @@ export default function ViewConta() {
               style={styles.imageUser}
               source={require('../../../assets/icones/app_icon_02.png')}
             />
-            {isLoadingDataInitial ? <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor} /> : ""}
           </View>
+          {modalSimples(flagShowModal, handleCloseModal, "Informações atualizadas!", "TipoMsg", "Título", processing)}
         </View>
 
         <View style={styles.containerBasics}>

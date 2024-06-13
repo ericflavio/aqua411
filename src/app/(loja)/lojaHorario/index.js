@@ -14,14 +14,14 @@ import { atualizaEnderecoLoja, consultaEnderecoLoja } from '../../../services/lo
 import modalSimples from '../../../componentes/modalSimples';
 import { useLocalSearchParams } from 'expo-router';
 
-export default function ViewEdtEnderecoLoja() {
+export default function ViewHorarioLoja() {
   const { user } = useContext(AuthContext);
-  const { navigateParmLoja } = useLocalSearchParams();
+  const { navigateParmLoja, naviateParmOnlyConsulta } = useLocalSearchParams();
   navigateParmLoja ? parmLoja = JSON.parse(navigateParmLoja) : parmLoja = null;
+  naviateParmOnlyConsulta ? parmOnlyConsulta = JSON.parse(naviateParmOnlyConsulta) : parmOnlyConsulta = false;
 
   //Controles básicos
-  const [cenario, setCenario] = useState(1);
-  const [isLoadingDataInitial, setLoadingDataInitial] = useState(true);
+  const [processing, setProcessing] = useState({isLoading: true, isExecuting: false, isOnlyConsulta: parmOnlyConsulta});
   const [flagShowModal, setflagShowModal] = useState(false);
   //Outras declarações
   const [endereco, setEndereco] = useState(schemaLojaEndereco)
@@ -29,11 +29,11 @@ export default function ViewEdtEnderecoLoja() {
   //Correções:
   //1. Inibir edições da loja se status "excluído" e "inativo"; tratar menuzinho "opções de gerenciamento"
   //2. view dados básicos: tratar campos adicionais.
-  //4. Equalizar isProscessing com isEditavel
-  //5. Usar flag ou in ou is ou has; padronizar
-  //6. Pequisar o endereço na entrada (isLoadingDataInitial)
+  //6. Pequisar o endereço/horario/localização na entrada da suas telas (processing.isLoading)
+  ////6.1 Persistir localmente? 
+  //7.revisar o LOGIN :manter flagErro? 
 
-  //*Dados básicos: tratar campos adicionais (além do mínimo)
+  //*Dados básicos: tratar campos adicionais (persistir mínimo ou completo)
   //ok - Endereço
   //ok - Localização geografica
   //horário de funcionamento
@@ -41,16 +41,12 @@ export default function ViewEdtEnderecoLoja() {
   //Contato: telefone, email
   //Maquinas: layout, flag mostrar status maquina, url de callback de status maquinas
   //Facilidades: alexa(comandos), wifi livre (nome da rede) a.c., mesa de dobra, qtd assentos, link da camera ao vivo, ver status máquina?, push de conclusão do ciclo?
-  //CadastroComplementar: site, imagem de capa: uma foto da loja.
 
   //franquias
   //Flag permite visualização do status das maquinas
   //flag permite visualização das câmeras das máquinas
 
-  //Cenarios
-  const cenarioEditar = 1;
-  const cenarioValidar = 11;
-  cenario !== cenarioEditar || isLoadingDataInitial ? isEditavel = false : isEditavel = true;
+  processing.isExecuting || processing.isLoading || processing.isOnlyConsulta ? isEditavel = false : isEditavel = true;
 
   //Ações ao final da construção do componente
   useEffect(() => {
@@ -68,7 +64,7 @@ export default function ViewEdtEnderecoLoja() {
     if (res !== null) {
       setEndereco(res);
     }
-    setLoadingDataInitial(!isLoadingDataInitial);
+    setProcessing({ ...processing, isLoading: false });
   }
 
   //Valida campos de formulario
@@ -87,9 +83,9 @@ export default function ViewEdtEnderecoLoja() {
         return;
       }
 
-      setCenario(cenarioValidar);
+      setProcessing({ ...processing, isExecuting: true });
       const isCepValido = await consultaCepWeb(parm);
-      setCenario(cenarioEditar);
+      setProcessing({ ...processing, isExecuting: false });
     }
   }
   function validarSintaxeCep(cep) {
@@ -138,18 +134,18 @@ export default function ViewEdtEnderecoLoja() {
 
   //Ações ao clicar no botão principal (confirmar/prosseguir)
   async function prosseguir() {
-    if (isLoadingDataInitial) { return }; //ignora o botão, ainda clicável, até que os dados sejam carregados
+    if (processing.isLoading) { return }; //ignora o botão, ainda clicável, até que os dados sejam carregados
 
     if (endereco.cep.length < 8 || !validarSintaxeCep(endereco.cep)) {
       ShowErrorMessage("vc010");
       return;
     };
 
-    setCenario(cenarioValidar);
+    setProcessing({ ...processing, isExecuting: true });
 
     const isCepValido = await consultaCepWeb(endereco.cep);
     if (!isCepValido) {
-      setCenario(cenarioEditar)
+      setProcessing({ ...processing, isExecuting: false });
       return;
     }
 
@@ -159,7 +155,7 @@ export default function ViewEdtEnderecoLoja() {
     } catch {
       ShowErrorMessage("lj003");
     }
-    setCenario(cenarioEditar);
+    setProcessing({ ...processing, isExecuting: false });
   }
 
   //Apresentação da view principal
@@ -172,7 +168,7 @@ export default function ViewEdtEnderecoLoja() {
           <Text style={styleApp.textSubtitulo}>Endereço</Text>
         </View>
 
-        {modalSimples(flagShowModal, handleCloseModal, "Informações atualizadas!", "TipoMsg", "Título")}
+        {modalSimples(flagShowModal, handleCloseModal, "Informações atualizadas!", "TipoMsg", "Título", processing)}
 
         <View style={styles.containerPrincipal}>
           {InputText("CEP", onChangeCep, "CEP", 1, 8, "default", isEditavel, endereco.cep, false)}
@@ -187,7 +183,6 @@ export default function ViewEdtEnderecoLoja() {
           {InputText("Complemento", onChangeComplemento, "Complemento", 1, 80, "default", isEditavel, endereco.complemento, false)}
 
           <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir} >
-            {!isEditavel ? <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor} /> : ""}
             <Text style={styleApp.textButtonRegular}>Confirmar</Text>
           </TouchableOpacity>
         </View>

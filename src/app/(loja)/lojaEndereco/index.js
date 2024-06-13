@@ -21,18 +21,16 @@ export default function ViewEdtEnderecoLoja() {
   naviateParmOnlyConsulta ? parmOnlyConsulta = JSON.parse(naviateParmOnlyConsulta) : parmOnlyConsulta = false;
 
   //Controles básicos
-  const [cenario, setCenario] = useState(1);
-  const [processing, setProcessing] = useState({isLoading: true, isExecuting: false});
+  const [processing, setProcessing] = useState({ isLoading: true, isExecuting: false, isOnlyConsulta: parmOnlyConsulta });
+  processing.isExecuting || processing.isLoading || processing.isOnlyConsulta ? isEditavel = false : isEditavel = true;
   const [flagShowModal, setflagShowModal] = useState(false);
   //Outras declarações
   const [endereco, setEndereco] = useState(schemaLojaEndereco)
 
   //Correções:
-  //1. Inibir edições da loja se status "excluído" e "inativo"; tratar menuzinho "opções de gerenciamento"
-  //2. view dados básicos: tratar campos adicionais.
-  //6. Pequisar o endereço/horario/localização na entrada da suas telas (processing.isLoading)
-  ////6.1 Persistir localmente? 
-  //7.revisar o LOGIN :manter flagErro? 
+  //1. tratar menuzinho "opções de gerenciamento"
+  //3. persistir loja em edição localmente? ou loja favorita? ou outro dado ?
+  //7.revisar o LOGIN :manter flagErro? colocar na sistemática "processing"
 
   //*Dados básicos: tratar campos adicionais (persistir mínimo ou completo)
   //ok - Endereço
@@ -46,8 +44,6 @@ export default function ViewEdtEnderecoLoja() {
   //franquias
   //Flag permite visualização do status das maquinas
   //flag permite visualização das câmeras das máquinas
-
-  processing.isExecuting || processing.isLoading || parmOnlyConsulta ? isEditavel = false : isEditavel = true;
 
   //Ações ao final da construção do componente
   useEffect(() => {
@@ -100,13 +96,17 @@ export default function ViewEdtEnderecoLoja() {
       endCep = await consultaCepService(parm);
     } catch {
       ShowErrorMessage("vc012");
-      setEndereco({ cep: parm, localidade: "", uf: "", ddd: "", bairro: "", logradouro: "", numero: "", complemento: "" });
+      schemaLojaEndereco.cep = parm;
+      //setEndereco({ cep: parm, localidade: "", uf: "", ddd: "", bairro: "", logradouro: "", numero: "", complemento: "" });
+      setEndereco(schemaLojaEndereco);
       return false;
     };
 
     if (endCep.erro) {
       ShowErrorMessage("vc011");
-      setEndereco({ cep: parm, localidade: "", uf: "", ddd: "", bairro: "", logradouro: "", numero: "", complemento: "" });
+      schemaLojaEndereco.cep = parm;
+      //setEndereco({ cep: parm, localidade: "", uf: "", ddd: "", bairro: "", logradouro: "", numero: "", complemento: "" });
+      setEndereco(schemaLojaEndereco);
       return false;
     } else {
       schemaLojaEndereco.cep = parm;

@@ -41,7 +41,7 @@ export async function consultaListaStatusLoja() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(statusLoja)
-    }, 300);
+    }, 1000);
   })
 }
 

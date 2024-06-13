@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, ActivityIndicator } from "react-native";
+import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { styles } from "./styles";
 import { styleApp } from '../../../styles/styleApp';
@@ -16,20 +16,16 @@ import { useLocalSearchParams } from 'expo-router';
 
 export default function ViewLocalizacaoLoja() {
   const { user } = useContext(AuthContext);
-  const { navigateParmLoja } = useLocalSearchParams();
+  const { navigateParmLoja, naviateParmOnlyConsulta } = useLocalSearchParams();
   navigateParmLoja ? parmLoja = JSON.parse(navigateParmLoja) : parmLoja = null;
+  naviateParmOnlyConsulta ? parmOnlyConsulta = JSON.parse(naviateParmOnlyConsulta) : parmOnlyConsulta = false;
 
   //Controles básicos
-  const [cenario, setCenario] = useState(1);
-  const [isLoadingDataInitial, setLoadingDataInitial] = useState(true);
+  const [processing, setProcessing] = useState({isLoading: true, isExecuting: false, isOnlyConsulta: parmOnlyConsulta});
+  processing.isExecuting || processing.isLoading || processing.isOnlyConsulta ? isEditavel = false : isEditavel = true;
   const [flagShowModal, setflagShowModal] = useState(false);
   //Outras declarações
   const [localizacao, setLocalizacao] = useState(schemaLojaLocalizacao)
-
-  //Cenarios
-  const cenarioEditar = 1;
-  const cenarioValidar = 11;
-  cenario !== cenarioEditar || isLoadingDataInitial ? isEditavel = false : isEditavel = true;
 
   //Ações ao final da construção do componente
   useEffect(() => {
@@ -47,7 +43,7 @@ export default function ViewLocalizacaoLoja() {
     if (res !== null) {
       setLocalizacao(res);
     }
-    setLoadingDataInitial(!isLoadingDataInitial);
+    setProcessing({ ...processing, isLoading: false });
   }
 
   //Valida campos de formulario
@@ -89,7 +85,7 @@ export default function ViewLocalizacaoLoja() {
 
   //Ações ao clicar no botão principal (confirmar/prosseguir)
   async function prosseguir() {
-    if (isLoadingDataInitial) { return };
+    if (processing.isLoading) { return };
 
     if (!validarSintaxeLatitude()) {
       ShowErrorMessage("gu012");
@@ -104,18 +100,18 @@ export default function ViewLocalizacaoLoja() {
       return;
     };
 
-    setCenario(cenarioValidar);
+    setProcessing({ ...processing, isExecuting: true });
 
     try {
       const isValidUrl = await pingUrl(localizacao.urlMapa);
       if (!isValidUrl) {
         ShowErrorMessage("gu011");
-        setCenario(cenarioEditar);
+        setProcessing({ ...processing, isExecuting: false });
         return;
       }
     } catch (e) {
       ShowErrorMessage("gu014");
-      setCenario(cenarioEditar);
+      setProcessing({ ...processing, isExecuting: false });
       return;
     }
 
@@ -125,7 +121,7 @@ export default function ViewLocalizacaoLoja() {
     } catch {
       ShowErrorMessage("lj010");
     }
-    setCenario(cenarioEditar);
+    setProcessing({ ...processing, isExecuting: false });
   }
 
   //Apresentação da view principal
@@ -138,7 +134,7 @@ export default function ViewLocalizacaoLoja() {
           <Text style={styleApp.textSubtitulo}>localização geográfica</Text>
         </View>
 
-        {modalSimples(flagShowModal, handleCloseModal, "Informações atualizadas!", "TipoMsg", "Título")}
+        {modalSimples(flagShowModal, handleCloseModal, "Informações atualizadas!", "TipoMsg", "Título", processing)}
 
         <View style={styles.containerPrincipal}>
           {InputText("Latitude", onChangeLatitude, "ex. 15,23456", 1, 12, "default", isEditavel, localizacao.latitude, false)}
@@ -146,7 +142,6 @@ export default function ViewLocalizacaoLoja() {
           {InputText("Cole aqui o endereço/url GoogleMaps", onChangeUrl, "url GoogleMaps", 1, 200, "default", isEditavel, localizacao.urlMapa, false)}
 
           <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir} >
-            {!isEditavel ? <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor} /> : ""}
             <Text style={styleApp.textButtonRegular}>Confirmar</Text>
           </TouchableOpacity>
         </View>
