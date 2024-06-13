@@ -133,7 +133,11 @@ export default function ViewEdtMenuLoja() {
                   <Text style={styleApp.textSmall}>Status: <Text style={styles.textoStatus}>{lojaDados.status}</Text></Text>
                   <Text style={styleApp.textSmall}>Apelido: {lojaDados.apelido}</Text>
                 </View>
-
+                {flagStatusEditavel ? <></> :
+                  <View style={styles.containerAlertaEdição}>
+                    <Text style={[styleApp.textSmallItalico, { color: 'white' }]}>O status atual não permite alterações</Text>
+                  </View>
+                }
                 <View style={styles.containerSection}>
                   <Text style={styleApp.textSmall}>Ações de gerenciamento</Text>
                   <MaterialIcons name="settings" size={20} color={styleApp.color.cinzaMedio} />

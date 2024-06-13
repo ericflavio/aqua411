@@ -21,6 +21,11 @@ export const styles = StyleSheet.create({
     borderWidth: styleApp.size.containerBordaOnOff,
     marginBottom: 40,
   },
+  containerAlertaEdição: {
+    padding: 12,
+    backgroundColor: styleColor.erro,
+    borderRadius: 0
+  },
   textoStatus: {
     fontFamily: 'Roboto-Bold',
     size: styleApp.size.textoSize3,
@@ -34,7 +39,7 @@ export const styles = StyleSheet.create({
     //position: "relative"
   },
   containerOthers: {
-    justifyContent:"center",
+    justifyContent: "center",
     alignItems: "stretch",
     gap: 8,
     borderWidth: styleApp.size.containerBordaOnOff,
@@ -42,13 +47,13 @@ export const styles = StyleSheet.create({
     //width: "100%"
   },
   containerSection: {
-    backgroundColor: styleApp.color.cinzaClaro, 
-    minHeight: 28, 
-    padding: 4, 
-    paddingLeft: 12, 
-    paddingRight: 12, 
-    flexDirection: "row", 
-    justifyContent: "space-between", 
-    alignItems: "center" 
+    backgroundColor: styleApp.color.cinzaClaro,
+    minHeight: 28,
+    padding: 4,
+    paddingLeft: 12,
+    paddingRight: 12,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center"
   }
 });
