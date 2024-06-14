@@ -69,6 +69,7 @@ export function NewErrorMessage(cod, e) {
         case "lj010": newError.message = "Estamos com dificuldades para atualizar os dados de localizacao." + tn; break;
         //Expediente (horários)
         case "lj011": newError.message = "Estamos com dificuldades para pesquisar os horários de funcionamento." + tn; break;
+        case "lj012": newError.message = "Informe uma hora válida para todos os dias de funcionamento."; break;
 
         default:
           newError.cod = "de2702" + cod.substr(0, 2);

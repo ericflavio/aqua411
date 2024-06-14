@@ -33,7 +33,7 @@ export default function ViewConta() {
   async function fetchDados() {
     //Verifica se existe loja sendo criada (status = criando)
     try {
-      res = await consultaExistenciaLojaEmCriacao("s"); //Verifica se já possui alguma sendo criada
+      res = await consultaExistenciaLojaEmCriacao("n"); //Verifica se já possui alguma sendo criada
     } catch {
       res = null; //Erro na pesquisad de Loja em estágio de criação para continuar.
       ShowErrorMessage("lj008");
@@ -54,6 +54,10 @@ export default function ViewConta() {
       setflagShowModal(false);
     }, styleApp.size.modalTimeAutoClose);
   }
+
+  function vazia(){
+  }
+  
 
   function adicionarLoja() {
     //Vai pro menu de edição, se existir loja já sendo criada, ou inicia um cadastro básico.
@@ -105,11 +109,11 @@ export default function ViewConta() {
         </View>
 
         <View style={styles.containerBasics}>
-          <TouchableOpacity style={styleApp.buttonFlatV} disabled={!isEditavel} onPress={{}} >
+          <TouchableOpacity style={styleApp.buttonFlatV} disabled={!isEditavel} onPress={vazia} >
             <MaterialIcons name="help-outline" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
             <Text style={styleApp.textButtonFlat}>Ajuda</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styleApp.buttonFlatV} disabled={!isEditavel} onPress={{}} >
+          <TouchableOpacity style={styleApp.buttonFlatV} disabled={!isEditavel} onPress={vazia} >
             <MaterialIcons name="payment" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
             <Text style={styleApp.textButtonFlat}>Pagamentos</Text>
           </TouchableOpacity>
@@ -125,11 +129,11 @@ export default function ViewConta() {
             <Text style={styleApp.textButtonFlat}>Gerenciar minhas lojas</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styleApp.buttonFlatHL} disabled={!isEditavel} onPress={{}} >
+          <TouchableOpacity style={styleApp.buttonFlatHL} disabled={!isEditavel} onPress={vazia} >
             <MaterialIcons name="business" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textRegular} />
             <Text style={styleApp.textButtonFlat}>Cadastrar uma franquia </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styleApp.buttonFlatHL} disabled={!isEditavel} onPress={{}} >
+          <TouchableOpacity style={styleApp.buttonFlatHL} disabled={!isEditavel} onPress={vazia} >
             <MaterialIcons name="business-center" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
             <Text style={styleApp.textButtonFlat}>Gerenciar minhas franquias</Text>
           </TouchableOpacity>

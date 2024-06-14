@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Switch } from "react-native";
+import { View, Text, SafeAreaView, ScrollView, TouchableOpacity } from "react-native";
 import Checkbox from 'expo-checkbox';
 import { MaterialIcons } from "@expo/vector-icons";
 import { styles } from "./styles";
@@ -14,6 +14,7 @@ import { atualizaExpedienteLoja, consultaExpedienteLoja } from '../../../service
 import modalSimples from '../../../componentes/modalSimples';
 import { useLocalSearchParams } from 'expo-router';
 import SempreAberto from '../../../componentes/sempreAberto';
+import { Picker } from '@react-native-picker/picker';
 
 export default function ViewExpedienteLoja() {
   const { user } = useContext(AuthContext);
@@ -35,7 +36,14 @@ export default function ViewExpedienteLoja() {
   const [expedienteSab, setExpedienteSab] = useState({ inicio: "", fim: "" })
   const [expedienteDom, setExpedienteDom] = useState({ inicio: "", fim: "" })
   const [is24h, set24h] = useState(false)
-  const [isChecked, setChecked] = useState(true);
+  const [isCheckedSeg, setCheckedSeg] = useState(true);
+  const [isCheckedTer, setCheckedTer] = useState(true);
+  const [isCheckedQua, setCheckedQua] = useState(true);
+  const [isCheckedQui, setCheckedQui] = useState(true);
+  const [isCheckedSex, setCheckedSex] = useState(true);
+  const [isCheckedSab, setCheckedSab] = useState(true);
+  const [isCheckedDom, setCheckedDom] = useState(true);
+  const [selectedResposta, setSelectedResposta] = useState("");
 
   processing.isExecuting || processing.isLoading || processing.isOnlyConsulta ? isEditavel = false : isEditavel = true;
 
@@ -204,22 +212,103 @@ export default function ViewExpedienteLoja() {
       setflagShowModal(false);
     }, styleApp.size.modalTimeAutoClose);
   }
+  function validaSitaxeHorario(hr) {
+    //Hora inicio
+    if (hr === undefined || hr.inicio === undefined || hr.inicio === null || hr.inicio === "") {
+      return false
+    }
+    var hm = hr.inicio.split(":"); //Quebra "HH:MM" mem duas ocorrencias de um array
+    const hi = Number(hm[0]); //Transforma HH em numero
+    const mi = Number(hm[1]); //Transforma MM em numero
+    if (hi > 23 || hi < 0 || mi < 0 || mi >= 60) {
+      return false
+    }
+
+    //Hora fim
+    if (hr === undefined || hr.fim === undefined || hr.fim === null || hr.fim === "") {
+      return false
+    }
+    hm = hr.fim.split(":"); //Quebra "HH:MM" mem duas ocorrencias de um array
+    const hf = Number(hm[0]); //Transforma HH em numero
+    const mf = Number(hm[1]); //Transforma MM em numero
+    if (hf > 23 || hf < 0 || mf < 0 || mf >= 60) {
+      return false
+    }
+
+    //Comparação entre as duas
+    if ((hi > hf && hf !== 0) || (hi > hf && hf === 0 && mf !== 0)) {
+      return false
+    }
+    if (hi === hf && mi >= mf) {
+      return false
+    }
+
+    //Tudo ok
+    return true;
+  }
 
   //Ações ao clicar no botão principal (confirmar/prosseguir)
   async function prosseguir() {
     if (processing.isLoading) { return }; //ignora o botão, ainda clicável, até que os dados sejam carregados
-    /*     if (expediente.cep.length < 8 || !validarSintaxeCep(expediente.cep)) {
-          ShowErrorMessage("vc010");
-          return;
-        };
-     */
-    setProcessing({ ...processing, isExecuting: true });
 
-    /*     const isCepValido = await consultaCepWeb(expediente.cep);
-        if (!isCepValido) {
-          setProcessing({ ...processing, isExecuting: false });
-          return;
-        } */
+    if (isCheckedSeg) {
+      if (!validaSitaxeHorario(expedienteSeg)) {
+        ShowErrorMessage("lj012");
+        return;
+      };
+    } else {
+      setExpedienteSeg({ inicio: "", fim: "" });
+    }
+    if (isCheckedTer) {
+      if (!validaSitaxeHorario(expedienteTer)) {
+        ShowErrorMessage("lj012");
+        return;
+      };
+    } else {
+      setExpedienteTer({ inicio: "", fim: "" });
+    }
+    if (isCheckedQua) {
+      if (!validaSitaxeHorario(expedienteQua)) {
+        ShowErrorMessage("lj012");
+        return;
+      };
+    } else {
+      setExpedienteQua({ inicio: "", fim: "" });
+    }
+    if (isCheckedQui) {
+      if (!validaSitaxeHorario(expedienteQui)) {
+        ShowErrorMessage("lj012");
+        return;
+      };
+    } else {
+      setExpedienteQui({ inicio: "", fim: "" });
+    }
+    if (isCheckedSex) {
+      if (!validaSitaxeHorario(expedienteSex)) {
+        ShowErrorMessage("lj012");
+        return;
+      };
+    } else {
+      setExpedienteSex({ inicio: "", fim: "" });
+    }
+    if (isCheckedSab) {
+      if (!validaSitaxeHorario(expedienteSab)) {
+        ShowErrorMessage("lj012");
+        return;
+      };
+    } else {
+      setExpedienteSab({ inicio: "", fim: "" });
+    }
+    if (isCheckedDom) {
+      if (!validaSitaxeHorario(expedienteDom)) {
+        ShowErrorMessage("lj012");
+        return;
+      };
+    } else {
+      setExpedienteDom({ inicio: "", fim: "" });
+    }
+
+    setProcessing({ ...processing, isExecuting: true });
 
     try {
       const res = await atualizaExpedienteLoja(expediente);
@@ -242,20 +331,24 @@ export default function ViewExpedienteLoja() {
 
         {modalSimples(flagShowModal, handleCloseModal, "Informações atualizadas!", "TipoMsg", "Título", processing)}
 
-        <View style={[styles.containerPrincipal, { marginBottom: 12 }]}>
-          <View style={styles.containerTimer}>
-            {InputText("Abertura", onChangeExpedientePadraoIncio, "00:00", 1, 5, "default", isEditavel, expedientePadrao.inicio, false)}
-            <Text>até</Text>
-            {InputText("Fechamento", onChangeExpedientePadraoFim, "00:00", 1, 5, "default", isEditavel, expedientePadrao.fim, false)}
+        {processing.isOnlyConsulta ? <></> :
+          <View style={styles.containerPrincipal}>
+            <Text style={[styleApp.textRegular, { color: styleColor.cinzaEscuro, alignSelf: 'center', marginTop: 8, }]}>
+              Informe aqui o mesmo horário para todos os dias
+            </Text>
+            <View style={styles.containerTimer}>
+              {InputText("Abertura", onChangeExpedientePadraoIncio, "00:00", 1, 5, "default", isEditavel, expedientePadrao.inicio, false)}
+              <Text>até</Text>
+              {InputText("Fechamento", onChangeExpedientePadraoFim, "00:00", 1, 5, "default", isEditavel, expedientePadrao.fim, false)}
+            </View>
           </View>
-          <Text style={[styleApp.textButtonFlat, { color: styleColor.cinzaEscuro, alignSelf: 'center', marginTop: 8 }]}>Replicar para todos os dias</Text>
-        </View>
+        }
 
         <View style={styles.containerPrincipal}>
-          {is24h ? SempreAberto() :<></>}
+          {is24h ? SempreAberto() : <></>}
 
           <View style={styles.containerTimer}>
-            <Checkbox style={{ margin: 8 }} value={isChecked} onValueChange={setChecked} />
+            <Checkbox style={{ margin: 8 }} value={isCheckedSeg} onValueChange={setCheckedSeg} disabled={!isEditavel} />
             <View style={{ width: 50, borderWidth: 0 }}>
               <Text style={styleApp.textRegular}>{expediente.dia[0]}</Text>
             </View>
@@ -264,7 +357,7 @@ export default function ViewExpedienteLoja() {
             {InputText("", onChangeSegFim, "00:00", 1, 5, "default", isEditavel, expedienteSeg.fim, false)}
           </View>
           <View style={styles.containerTimer}>
-            <Checkbox style={{ margin: 8 }} value={isChecked} onValueChange={setChecked} />
+            <Checkbox style={{ margin: 8 }} value={isCheckedTer} onValueChange={setCheckedTer} disabled={!isEditavel} />
             <View style={{ width: 50, borderWidth: 0 }}>
               <Text style={styleApp.textRegular}>{expediente.dia[1]}</Text>
             </View>
@@ -273,7 +366,7 @@ export default function ViewExpedienteLoja() {
             {InputText("", onChangeTerFim, "00:00", 1, 5, "default", isEditavel, expedienteTer.fim, false)}
           </View>
           <View style={styles.containerTimer}>
-            <Checkbox style={{ margin: 8 }} value={isChecked} onValueChange={setChecked} />
+            <Checkbox style={{ margin: 8 }} value={isCheckedQua} onValueChange={setCheckedQua} disabled={!isEditavel} />
             <View style={{ width: 50, borderWidth: 0 }}>
               <Text style={styleApp.textRegular}>{expediente.dia[2]}</Text>
             </View>
@@ -282,7 +375,7 @@ export default function ViewExpedienteLoja() {
             {InputText("", onChangeQuaFim, "00:00", 1, 5, "default", isEditavel, expedienteQua.fim, false)}
           </View>
           <View style={styles.containerTimer}>
-            <Checkbox style={{ margin: 8 }} value={isChecked} onValueChange={setChecked} />
+            <Checkbox style={{ margin: 8 }} value={isCheckedQui} onValueChange={setCheckedQui} disabled={!isEditavel} />
             <View style={{ width: 50, borderWidth: 0 }}>
               <Text style={styleApp.textRegular}>{expediente.dia[3]}</Text>
             </View>
@@ -291,7 +384,7 @@ export default function ViewExpedienteLoja() {
             {InputText("", onChangeQuiFim, "00:00", 1, 5, "default", isEditavel, expedienteQui.fim, false)}
           </View>
           <View style={styles.containerTimer}>
-            <Checkbox style={{ margin: 8 }} value={isChecked} onValueChange={setChecked} />
+            <Checkbox style={{ margin: 8 }} value={isCheckedSex} onValueChange={setCheckedSex} disabled={!isEditavel} />
             <View style={{ width: 50, borderWidth: 0 }}>
               <Text style={styleApp.textRegular}>{expediente.dia[4]}</Text>
             </View>
@@ -300,7 +393,7 @@ export default function ViewExpedienteLoja() {
             {InputText("", onChangeSexFim, "00:00", 1, 5, "default", isEditavel, expedienteSex.fim, false)}
           </View>
           <View style={styles.containerTimer}>
-            <Checkbox style={{ margin: 8 }} value={isChecked} onValueChange={setChecked} />
+            <Checkbox style={{ margin: 8 }} value={isCheckedSab} onValueChange={setCheckedSab} disabled={!isEditavel} />
             <View style={{ width: 50, borderWidth: 0 }}>
               <Text style={styleApp.textRegular}>{expediente.dia[5]}</Text>
             </View>
@@ -309,7 +402,7 @@ export default function ViewExpedienteLoja() {
             {InputText("", onChangeSabFim, "00:00", 1, 5, "default", isEditavel, expedienteSab.fim, false)}
           </View>
           <View style={styles.containerTimer}>
-            <Checkbox style={{ margin: 8 }} value={isChecked} onValueChange={setChecked} />
+            <Checkbox style={{ margin: 8 }} value={isCheckedDom} onValueChange={setCheckedDom} disabled={!isEditavel} />
             <View style={{ width: 50, borderWidth: 0 }}>
               <Text style={styleApp.textRegular}>{expediente.dia[6]}</Text>
             </View>
@@ -319,6 +412,25 @@ export default function ViewExpedienteLoja() {
           </View>
 
         </View>
+
+        <View style={styles.containerEspecial}>
+          <MaterialIcons name="emoji-people" size={styleApp.size.iconSizeRegular} color={styleColor.textSubtitulo} />
+          <Text style={[styleApp.textRegular, { color: styleColor.cinzaEscuro, alignSelf: 'center', marginTop: 8, }]}>
+            Os clientes podem contatar a loja para negociar a possibilidade de realizar serviços em horários extraordinários, fora do expediente padrão?
+          </Text>
+
+          <View style={styles.containerPicker}>
+            <Picker
+              selectedValue={selectedResposta}
+              onValueChange={(itemValue, itemIndex) =>
+                setSelectedResposta(itemValue)
+              }>
+              <Picker.Item label="SIM, com certeza!" value="s" />
+              <Picker.Item label="NÂO, infelizmente" value="n" />
+            </Picker>
+          </View>
+        </View>
+
         <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir} >
           <Text style={styleApp.textButtonRegular}>Confirmar</Text>
         </TouchableOpacity>

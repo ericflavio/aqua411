@@ -14,7 +14,7 @@ export async function atualizaExpedienteLoja(idLoja, data) {
     setTimeout(() => {
       //reject(null)
       resolve(null)
-    }, 1000);
+    }, 500);
   })
 }
 
@@ -23,15 +23,16 @@ export async function consultaExpedienteLoja(idLoja) {
     setTimeout(() => {
       if (idLoja && idLoja === "s") {
         schemaLojaExpediente.dia= ["Seg","Ter","Qua","Qui","Sex","Sáb","Dom"];
-        schemaLojaExpediente.aberto= ["s","s","s","s","s","s","s"];
+        schemaLojaExpediente.aberto= ["s","s","s","s","s","n","n"];
         schemaLojaExpediente.hrInicio= ["06:00","06:00","06:00","06:00","06:00","06:00","06:00"];
         schemaLojaExpediente.hrFim= ["23:00","23:00","23:00","23:00","23:00","23:00","23:00"];
-        schemaLojaExpediente.horasExpediente= "17";
+        schemaLojaExpediente.inPermanentementeAberto= true;
+        schemaLojaExpediente.inAtendeChamadosForaDoExpediente= false;
         resolve(schemaLojaExpediente)
       } else {
         resolve(null)
       }
-    }, 1000);
+    }, 500);
   })
 }
 
@@ -87,7 +88,7 @@ export async function consultaListaStatusLoja() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(statusLoja)
-    }, 1000);
+    }, 500);
   })
 }
 
@@ -135,7 +136,7 @@ export async function consultaExistenciaLojaEmCriacao(user) {
       } else {
         resolve(null)
       }
-    }, 1000);
+    }, 500);
   })
 }
 export async function consultaDadosLoja(id) {
@@ -154,7 +155,7 @@ export async function consultaDadosLoja(id) {
       } else {
         resolve(null)
       }
-    }, 1000);
+    }, 500);
   })
 }
 
@@ -163,7 +164,7 @@ export async function atualizaDadosBasicosLoja(idLoja, data) {
     setTimeout(() => {
       //reject(null)
       resolve(null)
-    }, 1000);
+    }, 500);
   })
 }
 
@@ -181,7 +182,7 @@ export async function consultaEnderecoLoja(idLoja) {
         numero: "108",
         complemento: "Apto",
       })
-    }, 2000);
+    }, 500);
   })
 }
 export async function IncluiEnderecoLoja(idLoja, data) {
@@ -192,7 +193,7 @@ export async function IncluiEnderecoLoja(idLoja, data) {
       } else {
         resolve(null)
       }
-    }, 1000);
+    }, 500);
   })
 }
 export async function atualizaEnderecoLoja(idLoja, data) {
@@ -200,7 +201,7 @@ export async function atualizaEnderecoLoja(idLoja, data) {
     setTimeout(() => {
       //reject(null)
       resolve(null)
-    }, 1000);
+    }, 500);
   })
 }
 
@@ -212,21 +213,21 @@ export async function consultaLocalizacaoLoja(idLoja) {
       //schemaLojaLocalizacao.longitude = "-27.9828120";
       //schemaLojaLocalizacao.urlMapa = "https://maps.google.com";
       resolve(null)
-    }, 2000);
+    }, 500);
   })
 }
 export async function IncluiLocalizacaoLoja(idLoja, data) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(null)
-    }, 1000);
+    }, 500);
   })
 }
 export async function atualizaLocalizacaoLoja(idLoja, data) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(null)
-    }, 1000);
+    }, 500);
   })
 }
 
