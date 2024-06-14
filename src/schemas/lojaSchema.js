@@ -1,3 +1,12 @@
+//Horário de expediente
+export var schemaLojaExpediente = {
+  dia: ["Seg","Ter","Qua","Qui","Sex","Sáb","Dom"],
+  aberto: ["s","s","s","s","s","s","s"],
+  hrInicio: ["","","","","","",""],
+  hrFim: ["","","","","","",""],
+  horasExpediente: "17"
+};
+
 export var schemaLojaDadosMinimos = {
   id: "",
   nome: "",

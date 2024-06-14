@@ -4,9 +4,38 @@ import {
   schemaLojaDados,
   schemaLojaStatus,
   schemaLojaEndereco,
-  schemaLojaLocalizacao
+  schemaLojaLocalizacao,
+  schemaLojaExpediente,
 } from '../schemas/lojaSchema';
 
+//Expediente (horários)
+export async function atualizaExpedienteLoja(idLoja, data) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      //reject(null)
+      resolve(null)
+    }, 1000);
+  })
+}
+
+export async function consultaExpedienteLoja(idLoja) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (idLoja && idLoja === "s") {
+        schemaLojaExpediente.dia= ["Seg","Ter","Qua","Qui","Sex","Sáb","Dom"];
+        schemaLojaExpediente.aberto= ["s","s","s","s","s","s","s"];
+        schemaLojaExpediente.hrInicio= ["06:00","06:00","06:00","06:00","06:00","06:00","06:00"];
+        schemaLojaExpediente.hrFim= ["23:00","23:00","23:00","23:00","23:00","23:00","23:00"];
+        schemaLojaExpediente.horasExpediente= "17";
+        resolve(schemaLojaExpediente)
+      } else {
+        resolve(null)
+      }
+    }, 1000);
+  })
+}
+
+//Status (todos)
 export async function consultaListaStatusLoja() {
   const statusLoja = [
     {

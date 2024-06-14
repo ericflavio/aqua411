@@ -117,6 +117,14 @@ export default function ViewEdtMenuLoja() {
       }
     })
   }
+  function goToExpediente() {
+    router.navigate({
+      pathname: '/lojaExpediente',
+      params: {
+        navigateParmLoja: JSON.stringify(lojaDados), naviateParmOnlyConsulta: !flagStatusEditavel
+      }
+    })
+  }
 
   //Componentes
   const opcaoDeGerenciamento = () => {
@@ -212,7 +220,7 @@ export default function ViewEdtMenuLoja() {
                     </View>
                     <MaterialIcons name="navigate-next" size={styleApp.size.iconSizeRegular} color={styleApp.color.cinzaMedio} />
                   </TouchableOpacity>
-                  <TouchableOpacity style={styleApp.buttonFlatHL_list} disabled={disabled} onPress={goToEndereco} >
+                  <TouchableOpacity style={styleApp.buttonFlatHL_list} disabled={disabled} onPress={goToExpediente} >
                     <View style={{ flexDirection: "row", alignItems: "center" }}>
                       <MaterialIcons name="access-time" size={styleApp.size.iconSizeRegular} color={styleApp.color.textButtonFlat} />
                       <Text style={styleApp.textButtonFlat}>Horário de funcionamento</Text>
