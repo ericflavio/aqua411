@@ -4,7 +4,8 @@ export var schemaLojaExpediente = {
   aberto: ["s","s","s","s","s","s","s"],
   hrInicio: ["","","","","","",""],
   hrFim: ["","","","","","",""],
-  horasExpediente: "17"
+  inPermanentementeAberto: true,
+  inAtendeChamadosForaDoExpediente: false,
 };
 
 export var schemaLojaDadosMinimos = {

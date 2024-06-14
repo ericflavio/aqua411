@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { View, Text, SafeAreaView, ScrollView, TouchableOpacity } from "react-native";
+import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Switch } from "react-native";
 import Checkbox from 'expo-checkbox';
 import { MaterialIcons } from "@expo/vector-icons";
 import { styles } from "./styles";
@@ -14,6 +14,7 @@ import { schemaLojaExpediente } from '../../../schemas/lojaSchema';
 import { atualizaExpedienteLoja, consultaExpedienteLoja } from '../../../services/lojaService';
 import modalSimples from '../../../componentes/modalSimples';
 import { useLocalSearchParams } from 'expo-router';
+import SempreAberto from '../../../componentes/sempreAberto';
 
 export default function ViewExpedienteLoja() {
   const { user } = useContext(AuthContext);
@@ -27,6 +28,14 @@ export default function ViewExpedienteLoja() {
   //Outras declarações
   const [expediente, setExpediente] = useState(schemaLojaExpediente)
   const [expedientePadrao, setExpedientePadrao] = useState({ inicio: "", fim: "" })
+  const [expedienteSeg, setExpedienteSeg] = useState({ inicio: "", fim: "" })
+  const [expedienteTer, setExpedienteTer] = useState({ inicio: "", fim: "" })
+  const [expedienteQua, setExpedienteQua] = useState({ inicio: "", fim: "" })
+  const [expedienteQui, setExpedienteQui] = useState({ inicio: "", fim: "" })
+  const [expedienteSex, setExpedienteSex] = useState({ inicio: "", fim: "" })
+  const [expedienteSab, setExpedienteSab] = useState({ inicio: "", fim: "" })
+  const [expedienteDom, setExpedienteDom] = useState({ inicio: "", fim: "" })
+  const [is24h, set24h] = useState(false)
   const [isChecked, setChecked] = useState(true);
 
   processing.isExecuting || processing.isLoading || processing.isOnlyConsulta ? isEditavel = false : isEditavel = true;
@@ -51,14 +60,126 @@ export default function ViewExpedienteLoja() {
   }
 
   //Valida campos de formulario
-  function onChangeCep(parm) {
-    //setExpediente({ ...expediente, numero: parm });
+  function incluiDoisPontos(h1, h2) {
+    if (h1.length === 2 && h2.length <= 2) {
+      return h1 + ":"
+    } else {
+      return h1
+    }
   }
+  function inibirCaractere(parm) {
+    const r = /[a-z]|[A-Z]/;
+    return r.test(parm);
+  }
+  function verifica24h() {
+    console.log("verificando 24h", expedientePadrao.inicio, expedientePadrao.fim)
+    switch({}) {
+      case expedientePadrao.inicio === "00:00" && expedientePadrao.fim === "00:00": console.log("24h -----------------"); 
+    }
+
+  }
+  //Padrao
   function onChangeExpedientePadraoIncio(parm) {
+    if (inibirCaractere(parm)) { return}
+    parm = incluiDoisPontos(parm, expedientePadrao.inicio);
     setExpedientePadrao({ ...expedientePadrao, inicio: parm });
+    onChangeSegInicio(parm);
+    onChangeTerInicio(parm);
+    onChangeQuaInicio(parm);
+    onChangeQuiInicio(parm);
+    onChangeSexInicio(parm);
+    onChangeSabInicio(parm);
+    onChangeDomInicio(parm);
+    verifica24h();
   }
   function onChangeExpedientePadraoFim(parm) {
+    if (inibirCaractere(parm)) { return}
+    parm = incluiDoisPontos(parm, expedientePadrao.fim);
     setExpedientePadrao({ ...expedientePadrao, fim: parm });
+    onChangeSegFim(parm);
+    onChangeTerFim(parm);
+    onChangeQuaFim(parm);
+    onChangeQuiFim(parm);
+    onChangeSexFim(parm);
+    onChangeSabFim(parm);
+    onChangeDomFim(parm);
+  }
+  //Segunda
+  function onChangeSegInicio(parm) {
+    if (inibirCaractere(parm)) { return}
+    parm = incluiDoisPontos(parm, expedienteSeg.inicio);
+    setExpedienteSeg({ ...expedienteSeg, inicio: parm });
+  }
+  function onChangeSegFim(parm) {
+    if (inibirCaractere(parm)) { return}
+    parm = incluiDoisPontos(parm, expedienteSeg.fim);
+    setExpedienteSeg({ ...expedienteSeg, fim: parm });
+  }
+  //Terça
+  function onChangeTerInicio(parm) {
+    if (inibirCaractere(parm)) { return}
+    parm = incluiDoisPontos(parm, expedienteTer.inicio);
+    setExpedienteTer({ ...expedienteTer, inicio: parm });
+  }
+  function onChangeTerFim(parm) {
+    if (inibirCaractere(parm)) { return}
+    parm = incluiDoisPontos(parm, expedienteTer.fim);
+    setExpedienteTer({ ...expedienteTer, fim: parm });
+  }
+  //Quarta
+  function onChangeQuaInicio(parm) {
+    if (inibirCaractere(parm)) { return}
+    parm = incluiDoisPontos(parm, expedienteQua.inicio);
+    setExpedienteQua({ ...expedienteQua, inicio: parm });
+  }
+  function onChangeQuaFim(parm) {
+    if (inibirCaractere(parm)) { return}
+    parm = incluiDoisPontos(parm, expedienteQua.fim);
+    setExpedienteQua({ ...expedienteQua, fim: parm });
+  }
+  //Quinta
+  function onChangeQuiInicio(parm) {
+    if (inibirCaractere(parm)) { return}
+    parm = incluiDoisPontos(parm, expedienteQui.inicio);
+    setExpedienteQui({ ...expedienteQui, inicio: parm });
+  }
+  function onChangeQuiFim(parm) {
+    if (inibirCaractere(parm)) { return}
+    parm = incluiDoisPontos(parm, expedienteQui.fim);
+    setExpedienteQui({ ...expedienteQui, fim: parm });
+  }
+  //Sexta
+  function onChangeSexInicio(parm) {
+    if (inibirCaractere(parm)) { return}
+    parm = incluiDoisPontos(parm, expedienteSex.inicio);
+    setExpedienteSex({ ...expedienteSex, inicio: parm });
+  }
+  function onChangeSexFim(parm) {
+    if (inibirCaractere(parm)) { return}
+    parm = incluiDoisPontos(parm, expedienteSex.fim);
+    setExpedienteSex({ ...expedienteSex, fim: parm });
+  }
+  //Sábado
+  function onChangeSabInicio(parm) {
+    if (inibirCaractere(parm)) { return}
+    parm = incluiDoisPontos(parm, expedienteSab.inicio);
+    setExpedienteSab({ ...expedienteSab, inicio: parm });
+  }
+  function onChangeSabFim(parm) {
+    if (inibirCaractere(parm)) { return}
+    parm = incluiDoisPontos(parm, expedienteSab.fim);
+    setExpedienteSab({ ...expedienteSab, fim: parm });
+  }
+  //Domingo
+  function onChangeDomInicio(parm) {
+    if (inibirCaractere(parm)) { return}
+    parm = incluiDoisPontos(parm, expedienteDom.inicio);
+    setExpedienteDom({ ...expedienteDom, inicio: parm });
+  }
+  function onChangeDomFim(parm) {
+    if (inibirCaractere(parm)) { return}
+    parm = incluiDoisPontos(parm, expedienteDom.fim);
+    setExpedienteDom({ ...expedienteDom, fim: parm });
   }
 
   //Funções auxiliares 
@@ -70,12 +191,6 @@ export default function ViewExpedienteLoja() {
     setTimeout(() => {
       setflagShowModal(false);
     }, styleApp.size.modalTimeAutoClose);
-  }
-
-  function replicarExpediente() {
-    const hrf = new Array(7).fill(expedientePadrao.fim);
-    const hri = new Array(7).fill(expedientePadrao.inicio);
-    setExpediente({ ...expediente, hrFim: hrf, hrInicio: hri });
   }
 
   //Ações ao clicar no botão principal (confirmar/prosseguir)
@@ -117,89 +232,80 @@ export default function ViewExpedienteLoja() {
         {modalSimples(flagShowModal, handleCloseModal, "Informações atualizadas!", "TipoMsg", "Título", processing)}
 
         <View style={[styles.containerPrincipal, { marginBottom: 12 }]}>
-          <View style={{ flexDirection: "row", columnGap: 8, justifyContent: "center", alignItems: "center" }}>
-            <View style={{ width: 50, height: 50, borderRadius: 25, backgroundColor: "green", alignSelf: 'center', justifyContent: 'center', alignItems: 'center' }}>
-              <Text style={[styleApp.textSubtitulo, { color: 'white' }]}>24h</Text>
-            </View>
-
-            {InputText("Início", onChangeExpedientePadraoIncio, "00", 1, 2, "default", isEditavel, expedientePadrao.inicio, false)}
-            <Text>:</Text>
-            {InputText("Fim", onChangeExpedientePadraoFim, "00", 1, 2, "default", isEditavel, expedientePadrao.fim, false)}
-
+          <View style={styles.containerTimer}>
+            {InputText("Abertura", onChangeExpedientePadraoIncio, "00:00", 1, 5, "default", isEditavel, expedientePadrao.inicio, false)}
+            <Text>até</Text>
+            {InputText("Fechamento", onChangeExpedientePadraoFim, "00:00", 1, 5, "default", isEditavel, expedientePadrao.fim, false)}
           </View>
-
-          <TouchableOpacity style={styleApp.buttonFlatHL} disabled={!isEditavel} onPress={replicarExpediente} >
-            <MaterialIcons name="arrow-drop-down" size={styleApp.size.iconSizeRegular} color={styleApp.color.textButtonFlat} />
-            <Text style={[styleApp.textButtonFlat, { color: styleColor.cinzaEscuro }]}>Replicar para todos os dias</Text>
-          </TouchableOpacity>
+          <Text style={[styleApp.textButtonFlat, { color: styleColor.cinzaEscuro, alignSelf: 'center', marginTop: 8 }]}>Replicar para todos os dias</Text>
         </View>
 
         <View style={styles.containerPrincipal}>
+          {SempreAberto()}
 
-          <View style={{ flexDirection: "row", columnGap: 8, justifyContent: "center", alignItems: "center" }}>
+          <View style={styles.containerTimer}>
             <Checkbox style={{ margin: 8 }} value={isChecked} onValueChange={setChecked} />
             <View style={{ width: 50, borderWidth: 0 }}>
               <Text style={styleApp.textRegular}>{expediente.dia[0]}</Text>
             </View>
-            {InputText("Início", onChangeCep, "00", 1, 2, "default", isEditavel, expediente.hrInicio[0], false)}
-            <Text>:</Text>
-            {InputText("Fim", onChangeCep, "00", 1, 2, "default", isEditavel, expediente.hrFim[0], false)}
+            {InputText("", onChangeSegInicio, "00:00", 1, 5, "default", isEditavel, expedienteSeg.inicio, false)}
+            <Text>até</Text>
+            {InputText("", onChangeSegFim, "00:00", 1, 5, "default", isEditavel, expedienteSeg.fim, false)}
           </View>
-          <View style={{ flexDirection: "row", columnGap: 8, justifyContent: "center", alignItems: "center" }}>
+          <View style={styles.containerTimer}>
             <Checkbox style={{ margin: 8 }} value={isChecked} onValueChange={setChecked} />
             <View style={{ width: 50, borderWidth: 0 }}>
               <Text style={styleApp.textRegular}>{expediente.dia[1]}</Text>
             </View>
-            {InputText("Início", onChangeCep, "00", 1, 2, "default", isEditavel, expediente.hrInicio[1], false)}
-            <Text>:</Text>
-            {InputText("Fim", onChangeCep, "00", 1, 2, "default", isEditavel, expediente.hrFim[1], false)}
+            {InputText("", onChangeTerInicio, "00:00", 1, 5, "default", isEditavel, expedienteTer.inicio, false)}
+            <Text>até</Text>
+            {InputText("", onChangeTerFim, "00:00", 1, 5, "default", isEditavel, expedienteTer.fim, false)}
           </View>
-          <View style={{ flexDirection: "row", columnGap: 8, justifyContent: "center", alignItems: "center" }}>
+          <View style={styles.containerTimer}>
             <Checkbox style={{ margin: 8 }} value={isChecked} onValueChange={setChecked} />
             <View style={{ width: 50, borderWidth: 0 }}>
               <Text style={styleApp.textRegular}>{expediente.dia[2]}</Text>
             </View>
-            {InputText("Início", onChangeCep, "00", 1, 2, "default", isEditavel, expediente.hrInicio[2], false)}
-            <Text>:</Text>
-            {InputText("Fim", onChangeCep, "00", 1, 2, "default", isEditavel, expediente.hrFim[2], false)}
+            {InputText("", onChangeQuaInicio, "00:00", 1, 5, "default", isEditavel, expedienteQua.inicio, false)}
+            <Text>até</Text>
+            {InputText("", onChangeQuaFim, "00:00", 1, 5, "default", isEditavel, expedienteQua.fim, false)}
           </View>
-          <View style={{ flexDirection: "row", columnGap: 8, justifyContent: "center", alignItems: "center" }}>
+          <View style={styles.containerTimer}>
             <Checkbox style={{ margin: 8 }} value={isChecked} onValueChange={setChecked} />
             <View style={{ width: 50, borderWidth: 0 }}>
               <Text style={styleApp.textRegular}>{expediente.dia[3]}</Text>
             </View>
-            {InputText("Início", onChangeCep, "00", 1, 2, "default", isEditavel, expediente.hrInicio[3], false)}
-            <Text>:</Text>
-            {InputText("Fim", onChangeCep, "00", 1, 2, "default", isEditavel, expediente.hrFim[3], false)}
+            {InputText("", onChangeQuiInicio, "00:00", 1, 5, "default", isEditavel, expedienteQui.inicio, false)}
+            <Text>até</Text>
+            {InputText("", onChangeQuiFim, "00:00", 1, 5, "default", isEditavel, expedienteQui.fim, false)}
           </View>
-          <View style={{ flexDirection: "row", columnGap: 8, justifyContent: "center", alignItems: "center" }}>
+          <View style={styles.containerTimer}>
             <Checkbox style={{ margin: 8 }} value={isChecked} onValueChange={setChecked} />
             <View style={{ width: 50, borderWidth: 0 }}>
               <Text style={styleApp.textRegular}>{expediente.dia[4]}</Text>
             </View>
-            {InputText("Início", onChangeCep, "00", 1, 2, "default", isEditavel, expediente.hrInicio[4], false)}
-            <Text>:</Text>
-            {InputText("Fim", onChangeCep, "00", 1, 2, "default", isEditavel, expediente.hrFim[4], false)}
+            {InputText("", onChangeSexInicio, "00:00", 1, 5, "default", isEditavel, expedienteSex.inicio, false)}
+            <Text>até</Text>
+            {InputText("", onChangeSexFim, "00:00", 1, 5, "default", isEditavel, expedienteSex.fim, false)}
           </View>
-          <View style={{ flexDirection: "row", columnGap: 8, justifyContent: "center", alignItems: "center" }}>
+          <View style={styles.containerTimer}>
             <Checkbox style={{ margin: 8 }} value={isChecked} onValueChange={setChecked} />
             <View style={{ width: 50, borderWidth: 0 }}>
               <Text style={styleApp.textRegular}>{expediente.dia[5]}</Text>
             </View>
-            {InputText("Início", onChangeCep, "00", 1, 2, "default", isEditavel, expediente.hrInicio[5], false)}
-            <Text>:</Text>
-            {InputText("Fim", onChangeCep, "00", 1, 2, "default", isEditavel, expediente.hrFim[5], false)}
+            {InputText("", onChangeSabInicio, "00:00", 1, 5, "default", isEditavel, expedienteSab.inicio, false)}
+            <Text>até</Text>
+            {InputText("", onChangeSabFim, "00:00", 1, 5, "default", isEditavel, expedienteSab.fim, false)}
           </View>
-          <View style={{ flexDirection: "row", columnGap: 8, justifyContent: "center", alignItems: "center" }}>
+          <View style={styles.containerTimer}>
             <Checkbox style={{ margin: 8 }} value={isChecked} onValueChange={setChecked} />
             <View style={{ width: 50, borderWidth: 0 }}>
               <Text style={styleApp.textRegular}>{expediente.dia[6]}</Text>
             </View>
-            {InputText("Início", onChangeCep, "00", 1, 2, "default", isEditavel, expediente.hrInicio[6], false)}
-            <Text>:</Text>
-            {InputText("Fim", onChangeCep, "00", 1, 2, "default", isEditavel, expediente.hrFim[6], false)}
+            {InputText("", onChangeDomInicio, "00:00", 1, 5, "default", isEditavel, expedienteDom.inicio, false)}
+            <Text>até</Text>
+            {InputText("", onChangeDomFim, "00:00", 1, 5, "default", isEditavel, expedienteDom.fim, false)}
           </View>
-
 
         </View>
         <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir} >
