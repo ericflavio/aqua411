@@ -9,7 +9,6 @@ import { InputText } from '../../../componentes/inputText';
 import { GradienteFill } from '../../../componentes/gradienteFill';
 import { AuthContext } from "../../../contexts/auth";
 import { ShowErrorMessage } from '../../../errors/errorMessage';
-import { consultaCepService } from '../../../services/cepService';
 import { schemaLojaExpediente } from '../../../schemas/lojaSchema';
 import { atualizaExpedienteLoja, consultaExpedienteLoja } from '../../../services/lojaService';
 import modalSimples from '../../../componentes/modalSimples';
@@ -71,16 +70,16 @@ export default function ViewExpedienteLoja() {
     const r = /[a-z]|[A-Z]/;
     return r.test(parm);
   }
-  function verifica24h() {
-    console.log("verificando 24h", expedientePadrao.inicio, expedientePadrao.fim)
-    switch({}) {
-      case expedientePadrao.inicio === "00:00" && expedientePadrao.fim === "00:00": console.log("24h -----------------"); 
+  function verifica24h(hri, hrf) {
+    if (hri === hrf && hrf === "00:00" && is24h === false) {
+      set24h(true)
+    } else {
+      set24h(false)
     }
-
   }
   //Padrao
   function onChangeExpedientePadraoIncio(parm) {
-    if (inibirCaractere(parm)) { return}
+    if (inibirCaractere(parm)) { return }
     parm = incluiDoisPontos(parm, expedientePadrao.inicio);
     setExpedientePadrao({ ...expedientePadrao, inicio: parm });
     onChangeSegInicio(parm);
@@ -90,10 +89,9 @@ export default function ViewExpedienteLoja() {
     onChangeSexInicio(parm);
     onChangeSabInicio(parm);
     onChangeDomInicio(parm);
-    verifica24h();
   }
   function onChangeExpedientePadraoFim(parm) {
-    if (inibirCaractere(parm)) { return}
+    if (inibirCaractere(parm)) { return }
     parm = incluiDoisPontos(parm, expedientePadrao.fim);
     setExpedientePadrao({ ...expedientePadrao, fim: parm });
     onChangeSegFim(parm);
@@ -106,80 +104,94 @@ export default function ViewExpedienteLoja() {
   }
   //Segunda
   function onChangeSegInicio(parm) {
-    if (inibirCaractere(parm)) { return}
+    if (inibirCaractere(parm)) { return }
     parm = incluiDoisPontos(parm, expedienteSeg.inicio);
     setExpedienteSeg({ ...expedienteSeg, inicio: parm });
+    verifica24h(parm, expedienteSeg.fim);
   }
   function onChangeSegFim(parm) {
-    if (inibirCaractere(parm)) { return}
+    if (inibirCaractere(parm)) { return }
     parm = incluiDoisPontos(parm, expedienteSeg.fim);
     setExpedienteSeg({ ...expedienteSeg, fim: parm });
+    verifica24h(expedienteSeg.inicio, parm);
   }
   //Terça
   function onChangeTerInicio(parm) {
-    if (inibirCaractere(parm)) { return}
+    if (inibirCaractere(parm)) { return }
     parm = incluiDoisPontos(parm, expedienteTer.inicio);
     setExpedienteTer({ ...expedienteTer, inicio: parm });
+    verifica24h(parm, expedienteTer.fim);
   }
   function onChangeTerFim(parm) {
-    if (inibirCaractere(parm)) { return}
+    if (inibirCaractere(parm)) { return }
     parm = incluiDoisPontos(parm, expedienteTer.fim);
     setExpedienteTer({ ...expedienteTer, fim: parm });
+    verifica24h(expedienteTer.inicio, parm);
   }
   //Quarta
   function onChangeQuaInicio(parm) {
-    if (inibirCaractere(parm)) { return}
+    if (inibirCaractere(parm)) { return }
     parm = incluiDoisPontos(parm, expedienteQua.inicio);
     setExpedienteQua({ ...expedienteQua, inicio: parm });
+    verifica24h(parm, expedienteQua.fim);
   }
   function onChangeQuaFim(parm) {
-    if (inibirCaractere(parm)) { return}
+    if (inibirCaractere(parm)) { return }
     parm = incluiDoisPontos(parm, expedienteQua.fim);
     setExpedienteQua({ ...expedienteQua, fim: parm });
+    verifica24h(expedienteQua.inicio, parm);
   }
   //Quinta
   function onChangeQuiInicio(parm) {
-    if (inibirCaractere(parm)) { return}
+    if (inibirCaractere(parm)) { return }
     parm = incluiDoisPontos(parm, expedienteQui.inicio);
     setExpedienteQui({ ...expedienteQui, inicio: parm });
+    verifica24h(parm, expedienteQui.fim);
   }
   function onChangeQuiFim(parm) {
-    if (inibirCaractere(parm)) { return}
+    if (inibirCaractere(parm)) { return }
     parm = incluiDoisPontos(parm, expedienteQui.fim);
     setExpedienteQui({ ...expedienteQui, fim: parm });
+    verifica24h(expedienteQui.inicio, parm);
   }
   //Sexta
   function onChangeSexInicio(parm) {
-    if (inibirCaractere(parm)) { return}
+    if (inibirCaractere(parm)) { return }
     parm = incluiDoisPontos(parm, expedienteSex.inicio);
     setExpedienteSex({ ...expedienteSex, inicio: parm });
+    verifica24h(parm, expedienteSex.fim);
   }
   function onChangeSexFim(parm) {
-    if (inibirCaractere(parm)) { return}
+    if (inibirCaractere(parm)) { return }
     parm = incluiDoisPontos(parm, expedienteSex.fim);
     setExpedienteSex({ ...expedienteSex, fim: parm });
+    verifica24h(expedienteSex.inicio, parm);
   }
   //Sábado
   function onChangeSabInicio(parm) {
-    if (inibirCaractere(parm)) { return}
+    if (inibirCaractere(parm)) { return }
     parm = incluiDoisPontos(parm, expedienteSab.inicio);
     setExpedienteSab({ ...expedienteSab, inicio: parm });
+    verifica24h(parm, expedienteSab.fim);
   }
   function onChangeSabFim(parm) {
-    if (inibirCaractere(parm)) { return}
+    if (inibirCaractere(parm)) { return }
     parm = incluiDoisPontos(parm, expedienteSab.fim);
     setExpedienteSab({ ...expedienteSab, fim: parm });
+    verifica24h(expedienteSab.inicio, parm);
   }
   //Domingo
   function onChangeDomInicio(parm) {
-    if (inibirCaractere(parm)) { return}
+    if (inibirCaractere(parm)) { return }
     parm = incluiDoisPontos(parm, expedienteDom.inicio);
     setExpedienteDom({ ...expedienteDom, inicio: parm });
+    verifica24h(parm, expedienteDom.fim);
   }
   function onChangeDomFim(parm) {
-    if (inibirCaractere(parm)) { return}
+    if (inibirCaractere(parm)) { return }
     parm = incluiDoisPontos(parm, expedienteDom.fim);
     setExpedienteDom({ ...expedienteDom, fim: parm });
+    verifica24h(expedienteDom.inicio, parm);
   }
 
   //Funções auxiliares 
@@ -196,7 +208,6 @@ export default function ViewExpedienteLoja() {
   //Ações ao clicar no botão principal (confirmar/prosseguir)
   async function prosseguir() {
     if (processing.isLoading) { return }; //ignora o botão, ainda clicável, até que os dados sejam carregados
-
     /*     if (expediente.cep.length < 8 || !validarSintaxeCep(expediente.cep)) {
           ShowErrorMessage("vc010");
           return;
@@ -241,7 +252,7 @@ export default function ViewExpedienteLoja() {
         </View>
 
         <View style={styles.containerPrincipal}>
-          {SempreAberto()}
+          {is24h ? SempreAberto() :<></>}
 
           <View style={styles.containerTimer}>
             <Checkbox style={{ margin: 8 }} value={isChecked} onValueChange={setChecked} />
