@@ -24,11 +24,11 @@ export default function ViewEdtEnderecoLoja() {
   const [processing, setProcessing] = useState({ isLoading: true, isExecuting: false, isOnlyConsulta: parmOnlyConsulta });
   processing.isExecuting || processing.isLoading || processing.isOnlyConsulta ? isEditavel = false : isEditavel = true;
   const [flagShowModal, setflagShowModal] = useState(false);
+  
   //Outras declarações
   const [endereco, setEndereco] = useState(schemaLojaEndereco)
 
   //github pago
-  //padronizar botaõ principal fora da view de edição de dados
   //persistir loja em edição localmente? ou loja favorita? ou outro dado ?
   //revisar o LOGIN :manter flagErro? colocar na sistemática "processing"
   //*Dados básicos: tratar campos adicionais (persistir mínimo ou completo)
@@ -36,7 +36,7 @@ export default function ViewEdtEnderecoLoja() {
   //ok - Localização geografica
   //ok - horário de funcionamento
   //Franquia vinculada: url site da franquia, isFranquia, idFranquia. Obs: Pode remover a vinculação? (pensar sobre isso)
-  //Contato: telefone, email
+  //Dados complementares: franquia vinculada, telefone, email
   //Maquinas: layout, flag mostrar status maquina, url de callback de status maquinas
   //Facilidades: alexa(comandos), wifi livre (nome da rede) a.c., mesa de dobra, qtd assentos, link da camera ao vivo, ver status máquina?, push de conclusão do ciclo?
 
