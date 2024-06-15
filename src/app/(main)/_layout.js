@@ -64,7 +64,7 @@ export default function AppLayout() {
       headerShown: false,
       tabBarInactiveTintColor: styleColor.cinzaMedio,
       tabBarActiveTintColor: styleColor.tema30pPrincipal,
-      tabBarShowLabel: true,
+      tabBarShowLabel: false,
       tabBarLabelStyle: {
         fontSize: 16,
         paddingBottom: 6,
@@ -87,7 +87,7 @@ export default function AppLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Inicio",
+        title: "Inicio",
           tabBarIcon: ({ size, color }) =>
             <MaterialIcons name="local-laundry-service" size={styleApp.size.iconSizeTabBar} color={color} />
         }}
@@ -96,7 +96,7 @@ export default function AppLayout() {
       <Tabs.Screen
         name="promocao/index"
         options={{
-          title: "Promo",
+        title: "Promo",
           tabBarIcon: ({ size, color }) =>
             <MaterialIcons name="card-giftcard" size={styleApp.size.iconSizeTabBar} color={color} />
         }}
@@ -105,7 +105,16 @@ export default function AppLayout() {
       <Tabs.Screen
         name="conta/index"
         options={{
-          title: "Conta",
+        title: "Conta",
+          tabBarIcon: ({ size, color }) =>
+            <MaterialIcons name="person" size={styleApp.size.iconSizeTabBar} color={color} />
+        }}
+      />
+
+      <Tabs.Screen
+        name="(contas)"
+        options={{
+        title: "Contas",
           tabBarIcon: ({ size, color }) =>
             <MaterialIcons name="person" size={styleApp.size.iconSizeTabBar} color={color} />
         }}
