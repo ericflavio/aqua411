@@ -9,7 +9,7 @@ import { Tabs } from 'expo-router';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 //Fim
-import { ViewConta } from './index';
+import { ViewContaPessoal } from './contaPessoal/index';
 import { ViewContaLojista } from './contaLojista/index';
 import { styleSize } from "../../../styles/styleSize";
 
@@ -49,7 +49,7 @@ export default function layoutContas() {
         }
       }}
     >
-      <Tab.Screen name="Eu" component={ViewConta} />
+      <Tab.Screen name="Eu" component={ViewContaPessoal} />
       <Tab.Screen name="Empreendimento" component={ViewContaLojista} />
     </Tab.Navigator>
   )

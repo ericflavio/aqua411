@@ -1,19 +1,19 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, Alert } from "react-native";
 import { styles } from "./styles";
-import { styleApp } from '../../../styles/styleApp';
-import { styleColor } from "../../../styles/styleColors";
+import { styleApp } from '../../../../styles/styleApp';
+import { styleColor } from "../../../../styles/styleColors";
 import { MaterialIcons } from "@expo/vector-icons";
-import { GradienteFill } from '../../../componentes/gradienteFill';
-import { AuthContext } from "../../../contexts/auth";
+import { GradienteFill } from '../../../../componentes/gradienteFill';
+import { AuthContext } from "../../../../contexts/auth";
 import { router } from 'expo-router';
-import { consultaExistenciaLojaEmCriacao } from '../../../services/lojaService';
-import { ShowErrorMessage } from '../../../errors/errorMessage';
-import { schemaLojaDadosMinimos } from '../../../schemas/lojaSchema';
-import modalSimples from '../../../componentes/modalSimples';
+import { consultaExistenciaLojaEmCriacao } from '../../../../services/lojaService';
+import { ShowErrorMessage } from '../../../../errors/errorMessage';
+import { schemaLojaDadosMinimos } from '../../../../schemas/lojaSchema';
+import modalSimples from '../../../../componentes/modalSimples';
 
 //Tela principal HOME
-export function ViewConta() {
+export function ViewContaPessoal() {
   const { user, logOut } = useContext(AuthContext);
   //Controles básicos
   const [processing, setProcessing] = useState({ isLoading: true, isExecuting: false, isOnlyConsulta: false });
@@ -102,44 +102,20 @@ export function ViewConta() {
           <View style={{ flexDirection: "row" }}>
             <Image
               style={styles.imageUser}
-              source={require('../../../assets/icones/app_icon_02.png')}
+              source={require('../../../../assets/icones/app_icon_02.png')}
             />
           </View>
           {modalSimples(flagShowModal, handleCloseModal, "Informações atualizadas!", "TipoMsg", "Título", processing)}
         </View>
 
-        <View style={styles.containerBasics}>
-          <View style={{ flexShrink: 1 }}>
-            <TouchableOpacity style={styleApp.buttonFlatV} disabled={!isEditavel} onPress={vazia} >
-              <MaterialIcons name="help-outline" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
-              <Text style={styleApp.textButtonFlat}>Ajuda</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={{ flexShrink: 1 }}>
-            <TouchableOpacity style={styleApp.buttonFlatV} disabled={!isEditavel} onPress={vazia} >
-              <MaterialIcons name="payment" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
-              <Text style={styleApp.textButtonFlat}>Pagamentos</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-
         <View style={styles.containerOthers}>
           <TouchableOpacity style={styleApp.buttonFlatHL} disabled={!isEditavel} onPress={adicionarLoja} >
             <MaterialIcons name="add-business" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
-            <Text style={styleApp.textButtonFlat}>Cadastrar uma loja que possuo</Text>
+            <Text style={styleApp.textButtonFlat}>Comprar créditos</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styleApp.buttonFlatHL} disabled={!isEditavel} onPress={listarUnidades} >
             <MaterialIcons name="local-laundry-service" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
-            <Text style={styleApp.textButtonFlat}>Gerenciar minhas lojas</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styleApp.buttonFlatHL} disabled={!isEditavel} onPress={vazia} >
-            <MaterialIcons name="business" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textRegular} />
-            <Text style={styleApp.textButtonFlat}>Cadastrar uma franquia </Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styleApp.buttonFlatHL} disabled={!isEditavel} onPress={vazia} >
-            <MaterialIcons name="business-center" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
-            <Text style={styleApp.textButtonFlat}>Gerenciar minhas franquias</Text>
+            <Text style={styleApp.textButtonFlat}>Favoritar lojas</Text>
           </TouchableOpacity>
         </View>
 

@@ -87,7 +87,7 @@ export default function AppLayout() {
       <Tabs.Screen
         name="index"
         options={{
-        title: "Inicio",
+          title: "Inicio",
           tabBarIcon: ({ size, color }) =>
             <MaterialIcons name="local-laundry-service" size={styleApp.size.iconSizeTabBar} color={color} />
         }}
@@ -96,25 +96,16 @@ export default function AppLayout() {
       <Tabs.Screen
         name="promocao/index"
         options={{
-        title: "Promo",
+          title: "Promo",
           tabBarIcon: ({ size, color }) =>
             <MaterialIcons name="card-giftcard" size={styleApp.size.iconSizeTabBar} color={color} />
         }}
       />
 
       <Tabs.Screen
-        name="conta/index"
-        options={{
-        title: "Conta",
-          tabBarIcon: ({ size, color }) =>
-            <MaterialIcons name="person" size={styleApp.size.iconSizeTabBar} color={color} />
-        }}
-      />
-
-      <Tabs.Screen
         name="(contas)"
         options={{
-        title: "Contas",
+          title: "Contas",
           tabBarIcon: ({ size, color }) =>
             <MaterialIcons name="person" size={styleApp.size.iconSizeTabBar} color={color} />
         }}
