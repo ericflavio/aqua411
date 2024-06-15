@@ -27,13 +27,13 @@ export default function ViewEdtEnderecoLoja() {
   //Outras declarações
   const [endereco, setEndereco] = useState(schemaLojaEndereco)
 
-  //Correções:
+  //padronizar botaõ principal fora da view de edição de dados
   //persistir loja em edição localmente? ou loja favorita? ou outro dado ?
   //revisar o LOGIN :manter flagErro? colocar na sistemática "processing"
   //*Dados básicos: tratar campos adicionais (persistir mínimo ou completo)
   //ok - Endereço
   //ok - Localização geografica
-  //horário de funcionamento
+  //ok - horário de funcionamento
   //Franquia vinculada: url site da franquia, isFranquia, idFranquia. Obs: Pode remover a vinculação? (pensar sobre isso)
   //Contato: telefone, email
   //Maquinas: layout, flag mostrar status maquina, url de callback de status maquinas

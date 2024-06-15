@@ -55,15 +55,55 @@ export default function ViewExpedienteLoja() {
   //Carrega dados pre-existentes
   async function fetchDados() {
     try {
-      res = await consultaExpedienteLoja();
+      res = await consultaExpedienteLoja("s");
     } catch {
       res = null;
       ShowErrorMessage("lj011");
     };
     if (res !== null) {
+      carregaDadosLidos(res);
       setExpediente(res);
     }
     setProcessing({ ...processing, isLoading: false });
+  }
+
+  function carregaDadosLidos(res) {
+    for (var i = 0; i < res.dia.length; i++) {
+      console.log("dia ", res.dia[i])
+      switch (res.dia[i]) {
+        case "Seg":
+          res.aberto[i] === "s" ? setCheckedSeg(true) : setCheckedSeg(false);
+          setExpedienteSeg({ inicio: res.hrInicio[i], fim: res.hrFim[i], })
+          break;
+        case "Ter":
+          res.aberto[i] === "s" ? setCheckedTer(true) : setCheckedTer(false);
+          setExpedienteTer({ inicio: res.hrInicio[i], fim: res.hrFim[i], })
+          break;
+        case "Qua":
+          res.aberto[i] === "s" ? setCheckedQua(true) : setCheckedQua(false);
+          setExpedienteQua({ inicio: res.hrInicio[i], fim: res.hrFim[i], })
+          break;
+        case "Qui":
+          res.aberto[i] === "s" ? setCheckedQui(true) : setCheckedQui(false);
+          setExpedienteQui({ inicio: res.hrInicio[i], fim: res.hrFim[i], })
+          break;
+        case "Sex":
+          res.aberto[i] === "s" ? setCheckedSex(true) : setCheckedSex(false);
+          setExpedienteSex({ inicio: res.hrInicio[i], fim: res.hrFim[i], })
+          break;
+        case "Sab":
+          res.aberto[i] === "s" ? setCheckedSab(true) : setCheckedSab(false);
+          setExpedienteSab({ inicio: res.hrInicio[i], fim: res.hrFim[i], })
+          break;
+        case "Dom":
+          res.aberto[i] === "s" ? setCheckedDom(true) : setCheckedDom(false);
+          setExpedienteDom({ inicio: res.hrInicio[i], fim: res.hrFim[i], })
+          break;
+      }
+    }
+
+    set24h(res.inPermanentementeAberto);
+    res.inAtendeChamadosForaDoExpediente ? setSelectedResposta("s") : setSelectedResposta("n");
   }
 
   //Valida campos de formulario
@@ -424,6 +464,7 @@ export default function ViewExpedienteLoja() {
 
           <View style={styles.containerPicker}>
             <Picker
+              enabled={isEditavel}
               selectedValue={selectedResposta}
               onValueChange={(itemValue, itemIndex) =>
                 setSelectedResposta(itemValue)

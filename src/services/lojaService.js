@@ -22,12 +22,12 @@ export async function consultaExpedienteLoja(idLoja) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (idLoja && idLoja === "s") {
-        schemaLojaExpediente.dia= ["Seg","Ter","Qua","Qui","Sex","Sáb","Dom"];
+        schemaLojaExpediente.dia= ["Seg","Ter","Qua","Qui","Sex","Sab","Dom"];
         schemaLojaExpediente.aberto= ["s","s","s","s","s","n","n"];
         schemaLojaExpediente.hrInicio= ["06:00","06:00","06:00","06:00","06:00","06:00","06:00"];
         schemaLojaExpediente.hrFim= ["23:00","23:00","23:00","23:00","23:00","23:00","23:00"];
         schemaLojaExpediente.inPermanentementeAberto= true;
-        schemaLojaExpediente.inAtendeChamadosForaDoExpediente= false;
+        schemaLojaExpediente.inAtendeChamadosForaDoExpediente= true;
         resolve(schemaLojaExpediente)
       } else {
         resolve(null)

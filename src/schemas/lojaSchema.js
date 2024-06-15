@@ -1,11 +1,11 @@
 //Horário de expediente
 export var schemaLojaExpediente = {
-  dia: ["Seg","Ter","Qua","Qui","Sex","Sáb","Dom"],
+  dia: ["Seg","Ter","Qua","Qui","Sex","Sab","Dom"],
   aberto: ["s","s","s","s","s","s","s"],
   hrInicio: ["","","","","","",""],
   hrFim: ["","","","","","",""],
   inPermanentementeAberto: true,
-  inAtendeChamadosForaDoExpediente: false,
+  inAtendeChamadosForaDoExpediente: false, 
 };
 
 export var schemaLojaDadosMinimos = {
@@ -46,11 +46,4 @@ export var schemaLojaLocalizacao = {
   latitude: "",
   longitude: "",
   urlMapa: "",
-};
-export var schemaLojaHorarioFuncionamento = {
-  flagSempreAberto: false, //24h por dia
-  dia: ["Seg","Ter","Qua","Qui","Sex","Sáb","Dom"],
-  flagDiaAberto: [true,true,true,true,true,true,true],
-  horaInicio: ["00:00","00:00","00:00","00:00","00:00","00:00","00:00"],
-  horaFim: ["00:00","00:00","00:00","00:00","00:00","00:00","00:00"],
 };
