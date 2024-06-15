@@ -29,7 +29,7 @@ export function InputText(label, funcao, textPlaceHolder, qtdLinhas, tamanhoMáx
         numberOfLines={qtdLinhas}
         maxLength={tamanhoMáximo}
       />
-      <Text style={{ paddingLeft: 6 }}>{label}</Text>
+      <Text style={{ paddingLeft: 6, color:styleColor.tema30pPrincipal }}>{label}</Text>
     </View>)
 }
 

@@ -9,7 +9,7 @@ import { useFonts } from 'expo-font';
 
 export default function AppLayout() {
   const { user, isLoading } = useContext(AuthContext);
-  
+
   const [fontsLoaded, fontError] = useFonts({
     'Roboto-Bold': require('../../assets/fonts/Roboto-Bold.ttf'),
     'Roboto-Light': require('../../assets/fonts/Roboto-Light.ttf'),
@@ -24,8 +24,8 @@ export default function AppLayout() {
         <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor} />
         <Image
           style={{
-            width: 280,
-            height: 280,
+            width: 120,
+            height: 120,
             overflow: "scroll",
             resizeMode: "contain",
             justifyContent: "center"
@@ -39,13 +39,13 @@ export default function AppLayout() {
   //Aguarda load das fontes do app
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded || fontError) {
-      { carregando() }
+      return carregando()
     }
   }, [fontsLoaded, fontError]);
 
   //Procedimentos de recuperação de usário no storage local em curso
   if (isLoading || !fontsLoaded) {
-    { carregando() }
+    return carregando()
   }
 
   //Procedimentos de recuperação de usário no storage local finalizado

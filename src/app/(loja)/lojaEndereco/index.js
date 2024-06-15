@@ -37,6 +37,7 @@ export default function ViewEdtEnderecoLoja() {
   //Franquia vinculada: url site da franquia, isFranquia, idFranquia. Obs: Pode remover a vinculação? (pensar sobre isso)
   //Contato: telefone, email
   //Maquinas: layout, flag mostrar status maquina, url de callback de status maquinas
+  //flex shirimp no menu conta "ajuda" "pagamentos"
   //Facilidades: alexa(comandos), wifi livre (nome da rede) a.c., mesa de dobra, qtd assentos, link da camera ao vivo, ver status máquina?, push de conclusão do ciclo?
 
   //franquias
