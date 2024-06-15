@@ -13,7 +13,7 @@ import { schemaLojaDadosMinimos } from '../../../../schemas/lojaSchema';
 import modalSimples from '../../../../componentes/modalSimples';
 
 //Tela principal HOME
-export default function ViewConta() {
+export function ViewContaLojista() {
   const { user, logOut } = useContext(AuthContext);
   //Controles básicos
   const [processing, setProcessing] = useState({ isLoading: true, isExecuting: false, isOnlyConsulta: false });
@@ -95,18 +95,6 @@ export default function ViewConta() {
     <SafeAreaView style={styleApp.containerSafeArea}>
       {GradienteFill()}
       <ScrollView style={styleApp.containerScroll} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
-        <View style={styles.containerHeader}>
-          <Text style={styleApp.textTitulo}>
-            {name}
-          </Text>
-          <View style={{ flexDirection: "row" }}>
-            <Image
-              style={styles.imageUser}
-              source={require('../../../../assets/icones/app_icon_02.png')}
-            />
-          </View>
-          {modalSimples(flagShowModal, handleCloseModal, "Informações atualizadas!", "TipoMsg", "Título", processing)}
-        </View>
 
         <View style={styles.containerBasics}>
           <View style={{ flexShrink: 1 }}>
@@ -142,11 +130,6 @@ export default function ViewConta() {
             <Text style={styleApp.textButtonFlat}>Gerenciar minhas franquias</Text>
           </TouchableOpacity>
         </View>
-
-        <TouchableOpacity style={styleApp.buttonFlatHL_transp} disabled={!isEditavel} onPress={logoutApp} >
-          <MaterialIcons name="logout" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
-          <Text style={styleApp.textButtonFlat}>Sair do app</Text>
-        </TouchableOpacity>
 
       </ScrollView>
     </SafeAreaView >

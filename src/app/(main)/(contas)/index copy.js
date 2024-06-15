@@ -13,7 +13,7 @@ import { schemaLojaDadosMinimos } from '../../../schemas/lojaSchema';
 import modalSimples from '../../../componentes/modalSimples';
 
 //Tela principal HOME
-export default function ViewConta() {
+export function ViewConta() {
   const { user, logOut } = useContext(AuthContext);
   //Controles básicos
   const [processing, setProcessing] = useState({ isLoading: true, isExecuting: false, isOnlyConsulta: false });
