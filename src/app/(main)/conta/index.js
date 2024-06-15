@@ -65,14 +65,14 @@ export default function ViewConta() {
       router.navigate({
         pathname: "/lojaMenu",
         params: {
-          navigateParmLoja: JSON.stringify(lojaDados)
+          navigateParmLoja: JSON.stringify(lojaDados), naviateParmOnlyConsulta: false
         }
       })
     } else {
       router.navigate({
         pathname: "/lojaCadastroBasico",
         params: {
-          navigateParmLoja: null
+          navigateParmLoja: null, naviateParmOnlyConsulta: false
         }
       })
     }

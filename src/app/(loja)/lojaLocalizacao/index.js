@@ -18,12 +18,13 @@ export default function ViewLocalizacaoLoja() {
   const { user } = useContext(AuthContext);
   const { navigateParmLoja, naviateParmOnlyConsulta } = useLocalSearchParams();
   navigateParmLoja ? parmLoja = JSON.parse(navigateParmLoja) : parmLoja = null;
-  naviateParmOnlyConsulta ? parmOnlyConsulta = JSON.parse(naviateParmOnlyConsulta) : parmOnlyConsulta = false;
+  naviateParmOnlyConsulta ? parmOnlyConsulta = JSON.parse(naviateParmOnlyConsulta) : parmOnlyConsulta = true;
 
   //Controles básicos
   const [processing, setProcessing] = useState({isLoading: true, isExecuting: false, isOnlyConsulta: parmOnlyConsulta});
   processing.isExecuting || processing.isLoading || processing.isOnlyConsulta ? isEditavel = false : isEditavel = true;
   const [flagShowModal, setflagShowModal] = useState(false);
+  
   //Outras declarações
   const [localizacao, setLocalizacao] = useState(schemaLojaLocalizacao)
 

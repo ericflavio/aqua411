@@ -14,7 +14,7 @@ export default function ViewLojaUnidades() {
   const { user } = useContext(AuthContext);
 
   //Controles básicos
-  const [processing, setProcessing] = useState({ isLoading: true, isExecuting: false, isOnlyConsulta: false });
+  const [processing, setProcessing] = useState({ isLoading: true, isExecuting: false, isOnlyConsulta: true });
   processing.isExecuting || processing.isLoading || processing.isOnlyConsulta ? isEditavel = false : isEditavel = true;
   const [flagShowModal, setflagShowModal] = useState(false);
 

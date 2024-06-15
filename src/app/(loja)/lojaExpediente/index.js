@@ -20,11 +20,13 @@ export default function ViewExpedienteLoja() {
   const { user } = useContext(AuthContext);
   const { navigateParmLoja, naviateParmOnlyConsulta } = useLocalSearchParams();
   navigateParmLoja ? parmLoja = JSON.parse(navigateParmLoja) : parmLoja = null;
-  naviateParmOnlyConsulta ? parmOnlyConsulta = JSON.parse(naviateParmOnlyConsulta) : parmOnlyConsulta = false;
+  naviateParmOnlyConsulta ? parmOnlyConsulta = JSON.parse(naviateParmOnlyConsulta) : parmOnlyConsulta = true;
 
   //Controles básicos
   const [processing, setProcessing] = useState({ isLoading: true, isExecuting: false, isOnlyConsulta: parmOnlyConsulta });
+  processing.isExecuting || processing.isLoading || processing.isOnlyConsulta ? isEditavel = false : isEditavel = true;
   const [flagShowModal, setflagShowModal] = useState(false);
+
   //Outras declarações
   const [expediente, setExpediente] = useState(schemaLojaExpediente)
   const [expedientePadrao, setExpedientePadrao] = useState({ inicio: "", fim: "" })
@@ -473,11 +475,12 @@ export default function ViewExpedienteLoja() {
               <Picker.Item label="NÂO, infelizmente" value="n" />
             </Picker>
           </View>
+
+          <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir} >
+            <Text style={styleApp.textButtonRegular}>Confirmar</Text>
+          </TouchableOpacity>
         </View>
 
-        <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir} >
-          <Text style={styleApp.textButtonRegular}>Confirmar</Text>
-        </TouchableOpacity>
       </ScrollView>
     </SafeAreaView >
   )

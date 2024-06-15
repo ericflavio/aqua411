@@ -21,7 +21,7 @@ export default function ViewEdtMenuLoja() {
   //b) Se chegar <> null siginifica que houve algum erro prévio.
 
   //Controles básicos
-  const [processing, setProcessing] = useState({ isLoading: true, isExecuting: false, isOnlyConsulta: false });
+  const [processing, setProcessing] = useState({ isLoading: true, isExecuting: false, isOnlyConsulta: true });
   processing.isExecuting || processing.isLoading || processing.isOnlyConsulta ? isEditavel = false : isEditavel = true;
   const [flagShowModal, setflagShowModal] = useState(false);
 

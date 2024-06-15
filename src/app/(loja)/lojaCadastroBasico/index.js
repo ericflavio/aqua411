@@ -17,7 +17,7 @@ export default function ViewLojaCadastroBasico() {
   const { user } = useContext(AuthContext);
   const { navigateParmLoja, naviateParmOnlyConsulta } = useLocalSearchParams();
   navigateParmLoja ? parmLoja = JSON.parse(navigateParmLoja) : parmLoja = null;
-  naviateParmOnlyConsulta ? parmOnlyConsulta = JSON.parse(naviateParmOnlyConsulta) : parmOnlyConsulta = false;
+  naviateParmOnlyConsulta ? parmOnlyConsulta = JSON.parse(naviateParmOnlyConsulta) : parmOnlyConsulta = true;
   //Duas situações sobre o parâmetro navigateParmLoja:
   //a) Se chegar null, significa que uma nova loja está sendo criada (status "Criando")
   //b) Se chegar <> null, siginifica que a loja já foi criada e está sendo editada.
