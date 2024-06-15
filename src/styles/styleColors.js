@@ -7,8 +7,8 @@ const tema = "claro";
 tema60pClaro = "#ffffff";
 tema60pMedio = "#f5f1e0ff";
 tema60pEscuro = "#364366ff",
-tema30pPrincipal = "#84d3f8ff",  // Cor principal que representa o APP
-tema10pSecundaria = "#968078ff", // Cor secundaria que representa o APP
+tema30pPrincipal = "#66c1f1" //"#84d3f8ff",  // Cor principal que representa o APP
+tema10pSecundaria = "#968078ff" // "#a37375"  // Cor secundaria que representa o APP
 tema10pTerciaria = "#ee7087ff",  // Cor terciaria que representa o APP
 
 //Textos gerais

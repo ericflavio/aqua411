@@ -10,7 +10,7 @@ export const styleApp = StyleSheet.create({
   containerBorderRadius: styleSize.containerBorderRadius,
   containerTamanhoMedioTelas: styleSize.containerTamanhoMedioTelas,
 
-  containerSafeArea: { //Com padding
+  containerSafeArea: { //Com padding top
     flex: 1,
     justifyContent: "flex-start",
     backgroundColor: styleColor.backgroundSafeArea,

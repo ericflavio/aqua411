@@ -2,14 +2,14 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { styleColor } from '../../styles/styleColors';
 import { styleApp } from '../../styles/styleApp';
 import { ActivityIndicator, View, Image } from "react-native";
-import { useContext , useCallback } from 'react';
+import { useContext, useCallback } from 'react';
 import { AuthContext } from "../../contexts/auth";
 import { Redirect, Tabs } from 'expo-router';
 import { useFonts } from 'expo-font';
 
 export default function AppLayout() {
   const { user, isLoading } = useContext(AuthContext);
-  console.log("_layout (main)_ ", "isLoading: ", isLoading, " user: ", user !== null ? user.idLogin : "[null]", "isLiveAccount: ", user !== null && user.isLiveAccount !== undefined ? user.isLiveAccount : "[undefined]");
+  
   const [fontsLoaded, fontError] = useFonts({
     'Roboto-Bold': require('../../assets/fonts/Roboto-Bold.ttf'),
     'Roboto-Light': require('../../assets/fonts/Roboto-Light.ttf'),
@@ -18,37 +18,14 @@ export default function AppLayout() {
     'Roboto-LightItalic': require('../../assets/fonts/Roboto-LightItalic.ttf'),
   });
 
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded || fontError) {
-      return (
-        <View style={{ flex: 1, justifyContent: "center", alignItems: "center", gap: 12 }}>
-          <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor} />
-          <Image
-            style={{
-              width: 300,
-              height: 300,
-              overflow: "scroll",
-              resizeMode: "contain",
-              justifyContent: "center"
-            }}
-            source={require('../../assets/icones/app_icon_01.png')}
-          />
-        </View>
-      )
-    }
-  }, [fontsLoaded, fontError]);
-
-
-  //Procedimentos de recuperação de usário no storage local em curso
-  console.log("fontsLoaded ", fontsLoaded, " fontError ", fontError );
-  if (isLoading || !fontsLoaded) {
+  function carregando() {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center", gap: 12 }}>
         <ActivityIndicator size={styleApp.size.activityIndicatorSize} color={styleApp.color.activityIndicatorCollor} />
         <Image
           style={{
-            width: 140,
-            height: 140,
+            width: 280,
+            height: 280,
             overflow: "scroll",
             resizeMode: "contain",
             justifyContent: "center"
@@ -57,6 +34,18 @@ export default function AppLayout() {
         />
       </View>
     )
+  }
+
+  //Aguarda load das fontes do app
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded || fontError) {
+      { carregando() }
+    }
+  }, [fontsLoaded, fontError]);
+
+  //Procedimentos de recuperação de usário no storage local em curso
+  if (isLoading || !fontsLoaded) {
+    { carregando() }
   }
 
   //Procedimentos de recuperação de usário no storage local finalizado
@@ -74,7 +63,7 @@ export default function AppLayout() {
     <Tabs screenOptions={{
       headerShown: false,
       tabBarInactiveTintColor: styleColor.cinzaMedio,
-      tabBarActiveTintColor: styleColor.azulEscuro,
+      tabBarActiveTintColor: styleColor.tema30pPrincipal,
       tabBarShowLabel: true,
       tabBarLabelStyle: {
         fontSize: 16,
@@ -82,7 +71,7 @@ export default function AppLayout() {
       },
       tabBarStyle: {
         position: "absolute",
-        backgroundColor: styleColor.tema60pMedio,
+        backgroundColor: styleColor.tema60pClaro,
         borderTopWidth: 0,
         borderTopLeftRadius: 16,
         borderTopRightRadius: 16,

@@ -20,8 +20,8 @@ export const styleSize = {
   containerBordaOnOff: 0, //Ligar apenas para debug (padrão é desligado)
   containerBorderRadius: 8,
   containerOcupacaoHorizontalFull: "100%",
-  ContainerOcupacaoHorizontalParcial: "88%",
-  containerDistanciamentoLateralRegular: 16,
+  ContainerOcupacaoHorizontalParcial: "92%",
+  containerDistanciamentoLateralRegular: 10,
   containerDistanciamentoBottomlRegular: 72,
   containerTamanhoMedioTelas: 800,
   //Textos

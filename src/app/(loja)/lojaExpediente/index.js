@@ -419,7 +419,7 @@ export default function ViewExpedienteLoja() {
             <MaterialIcons name="emoji-people" size={styleApp.size.iconSizeRegular} color={styleColor.textSubtitulo} />
           </View>
           <Text style={[styleApp.textRegular, { color: styleColor.cinzaEscuro, alignSelf: 'center', marginTop: 8, }]}>
-            Os clientes podem contatar a loja para negociar a possibilidade de realizar serviços em horários extraordinários, fora do expediente padrão?
+            Os clientes podem contatar a loja para negociar a possibilidade de realizar serviços fora do horário de atendimento padrão?
           </Text>
 
           <View style={styles.containerPicker}>
