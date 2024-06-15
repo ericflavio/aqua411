@@ -28,6 +28,7 @@ export default function ViewEdtEnderecoLoja() {
   //Outras declarações
   const [endereco, setEndereco] = useState(schemaLojaEndereco)
 
+  //Corrigir navegação
   //github pago
   //persistir loja em edição localmente? ou loja favorita? ou outro dado ?
   //revisar o LOGIN :manter flagErro? colocar na sistemática "processing"
