@@ -49,14 +49,18 @@ export default function modalSimples(flagShowModal, onClose, msg, msgTipo, msgTi
           </View>
           :
           <View style={stylesLocal.bottomView}>
+
             <View style={[stylesLocal.modalView, { borderColor: borderModal }]}>
-              <Text style={[styleApp.textSubtitulo, { color: borderModal }]}>{msgTitulo}</Text>
-              {msg !== "" ? <Text style={styleApp.textRegular}>{msg}</Text> : <></>}
-              <View style={{ marginTop: 20 }}>
+
+              <View style={{ marginBottom: 16, alignSelf: "flex-end" }}>
                 <TouchableOpacity style={styleApp.buttonFlatHL_transp} disabled={false} onPress={onClose} >
                   <MaterialIcons name="close" size={styleApp.size.iconSizeButtonLarge} color={styleApp.color.textButtonFlat} />
                 </TouchableOpacity>
               </View>
+
+              {msgTitulo !== "" ? <Text style={styleApp.textRegular}>{msg}</Text> : <></>}
+              <Text style={styleApp.textSubtitulo}>{msg}</Text>
+
             </View>
           </View>
         }
@@ -88,7 +92,7 @@ const stylesLocal = StyleSheet.create({
     borderTopEndRadius: 20,
     borderTopStartRadius: 20,
     padding: 20,
-    paddingTop: 35,
+    paddingTop: 0,
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {

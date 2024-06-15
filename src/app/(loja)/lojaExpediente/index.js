@@ -239,7 +239,7 @@ export default function ViewExpedienteLoja() {
     if ((hi > hf && hf !== 0) || (hi > hf && hf === 0 && mf !== 0)) {
       return false
     }
-    if (hi === hf && mi >= mf) {
+    if (hi === hf && mi >= mf && mi !== 0) {
       return false
     }
 
@@ -334,7 +334,7 @@ export default function ViewExpedienteLoja() {
         {processing.isOnlyConsulta ? <></> :
           <View style={styles.containerPrincipal}>
             <Text style={[styleApp.textRegular, { color: styleColor.cinzaEscuro, alignSelf: 'center', marginTop: 8, }]}>
-              Informe aqui o mesmo horário para todos os dias
+              Informe abaixo o horário comum dos dias de funcionamento
             </Text>
             <View style={styles.containerTimer}>
               {InputText("Abertura", onChangeExpedientePadraoIncio, "00:00", 1, 5, "default", isEditavel, expedientePadrao.inicio, false)}
@@ -414,7 +414,10 @@ export default function ViewExpedienteLoja() {
         </View>
 
         <View style={styles.containerEspecial}>
-          <MaterialIcons name="emoji-people" size={styleApp.size.iconSizeRegular} color={styleColor.textSubtitulo} />
+          <View style={{ flexDirection: "row" }}>
+            <MaterialIcons name="local-laundry-service" size={styleApp.size.iconSizeRegular} color={styleColor.textSubtitulo} />
+            <MaterialIcons name="emoji-people" size={styleApp.size.iconSizeRegular} color={styleColor.textSubtitulo} />
+          </View>
           <Text style={[styleApp.textRegular, { color: styleColor.cinzaEscuro, alignSelf: 'center', marginTop: 8, }]}>
             Os clientes podem contatar a loja para negociar a possibilidade de realizar serviços em horários extraordinários, fora do expediente padrão?
           </Text>
