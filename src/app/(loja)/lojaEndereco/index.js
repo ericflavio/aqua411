@@ -27,6 +27,7 @@ export default function ViewEdtEnderecoLoja() {
   //Outras declarações
   const [endereco, setEndereco] = useState(schemaLojaEndereco)
 
+  //github pago
   //padronizar botaõ principal fora da view de edição de dados
   //persistir loja em edição localmente? ou loja favorita? ou outro dado ?
   //revisar o LOGIN :manter flagErro? colocar na sistemática "processing"

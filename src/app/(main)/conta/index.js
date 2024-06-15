@@ -55,9 +55,9 @@ export default function ViewConta() {
     }, styleApp.size.modalTimeAutoClose);
   }
 
-  function vazia(){
+  function vazia() {
   }
-  
+
 
   function adicionarLoja() {
     //Vai pro menu de edição, se existir loja já sendo criada, ou inicia um cadastro básico.
@@ -109,14 +109,18 @@ export default function ViewConta() {
         </View>
 
         <View style={styles.containerBasics}>
-          <TouchableOpacity style={styleApp.buttonFlatV} disabled={!isEditavel} onPress={vazia} >
-            <MaterialIcons name="help-outline" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
-            <Text style={styleApp.textButtonFlat}>Ajuda</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styleApp.buttonFlatV} disabled={!isEditavel} onPress={vazia} >
-            <MaterialIcons name="payment" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
-            <Text style={styleApp.textButtonFlat}>Pagamentos</Text>
-          </TouchableOpacity>
+          <View style={{ flexShrink: 1 }}>
+            <TouchableOpacity style={styleApp.buttonFlatV} disabled={!isEditavel} onPress={vazia} >
+              <MaterialIcons name="help-outline" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
+              <Text style={styleApp.textButtonFlat}>Ajuda</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={{ flexShrink: 1 }}>
+            <TouchableOpacity style={styleApp.buttonFlatV} disabled={!isEditavel} onPress={vazia} >
+              <MaterialIcons name="payment" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
+              <Text style={styleApp.textButtonFlat}>Pagamentos</Text>
+            </TouchableOpacity>
+          </View>
         </View>
 
         <View style={styles.containerOthers}>

@@ -134,7 +134,7 @@ export const styleApp = StyleSheet.create({
     marginBottom: 0,
     padding: 4,
     minHeight: 70,
-    minWidth: "49%",
+    minWidth: "50%",
     borderWidth: styleSize.buttonBorderWidthFlat,
     borderRadius: styleSize.buttomBorderRadius,
     gap: 4
