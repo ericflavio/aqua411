@@ -91,7 +91,7 @@ export default function ViewLojaCadastroBasico() {
   async function prosseguir() {
     if (processing.isLoading) { return }; //ignora o botão, ainda clicável, até que os dados sejam carregados
 
-    if (lojaDados.apelido.length < 8) {
+    if (lojaDados.apelido.length < 4) {
       ShowErrorMessage("lj004");
       return;
     };
@@ -109,7 +109,6 @@ export default function ViewLojaCadastroBasico() {
     }
 
     setProcessing({ ...processing, isExecuting: false });
-    console.log("parm------>", parmLoja)
     if (parmLoja === null) {
       //TODO: evitar que retorne para tela anterior.
       goTo(); //Menu completo de configuração da loja
@@ -143,7 +142,7 @@ export default function ViewLojaCadastroBasico() {
 
         <View style={styles.containerPrincipal}>
           {InputText("Apelido da loja", onChangeApelido, "Apelido", 1, 40, "default", isEditavel, lojaDados.apelido, false)}
-          {InputText("CNPJ (opcional) 00.000.000/0000-00", onChangeCnpj, "CNPJ", 1, 18, "default", isEditavel, lojaDados.cnpj, false)}
+          {InputText("CNPJ (opcional) 00.000.000/0000-00", onChangeCnpj, "CNPJ opcional", 1, 18, "default", isEditavel, lojaDados.cnpj, false)}
 
           {parmLoja && parmLoja !== null ?
             <>
