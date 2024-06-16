@@ -10,6 +10,8 @@ export default function LojaLayout() {
 
   return (
     <Stack
+      initialRouteName='lojaMenu/index'
+      backBehavior='history'
       screenOptions={{
         headerShown: true,
         headerTitle: "Informações da loja",
@@ -25,12 +27,12 @@ export default function LojaLayout() {
       }} >
 
       {/* Títulos por página: inserir options={{headerTitle:"Informações da loja"}} */}
-      <Stack.Screen name="lojaCadastroBasico/index"/>
-      <Stack.Screen name="lojaMenu/index"/>
-      <Stack.Screen name="lojaEndereco/index"/>
-      <Stack.Screen name="lojaLocalizacao/index"/>
-      <Stack.Screen name="lojaExpediente/index"/>
-      <Stack.Screen name="lojaUnidades/index"/>
+      <Stack.Screen name="lojaCadastroBasico/index" />
+      <Stack.Screen name="lojaMenu/index" />
+      <Stack.Screen name="lojaEndereco/index" />
+      <Stack.Screen name="lojaLocalizacao/index" />
+      <Stack.Screen name="lojaExpediente/index" />
+      <Stack.Screen name="lojaUnidades/index" />
     </Stack>
   )
 }

@@ -62,14 +62,14 @@ export function ViewContaPessoal() {
   function adicionarLoja() {
     //Vai pro menu de edição, se existir loja já sendo criada, ou inicia um cadastro básico.
     if (lojaDados !== null) {
-      router.navigate({
+      router.push({
         pathname: "/lojaMenu",
         params: {
           navigateParmLoja: JSON.stringify(lojaDados), naviateParmOnlyConsulta: false
         }
       })
     } else {
-      router.navigate({
+      router.push({
         pathname: "/lojaCadastroBasico",
         params: {
           navigateParmLoja: null, naviateParmOnlyConsulta: false
@@ -78,7 +78,7 @@ export function ViewContaPessoal() {
     }
   }
   function listarUnidades() {
-    router.navigate('/lojaUnidades');
+    router.push('/lojaUnidades');
   }
   async function logoutApp() {
     Alert.alert('SAIR', 'Você deseja sair do aplicativo agora?', [

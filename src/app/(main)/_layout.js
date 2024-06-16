@@ -61,6 +61,8 @@ export default function AppLayout() {
   //Usuário logado e status ativo. Monta o layout do app
   return (
     <Tabs
+      initialRouteName='index'
+      backBehavior='history'
       screenOptions={{
         headerShown: false,
         tabBarInactiveTintColor: styleColor.cinzaMedio,

@@ -19,6 +19,8 @@ const Tab = createMaterialTopTabNavigator();
 export default function layoutContas() {
   return (
     <Tab.Navigator
+      initialRouteName='Eu'
+      backBehavior='history'
       screenOptions={{
         headerShown: true,
         tabBarInactiveTintColor: styleColor.cinzaMedio,
@@ -35,7 +37,7 @@ export default function layoutContas() {
           height: 4
         },
         tabBarStyle: {
-          paddingTop:24,
+          paddingTop: 24,
           //position: "absolute",
           backgroundColor: 'white',
           borderTopWidth: 0,

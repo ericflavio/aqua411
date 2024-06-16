@@ -79,7 +79,7 @@ export default function ViewLojaCadastroBasico() {
   function goTo() {
     parm = lojaDados;
     parm.status = "Criando";
-    router.navigate({
+    router.replace({
       pathname: "/lojaMenu",
       params: {
         navigateParmLoja: JSON.stringify(parm)
