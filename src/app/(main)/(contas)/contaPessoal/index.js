@@ -96,15 +96,13 @@ export function ViewContaPessoal() {
       {GradienteFill()}
       <ScrollView style={styleApp.containerScroll} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
         <View style={styles.containerHeader}>
-          <Text style={styleApp.textTitulo}>
-            {name}
-          </Text>
           <View style={{ flexDirection: "row" }}>
             <Image
               style={styles.imageUser}
               source={require('../../../../assets/icones/app_icon_02.png')}
             />
           </View>
+          <Text style={styleApp.textTitulo}>{name}</Text>
           {modalSimples(flagShowModal, handleCloseModal, "Informações atualizadas!", "TipoMsg", "Título", processing)}
         </View>
 

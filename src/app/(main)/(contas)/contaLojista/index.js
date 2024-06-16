@@ -96,6 +96,13 @@ export function ViewContaLojista() {
       {GradienteFill()}
       <ScrollView style={styleApp.containerScroll} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
 
+        <View style={styles.containerHeader}>
+          <Text style={styleApp.textTitulo}>
+            Espaço empreendedor
+          </Text>
+          {modalSimples(flagShowModal, handleCloseModal, "Informações atualizadas!", "TipoMsg", "Título", processing)}
+        </View>
+
         <View style={styles.containerBasics}>
           <View style={{ flexShrink: 1 }}>
             <TouchableOpacity style={styleApp.buttonFlatV} disabled={!isEditavel} onPress={vazia} >

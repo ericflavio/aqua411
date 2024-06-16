@@ -4,8 +4,12 @@ import { styleColor } from "../../../../styles/styleColors";
 
 export const styles = StyleSheet.create({
   containerHeader: {
+    gap:8,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems:'center',
     borderWidth: styleApp.size.containerBordaOnOff,
-    marginBottom: 30,
+    marginBottom: 10,
     width:"100%"
   },
   containerBasics: {
@@ -25,9 +29,9 @@ export const styles = StyleSheet.create({
     width:"100%"
   },
   imageUser: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
+    width: 50,
+    height: 50,
+    borderRadius: 25,
     overflow: "hidden",
     justifyContent: "center",
   },

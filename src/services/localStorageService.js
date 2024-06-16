@@ -3,7 +3,7 @@ import { ShowErrorMessage } from '../errors/errorMessage';
 //TODO: Sempre atualizar a chave do nome do DB AsyncStorage, no padrão
 //@nomedoapp:coleção
 
-export const idDB = "@lavanderias:DadosLogin"
+export const idDB = "@ondelavo:DadosLogin"
 
 export async function SetLocalDataLogin(user) {
   if (!user || user === undefined || user === null ||

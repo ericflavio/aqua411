@@ -5,7 +5,7 @@ import { styleColor } from "../../../../styles/styleColors";
 export const styles = StyleSheet.create({
   containerHeader: {
     borderWidth: styleApp.size.containerBordaOnOff,
-    marginBottom: 30,
+    marginBottom: 10,
     width:"100%"
   },
   containerBasics: {

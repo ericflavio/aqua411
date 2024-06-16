@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "lavanderias",
-    "slug": "lavanderias",
-    "scheme": "lavanderias",
+    "name": "ondelavo",
+    "slug": "ondelavo",
+    "scheme": "ondelavo",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
