@@ -24,11 +24,12 @@ export default function ViewEdtEnderecoLoja() {
   const [processing, setProcessing] = useState({ isLoading: true, isExecuting: false, isOnlyConsulta: parmOnlyConsulta });
   processing.isExecuting || processing.isLoading || processing.isOnlyConsulta ? isEditavel = false : isEditavel = true;
   const [flagShowModal, setflagShowModal] = useState(false);
-  
+
   //Outras declarações
   const [endereco, setEndereco] = useState(schemaLojaEndereco)
 
   //Corrigir navegação
+  //Corrigir showmodal resultado (parametrizar sucesso e erro)
   //github pago
   //persistir loja em edição localmente? ou loja favorita? ou outro dado ?
   //revisar o LOGIN :manter flagErro? colocar na sistemática "processing"
@@ -54,14 +55,12 @@ export default function ViewEdtEnderecoLoja() {
   async function fetchDados() {
     try {
       res = await consultaEnderecoLoja();
+      res !== null ? setEndereco(res) : setEndereco(schemaLojaEndereco);
+      setProcessing({ ...processing, isLoading: false });
     } catch {
-      res = null;
       ShowErrorMessage("lj007");
+      setProcessing({ ...processing, isLoading: false, isOnlyConsulta: true });
     };
-    if (res !== null) {
-      setEndereco(res);
-    }
-    setProcessing({ ...processing, isLoading: false });
   }
 
   //Valida campos de formulario
@@ -97,7 +96,6 @@ export default function ViewEdtEnderecoLoja() {
     } catch {
       ShowErrorMessage("vc012");
       schemaLojaEndereco.cep = parm;
-      //setEndereco({ cep: parm, localidade: "", uf: "", ddd: "", bairro: "", logradouro: "", numero: "", complemento: "" });
       setEndereco(schemaLojaEndereco);
       return false;
     };
@@ -105,7 +103,6 @@ export default function ViewEdtEnderecoLoja() {
     if (endCep.erro) {
       ShowErrorMessage("vc011");
       schemaLojaEndereco.cep = parm;
-      //setEndereco({ cep: parm, localidade: "", uf: "", ddd: "", bairro: "", logradouro: "", numero: "", complemento: "" });
       setEndereco(schemaLojaEndereco);
       return false;
     } else {
@@ -183,9 +180,11 @@ export default function ViewEdtEnderecoLoja() {
           {InputText("Número", onChangeNumero, "Número, ou s/n", 1, 5, "default", isEditavel, endereco.numero, false)}
           {InputText("Complemento", onChangeComplemento, "Complemento", 1, 80, "default", isEditavel, endereco.complemento, false)}
 
-          <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir} >
-            <Text style={styleApp.textButtonRegular}>Confirmar</Text>
-          </TouchableOpacity>
+          {processing.isOnlyConsulta ? <></> :
+            <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir} >
+              <Text style={styleApp.textButtonRegular}>Confirmar</Text>
+            </TouchableOpacity>
+          }
         </View>
       </ScrollView>
     </SafeAreaView >

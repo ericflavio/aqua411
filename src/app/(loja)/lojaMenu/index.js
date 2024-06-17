@@ -10,6 +10,7 @@ import * as Animatable from 'react-native-animatable';
 import { consultaListaStatusLoja } from '../../../services/lojaService';
 import { ShowErrorMessage } from '../../../errors/errorMessage';
 import modalSimples from '../../../componentes/modalSimples';
+import { schemaLojaStatus } from '../../../schemas/lojaSchema';
 
 //Tela principal
 export default function ViewEdtMenuLoja() {
@@ -38,32 +39,25 @@ export default function ViewEdtMenuLoja() {
     fetchLoja();
   }, [])
 
-  //Funções auxiliares 
-  function handleCloseModal() {
-    setflagShowModal(!flagShowModal);
-  }
-  function showModalMsgResultado() {
-    setflagShowModal(!flagShowModal);
-    setTimeout(() => {
-      setflagShowModal(false);
-    }, styleApp.size.modalTimeAutoClose);
-  }
-
   async function fetchLoja() {
     //Consulta a lista de status que podem ser atribuídos a uma loja
     if (statusList === null) { //Ainda não foi consultado
       try {
-        resList = await consultaListaStatusLoja();
-      } catch (e) {
+        carregaDadosObtidosNoLoading(await consultaListaStatusLoja());
+      } catch {
         ShowErrorMessage("lj001", "t");
-        resList = null;
-      }
-      if (resList !== null && Object.keys(resList).length > 0) {
-        setStatusList(resList);
-        filtraNovosStatusPossiveis(resList, lojaDados.status)
       }
     }
     setProcessing({ ...processing, isLoading: false });
+  }
+
+  function carregaDadosObtidosNoLoading(resList) {
+    if (resList === null || Object.keys(resList).length === 0) {
+      setStatusList(schemaLojaStatus);
+      return;
+    }
+    setStatusList(resList);
+    filtraNovosStatusPossiveis(resList, lojaDados.status)
   }
 
   function filtraNovosStatusPossiveis(resList, statusInicial) {
@@ -91,6 +85,17 @@ export default function ViewEdtMenuLoja() {
         break;
       }
     }
+  }
+
+  //Funções auxiliares 
+  function handleCloseModal() {
+    setflagShowModal(!flagShowModal);
+  }
+  function showModalMsgResultado() {
+    setflagShowModal(!flagShowModal);
+    setTimeout(() => {
+      setflagShowModal(false);
+    }, styleApp.size.modalTimeAutoClose);
   }
 
   function goToEndereco() {

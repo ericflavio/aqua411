@@ -21,10 +21,10 @@ export default function ViewLocalizacaoLoja() {
   naviateParmOnlyConsulta ? parmOnlyConsulta = JSON.parse(naviateParmOnlyConsulta) : parmOnlyConsulta = true;
 
   //Controles básicos
-  const [processing, setProcessing] = useState({isLoading: true, isExecuting: false, isOnlyConsulta: parmOnlyConsulta});
+  const [processing, setProcessing] = useState({ isLoading: true, isExecuting: false, isOnlyConsulta: parmOnlyConsulta });
   processing.isExecuting || processing.isLoading || processing.isOnlyConsulta ? isEditavel = false : isEditavel = true;
   const [flagShowModal, setflagShowModal] = useState(false);
-  
+
   //Outras declarações
   const [localizacao, setLocalizacao] = useState(schemaLojaLocalizacao)
 
@@ -37,14 +37,12 @@ export default function ViewLocalizacaoLoja() {
   async function fetchDados() {
     try {
       res = await consultaLocalizacaoLoja();
+      res !== null ? setLocalizacao(res) : setLocalizacao(schemaLojaLocalizacao);
+      setProcessing({ ...processing, isLoading: false });
     } catch {
-      res = null;
       ShowErrorMessage("lj009");
+      setProcessing({ ...processing, isLoading: false, isOnlyConsulta: true });
     };
-    if (res !== null) {
-      setLocalizacao(res);
-    }
-    setProcessing({ ...processing, isLoading: false });
   }
 
   //Valida campos de formulario
@@ -142,9 +140,11 @@ export default function ViewLocalizacaoLoja() {
           {InputText("Longitude", onChangeLongitude, "ex. -30,67890", 1, 12, "default", isEditavel, localizacao.longitude, false)}
           {InputText("Cole aqui o endereço/url GoogleMaps", onChangeUrl, "url GoogleMaps", 1, 200, "default", isEditavel, localizacao.urlMapa, false)}
 
-          <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir} >
-            <Text style={styleApp.textButtonRegular}>Confirmar</Text>
-          </TouchableOpacity>
+          {processing.isOnlyConsulta ? <></> :
+            <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir} >
+              <Text style={styleApp.textButtonRegular}>Confirmar</Text>
+            </TouchableOpacity>
+          }
         </View>
       </ScrollView>
     </SafeAreaView >

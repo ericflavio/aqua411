@@ -57,19 +57,21 @@ export default function ViewExpedienteLoja() {
   //Carrega dados pre-existentes
   async function fetchDados() {
     try {
-      res = await consultaExpedienteLoja("s");
+      carregaDadosObtidosNoLoading(await consultaExpedienteLoja("s"));
+      setProcessing({ ...processing, isLoading: false });
     } catch {
-      res = null;
       ShowErrorMessage("lj011");
+      setProcessing({ ...processing, isLoading: false, isOnlyConsulta: true });
     };
-    if (res !== null) {
-      carregaDadosLidos(res);
-      setExpediente(res);
-    }
-    setProcessing({ ...processing, isLoading: false });
   }
 
-  function carregaDadosLidos(res) {
+  function carregaDadosObtidosNoLoading(res) {
+    if (res === null) {
+      setExpediente(schemaLojaExpediente);
+      return;
+    }
+    setExpediente(res);
+
     for (var i = 0; i < res.dia.length; i++) {
       console.log("dia ", res.dia[i])
       switch (res.dia[i]) {
@@ -476,9 +478,11 @@ export default function ViewExpedienteLoja() {
             </Picker>
           </View>
 
-          <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir} >
-            <Text style={styleApp.textButtonRegular}>Confirmar</Text>
-          </TouchableOpacity>
+          {processing.isOnlyConsulta ? <></> :
+            <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir} >
+              <Text style={styleApp.textButtonRegular}>Confirmar</Text>
+            </TouchableOpacity>
+          }
         </View>
 
       </ScrollView>

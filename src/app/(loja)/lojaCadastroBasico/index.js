@@ -23,7 +23,7 @@ export default function ViewLojaCadastroBasico() {
   //b) Se chegar <> null, siginifica que a loja já foi criada e está sendo editada.
 
   //Controles básicos
-  const [processing, setProcessing] = useState({isLoading: true, isExecuting: false, isOnlyConsulta: parmOnlyConsulta});
+  const [processing, setProcessing] = useState({ isLoading: true, isExecuting: false, isOnlyConsulta: parmOnlyConsulta });
   processing.isExecuting || processing.isLoading || processing.isOnlyConsulta ? isEditavel = false : isEditavel = true;
   const [flagShowModal, setflagShowModal] = useState(false);
 
@@ -40,15 +40,13 @@ export default function ViewLojaCadastroBasico() {
     if (parmLoja !== null) {
       try {
         res = await consultaExistenciaLojaEmCriacao("s"); //Verifica se já possui alguma sendo criada
+        res !== null ? setLojaDados(res) : setLojaDados(schemaLojaDados);
+        setProcessing({ ...processing, isLoading: false });
       } catch {
-        res = null; //Erro na pesquisad de Loja em estágio de criação para continuar.
         ShowErrorMessage("lj008");
+        setProcessing({ ...processing, isLoading: false, isOnlyConsulta: true });
       };
-      if (res !== null) {
-        setLojaDados(res);
-      }
     }
-    setProcessing({ ...processing, isLoading: false });
   }
 
   //Valida campos de formulario
@@ -151,9 +149,11 @@ export default function ViewLojaCadastroBasico() {
             : <></>
           }
 
-          <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir}>
-            <Text style={styleApp.textButtonRegular}>Confirmar</Text>
-          </TouchableOpacity>
+          {processing.isOnlyConsulta ? <></> :
+            <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir}>
+              <Text style={styleApp.textButtonRegular}>Confirmar</Text>
+            </TouchableOpacity>
+          }
 
           <View style={{ marginTop: 18 }}>
             <Text style={styleApp.textSmallItalico}>As informações Apelido e CNPJ são restritas; Só você pode consultar.</Text>
