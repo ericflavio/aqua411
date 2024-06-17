@@ -40,6 +40,7 @@ export default function ViewEdtMenuLoja() {
   }, [])
 
   async function fetchLoja() {
+
     //Consulta a lista de status que podem ser atribuídos a uma loja
     if (statusList === null) { //Ainda não foi consultado
       try {
@@ -68,7 +69,6 @@ export default function ViewEdtMenuLoja() {
 
         resDfs = resList[i].dfs
         for (var x = 0; x < resDfs.length; x++) { //Todos os novos status possíveis (DFS)
-          console.log("rsss ", x, resDfs[x])
           idDfs = resDfs[x];
 
           for (var y = 0; y < resList.length; y++) {
@@ -183,7 +183,7 @@ export default function ViewEdtMenuLoja() {
                   </View>
                 }
 
-                {statusListToChange.length === 0 ? <></> :
+                {!statusListToChange || statusListToChange.length === 0 ? <></> :
                   <>
                     <View style={styles.containerSection}>
                       <Text style={styleApp.textSmall}>Ações de gerenciamento</Text>
@@ -191,15 +191,6 @@ export default function ViewEdtMenuLoja() {
                     </View>
 
                     <View style={styles.containerOthers}>
-                      {/*                   <TouchableOpacity style={styleApp.buttonFlatHL} onPress={{}} >
-                    <MaterialIcons name="delete-outline" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.textButtonFlat} />
-                    <Text style={styleApp.textButtonFlat}>Desistir de cadastrar (excluir)</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styleApp.buttonFlatHL} onPress={{}} >
-                    <MaterialIcons name="saved-search" size={styleApp.size.iconSizeButtonRegular} color={styleApp.color.textButtonFlat} />
-                    <Text style={styleApp.textButtonFlat}>Aparecer nas buscas dos clientes</Text>
-                  </TouchableOpacity> */}
-
                       {opcaoDeGerenciamento()}
                     </View>
                   </>

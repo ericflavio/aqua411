@@ -8,14 +8,14 @@ export const styleSize = {
   buttonBorderWidthBottom: 0,
   buttomBorderRadius: 8,
   //Icones para botões e tabbars
-  iconSizeButtonRegular: 30,
-  iconSizeButtonSmall: 26,
-  iconSizeButtonLarge: 34,
-  iconSizeTabBar: 34,
+  iconSizeButtonRegular: 26,
+  iconSizeButtonSmall: 24,
+  iconSizeButtonLarge: 30,
+  iconSizeTabBar: 32,
   //Icones gerais
-  iconSizeRegular: 32,
-  iconSizeSmall: 28,
-  iconSizeLarge: 38,
+  iconSizeRegular: 28,
+  iconSizeSmall: 26,
+  iconSizeLarge: 32,
   //Container (Views, SafeArea, Scrolls)
   containerBordaOnOff: 0, //Ligar apenas para debug (padrão é desligado)
   containerBorderRadius: 8,
