@@ -76,6 +76,14 @@ export function NewErrorMessage(cod, e) {
           newError.message = msgDefault + " [" + cod + "]";
       }
       break;
+    case "fr": // Franquias
+      switch (cod) {
+        case "fr001": newError.message = "Estamos com dificuldades para recuperar a lista de franquias." + tn; break;
+        default:
+          newError.cod = "de2702" + cod.substr(0, 2);
+          newError.message = msgDefault + " [" + cod + "]";
+      }
+      break;
     //Compartilhado
     case "pl": // Persistência local
       switch (cod) {

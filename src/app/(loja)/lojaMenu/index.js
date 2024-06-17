@@ -39,7 +39,6 @@ export default function ViewEdtMenuLoja() {
   }, [])
 
   async function fetchLoja() {
-
     //Consulta a lista de status que podem ser atribuídos a uma loja
     if (statusList === null) { //Ainda não foi consultado
       try {
@@ -115,6 +114,14 @@ export default function ViewEdtMenuLoja() {
   function goToExpediente() {
     router.navigate({
       pathname: '/lojaExpediente',
+      params: {
+        navigateParmLoja: JSON.stringify(lojaDados), naviateParmOnlyConsulta: !flagStatusEditavel
+      }
+    })
+  }
+  function goToVinculoFranquia() {
+    router.navigate({
+      pathname: '/lojaVinculoFranquia',
       params: {
         navigateParmLoja: JSON.stringify(lojaDados), naviateParmOnlyConsulta: !flagStatusEditavel
       }
@@ -197,6 +204,7 @@ export default function ViewEdtMenuLoja() {
                     </View>
                     <MaterialIcons name="navigate-next" size={styleApp.size.iconSizeRegular} color={styleApp.color.cinzaMedio} />
                   </TouchableOpacity>
+
                   <TouchableOpacity style={styleApp.buttonFlatHL_list} disabled={disabled} onPress={goToLocalizacao} >
                     <View style={{ flexDirection: "row", alignItems: "center" }}>
                       <MaterialIcons name="location-on" size={styleApp.size.iconSizeRegular} color={styleApp.color.textButtonFlat} />
@@ -204,6 +212,7 @@ export default function ViewEdtMenuLoja() {
                     </View>
                     <MaterialIcons name="navigate-next" size={styleApp.size.iconSizeRegular} color={styleApp.color.cinzaMedio} />
                   </TouchableOpacity>
+
                   <TouchableOpacity style={styleApp.buttonFlatHL_list} disabled={disabled} onPress={goToExpediente} >
                     <View style={{ flexDirection: "row", alignItems: "center" }}>
                       <MaterialIcons name="access-time" size={styleApp.size.iconSizeRegular} color={styleApp.color.textButtonFlat} />
@@ -211,6 +220,15 @@ export default function ViewEdtMenuLoja() {
                     </View>
                     <MaterialIcons name="navigate-next" size={styleApp.size.iconSizeRegular} color={styleApp.color.cinzaMedio} />
                   </TouchableOpacity>
+
+                  <TouchableOpacity style={styleApp.buttonFlatHL_list} disabled={disabled} onPress={goToVinculoFranquia} >
+                    <View style={{ flexDirection: "row", alignItems: "center" }}>
+                      <MaterialIcons name="copyright" size={styleApp.size.iconSizeRegular} color={styleApp.color.textButtonFlat} />
+                      <Text style={styleApp.textButtonFlat}>Vínculo com franquia</Text>
+                    </View>
+                    <MaterialIcons name="navigate-next" size={styleApp.size.iconSizeRegular} color={styleApp.color.cinzaMedio} />
+                  </TouchableOpacity>
+
                   <TouchableOpacity style={styleApp.buttonFlatHL_list} disabled={disabled} onPress={goToDadosBasicos} >
                     <View style={{ flexDirection: "row", alignItems: "center" }}>
                       <MaterialIcons name="more-vert" size={styleApp.size.iconSizeRegular} color={styleApp.color.textButtonFlat} />

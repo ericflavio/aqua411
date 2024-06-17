@@ -27,6 +27,7 @@ export default function LojaLayout() {
       }} >
 
       {/* Títulos por página: inserir options={{headerTitle:"Informações da loja"}} */}
+      <Stack.Screen name="lojaVinculoFranquia/index" />
       <Stack.Screen name="lojaCadastroBasico/index" />
       <Stack.Screen name="lojaMenu/index" />
       <Stack.Screen name="lojaEndereco/index" />
