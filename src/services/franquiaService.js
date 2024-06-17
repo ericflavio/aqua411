@@ -32,7 +32,7 @@ export async function consultaDadosFranquia(id) {
   })
 }
 //Dados de uma franquia
-export async function listaFranquias(id) {
+export async function consultaListaFranquias(id) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (id && id === "s") {

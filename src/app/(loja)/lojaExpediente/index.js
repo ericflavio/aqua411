@@ -45,7 +45,7 @@ export default function ViewExpedienteLoja() {
   const [isCheckedSex, setCheckedSex] = useState(true);
   const [isCheckedSab, setCheckedSab] = useState(true);
   const [isCheckedDom, setCheckedDom] = useState(true);
-  const [selectedResposta, setSelectedResposta] = useState("");
+  const [selectedResposta, setSelectedResposta] = useState("0"); //0-não selecionado, 1-sim, 2-não
 
   processing.isExecuting || processing.isLoading || processing.isOnlyConsulta ? isEditavel = false : isEditavel = true;
 
@@ -107,7 +107,7 @@ export default function ViewExpedienteLoja() {
     }
 
     set24h(res.inPermanentementeAberto);
-    res.inAtendeChamadosForaDoExpediente ? setSelectedResposta("s") : setSelectedResposta("n");
+    res.inAtendeChamadosForaDoExpediente ? setSelectedResposta(res.inAtendeChamadosForaDoExpediente) : setSelectedResposta("0");
   }
 
   //Valida campos de formulario
@@ -473,8 +473,9 @@ export default function ViewExpedienteLoja() {
               onValueChange={(itemValue, itemIndex) =>
                 setSelectedResposta(itemValue)
               }>
-              <Picker.Item label="SIM, com certeza!" value="s" />
-              <Picker.Item label="NÂO, infelizmente" value="n" />
+              <Picker.Item label="Não determinado" value="0" />
+              <Picker.Item label="SIM, com certeza!" value="1" />
+              <Picker.Item label="NÂO, infelizmente" value="2" />
             </Picker>
           </View>
 

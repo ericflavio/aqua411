@@ -78,6 +78,7 @@ export function NewErrorMessage(cod, e) {
       break;
     case "fr": // Franquias
       switch (cod) {
+        case "fr001": newError.message = "Estamos com dificuldades para recuperar os dados da franquia vinculada." + tn; break;
         case "fr001": newError.message = "Estamos com dificuldades para recuperar a lista de franquias." + tn; break;
         default:
           newError.cod = "de2702" + cod.substr(0, 2);

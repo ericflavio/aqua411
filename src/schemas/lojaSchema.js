@@ -9,6 +9,7 @@ export var schemaLojaFranquiaVinculada = {
   dataRegistroInicioVinculo: "00/00/0000",
   dataRegistroFimVinculo: '00/00/0000',
   idUsuarioConfirmacao: '',
+  status: '', //[Solicitado, Aprovado, Reprovado, Removido]
 };
 
 //Horário de expediente

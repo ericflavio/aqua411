@@ -50,7 +50,7 @@ export async function consultaExpedienteLoja(idLoja) {
         schemaLojaExpediente.hrInicio = ["06:00", "06:00", "06:00", "06:00", "06:00", "06:00", "06:00"];
         schemaLojaExpediente.hrFim = ["23:00", "23:00", "23:00", "23:00", "23:00", "23:00", "23:00"];
         schemaLojaExpediente.inPermanentementeAberto = true;
-        schemaLojaExpediente.inAtendeChamadosForaDoExpediente = true;
+        schemaLojaExpediente.inAtendeChamadosForaDoExpediente = 0; //1-sim, 2-não, 0-não selecionado
         resolve(schemaLojaExpediente)
       } else {
         resolve(null)
