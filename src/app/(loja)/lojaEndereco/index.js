@@ -166,7 +166,7 @@ export default function ViewEdtEnderecoLoja() {
           <Text style={styleApp.textSubtitulo}>Endereço</Text>
         </View>
 
-        {modalSimples(flagShowModal, handleCloseModal, "Informações atualizadas!", "TipoMsg", "Título", processing)}
+        {modalSimples(flagShowModal, handleCloseModal, "Endereço atualizado!", "TipoMsg", "Título", processing)}
 
         <View style={styles.containerPrincipal}>
           {InputText("CEP", onChangeCep, "CEP", 1, 8, "default", isEditavel, endereco.cep, false)}

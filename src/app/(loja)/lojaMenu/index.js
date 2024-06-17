@@ -24,7 +24,6 @@ export default function ViewEdtMenuLoja() {
   //Controles básicos
   const [processing, setProcessing] = useState({ isLoading: true, isExecuting: false, isOnlyConsulta: true });
   processing.isExecuting || processing.isLoading || processing.isOnlyConsulta ? isEditavel = false : isEditavel = true;
-  const [flagShowModal, setflagShowModal] = useState(false);
 
   //Outras declarações
   const [lojaDados, setLojaDados] = useState(parmLoja);
@@ -88,15 +87,6 @@ export default function ViewEdtMenuLoja() {
   }
 
   //Funções auxiliares 
-  function handleCloseModal() {
-    setflagShowModal(!flagShowModal);
-  }
-  function showModalMsgResultado() {
-    setflagShowModal(!flagShowModal);
-    setTimeout(() => {
-      setflagShowModal(false);
-    }, styleApp.size.modalTimeAutoClose);
-  }
 
   function goToEndereco() {
     router.navigate({
@@ -156,8 +146,6 @@ export default function ViewEdtMenuLoja() {
           style={styles.imgNovaLoja}
           source={require('../../../assets/outros/sheep_novaLoja_01.png')}
         />
-
-        {modalSimples(flagShowModal, handleCloseModal, "Informações atualizadas!", "TipoMsg", "Título", processing)}
 
         {processing.isLoading ?
           <></>

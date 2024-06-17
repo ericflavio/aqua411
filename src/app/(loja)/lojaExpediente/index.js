@@ -373,7 +373,7 @@ export default function ViewExpedienteLoja() {
           <Text style={styleApp.textSubtitulo}>Expediente</Text>
         </View>
 
-        {modalSimples(flagShowModal, handleCloseModal, "Informações atualizadas!", "TipoMsg", "Título", processing)}
+        {modalSimples(flagShowModal, handleCloseModal, "Expediente atualizado!", "TipoMsg", "Título", processing)}
 
         {processing.isOnlyConsulta ? <></> :
           <View style={styles.containerPrincipal}>

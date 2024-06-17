@@ -21,7 +21,7 @@ export default function ViewReception() {
           style={styleApp.textTitulo}>
           Você ainda lava roupa em casa?
         </Animatable.Text>
-        <Text style={styleApp.textSubtitulo}>
+        <Text style={[styleApp.textSubtitulo, {zIndex:1}]}>
           Está na hora de conhecer os benefícios das lavanderias inteligentes
         </Text>
         <View style={styles.containerViewButton}>

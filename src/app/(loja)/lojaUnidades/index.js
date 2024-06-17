@@ -16,7 +16,6 @@ export default function ViewLojaUnidades() {
   //Controles básicos
   const [processing, setProcessing] = useState({ isLoading: true, isExecuting: false, isOnlyConsulta: true });
   processing.isExecuting || processing.isLoading || processing.isOnlyConsulta ? isEditavel = false : isEditavel = true;
-  const [flagShowModal, setflagShowModal] = useState(false);
 
   //Outras declarações
   const [listaUnidades, setListaUnidades] = useState(null);
@@ -32,16 +31,6 @@ export default function ViewLojaUnidades() {
   }
 
   //Funções auxiliares 
-  function handleCloseModal() {
-    setflagShowModal(!flagShowModal);
-  }
-  function showModalMsgResultado() {
-    setflagShowModal(!flagShowModal);
-    setTimeout(() => {
-      setflagShowModal(false);
-    }, styleApp.size.modalTimeAutoClose);
-  }
-
 
   //Componente visual de cada Unidade (card)
   const Item = ({ item, onPress }) => (
@@ -89,7 +78,6 @@ export default function ViewLojaUnidades() {
         <Text style={styleApp.textRegular}>
           Selecione abaixo uma unidade previamente cadastrada e atualize os dados que desejar
         </Text>
-        {modalSimples(flagShowModal, handleCloseModal, "Informações atualizadas!", "TipoMsg", "Título", processing)}
       </View>
 
       {processing.isLoading ?

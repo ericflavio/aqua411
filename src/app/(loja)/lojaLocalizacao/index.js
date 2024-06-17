@@ -133,7 +133,7 @@ export default function ViewLocalizacaoLoja() {
           <Text style={styleApp.textSubtitulo}>localização geográfica</Text>
         </View>
 
-        {modalSimples(flagShowModal, handleCloseModal, "Informações atualizadas!", "TipoMsg", "Título", processing)}
+        {modalSimples(flagShowModal, handleCloseModal, "Localização atualizada!", "TipoMsg", "Título", processing)}
 
         <View style={styles.containerPrincipal}>
           {InputText("Latitude", onChangeLatitude, "ex. 15,23456", 1, 12, "default", isEditavel, localizacao.latitude, false)}
