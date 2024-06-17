@@ -92,6 +92,7 @@ export async function consultaListaStatusLoja() {
   })
 }
 
+//Lista de unidades
 export async function consultaListaUnidades(user) {
   const res = [
     {
@@ -123,6 +124,7 @@ export async function consultaListaUnidades(user) {
   })
 }
 
+//Loja em edicao
 export async function consultaExistenciaLojaEmCriacao(user) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -139,6 +141,8 @@ export async function consultaExistenciaLojaEmCriacao(user) {
     }, 500);
   })
 }
+
+//Dados de uma loja
 export async function consultaDadosLoja(id) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
