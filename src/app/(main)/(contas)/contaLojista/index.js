@@ -80,16 +80,6 @@ export function ViewContaLojista() {
   function listarUnidades() {
     router.push('/lojaUnidades');
   }
-  async function logoutApp() {
-    Alert.alert('SAIR', 'Você deseja sair do aplicativo agora?', [
-      {
-        text: 'Ficar',
-        onPress: () => console.log('Cancel Pressed'),
-        style: 'cancel',
-      },
-      { text: 'Sair', onPress: () => logOut() },
-    ]);
-  }
 
   return (
     <SafeAreaView style={styleApp.containerSafeArea}>

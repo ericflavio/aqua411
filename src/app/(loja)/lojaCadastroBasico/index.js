@@ -23,7 +23,7 @@ export default function ViewLojaCadastroBasico() {
   //b) Se chegar <> null, siginifica que a loja já foi criada e está sendo editada.
 
   //Controles básicos
-  const [processing, setProcessing] = useState({ isLoading: true, isExecuting: false, isOnlyConsulta: parmOnlyConsulta });
+  const [processing, setProcessing] = useState({ isLoading: false, isExecuting: false, isOnlyConsulta: parmOnlyConsulta });
   processing.isExecuting || processing.isLoading || processing.isOnlyConsulta ? isEditavel = false : isEditavel = true;
   const [flagShowModal, setflagShowModal] = useState(false);
 
@@ -38,6 +38,7 @@ export default function ViewLojaCadastroBasico() {
   async function fetchDados() {
     //No caso de edição de loja existente: consulta dados adicionais aos que já chegaram via parâmetro
     if (parmLoja !== null) {
+      setProcessing({ ...processing, isLoading: true });
       try {
         res = await consultaExistenciaLojaEmCriacao("s"); //Verifica se já possui alguma sendo criada
         res !== null ? setLojaDados(res) : setLojaDados(schemaLojaDados);
@@ -45,7 +46,7 @@ export default function ViewLojaCadastroBasico() {
       } catch {
         ShowErrorMessage("lj008");
         setProcessing({ ...processing, isLoading: false, isOnlyConsulta: true });
-      };
+      }
     }
   }
 
