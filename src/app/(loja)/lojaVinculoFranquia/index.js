@@ -17,6 +17,13 @@ import { useLocalSearchParams } from 'expo-router';
 import { ViewDadoSimples } from '../../../componentes/viewDadoSimples';
 import { Picker } from '@react-native-picker/picker';
 
+//TODO:
+//Quando franqueador mudar o stauts da solicitação, atualiar também o status na lojaServices (Status da solicitacao origemm)
+//DFS
+///Status solicitado: edição travada até que o franqueador se manifeste.
+///status aprovado: edição travada até que o franqueador remova o vinculo.
+///status reprovado ou removido: permite solicitar novamente (pra qualquer franquia)
+
 export default function ViewLojaVinculoFranquia() {
   const { user } = useContext(AuthContext);
   const { navigateParmLoja, naviateParmOnlyConsulta } = useLocalSearchParams();
@@ -214,7 +221,7 @@ async function consultaCepWeb(parm) {
 
         <View style={[styles.containerPrincipal, { marginTop: 10 }]}>
           <Text style={styleApp.textSmallItalico}>
-            Para vincular sua loja a uma franquia, selecione a franquia na lista abaixo. Obs: Ao confirmar, uma solicitação de confirmação de vínculo será enviada para análise pelo responsável.
+            Para vincular sua loja a uma franquia, selecione a franquia na lista abaixo e confirme. Obs: Uma solicitação de confirmação de vínculo será enviada para análise pelo responsável.
           </Text>
           <View style={styles.containerPicker}>
             <Picker

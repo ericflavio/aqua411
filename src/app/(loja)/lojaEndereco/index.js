@@ -37,6 +37,7 @@ export default function ViewEdtEnderecoLoja() {
   //ok - Endereço
   //ok - Localização geografica
   //ok - horário de funcionamento
+  //franquia: analisar solicitacoes de vínculo de lojas.
   //Franquia vinculada: url site da franquia, isFranquia, idFranquia. Obs: Pode remover a vinculação? (pensar sobre isso)
   //Dados complementares: franquia vinculada, telefone, email
   //Maquinas: layout, flag mostrar status maquina, url de callback de status maquinas
