@@ -12,8 +12,9 @@ import { consultaDadosFranquia, consultaListaFranquias } from '../../../services
 import { consultaFranquiaVinculada } from '../../../services/lojaService';
 import { schemaFranquiaDados } from '../../../schemas/franquiaSchema';
 import { schemaLojaFranquiaVinculada } from '../../../schemas/lojaSchema';
-import modalSimples from '../../../componentes/modalSimples';
+import ModalSimples from '../../../componentes/modalSimples';
 import { useLocalSearchParams } from 'expo-router';
+import { ViewDadoSimples } from '../../../componentes/viewDadoSimples';
 
 export default function ViewLojaVinculoFranquia() {
   const { user } = useContext(AuthContext);
@@ -170,16 +171,18 @@ async function consultaCepWeb(parm) {
           <Text style={styleApp.textSubtitulo}>Vínculo com franquia</Text>
         </View>
 
-        {modalSimples(flagShowModal, handleCloseModal, "Vínculo atualizado!", "TipoMsg", "Título", processing)}
+        {ModalSimples(flagShowModal, handleCloseModal, "Vínculo atualizado!", "TipoMsg", "Título", processing)}
 
         <View style={styles.containerPrincipal}>
-          {franquiaVinculada.idFranquia !== "" ? 
-          <Text>Franquia vinculada: {franquiaVinculada.idFranquia}</Text> 
-          : 
-          <Text>Franquia vinculada: Não possui</Text>  
-          }
+          {ViewDadoSimples("Franquia vinculada", franquiaVinculada.idFranquia)}
+          {ViewDadoSimples("Data registro", franquiaVinculada.dataVinculo)}
+          {ViewDadoSimples("Status do vínculo", franquiaVinculada.status)}
+          {ViewDadoSimples("Data do vinculo confirmado", franquiaVinculada.dataInicioVinculoConfirmado)}
+          {ViewDadoSimples("Data de confirmação do vínculo", franquiaVinculada.dataRegistroInicioVinculo)}
+          {ViewDadoSimples("Data de fim do vínculo", franquiaVinculada.dataFimVinculoConfirmado)}
+          {ViewDadoSimples("Data de registro do fim do vínculo", franquiaVinculada.dataRegistroFimVinculo)}
 
-          {InputText("CEP", onChangeCep, "CEP", 1, 8, "default", isEditavel, selectedFranquiaId, false)}
+          //{InputText("CEP", onChangeCep, "CEP", 1, 8, "default", isEditavel, selectedFranquiaId, false)}
 
           {processing.isOnlyConsulta ? <></> :
             <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir} >

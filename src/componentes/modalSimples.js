@@ -2,7 +2,7 @@ import { Modal, StyleSheet, Text, View, TouchableOpacity, ActivityIndicator } fr
 import { MaterialIcons } from "@expo/vector-icons";
 import { styleApp } from '../styles/styleApp';
 
-export default function modalSimples(flagShowModal, onClose, msg, msgTipo, msgTitulo, processing) {
+export default function ModalSimples(flagShowModal, onClose, msg, msgTipo, msgTitulo, processing) {
   if (!processing) {
     processing = { isLoading: false, isExecuting: false }
   }

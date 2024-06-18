@@ -11,7 +11,7 @@ import { ShowErrorMessage } from '../../../errors/errorMessage';
 import { consultaCepService } from '../../../services/cepService';
 import { schemaLojaEndereco } from '../../../schemas/lojaSchema';
 import { atualizaEnderecoLoja, consultaEnderecoLoja } from '../../../services/lojaService';
-import modalSimples from '../../../componentes/modalSimples';
+import ModalSimples from '../../../componentes/modalSimples';
 import { useLocalSearchParams } from 'expo-router';
 
 export default function ViewEdtEnderecoLoja() {
@@ -166,7 +166,7 @@ export default function ViewEdtEnderecoLoja() {
           <Text style={styleApp.textSubtitulo}>Endereço</Text>
         </View>
 
-        {modalSimples(flagShowModal, handleCloseModal, "Endereço atualizado!", "TipoMsg", "Título", processing)}
+        {ModalSimples(flagShowModal, handleCloseModal, "Endereço atualizado!", "TipoMsg", "Título", processing)}
 
         <View style={styles.containerPrincipal}>
           {InputText("CEP", onChangeCep, "CEP", 1, 8, "default", isEditavel, endereco.cep, false)}

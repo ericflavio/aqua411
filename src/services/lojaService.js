@@ -14,15 +14,15 @@ export async function consultaFranquiaVinculada(idLoja) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (idLoja && idLoja === "s") {
-        schemaLojaFranquiaVinculada = {
-          idFranquia: "00001",
-          dataVinculo: "01/07/2024",
-          dataInicioVinculoConfirmado: "",
-          dataFimVinculoConfirmado: "",
-          dataRegistroInicioVinculo: "",
-          dataRegistroFimVinculo: "",
-          idUsuarioConfirmacao: "01010101"
-        }
+
+        schemaLojaFranquiaVinculada.idFranquia = "00001";
+        schemaLojaFranquiaVinculada.dataVinculo = "01/07/2024";
+        schemaLojaFranquiaVinculada.dataInicioVinculoConfirmado = "";
+        schemaLojaFranquiaVinculada.dataFimVinculoConfirmado = "";
+        schemaLojaFranquiaVinculada.dataRegistroInicioVinculo = "";
+        schemaLojaFranquiaVinculada.dataRegistroFimVinculo = "";
+        schemaLojaFranquiaVinculada.idUsuarioConfirmacao = "01010101";
+
         resolve(schemaLojaFranquiaVinculada)
       } else {
         resolve(null)

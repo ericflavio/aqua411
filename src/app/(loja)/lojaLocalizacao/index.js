@@ -11,7 +11,7 @@ import { ShowErrorMessage } from '../../../errors/errorMessage';
 import { schemaLojaLocalizacao } from '../../../schemas/lojaSchema';
 import { atualizaLocalizacaoLoja, consultaLocalizacaoLoja } from '../../../services/lojaService';
 import { pingUrl } from '../../../services/urlService';
-import modalSimples from '../../../componentes/modalSimples';
+import ModalSimples from '../../../componentes/modalSimples';
 import { useLocalSearchParams } from 'expo-router';
 
 export default function ViewLocalizacaoLoja() {
@@ -133,7 +133,7 @@ export default function ViewLocalizacaoLoja() {
           <Text style={styleApp.textSubtitulo}>localização geográfica</Text>
         </View>
 
-        {modalSimples(flagShowModal, handleCloseModal, "Localização atualizada!", "TipoMsg", "Título", processing)}
+        {ModalSimples(flagShowModal, handleCloseModal, "Localização atualizada!", "TipoMsg", "Título", processing)}
 
         <View style={styles.containerPrincipal}>
           {InputText("Latitude", onChangeLatitude, "ex. 15,23456", 1, 12, "default", isEditavel, localizacao.latitude, false)}

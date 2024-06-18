@@ -10,7 +10,7 @@ import { router } from 'expo-router';
 import { consultaExistenciaLojaEmCriacao } from '../../../../services/lojaService';
 import { ShowErrorMessage } from '../../../../errors/errorMessage';
 import { schemaLojaDadosMinimos } from '../../../../schemas/lojaSchema';
-import modalSimples from '../../../../componentes/modalSimples';
+import ModalSimples from '../../../../componentes/modalSimples';
 
 //Tela principal HOME
 export function ViewContaLojista() {
@@ -90,7 +90,7 @@ export function ViewContaLojista() {
           <Text style={styleApp.textTitulo}>
             Espaço empreendedor
           </Text>
-          {modalSimples(flagShowModal, handleCloseModal, "Informações atualizadas!", "TipoMsg", "Título", processing)}
+          {ModalSimples(flagShowModal, handleCloseModal, "Informações atualizadas!", "TipoMsg", "Título", processing)}
         </View>
 
         <View style={styles.containerBasics}>

@@ -2,12 +2,12 @@
 export var schemaLojaFranquiaVinculada = {
   //Setado pelo franqueado
   idFranquia: "",
-  dataVinculo: '00/00/0000', //Data que o franqueado criou o vinculo
+  dataVinculo: '', //Data que o franqueado criou o vinculo
   //Setado pelo franqueador
-  dataInicioVinculoConfirmado: "00/00/0000",
-  dataFimVinculoConfirmado: '00/00/0000',
-  dataRegistroInicioVinculo: "00/00/0000",
-  dataRegistroFimVinculo: '00/00/0000',
+  dataInicioVinculoConfirmado: "",
+  dataFimVinculoConfirmado: '',
+  dataRegistroInicioVinculo: "",
+  dataRegistroFimVinculo: '',
   idUsuarioConfirmacao: '',
   status: '', //[Solicitado, Aprovado, Reprovado, Removido]
 };

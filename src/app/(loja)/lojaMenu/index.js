@@ -9,7 +9,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import * as Animatable from 'react-native-animatable';
 import { consultaListaStatusLoja } from '../../../services/lojaService';
 import { ShowErrorMessage } from '../../../errors/errorMessage';
-import modalSimples from '../../../componentes/modalSimples';
+import ModalSimples from '../../../componentes/modalSimples';
 import { schemaLojaStatus } from '../../../schemas/lojaSchema';
 
 //Tela principal
@@ -163,7 +163,7 @@ export default function ViewEdtMenuLoja() {
           source={require('../../../assets/outros/sheep_novaLoja_01.png')}
         />
 
-        {modalSimples(flagShowModal, handleCloseModal, "Vínculo atualizado!", "TipoMsg", "Título", processing)}
+        {ModalSimples(flagShowModal, handleCloseModal, "Vínculo atualizado!", "TipoMsg", "Título", processing)}
 
         {processing.isLoading ?
           <></>

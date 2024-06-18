@@ -7,7 +7,7 @@ import { GradienteFill } from '../../../componentes/gradienteFill';
 import { AuthContext } from "../../../contexts/auth";
 import { consultaListaUnidades } from '../../../services/lojaService';
 import { styleColor } from '../../../styles/styleColors';
-import modalSimples from '../../../componentes/modalSimples';
+import ModalSimples from '../../../componentes/modalSimples';
 
 //Tela principal
 export default function ViewLojaUnidades() {
@@ -88,7 +88,7 @@ export default function ViewLojaUnidades() {
         <Text style={styleApp.textRegular}>
           Selecione abaixo uma unidade previamente cadastrada e atualize os dados que desejar
         </Text>
-        {modalSimples(flagShowModal, handleCloseModal, "Expediente atualizado!", "TipoMsg", "Título", processing)}
+        {ModalSimples(flagShowModal, handleCloseModal, "Expediente atualizado!", "TipoMsg", "Título", processing)}
       </View>
 
       {processing.isLoading ?

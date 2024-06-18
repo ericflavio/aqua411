@@ -11,7 +11,7 @@ import { AuthContext } from "../../../contexts/auth";
 import { ShowErrorMessage } from '../../../errors/errorMessage';
 import { schemaLojaExpediente } from '../../../schemas/lojaSchema';
 import { atualizaExpedienteLoja, consultaExpedienteLoja } from '../../../services/lojaService';
-import modalSimples from '../../../componentes/modalSimples';
+import ModalSimples from '../../../componentes/modalSimples';
 import { useLocalSearchParams } from 'expo-router';
 import SempreAberto from '../../../componentes/sempreAberto';
 import { Picker } from '@react-native-picker/picker';
@@ -373,7 +373,7 @@ export default function ViewExpedienteLoja() {
           <Text style={styleApp.textSubtitulo}>Expediente</Text>
         </View>
 
-        {modalSimples(flagShowModal, handleCloseModal, "Expediente atualizado!", "TipoMsg", "Título", processing)}
+        {ModalSimples(flagShowModal, handleCloseModal, "Expediente atualizado!", "TipoMsg", "Título", processing)}
 
         {processing.isOnlyConsulta ? <></> :
           <View style={styles.containerPrincipal}>

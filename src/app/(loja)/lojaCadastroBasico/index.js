@@ -10,7 +10,7 @@ import { consultaExistenciaLojaEmCriacao, atualizaDadosBasicosLoja } from '../..
 import { ShowErrorMessage } from '../../../errors/errorMessage';
 import { InputText } from '../../../componentes/inputText';
 import { schemaLojaDados, schemaLojaDadosMinimos } from '../../../schemas/lojaSchema';
-import modalSimples from '../../../componentes/modalSimples';
+import ModalSimples from '../../../componentes/modalSimples';
 
 //Tela principal
 export default function ViewLojaCadastroBasico() {
@@ -120,7 +120,7 @@ export default function ViewLojaCadastroBasico() {
     <SafeAreaView style={styleApp.containerSafeAreaSemPadding}>
       {GradienteFill()}
       <ScrollView style={styleApp.containerScrollFull} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
-        {modalSimples(flagShowModal, handleCloseModal, "Informações atualizadas!", "TipoMsg", "Título", processing)}
+        {ModalSimples(flagShowModal, handleCloseModal, "Informações atualizadas!", "TipoMsg", "Título", processing)}
 
         {!parmLoja || parmLoja === null ?
           <>
