@@ -1,10 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, ActivityIndicator, Alert, Modal } from "react-native";
+import { View, Text, SafeAreaView, ScrollView, TouchableOpacity } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { styles } from "./styles";
 import { styleApp } from '../../../styles/styleApp';
 import { styleColor } from "../../../styles/styleColors";
-import { InputText } from '../../../componentes/inputText';
 import { GradienteFill } from '../../../componentes/gradienteFill';
 import { AuthContext } from "../../../contexts/auth";
 import { ShowErrorMessage } from '../../../errors/errorMessage';
@@ -86,7 +85,6 @@ export default function ViewLojaVinculoFranquia() {
   };
 
   function carregaDadosListaFranquias(res) {
-    console.log("listaFranquias ", res)
     if (!res || res === null) {
       setListaFranquias(null);
       return;

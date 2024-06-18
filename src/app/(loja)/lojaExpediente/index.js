@@ -13,7 +13,7 @@ import { schemaLojaExpediente } from '../../../schemas/lojaSchema';
 import { atualizaExpedienteLoja, consultaExpedienteLoja } from '../../../services/lojaService';
 import ModalSimples from '../../../componentes/modalSimples';
 import { useLocalSearchParams } from 'expo-router';
-import SempreAberto from '../../../componentes/sempreAberto';
+import MostraTag24horas from '../../../componentes/mostraTag24Horas';
 import { Picker } from '@react-native-picker/picker';
 
 export default function ViewExpedienteLoja() {
@@ -389,7 +389,7 @@ export default function ViewExpedienteLoja() {
         }
 
         <View style={styles.containerPrincipal}>
-          {is24h ? SempreAberto() : <></>}
+          {is24h ? MostraTag24horas() : <></>}
 
           <View style={styles.containerTimer}>
             <Checkbox style={{ margin: 8 }} value={isCheckedSeg} onValueChange={setCheckedSeg} disabled={!isEditavel} />

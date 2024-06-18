@@ -2,7 +2,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { styleApp } from '../styles/styleApp';
 //Sinal de aberto 24h
 
-export default function SempreAberto() {
+export default function MostraTag24horas() {
   return (
     <>
     <View style={stylesLocal.containerPeriodo}>
