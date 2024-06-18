@@ -6,7 +6,7 @@ export function ViewDadoSimples(label, valor) {
   return (
     <View style={stylesLocal.containerItem}>
       <View style={stylesLocal.containerBarra}>
-        <View style={{height: "80%", borderLeftWidth:1, borderBlockColor:styleApp.color.cinzaClaro }}></View>
+        {/*  <View style={stylesLocal.containerDado}></View> */}
         <View>
           <Text style={styleApp.textSmall}>{label}</Text>
           <Text style={styleApp.textRegular}>{valor}</Text>
@@ -22,6 +22,7 @@ const stylesLocal = StyleSheet.create({
     width: '100%',
     justifyContent: 'flex-start',
     alignItems: 'stretch',
+    marginTop: 6,
   },
   containerBarra: {
     flexDirection: "row",
@@ -32,10 +33,8 @@ const stylesLocal = StyleSheet.create({
     alignItems: 'center',
   },
   containerDado: {
-    flex: 1,
-    width: "100%",
-    minHeight: 26,
-    borderRadius: styleApp.containerBorderRadius,
-    backgroundColor: "#f1f1f1f1",
+    height: "70%",
+    borderLeftWidth: 1,
+    borderBlockColor: styleColor.cinzaClaro
   },
 });

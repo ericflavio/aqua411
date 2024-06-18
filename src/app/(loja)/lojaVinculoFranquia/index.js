@@ -15,6 +15,7 @@ import { schemaLojaFranquiaVinculada } from '../../../schemas/lojaSchema';
 import ModalSimples from '../../../componentes/modalSimples';
 import { useLocalSearchParams } from 'expo-router';
 import { ViewDadoSimples } from '../../../componentes/viewDadoSimples';
+import { Picker } from '@react-native-picker/picker';
 
 export default function ViewLojaVinculoFranquia() {
   const { user } = useContext(AuthContext);
@@ -30,7 +31,7 @@ export default function ViewLojaVinculoFranquia() {
   //Outras declarações
   const [franquiaVinculada, setFranquiaVinculada] = useState(schemaLojaFranquiaVinculada);
   const [franquia, setFranquia] = useState(schemaFranquiaDados);
-  const [listaFranquias, setListaFranquias] = useState(null);
+  const [listaFranquias, setListaFranquias] = useState([]);
   const [selectedFranquiaId, setSelectedFranquiaId] = useState(null);
 
   //Ações ao final da construção do componente
@@ -59,14 +60,25 @@ export default function ViewLojaVinculoFranquia() {
     };
   }
 
-  function carregaDadosObtidosNoLoading(res) {
+  async function carregaDadosObtidosNoLoading(res) {
     if (!res || res === null) {
       setFranquiaVinculada(schemaLojaFranquiaVinculada);
       return;
     }
     setFranquiaVinculada(res);
+    //Busca dados da franquia vinculada
+    if (res.idFranquia && res.idFranquia !== "") {
+      try {
+        fran = await consultaDadosFranquia("s");
+        setFranquia(fran);
+      } catch {
+        throw "Erro";
+      };
+    }
   };
+
   function carregaDadosListaFranquias(res) {
+    console.log("listaFranquias ", res)
     if (!res || res === null) {
       setListaFranquias(null);
       return;
@@ -171,18 +183,53 @@ async function consultaCepWeb(parm) {
           <Text style={styleApp.textSubtitulo}>Vínculo com franquia</Text>
         </View>
 
+        {!franquiaVinculada.idFranquia || franquiaVinculada.idFranquia === null ?
+         <View style={[styles.containerPrincipal,{backgroundColor:styleColor.aviso}]}>
+          <Text style={styleApp.textSmallItalico}>
+            Sua loja não tem vínculo com nenhuma franquia
+          </Text>
+          </View>
+          :
+          <></>}
+        {franquiaVinculada.status && franquiaVinculada.status === "Solicitado" ?
+         <View style={[styles.containerPrincipal,{backgroundColor:styleColor.alerta}]}>
+          <Text style={styleApp.textSmallItalico}>
+            O franqueador ainda está analisando sua solicitação de vínculo
+          </Text>
+          </View>
+          :
+          <></>}
+
         {ModalSimples(flagShowModal, handleCloseModal, "Vínculo atualizado!", "TipoMsg", "Título", processing)}
 
         <View style={styles.containerPrincipal}>
-          {ViewDadoSimples("Franquia vinculada", franquiaVinculada.idFranquia)}
-          {ViewDadoSimples("Data registro", franquiaVinculada.dataVinculo)}
+          {ViewDadoSimples("Franquia", franquia.nome)}
+          {/*ViewDadoSimples("Data registro", franquiaVinculada.dataVinculo)*/}
           {ViewDadoSimples("Status do vínculo", franquiaVinculada.status)}
           {ViewDadoSimples("Data do vinculo confirmado", franquiaVinculada.dataInicioVinculoConfirmado)}
           {ViewDadoSimples("Data de confirmação do vínculo", franquiaVinculada.dataRegistroInicioVinculo)}
           {ViewDadoSimples("Data de fim do vínculo", franquiaVinculada.dataFimVinculoConfirmado)}
           {ViewDadoSimples("Data de registro do fim do vínculo", franquiaVinculada.dataRegistroFimVinculo)}
+        </View>
 
-          //{InputText("CEP", onChangeCep, "CEP", 1, 8, "default", isEditavel, selectedFranquiaId, false)}
+        <View style={[styles.containerPrincipal, { marginTop: 10 }]}>
+          <Text style={styleApp.textSmallItalico}>
+            Para vincular sua loja a uma franquia, selecione a franquia na lista abaixo. Obs: Ao confirmar, uma solicitação de confirmação de vínculo será enviada para análise pelo responsável.
+          </Text>
+          <View style={styles.containerPicker}>
+            <Picker
+              enabled={isEditavel}
+              selectedValue={selectedFranquiaId}
+              onValueChange={(itemValue, itemIndex) =>
+                setSelectedFranquiaId(itemValue)
+              }>
+              {/* <Picker.Item label="Não determinado" value="0" /> */}
+              {listaFranquias.map((item, index) => {
+                return (< Picker.Item label={item.nome} value={item.idFranquia} key={index} />);
+              })}
+
+            </Picker>
+          </View>
 
           {processing.isOnlyConsulta ? <></> :
             <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir} >

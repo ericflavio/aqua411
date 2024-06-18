@@ -22,6 +22,7 @@ export async function consultaFranquiaVinculada(idLoja) {
         schemaLojaFranquiaVinculada.dataRegistroInicioVinculo = "";
         schemaLojaFranquiaVinculada.dataRegistroFimVinculo = "";
         schemaLojaFranquiaVinculada.idUsuarioConfirmacao = "01010101";
+        schemaLojaFranquiaVinculada.status = "Solicitado";
 
         resolve(schemaLojaFranquiaVinculada)
       } else {
