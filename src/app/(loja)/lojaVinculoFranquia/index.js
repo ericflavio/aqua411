@@ -16,6 +16,7 @@ import ModalSimples from '../../../componentes/modalSimples';
 import { useLocalSearchParams } from 'expo-router';
 import { ViewDadoSimples } from '../../../componentes/viewDadoSimples';
 import { Picker } from '@react-native-picker/picker';
+import * as Animatable from 'react-native-animatable';
 
 //TODO:
 //Quando franqueador mudar o stauts da solicitação, atualiar também o status na lojaServices (Status da solicitacao origemm)
@@ -191,19 +192,19 @@ async function consultaCepWeb(parm) {
         </View>
 
         {!franquiaVinculada.idFranquia || franquiaVinculada.idFranquia === null ?
-         <View style={[styles.containerPrincipal,{backgroundColor:styleColor.aviso}]}>
+         <Animatable.View animation="fadeInRight" style={[styles.containerPrincipal,{backgroundColor:styleColor.aviso}]}>
           <Text style={styleApp.textSmallItalico}>
-            Sua loja não tem vínculo com nenhuma franquia
+            Sua loja não tem vínculo com franquia
           </Text>
-          </View>
+          </Animatable.View>
           :
           <></>}
         {franquiaVinculada.status && franquiaVinculada.status === "Solicitado" ?
-         <View style={[styles.containerPrincipal,{backgroundColor:styleColor.alerta}]}>
+         <Animatable.View animation="fadeInRight" style={[styles.containerPrincipal,{backgroundColor:styleColor.alerta}]}>
           <Text style={styleApp.textSmallItalico}>
-            O franqueador ainda está analisando sua solicitação de vínculo
+            A franquia ainda está analisando sua solicitação de vínculo
           </Text>
-          </View>
+          </Animatable.View>
           :
           <></>}
 

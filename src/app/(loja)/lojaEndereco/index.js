@@ -29,6 +29,7 @@ export default function ViewEdtEnderecoLoja() {
   const [endereco, setEndereco] = useState(schemaLojaEndereco)
 
   //Corrigir navegação
+  //path caminho absoluto (../../../)
   //Corrigir showmodal resultado (parametrizar sucesso e erro)
   //github pago
   //persistir loja em edição localmente? ou loja favorita? ou outro dado ?
