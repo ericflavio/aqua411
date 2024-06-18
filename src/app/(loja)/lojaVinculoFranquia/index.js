@@ -173,7 +173,11 @@ async function consultaCepWeb(parm) {
         {modalSimples(flagShowModal, handleCloseModal, "Vínculo atualizado!", "TipoMsg", "Título", processing)}
 
         <View style={styles.containerPrincipal}>
-          {franquiaVinculada.idFranquia !== "" ? <></> : <></> }
+          {franquiaVinculada.idFranquia !== "" ? 
+          <Text>Franquia vinculada: {franquiaVinculada.idFranquia}</Text> 
+          : 
+          <Text>Franquia vinculada: Não possui</Text>  
+          }
 
           {InputText("CEP", onChangeCep, "CEP", 1, 8, "default", isEditavel, selectedFranquiaId, false)}
 
