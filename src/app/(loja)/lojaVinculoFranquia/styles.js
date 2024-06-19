@@ -1,5 +1,7 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 import { styleApp } from "../../../styles/styleApp";
+import { styleColor } from "../../../styles/styleColors";
+import { styleSize } from "../../../styles/styleSize";
 
 export const styles = StyleSheet.create({
   containerHeader: {
@@ -26,5 +28,35 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: styleApp.color.tema10pSecundaria,
     borderRadius: 4
+  },
+  bottomView: {
+    flex: 1,
+    marginTop:20,
+    justifyContent: 'flex-end',
+    alignItems: 'stretch',
+  },
+  modalView: {
+    marginTop:100,
+    minHeight: 320,
+    maxHeight: Dimensions.get('window').height - 200,
+    width: "100%",
+    borderLeftWidth: 1,
+    borderRightWidth: 1,
+    borderTopWidth: 3,
+    borderColor: styleColor.tema30pPrincipal,
+    backgroundColor: 'white',
+    borderTopEndRadius: 20,
+    borderTopStartRadius: 20,
+    padding: 16,
+    paddingTop: 0,
+    alignItems: 'stretch',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 20,
+    elevation: 5,
   },
 });

@@ -13,6 +13,14 @@ export var schemaFranquiaDados = {
   idUsuarioCadastramento: "",
   idUsuarioAtualizacao: "",
 };
+//Lista de franquias
+export var schemaFranquiaDadosLista = {
+  idFranquia: "",
+  nome: "",
+  frasePrincipal: "",
+  fraseSecundaria: "",
+  uriLogotipo: "",
+};
 //Ingerência: permissões sobre as lojas vinculadas
 export var schemaFranquiaIngerenciaSobreLojas = {
   inPermiteVerStatusMaquinas: false,

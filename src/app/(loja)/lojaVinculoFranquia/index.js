@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { View, Text, SafeAreaView, ScrollView, TouchableOpacity } from "react-native";
+import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Modal, } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { styles } from "./styles";
 import { styleApp } from '../../../styles/styleApp';
@@ -16,6 +16,8 @@ import { useLocalSearchParams } from 'expo-router';
 import { ViewDadoSimples } from '../../../componentes/viewDadoSimples';
 import { Picker } from '@react-native-picker/picker';
 import * as Animatable from 'react-native-animatable';
+import { ModalSelecionaFranquia } from './modalSelecionaFranquia';
+import { styleSize } from '../../../styles/styleSize';
 
 //TODO:
 //Quando franqueador mudar o stauts da solicitação, atualiar também o status na lojaServices (Status da solicitacao origemm)
@@ -36,6 +38,7 @@ export default function ViewLojaVinculoFranquia() {
   const [flagShowModal, setflagShowModal] = useState(false);
 
   //Outras declarações
+  const [flagShowModalFranquias, setflagShowModalFranquias] = useState(false);
   const [franquiaVinculada, setFranquiaVinculada] = useState(schemaLojaFranquiaVinculada);
   const [franquia, setFranquia] = useState(schemaFranquiaDados);
   const [listaFranquias, setListaFranquias] = useState([]);
@@ -146,6 +149,9 @@ async function consultaCepWeb(parm) {
   function handleCloseModal() {
     setflagShowModal(!flagShowModal);
   }
+  function handleModalFranquias() {
+    setflagShowModalFranquias(!flagShowModalFranquias);
+  }
   function showModalMsgResultado() {
     setflagShowModal(!flagShowModal);
     setTimeout(() => {
@@ -189,24 +195,43 @@ async function consultaCepWeb(parm) {
           <Text style={styleApp.textSubtitulo}>Vínculo com franquia</Text>
         </View>
 
-        {!franquiaVinculada.idFranquia || franquiaVinculada.idFranquia === null ?
-         <Animatable.View animation="fadeInRight" style={[styles.containerPrincipal,{backgroundColor:styleColor.aviso}]}>
-          <Text style={styleApp.textSmallItalico}>
-            Sua loja não tem vínculo com franquia
-          </Text>
-          </Animatable.View>
-          :
-          <></>}
-        {franquiaVinculada.status && franquiaVinculada.status === "Solicitado" ?
-         <Animatable.View animation="fadeInRight" style={[styles.containerPrincipal,{backgroundColor:styleColor.alerta}]}>
-          <Text style={styleApp.textSmallItalico}>
-            A franquia ainda está analisando sua solicitação de vínculo
-          </Text>
-          </Animatable.View>
-          :
-          <></>}
-
         {ModalSimples(flagShowModal, handleCloseModal, "Vínculo atualizado!", "TipoMsg", "Título", processing)}
+
+        {/** inicio **/}
+        <Modal
+          animationType={"slide"} //fade slide none
+          transparent={true}
+          visible={flagShowModalFranquias}
+          onRequestClose={() => { }}>
+          <View style={styles.bottomView}>
+            <View style={styles.modalView}>
+              <View style={{ marginBottom: 6, alignSelf:"flex-end"}}>
+                <TouchableOpacity style={styleApp.buttonFlatHL_transp} disabled={false} onPress={handleModalFranquias} >
+                  <MaterialIcons name="close" size={styleApp.size.iconSizeButtonLarge} color={styleApp.color.textButtonFlat} />
+                </TouchableOpacity>
+              </View>
+              {ModalSelecionaFranquia()}
+            </View>
+          </View>
+        </Modal>
+        {/** fim **/}
+
+        {!processing.isLoading && (!franquiaVinculada.idFranquia || franquiaVinculada.idFranquia === null) ?
+          <Animatable.View animation="fadeInRight" style={[styles.containerPrincipal, { backgroundColor: styleColor.aviso }]}>
+            <Text style={styleApp.textSmallItalico}>
+              Sua loja não tem vínculo com franquia
+            </Text>
+          </Animatable.View>
+          :
+          <></>}
+        {!processing.isLoading && (franquiaVinculada.status && franquiaVinculada.status === "Solicitado") ?
+          <Animatable.View animation="fadeInRight" style={[styles.containerPrincipal, { backgroundColor: styleColor.alerta }]}>
+            <Text style={styleApp.textSmallItalico}>
+              A franquia ainda está analisando sua solicitação de vínculo
+            </Text>
+          </Animatable.View>
+          :
+          <></>}
 
         <View style={styles.containerPrincipal}>
           {ViewDadoSimples("Franquia", franquia.nome)}
@@ -238,11 +263,12 @@ async function consultaCepWeb(parm) {
           </View>
 
           {processing.isOnlyConsulta ? <></> :
-            <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir} >
+            <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={handleModalFranquias} >
               <Text style={styleApp.textButtonRegular}>Confirmar</Text>
             </TouchableOpacity>
           }
         </View>
+
       </ScrollView>
     </SafeAreaView >
   )

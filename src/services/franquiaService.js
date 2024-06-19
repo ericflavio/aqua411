@@ -37,31 +37,17 @@ export async function consultaListaFranquias(id) {
       if (id && id === "s") {
         f1 = {
           idFranquia: '001',
-          idUsuarioProprietario: '001',
           nome: 'AquaMagic',
-          cnpj: '000000000',
-          whatsapp: '370000000',
-          siteUrl: 'https://aquamagic.com.br',
           frasePrincipal: 'Sua lavanderia fora de casa',
           fraseSecundaria: 'Lavanderia serlf-service',
-          uriLogotipo: 'https://imagem/logo',
-          dataConstituicao: '03/03/2022',
-          idUsuarioCadastramento: '0000011111',
-          idUsuarioAtualizacao: '',
+          uriLogotipo: 'https://imagem/logo/aquamagic',
         };
         f2 = {
-          idFranquia: '001',
-          idUsuarioProprietario: '001',
-          nome: 'Lavô',
-          cnpj: '000000000',
-          whatsapp: '370000000',
-          siteUrl: 'https://lavo.com.br',
-          frasePrincipal: 'Lavanderia inteligente',
-          fraseSecundaria: 'Venha lavar conscno',
-          uriLogotipo: 'https://imagem/logo',
-          dataConstituicao: '03/03/2022',
-          idUsuarioCadastramento: '0000011111',
-          idUsuarioAtualizacao: '',
+          idFranquia: '002',
+          nome: '60 Minutos',
+          frasePrincipal: 'Lava e seca rápido',
+          fraseSecundaria: 'Lavanderia inteligente',
+          uriLogotipo: 'https://imagem/logo/60minutos',
         };
         resolve([f1, f2])
       } else {
