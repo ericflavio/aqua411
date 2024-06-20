@@ -95,10 +95,8 @@ export default function ViewMaquinarioLoja() {
         {ModalSimples(flagShowModal, handleShowModal, "Máquinas atualizadas!", "TipoMsg", "Título", processing)}
 
         <View style={styles.containerPrincipal}>
-          {InputText("Latitude", onChangeLatitude, "ex. 15,23456", 1, 12, "default", isEditavel, maquinario.idMaquina, false)}
-
           {MontaMaquinario()}
-          
+
           {processing.isOnlyConsulta ? <></> :
             <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir} >
               <Text style={styleApp.textButtonRegular}>Confirmar</Text>

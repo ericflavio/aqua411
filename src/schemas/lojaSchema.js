@@ -8,6 +8,7 @@ export var schemaLojaMaquinario = {
   numeroLabel: "",
   nomeLabel: "",
   status: "", //Obs: Este sobrescreve o status da telemetria
+  capacidadeKg: 11,
 };
 
 //Franquia vinculada à loja
