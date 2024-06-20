@@ -84,7 +84,7 @@ export function MontaMaquinario(mList) {
 
     <View style={styles.containerPrincipal}>
 
-      {tipoExibicao !== "conjunto" ? 
+      {tipoExibicao !== "conjunto" ?
         mList.map((maq, index) => (
           <TouchableOpacity key={index}>
             <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', padding: 6, backgroundColor: styleColor.sucesso, borderRadius: 8, gap: 6 }}>
