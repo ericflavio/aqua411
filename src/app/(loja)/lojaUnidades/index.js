@@ -32,7 +32,7 @@ export default function ViewLojaUnidades() {
   }
 
   //Funções auxiliares
-  function handleCloseModal() {
+  function handleShowModal() {
     setflagShowModal(!flagShowModal);
   }
   function showModalMsgResultado() {
@@ -88,7 +88,7 @@ export default function ViewLojaUnidades() {
         <Text style={styleApp.textRegular}>
           Selecione abaixo uma unidade previamente cadastrada e atualize os dados que desejar
         </Text>
-        {ModalSimples(flagShowModal, handleCloseModal, "Expediente atualizado!", "TipoMsg", "Título", processing)}
+        {ModalSimples(flagShowModal, handleShowModal, "Expediente atualizado!", "TipoMsg", "Título", processing)}
       </View>
 
       {processing.isLoading ?

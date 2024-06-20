@@ -71,7 +71,7 @@ export default function ViewLojaCadastroBasico() {
       setflagShowModal(false);
     }, styleApp.size.modalTimeAutoClose);
   }
-  function handleCloseModal() {
+  function handleShowModal() {
     setflagShowModal(!flagShowModal);
   }
 
@@ -120,7 +120,7 @@ export default function ViewLojaCadastroBasico() {
     <SafeAreaView style={styleApp.containerSafeAreaSemPadding}>
       {GradienteFill()}
       <ScrollView style={styleApp.containerScrollFull} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
-        {ModalSimples(flagShowModal, handleCloseModal, "Informações atualizadas!", "TipoMsg", "Título", processing)}
+        {ModalSimples(flagShowModal, handleShowModal, "Informações atualizadas!", "TipoMsg", "Título", processing)}
 
         {!parmLoja || parmLoja === null ?
           <>

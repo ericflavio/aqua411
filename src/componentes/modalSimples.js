@@ -2,6 +2,10 @@ import { Modal, StyleSheet, Text, View, TouchableOpacity, ActivityIndicator } fr
 import { MaterialIcons } from "@expo/vector-icons";
 import { styleApp } from '../styles/styleApp';
 
+//Modal mais comum da aplicação. Acontece em duas situações:
+//isLoading ou isExecuting: mostra um activitindicator spin no centro da tela, com fundo todo transparente.
+//caso contrário: exibe um bottonsheet com uma mensagem simples (resultado do processamento: sucesso,erro,aviso,alerta)
+
 export default function ModalSimples(flagShowModal, onClose, msg, msgTipo, msgTitulo, processing) {
   if (!processing) {
     processing = { isLoading: false, isExecuting: false }
@@ -26,11 +30,11 @@ export default function ModalSimples(flagShowModal, onClose, msg, msgTipo, msgTi
   };
 
   var borderModal = styleApp.color.cinzaMedio;
-  switch (msgTipo) {
-    case "Sucesso": borderModal = styleApp.color.sucesso; break;
-    case "Alerta": borderModal = styleApp.color.alerta; break;
-    case "Aviso": borderModal = styleApp.color.aviso; break;
-    case "Erro": borderModal = styleApp.color.erro; break;
+  switch (msgTipo.toLowerCase()) {
+    case "sucesso": borderModal = styleApp.color.sucesso; break;
+    case "alerta": borderModal = styleApp.color.alerta; break;
+    case "aviso": borderModal = styleApp.color.aviso; break;
+    case "erro": borderModal = styleApp.color.erro; break;
     default: borderModal = styleApp.color.sucesso; break;
   };
 
@@ -49,18 +53,14 @@ export default function ModalSimples(flagShowModal, onClose, msg, msgTipo, msgTi
           </View>
           :
           <View style={stylesLocal.bottomView}>
-
             <View style={[stylesLocal.modalView, { borderColor: borderModal }]}>
-
               <View style={{ marginBottom: 16, alignSelf: "flex-end" }}>
                 <TouchableOpacity style={styleApp.buttonFlatHL_transp} disabled={false} onPress={onClose} >
                   <MaterialIcons name="close" size={styleApp.size.iconSizeButtonLarge} color={styleApp.color.textButtonFlat} />
                 </TouchableOpacity>
               </View>
-
-              {msgTitulo !== "" ? <Text style={styleApp.textRegular}>{msg}</Text> : <></>}
+              {msgTitulo !== "" ? <Text style={styleApp.textRegular}>{msgTitulo}</Text> : <></>}
               <Text style={styleApp.textSubtitulo}>{msg}</Text>
-
             </View>
           </View>
         }

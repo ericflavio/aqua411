@@ -45,7 +45,7 @@ export function ViewContaPessoal() {
   }
 
   //Funções auxiliares 
-  function handleCloseModal() {
+  function handleShowModal() {
     setflagShowModal(!flagShowModal);
   }
   function showModalMsgResultado() {
@@ -103,7 +103,7 @@ export function ViewContaPessoal() {
             />
           </View>
           <Text style={styleApp.textTitulo}>{name}</Text>
-          {ModalSimples(flagShowModal, handleCloseModal, "Informações atualizadas!", "TipoMsg", "Título", processing)}
+          {ModalSimples(flagShowModal, handleShowModal, "Informações atualizadas!", "TipoMsg", "Título", processing)}
         </View>
 
         <View style={styles.containerOthers}>

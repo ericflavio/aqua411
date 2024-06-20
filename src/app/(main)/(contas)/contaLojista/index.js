@@ -45,7 +45,7 @@ export function ViewContaLojista() {
   }
 
   //Funções auxiliares 
-  function handleCloseModal() {
+  function handleShowModal() {
     setflagShowModal(!flagShowModal);
   }
   function showModalMsgResultado() {
@@ -90,7 +90,7 @@ export function ViewContaLojista() {
           <Text style={styleApp.textTitulo}>
             Espaço empreendedor
           </Text>
-          {ModalSimples(flagShowModal, handleCloseModal, "Informações atualizadas!", "TipoMsg", "Título", processing)}
+          {ModalSimples(flagShowModal, handleShowModal, "Informações atualizadas!", "TipoMsg", "Título", processing)}
         </View>
 
         <View style={styles.containerBasics}>

@@ -247,7 +247,7 @@ export default function ViewExpedienteLoja() {
   }
 
   //Funções auxiliares 
-  function handleCloseModal() {
+  function handleShowModal() {
     setflagShowModal(!flagShowModal);
   }
   function showModalMsgResultado() {
@@ -373,7 +373,7 @@ export default function ViewExpedienteLoja() {
           <Text style={styleApp.textSubtitulo}>Expediente</Text>
         </View>
 
-        {ModalSimples(flagShowModal, handleCloseModal, "Expediente atualizado!", "TipoMsg", "Título", processing)}
+        {ModalSimples(flagShowModal, handleShowModal, "Expediente atualizado!", "TipoMsg", "Título", processing)}
 
         {processing.isOnlyConsulta ? <></> :
           <View style={styles.containerPrincipal}>

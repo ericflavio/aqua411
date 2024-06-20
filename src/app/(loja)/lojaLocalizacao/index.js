@@ -72,7 +72,7 @@ export default function ViewLocalizacaoLoja() {
   }
 
   //Funções auxiliares 
-  function handleCloseModal() {
+  function handleShowModal() {
     setflagShowModal(!flagShowModal);
   }
   function showModalMsgResultado() {
@@ -133,7 +133,7 @@ export default function ViewLocalizacaoLoja() {
           <Text style={styleApp.textSubtitulo}>localização geográfica</Text>
         </View>
 
-        {ModalSimples(flagShowModal, handleCloseModal, "Localização atualizada!", "TipoMsg", "Título", processing)}
+        {ModalSimples(flagShowModal, handleShowModal, "Localização atualizada!", "TipoMsg", "Título", processing)}
 
         <View style={styles.containerPrincipal}>
           {InputText("Latitude", onChangeLatitude, "ex. 15,23456", 1, 12, "default", isEditavel, localizacao.latitude, false)}

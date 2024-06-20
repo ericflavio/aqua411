@@ -142,7 +142,7 @@ async function consultaCepWeb(parm) {
 }
 */
   //Funções auxiliares 
-  function handleCloseModal() {
+  function handleShowModal() {
     setflagShowModal(!flagShowModal);
   }
   function handleShowModalFranquias() {
@@ -195,7 +195,7 @@ async function consultaCepWeb(parm) {
           <Text style={styleApp.textSubtitulo}>Vínculo com franquia</Text>
         </View>
 
-        {ModalSimples(flagShowModal, handleCloseModal, "Vínculo atualizado!", "TipoMsg", "Título", processing)}
+        {ModalSimples(flagShowModal, handleShowModal, "Vínculo atualizado!", "TipoMsg", "Título", processing)}
 
         <Modal
           animationType={"slide"} //fade slide none

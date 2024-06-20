@@ -87,7 +87,7 @@ export default function ViewEdtMenuLoja() {
   }
 
   //Funções auxiliares 
-  function handleCloseModal() {
+  function handleShowModal() {
     setflagShowModal(!flagShowModal);
   }
   function showModalMsgResultado() {
@@ -163,7 +163,7 @@ export default function ViewEdtMenuLoja() {
           source={require('../../../assets/outros/sheep_novaLoja_01.png')}
         />
 
-        {ModalSimples(flagShowModal, handleCloseModal, "Vínculo atualizado!", "TipoMsg", "Título", processing)}
+        {ModalSimples(flagShowModal, handleShowModal, "Vínculo atualizado!", "TipoMsg", "Título", processing)}
 
         {processing.isLoading ?
           <></>
