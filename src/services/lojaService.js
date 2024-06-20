@@ -28,7 +28,7 @@ export async function consultaFranquiaVinculada(idLoja) {
       } else {
         resolve(null)
       }
-    }, 500);
+    }, 200);
   })
 }
 
@@ -38,7 +38,7 @@ export async function atualizaExpedienteLoja(idLoja, data) {
     setTimeout(() => {
       //reject(null)
       resolve(null)
-    }, 500);
+    }, 200);
   })
 }
 
@@ -56,7 +56,7 @@ export async function consultaExpedienteLoja(idLoja) {
       } else {
         resolve(null)
       }
-    }, 500);
+    }, 200);
   })
 }
 
@@ -112,7 +112,7 @@ export async function consultaListaStatusLoja() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(statusLoja)
-    }, 500);
+    }, 200);
   })
 }
 
@@ -144,7 +144,7 @@ export async function consultaListaUnidades(user) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(res);
-    }, 500);
+    }, 200);
   })
 }
 
@@ -162,7 +162,7 @@ export async function consultaExistenciaLojaEmCriacao(user) {
       } else {
         resolve(null)
       }
-    }, 500);
+    }, 200);
   })
 }
 
@@ -183,7 +183,7 @@ export async function consultaDadosLoja(id) {
       } else {
         resolve(null)
       }
-    }, 500);
+    }, 200);
   })
 }
 
@@ -192,7 +192,7 @@ export async function atualizaDadosBasicosLoja(idLoja, data) {
     setTimeout(() => {
       //reject(null)
       resolve(null)
-    }, 500);
+    }, 200);
   })
 }
 
@@ -209,7 +209,7 @@ export async function consultaEnderecoLoja(idLoja) {
       schemaLojaEndereco.numero = "108";
       schemaLojaEndereco.complemento = "Apto";
       resolve(schemaLojaEndereco)
-    }, 500);
+    }, 200);
   })
 }
 export async function IncluiEnderecoLoja(idLoja, data) {
@@ -220,7 +220,7 @@ export async function IncluiEnderecoLoja(idLoja, data) {
       } else {
         resolve(null)
       }
-    }, 500);
+    }, 200);
   })
 }
 export async function atualizaEnderecoLoja(idLoja, data) {
@@ -228,7 +228,7 @@ export async function atualizaEnderecoLoja(idLoja, data) {
     setTimeout(() => {
       //reject(null)
       resolve(null)
-    }, 500);
+    }, 200);
   })
 }
 
@@ -240,21 +240,21 @@ export async function consultaLocalizacaoLoja(idLoja) {
       //schemaLojaLocalizacao.longitude = "-27.9828120";
       //schemaLojaLocalizacao.urlMapa = "https://maps.google.com";
       resolve(null)
-    }, 500);
+    }, 200);
   })
 }
 export async function IncluiLocalizacaoLoja(idLoja, data) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(null)
-    }, 500);
+    }, 200);
   })
 }
 export async function atualizaLocalizacaoLoja(idLoja, data) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(null)
-    }, 500);
+    }, 200);
   })
 }
 

@@ -29,14 +29,15 @@ export const styles = StyleSheet.create({
     borderColor: styleApp.color.tema10pSecundaria,
     borderRadius: 4
   },
-  bottomView: {
+  containerModal: {
     flex: 1,
-    marginTop:20,
+    marginTop: 0,
     justifyContent: 'flex-end',
     alignItems: 'stretch',
   },
   modalView: {
-    marginTop:100,
+    flexShrink: 1,
+    marginTop: 0,
     minHeight: 320,
     maxHeight: Dimensions.get('window').height - 200,
     width: "100%",
@@ -59,4 +60,8 @@ export const styles = StyleSheet.create({
     shadowRadius: 20,
     elevation: 5,
   },
+  modalClose: {
+    marginBottom: 6,
+    alignSelf: "flex-end"
+  }
 });

@@ -5,7 +5,7 @@ import { consultaListaFranquias } from '../../../services/franquiaService';
 import { styleApp } from '../../../styles/styleApp';
 import { InputText } from '../../../componentes/inputText';
 
-export function ModalSelecionaFranquia() {
+export function ModalSelecionaFranquia(handleSelectedFranquia) {
   const [filter, setFilter] = useState('');
   const [data, setData] = useState([
     {
@@ -117,14 +117,14 @@ export function ModalSelecionaFranquia() {
 
   //Componente visual de cada Unidade (card)
   const Item = ({ item, onPress }) => (
-    <TouchableOpacity onPress={onPress} >
+    <TouchableOpacity onPress={onPress(item.idFranquia)} >
       <View style={{
-        padding: 4,
+        padding: 6,
         borderWidth: 0,
         borderColor: "white",
         borderRadius: styleApp.size.containerBorderRadius,
         marginBottom: 0,
-        minHeight: 40,
+        minHeight: 44,
         width: '90%',
         backgroundColor: "white",
       }}>
@@ -137,7 +137,7 @@ export function ModalSelecionaFranquia() {
     return (
       <Item
         item={item}
-        onPress={() => handleItem(item)}
+        onPress={handleSelectedFranquia}
       />
     );
   };
@@ -147,7 +147,7 @@ export function ModalSelecionaFranquia() {
   }
 
   return (
-    <View style={{ marginTop: 8, marginBottom: 40 }}>
+    <View style={{ marginTop: 8, marginBottom: 20}}>
       <View style={{ marginBottom: 8 }}>
         {InputText("Digite para filtrar...", onChangeFilter, "", 1, 8, "default", isEditavel, filter, false)}
       </View>
@@ -160,4 +160,3 @@ export function ModalSelecionaFranquia() {
     </View>
   );
 };
-// renderItem={({ item }) => <Text>{item.nome}</Text>}

@@ -27,7 +27,7 @@ export async function consultaDadosFranquia(id) {
       } else {
         resolve(null)
       }
-    }, 500);
+    }, 200);
   })
 }
 //Dados de uma franquia
@@ -53,6 +53,6 @@ export async function consultaListaFranquias(id) {
       } else {
         resolve(null)
       }
-    }, 500);
+    }, 200);
   })
 }

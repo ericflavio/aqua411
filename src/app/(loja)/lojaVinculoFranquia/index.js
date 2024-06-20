@@ -42,7 +42,7 @@ export default function ViewLojaVinculoFranquia() {
   const [franquiaVinculada, setFranquiaVinculada] = useState(schemaLojaFranquiaVinculada);
   const [franquia, setFranquia] = useState(schemaFranquiaDados);
   const [listaFranquias, setListaFranquias] = useState([]);
-  const [selectedFranquiaId, setSelectedFranquiaId] = useState(null);
+  const [selectedFranquiaId, setSelectedFranquiaId] = useState("0");
 
   //Ações ao final da construção do componente
   useEffect(() => {
@@ -149,7 +149,7 @@ async function consultaCepWeb(parm) {
   function handleCloseModal() {
     setflagShowModal(!flagShowModal);
   }
-  function handleModalFranquias() {
+  function handleShowModalFranquias() {
     setflagShowModalFranquias(!flagShowModalFranquias);
   }
   function showModalMsgResultado() {
@@ -157,6 +157,10 @@ async function consultaCepWeb(parm) {
     setTimeout(() => {
       setflagShowModal(false);
     }, styleApp.size.modalTimeAutoClose);
+  }
+function handleSelectedFranquia(id) {
+    setSelectedFranquiaId(id);
+    console.log("setando-----------------------")
   }
 
   //Ações ao clicar no botão principal (confirmar/prosseguir)
@@ -197,24 +201,22 @@ async function consultaCepWeb(parm) {
 
         {ModalSimples(flagShowModal, handleCloseModal, "Vínculo atualizado!", "TipoMsg", "Título", processing)}
 
-        {/** inicio **/}
         <Modal
           animationType={"slide"} //fade slide none
           transparent={true}
           visible={flagShowModalFranquias}
           onRequestClose={() => { }}>
-          <View style={styles.bottomView}>
+          <View style={styles.containerModal}>
             <View style={styles.modalView}>
-              <View style={{ marginBottom: 6, alignSelf:"flex-end"}}>
-                <TouchableOpacity style={styleApp.buttonFlatHL_transp} disabled={false} onPress={handleModalFranquias} >
+              <View style={styles.modalClose}>
+                <TouchableOpacity style={styleApp.buttonFlatHL_transp} disabled={false} onPress={handleShowModalFranquias} >
                   <MaterialIcons name="close" size={styleApp.size.iconSizeButtonLarge} color={styleApp.color.textButtonFlat} />
                 </TouchableOpacity>
               </View>
-              {ModalSelecionaFranquia()}
+              {ModalSelecionaFranquia(handleSelectedFranquia)}
             </View>
           </View>
         </Modal>
-        {/** fim **/}
 
         {!processing.isLoading && (!franquiaVinculada.idFranquia || franquiaVinculada.idFranquia === null) ?
           <Animatable.View animation="fadeInRight" style={[styles.containerPrincipal, { backgroundColor: styleColor.aviso }]}>
@@ -245,25 +247,26 @@ async function consultaCepWeb(parm) {
 
         <View style={[styles.containerPrincipal, { marginTop: 10 }]}>
           <Text style={styleApp.textSmallItalico}>
-            Para vincular sua loja a uma franquia, selecione a franquia na lista abaixo e confirme. Obs: Uma solicitação de confirmação de vínculo será enviada para análise pelo responsável.
+            Selecione uma franquia na lista abaixo e confirme. Obs: Uma solicitação de confirmação de vínculo será enviada para análise pelo responsável.
           </Text>
           <View style={styles.containerPicker}>
-            <Picker
-              enabled={isEditavel}
-              selectedValue={selectedFranquiaId}
-              onValueChange={(itemValue, itemIndex) =>
-                setSelectedFranquiaId(itemValue)
-              }>
-              {/* <Picker.Item label="Não determinado" value="0" /> */}
-              {listaFranquias.map((item, index) => {
-                return (< Picker.Item label={item.nome} value={item.idFranquia} key={index} />);
-              })}
-
-            </Picker>
+            <TouchableOpacity onPress={handleShowModalFranquias}>
+              <Picker
+                enabled={false}
+                selectedValue={selectedFranquiaId}
+                onValueChange={(itemValue, itemIndex) =>
+                  setSelectedFranquiaId(itemValue)
+                }>
+                <Picker.Item label="Clique e selecione" value="0" />
+                {listaFranquias.map((item, index) => {
+                  return (< Picker.Item label={item.nome} value={item.idFranquia} key={index} />);
+                })}
+              </Picker>
+            </TouchableOpacity>
           </View>
 
           {processing.isOnlyConsulta ? <></> :
-            <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={handleModalFranquias} >
+            <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir} >
               <Text style={styleApp.textButtonRegular}>Confirmar</Text>
             </TouchableOpacity>
           }
