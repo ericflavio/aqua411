@@ -12,6 +12,7 @@ import { schemaLojaMaquinario } from '../../../schemas/lojaSchema';
 import { consultaListaMaquinario } from '../../../services/lojaService';
 import ModalSimples from '../../../componentes/modalSimples';
 import { useLocalSearchParams } from 'expo-router';
+import { MontaMaquinario } from './montaMaquinario'
 
 export default function ViewMaquinarioLoja() {
   const { user } = useContext(AuthContext);
@@ -65,20 +66,20 @@ export default function ViewMaquinarioLoja() {
   async function prosseguir() {
     if (processing.isLoading) { return };
 
-/*     if (!validarSintaxeLatitude()) {
-      ShowErrorMessage("gu012");
-      return;
-    }; */
+    /*     if (!validarSintaxeLatitude()) {
+          ShowErrorMessage("gu012");
+          return;
+        }; */
 
-/*     setProcessing({ ...processing, isExecuting: true });
-
-    try {
-      const res = await atualizaLocalizacaoLoja(maquinario);
-      showModalMsgResultado();
-    } catch {
-      ShowErrorMessage("lj010");
-    }
-    setProcessing({ ...processing, isExecuting: false }); */
+    /*     setProcessing({ ...processing, isExecuting: true });
+    
+        try {
+          const res = await atualizaLocalizacaoLoja(maquinario);
+          showModalMsgResultado();
+        } catch {
+          ShowErrorMessage("lj010");
+        }
+        setProcessing({ ...processing, isExecuting: false }); */
   }
 
   //Apresentação da view principal
@@ -96,6 +97,8 @@ export default function ViewMaquinarioLoja() {
         <View style={styles.containerPrincipal}>
           {InputText("Latitude", onChangeLatitude, "ex. 15,23456", 1, 12, "default", isEditavel, maquinario.idMaquina, false)}
 
+          {MontaMaquinario()}
+          
           {processing.isOnlyConsulta ? <></> :
             <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir} >
               <Text style={styleApp.textButtonRegular}>Confirmar</Text>
