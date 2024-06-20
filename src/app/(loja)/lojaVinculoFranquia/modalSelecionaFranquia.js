@@ -117,7 +117,7 @@ export function ModalSelecionaFranquia(handleSelectedFranquia) {
 
   //Componente visual de cada Unidade (card)
   const Item = ({ item, onPress }) => (
-    <TouchableOpacity onPress={onPress(item.idFranquia)} >
+    <TouchableOpacity onPress={onPress} >
       <View style={{
         padding: 6,
         borderWidth: 0,
@@ -137,7 +137,7 @@ export function ModalSelecionaFranquia(handleSelectedFranquia) {
     return (
       <Item
         item={item}
-        onPress={handleSelectedFranquia}
+        onPress={() => handleSelectedFranquia(item)}
       />
     );
   };
@@ -155,6 +155,7 @@ export function ModalSelecionaFranquia(handleSelectedFranquia) {
         data={filteredData}
         keyExtractor={item => item.idFranquia}
         renderItem={renderItem}
+        extraData={item => item.idFranquia}
         ItemSeparatorComponent={() => <View style={{ height: 1, backgroundColor: '#eee' }} />}
       />
     </View>

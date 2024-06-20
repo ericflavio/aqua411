@@ -14,7 +14,6 @@ import { schemaLojaFranquiaVinculada } from '../../../schemas/lojaSchema';
 import ModalSimples from '../../../componentes/modalSimples';
 import { useLocalSearchParams } from 'expo-router';
 import { ViewDadoSimples } from '../../../componentes/viewDadoSimples';
-import { Picker } from '@react-native-picker/picker';
 import * as Animatable from 'react-native-animatable';
 import { ModalSelecionaFranquia } from './modalSelecionaFranquia';
 import { styleSize } from '../../../styles/styleSize';
@@ -42,7 +41,7 @@ export default function ViewLojaVinculoFranquia() {
   const [franquiaVinculada, setFranquiaVinculada] = useState(schemaLojaFranquiaVinculada);
   const [franquia, setFranquia] = useState(schemaFranquiaDados);
   const [listaFranquias, setListaFranquias] = useState([]);
-  const [selectedFranquiaId, setSelectedFranquiaId] = useState("0");
+  const [selectedFranquia, setSelectedFranquia] = useState({ id: "0", nome: "Clique para selecionar" });
 
   //Ações ao final da construção do componente
   useEffect(() => {
@@ -96,9 +95,6 @@ export default function ViewLojaVinculoFranquia() {
   }
 
   //Valida campos de formulario
-  function onChangeSelectedFranquia(parm) {
-    setSelectedFranquiaId(parm);
-  }
 
   async function onChangeCep(parm) {
     /*     setEndereco({ ...endereco, cep: parm });
@@ -158,9 +154,9 @@ async function consultaCepWeb(parm) {
       setflagShowModal(false);
     }, styleApp.size.modalTimeAutoClose);
   }
-function handleSelectedFranquia(id) {
-    setSelectedFranquiaId(id);
-    console.log("setando-----------------------")
+  function handleSelectedFranquia(item) {
+    setSelectedFranquia({ id: item.id, nome: item.nome });
+    handleShowModalFranquias();
   }
 
   //Ações ao clicar no botão principal (confirmar/prosseguir)
@@ -245,32 +241,24 @@ function handleSelectedFranquia(id) {
           {ViewDadoSimples("Data de registro do fim do vínculo", franquiaVinculada.dataRegistroFimVinculo)}
         </View>
 
-        <View style={[styles.containerPrincipal, { marginTop: 10 }]}>
-          <Text style={styleApp.textSmallItalico}>
-            Selecione uma franquia na lista abaixo e confirme. Obs: Uma solicitação de confirmação de vínculo será enviada para análise pelo responsável.
-          </Text>
-          <View style={styles.containerPicker}>
-            <TouchableOpacity onPress={handleShowModalFranquias}>
-              <Picker
-                enabled={false}
-                selectedValue={selectedFranquiaId}
-                onValueChange={(itemValue, itemIndex) =>
-                  setSelectedFranquiaId(itemValue)
-                }>
-                <Picker.Item label="Clique e selecione" value="0" />
-                {listaFranquias.map((item, index) => {
-                  return (< Picker.Item label={item.nome} value={item.idFranquia} key={index} />);
-                })}
-              </Picker>
-            </TouchableOpacity>
-          </View>
+        {processing.isOnlyConsulta ? <></> :
+          <View style={[styles.containerPrincipal, { marginTop: 10 }]}>
+            <Text style={styleApp.textSmallItalico}>
+              Selecione uma franquia na lista abaixo. Ao confirmar, uma solicitação de aprovação de vínculo será enviada para análise pelo responsável.
+            </Text>
 
-          {processing.isOnlyConsulta ? <></> :
+            <TouchableOpacity onPress={handleShowModalFranquias}>
+              <View style={styles.containerPicker}>
+                <Text style={styleApp.textRegular}> {selectedFranquia.nome}</Text>
+                <MaterialIcons name="arrow-drop-down" size={styleApp.size.iconSizeRegular} color={styleColor.textSubtitulo} />
+              </View>
+            </TouchableOpacity>
+
             <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir} >
               <Text style={styleApp.textButtonRegular}>Confirmar</Text>
             </TouchableOpacity>
-          }
-        </View>
+          </View>
+        }
 
       </ScrollView>
     </SafeAreaView >

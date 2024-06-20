@@ -20,7 +20,12 @@ export const styles = StyleSheet.create({
     borderWidth: styleApp.size.containerBordaOnOff
   },
   containerPicker: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     alignSelf: 'stretch',
+    minHeight: 44,
+    padding: 6,
     marginTop: 12,
     marginLeft: 12,
     marginRight: 12,
