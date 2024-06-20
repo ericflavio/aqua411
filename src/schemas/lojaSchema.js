@@ -1,3 +1,16 @@
+//Schema das tabelas 
+//Franquia vinculada à loja
+export var schemaLojaMaquinario = {
+  idMaquina: "",
+  nrConjunto: 0, //Agrupador de lava e seca
+  numeroLabel: "",
+  nomeLabel: "",
+  nomeFabricante: "",
+  modeloFabricante: "",
+  urlInfTecnica: "",
+  status: "", //Obs: Este sobrescreve o status da telemetria
+};
+
 //Franquia vinculada à loja
 export var schemaLojaFranquiaVinculada = {
   //Setado pelo franqueado
