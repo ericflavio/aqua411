@@ -70,6 +70,8 @@ export function NewErrorMessage(cod, e) {
         //Expediente (horários)
         case "lj011": newError.message = "Estamos com dificuldades para pesquisar os horários de funcionamento." + tn; break;
         case "lj012": newError.message = "Informe uma hora válida para todos os dias de funcionamento."; break;
+        //Maquinario
+        case "lj013": newError.message = "Estamos com dificuldades para pesquisar o maquinário da loja." + tn; break;
 
         default:
           newError.cod = "de2702" + cod.substr(0, 2);

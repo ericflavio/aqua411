@@ -1,13 +1,12 @@
 //Schema das tabelas 
 //Franquia vinculada à loja
 export var schemaLojaMaquinario = {
+  //Obs: Sempre ler ordenado pelo nr do conjunto
   idMaquina: "",
-  nrConjunto: 0, //Agrupador de lava e seca
+  tipo: "", //"l", "s"
+  nrConjunto: 0, //Agrupador de lava e seca. Igual a soma dos labels. Ex: L+S --> "1"+"2" = 123; "3"+null = 33; "9"+"10"=91019
   numeroLabel: "",
   nomeLabel: "",
-  nomeFabricante: "",
-  modeloFabricante: "",
-  urlInfTecnica: "",
   status: "", //Obs: Este sobrescreve o status da telemetria
 };
 

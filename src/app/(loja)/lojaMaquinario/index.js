@@ -8,9 +8,8 @@ import { InputText } from '../../../componentes/inputText';
 import { GradienteFill } from '../../../componentes/gradienteFill';
 import { AuthContext } from "../../../contexts/auth";
 import { ShowErrorMessage } from '../../../errors/errorMessage';
-import { schemaLojaLocalizacao } from '../../../schemas/lojaSchema';
-import { atualizaLocalizacaoLoja, consultaLocalizacaoLoja } from '../../../services/lojaService';
-import { pingUrl } from '../../../services/urlService';
+import { schemaLojaMaquinario } from '../../../schemas/lojaSchema';
+import { consultaListaMaquinario } from '../../../services/lojaService';
 import ModalSimples from '../../../componentes/modalSimples';
 import { useLocalSearchParams } from 'expo-router';
 
@@ -26,7 +25,8 @@ export default function ViewMaquinarioLoja() {
   const [flagShowModal, setflagShowModal] = useState(false);
 
   //Outras declarações
-  const [localizacao, setLocalizacao] = useState(schemaLojaLocalizacao)
+  const [maquinario, setMaquinario] = useState(schemaLojaMaquinario)
+  const [maquinarioList, setMaquinarioList] = useState([])
 
   //Ações ao final da construção do componente
   useEffect(() => {
@@ -36,39 +36,18 @@ export default function ViewMaquinarioLoja() {
   //Carrega dados pre-existentes
   async function fetchDados() {
     try {
-      res = await consultaLocalizacaoLoja();
-      res !== null ? setLocalizacao(res) : setLocalizacao(schemaLojaLocalizacao);
+      res = await consultaListaMaquinario();
+      res !== null ? setMaquinarioList(res) : setMaquinarioList([]);
       setProcessing({ ...processing, isLoading: false });
     } catch {
-      ShowErrorMessage("lj009");
+      ShowErrorMessage("lj013");
       setProcessing({ ...processing, isLoading: false, isOnlyConsulta: true });
     };
   }
 
   //Valida campos de formulario
   function onChangeLatitude(parm) {
-    setLocalizacao({ ...localizacao, latitude: parm });
-  }
-  function onChangeLongitude(parm) {
-    setLocalizacao({ ...localizacao, longitude: parm });
-  }
-  function onChangeUrl(parm) {
-    setLocalizacao({ ...localizacao, urlMapa: parm });
-  }
-  function validarSintaxeUrl() {
-    if (!localizacao.urlMapa.includes('https://maps.app.goo.gl/')) {
-      return false
-    }
-
-    const regex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi;
-    const isValid = regex.test(localizacao.urlMapa);
-    return isValid;
-  }
-  function validarSintaxeLongitude() {
-    if (localizacao.longitude.length < 10) { return false } else { return true };
-  }
-  function validarSintaxeLatitude() {
-    if (localizacao.latitude.length < 10) { return false } else { return true };
+    //setMaquinario({ ...maquinario, latitude: parm });
   }
 
   //Funções auxiliares 
@@ -86,41 +65,20 @@ export default function ViewMaquinarioLoja() {
   async function prosseguir() {
     if (processing.isLoading) { return };
 
-    if (!validarSintaxeLatitude()) {
+/*     if (!validarSintaxeLatitude()) {
       ShowErrorMessage("gu012");
       return;
-    };
-    if (!validarSintaxeLongitude()) {
-      ShowErrorMessage("gu013");
-      return;
-    };
-    if (!validarSintaxeUrl()) {
-      ShowErrorMessage("gu010");
-      return;
-    };
+    }; */
 
-    setProcessing({ ...processing, isExecuting: true });
+/*     setProcessing({ ...processing, isExecuting: true });
 
     try {
-      const isValidUrl = await pingUrl(localizacao.urlMapa);
-      if (!isValidUrl) {
-        ShowErrorMessage("gu011");
-        setProcessing({ ...processing, isExecuting: false });
-        return;
-      }
-    } catch (e) {
-      ShowErrorMessage("gu014");
-      setProcessing({ ...processing, isExecuting: false });
-      return;
-    }
-
-    try {
-      const res = await atualizaLocalizacaoLoja(localizacao);
+      const res = await atualizaLocalizacaoLoja(maquinario);
       showModalMsgResultado();
     } catch {
       ShowErrorMessage("lj010");
     }
-    setProcessing({ ...processing, isExecuting: false });
+    setProcessing({ ...processing, isExecuting: false }); */
   }
 
   //Apresentação da view principal
@@ -129,16 +87,14 @@ export default function ViewMaquinarioLoja() {
       {GradienteFill()}
       <ScrollView style={styleApp.containerScroll} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
         <View style={styles.containerHeader}>
-          <MaterialIcons name="location-on" size={styleApp.size.iconSizeRegular} color={styleColor.textSubtitulo} />
-          <Text style={styleApp.textSubtitulo}>localização geográfica</Text>
+          <MaterialIcons name="local-laundry-service" size={styleApp.size.iconSizeRegular} color={styleColor.textSubtitulo} />
+          <Text style={styleApp.textSubtitulo}>Maquinário</Text>
         </View>
 
-        {ModalSimples(flagShowModal, handleShowModal, "Localização atualizada!", "TipoMsg", "Título", processing)}
+        {ModalSimples(flagShowModal, handleShowModal, "Máquinas atualizadas!", "TipoMsg", "Título", processing)}
 
         <View style={styles.containerPrincipal}>
-          {InputText("Latitude", onChangeLatitude, "ex. 15,23456", 1, 12, "default", isEditavel, localizacao.latitude, false)}
-          {InputText("Longitude", onChangeLongitude, "ex. -30,67890", 1, 12, "default", isEditavel, localizacao.longitude, false)}
-          {InputText("Cole aqui o endereço/url GoogleMaps", onChangeUrl, "url GoogleMaps", 1, 200, "default", isEditavel, localizacao.urlMapa, false)}
+          {InputText("Latitude", onChangeLatitude, "ex. 15,23456", 1, 12, "default", isEditavel, maquinario.idMaquina, false)}
 
           {processing.isOnlyConsulta ? <></> :
             <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir} >

@@ -7,7 +7,67 @@ import {
   schemaLojaLocalizacao,
   schemaLojaExpediente,
   schemaLojaFranquiaVinculada,
+ schemaLojaMaquinario,
 } from '../schemas/lojaSchema';
+
+//Maquinario
+export async function consultaListaMaquinario() {
+  const res = [
+    {
+      idMaquina: "01",
+      tipo: "l", 
+      nrConjunto: 123,
+      numeroLabel: "1",
+      nomeLabel: "Lava 1",
+      status: "Disponível",
+    },
+    {
+      idMaquina: "02",
+      tipo: "s", 
+      nrConjunto: 123,
+      numeroLabel: "2",
+      nomeLabel: "Seca 2",
+      status: "Disponível",
+    },
+    {
+      idMaquina: "03",
+      tipo: "l", 
+      nrConjunto: 347,
+      numeroLabel: "3",
+      nomeLabel: "Lava 3",
+      status: "Disponível",
+    },
+    {
+      idMaquina: "04",
+      tipo: "s", 
+      nrConjunto: 347,
+      numeroLabel: "14",
+      nomeLabel: "Seca 4",
+      status: "Disponível",
+    },
+    {
+      idMaquina: "05",
+      tipo: "l", 
+      nrConjunto: 5611,
+      numeroLabel: "5",
+      nomeLabel: "Lava 5",
+      status: "Disponível",
+    },
+    {
+      idMaquina: "06",
+      tipo: "s", 
+      nrConjunto: 5611,
+      numeroLabel: "6",
+      nomeLabel: "Seca 6",
+      status: "Disponível",
+    },
+  ];
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(res)
+    }, 200);
+  })
+}
 
 //Franquia vinculada
 export async function consultaFranquiaVinculada(idLoja) {

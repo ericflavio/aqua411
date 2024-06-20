@@ -136,6 +136,14 @@ export default function ViewEdtMenuLoja() {
       }
     })
   }
+  function goToMaquinario() {
+    router.navigate({
+      pathname: '/lojaMaquinario',
+      params: {
+        navigateParmLoja: JSON.stringify(lojaDados), naviateParmOnlyConsulta: !flagStatusEditavel
+      }
+    })
+  }
 
   //Componentes
   const opcaoDeGerenciamento = () => {
@@ -228,6 +236,14 @@ export default function ViewEdtMenuLoja() {
                     <View style={{ flexDirection: "row", alignItems: "center" }}>
                       <MaterialIcons name="access-time" size={styleApp.size.iconSizeRegular} color={styleApp.color.textButtonFlat} />
                       <Text style={styleApp.textButtonFlat}>Horário de funcionamento</Text>
+                    </View>
+                    <MaterialIcons name="navigate-next" size={styleApp.size.iconSizeRegular} color={styleApp.color.cinzaMedio} />
+                  </TouchableOpacity>
+
+                  <TouchableOpacity style={styleApp.buttonFlatHL_list} disabled={disabled} onPress={goToMaquinario} >
+                    <View style={{ flexDirection: "row", alignItems: "center" }}>
+                      <MaterialIcons name="local-laundry-service" size={styleApp.size.iconSizeRegular} color={styleApp.color.textButtonFlat} />
+                      <Text style={styleApp.textButtonFlat}>Maquinário</Text>
                     </View>
                     <MaterialIcons name="navigate-next" size={styleApp.size.iconSizeRegular} color={styleApp.color.cinzaMedio} />
                   </TouchableOpacity>
