@@ -27,7 +27,7 @@ export default function ViewMaquinarioLoja() {
   const [flagShowModal, setflagShowModal] = useState(false);
 
   //Outras declarações
-  const [selectedTipoExibicao, setTipoExibicao] = useState("0");
+  const [selectedTipoExibicao, setTipoExibicao] = useState("conjunto");
   const [maquinario, setMaquinario] = useState(schemaLojaMaquinario);
   const [maquinarioList, setMaquinarioList] = useState([]);
   const [lava, setLava] = useState("0");
@@ -197,9 +197,9 @@ export default function ViewMaquinarioLoja() {
               onValueChange={(itemValue, itemIndex) =>
                 setTipoExibicao(itemValue)
               }>
-              <Picker.Item label="Conjunto" value="0" />
-              <Picker.Item label="Lista" value="1" />
-              <Picker.Item label="Quantidade" value="2" />
+              <Picker.Item label="Conjunto" value="conjunto" />
+              <Picker.Item label="Lista" value="lista" />
+              <Picker.Item label="Quantidade" value="quantidade" />
             </Picker>
           </View>
 
