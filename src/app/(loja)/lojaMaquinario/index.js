@@ -13,6 +13,7 @@ import { consultaListaMaquinario } from '../../../services/lojaService';
 import ModalSimples from '../../../componentes/modalSimples';
 import { useLocalSearchParams } from 'expo-router';
 import { MontaMaquinario } from '../../../componentes/montaMaquinario';
+import { Picker } from '@react-native-picker/picker';
 
 export default function ViewMaquinarioLoja() {
   const { user } = useContext(AuthContext);
@@ -26,6 +27,7 @@ export default function ViewMaquinarioLoja() {
   const [flagShowModal, setflagShowModal] = useState(false);
 
   //Outras declarações
+  const [selectedTipoExibicao, setTipoExibicao] = useState("0");
   const [maquinario, setMaquinario] = useState(schemaLojaMaquinario);
   const [maquinarioList, setMaquinarioList] = useState([]);
   const [lava, setLava] = useState("0");
@@ -186,13 +188,27 @@ export default function ViewMaquinarioLoja() {
             </View>
           }
 
-          {MontaMaquinario(maquinarioList, "conjunto", false)}
+          {MontaMaquinario(maquinarioList, selectedTipoExibicao, false)}
 
-          {processing.isOnlyConsulta ? <></> :
+          <View style={styles.containerPicker}>
+            <Picker
+              enabled={isEditavel}
+              selectedValue={selectedTipoExibicao}
+              onValueChange={(itemValue, itemIndex) =>
+                setTipoExibicao(itemValue)
+              }>
+              <Picker.Item label="Conjunto" value="0" />
+              <Picker.Item label="Lista" value="1" />
+              <Picker.Item label="Quantidade" value="2" />
+            </Picker>
+          </View>
+
+
+{/*           {processing.isOnlyConsulta ? <></> :
             <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir} >
               <Text style={styleApp.textButtonRegular}>Confirmar</Text>
             </TouchableOpacity>
-          }
+          } */}
         </View>
       </ScrollView>
     </SafeAreaView >
