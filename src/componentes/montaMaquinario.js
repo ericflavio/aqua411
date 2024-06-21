@@ -1,23 +1,32 @@
 import { View, Text, TouchableOpacity, } from "react-native";
 import { styleApp } from '../styles/styleApp';
 import { styleColor } from '../styles/styleColors';
+import * as Animatable from 'react-native-animatable'; 
 
 var conjunto = []; //Montagem dos conjuntos (bidimensional)
 
 export function MontaMaquinario(mList, tipoVisualizacao, flagVisualizarStatus) {
+  console.log("-=-=-=-=-=-=-=-=-=", mList)
+  if (!mList || mList.length === 0) {
+    return (
+      <View style={{justifyContent:'flex-start', alignItems:'center', marginTop:16}}>
+        <Animatable.Image
+          animation="zoomInUp"
+          style={{ resizeMode: "contain"}}
+          source={require('../assets/outros/img_ovelha_vazio.png')}
+        />
+        <Text style={styleApp.textSmallItalico}>
+          Comece a cadastrar as máquinas
+        </Text>
+      </View>
+    )
+  }
+
   var verStatus = false;
   var tipoExibicao = "conjunto";
   flagVisualizarStatus === undefined ? verStatus = false : verStatus = flagVisualizarStatus;
   tipoVisualizacao === undefined ? tipoExibicao = "conjunto" : tipoExibicao = tipoVisualizacao;
   //Tipos = conjunto, lista, quantidade
-
-  console.log("-=-=-=-=-=-=-=-=-=", mList)
-  if (!mList || mList.length === 0) { //Demonstração
-    return (
-      <Text style={styleApp.textRegular}>Nenhuma maquina configurada</Text>
-    )
-  }
-  console.log("<b>!");
 
   //Ordena primeiro as Secas, depois as Lavas.
   mList.sort((a, b) => {
@@ -113,7 +122,7 @@ export function MontaMaquinario(mList, tipoVisualizacao, flagVisualizarStatus) {
 
   function viewConjunto() {
     return (
-      <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'flex-start', gap: 4 }}>
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'flex-start', gap: 4, marginVertical:12 }}>
         {conjunto.map((maq, index) => (
           <TouchableOpacity key={index} activeOpacity={0.7}>
             <View style={{ minWidth: 94, justifyContent: 'center', alignItems: 'center', padding: 6, backgroundColor: styleColor.cinzaClaro, borderRadius: 8 }}>
@@ -142,7 +151,7 @@ export function MontaMaquinario(mList, tipoVisualizacao, flagVisualizarStatus) {
 
   function viewLista() {
     return (
-      <View>
+      <View style={{marginVertical:12}}>
         {mList.map((maq, index) => (
           <TouchableOpacity key={index} activeOpacity={0.7}>
             <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', padding: 6, backgroundColor: styleColor.cinzaClaro, borderRadius: 8, gap: 6, marginBottom: 4 }}>

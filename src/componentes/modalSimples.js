@@ -7,12 +7,14 @@ import { styleApp } from '../styles/styleApp';
 //caso contrário: exibe um bottonsheet com uma mensagem simples (resultado do processamento: sucesso,erro,aviso,alerta)
 
 export default function ModalSimples(flagShowModal, onClose, msg, msgTipo, msgTitulo, processing) {
-  if (!processing) {
-    processing = { isLoading: false, isExecuting: false }
-  }
   if (flagShowModal === undefined) {
     flagShowModal = true
   };
+  if (!flagShowModal) return;
+  
+  if (!processing) {
+    processing = { isLoading: false, isExecuting: false }
+  }
   if (processing.isLoading || processing.isExecuting) {
     flagShowModal = true
     motion = "fade"

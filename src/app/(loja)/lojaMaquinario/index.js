@@ -142,27 +142,49 @@ export default function ViewMaquinarioLoja() {
 
         {ModalSimples(flagShowModal, handleShowModal, "Máquinas atualizadas!", "TipoMsg", "Título", processing)}
 
-        <View style={[styles.containerPrincipal, { justifyContent: 'center', alignItems: 'center' }]}>
-          <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginTop: 12, gap: 12 }}>
+        <View style={[styles.containerPrincipal, { justifyContent: 'center', alignItems: 'center', marginBottom: 10 }]}>
+          {/*           <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginTop: 12, gap: 12,  marginBottom:10 }}>
             <View style={{ maxWidth: "50%", flexShrink: 1, justifyContent: 'center', alignItems: 'center' }}>
               <Text style={styleApp.textRegular}>Lava</Text>
-              {InputText("Número", onChangeLava, "1", 1, 2, "default", isEditavel, lava, false)}
-              <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={incluiLava} >
-                <Text style={styleApp.textButtonRegular}>+Lava</Text>
+              {InputText("Número", onChangeLava, "1", 1, 2, "numeric", isEditavel, lava, false)}
+              <TouchableOpacity style={styleApp.buttonFlatVBorda} disabled={!isEditavel} onPress={incluiLava} >
+                <Text style={styleApp.textButtonFlat}>+Lava</Text>
               </TouchableOpacity>
             </View>
             <View style={{ maxWidth: "50%", flexShrink: 1, justifyContent: 'center', alignItems: 'center' }}>
               <Text style={styleApp.textRegular}>Seca</Text>
-              {InputText("Número", onChangeSeca, "1", 1, 2, "default", isEditavel, seca, false)}
-              <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={incluiSeca} >
-                <Text style={styleApp.textButtonRegular}>+Seca</Text>
+              {InputText("Número", onChangeSeca, "1", 1, 2, "numeric", isEditavel, seca, false)}
+              <TouchableOpacity style={styleApp.buttonFlatVBorda} disabled={!isEditavel} onPress={incluiSeca} >
+                <Text style={styleApp.textButtonFlat}>+Seca</Text>
+              </TouchableOpacity>
+            </View>
+          </View> */}
+          <View style={{ justifyContent: 'flex-start', alignItems: 'center', marginTop: 12, gap: 0, marginBottom: 10 }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 4, alignItems: 'center' }}>
+              <Text style={styleApp.textRegular}>SECA:</Text>
+              {InputText("Número", onChangeSeca, "1", 1, 2, "numeric", isEditavel, seca, false)}
+              <TouchableOpacity style={styleApp.buttonFlatVBorda} disabled={!isEditavel} onPress={incluiSeca} >
+                <Text style={styleApp.textButtonFlat}>Adicionar</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 4, alignItems: 'center' }}>
+              <Text style={styleApp.textRegular}>LAVA:</Text>
+              {InputText("Número", onChangeLava, "1", 1, 2, "numeric", isEditavel, lava, false)}
+              <TouchableOpacity style={styleApp.buttonFlatVBorda} disabled={!isEditavel} onPress={incluiLava} >
+                <Text style={styleApp.textButtonFlat}>Adicionar</Text>
               </TouchableOpacity>
             </View>
           </View>
 
-          <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={incluiLavaSeca} >
-            <Text style={styleApp.textButtonRegular}>+Conjunto (lava e seca)</Text>
+          <TouchableOpacity style={styleApp.buttonFlatVBorda} disabled={!isEditavel} onPress={incluiLavaSeca} >
+            <Text style={styleApp.textButtonFlat}>Adicionar o conjunto (lava e seca)</Text>
           </TouchableOpacity>
+          {maquinarioList.length <= 0 ? <></> :
+            <View style={{ width: '85%', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 10 }}>
+              <MaterialIcons name="delete-forever" size={styleApp.size.iconSizeRegular} color={styleColor.erro} />
+              <Text style={styleApp.textSmallItalico}>Para excluir, clique sobre o item e mantenha pressionado</Text>
+            </View>
+          }
 
           {MontaMaquinario(maquinarioList, "conjunto", false)}
 

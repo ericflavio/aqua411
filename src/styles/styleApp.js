@@ -139,6 +139,21 @@ export const styleApp = StyleSheet.create({
     borderRadius: styleSize.buttomBorderRadius,
     gap: 4
   },
+  buttonFlatVBorda: { //Vertical flat, centralizado, com borda
+    flexDirection: "column",
+    alignItems: 'center',
+    justifyContent: "center",
+    backgroundColor: "white",
+    borderColor: styleColor.cinzaMedio,
+    marginTop: 0,
+    marginBottom: 0,
+    padding: 4,
+    minHeight: 40,
+    minWidth: "30%",
+    borderWidth: 1,
+    borderRadius: styleSize.buttomBorderRadius,
+    gap: 4
+  },
   buttonFlatHL: { //Horizontal flat, esquerdo
     flexDirection: "row",
     alignItems: 'center',
