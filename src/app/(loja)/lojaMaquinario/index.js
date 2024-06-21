@@ -28,6 +28,7 @@ export default function ViewMaquinarioLoja() {
   //Outras declarações
   const [maquinario, setMaquinario] = useState(schemaLojaMaquinario)
   const [maquinarioList, setMaquinarioList] = useState([])
+  const [lava, setLava] = useState(1)
 
   //Ações ao final da construção do componente
   useEffect(() => {
@@ -48,6 +49,9 @@ export default function ViewMaquinarioLoja() {
 
   //Valida campos de formulario
   function onChangeLatitude(parm) {
+    //setMaquinario({ ...maquinario, latitude: parm });
+  }
+  function onChangeLava(parm) {
     //setMaquinario({ ...maquinario, latitude: parm });
   }
 
@@ -94,8 +98,29 @@ export default function ViewMaquinarioLoja() {
 
         {ModalSimples(flagShowModal, handleShowModal, "Máquinas atualizadas!", "TipoMsg", "Título", processing)}
 
-        <View style={styles.containerPrincipal}>
-          {MontaMaquinario()}
+        <View style={[styles.containerPrincipal, { justifyContent: 'center', alignItems: 'center' }]}>
+          <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginTop: 12, gap: 12 }}>
+            <View style={{ maxWidth: "50%", flexShrink: 1, justifyContent: 'center', alignItems: 'center' }}>
+              <Text style={styleApp.textRegular}>Lava</Text>
+              {InputText("Número", onChangeLava, "1", 1, 2, "default", isEditavel, lava, false)}
+              <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={{}} >
+                <Text style={styleApp.textButtonRegular}>+Lava</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={{ maxWidth: "50%", flexShrink: 1, justifyContent: 'center', alignItems: 'center' }}>
+              <Text style={styleApp.textRegular}>Seca</Text>
+              {InputText("Número", onChangeLava, "1", 1, 2, "default", isEditavel, lava, false)}
+              <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={{}} >
+                <Text style={styleApp.textButtonRegular}>+Seca</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+
+          <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={{}} >
+            <Text style={styleApp.textButtonRegular}>+Conjunto (lava e seca)</Text>
+          </TouchableOpacity>
+
+          {MontaMaquinario(maquinarioList, "conjunto", true)}
 
           {processing.isOnlyConsulta ? <></> :
             <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir} >
