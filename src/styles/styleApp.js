@@ -141,6 +141,7 @@ export const styleApp = StyleSheet.create({
   },
   buttonFlatVBorda: { //Vertical flat, centralizado, com borda
     flexDirection: "column",
+    flexShrink: 1,
     alignItems: 'center',
     justifyContent: "center",
     backgroundColor: "white",
@@ -149,7 +150,8 @@ export const styleApp = StyleSheet.create({
     marginBottom: 0,
     padding: 4,
     minHeight: 40,
-    minWidth: "30%",
+    width: '100%',
+    minWidth: "40",
     borderWidth: 1,
     borderRadius: styleSize.buttomBorderRadius,
     gap: 4

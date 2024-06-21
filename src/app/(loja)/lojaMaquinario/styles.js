@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
   containerPicker: {
     alignSelf:'stretch',
     marginTop: 12,
-    marginLeft: 12,
+    marginLeft: 0,
     marginRight: 12,
     marginBottom: 25,
     borderWidth: 1,

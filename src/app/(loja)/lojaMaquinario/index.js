@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Switch } from "react-native";
+import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Switch, Alert } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { styles } from "./styles";
 import { styleApp } from '../../../styles/styleApp';
@@ -14,6 +14,7 @@ import ModalSimples from '../../../componentes/modalSimples';
 import { useLocalSearchParams } from 'expo-router';
 import { MontaMaquinario } from '../../../componentes/montaMaquinario';
 import { Picker } from '@react-native-picker/picker';
+import { styleSize } from '../../../styles/styleSize';
 
 export default function ViewMaquinarioLoja() {
   const { user } = useContext(AuthContext);
@@ -74,6 +75,11 @@ export default function ViewMaquinarioLoja() {
       setflagShowModal(false);
     }, styleApp.size.modalTimeAutoClose);
   };
+
+  function infoViewStatus() {
+    Alert.alert("STATUS", "Para resposta SIM, o status de cada máquina poderá ser visualizado pelos clientes. Isso vai depender de configurações com a provedora da informação, e também de consentimento da Franqueadora, caso sua loja seja vincualda a uma.");
+  };
+
   async function incluiLava() {
     const cj = lava.toString() + seca.toString();
     const maq = {
@@ -136,53 +142,43 @@ export default function ViewMaquinarioLoja() {
         {ModalSimples(flagShowModal, handleShowModal, "Máquinas atualizadas!", "TipoMsg", "Título", processing)}
 
         <View style={[styles.containerPrincipal, { justifyContent: 'center', alignItems: 'center', marginBottom: 10 }]}>
-          {/*           <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginTop: 12, gap: 12,  marginBottom:10 }}>
-            <View style={{ maxWidth: "50%", flexShrink: 1, justifyContent: 'center', alignItems: 'center' }}>
-              <Text style={styleApp.textRegular}>Lava</Text>
-              {InputText("Número", onChangeLava, "1", 1, 2, "numeric", isEditavel, lava, false)}
-              <TouchableOpacity style={styleApp.buttonFlatVBorda} disabled={!isEditavel} onPress={incluiLava} >
-                <Text style={styleApp.textButtonFlat}>+Lava</Text>
+          {processing.isOnlyConsulta ? <></> :
+            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginTop: 12, gap: 20, marginBottom: 10 }}>
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 4, alignItems: 'center' }}>
+                <Text style={styleApp.textRegular}>LAVA:</Text>
+                {InputText("Número", onChangeLava, "0", 1, 2, "numeric", isEditavel, lava, false)}
+
+              </View>
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 4, alignItems: 'center' }}>
+                <Text style={styleApp.textRegular}>SECA:</Text>
+                {InputText("Número", onChangeSeca, "0", 1, 2, "numeric", isEditavel, seca, false)}
+
+              </View>
+            </View>
+          }
+
+          {processing.isOnlyConsulta ? <></> :
+            <View style={{ width: '85%', alignItems: 'stretch' }}>
+              <TouchableOpacity style={styleApp.buttonFlatVBorda} disabled={!isEditavel} onPress={incluiLavaSeca} >
+                <Text style={styleApp.textButtonFlat}>Adicionar o conjunto (lava e seca)</Text>
               </TouchableOpacity>
-            </View>
-            <View style={{ maxWidth: "50%", flexShrink: 1, justifyContent: 'center', alignItems: 'center' }}>
-              <Text style={styleApp.textRegular}>Seca</Text>
-              {InputText("Número", onChangeSeca, "1", 1, 2, "numeric", isEditavel, seca, false)}
-              <TouchableOpacity style={styleApp.buttonFlatVBorda} disabled={!isEditavel} onPress={incluiSeca} >
-                <Text style={styleApp.textButtonFlat}>+Seca</Text>
-              </TouchableOpacity>
-            </View>
-          </View> */}
-          <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginTop: 12, gap: 20, marginBottom: 10 }}>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 4, alignItems: 'center' }}>
-              <Text style={styleApp.textRegular}>LAVA:</Text>
-              {InputText("Número", onChangeLava, "0", 1, 2, "numeric", isEditavel, lava, false)}
 
+              <View style={{ flexDirection: 'row', gap: 6, marginTop: 6 }}>
+                <TouchableOpacity style={styleApp.buttonFlatVBorda} disabled={!isEditavel} onPress={incluiLava} >
+                  <Text style={styleApp.textButtonFlat}>Adicionar Lava</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styleApp.buttonFlatVBorda} disabled={!isEditavel} onPress={incluiSeca} >
+                  <Text style={styleApp.textButtonFlat}>Adicionar Seca</Text>
+                </TouchableOpacity>
+              </View>
             </View>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 4, alignItems: 'center' }}>
-              <Text style={styleApp.textRegular}>SECA:</Text>
-              {InputText("Número", onChangeSeca, "0", 1, 2, "numeric", isEditavel, seca, false)}
-
-            </View>
-          </View>
-
-          <TouchableOpacity style={styleApp.buttonFlatVBorda} disabled={!isEditavel} onPress={incluiLavaSeca} >
-            <Text style={styleApp.textButtonFlat}>Adicionar o conjunto (lava e seca)</Text>
-          </TouchableOpacity>
-
-          <View style={{ flexDirection: 'row', gap: 6, marginTop: 6 }}>
-            <TouchableOpacity style={styleApp.buttonFlatVBorda} disabled={!isEditavel} onPress={incluiLava} >
-              <Text style={styleApp.textButtonFlat}>Adicionar Lava</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styleApp.buttonFlatVBorda} disabled={!isEditavel} onPress={incluiSeca} >
-              <Text style={styleApp.textButtonFlat}>Adicionar Seca</Text>
-            </TouchableOpacity>
-          </View>
+          }
 
           {MontaMaquinario(maquinarioList, selectedTipoExibicao, true)}
           {maquinarioList.length <= 0 ? <></> :
-            <View style={{ width: '85%', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 10 }}>
+            <View style={{ width: '85%', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 10, borderRadius: 12, borderLeftWidth: 1, borderRightWidth: 1, borderColor: styleColor.erro }}>
               <MaterialIcons name="delete-forever" size={styleApp.size.iconSizeRegular} color={styleColor.erro} />
-              <Text style={styleApp.textSmallItalico}>Para excluir ou editar, mantenha pressionado</Text>
+              <Text style={styleApp.textSmallItalico}>Para excluir ou editar, mantenha a máquina pressionada</Text>
             </View>
           }
 
@@ -192,8 +188,8 @@ export default function ViewMaquinarioLoja() {
           <MaterialIcons name="more-horiz" size={styleApp.size.iconSizeRegular} color={styleColor.textSubtitulo} />
         </View>
 
-        <View style={[styles.containerPrincipal, { justifyContent: 'center', alignItems: 'center' }]}>
-          <Text style={[styleApp.textSmall, { alignSelf: "flex-start", marginLeft: 12 }]}>Como o cliente vai visualizar?</Text>
+        <View style={[styles.containerPrincipal, { justifyContent: 'flex-start', alignItems: 'center', padding: 16 }]}>
+          <Text style={[styleApp.textSmall, { alignSelf: "flex-start", marginLeft: 0 }]}>Como as máquina serão exibidas?</Text>
           <View style={styles.containerPicker}>
             <Picker
               enabled={isEditavel}
@@ -201,27 +197,34 @@ export default function ViewMaquinarioLoja() {
               onValueChange={(itemValue, itemIndex) =>
                 setTipoExibicao(itemValue)
               }>
-              <Picker.Item label="Conjunto" value="conjunto" />
+              <Picker.Item label="Conjunto (Lava embaixo)" value="conjunto" />
               <Picker.Item label="Lista" value="lista" />
-              <Picker.Item label="Quantidade" value="quantidade" />
             </Picker>
           </View>
 
-          <Text style={[styleApp.textSmall, { alignSelf: "flex-start", marginLeft: 12 }]}>O status será visível?</Text>
-          <Switch
-            trackColor={{ false: '#767577', true: '#81b0ff' }}
-            thumbColor={isEnabledStatus ? '#f5dd4b' : '#f4f3f4'}
-            ios_backgroundColor="#3e3e3e"
-            onValueChange={toggleSwitch}
-            value={isEnabledStatus}
-          />
+          <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', borderWidth: 0, width: '100%' }}>
+            <View style={{ borderWidth: 0 }}>
+              <Text style={[styleApp.textSmall, { alignSelf: "flex-start", marginLeft: 0 }]}>O status da máquina estará visível?</Text>
+              <View style={{ flexDirection: 'row', marginLeft: 0, justifyContent: "flex-start", alignItems: "center", gap: 4, borderWidth: 0 }}>
+                <Text style={[styleApp.textRegular, { color: isEnabledStatus ? styleColor.cinzaMedio : styleColor.tema30pPrincipal }]}>Não</Text>
+                <Switch
+                  enabled={isEditavel}
+                  trackColor={{ false: '#767577', true: '#767577' }}
+                  thumbColor={isEnabledStatus ? styleColor.tema30pPrincipal : '#f4f3f4'}
+                  ios_backgroundColor="#767577"
+                  onValueChange={toggleSwitch}
+                  value={isEnabledStatus}
+                />
+                <Text style={[styleApp.textRegular, { color: isEnabledStatus ? styleColor.tema30pPrincipal : styleColor.cinzaMedio }]}>Sim</Text>
+              </View>
+            </View>
+            <View style={{ flexShrink: 1, justifyContent: 'center', alignItems: 'center', borderWidth: 0, borderColor: styleColor.cinzaClaro, width: '100%', height: '100%' }}>
+              <TouchableOpacity disabled={!isEditavel} onPress={infoViewStatus} >
+                <MaterialIcons name="info-outline" size={styleSize.iconSizeLarge} color={styleColor.pretoRelativo} />
+              </TouchableOpacity>
+            </View>
+          </View>
 
-
-          {/*           {processing.isOnlyConsulta ? <></> :
-            <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir} >
-              <Text style={styleApp.textButtonRegular}>Confirmar</Text>
-            </TouchableOpacity>
-          } */}
         </View>
       </ScrollView>
     </SafeAreaView >
