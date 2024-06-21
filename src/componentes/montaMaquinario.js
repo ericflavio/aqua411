@@ -6,17 +6,16 @@ import * as Animatable from 'react-native-animatable';
 var conjunto = []; //Montagem dos conjuntos (bidimensional)
 
 export function MontaMaquinario(mList, tipoVisualizacao, flagVisualizarStatus) {
-  console.log("-=-=-=-=-=-=-=-=-=", mList)
   if (!mList || mList.length === 0) {
     return (
-      <View style={{justifyContent:'flex-start', alignItems:'center', marginTop:16}}>
+      <View style={{justifyContent:'flex-start', alignItems:'center', marginVertical:16}}>
         <Animatable.Image
-          animation="zoomInUp"
+          animation="rubberBand"
           style={{ resizeMode: "contain"}}
           source={require('../assets/outros/img_ovelha_vazio.png')}
         />
         <Text style={styleApp.textSmallItalico}>
-          Comece a cadastrar as máquinas
+          Esta loja ainda não dispõe de máquinas
         </Text>
       </View>
     )

@@ -4,7 +4,7 @@ export var schemaLojaMaquinario = {
   //Obs: Sempre ler ordenado pelo nr do conjunto
   idMaquina: "",
   tipo: "", //"l", "s"
-  nrConjunto: 0, //Agrupador de lava e seca. Igual a soma dos labels. Ex: L+S --> "1"+"2" = 123; "3"+null = 33; "9"+"10"=91019
+  nrConjunto: "", //Agrupador de lava e seca. Igual a soma dos labels. Ex: L+S --> "1"+"2" = 123; "3"+null = 33; "9"+"10"=91019
   numeroLabel: "",
   nomeLabel: "",
   status: "", //Obs: Este sobrescreve o status da telemetria

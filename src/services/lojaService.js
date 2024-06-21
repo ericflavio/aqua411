@@ -16,7 +16,7 @@ export async function consultaListaMaquinario() {
     {
       idMaquina: "UUID01",
       tipo: "l",
-      nrConjunto: 123,
+      nrConjunto: '123',
       numeroLabel: "1",
       nomeLabel: "Lava",
       status: "Disponível",
@@ -25,7 +25,7 @@ export async function consultaListaMaquinario() {
     {
       idMaquina: "UUID02",
       tipo: "s",
-      nrConjunto: 123,
+      nrConjunto: '123',
       numeroLabel: "2",
       nomeLabel: "Seca",
       status: "Disponível",
@@ -34,7 +34,7 @@ export async function consultaListaMaquinario() {
     {
       idMaquina: "UUID03",
       tipo: "l",
-      nrConjunto: 347,
+      nrConjunto: '347',
       numeroLabel: "3",
       nomeLabel: "Lava",
       status: "Disponível",
@@ -43,7 +43,7 @@ export async function consultaListaMaquinario() {
     {
       idMaquina: "UUID04",
       tipo: "s",
-      nrConjunto: 347,
+      nrConjunto: '347',
       numeroLabel: "4",
       nomeLabel: "Seca",
       status: "Manutenção",
@@ -52,7 +52,7 @@ export async function consultaListaMaquinario() {
     {
       idMaquina: "UUID05",
       tipo: "l",
-      nrConjunto: 5611,
+      nrConjunto: '5611',
       numeroLabel: "5",
       nomeLabel: "Lava",
       status: "Disponível",
@@ -61,7 +61,7 @@ export async function consultaListaMaquinario() {
     {
       idMaquina: "UUID06",
       tipo: "s",
-      nrConjunto: 5611,
+      nrConjunto: '5611',
       numeroLabel: "6",
       nomeLabel: "Seca",
       status: "manutencao",
@@ -70,7 +70,7 @@ export async function consultaListaMaquinario() {
     {
       idMaquina: "UUID07",
       tipo: "l",
-      nrConjunto: 7815,
+      nrConjunto: '7815',
       numeroLabel: "7",
       nomeLabel: "Lava",
       status: "Disponível",
@@ -79,7 +79,7 @@ export async function consultaListaMaquinario() {
     {
       idMaquina: "UUID08",
       tipo: "s",
-      nrConjunto: 7815,
+      nrConjunto: '7815',
       numeroLabel: "8",
       nomeLabel: "Seca",
       status: "Indisponível",
@@ -88,7 +88,7 @@ export async function consultaListaMaquinario() {
     {
       idMaquina: "UUID09",
       tipo: "l",
-      nrConjunto: 91019,
+      nrConjunto: '91019',
       numeroLabel: "9",
       nomeLabel: "Lava",
       status: "Disponível",

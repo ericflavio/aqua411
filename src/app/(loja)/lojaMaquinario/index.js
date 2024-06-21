@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, } from "react-native";
+import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Switch } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { styles } from "./styles";
 import { styleApp } from '../../../styles/styleApp';
@@ -28,11 +28,12 @@ export default function ViewMaquinarioLoja() {
 
   //Outras declarações
   const [selectedTipoExibicao, setTipoExibicao] = useState("conjunto");
+  const [isEnabledStatus, setIsEnabledStatus] = useState(false);
+  const toggleSwitch = () => setIsEnabledStatus(previousState => !previousState);
   const [maquinario, setMaquinario] = useState(schemaLojaMaquinario);
   const [maquinarioList, setMaquinarioList] = useState([]);
-  const [lava, setLava] = useState("0");
-  const [seca, setSeca] = useState("0");
-  var mm = [];
+  const [lava, setLava] = useState(0);
+  const [seca, setSeca] = useState(0);
 
   //Ações ao final da construção do componente
   useEffect(() => {
@@ -73,43 +74,33 @@ export default function ViewMaquinarioLoja() {
       setflagShowModal(false);
     }, styleApp.size.modalTimeAutoClose);
   };
-  function incluiLava() {
+  async function incluiLava() {
+    const cj = lava.toString() + seca.toString();
     const maq = {
       idMaquina: "UUID" + lava,
       tipo: "l",
-      nrConjunto: 123,
+      nrConjunto: cj,
       numeroLabel: lava,
       nomeLabel: "Lava",
       status: "Disponível",
     }
-    return maq;
-    var m = maquinarioList;
-    m.push(maq);
-    console.log("m.seca: ", m)
-    setMaquinarioList(m)
+    setMaquinarioList(maquinarioList => [...maquinarioList, maq])
   };
-  function incluiSeca() {
+  async function incluiSeca() {
+    const cj = lava.toString() + seca.toString();
     const maq = {
       idMaquina: "UUID" + seca,
       tipo: "s",
-      nrConjunto: 123,
+      nrConjunto: cj,
       numeroLabel: seca,
       nomeLabel: "Seca",
-      status: "Disponível",
+      status: "Indisponível",
     }
-    return maq;
-    var m = maquinarioList;
-    m.push(maq);
-    console.log("m.lava: ", m)
-    setMaquinarioList(m)
+    setMaquinarioList(maquinarioList => [...maquinarioList, maq])
   };
-  function incluiLavaSeca() {
-    const m1 = incluiLava();
-    const m2 = incluiSeca();
-    //mm = maquinarioList;
-    mm.push(m1);
-    mm.push(m2);
-    setMaquinarioList(mm)
+  async function incluiLavaSeca() {
+    incluiLava();
+    incluiSeca();
   }
 
   //Ações ao clicar no botão principal (confirmar/prosseguir)
@@ -161,35 +152,48 @@ export default function ViewMaquinarioLoja() {
               </TouchableOpacity>
             </View>
           </View> */}
-          <View style={{ justifyContent: 'flex-start', alignItems: 'center', marginTop: 12, gap: 0, marginBottom: 10 }}>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 4, alignItems: 'center' }}>
-              <Text style={styleApp.textRegular}>SECA:</Text>
-              {InputText("Número", onChangeSeca, "1", 1, 2, "numeric", isEditavel, seca, false)}
-              <TouchableOpacity style={styleApp.buttonFlatVBorda} disabled={!isEditavel} onPress={incluiSeca} >
-                <Text style={styleApp.textButtonFlat}>Adicionar</Text>
-              </TouchableOpacity>
-            </View>
+          <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginTop: 12, gap: 20, marginBottom: 10 }}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 4, alignItems: 'center' }}>
               <Text style={styleApp.textRegular}>LAVA:</Text>
-              {InputText("Número", onChangeLava, "1", 1, 2, "numeric", isEditavel, lava, false)}
-              <TouchableOpacity style={styleApp.buttonFlatVBorda} disabled={!isEditavel} onPress={incluiLava} >
-                <Text style={styleApp.textButtonFlat}>Adicionar</Text>
-              </TouchableOpacity>
+              {InputText("Número", onChangeLava, "0", 1, 2, "numeric", isEditavel, lava, false)}
+
+            </View>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 4, alignItems: 'center' }}>
+              <Text style={styleApp.textRegular}>SECA:</Text>
+              {InputText("Número", onChangeSeca, "0", 1, 2, "numeric", isEditavel, seca, false)}
+
             </View>
           </View>
 
           <TouchableOpacity style={styleApp.buttonFlatVBorda} disabled={!isEditavel} onPress={incluiLavaSeca} >
             <Text style={styleApp.textButtonFlat}>Adicionar o conjunto (lava e seca)</Text>
           </TouchableOpacity>
+
+          <View style={{ flexDirection: 'row', gap: 6, marginTop: 6 }}>
+            <TouchableOpacity style={styleApp.buttonFlatVBorda} disabled={!isEditavel} onPress={incluiLava} >
+              <Text style={styleApp.textButtonFlat}>Adicionar Lava</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styleApp.buttonFlatVBorda} disabled={!isEditavel} onPress={incluiSeca} >
+              <Text style={styleApp.textButtonFlat}>Adicionar Seca</Text>
+            </TouchableOpacity>
+          </View>
+
+          {MontaMaquinario(maquinarioList, selectedTipoExibicao, true)}
           {maquinarioList.length <= 0 ? <></> :
             <View style={{ width: '85%', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 10 }}>
               <MaterialIcons name="delete-forever" size={styleApp.size.iconSizeRegular} color={styleColor.erro} />
-              <Text style={styleApp.textSmallItalico}>Para excluir, clique sobre o item e mantenha pressionado</Text>
+              <Text style={styleApp.textSmallItalico}>Para excluir ou editar, mantenha pressionado</Text>
             </View>
           }
 
-          {MontaMaquinario(maquinarioList, selectedTipoExibicao, false)}
+        </View>
 
+        <View style={{ alignItems: 'center' }}>
+          <MaterialIcons name="more-horiz" size={styleApp.size.iconSizeRegular} color={styleColor.textSubtitulo} />
+        </View>
+
+        <View style={[styles.containerPrincipal, { justifyContent: 'center', alignItems: 'center' }]}>
+          <Text style={[styleApp.textSmall, { alignSelf: "flex-start", marginLeft: 12 }]}>Como o cliente vai visualizar?</Text>
           <View style={styles.containerPicker}>
             <Picker
               enabled={isEditavel}
@@ -203,8 +207,17 @@ export default function ViewMaquinarioLoja() {
             </Picker>
           </View>
 
+          <Text style={[styleApp.textSmall, { alignSelf: "flex-start", marginLeft: 12 }]}>O status será visível?</Text>
+          <Switch
+            trackColor={{ false: '#767577', true: '#81b0ff' }}
+            thumbColor={isEnabledStatus ? '#f5dd4b' : '#f4f3f4'}
+            ios_backgroundColor="#3e3e3e"
+            onValueChange={toggleSwitch}
+            value={isEnabledStatus}
+          />
 
-{/*           {processing.isOnlyConsulta ? <></> :
+
+          {/*           {processing.isOnlyConsulta ? <></> :
             <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir} >
               <Text style={styleApp.textButtonRegular}>Confirmar</Text>
             </TouchableOpacity>
