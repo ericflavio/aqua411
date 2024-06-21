@@ -11,66 +11,13 @@ export function MontaMaquinario(mList, tipoVisualizacao, flagVisualizarStatus) {
   tipoVisualizacao === undefined ? tipoExibicao = "conjunto" : tipoExibicao = tipoVisualizacao;
   //Tipos = conjunto, lista, quantidade
 
+  console.log("-=-=-=-=-=-=-=-=-=", mList)
   if (!mList || mList.length === 0) { //Demonstração
-    verStatus = true;
-    tipoExibicao = "conjunto";
-
-    mList =
-      [{
-        idMaquina: "UUID01",
-        tipo: "l",
-        nrConjunto: 123,
-        numeroLabel: "1",
-        nomeLabel: "Lava",
-        status: "Disponível",
-        capacidadeKg: 11,
-      },
-      {
-        idMaquina: "UUID02",
-        tipo: "s",
-        nrConjunto: 123,
-        numeroLabel: "2",
-        nomeLabel: "Seca",
-        status: "Disponível",
-        capacidadeKg: 11,
-      },
-      {
-        idMaquina: "UUID03",
-        tipo: "l",
-        nrConjunto: 347,
-        numeroLabel: "3",
-        nomeLabel: "Lava",
-        status: "Disponível",
-        capacidadeKg: 11,
-      },
-      {
-        idMaquina: "UUID04",
-        tipo: "s",
-        nrConjunto: 347,
-        numeroLabel: "4",
-        nomeLabel: "Seca",
-        status: "Disponível",
-        capacidadeKg: 11,
-      },
-      {
-        idMaquina: "UUID05",
-        tipo: "l",
-        nrConjunto: 5611,
-        numeroLabel: "5",
-        nomeLabel: "Lava",
-        status: "Disponível",
-        capacidadeKg: 11,
-      },
-      {
-        idMaquina: "UUID06",
-        tipo: "s",
-        nrConjunto: 5611,
-        numeroLabel: "6",
-        nomeLabel: "Seca",
-        status: "Disponível",
-        capacidadeKg: 11,
-      }]
+    return (
+      <Text style={styleApp.textRegular}>Nenhuma maquina configurada</Text>
+    )
   }
+  console.log("<b>!");
 
   //Ordena primeiro as Secas, depois as Lavas.
   mList.sort((a, b) => {

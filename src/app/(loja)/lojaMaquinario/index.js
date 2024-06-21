@@ -26,9 +26,11 @@ export default function ViewMaquinarioLoja() {
   const [flagShowModal, setflagShowModal] = useState(false);
 
   //Outras declarações
-  const [maquinario, setMaquinario] = useState(schemaLojaMaquinario)
-  const [maquinarioList, setMaquinarioList] = useState([])
-  const [lava, setLava] = useState(1)
+  const [maquinario, setMaquinario] = useState(schemaLojaMaquinario);
+  const [maquinarioList, setMaquinarioList] = useState([]);
+  const [lava, setLava] = useState("0");
+  const [seca, setSeca] = useState("0");
+  var mm = [];
 
   //Ações ao final da construção do componente
   useEffect(() => {
@@ -38,7 +40,8 @@ export default function ViewMaquinarioLoja() {
   //Carrega dados pre-existentes
   async function fetchDados() {
     try {
-      res = await consultaListaMaquinario();
+      //res = await consultaListaMaquinario();
+      res = null
       res !== null ? setMaquinarioList(res) : setMaquinarioList([]);
       setProcessing({ ...processing, isLoading: false });
     } catch {
@@ -52,8 +55,11 @@ export default function ViewMaquinarioLoja() {
     //setMaquinario({ ...maquinario, latitude: parm });
   }
   function onChangeLava(parm) {
-    //setMaquinario({ ...maquinario, latitude: parm });
-  }
+    setLava(parm)
+  };
+  function onChangeSeca(parm) {
+    setSeca(parm)
+  };
 
   //Funções auxiliares 
   function handleShowModal() {
@@ -64,6 +70,44 @@ export default function ViewMaquinarioLoja() {
     setTimeout(() => {
       setflagShowModal(false);
     }, styleApp.size.modalTimeAutoClose);
+  };
+  function incluiLava() {
+    const maq = {
+      idMaquina: "UUID" + lava,
+      tipo: "l",
+      nrConjunto: 123,
+      numeroLabel: lava,
+      nomeLabel: "Lava",
+      status: "Disponível",
+    }
+    return maq;
+    var m = maquinarioList;
+    m.push(maq);
+    console.log("m.seca: ", m)
+    setMaquinarioList(m)
+  };
+  function incluiSeca() {
+    const maq = {
+      idMaquina: "UUID" + seca,
+      tipo: "s",
+      nrConjunto: 123,
+      numeroLabel: seca,
+      nomeLabel: "Seca",
+      status: "Disponível",
+    }
+    return maq;
+    var m = maquinarioList;
+    m.push(maq);
+    console.log("m.lava: ", m)
+    setMaquinarioList(m)
+  };
+  function incluiLavaSeca() {
+    const m1 = incluiLava();
+    const m2 = incluiSeca();
+    //mm = maquinarioList;
+    mm.push(m1);
+    mm.push(m2);
+    setMaquinarioList(mm)
   }
 
   //Ações ao clicar no botão principal (confirmar/prosseguir)
@@ -103,24 +147,24 @@ export default function ViewMaquinarioLoja() {
             <View style={{ maxWidth: "50%", flexShrink: 1, justifyContent: 'center', alignItems: 'center' }}>
               <Text style={styleApp.textRegular}>Lava</Text>
               {InputText("Número", onChangeLava, "1", 1, 2, "default", isEditavel, lava, false)}
-              <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={{}} >
+              <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={incluiLava} >
                 <Text style={styleApp.textButtonRegular}>+Lava</Text>
               </TouchableOpacity>
             </View>
             <View style={{ maxWidth: "50%", flexShrink: 1, justifyContent: 'center', alignItems: 'center' }}>
               <Text style={styleApp.textRegular}>Seca</Text>
-              {InputText("Número", onChangeLava, "1", 1, 2, "default", isEditavel, lava, false)}
-              <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={{}} >
+              {InputText("Número", onChangeSeca, "1", 1, 2, "default", isEditavel, seca, false)}
+              <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={incluiSeca} >
                 <Text style={styleApp.textButtonRegular}>+Seca</Text>
               </TouchableOpacity>
             </View>
           </View>
 
-          <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={{}} >
+          <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={incluiLavaSeca} >
             <Text style={styleApp.textButtonRegular}>+Conjunto (lava e seca)</Text>
           </TouchableOpacity>
 
-          {MontaMaquinario(maquinarioList, "conjunto", true)}
+          {MontaMaquinario(maquinarioList, "conjunto", false)}
 
           {processing.isOnlyConsulta ? <></> :
             <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir} >
