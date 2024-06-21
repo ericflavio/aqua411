@@ -6,74 +6,80 @@ import { styleColor } from "../../../styles/styleColors";
 
 var conjunto = []; //Montagem dos conjuntos (bidimensional)
 
-export function MontaMaquinario(mList) {
-  console.log("monta maquinario")
+export function MontaMaquinario(mList, tipoVisualizacao, flagVisualizarStatus) {
+  var verStatus = false;
+  var tipoExibicao = "conjunto";
+  flagVisualizarStatus === undefined ? verStatus = false : verStatus = flagVisualizarStatus;
+  tipoVisualizacao === undefined ? tipoExibicao = "conjunto" : tipoExibicao = tipoVisualizacao;
+  //Tipos = conjunto, lista, quantidade
 
-  mList =
-    [{
-      idMaquina: "UUID01",
-      tipo: "l",
-      nrConjunto: 123,
-      numeroLabel: "1",
-      nomeLabel: "Lava",
-      status: "Disponível",
-      capacidadeKg: 11,
-    },
-    {
-      idMaquina: "UUID02",
-      tipo: "s",
-      nrConjunto: 123,
-      numeroLabel: "2",
-      nomeLabel: "Seca",
-      status: "Disponível",
-      capacidadeKg: 11,
-    },
-    {
-      idMaquina: "UUID03",
-      tipo: "l",
-      nrConjunto: 347,
-      numeroLabel: "3",
-      nomeLabel: "Lava",
-      status: "Disponível",
-      capacidadeKg: 11,
-    },
-    {
-      idMaquina: "UUID04",
-      tipo: "s",
-      nrConjunto: 347,
-      numeroLabel: "4",
-      nomeLabel: "Seca",
-      status: "Disponível",
-      capacidadeKg: 11,
-    },
-    {
-      idMaquina: "UUID05",
-      tipo: "l",
-      nrConjunto: 5611,
-      numeroLabel: "5",
-      nomeLabel: "Lava",
-      status: "Disponível",
-      capacidadeKg: 11,
-    },
-    {
-      idMaquina: "UUID06",
-      tipo: "s",
-      nrConjunto: 5611,
-      numeroLabel: "6",
-      nomeLabel: "Seca",
-      status: "Disponível",
-      capacidadeKg: 11,
-    },
-    ]
+  if (!mList || mList.length === 0) { //Demonstração
+    verStatus = true;
+    tipoExibicao = "conjunto";
 
-  const tipoExibicao = "conjunto";
+    mList =
+      [{
+        idMaquina: "UUID01",
+        tipo: "l",
+        nrConjunto: 123,
+        numeroLabel: "1",
+        nomeLabel: "Lava",
+        status: "Disponível",
+        capacidadeKg: 11,
+      },
+      {
+        idMaquina: "UUID02",
+        tipo: "s",
+        nrConjunto: 123,
+        numeroLabel: "2",
+        nomeLabel: "Seca",
+        status: "Disponível",
+        capacidadeKg: 11,
+      },
+      {
+        idMaquina: "UUID03",
+        tipo: "l",
+        nrConjunto: 347,
+        numeroLabel: "3",
+        nomeLabel: "Lava",
+        status: "Disponível",
+        capacidadeKg: 11,
+      },
+      {
+        idMaquina: "UUID04",
+        tipo: "s",
+        nrConjunto: 347,
+        numeroLabel: "4",
+        nomeLabel: "Seca",
+        status: "Disponível",
+        capacidadeKg: 11,
+      },
+      {
+        idMaquina: "UUID05",
+        tipo: "l",
+        nrConjunto: 5611,
+        numeroLabel: "5",
+        nomeLabel: "Lava",
+        status: "Disponível",
+        capacidadeKg: 11,
+      },
+      {
+        idMaquina: "UUID06",
+        tipo: "s",
+        nrConjunto: 5611,
+        numeroLabel: "6",
+        nomeLabel: "Seca",
+        status: "Disponível",
+        capacidadeKg: 11,
+      }]
+  }
 
-  //Ordena primeiro as Lavas, depois as Secas.
+  //Ordena primeiro as Secas, depois as Lavas.
   mList.sort((a, b) => {
-    ka = a.tipo + a.numeroLabel;
-    kb = b.tipo + b.numeroLabel;
-    if (ka < kb) return -1;
-    if (ka > kb) return 1;
+    ka = a.tipo;
+    kb = b.tipo;
+    if (ka < kb) return 1;
+    if (ka > kb) return -1;
     return 0;
   })
 
@@ -108,122 +114,99 @@ export function MontaMaquinario(mList) {
     return viewLista();
   }
 
+  function txLabelStatusConjuntoY(maq) {
+    verStatus ? txStatus = maq.status : txStatus = "";
+    return (
+      <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+        <Text style={[styleApp.textSmallItalico, { marginBottom: 0 }]}>{txStatus}</Text>
+        <Text style={[styleApp.textSubtitulo, { marginBottom: 0, marginTop: 0 }]}>{maq.nomeLabel}</Text>
+      </View>
+    )
+  }
+  function txLabelStatusConjuntoX(maq) {
+    verStatus ? txStatus = maq.status : txStatus = "";
+    return (
+      <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+        <Text style={[styleApp.textSubtitulo, { marginBottom: 0, marginTop: 0 }]}>{maq.nomeLabel}</Text>
+        <Text style={[styleApp.textSmallItalico, { marginBottom: 0 }]}>{txStatus}</Text>
+      </View>
+    )
+  }
+  function txLabelStatusLista(maq) {
+    verStatus ? txStatus = maq.status : txStatus = "";
+    return (
+      <View style={{ justifyContent: 'flex-start', alignItems: 'flex-start' }}>
+        <Text style={[styleApp.textSubtitulo, { marginBottom: 0, marginTop: 0 }]}>{maq.nomeLabel}</Text>
+        <Text style={[styleApp.textSmallItalico, { marginBottom: 0 }]}>{txStatus}</Text>
+      </View>
+    )
+  }
+  function desenhoMaquina(maq) {
+    maq.tipo === 'l' ? br = 24 : br = 4;
+    var cor = 'white';
+    if (verStatus) {
+      if (maq.status.toLowerCase() !== "disponível" && maq.status.toLowerCase() !== "disponivel") {
+        if (maq.status.toLowerCase() !== "manutenção" && maq.status.toLowerCase() !== "manutencao") {
+          cor = styleColor.erro;
+        } else {
+          cor = styleColor.alerta
+        }
+      } else {
+        cor = styleColor.sucesso;
+      }
+    };
+
+    return (
+      <View style={{ width: 60, height: 60, backgroundColor: cor, borderWidth: 2, borderColor: "grey", borderRadius: 6, justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{ width: 48, height: 48, borderRadius: br, borderWidth: 2, borderColor: "grey", justifyContent: 'center', alignItems: 'center' }}>
+          <Text style={styleApp.textSubtitulo}>{maq.numeroLabel}</Text>
+        </View>
+      </View>
+    )
+  }
+  //fim
+
   function viewConjunto() {
     return (
-      <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: 4 }}>
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'flex-start', gap: 4 }}>
         {conjunto.map((maq, index) => (
           <TouchableOpacity key={index} activeOpacity={0.7}>
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', padding: 6, backgroundColor: styleColor.cinzaClaro, borderRadius: 8, gap: 6, alignSelf: 'baseline' }}>
-              <View style={{ margin: 4 }}>
-                {maq[0] !== undefined ?
-                  <View>
-                    <View>
-                      <Text style={styleApp.textSubtitulo}>{maq[0].nomeLabel}</Text>
-                      <Text>{maq[0].status}</Text>
-                    </View>
-
-                    {maq[0].tipo === 'l' ?
-                      <View style={{ width: 48, height: 48, borderRadius: 24, borderWidth: 2, borderColor: "grey", justifyContent: 'center', alignItems: 'center' }}>
-                        <Text style={styleApp.textSubtitulo}>{maq[0].numeroLabel}</Text>
-                      </View>
-                      :
-                      <View style={{ width: 48, height: 48, borderRadius: 4, borderWidth: 2, borderColor: "grey", justifyContent: 'center', alignItems: 'center' }}>
-                        <Text style={styleApp.textSubtitulo}>{maq[0].numeroLabel}</Text>
-                      </View>
-                    }
-
-                  </View>
-                  : <></>
-                }
-                {maq[1] !== undefined ?
-                  <View>
-                    {maq[1].tipo === 'l' ?
-                      <View style={{ width: 48, height: 48, borderRadius: 24, borderWidth: 2, borderColor: "grey", justifyContent: 'center', alignItems: 'center' }}>
-                        <Text style={styleApp.textSubtitulo}>{maq[1].numeroLabel}</Text>
-                      </View>
-                      :
-                      <View style={{ width: 48, height: 48, borderRadius: 4, borderWidth: 2, borderColor: "grey", justifyContent: 'center', alignItems: 'center' }}>
-                        <Text style={styleApp.textSubtitulo}>{maq[1].numeroLabel}</Text>
-                      </View>
-                    }
-                    <View>
-                      <Text style={styleApp.textSubtitulo}>{maq[1].nomeLabel}</Text>
-                      <Text>{maq[1].status}</Text>
-                    </View>
-                  </View>
-                  : <></>
-                }
-              </View>
+            <View style={{ minWidth: 94, justifyContent: 'center', alignItems: 'center', padding: 6, backgroundColor: styleColor.cinzaClaro, borderRadius: 8 }}>
+              {maq[0] !== undefined ?
+                <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                  {txLabelStatusConjuntoY(maq[0])}
+                  {desenhoMaquina(maq[0])}
+                </View>
+                : <></>
+              }
+              {maq[1] !== undefined ?
+                <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                  {desenhoMaquina(maq[1])}
+                  {txLabelStatusConjuntoX(maq[1])}
+                </View>
+                : <></>
+              }
             </View>
           </TouchableOpacity>
-        ))}
-      </View>
+        ))
+        }
+      </View >
     )
   }
 
 
   function viewLista() {
     return (
-      <>
-        {tipoExibicao !== "conjunto" ?
-          mList.map((maq, index) => (
-            <TouchableOpacity key={index} activeOpacity={0.7}>
-              <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', padding: 6, backgroundColor: styleColor.cinzaClaro, borderRadius: 8, gap: 6, marginBottom: 4 }}>
-                <View style={{ width: 60, height: 60, backgroundColor: "white", borderWidth: 2, borderColor: "grey", borderRadius: 6, justifyContent: 'center', alignItems: 'center' }}>
-                  {maq.tipo === 'l' ?
-                    <View style={{ width: 48, height: 48, borderRadius: 24, borderWidth: 2, borderColor: "grey", justifyContent: 'center', alignItems: 'center' }}>
-                      <Text style={styleApp.textSubtitulo}>{maq.numeroLabel}</Text>
-                    </View>
-                    :
-                    <View style={{ width: 48, height: 48, borderRadius: 4, borderWidth: 2, borderColor: "grey", justifyContent: 'center', alignItems: 'center' }}>
-                      <Text style={styleApp.textSubtitulo}>{maq.numeroLabel}</Text>
-                    </View>
-                  }
-                </View>
-                <View>
-                  <Text style={styleApp.textSubtitulo}>{maq.nomeLabel}</Text>
-                  <Text>Status: {maq.status}</Text>
-                </View>
-              </View>
-            </TouchableOpacity>
-          ))
-          :
-          conjunto.map((maq, index) => (
-            <TouchableOpacity key={index} activeOpacity={0.7}>
-              <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', padding: 6, backgroundColor: styleColor.cinzaClaro, borderRadius: 8, gap: 6, alignSelf: 'baseline' }}>
-                <View style={{ margin: 4 }}>
-                  {maq[0] !== undefined ?
-                    <View>
-                      <View>
-                        <Text style={styleApp.textSubtitulo}>{maq[0].nomeLabel} {maq[0].numeroLabel}</Text>
-                        <Text>{maq[0].status}</Text>
-                      </View>
-                      <View style={{ width: 60, height: 60, backgroundColor: "white", borderWidth: 2, borderColor: "grey", borderRadius: 6, justifyContent: 'center', alignItems: 'center' }}>
-                        <View style={{ width: 42, height: 42, borderRadius: 0, borderWidth: 2, borderColor: "grey", justifyContent: 'center', alignItems: 'center' }}>
-                        </View>
-                      </View>
-                    </View>
-                    : <></>
-                  }
-                  {maq[1] !== undefined ?
-                    <View>
-                      <View style={{ width: 60, height: 60, backgroundColor: "white", borderWidth: 2, borderColor: "grey", borderRadius: 6, justifyContent: 'center', alignItems: 'center' }}>
-                        <View style={{ width: 48, height: 48, borderRadius: 25, borderWidth: 2, borderColor: "grey", justifyContent: 'center', alignItems: 'center' }}>
-                        </View>
-                      </View>
-                      <View>
-                        <Text style={styleApp.textSubtitulo}>{maq[1].nomeLabel} {maq[1].numeroLabel}</Text>
-                        <Text>{maq[1].status}</Text>
-                      </View>
-                    </View>
-                    : <></>
-                  }
-                </View>
-              </View>
-            </TouchableOpacity>
-          ))
-        }
-      </>
+      <View>
+        {mList.map((maq, index) => (
+          <TouchableOpacity key={index} activeOpacity={0.7}>
+            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', padding: 6, backgroundColor: styleColor.cinzaClaro, borderRadius: 8, gap: 6, marginBottom: 4 }}>
+              {desenhoMaquina(maq)}
+              {txLabelStatusLista(maq)}
+            </View>
+          </TouchableOpacity>
+        ))}
+      </View>
     )
   }
 }
