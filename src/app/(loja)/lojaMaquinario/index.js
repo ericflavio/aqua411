@@ -12,7 +12,7 @@ import { schemaLojaMaquinario } from '../../../schemas/lojaSchema';
 import { consultaListaMaquinario } from '../../../services/lojaService';
 import ModalSimples from '../../../componentes/modalSimples';
 import { useLocalSearchParams } from 'expo-router';
-import { MontaMaquinario } from './montaMaquinario'
+import { MontaMaquinario } from '../../../componentes/montaMaquinario';
 
 export default function ViewMaquinarioLoja() {
   const { user } = useContext(AuthContext);

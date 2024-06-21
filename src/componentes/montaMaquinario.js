@@ -1,8 +1,6 @@
-
 import { View, Text, TouchableOpacity, } from "react-native";
-import { styles } from "./styles";
-import { styleApp } from '../../../styles/styleApp';
-import { styleColor } from "../../../styles/styleColors";
+import { styleApp } from '../styles/styleApp';
+import { styleColor } from '../styles/styleColors';
 
 var conjunto = []; //Montagem dos conjuntos (bidimensional)
 
