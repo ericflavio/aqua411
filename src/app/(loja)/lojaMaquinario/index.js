@@ -44,8 +44,7 @@ export default function ViewMaquinarioLoja() {
   //Carrega dados pre-existentes
   async function fetchDados() {
     try {
-      //res = await consultaListaMaquinario();
-      res = null
+      res = await consultaListaMaquinario();
       res !== null ? setMaquinarioList(res) : setMaquinarioList([]);
       setProcessing({ ...processing, isLoading: false });
     } catch {
@@ -77,7 +76,7 @@ export default function ViewMaquinarioLoja() {
   };
 
   function infoViewStatus() {
-    Alert.alert("STATUS", "Para resposta SIM, o status de cada máquina poderá ser visualizado pelos clientes. Isso vai depender de configurações com a provedora da informação, e também de consentimento da Franqueadora, caso sua loja seja vincualda a uma.");
+    Alert.alert("STATUS", "Para resposta SIM, o status de cada máquina poderá ser visualizado pelos clientes. Isso vai depender de configurações com a provedora da informação e também do consentimento da Franqueadora, caso sua loja esteja vincualda a uma.");
   };
 
   async function incluiLava() {
@@ -173,12 +172,16 @@ export default function ViewMaquinarioLoja() {
               </View>
             </View>
           }
+        </View>
+
+        <View style={[styles.containerPrincipal, { justifyContent: 'center', alignItems: 'center', marginBottom: 10 }]}>
 
           {MontaMaquinario(maquinarioList, selectedTipoExibicao, true)}
+
           {maquinarioList.length <= 0 ? <></> :
-            <View style={{ width: '85%', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 10, borderRadius: 12, borderLeftWidth: 1, borderRightWidth: 1, borderColor: styleColor.erro }}>
+            <View style={{ width: '90%', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginVertical: 10, borderRadius: 12, borderLeftWidth: 1, borderRightWidth: 1, borderColor: styleColor.erro }}>
               <MaterialIcons name="delete-forever" size={styleApp.size.iconSizeRegular} color={styleColor.erro} />
-              <Text style={styleApp.textSmallItalico}>Para excluir ou editar, mantenha a máquina pressionada</Text>
+              <Text style={styleApp.textSmallItalico}>Pressione e segure para editar/excluir</Text>
             </View>
           }
 
@@ -197,7 +200,7 @@ export default function ViewMaquinarioLoja() {
               onValueChange={(itemValue, itemIndex) =>
                 setTipoExibicao(itemValue)
               }>
-              <Picker.Item label="Conjunto (Lava embaixo)" value="conjunto" />
+              <Picker.Item label="Conjunto (Lavadora embaixo)" value="conjunto" />
               <Picker.Item label="Lista" value="lista" />
             </Picker>
           </View>
@@ -208,7 +211,7 @@ export default function ViewMaquinarioLoja() {
               <View style={{ flexDirection: 'row', marginLeft: 0, justifyContent: "flex-start", alignItems: "center", gap: 4, borderWidth: 0 }}>
                 <Text style={[styleApp.textRegular, { color: isEnabledStatus ? styleColor.cinzaMedio : styleColor.tema30pPrincipal }]}>Não</Text>
                 <Switch
-                  enabled={isEditavel}
+                  disabled={!isEditavel}
                   trackColor={{ false: '#767577', true: '#767577' }}
                   thumbColor={isEnabledStatus ? styleColor.tema30pPrincipal : '#f4f3f4'}
                   ios_backgroundColor="#767577"
@@ -219,7 +222,7 @@ export default function ViewMaquinarioLoja() {
               </View>
             </View>
             <View style={{ flexShrink: 1, justifyContent: 'center', alignItems: 'center', borderWidth: 0, borderColor: styleColor.cinzaClaro, width: '100%', height: '100%' }}>
-              <TouchableOpacity disabled={!isEditavel} onPress={infoViewStatus} >
+              <TouchableOpacity disabled={false} onPress={infoViewStatus} >
                 <MaterialIcons name="info-outline" size={styleSize.iconSizeLarge} color={styleColor.pretoRelativo} />
               </TouchableOpacity>
             </View>

@@ -5,98 +5,13 @@ import { styleApp } from '../../styles/styleApp';
 import { GradienteFill } from '../../componentes/gradienteFill';
 import { AuthContext } from "../../contexts/auth";
 import { MaterialIcons } from "@expo/vector-icons";
+import { MontaMaquinario } from '../../componentes/montaMaquinario';
 
 var cenarioTeste = 1;
 var seca = [1, 1, 1];
 var lava = [1, 1, 1];
 var relogioOnOff = true;
 var flagViewStatusMaquina = true; //TODO: não está sendo usado
-var imgMaq = {};
-
-//Monta cada máquina com seu respectivo status
-function maquina(tipMaq, idMaq, status, view) {
-  if (tipMaq == undefined) tipMaq = "lava"; // Espera "lava" ou "seca"
-  if (idMaq == undefined) idMaq = 0;
-  if (status == undefined) status = 1;
-  if (view == undefined || view == false) flagViewStatusMaquina = false;
-
-  var txStatus = "Indefinido";
-  tipMaq = tipMaq.toUpperCase();
-
-  if (!flagViewStatusMaquina) { status = 1 };
-
-  switch (status) {
-    case 1:
-      txStatus = "Disponível";
-      if (tipMaq == undefined || tipMaq == "LAVA") {
-        imgMaq = require('../../assets/maquinas/lava_disp.png')
-      } else {
-        imgMaq = require('../../assets/maquinas/seca_disp.png')
-      }
-      break;
-    case 2:
-      txStatus = "Ocupada";
-      if (tipMaq == undefined || tipMaq == "LAVA") {
-        imgMaq = require('../../assets/maquinas/lava_emuso.png')
-      } else {
-        imgMaq = require('../../assets/maquinas/seca_emuso.png')
-      }
-      break;
-    case 3:
-      txStatus = "Manutenção";
-      if (tipMaq == undefined || tipMaq == "LAVA") {
-        imgMaq = require('../../assets/maquinas/lava_manut.png')
-      } else {
-        imgMaq = require('../../assets/maquinas/seca_manut.png')
-      }
-      break;
-    default:
-      txStatus = "Disponível";
-      if (tipMaq == undefined || tipMaq == "LAVA") {
-        imgMaq = require('../../assets/maquinas/lava_disp.png')
-      } else {
-        imgMaq = require('../../assets/maquinas/seca_disp.png')
-      }
-  };
-
-  if (tipMaq == "SECA") {
-    return (
-      <View>
-        <View style={styles.containerLavaSeca}>
-          <Text style={styleApp.textSmall}>
-            {tipMaq + " " + idMaq}
-          </Text>
-          {flagViewStatusMaquina == true ?
-            <Text style={styleApp.textSmall}>
-              {txStatus}
-            </Text> : ""}
-        </View>
-        <Image
-          style={styles.imgMaquina}
-          source={imgMaq}
-        />
-      </View>
-    )
-  } else {
-    return (
-      <View>
-        <Image
-          style={styles.imgMaquina}
-          source={imgMaq}
-        />
-        <View style={styles.containerLavaSeca}>
-          <Text style={styleApp.textSmall}>
-            {tipMaq + " " + idMaq}
-          </Text>
-          {flagViewStatusMaquina == true ?
-            <Text style={styleApp.textSmall}>
-              {txStatus}
-            </Text> : ""}
-        </View>
-      </View>
-    )
-  }
-}
 
 //Seta cor do icone de horário de funcionamento
 function horarioFuncionamento(in24h, horaIni, horaFim) {
@@ -128,43 +43,13 @@ function horarioFuncionamento(in24h, horaIni, horaFim) {
 };
 
 //Tela principal HOME
-export default function ViewLojaMaquinas() {
+export default function viewMain() {
   const { user } = useContext(AuthContext);
   console.log("(main)/index <inicio>");
 
-  const [cenario, setCenario] = useState(cenarioTeste);
-
   //Consulta API com novos status dos equipamentos
   function atualizarStatus() {
-    //console.log("cenarioTeste :", cenarioTeste);
-    relogioOnOff = horarioFuncionamento(false, "06:00", "23:00");
-    //
-    switch (cenarioTeste) {
-      case 1:
-        seca = [1, 1, 1];
-        lava = [1, 1, 1];
-        cenarioTeste = 2;
-        setCenario(cenarioTeste);
-        break;
-      case 2:
-        seca = [2, 1, 1];
-        lava = [1, 2, 2];
-        cenarioTeste = 3;
-        setCenario(cenarioTeste);
-        break;
-      case 3:
-        seca = [1, 2, 2];
-        lava = [2, 3, 2];
-        cenarioTeste = 4;
-        setCenario(cenarioTeste);
-        break;
-      case 4:
-        seca = [3, 3, 3];
-        lava = [3, 3, 3];
-        cenarioTeste = 1;
-        setCenario(cenarioTeste);
-        break;
-    };
+
   }
 
   //Seta tamanho ideal das VIEWS baseado no tamanho da tela do aparelho
@@ -199,25 +84,12 @@ export default function ViewLojaMaquinas() {
             </View>
 
             <TouchableOpacity style={styleApp.buttonHC} onPress={atualizarStatus}>
-              {/*  <Image
-                style={styles.imgLocalizacao}
-                source={require('../../assets/icones/icon_local2.png')}
-              /> */}
               <MaterialIcons name="location-on" size={styleApp.size.iconSizeRegular} color={styleApp.color.textButtonRegular} />
               <Text style={styleApp.textButtonRegular}>Pesquisar lavanderias</Text>
             </TouchableOpacity>
 
             <View style={styles.containerBody2}>
-              <View style={styles.containerMaquinas}>
-                {maquina("seca", 2, seca[1], false)}
-                {maquina("seca", 4, seca[1], false)}
-                {maquina("seca", 6, seca[1], false)}
-              </View>
-              <View style={styles.containerMaquinas}>
-                {maquina("lava", 1, lava[1], false)}
-                {maquina("lava", 3, lava[1], false)}
-                {maquina("lava", 5, lava[1], false)}
-              </View>
+              {MontaMaquinario(null, "conjunto", false)}
             </View>
           </View>
         </ScrollView>
@@ -273,24 +145,7 @@ export default function ViewLojaMaquinas() {
           </View>
 
           <View style={styles.containerBody2}>
-            {/*
-            <View style={styles.containerBroadcast}>
-              <Text style={styleApp.textRegular}>
-                Excepcionalmente hoje, 25/04/2024, quinta-feira, funcionaremos de 6h às 15h
-              </Text>
-            </View>
-            */}
-            <View style={styles.containerMaquinas}>
-              {maquina("seca", 2, seca[0], true)}
-              {maquina("seca", 4, seca[1], true)}
-              {maquina("seca", 6, seca[2], true)}
-            </View>
-            <View style={styles.containerMaquinas}>
-              {maquina("lava", 1, lava[0], true)}
-              {maquina("lava", 3, lava[1], true)}
-              {maquina("lava", 5, lava[2], true)}
-            </View>
-            <Text></Text>
+            {MontaMaquinario(null, "conjunto", false)}
 
             <View style={styles.containerUltimaAtualizacao}>
               <Image

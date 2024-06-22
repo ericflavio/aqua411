@@ -121,7 +121,8 @@ export function MontaMaquinario(mList, tipoVisualizacao, flagVisualizarStatus) {
 
   function viewConjunto() {
     return (
-      <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'flex-start', gap: 4, marginVertical:12 }}>
+      <View style={{alignItems:'center', width:'100%', borderWidth:0}}>
+      <View style={{ borderWidth:0, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 4, marginVertical:12 }}>
         {conjunto.map((maq, index) => (
           <TouchableOpacity key={index} activeOpacity={0.7}>
             <View style={{ minWidth: 94, justifyContent: 'center', alignItems: 'center', padding: 6, backgroundColor: styleColor.cinzaClaro, borderRadius: 8 }}>
@@ -144,13 +145,14 @@ export function MontaMaquinario(mList, tipoVisualizacao, flagVisualizarStatus) {
         ))
         }
       </View >
+      </View>
     )
   }
 
 
   function viewLista() {
     return (
-      <View style={{marginVertical:12}}>
+      <View style={{marginVertical:12, justifyContent:'flex-start', alignContent:'stretch', width:'90%'}}>
         {mList.map((maq, index) => (
           <TouchableOpacity key={index} activeOpacity={0.7}>
             <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', padding: 6, backgroundColor: styleColor.cinzaClaro, borderRadius: 8, gap: 6, marginBottom: 4 }}>
