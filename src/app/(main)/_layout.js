@@ -60,15 +60,8 @@ export default function AppLayout() {
   }
 
   /// rotear para página de trabalho
-  goToWork();
-  function goToWork() {
-    router.navigate({
-      pathname: '/lojaMaquinario',
-      params: {
-        navigateParmLoja: null, naviateParmOnlyConsulta: false
-      }
-    })
-  }
+  return <Redirect href="/lojaMaquinario" />;
+
 
   //Usuário logado e status ativo. Monta o layout do app
   return (

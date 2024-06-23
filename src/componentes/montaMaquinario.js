@@ -5,8 +5,7 @@ import { styleSize } from '../styles/styleSize';
 import * as Animatable from 'react-native-animatable';
 
 export async function MontaMaquinario(maquinarioList, tipoVisualizacaoMaquinario, flagVisualizarStatus) {
-  console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
-  if (maquinarioList === undefined || maquinarioList === null || maquinarioList.length === 0) {
+  if (!maquinarioList || maquinarioList.length === 0) {
     return (
       <View style={stylesLocal.containerSemMaquinario}>
         <Animatable.Image
@@ -20,10 +19,6 @@ export async function MontaMaquinario(maquinarioList, tipoVisualizacaoMaquinario
       </View>
     )
   }
-  
-  console.log("++++++++++++++++++++++++++++++++++++++++++")
-
-
 
   var conjunto = []; //Montagem dos conjuntos (bidimensional: Cada ocorrência contém outro array [lava][seca])
   var verStatus = false;
