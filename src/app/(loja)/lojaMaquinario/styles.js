@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 import { styleApp } from "../../../styles/styleApp";
 
 export const styles = StyleSheet.create({
@@ -10,12 +10,36 @@ export const styles = StyleSheet.create({
   containerPrincipal: {
     flex: 0,
     flexDirection: "column",
-    alignItems: "stretch",
+    alignItems: "center",
     justifyContent: "center",
     backgroundColor: "white",
+    marginBottom: 10,
     borderRadius: 16,
     padding: 8,
     borderWidth: styleApp.size.containerBordaOnOff
+  },
+  containerFlagStatus: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    borderWidth: 0,
+    width: '100%'
+  },
+  containerTogle: {
+    flexDirection: 'row', 
+    justifyContent: "flex-start", 
+    alignItems: "center", 
+    gap: 4,
+  },
+  containerInfo: {
+    flexShrink: 1, 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    borderWidth: 0, 
+    borderColor: styleApp.color.cinzaClaro, 
+    width: '100%', 
+    height: '100%' 
   },
   containerPicker: {
     alignSelf: 'stretch',
@@ -42,7 +66,7 @@ export const styles = StyleSheet.create({
     borderLeftWidth: 1,
     borderRightWidth: 1,
     borderTopWidth: 3,
-    borderColor: styleColor.tema30pPrincipal,
+    borderColor: styleApp.color.tema30pPrincipal,
     backgroundColor: 'white',
     borderTopEndRadius: 20,
     borderTopStartRadius: 20,

@@ -5,10 +5,9 @@ import { styles } from "./styles";
 import { styleApp } from '../../../styles/styleApp';
 import { styleColor } from "../../../styles/styleColors";
 import { InputText } from '../../../componentes/inputText';
-import { GradienteFill } from '../../../componentes/gradienteFill';
 import { AuthContext } from "../../../contexts/auth";
 import { ShowErrorMessage } from '../../../errors/errorMessage';
-import { schemaLojaMaquinario } from '../../../schemas/lojaSchema';
+import { schemaLojaMaquinario, schemaStatusMaquinario, schemaTipoViewMaquinario } from '../../../schemas/lojaSchema';
 import { consultaListaMaquinario } from '../../../services/lojaService';
 import ModalSimples from '../../../componentes/modalSimples';
 import { useLocalSearchParams } from 'expo-router';
@@ -30,7 +29,7 @@ export default function ViewMaquinarioLoja() {
 
   //Outras declarações
   const [flagShowModalEdicao, setflagShowModalEdicao] = useState(false);
-  const [selectedTipoExibicao, setTipoExibicao] = useState("conjunto");
+  const [selectedTipoExibicao, setTipoExibicao] = useState(schemaTipoViewMaquinario.conjunto);
   const [isEnabledStatus, setIsEnabledStatus] = useState(false);
   const toggleSwitch = () => setIsEnabledStatus(previousState => !previousState);
   const [maquinario, setMaquinario] = useState(schemaLojaMaquinario);
@@ -46,7 +45,7 @@ export default function ViewMaquinarioLoja() {
   //Carrega dados pre-existentes
   async function fetchDados() {
     try {
-      res = await consultaListaMaquinario();
+      const res = await consultaListaMaquinario();
       res !== null ? setMaquinarioList(res) : setMaquinarioList([]);
       setProcessing({ ...processing, isLoading: false });
     } catch {
@@ -92,7 +91,7 @@ export default function ViewMaquinarioLoja() {
       nrConjunto: cj,
       numeroLabel: lava,
       nomeLabel: "Lava",
-      status: "Disponível",
+      status: schemaStatusMaquinario.disponivel,
     }
     setMaquinarioList(maquinarioList => [...maquinarioList, maq])
   };
@@ -104,7 +103,7 @@ export default function ViewMaquinarioLoja() {
       nrConjunto: cj,
       numeroLabel: seca,
       nomeLabel: "Seca",
-      status: "Indisponível",
+      status: schemaStatusMaquinario.disponivel,
     }
     setMaquinarioList(maquinarioList => [...maquinarioList, maq])
   };
@@ -135,7 +134,6 @@ export default function ViewMaquinarioLoja() {
 
   //Edição de cada maquina
   function handleEditarMaquinario() {
-
   }
 
   //Apresentação da view principal
@@ -167,7 +165,7 @@ export default function ViewMaquinarioLoja() {
         </Modal>
 
         {processing.isOnlyConsulta ? <></> :
-          <View style={[styles.containerPrincipal, { justifyContent: 'center', alignItems: 'center', marginBottom: 10 }]}>
+          <View style={styles.containerPrincipal}>
             <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginTop: 12, gap: 20, marginBottom: 10 }}>
               <View style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 4, alignItems: 'center' }}>
                 <Text style={styleApp.textRegular}>LAVA:</Text>
@@ -198,9 +196,8 @@ export default function ViewMaquinarioLoja() {
           </View>
         }
 
-        <View style={[styles.containerPrincipal, { justifyContent: 'center', alignItems: 'center', marginBottom: 10 }]}>
-
-          {MontaMaquinario(maquinarioList, selectedTipoExibicao, true)}
+        <View style={styles.containerPrincipal}>
+          {MontaMaquinario(maquinarioList, selectedTipoExibicao, isEnabledStatus)}
 
           {/*       {maquinarioList.length <= 0 ? <></> :
             <View style={{ width: '90%', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginVertical: 10, borderRadius: 12, borderLeftWidth: 1, borderRightWidth: 1, borderColor: styleColor.erro }}>
@@ -214,8 +211,8 @@ export default function ViewMaquinarioLoja() {
           <MaterialIcons name="more-horiz" size={styleApp.size.iconSizeRegular} color={styleColor.textSubtitulo} />
         </View>
 
-        <View style={[styles.containerPrincipal, { justifyContent: 'flex-start', alignItems: 'center', padding: 16 }]}>
-          <Text style={[styleApp.textSmall, { alignSelf: "flex-start", marginLeft: 0 }]}>Como as máquina serão exibidas?</Text>
+        <View style={[styles.containerPrincipal, { justifyContent: 'flex-start', alignItems:'flex-start', padding: 16 }]}>
+          <Text style={styleApp.textSmall}>Como as máquina serão exibidas?</Text>
           <View style={styles.containerPicker}>
             <Picker
               enabled={isEditavel}
@@ -228,10 +225,10 @@ export default function ViewMaquinarioLoja() {
             </Picker>
           </View>
 
-          <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', borderWidth: 0, width: '100%' }}>
+          <View style={styles.containerFlagStatus}>
             <View style={{ borderWidth: 0 }}>
-              <Text style={[styleApp.textSmall, { alignSelf: "flex-start", marginLeft: 0 }]}>O status da máquina estará visível?</Text>
-              <View style={{ flexDirection: 'row', marginLeft: 0, justifyContent: "flex-start", alignItems: "center", gap: 4, borderWidth: 0 }}>
+              <Text style={[styleApp.textSmall, { alignSelf: "flex-start"}]}>O status da máquina estará visível?</Text>
+              <View style={styles.containerTogle}>
                 <Text style={[styleApp.textRegular, { color: isEnabledStatus ? styleColor.cinzaMedio : styleColor.tema30pPrincipal }]}>Não</Text>
                 <Switch
                   disabled={!isEditavel}
@@ -244,13 +241,12 @@ export default function ViewMaquinarioLoja() {
                 <Text style={[styleApp.textRegular, { color: isEnabledStatus ? styleColor.tema30pPrincipal : styleColor.cinzaMedio }]}>Sim</Text>
               </View>
             </View>
-            <View style={{ flexShrink: 1, justifyContent: 'center', alignItems: 'center', borderWidth: 0, borderColor: styleColor.cinzaClaro, width: '100%', height: '100%' }}>
+            <View style={styles.containerInfo}>
               <TouchableOpacity disabled={false} onPress={infoViewStatus} >
                 <MaterialIcons name="info-outline" size={styleSize.iconSizeLarge} color={styleColor.pretoRelativo} />
               </TouchableOpacity>
             </View>
           </View>
-
         </View>
       </ScrollView>
     </SafeAreaView >

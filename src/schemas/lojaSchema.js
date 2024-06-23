@@ -7,7 +7,7 @@ export var schemaTipoViewMaquinario = {
 };
 //Schema TIPOS de status das Máquinas
 export var schemaStatusMaquinario = {
-  disponivel: "Disponivel", 
+  disponivel: "Disponível", 
   indisponivel: "Indisponível",
   indeterminado: "Indeterminado",
   manutencao: "Manutenção" 

@@ -37,7 +37,7 @@ export async function consultaListaMaquinario() {
       nrConjunto: '347',
       numeroLabel: "3",
       nomeLabel: "Lava",
-      status: "Disponível",
+      status: "Indisponível",
       capacidadeKg: 11,
     },
     {
@@ -64,7 +64,7 @@ export async function consultaListaMaquinario() {
       nrConjunto: '5611',
       numeroLabel: "6",
       nomeLabel: "Seca",
-      status: "manutencao",
+      status: "Manutenção",
       capacidadeKg: 11,
     },
   ];

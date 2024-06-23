@@ -5,7 +5,7 @@ import { styleSize } from '../styles/styleSize';
 import * as Animatable from 'react-native-animatable';
 import { schemaTipoViewMaquinario, schemaStatusMaquinario } from '../schemas/lojaSchema';
 
-export async function MontaMaquinario(maquinarioList, tipoVisualizacaoMaquinario, flagVisualizarStatus) {
+export function MontaMaquinario(maquinarioList, tipoVisualizacaoMaquinario, flagVisualizarStatus) {
   if (!maquinarioList || maquinarioList === null || maquinarioList.length === 0) {
     return (
       <View style={stylesLocal.containerSemMaquinario}>
@@ -19,7 +19,7 @@ export async function MontaMaquinario(maquinarioList, tipoVisualizacaoMaquinario
         </Text>
       </View>
     )
-  }
+  };
 
   var conjunto = []; //Montagem dos conjuntos (bidimensional: Cada ocorrência contém outro array [lava][seca])
   var verStatus = false;
@@ -38,7 +38,7 @@ export async function MontaMaquinario(maquinarioList, tipoVisualizacaoMaquinario
 
   if (tipoExibicao === schemaTipoViewMaquinario.conjunto) {
     try {
-      await encontraeMontaConjuntos();
+      encontraeMontaConjuntos();
       return viewConjunto();
     } catch {
       return (
@@ -125,7 +125,7 @@ export async function MontaMaquinario(maquinarioList, tipoVisualizacaoMaquinario
     return (
       <View style={stylesLocal.containerConjunto}>
         {conjunto.map((maq, index) => (
-          <TouchableOpacity key={index} activeOpacity={0.5}> {/*Cada figura de conjunto é um botão*/}
+          <TouchableOpacity key={index} activeOpacity={0.5}>
             <View style={stylesLocal.containerLavaSecaConjunto}>
               {maq[0] !== undefined ?
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
@@ -193,7 +193,7 @@ const stylesLocal = StyleSheet.create({
   containerConjunto: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     alignItems: 'flex-start',
     width: '100%',
     gap: 4,
@@ -208,19 +208,19 @@ const stylesLocal = StyleSheet.create({
     borderRadius: 8
   },
   containerLista: {
-    marginVertical: 12, 
-    justifyContent: 'flex-start', 
-    alignContent: 'stretch', 
-    width: '90%' 
+    marginVertical: 12,
+    justifyContent: 'flex-start',
+    alignContent: 'stretch',
+    width: '90%'
   },
   containerLavaSecaLista: {
-    flexDirection: 'row', 
-    justifyContent: 'flex-start', 
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
     alignItems: 'center',
-     padding: 6, 
-     backgroundColor: styleColor.cinzaClaro, 
-     borderRadius: 8, 
-     gap: 6, 
-     marginBottom: 4
+    padding: 6,
+    backgroundColor: styleColor.cinzaClaro,
+    borderRadius: 8,
+    gap: 6,
+    marginBottom: 4
   }
 });

@@ -84,7 +84,7 @@ export default function viewMain() {
             </TouchableOpacity>
 
             <View style={styles.containerBody2}>
-              {MontaMaquinario(null, "conjunto", false)}
+             
             </View>
           </View>
         </ScrollView>
