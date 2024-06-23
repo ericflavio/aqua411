@@ -126,7 +126,6 @@ export default function ViewLocalizacaoLoja() {
   //Apresentação da view principal
   return (
     <SafeAreaView style={styleApp.containerSafeArea}>
-      {GradienteFill()}
       <ScrollView style={styleApp.containerScroll} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
         <View style={styles.containerHeader}>
           <MaterialIcons name="location-on" size={styleApp.size.iconSizeRegular} color={styleColor.textSubtitulo} />

@@ -83,7 +83,6 @@ export function ViewContaLojista() {
 
   return (
     <SafeAreaView style={styleApp.containerSafeArea}>
-      {GradienteFill()}
       <ScrollView style={styleApp.containerScroll} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
 
         <View style={styles.containerHeader}>

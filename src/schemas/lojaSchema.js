@@ -1,4 +1,11 @@
 //Schema das tabelas 
+
+//Schema TIPOS de visualização de maquinário
+export var schemaTipoViewMaquinario = [
+  "conjunto", //Maquinas na forma de conjunto (lavadora embaixo)
+  "lista" //Maquinas na forma de listagem
+];
+
 //Franquia vinculada à loja
 export var schemaLojaMaquinario = {
   //Obs: Sempre ler ordenado pelo nr do conjunto
@@ -26,12 +33,12 @@ export var schemaLojaFranquiaVinculada = {
 
 //Horário de expediente
 export var schemaLojaExpediente = {
-  dia: ["Seg","Ter","Qua","Qui","Sex","Sab","Dom"],
-  aberto: ["s","s","s","s","s","s","s"],
-  hrInicio: ["","","","","","",""],
-  hrFim: ["","","","","","",""],
+  dia: ["Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"],
+  aberto: ["s", "s", "s", "s", "s", "s", "s"],
+  hrInicio: ["", "", "", "", "", "", ""],
+  hrFim: ["", "", "", "", "", "", ""],
   inPermanentementeAberto: true,
-  inAtendeChamadosForaDoExpediente: false, 
+  inAtendeChamadosForaDoExpediente: false,
 };
 
 //Dados mínimos e complementares

@@ -118,7 +118,6 @@ export default function ViewLojaCadastroBasico() {
 
   return (
     <SafeAreaView style={styleApp.containerSafeAreaSemPadding}>
-      {GradienteFill()}
       <ScrollView style={styleApp.containerScrollFull} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
         {ModalSimples(flagShowModal, handleShowModal, "Informações atualizadas!", "TipoMsg", "Título", processing)}
 

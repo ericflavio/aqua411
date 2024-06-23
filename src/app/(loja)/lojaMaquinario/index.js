@@ -131,7 +131,6 @@ export default function ViewMaquinarioLoja() {
   //Apresentação da view principal
   return (
     <SafeAreaView style={styleApp.containerSafeArea}>
-      {GradienteFill()}
       <ScrollView style={styleApp.containerScroll} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
         <View style={styles.containerHeader}>
           <MaterialIcons name="local-laundry-service" size={styleApp.size.iconSizeRegular} color={styleColor.textSubtitulo} />
@@ -139,9 +138,8 @@ export default function ViewMaquinarioLoja() {
         </View>
 
         {ModalSimples(flagShowModal, handleShowModal, "Máquinas atualizadas!", "TipoMsg", "Título", processing)}
-
-        <View style={[styles.containerPrincipal, { justifyContent: 'center', alignItems: 'center', marginBottom: 10 }]}>
-          {processing.isOnlyConsulta ? <></> :
+        {processing.isOnlyConsulta ? <></> :
+          <View style={[styles.containerPrincipal, { justifyContent: 'center', alignItems: 'center', marginBottom: 10 }]}>
             <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginTop: 12, gap: 20, marginBottom: 10 }}>
               <View style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 4, alignItems: 'center' }}>
                 <Text style={styleApp.textRegular}>LAVA:</Text>
@@ -154,9 +152,7 @@ export default function ViewMaquinarioLoja() {
 
               </View>
             </View>
-          }
 
-          {processing.isOnlyConsulta ? <></> :
             <View style={{ width: '85%', alignItems: 'stretch' }}>
               <TouchableOpacity style={styleApp.buttonFlatVBorda} disabled={!isEditavel} onPress={incluiLavaSeca} >
                 <Text style={styleApp.textButtonFlat}>Adicionar o conjunto (lava e seca)</Text>
@@ -171,8 +167,8 @@ export default function ViewMaquinarioLoja() {
                 </TouchableOpacity>
               </View>
             </View>
-          }
-        </View>
+          </View>
+        }
 
         <View style={[styles.containerPrincipal, { justifyContent: 'center', alignItems: 'center', marginBottom: 10 }]}>
 

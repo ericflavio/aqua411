@@ -80,7 +80,6 @@ export default function ViewLojaUnidades() {
 
   return (
     <SafeAreaView style={styleApp.containerSafeArea}>
-      {GradienteFill()}
       <View style={styles.containerHeader}>
         <Text style={styleApp.textTitulo}>
           Gerenciar suas lojas

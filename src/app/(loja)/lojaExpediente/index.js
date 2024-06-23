@@ -366,7 +366,6 @@ export default function ViewExpedienteLoja() {
   //Apresentação da view principal
   return (
     <SafeAreaView style={styleApp.containerSafeArea}>
-      {GradienteFill()}
       <ScrollView style={styleApp.containerScroll} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
         <View style={styles.containerHeader}>
           <MaterialIcons name="access-time" size={styleApp.size.iconSizeRegular} color={styleColor.textSubtitulo} />

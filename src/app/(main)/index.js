@@ -7,9 +7,6 @@ import { AuthContext } from "../../contexts/auth";
 import { MaterialIcons } from "@expo/vector-icons";
 import { MontaMaquinario } from '../../componentes/montaMaquinario';
 
-var cenarioTeste = 1;
-var seca = [1, 1, 1];
-var lava = [1, 1, 1];
 var relogioOnOff = true;
 var flagViewStatusMaquina = true; //TODO: não está sendo usado
 
@@ -66,9 +63,7 @@ export default function viewMain() {
   if (!user.idFavoriteStore || user.idFavoriteStore == null) {
     return (
       <SafeAreaView style={styleApp.containerSafeArea}>
-        {GradienteFill()}
         <ScrollView style={styleApp.containerScroll} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
-
           <View style={{ height: bodyHeight, paddingBottom: 96 }}>
             <View style={styles.containerHeader}>
               <Text style={styleApp.textTitulo}>
@@ -100,7 +95,6 @@ export default function viewMain() {
   //Com loja favoritada
   return (
     <SafeAreaView style={styleApp.containerSafeArea}>
-      {GradienteFill()}
       <ScrollView style={styleApp.containerScroll} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
 
         <View style={{ height: bodyHeight, paddingBottom: 96 }}>

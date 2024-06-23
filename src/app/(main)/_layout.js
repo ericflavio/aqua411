@@ -6,6 +6,7 @@ import { useContext, useCallback } from 'react';
 import { AuthContext } from "../../contexts/auth";
 import { Redirect, Tabs } from 'expo-router';
 import { useFonts } from 'expo-font';
+import { router, useLocalSearchParams } from 'expo-router';
 
 export default function AppLayout() {
   const { user, isLoading } = useContext(AuthContext);
@@ -56,6 +57,17 @@ export default function AppLayout() {
   if (user.isLiveAccount == undefined
     || user.isLiveAccount == false) {
     return <Redirect href="/login" />;
+  }
+
+  /// rotear para página de trabalho
+  goToWork();
+  function goToWork() {
+    router.navigate({
+      pathname: '/lojaMaquinario',
+      params: {
+        navigateParmLoja: JSON.stringify(null), naviateParmOnlyConsulta: false
+      }
+    })
   }
 
   //Usuário logado e status ativo. Monta o layout do app

@@ -3,7 +3,6 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image } from "react-native";
 import { styles } from "./styles";
 import { styleApp } from '../../../styles/styleApp';
-import { GradienteFill } from '../../../componentes/gradienteFill';
 import { AuthContext } from "../../../contexts/auth";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as Animatable from 'react-native-animatable';
@@ -164,7 +163,6 @@ export default function ViewEdtMenuLoja() {
 
   return (
     <SafeAreaView style={styleApp.containerSafeAreaSemPadding}>
-      {GradienteFill()}
       <ScrollView style={styleApp.containerScrollFull} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
         <Image
           style={styles.imgNovaLoja}
