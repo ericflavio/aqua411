@@ -3,12 +3,12 @@ import { styleApp } from "../../../styles/styleApp";
 
 export const styles = StyleSheet.create({
   containerHeader: {
-    flexDirection:"row", 
-    gap:8, 
-    paddingLeft:8
+    flexDirection: "row",
+    gap: 8,
+    paddingLeft: 8
   },
   containerPrincipal: {
-    flex:0,
+    flex: 0,
     flexDirection: "column",
     alignItems: "stretch",
     justifyContent: "center",
@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
     borderWidth: styleApp.size.containerBordaOnOff
   },
   containerPicker: {
-    alignSelf:'stretch',
+    alignSelf: 'stretch',
     marginTop: 12,
     marginLeft: 0,
     marginRight: 12,
@@ -27,5 +27,39 @@ export const styles = StyleSheet.create({
     borderColor: styleApp.color.tema10pSecundaria,
     borderRadius: 4
   },
-  
+  containerModal: {
+    flex: 1,
+    marginTop: 0,
+    justifyContent: 'flex-end',
+    alignItems: 'stretch',
+  },
+  modalView: {
+    flexShrink: 1,
+    marginTop: 0,
+    minHeight: 320,
+    maxHeight: Dimensions.get('window').height - 200,
+    width: "100%",
+    borderLeftWidth: 1,
+    borderRightWidth: 1,
+    borderTopWidth: 3,
+    borderColor: styleColor.tema30pPrincipal,
+    backgroundColor: 'white',
+    borderTopEndRadius: 20,
+    borderTopStartRadius: 20,
+    padding: 16,
+    paddingTop: 0,
+    alignItems: 'stretch',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 20,
+    elevation: 5,
+  },
+  modalClose: {
+    marginBottom: 6,
+    alignSelf: "flex-end"
+  }
 });

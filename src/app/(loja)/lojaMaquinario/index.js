@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Switch, Alert } from "react-native";
+import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Switch, Alert, Modal } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { styles } from "./styles";
 import { styleApp } from '../../../styles/styleApp';
@@ -15,11 +15,12 @@ import { useLocalSearchParams } from 'expo-router';
 import { MontaMaquinario } from '../../../componentes/montaMaquinario';
 import { Picker } from '@react-native-picker/picker';
 import { styleSize } from '../../../styles/styleSize';
+import { ModalEditarMaquinario } from './modalEditarMaquinario';
 
 export default function ViewMaquinarioLoja() {
   const { user } = useContext(AuthContext);
   const { navigateParmLoja, naviateParmOnlyConsulta } = useLocalSearchParams();
-  navigateParmLoja && navigateParmLoja !== null  ? parmLoja = JSON.parse(navigateParmLoja) : parmLoja = null;
+  navigateParmLoja && navigateParmLoja !== null ? parmLoja = JSON.parse(navigateParmLoja) : parmLoja = null;
   naviateParmOnlyConsulta ? parmOnlyConsulta = JSON.parse(naviateParmOnlyConsulta) : parmOnlyConsulta = false;
 
   //Controles básicos
@@ -28,6 +29,7 @@ export default function ViewMaquinarioLoja() {
   const [flagShowModal, setflagShowModal] = useState(false);
 
   //Outras declarações
+  const [flagShowModalEdicao, setflagShowModalEdicao] = useState(false);
   const [selectedTipoExibicao, setTipoExibicao] = useState("conjunto");
   const [isEnabledStatus, setIsEnabledStatus] = useState(false);
   const toggleSwitch = () => setIsEnabledStatus(previousState => !previousState);
@@ -74,6 +76,9 @@ export default function ViewMaquinarioLoja() {
       setflagShowModal(false);
     }, styleApp.size.modalTimeAutoClose);
   };
+  function handleShowModalEdicao() {
+    setflagShowModalEdicao(!flagShowModalEdicao);
+  }
 
   function infoViewStatus() {
     Alert.alert("STATUS", "Para resposta SIM, o status de cada máquina poderá ser visualizado pelos clientes. Isso vai depender de configurações com a provedora da informação e também do consentimento da Franqueadora, caso sua loja esteja vincualda a uma.");
@@ -128,6 +133,11 @@ export default function ViewMaquinarioLoja() {
         setProcessing({ ...processing, isExecuting: false }); */
   }
 
+  //Edição de cada maquina
+  function handleEditarMaquinario() {
+
+  }
+
   //Apresentação da view principal
   return (
     <SafeAreaView style={styleApp.containerSafeArea}>
@@ -138,6 +148,23 @@ export default function ViewMaquinarioLoja() {
         </View>
 
         {ModalSimples(flagShowModal, handleShowModal, "Máquinas atualizadas!", "TipoMsg", "Título", processing)}
+
+        <Modal
+          animationType={"slide"} //fade slide none
+          transparent={true}
+          visible={flagShowModalEdicao}
+          onRequestClose={() => { }}>
+          <View style={styles.containerModal}>
+            <View style={styles.modalView}>
+              <View style={styles.modalClose}>
+                <TouchableOpacity style={styleApp.buttonFlatHL_transp} disabled={false} onPress={handleShowModalEdicao} >
+                  <MaterialIcons name="close" size={styleApp.size.iconSizeButtonLarge} color={styleApp.color.textButtonFlat} />
+                </TouchableOpacity>
+              </View>
+              {ModalEditarMaquinario(handleEditarMaquinario)}
+            </View>
+          </View>
+        </Modal>
 
         {processing.isOnlyConsulta ? <></> :
           <View style={[styles.containerPrincipal, { justifyContent: 'center', alignItems: 'center', marginBottom: 10 }]}>
@@ -175,12 +202,12 @@ export default function ViewMaquinarioLoja() {
 
           {MontaMaquinario(maquinarioList, selectedTipoExibicao, true)}
 
-          {maquinarioList.length <= 0 ? <></> :
+          {/*       {maquinarioList.length <= 0 ? <></> :
             <View style={{ width: '90%', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginVertical: 10, borderRadius: 12, borderLeftWidth: 1, borderRightWidth: 1, borderColor: styleColor.erro }}>
               <MaterialIcons name="delete-forever" size={styleApp.size.iconSizeRegular} color={styleColor.erro} />
               <Text style={styleApp.textSmallItalico}>Pressione e segure para editar/excluir</Text>
             </View>
-          }
+          } */}
         </View>
 
         <View style={{ alignItems: 'center' }}>
