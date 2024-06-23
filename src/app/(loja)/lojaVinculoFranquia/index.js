@@ -28,7 +28,7 @@ import { styleSize } from '../../../styles/styleSize';
 export default function ViewLojaVinculoFranquia() {
   const { user } = useContext(AuthContext);
   const { navigateParmLoja, naviateParmOnlyConsulta } = useLocalSearchParams();
-  navigateParmLoja ? parmLoja = JSON.parse(navigateParmLoja) : parmLoja = null;
+  navigateParmLoja && navigateParmLoja !== null ? parmLoja = JSON.parse(navigateParmLoja) : parmLoja = null;
   naviateParmOnlyConsulta ? parmOnlyConsulta = JSON.parse(naviateParmOnlyConsulta) : parmOnlyConsulta = true;
 
   //Controles básicos

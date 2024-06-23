@@ -17,7 +17,7 @@ import { useLocalSearchParams } from 'expo-router';
 export default function ViewLocalizacaoLoja() {
   const { user } = useContext(AuthContext);
   const { navigateParmLoja, naviateParmOnlyConsulta } = useLocalSearchParams();
-  navigateParmLoja ? parmLoja = JSON.parse(navigateParmLoja) : parmLoja = null;
+  navigateParmLoja && navigateParmLoja !== null ? parmLoja = JSON.parse(navigateParmLoja) : parmLoja = null;
   naviateParmOnlyConsulta ? parmOnlyConsulta = JSON.parse(naviateParmOnlyConsulta) : parmOnlyConsulta = true;
 
   //Controles básicos

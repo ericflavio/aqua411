@@ -15,7 +15,7 @@ import { schemaLojaStatus } from '../../../schemas/lojaSchema';
 export default function ViewEdtMenuLoja() {
   const { user } = useContext(AuthContext);
   const { navigateParmLoja } = useLocalSearchParams();
-  navigateParmLoja ? parmLoja = JSON.parse(navigateParmLoja) : parmLoja = null;
+  navigateParmLoja && navigateParmLoja !== null ? parmLoja = JSON.parse(navigateParmLoja) : parmLoja = null;
   //Sobre o parâmetro navigateParmLoja:
   //a) Sempre deve chegar preenchido: por seleção de loja na listagem, ou da tela de criação inicial de nova loja.
   //b) Se chegar <> null siginifica que houve algum erro prévio.

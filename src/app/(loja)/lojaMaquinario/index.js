@@ -19,7 +19,7 @@ import { styleSize } from '../../../styles/styleSize';
 export default function ViewMaquinarioLoja() {
   const { user } = useContext(AuthContext);
   const { navigateParmLoja, naviateParmOnlyConsulta } = useLocalSearchParams();
-  navigateParmLoja ? parmLoja = JSON.parse(navigateParmLoja) : parmLoja = null;
+  navigateParmLoja && navigateParmLoja !== null  ? parmLoja = JSON.parse(navigateParmLoja) : parmLoja = null;
   naviateParmOnlyConsulta ? parmOnlyConsulta = JSON.parse(naviateParmOnlyConsulta) : parmOnlyConsulta = true;
 
   //Controles básicos
@@ -138,6 +138,7 @@ export default function ViewMaquinarioLoja() {
         </View>
 
         {ModalSimples(flagShowModal, handleShowModal, "Máquinas atualizadas!", "TipoMsg", "Título", processing)}
+
         {processing.isOnlyConsulta ? <></> :
           <View style={[styles.containerPrincipal, { justifyContent: 'center', alignItems: 'center', marginBottom: 10 }]}>
             <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginTop: 12, gap: 20, marginBottom: 10 }}>
@@ -180,7 +181,6 @@ export default function ViewMaquinarioLoja() {
               <Text style={styleApp.textSmallItalico}>Pressione e segure para editar/excluir</Text>
             </View>
           }
-
         </View>
 
         <View style={{ alignItems: 'center' }}>

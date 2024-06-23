@@ -65,7 +65,7 @@ export default function AppLayout() {
     router.navigate({
       pathname: '/lojaMaquinario',
       params: {
-        navigateParmLoja: JSON.stringify(null), naviateParmOnlyConsulta: false
+        navigateParmLoja: null, naviateParmOnlyConsulta: false
       }
     })
   }

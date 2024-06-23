@@ -5,7 +5,8 @@ import { styleSize } from '../styles/styleSize';
 import * as Animatable from 'react-native-animatable';
 
 export async function MontaMaquinario(maquinarioList, tipoVisualizacaoMaquinario, flagVisualizarStatus) {
-  if (maquinarioList !== undefined || maquinarioList.length === 0) {
+  console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+  if (maquinarioList === undefined || maquinarioList === null || maquinarioList.length === 0) {
     return (
       <View style={stylesLocal.containerSemMaquinario}>
         <Animatable.Image
@@ -19,6 +20,10 @@ export async function MontaMaquinario(maquinarioList, tipoVisualizacaoMaquinario
       </View>
     )
   }
+  
+  console.log("++++++++++++++++++++++++++++++++++++++++++")
+
+
 
   var conjunto = []; //Montagem dos conjuntos (bidimensional: Cada ocorrência contém outro array [lava][seca])
   var verStatus = false;
@@ -35,11 +40,10 @@ export async function MontaMaquinario(maquinarioList, tipoVisualizacaoMaquinario
     return 0;
   })
 
-  console.log("<1>>>>")
-
   if (tipoExibicao === "conjunto") {
     try {
       await encontraeMontaConjuntos();
+      return viewConjunto();
     } catch {
       return (
         <View>
@@ -49,7 +53,6 @@ export async function MontaMaquinario(maquinarioList, tipoVisualizacaoMaquinario
         </View>
       )
     }
-    return viewConjunto();
   } else {
     return viewLista();
   }
@@ -61,14 +64,12 @@ export async function MontaMaquinario(maquinarioList, tipoVisualizacaoMaquinario
     var flagConjuntoJaTratado = Array.from({ length: maquinarioList.length }, () => 0); //Todas as ocorrências como zero (nrConjunto) 
 
     for (var i = 0; i < maquinarioList.length; i++) {
-      console.log("<", i, ">")
       cj = maquinarioList[i].nrConjunto
 
       if (flagConjuntoJaTratado.indexOf(cj) < 0) { //Conjunto ainda não foi montado
-        console.log("conjunto_nao_tratado: ", cj)
         flagConjuntoJaTratado[indiceConjunto] = cj //Guarda nr do conjunto já montado
         maquinas = maquinarioList.filter((maq) => maq.nrConjunto === cj); //Encontra o par
-        console.log("maquinas encontratas: ", maquinas.length, maquinas)
+
         conjunto[indiceConjunto] = maquinas;
         indiceConjunto++;
       }
@@ -171,7 +172,7 @@ export async function MontaMaquinario(maquinarioList, tipoVisualizacaoMaquinario
       </View>
     )
   }
-}
+};
 
 const stylesLocal = StyleSheet.create({
   containerSemMaquinario: {
