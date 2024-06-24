@@ -72,6 +72,10 @@ export function NewErrorMessage(cod, e) {
         case "lj012": newError.message = "Informe uma hora válida para todos os dias de funcionamento."; break;
         //Maquinario
         case "lj013": newError.message = "Estamos com dificuldades para pesquisar o maquinário da loja." + tn; break;
+        case "lj014": newError.message = "Informe um número ainda não utilizado para Lavadora." ; break;
+        case "lj015": newError.message = "Informe um número ainda não utilizado para Secadora." ; break;
+        case "lj016": newError.message = "Informe um número para a Lavadora." ; break;
+        case "lj017": newError.message = "Informe um número para a Secadora." ; break;
 
         default:
           newError.cod = "de2702" + cod.substr(0, 2);

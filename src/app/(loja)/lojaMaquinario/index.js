@@ -34,8 +34,8 @@ export default function ViewMaquinarioLoja() {
   const toggleSwitch = () => setIsEnabledStatus(previousState => !previousState);
   const [maquinario, setMaquinario] = useState(schemaLojaMaquinario);
   const [maquinarioList, setMaquinarioList] = useState([]);
-  const [lava, setLava] = useState(0);
-  const [seca, setSeca] = useState(0);
+  const [lava, setLava] = useState("");
+  const [seca, setSeca] = useState("");
 
   //Ações ao final da construção do componente
   useEffect(() => {
@@ -83,8 +83,72 @@ export default function ViewMaquinarioLoja() {
     Alert.alert("STATUS", "Para resposta SIM, o status de cada máquina poderá ser visualizado pelos clientes. Isso vai depender de configurações com a provedora da informação e também do consentimento da Franqueadora, caso sua loja esteja vincualda a uma.");
   };
 
-  async function incluiLava() {
-    const cj = lava.toString() + seca.toString();
+  function validaNumeroMaquina(tipo) {
+    if (tipo === 'l') { //Lava 
+      if (lava === "" || lava === "0" || lava === "00" || lava === null) {
+        return "lj016";
+      }
+      const existe = maquinarioList.findIndex((item) => item.numeroLabel === lava);
+      if (existe !== -1) {
+        return "lj014";
+      }
+    } else { //Seca
+      if (seca === "" || seca === "0" || seca === "00" || seca === null) {
+        return "lj017";
+      }
+      const existe = maquinarioList.findIndex((item) => item.numeroLabel === seca);
+      if (existe !== -1) {
+        return "lj015";
+      }
+    }
+    return "ok";
+  }
+
+  function handleLava() {
+    const e = validaNumeroMaquina("l");
+    if (e !== "ok") { //Número inválido
+      ShowErrorMessage(e)
+      return
+    };
+
+    incluiLava();
+
+  }
+  function handleSeca() {
+    const e = validaNumeroMaquina("s");
+    if (e !== "ok") { //Número inválido
+      ShowErrorMessage(e)
+      return
+    };
+
+    incluiSeca();
+  }
+  function handleConjunto() {
+    var e = validaNumeroMaquina("l");
+    if (e !== "ok") { //Número inválido
+      ShowErrorMessage(e)
+      return
+    };
+    var e = validaNumeroMaquina("s");
+    if (e !== "ok") { //Número inválido
+      ShowErrorMessage(e)
+      return
+    };
+
+    incluiLava(true);
+    incluiSeca(true);
+
+  }
+
+  async function incluiLava(isConjunto) {
+    //Código do conjunto (ou unidade separada)
+    var cj = "";
+    if (isConjunto !== undefined && isConjunto === true) { //Clicou no botão incluir conjunto
+      cj = lava.toString() + seca.toString();
+    } else {
+      cj = lava.toString()
+    }
+
     const maq = {
       idMaquina: "UUID" + lava,
       tipo: "l",
@@ -95,8 +159,16 @@ export default function ViewMaquinarioLoja() {
     }
     setMaquinarioList(maquinarioList => [...maquinarioList, maq])
   };
-  async function incluiSeca() {
-    const cj = lava.toString() + seca.toString();
+
+  async function incluiSeca(isConjunto) {
+    //Código do conjunto (ou unidade separada)
+    var cj = "";
+    if (isConjunto !== undefined && isConjunto === true) { //Clicou no botão incluir conjunto
+      cj = lava.toString() + seca.toString();
+    } else {
+      cj = seca.toString()
+    }
+
     const maq = {
       idMaquina: "UUID" + seca,
       tipo: "s",
@@ -107,10 +179,6 @@ export default function ViewMaquinarioLoja() {
     }
     setMaquinarioList(maquinarioList => [...maquinarioList, maq])
   };
-  async function incluiLavaSeca() {
-    incluiLava();
-    incluiSeca();
-  }
 
   //Ações ao clicar no botão principal (confirmar/prosseguir)
   async function prosseguir() {
@@ -180,15 +248,15 @@ export default function ViewMaquinarioLoja() {
             </View>
 
             <View style={{ width: '85%', alignItems: 'stretch' }}>
-              <TouchableOpacity style={styleApp.buttonFlatVBorda} disabled={!isEditavel} onPress={incluiLavaSeca} >
+              <TouchableOpacity style={styleApp.buttonFlatVBorda} disabled={!isEditavel} onPress={handleConjunto} >
                 <Text style={styleApp.textButtonFlat}>Adicionar o conjunto (lava e seca)</Text>
               </TouchableOpacity>
 
               <View style={{ flexDirection: 'row', gap: 6, marginTop: 6 }}>
-                <TouchableOpacity style={styleApp.buttonFlatVBorda} disabled={!isEditavel} onPress={incluiLava} >
+                <TouchableOpacity style={styleApp.buttonFlatVBorda} disabled={!isEditavel} onPress={handleLava} >
                   <Text style={styleApp.textButtonFlat}>Adicionar Lava</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styleApp.buttonFlatVBorda} disabled={!isEditavel} onPress={incluiSeca} >
+                <TouchableOpacity style={styleApp.buttonFlatVBorda} disabled={!isEditavel} onPress={handleSeca} >
                   <Text style={styleApp.textButtonFlat}>Adicionar Seca</Text>
                 </TouchableOpacity>
               </View>
@@ -211,7 +279,7 @@ export default function ViewMaquinarioLoja() {
           <MaterialIcons name="more-horiz" size={styleApp.size.iconSizeRegular} color={styleColor.textSubtitulo} />
         </View>
 
-        <View style={[styles.containerPrincipal, { justifyContent: 'flex-start', alignItems:'flex-start', padding: 16 }]}>
+        <View style={[styles.containerPrincipal, { justifyContent: 'flex-start', alignItems: 'flex-start', padding: 16 }]}>
           <Text style={styleApp.textSmall}>Como as máquina serão exibidas?</Text>
           <View style={styles.containerPicker}>
             <Picker
@@ -227,7 +295,7 @@ export default function ViewMaquinarioLoja() {
 
           <View style={styles.containerFlagStatus}>
             <View style={{ borderWidth: 0 }}>
-              <Text style={[styleApp.textSmall, { alignSelf: "flex-start"}]}>O status da máquina estará visível?</Text>
+              <Text style={[styleApp.textSmall, { alignSelf: "flex-start" }]}>O status da máquina estará visível?</Text>
               <View style={styles.containerTogle}>
                 <Text style={[styleApp.textRegular, { color: isEnabledStatus ? styleColor.cinzaMedio : styleColor.tema30pPrincipal }]}>Não</Text>
                 <Switch
