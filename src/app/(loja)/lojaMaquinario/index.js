@@ -14,7 +14,6 @@ import { useLocalSearchParams } from 'expo-router';
 import { MontaMaquinario } from '../../../componentes/montaMaquinario';
 import { Picker } from '@react-native-picker/picker';
 import { styleSize } from '../../../styles/styleSize';
-import { ModalEditarMaquinario } from './modalEditarMaquinario';
 
 export default function ViewMaquinarioLoja() {
   const { user } = useContext(AuthContext);
@@ -36,6 +35,8 @@ export default function ViewMaquinarioLoja() {
   const [maquinarioList, setMaquinarioList] = useState([]);
   const [lava, setLava] = useState("");
   const [seca, setSeca] = useState("");
+  //Edição
+  const [statusManutencao, setStatusManutencao] = useState(false);
 
   //Ações ao final da construção do componente
   useEffect(() => {
@@ -137,7 +138,6 @@ export default function ViewMaquinarioLoja() {
 
     incluiLava(true);
     incluiSeca(true);
-
   }
 
   async function incluiLava(isConjunto) {
@@ -180,28 +180,68 @@ export default function ViewMaquinarioLoja() {
     setMaquinarioList(maquinarioList => [...maquinarioList, maq])
   };
 
+  function handleEditarMaquinario(item) {
+    console.log("maquina selecionada ", item)
+  }
+  function handleSelecionarMaquinario(item) {
+    handleShowModalEdicao();
+  }
+
+  function viewEdicaoMaquina() {
+    return (
+      <View style={{ marginTop: 8, marginBottom: 20 }}>
+        <View style={{ marginBottom: 8 }}>
+          <View style={{ justifyContent: 'center', alignItems: 'center', marginBottom: 16}}>
+            <Text style={styleApp.textSubtitulo}>Conjunto</Text>
+            <Text style={styleApp.textSubtitulo}>SECA 2</Text>
+            <Text style={styleApp.textSubtitulo}>LAVA 1</Text>
+          </View>
+          <View style={styles.containerTogle}>
+            <Text style={styleApp.textSmall}>Liga/Desliga status <Text style={styleApp.textRegular}>Manutenção</Text></Text>
+            <Switch
+              disabled={!isEditavel}
+              trackColor={{ false: '#767577', true: '#767577' }}
+              thumbColor={isEnabledStatus ? styleColor.tema30pPrincipal : '#f4f3f4'}
+              ios_backgroundColor="#767577"
+              onValueChange={toggleSwitch}
+              value={isEnabledStatus}
+            />
+          </View>
+          <View style={{ marginBottom: 16 }}>
+            <Text style={styleApp.textSmallItalico}>
+              Retorne aqui e deslique esta opção quando a manutenção da máquina estiver concluída.
+            </Text>
+          </View>
+
+          {processing.isOnlyConsulta ? <></> :
+            <TouchableOpacity style={[styleApp.buttonHC, { backgroundColor: styleColor.erro }]} disabled={!isEditavel} onPress={prosseguir} >
+              <MaterialIcons name="delete-forever" size={styleApp.size.iconSizeRegular} color={styleColor.textButtonRegular} />
+              <Text style={styleApp.textButtonRegular}>Excluir</Text>
+            </TouchableOpacity>
+          }
+        </View>
+      </View>
+    )
+  }
+
   //Ações ao clicar no botão principal (confirmar/prosseguir)
   async function prosseguir() {
     if (processing.isLoading) { return };
 
     /*     if (!validarSintaxeLatitude()) {
           ShowErrorMessage("gu012");
-          return;
+        return;
         }; */
 
-    /*     setProcessing({ ...processing, isExecuting: true });
-    
+    /*     setProcessing({...processing, isExecuting: true });
+
         try {
           const res = await atualizaLocalizacaoLoja(maquinario);
-          showModalMsgResultado();
+        showModalMsgResultado();
         } catch {
           ShowErrorMessage("lj010");
         }
-        setProcessing({ ...processing, isExecuting: false }); */
-  }
-
-  //Edição de cada maquina
-  function handleEditarMaquinario() {
+        setProcessing({...processing, isExecuting: false }); */
   }
 
   //Apresentação da view principal
@@ -227,7 +267,7 @@ export default function ViewMaquinarioLoja() {
                   <MaterialIcons name="close" size={styleApp.size.iconSizeButtonLarge} color={styleApp.color.textButtonFlat} />
                 </TouchableOpacity>
               </View>
-              {ModalEditarMaquinario(handleEditarMaquinario)}
+              {viewEdicaoMaquina()}
             </View>
           </View>
         </Modal>
@@ -265,14 +305,7 @@ export default function ViewMaquinarioLoja() {
         }
 
         <View style={styles.containerPrincipal}>
-          {MontaMaquinario(maquinarioList, selectedTipoExibicao, isEnabledStatus)}
-
-          {/*       {maquinarioList.length <= 0 ? <></> :
-            <View style={{ width: '90%', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginVertical: 10, borderRadius: 12, borderLeftWidth: 1, borderRightWidth: 1, borderColor: styleColor.erro }}>
-              <MaterialIcons name="delete-forever" size={styleApp.size.iconSizeRegular} color={styleColor.erro} />
-              <Text style={styleApp.textSmallItalico}>Pressione e segure para editar/excluir</Text>
-            </View>
-          } */}
+          {MontaMaquinario(maquinarioList, selectedTipoExibicao, isEnabledStatus, handleSelecionarMaquinario)}
         </View>
 
         <View style={{ alignItems: 'center' }}>

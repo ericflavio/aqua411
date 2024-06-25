@@ -27,6 +27,8 @@ export const styles = StyleSheet.create({
     width: '100%'
   },
   containerTogle: {
+    width:'100%',
+    flexWrap: 'wrap',
     flexDirection: 'row', 
     justifyContent: "flex-start", 
     alignItems: "center", 
@@ -60,8 +62,8 @@ export const styles = StyleSheet.create({
   modalView: {
     flexShrink: 1,
     marginTop: 0,
-    minHeight: 320,
-    maxHeight: Dimensions.get('window').height - 200,
+    minHeight: Dimensions.get('window').height - 300,
+    maxHeight: Dimensions.get('window').height - 100,
     width: "100%",
     borderLeftWidth: 1,
     borderRightWidth: 1,

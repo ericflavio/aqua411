@@ -5,7 +5,7 @@ import { styleSize } from '../styles/styleSize';
 import * as Animatable from 'react-native-animatable';
 import { schemaTipoViewMaquinario, schemaStatusMaquinario } from '../schemas/lojaSchema';
 
-export function MontaMaquinario(maquinarioList, tipoVisualizacaoMaquinario, flagVisualizarStatus) {
+export function MontaMaquinario(maquinarioList, tipoVisualizacaoMaquinario, flagVisualizarStatus, handleSelecionarMaquinario) {
   if (!maquinarioList || maquinarioList === null || maquinarioList.length === 0) {
     return (
       <View style={stylesLocal.containerSemMaquinario}>
@@ -120,12 +120,15 @@ export function MontaMaquinario(maquinarioList, tipoVisualizacaoMaquinario, flag
       </View>
     )
   }
+  function handleItem(maq) {
+    handleSelecionarMaquinario(maq);
+  }
 
-  function viewConjunto() {
+  function viewConjunto() { 
     return (
       <View style={stylesLocal.containerConjunto}>
         {conjunto.map((maq, index) => (
-          <TouchableOpacity key={index} activeOpacity={0.5}>
+          <TouchableOpacity key={index} activeOpacity={0.5} onPress={() => handleItem(maq)}>
             <View style={stylesLocal.containerLavaSecaConjunto}>
               {maq[0] !== undefined ?
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
