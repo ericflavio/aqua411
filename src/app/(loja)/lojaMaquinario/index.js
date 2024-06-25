@@ -27,7 +27,7 @@ export default function ViewMaquinarioLoja() {
   const [flagShowModal, setflagShowModal] = useState(false);
 
   //Outras declarações
-  const [flagShowModalEdicao, setflagShowModalEdicao] = useState(false);
+  const [flagShowModalEdicao, setflagShowModalEdicao] = useState({ show: false, maq: null });
   const [selectedTipoExibicao, setTipoExibicao] = useState(schemaTipoViewMaquinario.conjunto);
   const [isEnabledStatus, setIsEnabledStatus] = useState(false);
   const toggleSwitch = () => setIsEnabledStatus(previousState => !previousState);
@@ -56,9 +56,6 @@ export default function ViewMaquinarioLoja() {
   }
 
   //Valida campos de formulario
-  function onChangeLatitude(parm) {
-    //setMaquinario({ ...maquinario, latitude: parm });
-  }
   function onChangeLava(parm) {
     setLava(parm)
   };
@@ -77,7 +74,8 @@ export default function ViewMaquinarioLoja() {
     }, styleApp.size.modalTimeAutoClose);
   };
   function handleShowModalEdicao() {
-    setflagShowModalEdicao(!flagShowModalEdicao);
+    const showHide = flagShowModalEdicao.show;
+    setflagShowModalEdicao({ ...flagShowModalEdicao, show: !showHide });
   }
 
   function infoViewStatus() {
@@ -183,45 +181,9 @@ export default function ViewMaquinarioLoja() {
   function handleEditarMaquinario(item) {
     console.log("maquina selecionada ", item)
   }
-  function handleSelecionarMaquinario(item) {
-    handleShowModalEdicao();
-  }
-
-  function viewEdicaoMaquina() {
-    return (
-      <View style={{ marginTop: 8, marginBottom: 20 }}>
-        <View style={{ marginBottom: 8 }}>
-          <View style={{ justifyContent: 'center', alignItems: 'center', marginBottom: 16}}>
-            <Text style={styleApp.textSubtitulo}>Conjunto</Text>
-            <Text style={styleApp.textSubtitulo}>SECA 2</Text>
-            <Text style={styleApp.textSubtitulo}>LAVA 1</Text>
-          </View>
-          <View style={styles.containerTogle}>
-            <Text style={styleApp.textSmall}>Liga/Desliga status <Text style={styleApp.textRegular}>Manutenção</Text></Text>
-            <Switch
-              disabled={!isEditavel}
-              trackColor={{ false: '#767577', true: '#767577' }}
-              thumbColor={isEnabledStatus ? styleColor.tema30pPrincipal : '#f4f3f4'}
-              ios_backgroundColor="#767577"
-              onValueChange={toggleSwitch}
-              value={isEnabledStatus}
-            />
-          </View>
-          <View style={{ marginBottom: 16 }}>
-            <Text style={styleApp.textSmallItalico}>
-              Retorne aqui e deslique esta opção quando a manutenção da máquina estiver concluída.
-            </Text>
-          </View>
-
-          {processing.isOnlyConsulta ? <></> :
-            <TouchableOpacity style={[styleApp.buttonHC, { backgroundColor: styleColor.erro }]} disabled={!isEditavel} onPress={prosseguir} >
-              <MaterialIcons name="delete-forever" size={styleApp.size.iconSizeRegular} color={styleColor.textButtonRegular} />
-              <Text style={styleApp.textButtonRegular}>Excluir</Text>
-            </TouchableOpacity>
-          }
-        </View>
-      </View>
-    )
+  function handleSelecionarMaquinario(maq) {
+    //Recebe a maquina selecionada na modal MontarMaquinário e abre a modal de edição
+    setflagShowModalEdicao({ ...flagShowModalEdicao, show: true, maq: maq });
   }
 
   //Ações ao clicar no botão principal (confirmar/prosseguir)
@@ -244,6 +206,17 @@ export default function ViewMaquinarioLoja() {
         setProcessing({...processing, isExecuting: false }); */
   }
 
+  async function confirmaExclusaoMaquina() {
+    Alert.alert('CONFIRMAÇÃO', 'Você realmente deseja excluir este maquinário?', [
+      {
+        text: 'NÃO',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
+      },
+      { text: 'EXCLUIR', onPress: () => console.log('exclir') },
+    ]);
+  }
+
   //Apresentação da view principal
   return (
     <SafeAreaView style={styleApp.containerSafeArea}>
@@ -254,23 +227,14 @@ export default function ViewMaquinarioLoja() {
         </View>
 
         {ModalSimples(flagShowModal, handleShowModal, "Máquinas atualizadas!", "TipoMsg", "Título", processing)}
+        {ModalEdicaoMaquina()}
 
-        <Modal
-          animationType={"slide"} //fade slide none
-          transparent={true}
-          visible={flagShowModalEdicao}
-          onRequestClose={() => { }}>
-          <View style={styles.containerModal}>
-            <View style={styles.modalView}>
-              <View style={styles.modalClose}>
-                <TouchableOpacity style={styleApp.buttonFlatHL_transp} disabled={false} onPress={handleShowModalEdicao} >
-                  <MaterialIcons name="close" size={styleApp.size.iconSizeButtonLarge} color={styleApp.color.textButtonFlat} />
-                </TouchableOpacity>
-              </View>
-              {viewEdicaoMaquina()}
-            </View>
-          </View>
-        </Modal>
+        <View style={styles.containerPrincipal}>
+          {MontaMaquinario(maquinarioList, selectedTipoExibicao, isEnabledStatus, handleSelecionarMaquinario)}
+          {maquinarioList && maquinarioList !== null && maquinarioList.length > 0 ?
+            <Text style={styleApp.textSmallItalico}>Clique na máquina para editar/excluir</Text>
+            : <></>}
+        </View>
 
         {processing.isOnlyConsulta ? <></> :
           <View style={styles.containerPrincipal}>
@@ -289,7 +253,7 @@ export default function ViewMaquinarioLoja() {
 
             <View style={{ width: '85%', alignItems: 'stretch' }}>
               <TouchableOpacity style={styleApp.buttonFlatVBorda} disabled={!isEditavel} onPress={handleConjunto} >
-                <Text style={styleApp.textButtonFlat}>Adicionar o conjunto (lava e seca)</Text>
+                <Text style={styleApp.textButtonFlat}>Adicionar conjunto (Lava e Seca)</Text>
               </TouchableOpacity>
 
               <View style={{ flexDirection: 'row', gap: 6, marginTop: 6 }}>
@@ -303,10 +267,6 @@ export default function ViewMaquinarioLoja() {
             </View>
           </View>
         }
-
-        <View style={styles.containerPrincipal}>
-          {MontaMaquinario(maquinarioList, selectedTipoExibicao, isEnabledStatus, handleSelecionarMaquinario)}
-        </View>
 
         <View style={{ alignItems: 'center' }}>
           <MaterialIcons name="more-horiz" size={styleApp.size.iconSizeRegular} color={styleColor.textSubtitulo} />
@@ -352,4 +312,89 @@ export default function ViewMaquinarioLoja() {
       </ScrollView>
     </SafeAreaView >
   )
+
+  function ModalEdicaoMaquina() {
+    return (
+      <Modal
+        animationType={"slide"} //fade slide none
+        transparent={true}
+        visible={flagShowModalEdicao.show}
+        onRequestClose={() => { }}>
+        <View style={styles.containerModal}>
+          <View style={styles.modalView}>
+            <View style={styles.modalClose}>
+              <TouchableOpacity style={styleApp.buttonFlatHL_transp} disabled={false} onPress={handleShowModalEdicao} >
+                <MaterialIcons name="close" size={styleApp.size.iconSizeButtonLarge} color={styleApp.color.textButtonFlat} />
+              </TouchableOpacity>
+            </View>
+
+            <View style={styles.containerEdicao}>
+              <Text style={styleApp.textSmall}>Selecione a opção de edição</Text>
+              <View style={styles.containerMaquinaEdicao}>
+                {Array.isArray(flagShowModalEdicao.maq) ?
+                  <>
+                    {!flagShowModalEdicao.maq[0] || flagShowModalEdicao.maq[0] === null ? <></> :
+                      <View style={{ flexDirection: 'row', justifyContent:'space-between', alignItems: 'center',width:'100%', gap:6 }}>
+                        <Text style={styleApp.textSubtitulo}>{flagShowModalEdicao.maq[0].nomeLabel} {flagShowModalEdicao.maq[0].numeroLabel}</Text>
+                        <View style={styles.containerPicker}>
+                          <Picker
+                            enabled={isEditavel}
+                            selectedValue={selectedTipoExibicao}
+                            onValueChange={(itemValue, itemIndex) =>
+                              setTipoExibicao(itemValue)
+                            }>
+                            <Picker.Item label="Selecionar" value="0" />
+                            <Picker.Item label="Em Manutenção" value="1" />
+                            <Picker.Item label="Em Atividade" value="2" />
+                            <Picker.Item label="Excluir" value="3" />
+                          </Picker>
+                        </View>
+                      </View>
+                    }
+                    {!flagShowModalEdicao.maq[1] || flagShowModalEdicao.maq[1] === null ? <></> :
+                      <View style={styles.containerTogle}>
+                        <Text style={styleApp.textSubtitulo}>{flagShowModalEdicao.maq[1].nomeLabel} {flagShowModalEdicao.maq[1].numeroLabel}</Text>
+                        <Switch
+                          disabled={!isEditavel}
+                          trackColor={{ false: '#767577', true: '#767577' }}
+                          thumbColor={isEnabledStatus ? styleColor.tema30pPrincipal : '#f4f3f4'}
+                          ios_backgroundColor="#767577"
+                          onValueChange={toggleSwitch}
+                          value={isEnabledStatus}
+                        />
+                      </View>
+                    }
+                  </>
+                  :
+                  <>
+                    {!flagShowModalEdicao.maq || flagShowModalEdicao.maq === null ? <></> :
+                      <View style={styles.containerTogle}>
+                        <Text style={styleApp.textSubtitulo}>{flagShowModalEdicao.maq.nomeLabel} {flagShowModalEdicao.maq.numeroLabel}</Text>
+                        <Switch
+                          disabled={!isEditavel}
+                          trackColor={{ false: '#767577', true: '#767577' }}
+                          thumbColor={isEnabledStatus ? styleColor.tema30pPrincipal : '#f4f3f4'}
+                          ios_backgroundColor="#767577"
+                          onValueChange={toggleSwitch}
+                          value={isEnabledStatus}
+                        />
+                      </View>
+
+                    }
+                  </>
+                }
+              </View>
+
+              {processing.isOnlyConsulta ? <></> :
+                <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={confirmaExclusaoMaquina} >
+                  <Text style={styleApp.textButtonRegular}>Confirmar</Text>
+                </TouchableOpacity>
+              }
+            </View>
+
+          </View>
+        </View>
+      </Modal>
+    )
+  }
 }

@@ -1,5 +1,6 @@
 import { StyleSheet, Dimensions } from "react-native";
 import { styleApp } from "../../../styles/styleApp";
+import { styleColor } from "../../../styles/styleColors";
 
 export const styles = StyleSheet.create({
   containerHeader: {
@@ -45,13 +46,11 @@ export const styles = StyleSheet.create({
   },
   containerPicker: {
     alignSelf: 'stretch',
-    marginTop: 12,
-    marginLeft: 0,
-    marginRight: 12,
-    marginBottom: 25,
     borderWidth: 1,
     borderColor: styleApp.color.tema10pSecundaria,
-    borderRadius: 4
+    borderRadius: 4,
+    width:'100%',
+    flexShrink:1
   },
   containerModal: {
     flex: 1,
@@ -62,8 +61,8 @@ export const styles = StyleSheet.create({
   modalView: {
     flexShrink: 1,
     marginTop: 0,
-    minHeight: Dimensions.get('window').height - 300,
-    maxHeight: Dimensions.get('window').height - 100,
+    minHeight: Dimensions.get('window').height - 400,
+    maxHeight: Dimensions.get('window').height - 200,
     width: "100%",
     borderLeftWidth: 1,
     borderRightWidth: 1,
@@ -87,5 +86,20 @@ export const styles = StyleSheet.create({
   modalClose: {
     marginBottom: 6,
     alignSelf: "flex-end"
-  }
+  },
+  containerEdicao :{
+    marginTop: 8, 
+    marginBottom: 20 
+  },
+  containerMaquinaEdicao: {
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    marginBottom: 16,
+    borderRadius: 8,
+    padding:12,
+    borderWidth:1,
+    gap:5,
+    backgroundColor: styleColor.cinzaClaro,
+    alignSelf: 'stretch'
+  },
 });
