@@ -7,10 +7,13 @@ export var schemaTipoViewMaquinario = {
 };
 //Schema TIPOS de status das Máquinas
 export var schemaStatusMaquinario = {
+  //Status que o lojista imposta
+  ativa: "Ativa",
+  manutencao: "Manutenção", //Obs. Este faz override na telemetria
+  //Status que a Telemetria informa
   disponivel: "Disponível", 
   indisponivel: "Indisponível",
   indeterminado: "Indeterminado",
-  manutencao: "Manutenção" 
 };
 
 //Franquia vinculada à loja

@@ -15,6 +15,8 @@ import { MontaMaquinario } from '../../../componentes/montaMaquinario';
 import { Picker } from '@react-native-picker/picker';
 import { styleSize } from '../../../styles/styleSize';
 
+//TODO: persistir máquinas localmente + ts_ultima_atualizacao
+
 export default function ViewMaquinarioLoja() {
   const { user } = useContext(AuthContext);
   const { navigateParmLoja, naviateParmOnlyConsulta } = useLocalSearchParams();
@@ -186,6 +188,8 @@ export default function ViewMaquinarioLoja() {
   function handleSelecionarMaquinario(maq) {
     //Recebe a maquina selecionada na modal MontarMaquinário e abre a modal de edição
     setflagShowModalEdicao({ ...flagShowModalEdicao, show: true, maq: maq });
+    setSelectedAcao("selecionar");
+    setSelectedAcao2("selecionar");
   }
 
   //Ações ao clicar no botão principal (confirmar/prosseguir)
@@ -209,14 +213,19 @@ export default function ViewMaquinarioLoja() {
   }
 
   async function confirmaExclusaoMaquina() {
-    Alert.alert('CONFIRMAÇÃO', 'Você realmente deseja excluir este maquinário?', [
-      {
-        text: 'NÃO',
-        onPress: () => console.log('Cancel Pressed'),
-        style: 'cancel',
-      },
-      { text: 'EXCLUIR', onPress: () => console.log('exclir') },
-    ]);
+    if (selectedAcao === "excluir" || selectedAcao2 === "excluir") {
+      Alert.alert('CONFIRMAÇÃO', 'Você realmente deseja excluir este maquinário?', [
+        {
+          text: 'NÃO',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        { text: 'EXCLUIR', onPress: () => console.log('exclir') },
+      ]);
+    }
+
+    //TODO: realizar exclusoes
+    //TODO: atualizar status manutenção (colocar ou remover o status)
   }
 
   //Apresentação da view principal
@@ -352,7 +361,7 @@ export default function ViewMaquinarioLoja() {
                             }>
                             <Picker.Item label="Selecionar" value="selecionar" />
                             {
-                              flagShowModalEdicao.maq[0].status === "Manutenção" ?
+                              flagShowModalEdicao.maq[0].status === schemaStatusMaquinario.manutencao ?
                                 <Picker.Item label="Em Atividade" value="atividade" />
                                 :
                                 <Picker.Item label="Em Manutenção" value="manutencao" />
@@ -374,7 +383,7 @@ export default function ViewMaquinarioLoja() {
                             }>
                             <Picker.Item label="Selecionar" value="selecionar" />
                             {
-                              flagShowModalEdicao.maq[1].status === "Manutenção" ?
+                              flagShowModalEdicao.maq[1].status === schemaStatusMaquinario.manutencao ?
                                 <Picker.Item label="Em Atividade" value="atividade" />
                                 :
                                 <Picker.Item label="Em Manutenção" value="manutencao" />
@@ -387,28 +396,7 @@ export default function ViewMaquinarioLoja() {
                   </>
                   :
                   <>
-                    {!flagShowModalEdicao.maq || flagShowModalEdicao.maq === null ? <></> :
-                      <View style={styles.containerEdicaoAcao}>
-                        <Text style={styleApp.textSubtitulo}>{flagShowModalEdicao.maq.nomeLabel} {flagShowModalEdicao.maq.numeroLabel}</Text>
-                        <View style={[styles.containerPicker, { width: '70%' }]}>
-                          <Picker
-                            enabled={isEditavel}
-                            selectedValue={selectedAcao}
-                            onValueChange={(itemValue, itemIndex) =>
-                              setSelectedAcao(itemValue)
-                            }>
-                            <Picker.Item label="Selecionar" value="selecionar" />
-                            {
-                              flagShowModalEdicao.maq.status === "Manutenção" ?
-                                <Picker.Item label="Em Atividade" value="atividade" />
-                                :
-                                <Picker.Item label="Em Manutenção" value="manutencao" />
-                            }
-                            <Picker.Item label="Excluir" value="excluir" />
-                          </Picker>
-                        </View>
-                      </View>
-                    }
+                    <Text style={styleApp.textRegular}>Oops! As informações do maquinário não foram recuperadas.</Text>
                   </>
                 }
               </View>

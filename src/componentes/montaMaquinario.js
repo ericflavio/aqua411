@@ -156,7 +156,7 @@ export function MontaMaquinario(maquinarioList, tipoVisualizacaoMaquinario, flag
     return (
       <View style={stylesLocal.containerLista}>
         {maquinarioList.map((maq, index) => (
-          <TouchableOpacity key={index} activeOpacity={0.5} onPress={() => handleItem(maq)}>
+          <TouchableOpacity key={index} activeOpacity={0.5} onPress={() => handleItem([maq])}> 
             <View style={stylesLocal.containerLavaSecaLista}>
               {desenhoMaquina(maq)}
               {txLabelStatusLista(maq)}
