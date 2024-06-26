@@ -332,7 +332,11 @@ export default function ViewMaquinarioLoja() {
             </View>
 
             <View style={styles.containerEdicao}>
-              <Text style={styleApp.textSmall}>Selecione a opção de edição</Text>
+              <View style={{ flexDirection: 'row', gap: 4 }}>
+                <Text style={styleApp.textSmall}>Selecione a opção de edição</Text>
+                <MaterialIcons name="edit" size={styleApp.size.iconSizeButtonLarge} color={styleApp.color.textButtonFlat} />
+                <MaterialIcons name="delete-forever" size={styleApp.size.iconSizeButtonLarge} color={styleApp.color.textButtonFlat} />
+              </View>
               <View style={[styles.containerMaquinaEdicao, { backgroundColor: selectedAcao === "excluir" || selectedAcao2 === "excluir" ? styleColor.erro : "white" }]}>
                 {Array.isArray(flagShowModalEdicao.maq) ?
                   <>
@@ -347,8 +351,12 @@ export default function ViewMaquinarioLoja() {
                               setSelectedAcao(itemValue)
                             }>
                             <Picker.Item label="Selecionar" value="selecionar" />
-                            <Picker.Item label="Em Manutenção" value="manutencao" />
-                            <Picker.Item label="Em Atividade" value="atividade" />
+                            {
+                              flagShowModalEdicao.maq[0].status === "Manutenção" ?
+                                <Picker.Item label="Em Atividade" value="atividade" />
+                                :
+                                <Picker.Item label="Em Manutenção" value="manutencao" />
+                            }
                             <Picker.Item label="Excluir" value="excluir" />
                           </Picker>
                         </View>
@@ -365,8 +373,12 @@ export default function ViewMaquinarioLoja() {
                               setSelectedAcao2(itemValue)
                             }>
                             <Picker.Item label="Selecionar" value="selecionar" />
-                            <Picker.Item label="Em Manutenção" value="manutencao" />
-                            <Picker.Item label="Em Atividade" value="atividade" />
+                            {
+                              flagShowModalEdicao.maq[1].status === "Manutenção" ?
+                                <Picker.Item label="Em Atividade" value="atividade" />
+                                :
+                                <Picker.Item label="Em Manutenção" value="manutencao" />
+                            }
                             <Picker.Item label="Excluir" value="excluir" />
                           </Picker>
                         </View>
@@ -386,8 +398,12 @@ export default function ViewMaquinarioLoja() {
                               setSelectedAcao(itemValue)
                             }>
                             <Picker.Item label="Selecionar" value="selecionar" />
-                            <Picker.Item label="Em Manutenção" value="manutencao" />
-                            <Picker.Item label="Em Atividade" value="atividade" />
+                            {
+                              flagShowModalEdicao.maq.status === "Manutenção" ?
+                                <Picker.Item label="Em Atividade" value="atividade" />
+                                :
+                                <Picker.Item label="Em Manutenção" value="manutencao" />
+                            }
                             <Picker.Item label="Excluir" value="excluir" />
                           </Picker>
                         </View>

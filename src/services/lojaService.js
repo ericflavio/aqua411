@@ -52,7 +52,7 @@ export async function consultaListaMaquinario() {
   ];
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve(null)
+      resolve(res)
     }, 200);
   })
 }
