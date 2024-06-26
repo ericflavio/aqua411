@@ -29,6 +29,8 @@ export default function ViewMaquinarioLoja() {
   //Outras declarações
   const [flagShowModalEdicao, setflagShowModalEdicao] = useState({ show: false, maq: null });
   const [selectedTipoExibicao, setTipoExibicao] = useState(schemaTipoViewMaquinario.conjunto);
+  const [selectedAcao, setSelectedAcao] = useState("selecionar");
+  const [selectedAcao2, setSelectedAcao2] = useState("selecionar");
   const [isEnabledStatus, setIsEnabledStatus] = useState(false);
   const toggleSwitch = () => setIsEnabledStatus(previousState => !previousState);
   const [maquinario, setMaquinario] = useState(schemaLojaMaquinario);
@@ -230,14 +232,15 @@ export default function ViewMaquinarioLoja() {
         {ModalEdicaoMaquina()}
 
         <View style={styles.containerPrincipal}>
-          {MontaMaquinario(maquinarioList, selectedTipoExibicao, isEnabledStatus, handleSelecionarMaquinario)}
           {maquinarioList && maquinarioList !== null && maquinarioList.length > 0 ?
             <Text style={styleApp.textSmallItalico}>Clique na máquina para editar/excluir</Text>
             : <></>}
+          {MontaMaquinario(maquinarioList, selectedTipoExibicao, isEnabledStatus, handleSelecionarMaquinario)}
         </View>
 
         {processing.isOnlyConsulta ? <></> :
           <View style={styles.containerPrincipal}>
+            <Text style={styleApp.textSmall}>Incluir novas máquinas</Text>
             <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginTop: 12, gap: 20, marginBottom: 10 }}>
               <View style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 4, alignItems: 'center' }}>
                 <Text style={styleApp.textRegular}>LAVA:</Text>
@@ -330,56 +333,65 @@ export default function ViewMaquinarioLoja() {
 
             <View style={styles.containerEdicao}>
               <Text style={styleApp.textSmall}>Selecione a opção de edição</Text>
-              <View style={styles.containerMaquinaEdicao}>
+              <View style={[styles.containerMaquinaEdicao, { backgroundColor: selectedAcao === "excluir" || selectedAcao2 === "excluir" ? styleColor.erro : "white" }]}>
                 {Array.isArray(flagShowModalEdicao.maq) ?
                   <>
                     {!flagShowModalEdicao.maq[0] || flagShowModalEdicao.maq[0] === null ? <></> :
-                      <View style={{ flexDirection: 'row', justifyContent:'space-between', alignItems: 'center',width:'100%', gap:6 }}>
+                      <View style={styles.containerEdicaoAcao}>
                         <Text style={styleApp.textSubtitulo}>{flagShowModalEdicao.maq[0].nomeLabel} {flagShowModalEdicao.maq[0].numeroLabel}</Text>
-                        <View style={styles.containerPicker}>
+                        <View style={[styles.containerPicker, { width: '70%' }]}>
                           <Picker
                             enabled={isEditavel}
-                            selectedValue={selectedTipoExibicao}
+                            selectedValue={selectedAcao}
                             onValueChange={(itemValue, itemIndex) =>
-                              setTipoExibicao(itemValue)
+                              setSelectedAcao(itemValue)
                             }>
-                            <Picker.Item label="Selecionar" value="0" />
-                            <Picker.Item label="Em Manutenção" value="1" />
-                            <Picker.Item label="Em Atividade" value="2" />
-                            <Picker.Item label="Excluir" value="3" />
+                            <Picker.Item label="Selecionar" value="selecionar" />
+                            <Picker.Item label="Em Manutenção" value="manutencao" />
+                            <Picker.Item label="Em Atividade" value="atividade" />
+                            <Picker.Item label="Excluir" value="excluir" />
                           </Picker>
                         </View>
                       </View>
                     }
                     {!flagShowModalEdicao.maq[1] || flagShowModalEdicao.maq[1] === null ? <></> :
-                      <View style={styles.containerTogle}>
+                      <View style={styles.containerEdicaoAcao}>
                         <Text style={styleApp.textSubtitulo}>{flagShowModalEdicao.maq[1].nomeLabel} {flagShowModalEdicao.maq[1].numeroLabel}</Text>
-                        <Switch
-                          disabled={!isEditavel}
-                          trackColor={{ false: '#767577', true: '#767577' }}
-                          thumbColor={isEnabledStatus ? styleColor.tema30pPrincipal : '#f4f3f4'}
-                          ios_backgroundColor="#767577"
-                          onValueChange={toggleSwitch}
-                          value={isEnabledStatus}
-                        />
+                        <View style={[styles.containerPicker, { width: '70%' }]}>
+                          <Picker
+                            enabled={isEditavel}
+                            selectedValue={selectedAcao2}
+                            onValueChange={(itemValue, itemIndex) =>
+                              setSelectedAcao2(itemValue)
+                            }>
+                            <Picker.Item label="Selecionar" value="selecionar" />
+                            <Picker.Item label="Em Manutenção" value="manutencao" />
+                            <Picker.Item label="Em Atividade" value="atividade" />
+                            <Picker.Item label="Excluir" value="excluir" />
+                          </Picker>
+                        </View>
                       </View>
                     }
                   </>
                   :
                   <>
                     {!flagShowModalEdicao.maq || flagShowModalEdicao.maq === null ? <></> :
-                      <View style={styles.containerTogle}>
+                      <View style={styles.containerEdicaoAcao}>
                         <Text style={styleApp.textSubtitulo}>{flagShowModalEdicao.maq.nomeLabel} {flagShowModalEdicao.maq.numeroLabel}</Text>
-                        <Switch
-                          disabled={!isEditavel}
-                          trackColor={{ false: '#767577', true: '#767577' }}
-                          thumbColor={isEnabledStatus ? styleColor.tema30pPrincipal : '#f4f3f4'}
-                          ios_backgroundColor="#767577"
-                          onValueChange={toggleSwitch}
-                          value={isEnabledStatus}
-                        />
+                        <View style={[styles.containerPicker, { width: '70%' }]}>
+                          <Picker
+                            enabled={isEditavel}
+                            selectedValue={selectedAcao}
+                            onValueChange={(itemValue, itemIndex) =>
+                              setSelectedAcao(itemValue)
+                            }>
+                            <Picker.Item label="Selecionar" value="selecionar" />
+                            <Picker.Item label="Em Manutenção" value="manutencao" />
+                            <Picker.Item label="Em Atividade" value="atividade" />
+                            <Picker.Item label="Excluir" value="excluir" />
+                          </Picker>
+                        </View>
                       </View>
-
                     }
                   </>
                 }

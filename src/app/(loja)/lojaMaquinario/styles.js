@@ -25,7 +25,8 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'flex-start',
     borderWidth: 0,
-    width: '100%'
+    width: '100%',
+    marginTop: 18,
   },
   containerTogle: {
     width:'100%',
@@ -61,7 +62,7 @@ export const styles = StyleSheet.create({
   modalView: {
     flexShrink: 1,
     marginTop: 0,
-    minHeight: Dimensions.get('window').height - 400,
+    minHeight: Dimensions.get('window').height - 420,
     maxHeight: Dimensions.get('window').height - 200,
     width: "100%",
     borderLeftWidth: 1,
@@ -99,7 +100,13 @@ export const styles = StyleSheet.create({
     padding:12,
     borderWidth:1,
     gap:5,
-    backgroundColor: styleColor.cinzaClaro,
     alignSelf: 'stretch'
   },
+  containerEdicaoAcao:{
+    flexDirection: 'row', 
+    justifyContent: 'space-between', 
+    alignItems: 'center', 
+    width: '100%', 
+    gap: 6
+  }
 });

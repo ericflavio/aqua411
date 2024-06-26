@@ -49,28 +49,10 @@ export async function consultaListaMaquinario() {
       status: "Manutenção",
       capacidadeKg: 11,
     },
-    {
-      idMaquina: "UUID05",
-      tipo: "l",
-      nrConjunto: '5611',
-      numeroLabel: "5",
-      nomeLabel: "Lava",
-      status: "Disponível",
-      capacidadeKg: 11,
-    },
-    {
-      idMaquina: "UUID06",
-      tipo: "s",
-      nrConjunto: '5611',
-      numeroLabel: "6",
-      nomeLabel: "Seca",
-      status: "Manutenção",
-      capacidadeKg: 11,
-    },
   ];
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve(res)
+      resolve(null)
     }, 200);
   })
 }
