@@ -59,7 +59,8 @@ export default function AppLayout() {
     return <Redirect href="/login" />;
   }
 
-  return <Redirect href="/lojaMaquinario" />;
+  //Página de trabalho (ir direto)
+  return <Redirect href="/lojaFacilidades" />;
 
   //Usuário logado e status ativo. Monta o layout do app
   return (

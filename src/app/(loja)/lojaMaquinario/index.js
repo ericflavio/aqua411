@@ -21,7 +21,7 @@ export default function ViewMaquinarioLoja() {
   const { user } = useContext(AuthContext);
   const { navigateParmLoja, naviateParmOnlyConsulta } = useLocalSearchParams();
   navigateParmLoja && navigateParmLoja !== null ? parmLoja = JSON.parse(navigateParmLoja) : parmLoja = null;
-  naviateParmOnlyConsulta ? parmOnlyConsulta = JSON.parse(naviateParmOnlyConsulta) : parmOnlyConsulta = false;
+  naviateParmOnlyConsulta ? parmOnlyConsulta = JSON.parse(naviateParmOnlyConsulta) : parmOnlyConsulta = true;
 
   //Controles básicos
   const [processing, setProcessing] = useState({ isLoading: true, isExecuting: false, isOnlyConsulta: parmOnlyConsulta });

@@ -76,6 +76,9 @@ export function NewErrorMessage(cod, e) {
         case "lj015": newError.message = "Informe um número ainda não utilizado para Secadora." ; break;
         case "lj016": newError.message = "Informe um número para a Lavadora." ; break;
         case "lj017": newError.message = "Informe um número para a Secadora." ; break;
+        //Facilidades
+        case "lj018": newError.message = "Estamos com dificuldades para pesquisar os tipos de facilidades." + tn; break;
+        case "lj019": newError.message = "Estamos com dificuldades para pesquisar as facilidades da sua loja." + tn; break;
 
         default:
           newError.cod = "de2702" + cod.substr(0, 2);

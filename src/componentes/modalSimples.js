@@ -10,7 +10,6 @@ export default function ModalSimples(flagShowModal, onClose, msg, msgTipo, msgTi
   if (flagShowModal === undefined) {
     flagShowModal = true
   };
-  if (!flagShowModal) return;
   
   if (!processing) {
     processing = { isLoading: false, isExecuting: false }
@@ -30,6 +29,8 @@ export default function ModalSimples(flagShowModal, onClose, msg, msgTipo, msgTi
   if (msgTitulo === undefined || msgTitulo === null || msgTitulo === "Título") {
     msgTitulo = ""
   };
+
+  if (!flagShowModal) return;
 
   var borderModal = styleApp.color.cinzaMedio;
   switch (msgTipo.toLowerCase()) {

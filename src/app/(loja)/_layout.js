@@ -35,6 +35,7 @@ export default function LojaLayout() {
       <Stack.Screen name="lojaExpediente/index" />
       <Stack.Screen name="lojaUnidades/index" />
       <Stack.Screen name="lojaMaquinario/index" />
+      <Stack.Screen name="lojaFacilidades/index" />
     </Stack>
   )
 }

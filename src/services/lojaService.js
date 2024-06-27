@@ -8,7 +8,146 @@ import {
   schemaLojaExpediente,
   schemaLojaFranquiaVinculada,
   schemaLojaMaquinario,
+  schemaLojaTiposFacilidades,
+  schemaLojaFacilidades,
 } from '../schemas/lojaSchema';
+
+//Facilidades que a loja possui
+export async function consultaLojaFacilidades() {
+  const res = [
+    {
+      codigo: "3",
+      enabled: "s",
+    },
+    {
+      codigo: "4",
+      enabled: "s",
+    },
+    {
+      codigo: "7",
+      enabled: "s",
+    },
+    {
+      codigo: "8",
+      enabled: "s",
+    },
+    {
+      codigo: "9",
+      enabled: "s",
+    },
+  ];
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(res)
+    }, 1000);
+  })
+}
+
+//Tipos de Facilidades (conjunto total do aplicativo)
+export async function consultaTiposFacilidades() {
+  const res = [
+    {
+      codigo: "1",
+      titulo: "Fidelização", //Programa de fidelização e descontos
+      nomeIcone_MaterialIcons: "discount",
+    },
+    {
+      codigo: "2",
+      titulo: "Convênios",
+      nomeIcone_MaterialIcons: "business-center",
+    },
+    {
+      codigo: "3",
+      titulo: "Fornece sabão",
+      nomeIcone_MaterialIcons: "water-drop",
+    },
+    {
+      codigo: "4",
+      titulo: "Fornece amaciante",
+      nomeIcone_MaterialIcons: "water-drop",
+    },
+    {
+      codigo: "5",
+      titulo: "Máquina de vendas",
+      nomeIcone_MaterialIcons: "fastfood",
+    },
+    {
+      codigo: "6",
+      titulo: "Bebedouro/água",
+      nomeIcone_MaterialIcons: "local-drink",
+    },
+    {
+      codigo: "7",
+      titulo: "Ar-condicionado",
+      nomeIcone_MaterialIcons: "severe-cold",
+    },
+    {
+      codigo: "8",
+      titulo: "Wi-fi",
+      nomeIcone_MaterialIcons: "wifi",
+    },
+    {
+      codigo: "9",
+      titulo: "Alexa",
+      nomeIcone_MaterialIcons: "speaker-notes",
+    },
+    {
+      codigo: "10",
+      titulo: "Música ambiente",
+      nomeIcone_MaterialIcons: "music-note",
+    },
+    {
+      codigo: "11",
+      titulo: "Mesa de dobra",
+      nomeIcone_MaterialIcons: "table-restaurant",
+    },
+    {
+      codigo: "12",
+      titulo: "Cheirinho extra",
+      nomeIcone_MaterialIcons: "air",
+    },
+    {
+      codigo: "13",
+      titulo: "Assentos de espera",
+      nomeIcone_MaterialIcons: "chair",
+    },
+    {
+      codigo: "14",
+      titulo: "Bancada de estudos",
+      nomeIcone_MaterialIcons: "laptop-chromebook",
+    },
+    {
+      codigo: "15",
+      titulo: "Entretenimento/Jogos",
+      nomeIcone_MaterialIcons: "videogame-asset",
+    },
+    {
+      codigo: "16",
+      titulo: "TV",
+      nomeIcone_MaterialIcons: "live-tv",
+    },
+    {
+      codigo: "17",
+      titulo: "Máquina de café",
+      nomeIcone_MaterialIcons: "coffee",
+    },
+    {
+      codigo: "18",
+      titulo: "Serviço leva e traz",
+      nomeIcone_MaterialIcons: "motorcycle",
+    },
+    {
+      codigo: "19",
+      titulo: "Atendimento 24h",
+      nomeIcone_MaterialIcons: "bedtime",
+    },
+  ];
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(res)
+    }, 1000);
+  })
+}
 
 //Maquinario
 export async function consultaListaMaquinario() {

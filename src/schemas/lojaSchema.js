@@ -1,11 +1,11 @@
 //Schema das tabelas 
 
-//Schema TIPOS de visualização de maquinário
+//TIPOS de visualização de maquinário
 export var schemaTipoViewMaquinario = {
   conjunto: "conjunto", //Maquinas na forma de conjunto (lavadora embaixo)
   lista: "lista" //Maquinas na forma de listagem
 };
-//Schema TIPOS de status das Máquinas
+//TIPOS de status das Máquinas
 export var schemaStatusMaquinario = {
   //Status que o lojista imposta
   ativa: "Ativa",
@@ -14,6 +14,16 @@ export var schemaStatusMaquinario = {
   disponivel: "Disponível", 
   indisponivel: "Indisponível",
   indeterminado: "Indeterminado",
+};
+
+//Facilidades
+export var schemaLojaTiposFacilidades = {
+  codigo: "",
+  titulo: "",
+  nomeIcone_MaterialIcons: "",
+};
+export var schemaLojaFacilidades = {
+  codigo: "", //Cada registro significa que a facilidade está habilitada
 };
 
 //Franquia vinculada à loja

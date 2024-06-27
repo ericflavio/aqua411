@@ -143,6 +143,14 @@ export default function ViewEdtMenuLoja() {
       }
     })
   }
+  function goTofacilidades() {
+    router.navigate({
+      pathname: '/lojaFacilidades',
+      params: {
+        navigateParmLoja: JSON.stringify(lojaDados), naviateParmOnlyConsulta: !flagStatusEditavel
+      }
+    })
+  }
 
   //Componentes
   const opcaoDeGerenciamento = () => {
@@ -242,6 +250,14 @@ export default function ViewEdtMenuLoja() {
                     <View style={{ flexDirection: "row", alignItems: "center" }}>
                       <MaterialIcons name="local-laundry-service" size={styleApp.size.iconSizeRegular} color={styleApp.color.textButtonFlat} />
                       <Text style={styleApp.textButtonFlat}>Maquinário</Text>
+                    </View>
+                    <MaterialIcons name="navigate-next" size={styleApp.size.iconSizeRegular} color={styleApp.color.cinzaMedio} />
+                  </TouchableOpacity>
+
+                  <TouchableOpacity style={styleApp.buttonFlatHL_list} disabled={disabled} onPress={goTofacilidades} >
+                    <View style={{ flexDirection: "row", alignItems: "center" }}>
+                      <MaterialIcons name="stars" size={styleApp.size.iconSizeRegular} color={styleApp.color.textButtonFlat} />
+                      <Text style={styleApp.textButtonFlat}>Facilidades</Text>
                     </View>
                     <MaterialIcons name="navigate-next" size={styleApp.size.iconSizeRegular} color={styleApp.color.cinzaMedio} />
                   </TouchableOpacity>
