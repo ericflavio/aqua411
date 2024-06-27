@@ -38,14 +38,15 @@ export default function ViewEdtEnderecoLoja() {
   //ok - Endereço
   //ok - Localização geografica
   //ok - horário de funcionamento
-  //Dados complementares: franquia vinculada, telefone, email, mt2 da loja, comandos da Alexa
-  //ok*Maquinas: layout, flag mostrar status maquina, url de callback de status maquinas
-  //Facilidades: alexa(comandos), wifi livre (nome da rede) a.c., mesa de dobra, qtd assentos, link da camera ao vivo, ver status máquina?, push de conclusão do ciclo?
+  //Dados complementares: franquia vinculada, telefone, email, mt2 da loja, comandos da Alexa, dados do wifi, link camera ao vivo
+  //ok*- Maquinas: layout, flag mostrar status maquina, url de callback de status maquinas
+  //ok - Facilidades: alexa(comandos), wifi livre (nome da rede) a.c., mesa de dobra, qtd assentos, link da camera ao vivo, ver status máquina?, push de conclusão do ciclo?
   //franquias
   //Flag permite visualização do status das maquinas + url callback
   //flag permite visualização das câmeras das máquinas
   //franquia: analisar solicitacoes de vínculo de lojas.
-  //FAcilidades
+  //Promoções
+  //Broadcast
 
   //Ações ao final da construção do componente
   useEffect(() => {

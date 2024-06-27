@@ -48,7 +48,7 @@ export async function consultaTiposFacilidades() {
   const res = [
     {
       codigo: "1",
-      titulo: "Fidelização", //Programa de fidelização e descontos
+      titulo: "Programa fidelização", //Programa de fidelização e descontos
       nomeIcone_MaterialIcons: "discount",
     },
     {
@@ -88,8 +88,8 @@ export async function consultaTiposFacilidades() {
     },
     {
       codigo: "9",
-      titulo: "Alexa",
-      nomeIcone_MaterialIcons: "speaker-notes",
+      titulo: "Alexa/similares",
+      nomeIcone_MaterialIcons: "wechat",
     },
     {
       codigo: "10",
@@ -140,6 +140,21 @@ export async function consultaTiposFacilidades() {
       codigo: "19",
       titulo: "Atendimento 24h",
       nomeIcone_MaterialIcons: "bedtime",
+    },
+    {
+      codigo: "20",
+      titulo: "Serviço de passagem",
+      nomeIcone_MaterialIcons: "iron",
+    },
+    {
+      codigo: "21",
+      titulo: "Pet friendly",
+      nomeIcone_MaterialIcons: "pets",
+    },
+    {
+      codigo: "22",
+      titulo: "Câmera de segurança",
+      nomeIcone_MaterialIcons: "photo-camera-front",
     },
   ];
   return new Promise((resolve, reject) => {

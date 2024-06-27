@@ -18,7 +18,7 @@ export default function ViewLojaFacilidades() {
   const { user } = useContext(AuthContext);
   const { navigateParmLoja, naviateParmOnlyConsulta } = useLocalSearchParams();
   navigateParmLoja && navigateParmLoja !== null ? parmLoja = JSON.parse(navigateParmLoja) : parmLoja = null;
-  naviateParmOnlyConsulta ? parmOnlyConsulta = JSON.parse(naviateParmOnlyConsulta) : parmOnlyConsulta = false;
+  naviateParmOnlyConsulta ? parmOnlyConsulta = JSON.parse(naviateParmOnlyConsulta) : parmOnlyConsulta = true;
 
   //Controles básicos
   const [processing, setProcessing] = useState({ isLoading: true, isExecuting: false, isOnlyConsulta: parmOnlyConsulta });
@@ -34,6 +34,7 @@ export default function ViewLojaFacilidades() {
   processing.isExecuting || processing.isLoading || processing.isOnlyConsulta ? isEditavel = false : isEditavel = true;
 
   //TODO: Persistir e ler tipos de facilidades localmente + ts ultima atualizacao
+  //TODO: em caso de nova facilidade, nos enviar um email
 
   //Ações ao final da construção do componente
   useEffect(() => {
@@ -100,6 +101,7 @@ export default function ViewLojaFacilidades() {
       </View>
       <View style={{ minWidth: '10%', borderWidth: 0 }}>
         <Checkbox
+          disabled={!isEditavel}
           value={item.checked || false}
           onValueChange={(newValue) => {
             // Atualize o estado do item quando o checkbox for alterado
@@ -155,35 +157,36 @@ export default function ViewLojaFacilidades() {
 
   //Apresentação da view principal
   return (
-    <SafeAreaView style={styleApp.containerSafeArea}>
-      <ScrollView style={styleApp.containerScroll} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
-        <View style={styles.containerHeader}>
-          <MaterialIcons name="stars" size={styleApp.size.iconSizeRegular} color={styleColor.textSubtitulo} />
-          <Text style={styleApp.textSubtitulo}>Facilidades</Text>
-        </View>
-        <Text style={styleApp.textSmall}>
-          Gerencie as facilidades que a sua loja oferece para os clientes
-        </Text>
+    <SafeAreaView style={[styleApp.containerSafeArea, { marginHorizontal: 14, alignItems: 'flex-start' }]}>
+      <View style={[styles.containerHeader, { flex: 0 }]}>
+        <MaterialIcons name="stars" size={styleApp.size.iconSizeRegular} color={styleColor.textSubtitulo} />
+        <Text style={styleApp.textSubtitulo}>Facilidades</Text>
+      </View>
+      <Text style={styleApp.textSmall}>
+        Gerencie as facilidades que a sua loja oferece para os clientes
+      </Text>
 
-        {ModalSimples(flagShowModal, handleShowModal, "Facilidades atualizadas!", "TipoMsg", "Título", processing)}
+      {ModalSimples(flagShowModal, handleShowModal, "Facilidades atualizadas!", "TipoMsg", "Título", processing)}
 
-        <View style={styles.containerPrincipal}>
-          <FlatList
-            data={tipoFacilidadeList}
-            keyExtractor={(item) => item.codigo}
-            renderItem={renderItem}
-          />
-        </View>
+      <View style={[styles.containerPrincipal, { flex: 1 }]}>
+        {!processing.isLoading ? 
+        <FlatList
+          vertical
+          showsVerticalScrollIndicator={false}
+          data={tipoFacilidadeList}
+          keyExtractor={(item) => item.codigo}
+          renderItem={renderItem}
+        />
+        : <></>}
+      </View>
 
-        <View style={styles.containerEspecial}>
-          {processing.isOnlyConsulta ? <></> :
-            <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir} >
-              <Text style={styleApp.textButtonRegular}>Confirmar</Text>
-            </TouchableOpacity>
-          }
-        </View>
-
-      </ScrollView>
+      <View style={[styles.containerEspecial, { flex: 0 }]}>
+        {processing.isOnlyConsulta ? <></> :
+          <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir} >
+            <Text style={styleApp.textButtonRegular}>Confirmar</Text>
+          </TouchableOpacity>
+        }
+      </View>
     </SafeAreaView >
   )
 }

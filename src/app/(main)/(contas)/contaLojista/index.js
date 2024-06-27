@@ -58,7 +58,7 @@ export function ViewContaLojista() {
   function vazia() {
   }
 
-
+  //Lojas
   function adicionarLoja() {
     //Vai pro menu de edição, se existir loja já sendo criada, ou inicia um cadastro básico.
     if (lojaDados !== null) {
@@ -77,8 +77,20 @@ export function ViewContaLojista() {
       })
     }
   }
-  function listarUnidades() {
+  function listarLojas() {
     router.push('/lojaUnidades');
+  }
+  //Franquias
+  function adicionarFranquia() {
+    router.push({
+      pathname: "/franquiaCadastroBasico",
+      params: {
+        navigateParmLoja: null, naviateParmOnlyConsulta: false
+      }
+    })
+  }
+  function listarFranquias() {
+    router.push('/franquiasUnidades');
   }
 
   return (
@@ -112,16 +124,16 @@ export function ViewContaLojista() {
             <MaterialIcons name="add-business" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
             <Text style={styleApp.textButtonFlat}>Cadastrar uma loja que possuo</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styleApp.buttonFlatHL} disabled={!isEditavel} onPress={listarUnidades} >
+          <TouchableOpacity style={styleApp.buttonFlatHL} disabled={!isEditavel} onPress={listarLojas} >
             <MaterialIcons name="local-laundry-service" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
             <Text style={styleApp.textButtonFlat}>Gerenciar minhas lojas</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styleApp.buttonFlatHL} disabled={!isEditavel} onPress={vazia} >
+          <TouchableOpacity style={styleApp.buttonFlatHL} disabled={!isEditavel} onPress={adicionarFranquia} >
             <MaterialIcons name="business" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textRegular} />
             <Text style={styleApp.textButtonFlat}>Cadastrar uma franquia </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styleApp.buttonFlatHL} disabled={!isEditavel} onPress={vazia} >
+          <TouchableOpacity style={styleApp.buttonFlatHL} disabled={!isEditavel} onPress={listarFranquias} >
             <MaterialIcons name="business-center" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
             <Text style={styleApp.textButtonFlat}>Gerenciar minhas franquias</Text>
           </TouchableOpacity>
