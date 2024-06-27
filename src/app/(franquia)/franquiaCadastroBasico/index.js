@@ -125,17 +125,17 @@ export default function ViewFranquiaCadastroBasico() {
           <>
             <Image
               style={styles.imgNovaLoja}
-              source={require('../../../assets/outros/sheep_novaLoja_01.png')}
+              source={require('../../../assets/outros/img_franquia_criar.png')}
             />
             <View style={styles.containerDadosLoja}>
-              <Text style={styleApp.textRegular}>Cadastre sua loja para seus clientes receberem avisos, promoções, etc.</Text>
+              <Text style={styleApp.textRegular}>Cadastre sua franquia e apoie a gestão das unidades franqueadas</Text>
             </View>
           </>
           : <></>}
 
         <View style={styles.containerHeader}>
-          <MaterialIcons name="add-business" size={styleApp.size.iconSizeRegular} color={styleApp.color.textSubtitulo} />
-          <Text style={styleApp.textSubtitulo}>Informações da loja</Text>
+          <MaterialIcons name="business" size={styleApp.size.iconSizeRegular} color={styleApp.color.textSubtitulo} />
+          <Text style={styleApp.textSubtitulo}>Cadastro</Text>
         </View>
 
         <View style={styles.containerPrincipal}>
@@ -156,7 +156,7 @@ export default function ViewFranquiaCadastroBasico() {
           }
 
           <View style={{ marginTop: 18 }}>
-            <Text style={styleApp.textSmallItalico}>As informações Apelido e CNPJ são restritas; Só você pode consultar.</Text>
+            <Text style={styleApp.textSmallItalico}>O CNPJ é uma informação restrita. Só você poderá visualizar.</Text>
           </View>
         </View>
 

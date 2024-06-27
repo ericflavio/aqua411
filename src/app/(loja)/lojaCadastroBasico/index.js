@@ -135,7 +135,7 @@ export default function ViewLojaCadastroBasico() {
 
         <View style={styles.containerHeader}>
           <MaterialIcons name="add-business" size={styleApp.size.iconSizeRegular} color={styleApp.color.textSubtitulo} />
-          <Text style={styleApp.textSubtitulo}>Informações da loja</Text>
+          <Text style={styleApp.textSubtitulo}>Cadastro</Text>
         </View>
 
         <View style={styles.containerPrincipal}>

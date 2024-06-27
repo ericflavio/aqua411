@@ -47,6 +47,7 @@ export default function ViewEdtEnderecoLoja() {
   //franquia: analisar solicitacoes de vínculo de lojas.
   //Promoções
   //Broadcast
+  //O que os clientes dizem sobre essa loja: daí mostrar a nuvem de palavra mais selesiconada (exemplos de opções: limpa, cheirosa, espaçosa, segura, bom-equipamento, sem-erros, )
 
   //Ações ao final da construção do componente
   useEffect(() => {
