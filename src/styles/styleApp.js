@@ -204,6 +204,6 @@ export const styleApp = StyleSheet.create({
     gap: 6
   },
   //Frases que se repetem
-  textFraseOpcaoDeAssinantes: "Opções de edição para assinantes do app",
+  textFraseOpcaoDeAssinantes: "Opções para assinantes do app",
 
 });

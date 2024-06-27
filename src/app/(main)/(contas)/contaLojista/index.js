@@ -90,7 +90,7 @@ export function ViewContaLojista() {
     })
   }
   function listarFranquias() {
-    router.push('/franquiasUnidades');
+    router.push('/franquiaUnidades');
   }
 
   return (
