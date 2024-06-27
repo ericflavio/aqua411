@@ -21,6 +21,7 @@ import { styleSize } from '../../../styles/styleSize';
 //TODO:
 //Quando franqueador mudar o stauts da solicitação, atualiar também o status na lojaServices (Status da solicitacao origemm)
 //DFS
+//TODO: Corrigir listagem (está crotando informações no bottom)
 ///Status solicitado: edição travada até que o franqueador se manifeste.
 ///status aprovado: edição travada até que o franqueador remova o vinculo.
 ///status reprovado ou removido: permite solicitar novamente (pra qualquer franquia)
@@ -201,8 +202,8 @@ async function consultaCepWeb(parm) {
           transparent={true}
           visible={flagShowModalFranquias}
           onRequestClose={() => { }}>
-          <View style={styles.containerModal}>
-            <View style={styles.modalView}>
+          <View style={[styles.containerModal, {backgroundColor:'green'}]}>
+            <View style={[styles.modalView, {backgroundColor:'pink'}]}>
               <View style={styles.modalClose}>
                 <TouchableOpacity style={styleApp.buttonFlatHL_transp} disabled={false} onPress={handleShowModalFranquias} >
                   <MaterialIcons name="close" size={styleApp.size.iconSizeButtonLarge} color={styleApp.color.textButtonFlat} />

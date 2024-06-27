@@ -147,17 +147,19 @@ export function ModalSelecionaFranquia(handleSelectedFranquia) {
   }
 
   return (
-    <View style={{ marginTop: 8, marginBottom: 20}}>
+    <View style={{ marginTop: 8, marginBottom: 20, flexShrink:1, flex:1 }}>
       <View style={{ marginBottom: 8 }}>
         {InputText("Digite para filtrar...", onChangeFilter, "", 1, 8, "default", isEditavel, filter, false)}
       </View>
-      <FlatList
-        data={filteredData}
-        keyExtractor={item => item.idFranquia}
-        renderItem={renderItem}
-        extraData={item => item.idFranquia}
-        ItemSeparatorComponent={() => <View style={{ height: 1, backgroundColor: '#eee' }} />}
-      />
+      <View style={{ flex: 1}}>
+        <FlatList
+          data={filteredData}
+          keyExtractor={item => item.idFranquia}
+          renderItem={renderItem}
+          extraData={item => item.idFranquia}
+          ItemSeparatorComponent={() => <View style={{ height: 1, backgroundColor: '#eee' }} />}
+        />
+      </View>
     </View>
   );
 };

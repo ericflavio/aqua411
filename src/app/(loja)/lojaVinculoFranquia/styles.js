@@ -41,6 +41,7 @@ export const styles = StyleSheet.create({
     alignItems: 'stretch',
   },
   modalView: {
+    flex:1,
     flexShrink: 1,
     marginTop: 0,
     minHeight: 320,
