@@ -103,7 +103,7 @@ export async function consultaTiposFacilidades() {
     },
     {
       codigo: "12",
-      titulo: "Cheirinho extra",
+      titulo: "Borrifador",
       nomeIcone_MaterialIcons: "air",
     },
     {
