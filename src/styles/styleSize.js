@@ -19,7 +19,7 @@ export const styleSize = {
   //Container (Views, SafeArea, Scrolls)
   containerBordaOnOff: 0, //Ligar apenas para debug (padrão é desligado)
   containerBorderRadius: 8,
-  containerOcupacaoHorizontalFull: "100%",
+  containerOcupacaoHorizontalFull: "100%", 
   ContainerOcupacaoHorizontalParcial: "92%",
   containerDistanciamentoHorizontalRegular: 10,
   containerDistanciamentoBottomlRegular: 72,

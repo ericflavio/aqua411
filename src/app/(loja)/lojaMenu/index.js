@@ -171,7 +171,7 @@ export default function ViewEdtMenuLoja() {
 
   return (
     <SafeAreaView style={styleApp.containerSafeAreaSemPadding}>
-      <ScrollView style={styleApp.containerScrollFull} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
+      <ScrollView style={[styleApp.containerScroll,{width:'100%'}]} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
         <Image
           style={styles.imgNovaLoja}
           source={require('../../../assets/outros/sheep_novaLoja_01.png')}

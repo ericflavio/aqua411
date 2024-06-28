@@ -94,7 +94,7 @@ export function ViewContaLojista() {
   }
 
   return (
-    <SafeAreaView style={styleApp.containerSafeArea}>
+    <SafeAreaView style={[styleApp.containerSafeArea, {backgroundColor: styleColor.backgroundSafeAreaLiquid}]}>
       <ScrollView style={styleApp.containerScroll} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
 
         <View style={styles.containerHeader}>

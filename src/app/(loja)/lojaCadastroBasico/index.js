@@ -117,8 +117,8 @@ export default function ViewLojaCadastroBasico() {
   }
 
   return (
-    <SafeAreaView style={styleApp.containerSafeAreaSemPadding}>
-      <ScrollView style={styleApp.containerScrollFull} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
+    <SafeAreaView style={[styleApp.containerSafeArea, { paddingTop: 0 }]}>
+      <ScrollView style={[styleApp.containerScroll,{width:'100%'}]} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
         {ModalSimples(flagShowModal, handleShowModal, "Informações atualizadas!", "TipoMsg", "Título", processing)}
 
         {!parmLoja || parmLoja === null ?
@@ -168,10 +168,8 @@ export default function ViewLojaCadastroBasico() {
 
       {processing.isOnlyConsulta ? <></> :
         <>
-          <View style={{ marginTop: 18 }}>
-            <Text style={styleApp.textSmallItalico}>As informações Apelido e CNPJ são restritas; Só você pode consultar.</Text>
-          </View>
           <View style={styleApp.containerButtonBottom}>
+            <Text style={styleApp.textSmallItalico}>As informações Apelido e CNPJ são restritas; Só você pode consultar.</Text>
             <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir}>
               <Text style={styleApp.textButtonRegular}>Confirmar</Text>
             </TouchableOpacity>

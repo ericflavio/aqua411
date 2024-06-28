@@ -24,8 +24,8 @@ tema === "claro" ? buttonBorder = '#bebebeff' : buttonBorder = tema30pPrincipal;
   tema === "claro" ? textButtonFlat = textRegular : textButtonFlat = tema60pEscuro;
 
 //Background da safe-area
-//tema === "claro" ? backgroundSafeArea = '#f7f7f8' : backgroundSafeArea = '#262626ff';
 tema === "claro" ? backgroundSafeArea = 'white' : backgroundSafeArea = '#262626ff';
+backgroundSafeAreaLiquid = "#f7f7f8";
 
 export const styleColor = StyleSheet.create({
   //Paleta de cores do app
@@ -66,4 +66,5 @@ export const styleColor = StyleSheet.create({
   activityIndicatorCollor: "#262626ff",
   //Background
   backgroundSafeArea,
+  backgroundSafeAreaLiquid,
 });
