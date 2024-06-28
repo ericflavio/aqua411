@@ -122,11 +122,11 @@ export function ViewContaLojista() {
         <View style={styles.containerOthers}>
           <TouchableOpacity style={styleApp.buttonFlatHL} disabled={!isEditavel} onPress={adicionarLoja} >
             <MaterialIcons name="add-business" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
-            <Text style={styleApp.textButtonFlat}>Cadastrar uma loja que possuo</Text>
+            <Text style={styleApp.textButtonFlat}>Cadastrar minha lavanderia</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styleApp.buttonFlatHL} disabled={!isEditavel} onPress={listarLojas} >
             <MaterialIcons name="local-laundry-service" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
-            <Text style={styleApp.textButtonFlat}>Gerenciar minhas lojas</Text>
+            <Text style={styleApp.textButtonFlat}>Gerenciar minhas lavanderias</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styleApp.buttonFlatHL} disabled={!isEditavel} onPress={adicionarFranquia} >

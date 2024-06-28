@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "white",
-    marginBottom: 10,
+    marginBottom: 0,
     borderRadius: 16,
     padding: 8,
     borderWidth: styleApp.size.containerBordaOnOff
@@ -29,29 +29,29 @@ export const styles = StyleSheet.create({
     marginTop: 18,
   },
   containerTogle: {
-    width:'100%',
+    width: '100%',
     flexWrap: 'wrap',
-    flexDirection: 'row', 
-    justifyContent: "flex-start", 
-    alignItems: "center", 
+    flexDirection: 'row',
+    justifyContent: "flex-start",
+    alignItems: "center",
     gap: 4,
   },
   containerInfo: {
-    flexShrink: 1, 
-    justifyContent: 'center', 
-    alignItems: 'center', 
-    borderWidth: 0, 
-    borderColor: styleApp.color.cinzaClaro, 
-    width: '100%', 
-    height: '100%' 
+    flexShrink: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 0,
+    borderColor: styleApp.color.cinzaClaro,
+    width: '100%',
+    height: '100%'
   },
   containerPicker: {
     alignSelf: 'stretch',
     borderWidth: 1,
     borderColor: styleApp.color.tema10pSecundaria,
     borderRadius: 4,
-    width:'100%',
-    flexShrink:1
+    width: '100%',
+    flexShrink: 1
   },
   containerModal: {
     flex: 1,
@@ -88,25 +88,25 @@ export const styles = StyleSheet.create({
     marginBottom: 6,
     alignSelf: "flex-end"
   },
-  containerEdicao :{
-    marginTop: 8, 
-    marginBottom: 20 
+  containerEdicao: {
+    marginTop: 8,
+    marginBottom: 20
   },
   containerMaquinaEdicao: {
-    justifyContent: 'center', 
-    alignItems: 'center', 
+    justifyContent: 'center',
+    alignItems: 'center',
     marginBottom: 16,
     borderRadius: 8,
-    padding:12,
-    borderWidth:1,
-    gap:5,
+    padding: 12,
+    borderWidth: 1,
+    gap: 5,
     alignSelf: 'stretch'
   },
-  containerEdicaoAcao:{
-    flexDirection: 'row', 
-    justifyContent: 'space-between', 
-    alignItems: 'center', 
-    width: '100%', 
+  containerEdicaoAcao: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
     gap: 6
   }
 });

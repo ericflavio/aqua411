@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Switch, Alert, Modal } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { styles } from "./styles";
-import { styleApp } from '../../../styles/styleApp';
+import { styleApp, separator } from '../../../styles/styleApp';
 import { styleColor } from "../../../styles/styleColors";
 import { InputText } from '../../../componentes/inputText';
 import { AuthContext } from "../../../contexts/auth";
@@ -240,7 +240,7 @@ export default function ViewMaquinarioLoja() {
         {ModalSimples(flagShowModal, handleShowModal, "Máquinas atualizadas!", "TipoMsg", "Título", processing)}
         {ModalEdicaoMaquina()}
 
-        {processing.isLoading ? <View style={{width:310 , height:310}}></View> :
+        {processing.isLoading ? <View style={{ width: 310, height: 310 }}></View> :
           <View style={styles.containerPrincipal}>
             {maquinarioList && maquinarioList !== null && maquinarioList.length > 0 ?
               <Text style={styleApp.textSmallItalico}>Clique na máquina para editar/excluir</Text>
@@ -251,8 +251,9 @@ export default function ViewMaquinarioLoja() {
 
         {processing.isOnlyConsulta ? <></> :
           <View style={styles.containerPrincipal}>
-            <Text style={styleApp.textSmall}>Incluir novas máquinas</Text>
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginTop: 12, gap: 20, marginBottom: 10 }}>
+            {separator("Incluir novas máquinas")}
+
+            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginTop: 0, gap: 20, marginBottom: 0 }}>
               <View style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 4, alignItems: 'center' }}>
                 <Text style={styleApp.textRegular}>LAVA:</Text>
                 {InputText("Número", onChangeLava, "0", 1, 2, "numeric", isEditavel, lava, false)}
@@ -282,9 +283,7 @@ export default function ViewMaquinarioLoja() {
           </View>
         }
 
-        <View style={{ alignItems: 'center' }}>
-          <MaterialIcons name="more-horiz" size={styleApp.size.iconSizeRegular} color={styleColor.textSubtitulo} />
-        </View>
+        {separator(": : :")}
 
         <View style={[styles.containerPrincipal, { justifyContent: 'flex-start', alignItems: 'flex-start', padding: 16 }]}>
           <Text style={styleApp.textSmall}>Como as máquina serão exibidas?</Text>
