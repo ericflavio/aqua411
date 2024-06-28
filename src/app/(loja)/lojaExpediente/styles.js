@@ -25,8 +25,6 @@ export const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 16,
     padding: 8,
-    marginBottom: 10,
-    paddingBottom: 16,
     borderWidth: styleApp.size.containerBordaOnOff
   },
   containerPicker: {
