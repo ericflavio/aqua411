@@ -51,9 +51,6 @@ export default function ViewFranquiaCadastroBasico() {
   }
 
   //Valida campos de formulario
-  function onChangeApelido(parm) {
-    setLojaDados({ ...lojaDados, apelido: parm });
-  }
   function onChangeCnpj(parm) {
     setLojaDados({ ...lojaDados, cnpj: parm });
   }
@@ -90,10 +87,6 @@ export default function ViewFranquiaCadastroBasico() {
   async function prosseguir() {
     if (processing.isLoading) { return }; //ignora o botão, ainda clicável, até que os dados sejam carregados
 
-    if (lojaDados.apelido.length < 4) {
-      ShowErrorMessage("lj004");
-      return;
-    };
     if (lojaDados.cnpj !== "" && (lojaDados.cnpj.length < 18 || !validarSintaxeCnpj())) {
       ShowErrorMessage("lj005");
       return;
@@ -139,12 +132,11 @@ export default function ViewFranquiaCadastroBasico() {
         </View>
 
         <View style={styles.containerPrincipal}>
-          {InputText("Apelido da loja", onChangeApelido, "Apelido", 1, 40, "default", isEditavel, lojaDados.apelido, false)}
           {InputText("CNPJ 00.000.000/0000-00", onChangeCnpj, "CNPJ opcional", 1, 18, "default", isEditavel, lojaDados.cnpj, false)}
 
           {parmLoja && parmLoja !== null ?
             <>
-              {InputText("E-mail", onChangeApelido, "emailda@loja.com", 1, 80, "default", isEditavel, lojaDados.email, false)}
+              {InputText("E-mail", onChangeCnpj, "emailda@loja.com", 1, 80, "default", isEditavel, lojaDados.email, false)}
             </>
             : <></>
           }

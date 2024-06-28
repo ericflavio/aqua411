@@ -3,7 +3,7 @@ import { styleColor } from './styleColors';
 import { styleSize } from './styleSize';
 import { MaterialIcons } from "@expo/vector-icons";
 
-export function separator (miolo) {
+export function divisorSection(miolo) {
   return (
     <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, width:'100%', marginTop:18, marginBottom:12}}>
       <View style={{ height: 1, backgroundColor: '#eee', width: '100%', flexShrink:1 }} />

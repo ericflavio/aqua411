@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Switch, Alert, Modal } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { styles } from "./styles";
-import { styleApp, separator } from '../../../styles/styleApp';
+import { styleApp, divisorSection } from '../../../styles/styleApp';
 import { styleColor } from "../../../styles/styleColors";
 import { InputText } from '../../../componentes/inputText';
 import { AuthContext } from "../../../contexts/auth";
@@ -251,7 +251,7 @@ export default function ViewMaquinarioLoja() {
 
         {processing.isOnlyConsulta ? <></> :
           <View style={styles.containerPrincipal}>
-            {separator("Incluir novas máquinas")}
+            {divisorSection("Incluir novas máquinas")}
 
             <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginTop: 0, gap: 20, marginBottom: 0 }}>
               <View style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 4, alignItems: 'center' }}>
@@ -283,7 +283,7 @@ export default function ViewMaquinarioLoja() {
           </View>
         }
 
-        {separator(": : :")}
+        {divisorSection("Exibição")}
 
         <View style={[styles.containerPrincipal, { justifyContent: 'flex-start', alignItems: 'flex-start', padding: 16 }]}>
           <Text style={styleApp.textSmall}>Como as máquina serão exibidas?</Text>

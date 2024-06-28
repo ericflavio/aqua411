@@ -41,9 +41,7 @@ export default function ViewEdtEnderecoLoja() {
   //Dados complementares:, telefone, email, mt2 da loja, [comandos da Alexa], dados do wifi, [link camera ao vivo]
   //ok*- Maquinas: layout, flag mostrar status maquina, url de callback de status maquinas
   //ok - Facilidades: alexa(comandos), wifi livre (nome da rede) a.c., mesa de dobra, qtd assentos, link da camera ao vivo, ver status máquina?, push de conclusão do ciclo?
-  //franquias
-  //Flag permite visualização do status das maquinas + url callback
-  //flag permite visualização das câmeras das máquinas
+  //franquias: Flag permite visualização do status das maquinas + url callback, 
   //franquia: analisar solicitacoes de vínculo de lojas.
   //Promoções
   //Broadcast
