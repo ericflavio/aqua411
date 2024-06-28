@@ -27,9 +27,7 @@ export const styles = StyleSheet.create({
     minHeight: 44,
     padding: 6,
     marginTop: 12,
-    marginLeft: 12,
-    marginRight: 12,
-    marginBottom: 25,
+    marginBottom: 12,
     borderWidth: 1,
     borderColor: styleApp.color.tema10pSecundaria,
     borderRadius: 4

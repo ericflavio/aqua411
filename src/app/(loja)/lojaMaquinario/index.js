@@ -240,12 +240,14 @@ export default function ViewMaquinarioLoja() {
         {ModalSimples(flagShowModal, handleShowModal, "Máquinas atualizadas!", "TipoMsg", "Título", processing)}
         {ModalEdicaoMaquina()}
 
-        <View style={styles.containerPrincipal}>
-          {maquinarioList && maquinarioList !== null && maquinarioList.length > 0 ?
-            <Text style={styleApp.textSmallItalico}>Clique na máquina para editar/excluir</Text>
-            : <></>}
-          {MontaMaquinario(maquinarioList, selectedTipoExibicao, isEnabledStatus, handleSelecionarMaquinario)}
-        </View>
+        {processing.isLoading ? <View style={{width:310 , height:310}}></View> :
+          <View style={styles.containerPrincipal}>
+            {maquinarioList && maquinarioList !== null && maquinarioList.length > 0 ?
+              <Text style={styleApp.textSmallItalico}>Clique na máquina para editar/excluir</Text>
+              : <></>}
+            {MontaMaquinario(maquinarioList, selectedTipoExibicao, isEnabledStatus, handleSelecionarMaquinario)}
+          </View>
+        }
 
         {processing.isOnlyConsulta ? <></> :
           <View style={styles.containerPrincipal}>

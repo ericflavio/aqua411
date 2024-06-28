@@ -6,7 +6,8 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     gap: 8,
     paddingLeft: 8,
-    marginBottom:12
+    marginBottom:12,
+    alignSelf:'flex-start'
   },
   containerPrincipal: {
     flex: 0,

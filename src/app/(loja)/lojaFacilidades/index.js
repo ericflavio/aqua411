@@ -13,6 +13,7 @@ import { consultaTiposFacilidades, consultaLojaFacilidades } from '../../../serv
 import ModalSimples from '../../../componentes/modalSimples';
 import { useLocalSearchParams } from 'expo-router';
 import { Picker } from '@react-native-picker/picker';
+import { styleSize } from '../../../styles/styleSize';
 
 export default function ViewLojaFacilidades() {
   const { user } = useContext(AuthContext);
@@ -157,8 +158,8 @@ export default function ViewLojaFacilidades() {
 
   //Apresentação da view principal
   return (
-    <SafeAreaView style={[styleApp.containerSafeArea, { marginHorizontal: 14, alignItems: 'flex-start' }]}>
-      <View style={[styles.containerHeader, { flex: 0 }]}>
+    <SafeAreaView style={[styleApp.containerSafeArea, {paddingHorizontal: styleSize.containerDistanciamentoHorizontalRegular}]}>
+      <View style={styles.containerHeader}>
         <MaterialIcons name="stars" size={styleApp.size.iconSizeRegular} color={styleColor.textSubtitulo} />
         <Text style={styleApp.textSubtitulo}>Facilidades</Text>
       </View>
