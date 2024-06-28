@@ -181,14 +181,16 @@ export default function ViewEdtEnderecoLoja() {
             : <></>}
           {InputText("Número", onChangeNumero, "Número, ou s/n", 1, 5, "default", isEditavel, endereco.numero, false)}
           {InputText("Complemento", onChangeComplemento, "Complemento", 1, 80, "default", isEditavel, endereco.complemento, false)}
-
-          {processing.isOnlyConsulta ? <></> :
-            <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir} >
-              <Text style={styleApp.textButtonRegular}>Confirmar</Text>
-            </TouchableOpacity>
-          }
         </View>
       </ScrollView>
+
+      {processing.isOnlyConsulta ? <></> :
+        <View style={styleApp.containerButtonBottom}>
+          <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir} >
+            <Text style={styleApp.textButtonRegular}>Confirmar</Text>
+          </TouchableOpacity>
+        </View>
+      }
     </SafeAreaView >
   )
 }

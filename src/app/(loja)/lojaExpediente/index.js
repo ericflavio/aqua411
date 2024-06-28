@@ -477,15 +477,16 @@ export default function ViewExpedienteLoja() {
               <Picker.Item label="NÂO, infelizmente" value="2" />
             </Picker>
           </View>
-
-          {processing.isOnlyConsulta ? <></> :
-            <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir} >
-              <Text style={styleApp.textButtonRegular}>Confirmar</Text>
-            </TouchableOpacity>
-          }
         </View>
-
       </ScrollView>
+
+      {processing.isOnlyConsulta ? <></> :
+        <View style={styleApp.containerButtonBottom}>
+          <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir} >
+            <Text style={styleApp.textButtonRegular}>Confirmar</Text>
+          </TouchableOpacity>
+        </View>
+      }
     </SafeAreaView >
   )
 }

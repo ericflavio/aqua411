@@ -148,19 +148,21 @@ export default function ViewFranquiaCadastroBasico() {
             </>
             : <></>
           }
+        </View>
+      </ScrollView>
 
-          {processing.isOnlyConsulta ? <></> :
-            <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir}>
-              <Text style={styleApp.textButtonRegular}>Confirmar</Text>
-            </TouchableOpacity>
-          }
-
+      {processing.isOnlyConsulta ? <></> :
+        <>
           <View style={{ marginTop: 18 }}>
             <Text style={styleApp.textSmallItalico}>O CNPJ é uma informação restrita. Só você poderá visualizar.</Text>
           </View>
-        </View>
-
-      </ScrollView>
+          <View style={styleApp.containerButtonBottom}>
+            <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir}>
+              <Text style={styleApp.textButtonRegular}>Confirmar</Text>
+            </TouchableOpacity>
+          </View>
+        </>
+      }
     </SafeAreaView >
   )
 }

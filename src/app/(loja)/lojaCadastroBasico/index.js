@@ -146,7 +146,7 @@ export default function ViewLojaCadastroBasico() {
             <>
               {InputText("E-mail", onChangeApelido, "emailda@loja.com", 1, 80, "default", isEditavel, lojaDados.email, false)}
               {InputText("Metros quadrados", onChangeApelido, "12,0", 1, 6, "default", isEditavel, lojaDados.metrosquadrados, false)}
-              <View style={{ marginTop: 20, alignItems:'center'}}>
+              <View style={{ marginTop: 20, alignItems: 'center' }}>
                 <MaterialIcons name="wifi" size={styleApp.size.iconSizeRegular} color={styleApp.color.textSubtitulo} />
               </View>
               {InputText("Wi-fi rede", onChangeApelido, "rede wifi", 1, 40, "default", isEditavel, lojaDados.wifi, false)}
@@ -156,18 +156,28 @@ export default function ViewLojaCadastroBasico() {
             : <></>
           }
 
-          {processing.isOnlyConsulta ? <></> :
+          {/*           {processing.isOnlyConsulta ? <></> :
             <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir}>
               <Text style={styleApp.textButtonRegular}>Confirmar</Text>
             </TouchableOpacity>
-          }
+          } */}
 
+
+        </View>
+      </ScrollView>
+
+      {processing.isOnlyConsulta ? <></> :
+        <>
           <View style={{ marginTop: 18 }}>
             <Text style={styleApp.textSmallItalico}>As informações Apelido e CNPJ são restritas; Só você pode consultar.</Text>
           </View>
-        </View>
-
-      </ScrollView>
+          <View style={styleApp.containerButtonBottom}>
+            <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir}>
+              <Text style={styleApp.textButtonRegular}>Confirmar</Text>
+            </TouchableOpacity>
+          </View>
+        </>
+      }
     </SafeAreaView >
   )
 }

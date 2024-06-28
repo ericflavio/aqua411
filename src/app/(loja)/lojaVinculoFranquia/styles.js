@@ -36,14 +36,12 @@ export const styles = StyleSheet.create({
   },
   containerModal: {
     flex: 1,
-    marginTop: 0,
     justifyContent: 'flex-end',
     alignItems: 'stretch',
   },
   modalView: {
     flex:1,
     flexShrink: 1,
-    marginTop: 0,
     minHeight: 320,
     maxHeight: Dimensions.get('window').height - 200,
     width: "100%",
@@ -55,7 +53,6 @@ export const styles = StyleSheet.create({
     borderTopEndRadius: 20,
     borderTopStartRadius: 20,
     padding: 16,
-    paddingTop: 0,
     alignItems: 'stretch',
     shadowColor: '#000',
     shadowOffset: {

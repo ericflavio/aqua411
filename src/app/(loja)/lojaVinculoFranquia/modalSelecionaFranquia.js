@@ -3,6 +3,7 @@ import { FlatList, Text, TextInput, View, TouchableOpacity } from 'react-native'
 import { schemaFranquiaDadosLista } from '../../../schemas/franquiaSchema';
 import { consultaListaFranquias } from '../../../services/franquiaService';
 import { styleApp } from '../../../styles/styleApp';
+import { styles } from "./styles";
 import { InputText } from '../../../componentes/inputText';
 
 export function ModalSelecionaFranquia(handleSelectedFranquia) {
@@ -147,19 +148,19 @@ export function ModalSelecionaFranquia(handleSelectedFranquia) {
   }
 
   return (
-    <View style={{ marginTop: 8, marginBottom: 20, flexShrink:1, flex:1 }}>
+    <>
       <View style={{ marginBottom: 8 }}>
         {InputText("Digite para filtrar...", onChangeFilter, "", 1, 8, "default", isEditavel, filter, false)}
       </View>
-      <View style={{ flex: 1}}>
+      <View style={{ flex: 1 }}>
         <FlatList
           data={filteredData}
           keyExtractor={item => item.idFranquia}
           renderItem={renderItem}
           extraData={item => item.idFranquia}
-          ItemSeparatorComponent={() => <View style={{ height: 1, backgroundColor: '#eee' }} />}
+          //ItemSeparatorComponent={() => <View style={{ height: 1, backgroundColor: '#eee' }} />}
         />
       </View>
-    </View>
+    </>
   );
 };

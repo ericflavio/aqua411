@@ -21,7 +21,7 @@ export const styleSize = {
   containerBorderRadius: 8,
   containerOcupacaoHorizontalFull: "100%",
   ContainerOcupacaoHorizontalParcial: "92%",
-  containerDistanciamentoLateralRegular: 10,
+  containerDistanciamentoHorizontalRegular: 10,
   containerDistanciamentoBottomlRegular: 72,
   containerTamanhoMedioTelas: 800,
   //Textos

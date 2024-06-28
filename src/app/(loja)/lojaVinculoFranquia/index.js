@@ -189,7 +189,7 @@ async function consultaCepWeb(parm) {
   //Apresentação da view principal
   return (
     <SafeAreaView style={styleApp.containerSafeArea}>
-      <ScrollView style={styleApp.containerScroll} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
+      <ScrollView style={[styleApp.containerScroll, { flex: 1 }]} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
         <View style={styles.containerHeader}>
           <MaterialIcons name="copyright" size={styleApp.size.iconSizeRegular} color={styleColor.textSubtitulo} />
           <Text style={styleApp.textSubtitulo}>Vínculo com franquia</Text>
@@ -202,8 +202,8 @@ async function consultaCepWeb(parm) {
           transparent={true}
           visible={flagShowModalFranquias}
           onRequestClose={() => { }}>
-          <View style={[styles.containerModal, {backgroundColor:'green'}]}>
-            <View style={[styles.modalView, {backgroundColor:'pink'}]}>
+          <View style={styles.containerModal}>
+            <View style={styles.modalView}>
               <View style={styles.modalClose}>
                 <TouchableOpacity style={styleApp.buttonFlatHL_transp} disabled={false} onPress={handleShowModalFranquias} >
                   <MaterialIcons name="close" size={styleApp.size.iconSizeButtonLarge} color={styleApp.color.textButtonFlat} />
@@ -254,13 +254,18 @@ async function consultaCepWeb(parm) {
               </View>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir} >
-              <Text style={styleApp.textButtonRegular}>Confirmar</Text>
-            </TouchableOpacity>
+
           </View>
         }
-
       </ScrollView>
+
+      {processing.isOnlyConsulta ? <></> :
+        <View style={styleApp.containerButtonBottom}>
+          <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir} >
+            <Text style={styleApp.textButtonRegular}>Confirmar</Text>
+          </TouchableOpacity>
+        </View>
+      }
     </SafeAreaView >
   )
 }

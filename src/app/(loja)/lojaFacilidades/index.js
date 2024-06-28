@@ -169,24 +169,24 @@ export default function ViewLojaFacilidades() {
       {ModalSimples(flagShowModal, handleShowModal, "Facilidades atualizadas!", "TipoMsg", "Título", processing)}
 
       <View style={[styles.containerPrincipal, { flex: 1 }]}>
-        {!processing.isLoading ? 
-        <FlatList
-          vertical
-          showsVerticalScrollIndicator={false}
-          data={tipoFacilidadeList}
-          keyExtractor={(item) => item.codigo}
-          renderItem={renderItem}
-        />
-        : <></>}
+        {!processing.isLoading ?
+          <FlatList
+            vertical
+            showsVerticalScrollIndicator={false}
+            data={tipoFacilidadeList}
+            keyExtractor={(item) => item.codigo}
+            renderItem={renderItem}
+          />
+          : <></>}
       </View>
 
-      <View style={[styles.containerEspecial, { flex: 0 }]}>
-        {processing.isOnlyConsulta ? <></> :
+      {processing.isOnlyConsulta ? <></> :
+        <View style={styleApp.containerButtonBottom}>
           <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir} >
             <Text style={styleApp.textButtonRegular}>Confirmar</Text>
           </TouchableOpacity>
-        }
-      </View>
+        </View>
+      }
     </SafeAreaView >
   )
 }

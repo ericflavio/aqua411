@@ -138,14 +138,16 @@ export default function ViewLocalizacaoLoja() {
           {InputText("Latitude", onChangeLatitude, "ex. 15,23456", 1, 12, "default", isEditavel, localizacao.latitude, false)}
           {InputText("Longitude", onChangeLongitude, "ex. -30,67890", 1, 12, "default", isEditavel, localizacao.longitude, false)}
           {InputText("Cole aqui o endereço/url GoogleMaps", onChangeUrl, "url GoogleMaps", 1, 200, "default", isEditavel, localizacao.urlMapa, false)}
-
-          {processing.isOnlyConsulta ? <></> :
-            <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir} >
-              <Text style={styleApp.textButtonRegular}>Confirmar</Text>
-            </TouchableOpacity>
-          }
         </View>
       </ScrollView>
+
+      {processing.isOnlyConsulta ? <></> :
+        <View style={styleApp.containerButtonBottom}>
+          <TouchableOpacity style={styleApp.buttonHC} disabled={!isEditavel} onPress={prosseguir} >
+            <Text style={styleApp.textButtonRegular}>Confirmar</Text>
+          </TouchableOpacity>
+        </View>
+      }
     </SafeAreaView >
   )
 }

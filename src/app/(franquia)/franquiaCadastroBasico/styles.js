@@ -9,8 +9,8 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     gap: 8,
     paddingLeft: 8,
-    marginLeft: styleApp.size.containerDistanciamentoLateralRegular,
-    marginRight: styleApp.size.containerDistanciamentoLateralRegular,
+    marginLeft: styleApp.size.containerDistanciamentoHorizontalRegular,
+    marginRight: styleApp.size.containerDistanciamentoHorizontalRegular,
   },
   containerDadosLoja: {
     flex: 0,
@@ -27,8 +27,8 @@ export const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 16,
     padding: 8,
-    marginLeft: styleApp.size.containerDistanciamentoLateralRegular,
-    marginRight: styleApp.size.containerDistanciamentoLateralRegular,
+    marginLeft: styleApp.size.containerDistanciamentoHorizontalRegular,
+    marginRight: styleApp.size.containerDistanciamentoHorizontalRegular,
     borderWidth: styleApp.size.containerBordaOnOff
   },
   textoStatus: {

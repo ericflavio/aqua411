@@ -43,6 +43,10 @@ export const styleApp = StyleSheet.create({
     justifyContent: "flex-start",
     paddingBottom: 72,
   },
+  containerButtonBottom: {
+   justifyContent: 'flex-end', 
+   marginHorizontal: styleSize.containerDistanciamentoHorizontalRegular
+  },
   //Textos
   textTitulo: {
     fontFamily: 'Roboto-Bold',
