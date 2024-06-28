@@ -44,10 +44,9 @@ export const styles = StyleSheet.create({
     gap: 8,
     borderWidth: styleApp.size.containerBordaOnOff,
     margin: 12,
-    //width: "100%"
   },
   containerSection: {
-    backgroundColor: styleApp.color.cinzaClaro,
+    backgroundColor: styleApp.color.backgroundSafeAreaLiquid, 
     minHeight: 28,
     padding: 4,
     paddingLeft: 12,

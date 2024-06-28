@@ -170,18 +170,16 @@ export default function ViewEdtMenuLoja() {
   };
 
   return (
-    <SafeAreaView style={styleApp.containerSafeAreaSemPadding}>
-      <ScrollView style={[styleApp.containerScroll,{width:'100%'}]} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
+    <SafeAreaView style={[styleApp.containerSafeArea,{paddingTop:0, backgroundColor:styleApp.color.backgroundSafeAreaLiquid}]}> 
+      <ScrollView style={[styleApp.containerScroll, { width: '100%' }]} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
         <Image
           style={styles.imgNovaLoja}
           source={require('../../../assets/outros/sheep_novaLoja_01.png')}
         />
 
-        {ModalSimples(flagShowModal, handleShowModal, "Vínculo atualizado!", "TipoMsg", "Título", processing)}
+        {ModalSimples(flagShowModal, handleShowModal, "Dados atualizados!", "TipoMsg", "Título", processing)}
 
-        {processing.isLoading ?
-          <></>
-          :
+        {processing.isLoading ? <></> :
           <>
             {parmLoja === null || statusList === null ?
               <View style={styles.containerDadosLoja}>
@@ -197,6 +195,7 @@ export default function ViewEdtMenuLoja() {
                   <Text style={styleApp.textSmall}>Status: <Text style={styles.textoStatus}>{lojaDados.status}</Text></Text>
                   <Text style={styleApp.textSmall}>Apelido: {lojaDados.apelido}</Text>
                 </View>
+
                 {flagStatusEditavel ? <></> :
                   <View style={styles.containerAlertaEdição}>
                     <Text style={[styleApp.textSmallItalico, { color: 'white' }]}>O status atual não permite alterações</Text>
