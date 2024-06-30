@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { router, useLocalSearchParams } from 'expo-router';
-import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image } from "react-native";
+import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, Switch } from "react-native";
 import { styles } from "./styles";
 import { MaterialIcons } from "@expo/vector-icons";
 import { styleApp } from '../../../styles/styleApp';
@@ -29,6 +29,7 @@ export default function ViewFranquiaCadastroBasico() {
 
   //Outras declarações
   const [lojaDados, setLojaDados] = useState(schemaLojaDados);
+  const [flagExibirStatus, setFlagExibirStatus] = useState(false);
 
   //Ações ao final da construção do componente
   useEffect(() => {
@@ -71,12 +72,15 @@ export default function ViewFranquiaCadastroBasico() {
   function handleShowModal() {
     setflagShowModal(!flagShowModal);
   }
+  function onChangeExibirStatus() {
+    setFlagExibirStatus(!flagExibirStatus)
+  }
 
   function goTo() {
     parm = lojaDados;
     parm.status = "Criando";
     router.replace({
-      pathname: "/lojaMenu",
+      pathname: "/franquiaMenu",
       params: {
         navigateParmLoja: JSON.stringify(parm)
       }
@@ -111,7 +115,7 @@ export default function ViewFranquiaCadastroBasico() {
 
   return (
     <SafeAreaView style={[styleApp.containerSafeArea, { paddingTop: 0 }]}>
-      <ScrollView style={[styleApp.containerScroll,{width:'100%'}]} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
+      <ScrollView style={[styleApp.containerScroll, { width: '100%' }]} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
         {ModalSimples(flagShowModal, handleShowModal, "Informações atualizadas!", "TipoMsg", "Título", processing)}
 
         {!parmLoja || parmLoja === null ?
@@ -133,13 +137,33 @@ export default function ViewFranquiaCadastroBasico() {
 
         <View style={styles.containerPrincipal}>
           {InputText("CNPJ 00.000.000/0000-00", onChangeCnpj, "CNPJ opcional", 1, 18, "default", isEditavel, lojaDados.cnpj, false)}
+          {InputText("E-mail", onChangeCnpj, "emailda@franquia.com", 1, 80, "default", isEditavel, lojaDados.email, false)}
+          {InputText("Data constituição", onChangeCnpj, "dd/mm/aaaa", 1, 10, "default", isEditavel, lojaDados.email, false)}
+          {InputText("Site oficial", onChangeCnpj, "cole aqui", 1, 100, "default", isEditavel, lojaDados.email, false)}
+          {InputText("URI da logomarca (link)", onChangeCnpj, "cole aqui", 1, 100, "default", isEditavel, lojaDados.email, false)}
+          {InputText("Cor principal em Hexa", onChangeCnpj, "#f1f1f1", 1, 9, "default", isEditavel, lojaDados.email, false)}
+        </View>
 
-          {parmLoja && parmLoja !== null ?
+        <View style={styles.containerPrincipal}>
+          <View style={styles.containerTogle}>
+            <Text style={styleApp.textRegular}>Exibir status das máquinas</Text>
+            <Switch
+              disabled={!isEditavel}
+              trackColor={{ false: '#767577', true: '#767577' }}
+              thumbColor={flagExibirStatus ? styleApp.color.tema30pPrincipal : '#f4f3f4'}
+              ios_backgroundColor="#767577"
+              onValueChange={onChangeExibirStatus}
+              value={flagExibirStatus}
+            />
+          </View>
+          {flagExibirStatus ?
             <>
-              {InputText("E-mail", onChangeCnpj, "emailda@loja.com", 1, 80, "default", isEditavel, lojaDados.email, false)}
+              {InputText("API de consulta", onChangeCnpj, "API", 1, 60, "default", isEditavel, lojaDados.cnpj, false)}
+              {InputText("Credencial da API", onChangeCnpj, "Token", 1, 60, "default", isEditavel, lojaDados.cnpj, false)}
+              {InputText("Atributo (json) do tipo (lava/seca)", onChangeCnpj, "ex: tipo", 1, 20, "default", isEditavel, lojaDados.cnpj, false)}
+              {InputText("Atributo (json) do identificador", onChangeCnpj, "ex: 1", 1, 20, "default", isEditavel, lojaDados.cnpj, false)}
             </>
-            : <></>
-          }
+            : <></>}
         </View>
       </ScrollView>
 

@@ -29,6 +29,7 @@ export default function FranquiaLayout() {
       {/* Títulos por página: inserir options={{headerTitle:"Informações da loja"}} */}
       <Stack.Screen name="franquiaUnidades/index" />
       <Stack.Screen name="franquiaCadastroBasico/index" />
+      <Stack.Screen name="franquiaMenu/index" />
     </Stack>
   )
 }

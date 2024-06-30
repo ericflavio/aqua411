@@ -51,4 +51,12 @@ export const styles = StyleSheet.create({
     margin: 12,
     //width: "100%"
   },
+  containerTogle: {
+    flexDirection:'row',
+    justifyContent:'space-between',
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    width: '100%',
+    flexShrink: 1
+  },
 });

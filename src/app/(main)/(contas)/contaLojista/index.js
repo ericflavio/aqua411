@@ -94,7 +94,7 @@ export function ViewContaLojista() {
   }
 
   return (
-    <SafeAreaView style={[styleApp.containerSafeArea, {backgroundColor: styleColor.backgroundSafeAreaLiquid}]}>
+    <SafeAreaView style={[styleApp.containerSafeArea, { backgroundColor: styleColor.backgroundSafeAreaLiquid }]}>
       <ScrollView style={styleApp.containerScroll} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
 
         <View style={styles.containerHeader}>
@@ -122,20 +122,22 @@ export function ViewContaLojista() {
         <View style={styles.containerOthers}>
           <TouchableOpacity style={styleApp.buttonFlatHL} disabled={!isEditavel} onPress={adicionarLoja} >
             <MaterialIcons name="add-business" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
-            <Text style={styleApp.textButtonFlat}>Cadastrar minha lavanderia</Text>
+            <Text style={styleApp.textButtonFlat}>Cadastrar lavanderia</Text>
           </TouchableOpacity>
+
           <TouchableOpacity style={styleApp.buttonFlatHL} disabled={!isEditavel} onPress={listarLojas} >
             <MaterialIcons name="local-laundry-service" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
-            <Text style={styleApp.textButtonFlat}>Gerenciar minhas lavanderias</Text>
+            <Text style={styleApp.textButtonFlat}>Gerenciar lavanderias</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styleApp.buttonFlatHL} disabled={!isEditavel} onPress={adicionarFranquia} >
             <MaterialIcons name="business" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textRegular} />
-            <Text style={styleApp.textButtonFlat}>Cadastrar uma franquia </Text>
+            <Text style={styleApp.textButtonFlat}>Cadastrar franquia </Text>
           </TouchableOpacity>
+
           <TouchableOpacity style={styleApp.buttonFlatHL} disabled={!isEditavel} onPress={listarFranquias} >
             <MaterialIcons name="business-center" size={styleApp.size.iconSizeButtonRegular} color={styleColor.textButtonFlat} />
-            <Text style={styleApp.textButtonFlat}>Gerenciar minhas franquias</Text>
+            <Text style={styleApp.textButtonFlat}>Gerenciar franquias</Text>
           </TouchableOpacity>
         </View>
 
