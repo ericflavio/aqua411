@@ -146,10 +146,10 @@ export default function ViewMaquinarioLoja() {
     //Código do conjunto (ou unidade separada)
     var cj = "";
     if (isConjunto !== undefined && isConjunto === true) { //Clicou no botão incluir conjunto
-      cj = lava.toString() + seca.toString();
+      cj = lava.toString() + seca.toString()
     } else {
       cj = lava.toString()
-    }
+    };
 
     const maq = {
       idMaquina: "UUID" + lava,

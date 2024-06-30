@@ -1,7 +1,12 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 import { styleApp } from "../../../styles/styleApp";
 import { styleColor } from "../../../styles/styleColors";
-import { styleSize } from "../../../styles/styleSize";
+
+try {
+  imageWidth = Dimensions.get('window').width;
+} catch {
+  imageWidth = 340;
+};
 
 export const styles = StyleSheet.create({
   containerHeader: {
@@ -37,11 +42,9 @@ export const styles = StyleSheet.create({
     color: styleColor.sucesso
   },
   imgNovaLoja: {
-    //height: 252, 
-    //width: 450,
+    width: imageWidth,
     overflow: "hidden",
-    resizeMode: "contain",
-    //position: "relative"
+    resizeMode: "cover",
   },
   containerOthers: {
     justifyContent: "center",

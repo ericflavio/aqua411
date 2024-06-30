@@ -71,7 +71,7 @@ export default function ViewFranquiaUnidades() {
   function handleItem(item) {
     //Vai para o menu de opções para editar uma loja
     router.navigate({
-      pathname: "/lojaMenu",
+      pathname: "/franquiaMenu",
       params: {
         navigateParmLoja: JSON.stringify(item)
       }

@@ -118,15 +118,17 @@ export default function ViewLojaCadastroBasico() {
 
   return (
     <SafeAreaView style={[styleApp.containerSafeArea, { paddingTop: 0 }]}>
-      <ScrollView style={[styleApp.containerScroll,{width:'100%'}]} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
+      <ScrollView style={[styleApp.containerScroll, { width: '100%' }]} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
         {ModalSimples(flagShowModal, handleShowModal, "Informações atualizadas!", "TipoMsg", "Título", processing)}
 
         {!parmLoja || parmLoja === null ?
           <>
-            <Image
-              style={styles.imgNovaLoja}
-              source={require('../../../assets/outros/sheep_novaLoja_01.png')}
-            />
+            <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: 'white' }}>
+              <Image
+                style={styles.imgNovaLoja}
+                source={require('../../../assets/outros/sheep_novaLoja_01.png')}
+              />
+            </View>
             <View style={styles.containerDadosLoja}>
               <Text style={styleApp.textRegular}>Cadastre sua loja para seus clientes receberem avisos, promoções, etc.</Text>
             </View>

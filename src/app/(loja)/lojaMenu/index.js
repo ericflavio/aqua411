@@ -170,12 +170,14 @@ export default function ViewEdtMenuLoja() {
   };
 
   return (
-    <SafeAreaView style={[styleApp.containerSafeArea,{paddingTop:0, backgroundColor:styleApp.color.backgroundSafeAreaLiquid}]}> 
+    <SafeAreaView style={[styleApp.containerSafeArea, { paddingTop: 0, backgroundColor: styleApp.color.backgroundSafeAreaLiquid }]}>
       <ScrollView style={[styleApp.containerScroll, { width: '100%' }]} contentContainerStyle={styleApp.containerScrollStyleContent} showsVerticalScrollIndicator={false}>
-        <Image
-          style={styles.imgNovaLoja}
-          source={require('../../../assets/outros/sheep_novaLoja_01.png')}
-        />
+        <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: 'white'}}>
+          <Image
+            style={styles.imgNovaLoja}
+            source={require('../../../assets/outros/sheep_novaLoja_01.png')}
+          />
+        </View>
 
         {ModalSimples(flagShowModal, handleShowModal, "Dados atualizados!", "TipoMsg", "Título", processing)}
 
